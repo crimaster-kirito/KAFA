@@ -1,0 +1,9 @@
+{'Role': 'Server #', 'Round': 5, 'Results_raw': {'test_loss': 22297.57940888405, 'test_correct': 2175.0, 'test_total': 10000, 'test_acc': 0.2175, 'test_avg_loss': 2.2297579408884047}}
+{'Role': 'Server #', 'Round': 10, 'Results_raw': {'test_loss': 21312.191219329834, 'test_correct': 1884.0, 'test_total': 10000, 'test_acc': 0.1884, 'test_avg_loss': 2.1312191219329835}}
+{'Role': 'Server #', 'Round': 15, 'Results_raw': {'test_loss': 20596.15735411644, 'test_correct': 2185.0, 'test_total': 10000, 'test_acc': 0.2185, 'test_avg_loss': 2.059615735411644}}
+{'Role': 'Server #', 'Round': 20, 'Results_raw': {'test_loss': 19619.781680107117, 'test_correct': 2863.0, 'test_total': 10000, 'test_acc': 0.2863, 'test_avg_loss': 1.9619781680107116}}
+{'Role': 'Server #', 'Round': 25, 'Results_raw': {'test_loss': 19697.204880714417, 'test_correct': 3115.0, 'test_total': 10000, 'test_acc': 0.3115, 'test_avg_loss': 1.9697204880714416}}
+{'Role': 'Server #', 'Round': 30, 'Results_raw': {'test_loss': 19236.435779333115, 'test_correct': 3203.0, 'test_total': 10000, 'test_acc': 0.3203, 'test_avg_loss': 1.9236435779333114}}
+{'Role': 'Server #', 'Round': 35, 'Results_raw': {'test_loss': 19753.454631567, 'test_correct': 2199.0, 'test_total': 10000, 'test_acc': 0.2199, 'test_avg_loss': 1.9753454631567002}}
+{'Role': 'Server #', 'Round': 40, 'Results_raw': {'test_loss': 18995.09242594242, 'test_correct': 2587.0, 'test_total': 10000, 'test_acc': 0.2587, 'test_avg_loss': 1.8995092425942421}}
+{'Role': 'Server #', 'Round': 'Final', 'Results_raw': {'server_global_eval': {'test_acc': 0.3203, 'test_loss': 19236.435779333115, 'test_correct': 3203.0, 'test_total': 10000, 'test_avg_loss': 1.9236435779333114}}}

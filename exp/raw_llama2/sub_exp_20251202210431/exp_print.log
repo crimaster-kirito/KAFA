@@ -1,0 +1,1870 @@
+2025-12-02 21:04:31,701 (logging:132) INFO: the current machine is at 127.0.1.1
+2025-12-02 21:04:31,702 (logging:134) INFO: the current dir is /home/tyx/ywp/FedBiOT
+2025-12-02 21:04:31,702 (logging:135) INFO: the output dir is exp/raw_llama2/sub_exp_20251202210431
+2025-12-02 21:04:46,159 (base_translator:120) WARNING: Cannot access train label distribution for splitter, split dataset without considering train label.
+2025-12-02 21:04:46,203 (base_translator:133) INFO: number of clients: 3
+2025-12-02 21:04:46,203 (base_translator:135) INFO: 1
+2025-12-02 21:04:46,238 (base_translator:135) INFO: 2
+2025-12-02 21:04:46,278 (base_translator:135) INFO: 3
+2025-12-02 21:04:46,359 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 64
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.998, 0.001, 0.001]
+  splitter: iid
+  splitter_args: []
+  subsample: 1.0
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: []
+  trunc_stride: 128
+  type: gsm8k@llm
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 4
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: 0
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 0
+eval:
+  best_res_update_round_wise_key: test_loss
+  count_flops: False
+  freq: 100
+  metrics: ['loss']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'raw']
+  split: ['test', 'val']
+expname: raw_llama2
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 3
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: []
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 3
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: 100
+  save_to: checkpoints/raw_llama2.ckpt
+  share_local_model: True
+  total_round_num: 500
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: -1.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{'adapter_package': 'peft', 'adapter_method': 'lora', 'r': 8, 'lora_alpha': 16, 'lora_dropout': 0.05}]
+    mv_to_cpu: False
+    use: True
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 1000
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 4
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: False
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 100
+        kd_loss_weight: 0.0
+        lm_loss_weight: 1.0
+        local_update_steps: 5
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: True
+    emu_l: 0
+    emu_r: 30
+    eval_type: emu
+    kwargs: [{'drop_ratio': 0.5}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: True
+    strategy: drop_layer
+    use: True
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 800
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 256
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 1
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: /home/tyx/ywp/FedBiOT/models/llama-2-7b-hf@huggingface_llm
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  use: False
+outdir: exp/raw_llama2/sub_exp_20251202210431
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 30
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.0
+  type: 
+seed: 0
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: True
+  local_update_steps: 30
+  optimizer:
+    betas: (0.9, 0.95)
+    lr: 0.001
+    type: AdamW
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: llmtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-12-02 21:04:46,361 (worker_builder:225) INFO: =========== Using offsite_tuning ===========
+2025-12-02 21:04:46,471 (worker_builder:110) INFO: =========== Using offsite_tuning ===========
+2025-12-02 21:04:46,648 (utils:167) INFO: The device information file is not provided
+2025-12-02 21:04:46,649 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2025-12-02 21:06:20,750 (server:33) INFO: Server: Generating emulator and adapter...
+2025-12-02 21:06:20,765 (utils:142) INFO: Adding layer 0 to emulator.
+2025-12-02 21:06:20,765 (utils:142) INFO: Adding layer 2 to emulator.
+2025-12-02 21:06:20,765 (utils:142) INFO: Adding layer 4 to emulator.
+2025-12-02 21:06:20,765 (utils:142) INFO: Adding layer 6 to emulator.
+2025-12-02 21:06:20,765 (utils:142) INFO: Adding layer 8 to emulator.
+2025-12-02 21:06:20,765 (utils:142) INFO: Adding layer 10 to emulator.
+2025-12-02 21:06:20,765 (utils:142) INFO: Adding layer 12 to emulator.
+2025-12-02 21:06:20,765 (utils:142) INFO: Adding layer 14 to emulator.
+2025-12-02 21:06:20,766 (utils:142) INFO: Adding layer 16 to emulator.
+2025-12-02 21:06:20,766 (utils:142) INFO: Adding layer 18 to emulator.
+2025-12-02 21:06:20,766 (utils:142) INFO: Adding layer 20 to emulator.
+2025-12-02 21:06:20,766 (utils:142) INFO: Adding layer 22 to emulator.
+2025-12-02 21:06:20,766 (utils:142) INFO: Adding layer 24 to emulator.
+2025-12-02 21:06:20,766 (utils:142) INFO: Adding layer 26 to emulator.
+2025-12-02 21:06:20,766 (utils:142) INFO: Adding layer 29 to emulator.
+2025-12-02 21:06:34,618 (fedot:39) INFO: Loading public dataset for alignment...
+2025-12-02 21:06:34,645 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 64
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: data
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.8, 0.1, 0.1]
+  splitter: iid
+  splitter_args: []
+  subsample: 1.0
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: []
+  trunc_stride: 128
+  type: alpaca@llm
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 4
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: 0
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 0
+eval:
+  best_res_update_round_wise_key: test_loss
+  count_flops: False
+  freq: 100
+  metrics: ['loss']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'raw']
+  split: ['test', 'val']
+expname: raw_llama2
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 1
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: []
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 1
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: 100
+  save_to: checkpoints/raw_llama2.ckpt
+  share_local_model: True
+  total_round_num: 500
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: -1.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{'adapter_package': 'peft', 'adapter_method': 'lora', 'r': 8, 'lora_alpha': 16, 'lora_dropout': 0.05}]
+    mv_to_cpu: False
+    use: True
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 1000
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 4
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: False
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 100
+        kd_loss_weight: 0.0
+        lm_loss_weight: 1.0
+        local_update_steps: 5
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: True
+    emu_l: 0
+    emu_r: 30
+    eval_type: emu
+    kwargs: [{'drop_ratio': 0.5}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: True
+    strategy: drop_layer
+    use: True
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 800
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 256
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 1
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: /home/tyx/ywp/FedBiOT/models/llama-2-7b-hf@huggingface_llm
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  use: False
+outdir: exp/raw_llama2/sub_exp_20251202210431
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 30
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.0
+  type: 
+seed: 0
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: True
+  local_update_steps: 5
+  optimizer:
+    betas: (0.9, 0.95)
+    lr: 0.001
+    type: AdamW
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: llmtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-12-02 21:06:34,720 (utils:754) INFO: File alpaca_data.json exists, use existing file.
+2025-12-02 21:07:35,037 (base_translator:120) WARNING: Cannot access train label distribution for splitter, split dataset without considering train label.
+2025-12-02 21:07:35,110 (base_translator:133) INFO: number of clients: 1
+2025-12-02 21:07:35,110 (base_translator:135) INFO: 1
+2025-12-02 21:07:42,441 (bilevel_OT_trainer:305) INFO: gap_loss: 1.174584 (l2: 1.174584, kl: 7.375), raw loss: 7.375
+2025-12-02 21:07:43,267 (bilevel_OT_trainer:305) INFO: gap_loss: 1.236253 (l2: 1.236253, kl: 8.1875), raw loss: 8.1875
+2025-12-02 21:07:45,349 (bilevel_OT_trainer:305) INFO: gap_loss: 1.489885 (l2: 1.489885, kl: 6.78125), raw loss: 6.78125
+2025-12-02 21:07:46,288 (bilevel_OT_trainer:305) INFO: gap_loss: 1.213982 (l2: 1.213982, kl: 7.46875), raw loss: 7.46875
+2025-12-02 21:07:47,730 (bilevel_OT_trainer:305) INFO: gap_loss: 1.279193 (l2: 1.279193, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:07:48,540 (bilevel_OT_trainer:305) INFO: gap_loss: 1.161048 (l2: 1.161048, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:07:49,255 (bilevel_OT_trainer:305) INFO: gap_loss: 1.163894 (l2: 1.163894, kl: 6.09375), raw loss: 6.09375
+2025-12-02 21:07:50,074 (bilevel_OT_trainer:305) INFO: gap_loss: 1.16202 (l2: 1.16202, kl: 5.625), raw loss: 5.625
+2025-12-02 21:07:50,914 (bilevel_OT_trainer:305) INFO: gap_loss: 1.143651 (l2: 1.143651, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:07:51,767 (bilevel_OT_trainer:305) INFO: gap_loss: 1.145631 (l2: 1.145631, kl: 5.71875), raw loss: 5.71875
+2025-12-02 21:07:52,616 (bilevel_OT_trainer:305) INFO: gap_loss: 1.125082 (l2: 1.125082, kl: 5.25), raw loss: 5.25
+2025-12-02 21:07:53,453 (bilevel_OT_trainer:305) INFO: gap_loss: 1.134476 (l2: 1.134476, kl: 4.75), raw loss: 4.75
+2025-12-02 21:07:54,485 (bilevel_OT_trainer:305) INFO: gap_loss: 1.116603 (l2: 1.116603, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:07:55,610 (bilevel_OT_trainer:305) INFO: gap_loss: 1.142905 (l2: 1.142905, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:07:56,092 (bilevel_OT_trainer:305) INFO: gap_loss: 1.088604 (l2: 1.088604, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:07:56,996 (bilevel_OT_trainer:305) INFO: gap_loss: 1.147757 (l2: 1.147757, kl: 4.75), raw loss: 4.75
+2025-12-02 21:07:57,756 (bilevel_OT_trainer:305) INFO: gap_loss: 1.058122 (l2: 1.058122, kl: 5.90625), raw loss: 5.90625
+2025-12-02 21:07:58,891 (bilevel_OT_trainer:305) INFO: gap_loss: 1.108236 (l2: 1.108236, kl: 5.625), raw loss: 5.625
+2025-12-02 21:08:00,264 (bilevel_OT_trainer:305) INFO: gap_loss: 1.130173 (l2: 1.130173, kl: 5.0), raw loss: 5.0
+2025-12-02 21:08:01,402 (bilevel_OT_trainer:305) INFO: gap_loss: 1.087776 (l2: 1.087776, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:08:01,566 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:08:02,366 (bilevel_OT_trainer:305) INFO: gap_loss: 1.056427 (l2: 1.056427, kl: 5.75), raw loss: 5.75
+2025-12-02 21:08:03,016 (bilevel_OT_trainer:305) INFO: gap_loss: 1.033868 (l2: 1.033868, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:08:03,700 (bilevel_OT_trainer:305) INFO: gap_loss: 1.0466 (l2: 1.0466, kl: 5.0), raw loss: 5.0
+2025-12-02 21:08:04,347 (bilevel_OT_trainer:305) INFO: gap_loss: 1.030846 (l2: 1.030846, kl: 5.875), raw loss: 5.875
+2025-12-02 21:08:05,107 (bilevel_OT_trainer:305) INFO: gap_loss: 1.077786 (l2: 1.077786, kl: 5.25), raw loss: 5.25
+2025-12-02 21:08:06,110 (bilevel_OT_trainer:305) INFO: gap_loss: 1.094853 (l2: 1.094853, kl: 6.59375), raw loss: 6.59375
+2025-12-02 21:08:06,857 (bilevel_OT_trainer:305) INFO: gap_loss: 1.080576 (l2: 1.080576, kl: 6.25), raw loss: 6.25
+2025-12-02 21:08:07,582 (bilevel_OT_trainer:305) INFO: gap_loss: 1.077158 (l2: 1.077158, kl: 4.84375), raw loss: 4.84375
+2025-12-02 21:08:08,631 (bilevel_OT_trainer:305) INFO: gap_loss: 1.057894 (l2: 1.057894, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:08:09,397 (bilevel_OT_trainer:305) INFO: gap_loss: 1.03887 (l2: 1.03887, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:08:10,183 (bilevel_OT_trainer:305) INFO: gap_loss: 1.061376 (l2: 1.061376, kl: 5.96875), raw loss: 5.96875
+2025-12-02 21:08:11,075 (bilevel_OT_trainer:305) INFO: gap_loss: 1.041289 (l2: 1.041289, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:08:12,396 (bilevel_OT_trainer:305) INFO: gap_loss: 1.136558 (l2: 1.136558, kl: 4.34375), raw loss: 4.34375
+2025-12-02 21:08:13,454 (bilevel_OT_trainer:305) INFO: gap_loss: 1.065793 (l2: 1.065793, kl: 5.375), raw loss: 5.375
+2025-12-02 21:08:14,381 (bilevel_OT_trainer:305) INFO: gap_loss: 1.041399 (l2: 1.041399, kl: 5.78125), raw loss: 5.78125
+2025-12-02 21:08:15,540 (bilevel_OT_trainer:305) INFO: gap_loss: 1.043023 (l2: 1.043023, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:08:17,532 (bilevel_OT_trainer:305) INFO: gap_loss: 1.024887 (l2: 1.024887, kl: 3.4375), raw loss: 3.4375
+2025-12-02 21:08:18,655 (bilevel_OT_trainer:305) INFO: gap_loss: 0.997754 (l2: 0.997754, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:08:19,334 (bilevel_OT_trainer:305) INFO: gap_loss: 1.003692 (l2: 1.003692, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:08:20,232 (bilevel_OT_trainer:305) INFO: gap_loss: 1.015004 (l2: 1.015004, kl: 3.9375), raw loss: 3.9375
+2025-12-02 21:08:20,378 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:08:21,182 (bilevel_OT_trainer:305) INFO: gap_loss: 0.986113 (l2: 0.986113, kl: 5.375), raw loss: 5.375
+2025-12-02 21:08:21,975 (bilevel_OT_trainer:305) INFO: gap_loss: 0.994264 (l2: 0.994264, kl: 5.375), raw loss: 5.375
+2025-12-02 21:08:22,705 (bilevel_OT_trainer:305) INFO: gap_loss: 0.992074 (l2: 0.992074, kl: 4.5), raw loss: 4.5
+2025-12-02 21:08:23,754 (bilevel_OT_trainer:305) INFO: gap_loss: 1.000001 (l2: 1.000001, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:08:24,815 (bilevel_OT_trainer:305) INFO: gap_loss: 1.252146 (l2: 1.252146, kl: 5.53125), raw loss: 5.53125
+2025-12-02 21:08:25,801 (bilevel_OT_trainer:305) INFO: gap_loss: 1.263759 (l2: 1.263759, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:08:26,802 (bilevel_OT_trainer:305) INFO: gap_loss: 1.243128 (l2: 1.243128, kl: 6.25), raw loss: 6.25
+2025-12-02 21:08:28,150 (bilevel_OT_trainer:305) INFO: gap_loss: 1.328356 (l2: 1.328356, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:08:29,132 (bilevel_OT_trainer:305) INFO: gap_loss: 1.248459 (l2: 1.248459, kl: 5.625), raw loss: 5.625
+2025-12-02 21:08:29,888 (bilevel_OT_trainer:305) INFO: gap_loss: 1.130708 (l2: 1.130708, kl: 6.1875), raw loss: 6.1875
+2025-12-02 21:08:30,596 (bilevel_OT_trainer:305) INFO: gap_loss: 1.074245 (l2: 1.074245, kl: 5.78125), raw loss: 5.78125
+2025-12-02 21:08:31,295 (bilevel_OT_trainer:305) INFO: gap_loss: 1.113585 (l2: 1.113585, kl: 6.1875), raw loss: 6.1875
+2025-12-02 21:08:32,274 (bilevel_OT_trainer:305) INFO: gap_loss: 1.07901 (l2: 1.07901, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:08:32,947 (bilevel_OT_trainer:305) INFO: gap_loss: 1.03537 (l2: 1.03537, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:08:33,882 (bilevel_OT_trainer:305) INFO: gap_loss: 1.066578 (l2: 1.066578, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:08:35,077 (bilevel_OT_trainer:305) INFO: gap_loss: 1.090572 (l2: 1.090572, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:08:35,888 (bilevel_OT_trainer:305) INFO: gap_loss: 1.02028 (l2: 1.02028, kl: 4.28125), raw loss: 4.28125
+2025-12-02 21:08:37,072 (bilevel_OT_trainer:305) INFO: gap_loss: 1.05431 (l2: 1.05431, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:08:37,928 (bilevel_OT_trainer:305) INFO: gap_loss: 1.026438 (l2: 1.026438, kl: 4.875), raw loss: 4.875
+2025-12-02 21:08:38,668 (bilevel_OT_trainer:305) INFO: gap_loss: 1.022672 (l2: 1.022672, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:08:38,798 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:08:39,362 (bilevel_OT_trainer:305) INFO: gap_loss: 0.995741 (l2: 0.995741, kl: 5.125), raw loss: 5.125
+2025-12-02 21:08:40,136 (bilevel_OT_trainer:305) INFO: gap_loss: 1.010646 (l2: 1.010646, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:08:40,705 (bilevel_OT_trainer:305) INFO: gap_loss: 0.995062 (l2: 0.995062, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:08:41,321 (bilevel_OT_trainer:305) INFO: gap_loss: 1.005319 (l2: 1.005319, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:08:42,020 (bilevel_OT_trainer:305) INFO: gap_loss: 1.120828 (l2: 1.120828, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:08:43,302 (bilevel_OT_trainer:305) INFO: gap_loss: 1.190348 (l2: 1.190348, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:08:44,725 (bilevel_OT_trainer:305) INFO: gap_loss: 1.163942 (l2: 1.163942, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:08:46,019 (bilevel_OT_trainer:305) INFO: gap_loss: 1.203126 (l2: 1.203126, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:08:47,580 (bilevel_OT_trainer:305) INFO: gap_loss: 1.043576 (l2: 1.043576, kl: 4.34375), raw loss: 4.34375
+2025-12-02 21:08:49,150 (bilevel_OT_trainer:305) INFO: gap_loss: 1.007874 (l2: 1.007874, kl: 4.875), raw loss: 4.875
+2025-12-02 21:08:50,815 (bilevel_OT_trainer:305) INFO: gap_loss: 1.027709 (l2: 1.027709, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:08:52,009 (bilevel_OT_trainer:305) INFO: gap_loss: 1.002623 (l2: 1.002623, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:08:53,110 (bilevel_OT_trainer:305) INFO: gap_loss: 0.988396 (l2: 0.988396, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:08:54,225 (bilevel_OT_trainer:305) INFO: gap_loss: 0.985438 (l2: 0.985438, kl: 4.625), raw loss: 4.625
+2025-12-02 21:08:54,937 (bilevel_OT_trainer:305) INFO: gap_loss: 0.983099 (l2: 0.983099, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:08:55,797 (bilevel_OT_trainer:305) INFO: gap_loss: 0.990748 (l2: 0.990748, kl: 4.5), raw loss: 4.5
+2025-12-02 21:08:57,115 (bilevel_OT_trainer:305) INFO: gap_loss: 0.997201 (l2: 0.997201, kl: 4.625), raw loss: 4.625
+2025-12-02 21:08:58,265 (bilevel_OT_trainer:305) INFO: gap_loss: 0.973941 (l2: 0.973941, kl: 5.375), raw loss: 5.375
+2025-12-02 21:08:59,386 (bilevel_OT_trainer:305) INFO: gap_loss: 0.988529 (l2: 0.988529, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:09:00,717 (bilevel_OT_trainer:305) INFO: gap_loss: 0.991502 (l2: 0.991502, kl: 4.75), raw loss: 4.75
+2025-12-02 21:09:00,927 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:09:02,379 (bilevel_OT_trainer:305) INFO: gap_loss: 0.985581 (l2: 0.985581, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:09:03,421 (bilevel_OT_trainer:305) INFO: gap_loss: 0.97565 (l2: 0.97565, kl: 5.5), raw loss: 5.5
+2025-12-02 21:09:04,343 (bilevel_OT_trainer:305) INFO: gap_loss: 0.972457 (l2: 0.972457, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:09:05,035 (bilevel_OT_trainer:305) INFO: gap_loss: 0.978231 (l2: 0.978231, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:09:05,793 (bilevel_OT_trainer:305) INFO: gap_loss: 1.161504 (l2: 1.161504, kl: 4.0), raw loss: 4.0
+2025-12-02 21:09:06,220 (bilevel_OT_trainer:305) INFO: gap_loss: 1.073761 (l2: 1.073761, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:09:07,049 (bilevel_OT_trainer:305) INFO: gap_loss: 1.096199 (l2: 1.096199, kl: 4.28125), raw loss: 4.28125
+2025-12-02 21:09:07,909 (bilevel_OT_trainer:305) INFO: gap_loss: 1.118153 (l2: 1.118153, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:09:09,159 (bilevel_OT_trainer:305) INFO: gap_loss: 1.009996 (l2: 1.009996, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:09:10,485 (bilevel_OT_trainer:305) INFO: gap_loss: 0.980678 (l2: 0.980678, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:09:11,559 (bilevel_OT_trainer:305) INFO: gap_loss: 0.988306 (l2: 0.988306, kl: 5.5), raw loss: 5.5
+2025-12-02 21:09:12,260 (bilevel_OT_trainer:305) INFO: gap_loss: 0.98388 (l2: 0.98388, kl: 5.375), raw loss: 5.375
+2025-12-02 21:09:13,923 (bilevel_OT_trainer:305) INFO: gap_loss: 1.027443 (l2: 1.027443, kl: 5.125), raw loss: 5.125
+2025-12-02 21:09:15,014 (bilevel_OT_trainer:305) INFO: gap_loss: 0.993785 (l2: 0.993785, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:09:16,073 (bilevel_OT_trainer:305) INFO: gap_loss: 0.991961 (l2: 0.991961, kl: 6.15625), raw loss: 6.15625
+2025-12-02 21:09:17,369 (bilevel_OT_trainer:305) INFO: gap_loss: 1.003249 (l2: 1.003249, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:09:18,783 (bilevel_OT_trainer:305) INFO: gap_loss: 0.966004 (l2: 0.966004, kl: 4.75), raw loss: 4.75
+2025-12-02 21:09:19,938 (bilevel_OT_trainer:305) INFO: gap_loss: 0.97033 (l2: 0.97033, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:09:21,259 (bilevel_OT_trainer:305) INFO: gap_loss: 0.96875 (l2: 0.96875, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:09:22,375 (bilevel_OT_trainer:305) INFO: gap_loss: 0.966022 (l2: 0.966022, kl: 4.625), raw loss: 4.625
+2025-12-02 21:09:22,536 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:09:23,273 (bilevel_OT_trainer:305) INFO: gap_loss: 0.972553 (l2: 0.972553, kl: 5.25), raw loss: 5.25
+2025-12-02 21:09:23,677 (bilevel_OT_trainer:305) INFO: gap_loss: 0.966387 (l2: 0.966387, kl: 5.625), raw loss: 5.625
+2025-12-02 21:09:24,088 (bilevel_OT_trainer:305) INFO: gap_loss: 0.968955 (l2: 0.968955, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:09:24,479 (bilevel_OT_trainer:305) INFO: gap_loss: 0.96566 (l2: 0.96566, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:09:25,052 (bilevel_OT_trainer:305) INFO: gap_loss: 0.987229 (l2: 0.987229, kl: 6.25), raw loss: 6.25
+2025-12-02 21:09:25,948 (bilevel_OT_trainer:305) INFO: gap_loss: 1.006269 (l2: 1.006269, kl: 5.375), raw loss: 5.375
+2025-12-02 21:09:27,186 (bilevel_OT_trainer:305) INFO: gap_loss: 1.016354 (l2: 1.016354, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:09:28,251 (bilevel_OT_trainer:305) INFO: gap_loss: 1.00771 (l2: 1.00771, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:09:29,012 (bilevel_OT_trainer:305) INFO: gap_loss: 0.967873 (l2: 0.967873, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:09:30,304 (bilevel_OT_trainer:305) INFO: gap_loss: 0.966943 (l2: 0.966943, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:09:31,117 (bilevel_OT_trainer:305) INFO: gap_loss: 0.96352 (l2: 0.96352, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:09:32,142 (bilevel_OT_trainer:305) INFO: gap_loss: 0.955322 (l2: 0.955322, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:09:32,979 (bilevel_OT_trainer:305) INFO: gap_loss: 0.965185 (l2: 0.965185, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:09:34,010 (bilevel_OT_trainer:305) INFO: gap_loss: 0.959241 (l2: 0.959241, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:09:35,758 (bilevel_OT_trainer:305) INFO: gap_loss: 0.950858 (l2: 0.950858, kl: 4.53125), raw loss: 4.53125
+2025-12-02 21:09:37,377 (bilevel_OT_trainer:305) INFO: gap_loss: 0.962798 (l2: 0.962798, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:09:38,557 (bilevel_OT_trainer:305) INFO: gap_loss: 0.958457 (l2: 0.958457, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:09:39,654 (bilevel_OT_trainer:305) INFO: gap_loss: 0.952171 (l2: 0.952171, kl: 4.0625), raw loss: 4.0625
+2025-12-02 21:09:40,590 (bilevel_OT_trainer:305) INFO: gap_loss: 0.95575 (l2: 0.95575, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:09:41,648 (bilevel_OT_trainer:305) INFO: gap_loss: 0.957581 (l2: 0.957581, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:09:41,811 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:09:42,392 (bilevel_OT_trainer:305) INFO: gap_loss: 0.938964 (l2: 0.938964, kl: 4.46875), raw loss: 4.46875
+2025-12-02 21:09:43,092 (bilevel_OT_trainer:305) INFO: gap_loss: 0.943835 (l2: 0.943835, kl: 4.28125), raw loss: 4.28125
+2025-12-02 21:09:44,465 (bilevel_OT_trainer:305) INFO: gap_loss: 0.94597 (l2: 0.94597, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:09:46,293 (bilevel_OT_trainer:305) INFO: gap_loss: 0.924414 (l2: 0.924414, kl: 4.375), raw loss: 4.375
+2025-12-02 21:09:47,388 (bilevel_OT_trainer:305) INFO: gap_loss: 1.263979 (l2: 1.263979, kl: 6.9375), raw loss: 6.9375
+2025-12-02 21:09:48,858 (bilevel_OT_trainer:305) INFO: gap_loss: 1.358767 (l2: 1.358767, kl: 6.15625), raw loss: 6.15625
+2025-12-02 21:09:50,531 (bilevel_OT_trainer:305) INFO: gap_loss: 1.389001 (l2: 1.389001, kl: 6.6875), raw loss: 6.6875
+2025-12-02 21:09:51,461 (bilevel_OT_trainer:305) INFO: gap_loss: 1.177489 (l2: 1.177489, kl: 6.4375), raw loss: 6.4375
+2025-12-02 21:09:52,390 (bilevel_OT_trainer:305) INFO: gap_loss: 1.056058 (l2: 1.056058, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:09:53,244 (bilevel_OT_trainer:305) INFO: gap_loss: 1.038633 (l2: 1.038633, kl: 5.71875), raw loss: 5.71875
+2025-12-02 21:09:54,688 (bilevel_OT_trainer:305) INFO: gap_loss: 1.093236 (l2: 1.093236, kl: 4.625), raw loss: 4.625
+2025-12-02 21:09:55,690 (bilevel_OT_trainer:305) INFO: gap_loss: 1.044104 (l2: 1.044104, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:09:57,058 (bilevel_OT_trainer:305) INFO: gap_loss: 0.999612 (l2: 0.999612, kl: 4.84375), raw loss: 4.84375
+2025-12-02 21:09:59,114 (bilevel_OT_trainer:305) INFO: gap_loss: 1.033181 (l2: 1.033181, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:10:01,271 (bilevel_OT_trainer:305) INFO: gap_loss: 1.01755 (l2: 1.01755, kl: 4.875), raw loss: 4.875
+2025-12-02 21:10:02,089 (bilevel_OT_trainer:305) INFO: gap_loss: 0.996225 (l2: 0.996225, kl: 5.8125), raw loss: 5.8125
+2025-12-02 21:10:02,726 (bilevel_OT_trainer:305) INFO: gap_loss: 0.999623 (l2: 0.999623, kl: 4.4375), raw loss: 4.4375
+2025-12-02 21:10:03,976 (bilevel_OT_trainer:305) INFO: gap_loss: 1.017206 (l2: 1.017206, kl: 4.875), raw loss: 4.875
+2025-12-02 21:10:04,968 (bilevel_OT_trainer:305) INFO: gap_loss: 1.002222 (l2: 1.002222, kl: 5.125), raw loss: 5.125
+2025-12-02 21:10:06,902 (bilevel_OT_trainer:305) INFO: gap_loss: 1.040683 (l2: 1.040683, kl: 4.28125), raw loss: 4.28125
+2025-12-02 21:10:07,231 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:10:08,022 (bilevel_OT_trainer:305) INFO: gap_loss: 0.982663 (l2: 0.982663, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:10:08,869 (bilevel_OT_trainer:305) INFO: gap_loss: 0.983279 (l2: 0.983279, kl: 5.0), raw loss: 5.0
+2025-12-02 21:10:10,861 (bilevel_OT_trainer:305) INFO: gap_loss: 1.023528 (l2: 1.023528, kl: 4.75), raw loss: 4.75
+2025-12-02 21:10:11,952 (bilevel_OT_trainer:305) INFO: gap_loss: 0.983686 (l2: 0.983686, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:10:13,224 (bilevel_OT_trainer:305) INFO: gap_loss: 1.095654 (l2: 1.095654, kl: 5.96875), raw loss: 5.96875
+2025-12-02 21:10:14,355 (bilevel_OT_trainer:305) INFO: gap_loss: 1.132652 (l2: 1.132652, kl: 5.0), raw loss: 5.0
+2025-12-02 21:10:15,706 (bilevel_OT_trainer:305) INFO: gap_loss: 1.188502 (l2: 1.188502, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:10:16,878 (bilevel_OT_trainer:305) INFO: gap_loss: 1.121596 (l2: 1.121596, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:10:17,564 (bilevel_OT_trainer:305) INFO: gap_loss: 1.047335 (l2: 1.047335, kl: 6.65625), raw loss: 6.65625
+2025-12-02 21:10:19,084 (bilevel_OT_trainer:305) INFO: gap_loss: 1.210094 (l2: 1.210094, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:10:19,977 (bilevel_OT_trainer:305) INFO: gap_loss: 1.090385 (l2: 1.090385, kl: 6.625), raw loss: 6.625
+2025-12-02 21:10:20,476 (bilevel_OT_trainer:305) INFO: gap_loss: 1.07687 (l2: 1.07687, kl: 6.21875), raw loss: 6.21875
+2025-12-02 21:10:21,283 (bilevel_OT_trainer:305) INFO: gap_loss: 1.035166 (l2: 1.035166, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:10:22,380 (bilevel_OT_trainer:305) INFO: gap_loss: 1.028568 (l2: 1.028568, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:10:23,305 (bilevel_OT_trainer:305) INFO: gap_loss: 1.02724 (l2: 1.02724, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:10:24,212 (bilevel_OT_trainer:305) INFO: gap_loss: 1.018777 (l2: 1.018777, kl: 4.875), raw loss: 4.875
+2025-12-02 21:10:25,008 (bilevel_OT_trainer:305) INFO: gap_loss: 0.986141 (l2: 0.986141, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:10:25,798 (bilevel_OT_trainer:305) INFO: gap_loss: 0.98921 (l2: 0.98921, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:10:26,837 (bilevel_OT_trainer:305) INFO: gap_loss: 0.999553 (l2: 0.999553, kl: 5.84375), raw loss: 5.84375
+2025-12-02 21:10:27,916 (bilevel_OT_trainer:305) INFO: gap_loss: 0.99401 (l2: 0.99401, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:10:28,069 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:10:28,957 (bilevel_OT_trainer:305) INFO: gap_loss: 0.984191 (l2: 0.984191, kl: 5.0), raw loss: 5.0
+2025-12-02 21:10:29,638 (bilevel_OT_trainer:305) INFO: gap_loss: 0.969866 (l2: 0.969866, kl: 5.78125), raw loss: 5.78125
+2025-12-02 21:10:30,476 (bilevel_OT_trainer:305) INFO: gap_loss: 0.976554 (l2: 0.976554, kl: 5.5), raw loss: 5.5
+2025-12-02 21:10:31,360 (bilevel_OT_trainer:305) INFO: gap_loss: 0.973462 (l2: 0.973462, kl: 6.03125), raw loss: 6.03125
+2025-12-02 21:10:32,433 (bilevel_OT_trainer:305) INFO: gap_loss: 1.072537 (l2: 1.072537, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:10:34,062 (bilevel_OT_trainer:305) INFO: gap_loss: 1.17276 (l2: 1.17276, kl: 4.46875), raw loss: 4.46875
+2025-12-02 21:10:35,332 (bilevel_OT_trainer:305) INFO: gap_loss: 1.083945 (l2: 1.083945, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:10:36,593 (bilevel_OT_trainer:305) INFO: gap_loss: 1.10343 (l2: 1.10343, kl: 4.75), raw loss: 4.75
+2025-12-02 21:10:37,352 (bilevel_OT_trainer:305) INFO: gap_loss: 0.95829 (l2: 0.95829, kl: 5.375), raw loss: 5.375
+2025-12-02 21:10:37,915 (bilevel_OT_trainer:305) INFO: gap_loss: 0.951411 (l2: 0.951411, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:10:38,499 (bilevel_OT_trainer:305) INFO: gap_loss: 0.959616 (l2: 0.959616, kl: 4.875), raw loss: 4.875
+2025-12-02 21:10:39,323 (bilevel_OT_trainer:305) INFO: gap_loss: 0.963295 (l2: 0.963295, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:10:40,108 (bilevel_OT_trainer:305) INFO: gap_loss: 0.954105 (l2: 0.954105, kl: 5.375), raw loss: 5.375
+2025-12-02 21:10:40,946 (bilevel_OT_trainer:305) INFO: gap_loss: 0.957358 (l2: 0.957358, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:10:41,933 (bilevel_OT_trainer:305) INFO: gap_loss: 0.940666 (l2: 0.940666, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:10:42,710 (bilevel_OT_trainer:305) INFO: gap_loss: 0.958148 (l2: 0.958148, kl: 4.875), raw loss: 4.875
+2025-12-02 21:10:43,701 (bilevel_OT_trainer:305) INFO: gap_loss: 0.960964 (l2: 0.960964, kl: 5.375), raw loss: 5.375
+2025-12-02 21:10:44,805 (bilevel_OT_trainer:305) INFO: gap_loss: 0.96484 (l2: 0.96484, kl: 4.75), raw loss: 4.75
+2025-12-02 21:10:45,504 (bilevel_OT_trainer:305) INFO: gap_loss: 0.962527 (l2: 0.962527, kl: 5.5), raw loss: 5.5
+2025-12-02 21:10:46,290 (bilevel_OT_trainer:305) INFO: gap_loss: 0.959134 (l2: 0.959134, kl: 5.875), raw loss: 5.875
+2025-12-02 21:10:46,424 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:10:47,405 (bilevel_OT_trainer:305) INFO: gap_loss: 0.961151 (l2: 0.961151, kl: 6.25), raw loss: 6.25
+2025-12-02 21:10:48,111 (bilevel_OT_trainer:305) INFO: gap_loss: 0.954948 (l2: 0.954948, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:10:48,934 (bilevel_OT_trainer:305) INFO: gap_loss: 0.95112 (l2: 0.95112, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:10:49,756 (bilevel_OT_trainer:305) INFO: gap_loss: 0.963245 (l2: 0.963245, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:10:51,112 (bilevel_OT_trainer:305) INFO: gap_loss: 1.025197 (l2: 1.025197, kl: 6.09375), raw loss: 6.09375
+2025-12-02 21:10:52,460 (bilevel_OT_trainer:305) INFO: gap_loss: 0.996022 (l2: 0.996022, kl: 4.75), raw loss: 4.75
+2025-12-02 21:10:53,893 (bilevel_OT_trainer:305) INFO: gap_loss: 1.007763 (l2: 1.007763, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:10:55,129 (bilevel_OT_trainer:305) INFO: gap_loss: 1.004501 (l2: 1.004501, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:10:55,629 (bilevel_OT_trainer:305) INFO: gap_loss: 0.981885 (l2: 0.981885, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:10:56,971 (bilevel_OT_trainer:305) INFO: gap_loss: 1.004157 (l2: 1.004157, kl: 5.8125), raw loss: 5.8125
+2025-12-02 21:10:58,650 (bilevel_OT_trainer:305) INFO: gap_loss: 1.007224 (l2: 1.007224, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:10:59,550 (bilevel_OT_trainer:305) INFO: gap_loss: 0.976694 (l2: 0.976694, kl: 5.9375), raw loss: 5.9375
+2025-12-02 21:11:00,526 (bilevel_OT_trainer:305) INFO: gap_loss: 0.961205 (l2: 0.961205, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:11:01,183 (bilevel_OT_trainer:305) INFO: gap_loss: 0.956503 (l2: 0.956503, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:11:01,968 (bilevel_OT_trainer:305) INFO: gap_loss: 0.961747 (l2: 0.961747, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:11:02,906 (bilevel_OT_trainer:305) INFO: gap_loss: 0.944169 (l2: 0.944169, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:11:03,721 (bilevel_OT_trainer:305) INFO: gap_loss: 0.977035 (l2: 0.977035, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:11:05,017 (bilevel_OT_trainer:305) INFO: gap_loss: 0.953519 (l2: 0.953519, kl: 3.5), raw loss: 3.5
+2025-12-02 21:11:06,030 (bilevel_OT_trainer:305) INFO: gap_loss: 0.97722 (l2: 0.97722, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:11:06,889 (bilevel_OT_trainer:305) INFO: gap_loss: 0.969568 (l2: 0.969568, kl: 4.625), raw loss: 4.625
+2025-12-02 21:11:07,017 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:11:07,856 (bilevel_OT_trainer:305) INFO: gap_loss: 0.976622 (l2: 0.976622, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:11:08,837 (bilevel_OT_trainer:305) INFO: gap_loss: 0.959801 (l2: 0.959801, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:11:09,595 (bilevel_OT_trainer:305) INFO: gap_loss: 0.956301 (l2: 0.956301, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:11:10,533 (bilevel_OT_trainer:305) INFO: gap_loss: 0.963575 (l2: 0.963575, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:11:11,754 (bilevel_OT_trainer:305) INFO: gap_loss: 1.035742 (l2: 1.035742, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:11:12,610 (bilevel_OT_trainer:305) INFO: gap_loss: 1.046331 (l2: 1.046331, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:11:13,041 (bilevel_OT_trainer:305) INFO: gap_loss: 0.994039 (l2: 0.994039, kl: 5.71875), raw loss: 5.71875
+2025-12-02 21:11:13,635 (bilevel_OT_trainer:305) INFO: gap_loss: 1.008634 (l2: 1.008634, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:11:14,430 (bilevel_OT_trainer:305) INFO: gap_loss: 0.954613 (l2: 0.954613, kl: 5.84375), raw loss: 5.84375
+2025-12-02 21:11:15,342 (bilevel_OT_trainer:305) INFO: gap_loss: 0.951264 (l2: 0.951264, kl: 5.5), raw loss: 5.5
+2025-12-02 21:11:16,613 (bilevel_OT_trainer:305) INFO: gap_loss: 0.945243 (l2: 0.945243, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:11:17,694 (bilevel_OT_trainer:305) INFO: gap_loss: 0.950901 (l2: 0.950901, kl: 5.0), raw loss: 5.0
+2025-12-02 21:11:18,606 (bilevel_OT_trainer:305) INFO: gap_loss: 0.946722 (l2: 0.946722, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:11:19,633 (bilevel_OT_trainer:305) INFO: gap_loss: 0.951744 (l2: 0.951744, kl: 4.53125), raw loss: 4.53125
+2025-12-02 21:11:20,438 (bilevel_OT_trainer:305) INFO: gap_loss: 0.952464 (l2: 0.952464, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:11:21,223 (bilevel_OT_trainer:305) INFO: gap_loss: 0.952015 (l2: 0.952015, kl: 5.125), raw loss: 5.125
+2025-12-02 21:11:22,218 (bilevel_OT_trainer:305) INFO: gap_loss: 0.94647 (l2: 0.94647, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:11:23,887 (bilevel_OT_trainer:305) INFO: gap_loss: 0.957275 (l2: 0.957275, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:11:25,049 (bilevel_OT_trainer:305) INFO: gap_loss: 0.945636 (l2: 0.945636, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:11:25,962 (bilevel_OT_trainer:305) INFO: gap_loss: 0.942176 (l2: 0.942176, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:11:26,099 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:11:27,030 (bilevel_OT_trainer:305) INFO: gap_loss: 0.927191 (l2: 0.927191, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:11:27,947 (bilevel_OT_trainer:305) INFO: gap_loss: 0.92695 (l2: 0.92695, kl: 4.4375), raw loss: 4.4375
+2025-12-02 21:11:29,185 (bilevel_OT_trainer:305) INFO: gap_loss: 0.930215 (l2: 0.930215, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:11:30,485 (bilevel_OT_trainer:305) INFO: gap_loss: 0.928388 (l2: 0.928388, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:11:31,059 (bilevel_OT_trainer:305) INFO: gap_loss: 0.942372 (l2: 0.942372, kl: 4.75), raw loss: 4.75
+2025-12-02 21:11:31,423 (bilevel_OT_trainer:305) INFO: gap_loss: 0.935704 (l2: 0.935704, kl: 5.375), raw loss: 5.375
+2025-12-02 21:11:31,985 (bilevel_OT_trainer:305) INFO: gap_loss: 0.940106 (l2: 0.940106, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:11:33,429 (bilevel_OT_trainer:305) INFO: gap_loss: 0.941419 (l2: 0.941419, kl: 4.0625), raw loss: 4.0625
+2025-12-02 21:11:34,387 (bilevel_OT_trainer:305) INFO: gap_loss: 0.932799 (l2: 0.932799, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:11:36,579 (bilevel_OT_trainer:305) INFO: gap_loss: 0.933048 (l2: 0.933048, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:11:37,743 (bilevel_OT_trainer:305) INFO: gap_loss: 0.936974 (l2: 0.936974, kl: 4.875), raw loss: 4.875
+2025-12-02 21:11:38,466 (bilevel_OT_trainer:305) INFO: gap_loss: 0.939635 (l2: 0.939635, kl: 6.21875), raw loss: 6.21875
+2025-12-02 21:11:39,197 (bilevel_OT_trainer:305) INFO: gap_loss: 0.928502 (l2: 0.928502, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:11:40,122 (bilevel_OT_trainer:305) INFO: gap_loss: 0.933989 (l2: 0.933989, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:11:40,973 (bilevel_OT_trainer:305) INFO: gap_loss: 0.932294 (l2: 0.932294, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:11:42,285 (bilevel_OT_trainer:305) INFO: gap_loss: 0.922871 (l2: 0.922871, kl: 4.09375), raw loss: 4.09375
+2025-12-02 21:11:43,308 (bilevel_OT_trainer:305) INFO: gap_loss: 0.929525 (l2: 0.929525, kl: 5.84375), raw loss: 5.84375
+2025-12-02 21:11:44,769 (bilevel_OT_trainer:305) INFO: gap_loss: 0.910904 (l2: 0.910904, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:11:45,696 (bilevel_OT_trainer:305) INFO: gap_loss: 0.917598 (l2: 0.917598, kl: 5.0), raw loss: 5.0
+2025-12-02 21:11:47,110 (bilevel_OT_trainer:305) INFO: gap_loss: 0.904183 (l2: 0.904183, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:11:47,348 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:11:48,036 (bilevel_OT_trainer:305) INFO: gap_loss: 0.908855 (l2: 0.908855, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:11:48,604 (bilevel_OT_trainer:305) INFO: gap_loss: 0.907015 (l2: 0.907015, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:11:49,121 (bilevel_OT_trainer:305) INFO: gap_loss: 0.910825 (l2: 0.910825, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:11:50,803 (bilevel_OT_trainer:305) INFO: gap_loss: 0.898863 (l2: 0.898863, kl: 4.4375), raw loss: 4.4375
+2025-12-02 21:11:52,143 (bilevel_OT_trainer:305) INFO: gap_loss: 0.994988 (l2: 0.994988, kl: 4.875), raw loss: 4.875
+2025-12-02 21:11:53,006 (bilevel_OT_trainer:305) INFO: gap_loss: 0.975292 (l2: 0.975292, kl: 5.375), raw loss: 5.375
+2025-12-02 21:11:53,833 (bilevel_OT_trainer:305) INFO: gap_loss: 0.976656 (l2: 0.976656, kl: 5.53125), raw loss: 5.53125
+2025-12-02 21:11:55,540 (bilevel_OT_trainer:305) INFO: gap_loss: 1.055038 (l2: 1.055038, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:11:58,300 (bilevel_OT_trainer:305) INFO: gap_loss: 0.914489 (l2: 0.914489, kl: 4.03125), raw loss: 4.03125
+2025-12-02 21:11:59,143 (bilevel_OT_trainer:305) INFO: gap_loss: 0.928182 (l2: 0.928182, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:12:00,620 (bilevel_OT_trainer:305) INFO: gap_loss: 0.919178 (l2: 0.919178, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:12:02,000 (bilevel_OT_trainer:305) INFO: gap_loss: 0.922627 (l2: 0.922627, kl: 4.5), raw loss: 4.5
+2025-12-02 21:12:02,966 (bilevel_OT_trainer:305) INFO: gap_loss: 0.918331 (l2: 0.918331, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:12:03,899 (bilevel_OT_trainer:305) INFO: gap_loss: 0.913573 (l2: 0.913573, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:12:04,709 (bilevel_OT_trainer:305) INFO: gap_loss: 0.914604 (l2: 0.914604, kl: 5.875), raw loss: 5.875
+2025-12-02 21:12:05,721 (bilevel_OT_trainer:305) INFO: gap_loss: 0.888138 (l2: 0.888138, kl: 3.8125), raw loss: 3.8125
+2025-12-02 21:12:06,420 (bilevel_OT_trainer:305) INFO: gap_loss: 0.917429 (l2: 0.917429, kl: 4.75), raw loss: 4.75
+2025-12-02 21:12:07,800 (bilevel_OT_trainer:305) INFO: gap_loss: 0.904836 (l2: 0.904836, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:12:09,218 (bilevel_OT_trainer:305) INFO: gap_loss: 0.90868 (l2: 0.90868, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:12:10,686 (bilevel_OT_trainer:305) INFO: gap_loss: 0.906906 (l2: 0.906906, kl: 5.125), raw loss: 5.125
+2025-12-02 21:12:10,913 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:12:11,726 (bilevel_OT_trainer:305) INFO: gap_loss: 0.90138 (l2: 0.90138, kl: 4.03125), raw loss: 4.03125
+2025-12-02 21:12:12,842 (bilevel_OT_trainer:305) INFO: gap_loss: 0.905177 (l2: 0.905177, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:12:13,928 (bilevel_OT_trainer:305) INFO: gap_loss: 0.912942 (l2: 0.912942, kl: 4.375), raw loss: 4.375
+2025-12-02 21:12:15,028 (bilevel_OT_trainer:305) INFO: gap_loss: 0.915296 (l2: 0.915296, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:12:16,154 (bilevel_OT_trainer:305) INFO: gap_loss: 0.940577 (l2: 0.940577, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:12:16,895 (bilevel_OT_trainer:305) INFO: gap_loss: 0.948653 (l2: 0.948653, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:12:17,916 (bilevel_OT_trainer:305) INFO: gap_loss: 0.944887 (l2: 0.944887, kl: 4.15625), raw loss: 4.15625
+2025-12-02 21:12:19,319 (bilevel_OT_trainer:305) INFO: gap_loss: 0.977867 (l2: 0.977867, kl: 4.75), raw loss: 4.75
+2025-12-02 21:12:20,347 (bilevel_OT_trainer:305) INFO: gap_loss: 0.939038 (l2: 0.939038, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:12:21,291 (bilevel_OT_trainer:305) INFO: gap_loss: 0.948624 (l2: 0.948624, kl: 4.375), raw loss: 4.375
+2025-12-02 21:12:22,370 (bilevel_OT_trainer:305) INFO: gap_loss: 0.941183 (l2: 0.941183, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:12:23,691 (bilevel_OT_trainer:305) INFO: gap_loss: 0.944071 (l2: 0.944071, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:12:24,569 (bilevel_OT_trainer:305) INFO: gap_loss: 0.910661 (l2: 0.910661, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:12:25,537 (bilevel_OT_trainer:305) INFO: gap_loss: 0.906522 (l2: 0.906522, kl: 4.84375), raw loss: 4.84375
+2025-12-02 21:12:26,162 (bilevel_OT_trainer:305) INFO: gap_loss: 0.908971 (l2: 0.908971, kl: 6.15625), raw loss: 6.15625
+2025-12-02 21:12:27,198 (bilevel_OT_trainer:305) INFO: gap_loss: 0.910948 (l2: 0.910948, kl: 4.875), raw loss: 4.875
+2025-12-02 21:12:28,586 (bilevel_OT_trainer:305) INFO: gap_loss: 0.906295 (l2: 0.906295, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:12:29,996 (bilevel_OT_trainer:305) INFO: gap_loss: 0.892657 (l2: 0.892657, kl: 5.375), raw loss: 5.375
+2025-12-02 21:12:30,894 (bilevel_OT_trainer:305) INFO: gap_loss: 0.914211 (l2: 0.914211, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:12:31,975 (bilevel_OT_trainer:305) INFO: gap_loss: 0.892005 (l2: 0.892005, kl: 4.625), raw loss: 4.625
+2025-12-02 21:12:32,154 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:12:33,143 (bilevel_OT_trainer:305) INFO: gap_loss: 0.908691 (l2: 0.908691, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:12:33,985 (bilevel_OT_trainer:305) INFO: gap_loss: 0.901975 (l2: 0.901975, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:12:35,135 (bilevel_OT_trainer:305) INFO: gap_loss: 0.883502 (l2: 0.883502, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:12:35,919 (bilevel_OT_trainer:305) INFO: gap_loss: 0.910335 (l2: 0.910335, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:12:36,538 (bilevel_OT_trainer:305) INFO: gap_loss: 0.916495 (l2: 0.916495, kl: 5.0), raw loss: 5.0
+2025-12-02 21:12:37,184 (bilevel_OT_trainer:305) INFO: gap_loss: 0.92184 (l2: 0.92184, kl: 4.53125), raw loss: 4.53125
+2025-12-02 21:12:38,051 (bilevel_OT_trainer:305) INFO: gap_loss: 0.929892 (l2: 0.929892, kl: 5.0), raw loss: 5.0
+2025-12-02 21:12:38,921 (bilevel_OT_trainer:305) INFO: gap_loss: 0.927973 (l2: 0.927973, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:12:40,494 (bilevel_OT_trainer:305) INFO: gap_loss: 0.907857 (l2: 0.907857, kl: 4.0625), raw loss: 4.0625
+2025-12-02 21:12:41,510 (bilevel_OT_trainer:305) INFO: gap_loss: 0.903442 (l2: 0.903442, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:12:42,636 (bilevel_OT_trainer:305) INFO: gap_loss: 0.909708 (l2: 0.909708, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:12:43,127 (bilevel_OT_trainer:305) INFO: gap_loss: 0.918877 (l2: 0.918877, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:12:43,475 (bilevel_OT_trainer:305) INFO: gap_loss: 0.912487 (l2: 0.912487, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:12:43,858 (bilevel_OT_trainer:305) INFO: gap_loss: 0.919587 (l2: 0.919587, kl: 5.71875), raw loss: 5.71875
+2025-12-02 21:12:45,111 (bilevel_OT_trainer:305) INFO: gap_loss: 0.894754 (l2: 0.894754, kl: 4.1875), raw loss: 4.1875
+2025-12-02 21:12:45,942 (bilevel_OT_trainer:305) INFO: gap_loss: 0.910999 (l2: 0.910999, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:12:47,004 (bilevel_OT_trainer:305) INFO: gap_loss: 0.904716 (l2: 0.904716, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:12:48,087 (bilevel_OT_trainer:305) INFO: gap_loss: 0.897802 (l2: 0.897802, kl: 4.5), raw loss: 4.5
+2025-12-02 21:12:48,854 (bilevel_OT_trainer:305) INFO: gap_loss: 0.915946 (l2: 0.915946, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:12:49,625 (bilevel_OT_trainer:305) INFO: gap_loss: 0.903631 (l2: 0.903631, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:12:49,751 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:12:50,303 (bilevel_OT_trainer:305) INFO: gap_loss: 0.900418 (l2: 0.900418, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:12:51,132 (bilevel_OT_trainer:305) INFO: gap_loss: 0.889803 (l2: 0.889803, kl: 4.5), raw loss: 4.5
+2025-12-02 21:12:52,516 (bilevel_OT_trainer:305) INFO: gap_loss: 0.887922 (l2: 0.887922, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:12:54,222 (bilevel_OT_trainer:305) INFO: gap_loss: 0.867013 (l2: 0.867013, kl: 4.03125), raw loss: 4.03125
+2025-12-02 21:12:55,107 (bilevel_OT_trainer:305) INFO: gap_loss: 0.914565 (l2: 0.914565, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:12:55,826 (bilevel_OT_trainer:305) INFO: gap_loss: 0.906766 (l2: 0.906766, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:12:56,572 (bilevel_OT_trainer:305) INFO: gap_loss: 0.910647 (l2: 0.910647, kl: 5.625), raw loss: 5.625
+2025-12-02 21:12:57,553 (bilevel_OT_trainer:305) INFO: gap_loss: 0.914747 (l2: 0.914747, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:12:58,475 (bilevel_OT_trainer:305) INFO: gap_loss: 0.880878 (l2: 0.880878, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:12:59,381 (bilevel_OT_trainer:305) INFO: gap_loss: 0.890243 (l2: 0.890243, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:13:00,272 (bilevel_OT_trainer:305) INFO: gap_loss: 0.872747 (l2: 0.872747, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:13:00,818 (bilevel_OT_trainer:305) INFO: gap_loss: 0.877384 (l2: 0.877384, kl: 5.25), raw loss: 5.25
+2025-12-02 21:13:01,388 (bilevel_OT_trainer:305) INFO: gap_loss: 0.879833 (l2: 0.879833, kl: 4.875), raw loss: 4.875
+2025-12-02 21:13:02,066 (bilevel_OT_trainer:305) INFO: gap_loss: 0.903295 (l2: 0.903295, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:13:02,991 (bilevel_OT_trainer:305) INFO: gap_loss: 0.87634 (l2: 0.87634, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:13:04,259 (bilevel_OT_trainer:305) INFO: gap_loss: 0.873513 (l2: 0.873513, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:13:05,118 (bilevel_OT_trainer:305) INFO: gap_loss: 0.891677 (l2: 0.891677, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:13:05,963 (bilevel_OT_trainer:305) INFO: gap_loss: 0.888048 (l2: 0.888048, kl: 4.625), raw loss: 4.625
+2025-12-02 21:13:07,606 (bilevel_OT_trainer:305) INFO: gap_loss: 0.853861 (l2: 0.853861, kl: 4.28125), raw loss: 4.28125
+2025-12-02 21:13:08,750 (bilevel_OT_trainer:305) INFO: gap_loss: 0.863746 (l2: 0.863746, kl: 4.21875), raw loss: 4.21875
+2025-12-02 21:13:08,903 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:13:09,767 (bilevel_OT_trainer:305) INFO: gap_loss: 0.862309 (l2: 0.862309, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:13:10,997 (bilevel_OT_trainer:305) INFO: gap_loss: 0.864146 (l2: 0.864146, kl: 4.125), raw loss: 4.125
+2025-12-02 21:13:12,055 (bilevel_OT_trainer:305) INFO: gap_loss: 0.852851 (l2: 0.852851, kl: 4.34375), raw loss: 4.34375
+2025-12-02 21:13:13,264 (bilevel_OT_trainer:305) INFO: gap_loss: 0.852008 (l2: 0.852008, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:13:14,140 (bilevel_OT_trainer:305) INFO: gap_loss: 0.868433 (l2: 0.868433, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:13:15,293 (bilevel_OT_trainer:305) INFO: gap_loss: 0.873752 (l2: 0.873752, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:13:16,642 (bilevel_OT_trainer:305) INFO: gap_loss: 0.876356 (l2: 0.876356, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:13:17,565 (bilevel_OT_trainer:305) INFO: gap_loss: 0.845706 (l2: 0.845706, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:13:18,278 (bilevel_OT_trainer:305) INFO: gap_loss: 0.867961 (l2: 0.867961, kl: 5.125), raw loss: 5.125
+2025-12-02 21:13:19,054 (bilevel_OT_trainer:305) INFO: gap_loss: 0.902743 (l2: 0.902743, kl: 5.71875), raw loss: 5.71875
+2025-12-02 21:13:19,812 (bilevel_OT_trainer:305) INFO: gap_loss: 0.885206 (l2: 0.885206, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:13:20,848 (bilevel_OT_trainer:305) INFO: gap_loss: 0.878721 (l2: 0.878721, kl: 6.3125), raw loss: 6.3125
+2025-12-02 21:13:21,541 (bilevel_OT_trainer:305) INFO: gap_loss: 0.88262 (l2: 0.88262, kl: 5.0), raw loss: 5.0
+2025-12-02 21:13:22,985 (bilevel_OT_trainer:305) INFO: gap_loss: 0.839091 (l2: 0.839091, kl: 4.0625), raw loss: 4.0625
+2025-12-02 21:13:24,332 (bilevel_OT_trainer:305) INFO: gap_loss: 0.85156 (l2: 0.85156, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:13:25,239 (bilevel_OT_trainer:305) INFO: gap_loss: 0.880502 (l2: 0.880502, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:13:26,067 (bilevel_OT_trainer:305) INFO: gap_loss: 0.867677 (l2: 0.867677, kl: 5.375), raw loss: 5.375
+2025-12-02 21:13:26,934 (bilevel_OT_trainer:305) INFO: gap_loss: 0.85786 (l2: 0.85786, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:13:27,798 (bilevel_OT_trainer:305) INFO: gap_loss: 0.864427 (l2: 0.864427, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:13:28,674 (bilevel_OT_trainer:305) INFO: gap_loss: 0.859941 (l2: 0.859941, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:13:28,819 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:13:30,234 (bilevel_OT_trainer:305) INFO: gap_loss: 0.805777 (l2: 0.805777, kl: 4.25), raw loss: 4.25
+2025-12-02 21:13:31,003 (bilevel_OT_trainer:305) INFO: gap_loss: 0.846687 (l2: 0.846687, kl: 5.25), raw loss: 5.25
+2025-12-02 21:13:31,639 (bilevel_OT_trainer:305) INFO: gap_loss: 0.863372 (l2: 0.863372, kl: 5.375), raw loss: 5.375
+2025-12-02 21:13:35,094 (bilevel_OT_trainer:305) INFO: gap_loss: 0.803554 (l2: 0.803554, kl: 4.5), raw loss: 4.5
+2025-12-02 21:13:36,299 (bilevel_OT_trainer:305) INFO: gap_loss: 0.863826 (l2: 0.863826, kl: 4.5), raw loss: 4.5
+2025-12-02 21:13:37,284 (bilevel_OT_trainer:305) INFO: gap_loss: 0.86772 (l2: 0.86772, kl: 4.34375), raw loss: 4.34375
+2025-12-02 21:13:38,431 (bilevel_OT_trainer:305) INFO: gap_loss: 0.876718 (l2: 0.876718, kl: 4.46875), raw loss: 4.46875
+2025-12-02 21:13:39,893 (bilevel_OT_trainer:305) INFO: gap_loss: 0.869286 (l2: 0.869286, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:13:40,689 (bilevel_OT_trainer:305) INFO: gap_loss: 0.866639 (l2: 0.866639, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:13:41,833 (bilevel_OT_trainer:305) INFO: gap_loss: 0.853307 (l2: 0.853307, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:13:42,726 (bilevel_OT_trainer:305) INFO: gap_loss: 0.860091 (l2: 0.860091, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:13:43,554 (bilevel_OT_trainer:305) INFO: gap_loss: 0.858907 (l2: 0.858907, kl: 4.4375), raw loss: 4.4375
+2025-12-02 21:13:44,780 (bilevel_OT_trainer:305) INFO: gap_loss: 0.877304 (l2: 0.877304, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:13:46,245 (bilevel_OT_trainer:305) INFO: gap_loss: 0.905382 (l2: 0.905382, kl: 4.0625), raw loss: 4.0625
+2025-12-02 21:13:47,488 (bilevel_OT_trainer:305) INFO: gap_loss: 0.8897 (l2: 0.8897, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:13:48,239 (bilevel_OT_trainer:305) INFO: gap_loss: 0.880402 (l2: 0.880402, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:13:49,058 (bilevel_OT_trainer:305) INFO: gap_loss: 0.848062 (l2: 0.848062, kl: 4.84375), raw loss: 4.84375
+2025-12-02 21:13:49,951 (bilevel_OT_trainer:305) INFO: gap_loss: 0.856072 (l2: 0.856072, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:13:50,707 (bilevel_OT_trainer:305) INFO: gap_loss: 0.83451 (l2: 0.83451, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:13:51,365 (bilevel_OT_trainer:305) INFO: gap_loss: 0.848885 (l2: 0.848885, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:13:51,467 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:13:52,120 (bilevel_OT_trainer:305) INFO: gap_loss: 0.85665 (l2: 0.85665, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:13:53,171 (bilevel_OT_trainer:305) INFO: gap_loss: 0.840008 (l2: 0.840008, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:13:53,836 (bilevel_OT_trainer:305) INFO: gap_loss: 0.856425 (l2: 0.856425, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:13:54,630 (bilevel_OT_trainer:305) INFO: gap_loss: 0.85193 (l2: 0.85193, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:13:55,535 (bilevel_OT_trainer:305) INFO: gap_loss: 0.894477 (l2: 0.894477, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:13:56,428 (bilevel_OT_trainer:305) INFO: gap_loss: 0.897129 (l2: 0.897129, kl: 4.125), raw loss: 4.125
+2025-12-02 21:13:57,319 (bilevel_OT_trainer:305) INFO: gap_loss: 0.906668 (l2: 0.906668, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:13:58,659 (bilevel_OT_trainer:305) INFO: gap_loss: 0.918674 (l2: 0.918674, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:14:00,043 (bilevel_OT_trainer:305) INFO: gap_loss: 0.859575 (l2: 0.859575, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:14:00,907 (bilevel_OT_trainer:305) INFO: gap_loss: 0.857116 (l2: 0.857116, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:14:01,695 (bilevel_OT_trainer:305) INFO: gap_loss: 0.833244 (l2: 0.833244, kl: 4.75), raw loss: 4.75
+2025-12-02 21:14:02,501 (bilevel_OT_trainer:305) INFO: gap_loss: 0.857979 (l2: 0.857979, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:14:04,041 (bilevel_OT_trainer:305) INFO: gap_loss: 0.850499 (l2: 0.850499, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:14:04,978 (bilevel_OT_trainer:305) INFO: gap_loss: 0.844246 (l2: 0.844246, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:14:05,983 (bilevel_OT_trainer:305) INFO: gap_loss: 0.85327 (l2: 0.85327, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:14:06,922 (bilevel_OT_trainer:305) INFO: gap_loss: 0.872253 (l2: 0.872253, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:14:07,843 (bilevel_OT_trainer:305) INFO: gap_loss: 0.851092 (l2: 0.851092, kl: 5.625), raw loss: 5.625
+2025-12-02 21:14:08,734 (bilevel_OT_trainer:305) INFO: gap_loss: 0.836175 (l2: 0.836175, kl: 4.1875), raw loss: 4.1875
+2025-12-02 21:14:09,521 (bilevel_OT_trainer:305) INFO: gap_loss: 0.849811 (l2: 0.849811, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:14:10,643 (bilevel_OT_trainer:305) INFO: gap_loss: 0.840592 (l2: 0.840592, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:14:10,834 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:14:11,651 (bilevel_OT_trainer:305) INFO: gap_loss: 0.825073 (l2: 0.825073, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:14:12,245 (bilevel_OT_trainer:305) INFO: gap_loss: 0.820633 (l2: 0.820633, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:14:12,992 (bilevel_OT_trainer:305) INFO: gap_loss: 0.842208 (l2: 0.842208, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:14:14,018 (bilevel_OT_trainer:305) INFO: gap_loss: 0.833217 (l2: 0.833217, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:14:14,831 (bilevel_OT_trainer:305) INFO: gap_loss: 0.88497 (l2: 0.88497, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:14:15,610 (bilevel_OT_trainer:305) INFO: gap_loss: 0.865921 (l2: 0.865921, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:14:16,493 (bilevel_OT_trainer:305) INFO: gap_loss: 0.87007 (l2: 0.87007, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:14:17,594 (bilevel_OT_trainer:305) INFO: gap_loss: 0.854264 (l2: 0.854264, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:14:18,337 (bilevel_OT_trainer:305) INFO: gap_loss: 0.841273 (l2: 0.841273, kl: 4.875), raw loss: 4.875
+2025-12-02 21:14:19,429 (bilevel_OT_trainer:305) INFO: gap_loss: 0.828488 (l2: 0.828488, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:14:20,215 (bilevel_OT_trainer:305) INFO: gap_loss: 0.828639 (l2: 0.828639, kl: 4.75), raw loss: 4.75
+2025-12-02 21:14:21,073 (bilevel_OT_trainer:305) INFO: gap_loss: 0.840018 (l2: 0.840018, kl: 4.5), raw loss: 4.5
+2025-12-02 21:14:21,962 (bilevel_OT_trainer:305) INFO: gap_loss: 0.809434 (l2: 0.809434, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:14:22,819 (bilevel_OT_trainer:305) INFO: gap_loss: 0.816932 (l2: 0.816932, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:14:24,946 (bilevel_OT_trainer:305) INFO: gap_loss: 0.78826 (l2: 0.78826, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:14:26,559 (bilevel_OT_trainer:305) INFO: gap_loss: 0.817183 (l2: 0.817183, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:14:28,122 (bilevel_OT_trainer:305) INFO: gap_loss: 0.795613 (l2: 0.795613, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:14:29,620 (bilevel_OT_trainer:305) INFO: gap_loss: 0.80839 (l2: 0.80839, kl: 5.0), raw loss: 5.0
+2025-12-02 21:14:31,608 (bilevel_OT_trainer:305) INFO: gap_loss: 0.81245 (l2: 0.81245, kl: 5.0), raw loss: 5.0
+2025-12-02 21:14:32,645 (bilevel_OT_trainer:305) INFO: gap_loss: 0.804897 (l2: 0.804897, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:14:32,760 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:14:33,437 (bilevel_OT_trainer:305) INFO: gap_loss: 0.803667 (l2: 0.803667, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:14:34,476 (bilevel_OT_trainer:305) INFO: gap_loss: 0.813337 (l2: 0.813337, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:14:35,567 (bilevel_OT_trainer:305) INFO: gap_loss: 0.789235 (l2: 0.789235, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:14:36,800 (bilevel_OT_trainer:305) INFO: gap_loss: 0.826442 (l2: 0.826442, kl: 4.625), raw loss: 4.625
+2025-12-02 21:14:37,756 (bilevel_OT_trainer:305) INFO: gap_loss: 0.860448 (l2: 0.860448, kl: 4.5), raw loss: 4.5
+2025-12-02 21:14:38,555 (bilevel_OT_trainer:305) INFO: gap_loss: 0.85308 (l2: 0.85308, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:14:40,358 (bilevel_OT_trainer:305) INFO: gap_loss: 0.892795 (l2: 0.892795, kl: 5.0), raw loss: 5.0
+2025-12-02 21:14:42,027 (bilevel_OT_trainer:305) INFO: gap_loss: 0.885964 (l2: 0.885964, kl: 5.375), raw loss: 5.375
+2025-12-02 21:14:43,923 (bilevel_OT_trainer:305) INFO: gap_loss: 0.817007 (l2: 0.817007, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:14:45,889 (bilevel_OT_trainer:305) INFO: gap_loss: 0.824718 (l2: 0.824718, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:14:47,283 (bilevel_OT_trainer:305) INFO: gap_loss: 0.823982 (l2: 0.823982, kl: 5.375), raw loss: 5.375
+2025-12-02 21:14:48,558 (bilevel_OT_trainer:305) INFO: gap_loss: 0.802098 (l2: 0.802098, kl: 4.625), raw loss: 4.625
+2025-12-02 21:14:50,123 (bilevel_OT_trainer:305) INFO: gap_loss: 0.792434 (l2: 0.792434, kl: 4.34375), raw loss: 4.34375
+2025-12-02 21:14:51,431 (bilevel_OT_trainer:305) INFO: gap_loss: 0.799672 (l2: 0.799672, kl: 5.0), raw loss: 5.0
+2025-12-02 21:14:52,742 (bilevel_OT_trainer:305) INFO: gap_loss: 0.803422 (l2: 0.803422, kl: 4.75), raw loss: 4.75
+2025-12-02 21:14:53,904 (bilevel_OT_trainer:305) INFO: gap_loss: 0.801886 (l2: 0.801886, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:14:54,595 (bilevel_OT_trainer:305) INFO: gap_loss: 0.805357 (l2: 0.805357, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:14:55,381 (bilevel_OT_trainer:305) INFO: gap_loss: 0.792926 (l2: 0.792926, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:14:56,290 (bilevel_OT_trainer:305) INFO: gap_loss: 0.792556 (l2: 0.792556, kl: 5.71875), raw loss: 5.71875
+2025-12-02 21:14:57,492 (bilevel_OT_trainer:305) INFO: gap_loss: 0.806785 (l2: 0.806785, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:14:57,689 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:14:59,164 (bilevel_OT_trainer:305) INFO: gap_loss: 0.778678 (l2: 0.778678, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:15:01,108 (bilevel_OT_trainer:305) INFO: gap_loss: 0.77879 (l2: 0.77879, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:15:02,332 (bilevel_OT_trainer:305) INFO: gap_loss: 0.798759 (l2: 0.798759, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:15:03,444 (bilevel_OT_trainer:305) INFO: gap_loss: 0.77237 (l2: 0.77237, kl: 5.8125), raw loss: 5.8125
+2025-12-02 21:15:05,251 (bilevel_OT_trainer:305) INFO: gap_loss: 0.798593 (l2: 0.798593, kl: 4.625), raw loss: 4.625
+2025-12-02 21:15:06,917 (bilevel_OT_trainer:305) INFO: gap_loss: 0.797807 (l2: 0.797807, kl: 5.375), raw loss: 5.375
+2025-12-02 21:15:08,048 (bilevel_OT_trainer:305) INFO: gap_loss: 0.789175 (l2: 0.789175, kl: 5.25), raw loss: 5.25
+2025-12-02 21:15:09,605 (bilevel_OT_trainer:305) INFO: gap_loss: 0.810016 (l2: 0.810016, kl: 5.5), raw loss: 5.5
+2025-12-02 21:15:10,768 (bilevel_OT_trainer:305) INFO: gap_loss: 0.79132 (l2: 0.79132, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:15:12,011 (bilevel_OT_trainer:305) INFO: gap_loss: 0.789244 (l2: 0.789244, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:15:13,124 (bilevel_OT_trainer:305) INFO: gap_loss: 0.784481 (l2: 0.784481, kl: 5.84375), raw loss: 5.84375
+2025-12-02 21:15:14,724 (bilevel_OT_trainer:305) INFO: gap_loss: 0.810148 (l2: 0.810148, kl: 5.75), raw loss: 5.75
+2025-12-02 21:15:15,777 (bilevel_OT_trainer:305) INFO: gap_loss: 0.721545 (l2: 0.721545, kl: 4.75), raw loss: 4.75
+2025-12-02 21:15:16,837 (bilevel_OT_trainer:305) INFO: gap_loss: 0.736363 (l2: 0.736363, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:15:18,408 (bilevel_OT_trainer:305) INFO: gap_loss: 0.737041 (l2: 0.737041, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:15:20,473 (bilevel_OT_trainer:305) INFO: gap_loss: 0.75106 (l2: 0.75106, kl: 4.625), raw loss: 4.625
+2025-12-02 21:15:21,643 (bilevel_OT_trainer:305) INFO: gap_loss: 0.702016 (l2: 0.702016, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:15:23,313 (bilevel_OT_trainer:305) INFO: gap_loss: 0.715438 (l2: 0.715438, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:15:25,176 (bilevel_OT_trainer:305) INFO: gap_loss: 0.741548 (l2: 0.741548, kl: 5.125), raw loss: 5.125
+2025-12-02 21:15:27,479 (bilevel_OT_trainer:305) INFO: gap_loss: 0.720164 (l2: 0.720164, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:15:27,845 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:15:29,208 (bilevel_OT_trainer:305) INFO: gap_loss: 0.703005 (l2: 0.703005, kl: 4.28125), raw loss: 4.28125
+2025-12-02 21:15:30,978 (bilevel_OT_trainer:305) INFO: gap_loss: 0.721624 (l2: 0.721624, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:15:32,771 (bilevel_OT_trainer:305) INFO: gap_loss: 0.727607 (l2: 0.727607, kl: 4.84375), raw loss: 4.84375
+2025-12-02 21:15:34,441 (bilevel_OT_trainer:305) INFO: gap_loss: 0.733657 (l2: 0.733657, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:15:35,603 (bilevel_OT_trainer:305) INFO: gap_loss: 0.767115 (l2: 0.767115, kl: 5.0), raw loss: 5.0
+2025-12-02 21:15:36,697 (bilevel_OT_trainer:305) INFO: gap_loss: 0.773889 (l2: 0.773889, kl: 5.9375), raw loss: 5.9375
+2025-12-02 21:15:37,790 (bilevel_OT_trainer:305) INFO: gap_loss: 0.767333 (l2: 0.767333, kl: 5.0), raw loss: 5.0
+2025-12-02 21:15:39,037 (bilevel_OT_trainer:305) INFO: gap_loss: 0.769929 (l2: 0.769929, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:15:40,124 (bilevel_OT_trainer:305) INFO: gap_loss: 0.670217 (l2: 0.670217, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:15:41,329 (bilevel_OT_trainer:305) INFO: gap_loss: 0.682308 (l2: 0.682308, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:15:42,747 (bilevel_OT_trainer:305) INFO: gap_loss: 0.688441 (l2: 0.688441, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:15:43,824 (bilevel_OT_trainer:305) INFO: gap_loss: 0.690387 (l2: 0.690387, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:15:44,933 (bilevel_OT_trainer:305) INFO: gap_loss: 0.726381 (l2: 0.726381, kl: 5.8125), raw loss: 5.8125
+2025-12-02 21:15:45,920 (bilevel_OT_trainer:305) INFO: gap_loss: 0.695373 (l2: 0.695373, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:15:47,150 (bilevel_OT_trainer:305) INFO: gap_loss: 0.728626 (l2: 0.728626, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:15:48,960 (bilevel_OT_trainer:305) INFO: gap_loss: 0.75283 (l2: 0.75283, kl: 4.5), raw loss: 4.5
+2025-12-02 21:15:50,196 (bilevel_OT_trainer:305) INFO: gap_loss: 0.674501 (l2: 0.674501, kl: 6.0625), raw loss: 6.0625
+2025-12-02 21:15:53,053 (bilevel_OT_trainer:305) INFO: gap_loss: 0.715098 (l2: 0.715098, kl: 4.125), raw loss: 4.125
+2025-12-02 21:15:54,208 (bilevel_OT_trainer:305) INFO: gap_loss: 0.667473 (l2: 0.667473, kl: 5.8125), raw loss: 5.8125
+2025-12-02 21:15:55,089 (bilevel_OT_trainer:305) INFO: gap_loss: 0.65038 (l2: 0.65038, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:15:55,224 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:15:56,763 (bilevel_OT_trainer:305) INFO: gap_loss: 0.655968 (l2: 0.655968, kl: 5.0), raw loss: 5.0
+2025-12-02 21:15:59,116 (bilevel_OT_trainer:305) INFO: gap_loss: 0.654289 (l2: 0.654289, kl: 4.25), raw loss: 4.25
+2025-12-02 21:16:00,880 (bilevel_OT_trainer:305) INFO: gap_loss: 0.642573 (l2: 0.642573, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:16:02,195 (bilevel_OT_trainer:305) INFO: gap_loss: 0.646376 (l2: 0.646376, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:16:03,043 (bilevel_OT_trainer:305) INFO: gap_loss: 0.67246 (l2: 0.67246, kl: 5.875), raw loss: 5.875
+2025-12-02 21:16:04,238 (bilevel_OT_trainer:305) INFO: gap_loss: 0.710571 (l2: 0.710571, kl: 5.53125), raw loss: 5.53125
+2025-12-02 21:16:05,327 (bilevel_OT_trainer:305) INFO: gap_loss: 0.706294 (l2: 0.706294, kl: 5.375), raw loss: 5.375
+2025-12-02 21:16:06,785 (bilevel_OT_trainer:305) INFO: gap_loss: 0.73 (l2: 0.73, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:16:07,982 (bilevel_OT_trainer:305) INFO: gap_loss: 0.701379 (l2: 0.701379, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:16:09,149 (bilevel_OT_trainer:305) INFO: gap_loss: 0.680209 (l2: 0.680209, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:16:10,406 (bilevel_OT_trainer:305) INFO: gap_loss: 0.690535 (l2: 0.690535, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:16:12,011 (bilevel_OT_trainer:305) INFO: gap_loss: 0.708261 (l2: 0.708261, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:16:13,638 (bilevel_OT_trainer:305) INFO: gap_loss: 0.654797 (l2: 0.654797, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:16:14,827 (bilevel_OT_trainer:305) INFO: gap_loss: 0.640263 (l2: 0.640263, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:16:16,327 (bilevel_OT_trainer:305) INFO: gap_loss: 0.645914 (l2: 0.645914, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:16:17,319 (bilevel_OT_trainer:305) INFO: gap_loss: 0.61279 (l2: 0.61279, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:16:18,345 (bilevel_OT_trainer:305) INFO: gap_loss: 0.605857 (l2: 0.605857, kl: 5.0), raw loss: 5.0
+2025-12-02 21:16:19,318 (bilevel_OT_trainer:305) INFO: gap_loss: 0.611008 (l2: 0.611008, kl: 5.0), raw loss: 5.0
+2025-12-02 21:16:20,791 (bilevel_OT_trainer:305) INFO: gap_loss: 0.618497 (l2: 0.618497, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:16:21,939 (bilevel_OT_trainer:305) INFO: gap_loss: 0.616499 (l2: 0.616499, kl: 5.375), raw loss: 5.375
+2025-12-02 21:16:22,108 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:16:23,526 (bilevel_OT_trainer:305) INFO: gap_loss: 0.608564 (l2: 0.608564, kl: 5.0), raw loss: 5.0
+2025-12-02 21:16:24,826 (bilevel_OT_trainer:305) INFO: gap_loss: 0.614085 (l2: 0.614085, kl: 6.5625), raw loss: 6.5625
+2025-12-02 21:16:25,909 (bilevel_OT_trainer:305) INFO: gap_loss: 0.605329 (l2: 0.605329, kl: 5.75), raw loss: 5.75
+2025-12-02 21:16:27,780 (bilevel_OT_trainer:305) INFO: gap_loss: 0.6351 (l2: 0.6351, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:16:29,436 (bilevel_OT_trainer:305) INFO: gap_loss: 0.646859 (l2: 0.646859, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:16:30,968 (bilevel_OT_trainer:305) INFO: gap_loss: 0.659242 (l2: 0.659242, kl: 5.625), raw loss: 5.625
+2025-12-02 21:16:32,023 (bilevel_OT_trainer:305) INFO: gap_loss: 0.618817 (l2: 0.618817, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:16:33,692 (bilevel_OT_trainer:305) INFO: gap_loss: 0.648358 (l2: 0.648358, kl: 4.875), raw loss: 4.875
+2025-12-02 21:16:35,324 (bilevel_OT_trainer:305) INFO: gap_loss: 1.673498 (l2: 1.673498, kl: 5.90625), raw loss: 5.90625
+2025-12-02 21:16:37,002 (bilevel_OT_trainer:305) INFO: gap_loss: 1.820153 (l2: 1.820153, kl: 6.84375), raw loss: 6.84375
+2025-12-02 21:16:38,195 (bilevel_OT_trainer:305) INFO: gap_loss: 1.373608 (l2: 1.373608, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:16:39,795 (bilevel_OT_trainer:305) INFO: gap_loss: 1.609377 (l2: 1.609377, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:16:41,469 (bilevel_OT_trainer:305) INFO: gap_loss: 0.677219 (l2: 0.677219, kl: 5.25), raw loss: 5.25
+2025-12-02 21:16:42,658 (bilevel_OT_trainer:305) INFO: gap_loss: 0.636643 (l2: 0.636643, kl: 4.625), raw loss: 4.625
+2025-12-02 21:16:43,858 (bilevel_OT_trainer:305) INFO: gap_loss: 0.6467 (l2: 0.6467, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:16:45,114 (bilevel_OT_trainer:305) INFO: gap_loss: 0.643492 (l2: 0.643492, kl: 4.4375), raw loss: 4.4375
+2025-12-02 21:16:46,840 (bilevel_OT_trainer:305) INFO: gap_loss: 0.616766 (l2: 0.616766, kl: 4.21875), raw loss: 4.21875
+2025-12-02 21:16:47,918 (bilevel_OT_trainer:305) INFO: gap_loss: 0.604572 (l2: 0.604572, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:16:48,960 (bilevel_OT_trainer:305) INFO: gap_loss: 0.608599 (l2: 0.608599, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:16:50,465 (bilevel_OT_trainer:305) INFO: gap_loss: 0.611704 (l2: 0.611704, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:16:50,713 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:16:52,102 (bilevel_OT_trainer:305) INFO: gap_loss: 0.619088 (l2: 0.619088, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:16:53,430 (bilevel_OT_trainer:305) INFO: gap_loss: 0.613318 (l2: 0.613318, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:16:54,986 (bilevel_OT_trainer:305) INFO: gap_loss: 0.622727 (l2: 0.622727, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:16:55,975 (bilevel_OT_trainer:305) INFO: gap_loss: 0.617272 (l2: 0.617272, kl: 4.625), raw loss: 4.625
+2025-12-02 21:16:57,119 (bilevel_OT_trainer:305) INFO: gap_loss: 0.690994 (l2: 0.690994, kl: 5.75), raw loss: 5.75
+2025-12-02 21:16:58,950 (bilevel_OT_trainer:305) INFO: gap_loss: 0.718245 (l2: 0.718245, kl: 4.625), raw loss: 4.625
+2025-12-02 21:17:00,656 (bilevel_OT_trainer:305) INFO: gap_loss: 0.730332 (l2: 0.730332, kl: 5.875), raw loss: 5.875
+2025-12-02 21:17:02,934 (bilevel_OT_trainer:305) INFO: gap_loss: 0.847693 (l2: 0.847693, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:17:04,670 (bilevel_OT_trainer:305) INFO: gap_loss: 0.622606 (l2: 0.622606, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:17:05,716 (bilevel_OT_trainer:305) INFO: gap_loss: 0.601151 (l2: 0.601151, kl: 5.875), raw loss: 5.875
+2025-12-02 21:17:07,358 (bilevel_OT_trainer:305) INFO: gap_loss: 0.644527 (l2: 0.644527, kl: 5.625), raw loss: 5.625
+2025-12-02 21:17:08,717 (bilevel_OT_trainer:305) INFO: gap_loss: 0.627726 (l2: 0.627726, kl: 5.8125), raw loss: 5.8125
+2025-12-02 21:17:11,013 (bilevel_OT_trainer:305) INFO: gap_loss: 0.623596 (l2: 0.623596, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:17:12,514 (bilevel_OT_trainer:305) INFO: gap_loss: 0.5839 (l2: 0.5839, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:17:13,523 (bilevel_OT_trainer:305) INFO: gap_loss: 0.571709 (l2: 0.571709, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:17:15,078 (bilevel_OT_trainer:305) INFO: gap_loss: 0.613255 (l2: 0.613255, kl: 5.96875), raw loss: 5.96875
+2025-12-02 21:17:16,824 (bilevel_OT_trainer:305) INFO: gap_loss: 0.608512 (l2: 0.608512, kl: 4.75), raw loss: 4.75
+2025-12-02 21:17:18,649 (bilevel_OT_trainer:305) INFO: gap_loss: 0.621736 (l2: 0.621736, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:17:19,885 (bilevel_OT_trainer:305) INFO: gap_loss: 0.599673 (l2: 0.599673, kl: 5.5), raw loss: 5.5
+2025-12-02 21:17:21,053 (bilevel_OT_trainer:305) INFO: gap_loss: 0.604297 (l2: 0.604297, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:17:21,298 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:17:22,219 (bilevel_OT_trainer:305) INFO: gap_loss: 0.611518 (l2: 0.611518, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:17:24,028 (bilevel_OT_trainer:305) INFO: gap_loss: 0.661862 (l2: 0.661862, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:17:25,113 (bilevel_OT_trainer:305) INFO: gap_loss: 0.604937 (l2: 0.604937, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:17:26,303 (bilevel_OT_trainer:305) INFO: gap_loss: 0.644625 (l2: 0.644625, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:17:27,352 (bilevel_OT_trainer:305) INFO: gap_loss: 0.660468 (l2: 0.660468, kl: 8.5), raw loss: 8.5
+2025-12-02 21:17:28,861 (bilevel_OT_trainer:305) INFO: gap_loss: 0.722679 (l2: 0.722679, kl: 7.84375), raw loss: 7.84375
+2025-12-02 21:17:30,037 (bilevel_OT_trainer:305) INFO: gap_loss: 0.681529 (l2: 0.681529, kl: 8.25), raw loss: 8.25
+2025-12-02 21:17:31,034 (bilevel_OT_trainer:305) INFO: gap_loss: 0.652672 (l2: 0.652672, kl: 8.5625), raw loss: 8.5625
+2025-12-02 21:17:32,063 (bilevel_OT_trainer:305) INFO: gap_loss: 0.589756 (l2: 0.589756, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:17:33,630 (bilevel_OT_trainer:305) INFO: gap_loss: 0.588245 (l2: 0.588245, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:17:35,650 (bilevel_OT_trainer:305) INFO: gap_loss: 0.629273 (l2: 0.629273, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:17:36,757 (bilevel_OT_trainer:305) INFO: gap_loss: 0.580635 (l2: 0.580635, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:17:38,003 (bilevel_OT_trainer:305) INFO: gap_loss: 0.582777 (l2: 0.582777, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:17:38,864 (bilevel_OT_trainer:305) INFO: gap_loss: 0.541597 (l2: 0.541597, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:17:40,095 (bilevel_OT_trainer:305) INFO: gap_loss: 0.584178 (l2: 0.584178, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:17:41,048 (bilevel_OT_trainer:305) INFO: gap_loss: 0.553351 (l2: 0.553351, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:17:42,215 (bilevel_OT_trainer:305) INFO: gap_loss: 0.557222 (l2: 0.557222, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:17:43,194 (bilevel_OT_trainer:305) INFO: gap_loss: 0.54504 (l2: 0.54504, kl: 5.71875), raw loss: 5.71875
+2025-12-02 21:17:45,347 (bilevel_OT_trainer:305) INFO: gap_loss: 0.608738 (l2: 0.608738, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:17:47,283 (bilevel_OT_trainer:305) INFO: gap_loss: 0.590517 (l2: 0.590517, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:17:47,551 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:17:49,198 (bilevel_OT_trainer:305) INFO: gap_loss: 0.556165 (l2: 0.556165, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:17:50,153 (bilevel_OT_trainer:305) INFO: gap_loss: 0.510401 (l2: 0.510401, kl: 5.5), raw loss: 5.5
+2025-12-02 21:17:51,368 (bilevel_OT_trainer:305) INFO: gap_loss: 0.54824 (l2: 0.54824, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:17:52,680 (bilevel_OT_trainer:305) INFO: gap_loss: 0.546574 (l2: 0.546574, kl: 5.5), raw loss: 5.5
+2025-12-02 21:17:53,544 (bilevel_OT_trainer:305) INFO: gap_loss: 0.523778 (l2: 0.523778, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:17:54,555 (bilevel_OT_trainer:305) INFO: gap_loss: 0.553617 (l2: 0.553617, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:17:55,507 (bilevel_OT_trainer:305) INFO: gap_loss: 0.533268 (l2: 0.533268, kl: 5.125), raw loss: 5.125
+2025-12-02 21:17:56,450 (bilevel_OT_trainer:305) INFO: gap_loss: 0.551091 (l2: 0.551091, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:17:57,528 (bilevel_OT_trainer:305) INFO: gap_loss: 0.655754 (l2: 0.655754, kl: 5.0), raw loss: 5.0
+2025-12-02 21:17:59,506 (bilevel_OT_trainer:305) INFO: gap_loss: 0.66144 (l2: 0.66144, kl: 5.0), raw loss: 5.0
+2025-12-02 21:18:00,717 (bilevel_OT_trainer:305) INFO: gap_loss: 0.654059 (l2: 0.654059, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:18:03,599 (bilevel_OT_trainer:305) INFO: gap_loss: 0.720977 (l2: 0.720977, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:18:05,009 (bilevel_OT_trainer:305) INFO: gap_loss: 0.521935 (l2: 0.521935, kl: 4.75), raw loss: 4.75
+2025-12-02 21:18:07,205 (bilevel_OT_trainer:305) INFO: gap_loss: 0.653434 (l2: 0.653434, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:18:09,769 (bilevel_OT_trainer:305) INFO: gap_loss: 0.659249 (l2: 0.659249, kl: 4.75), raw loss: 4.75
+2025-12-02 21:18:11,312 (bilevel_OT_trainer:305) INFO: gap_loss: 0.558437 (l2: 0.558437, kl: 6.0), raw loss: 6.0
+2025-12-02 21:18:12,584 (bilevel_OT_trainer:305) INFO: gap_loss: 0.498825 (l2: 0.498825, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:18:13,693 (bilevel_OT_trainer:305) INFO: gap_loss: 0.496193 (l2: 0.496193, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:18:14,971 (bilevel_OT_trainer:305) INFO: gap_loss: 0.499341 (l2: 0.499341, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:18:16,242 (bilevel_OT_trainer:305) INFO: gap_loss: 0.480646 (l2: 0.480646, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:18:16,433 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:18:17,362 (bilevel_OT_trainer:305) INFO: gap_loss: 0.514921 (l2: 0.514921, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:18:18,335 (bilevel_OT_trainer:305) INFO: gap_loss: 0.502255 (l2: 0.502255, kl: 5.53125), raw loss: 5.53125
+2025-12-02 21:18:19,391 (bilevel_OT_trainer:305) INFO: gap_loss: 0.520295 (l2: 0.520295, kl: 4.75), raw loss: 4.75
+2025-12-02 21:18:21,549 (bilevel_OT_trainer:305) INFO: gap_loss: 0.574251 (l2: 0.574251, kl: 4.625), raw loss: 4.625
+2025-12-02 21:18:23,320 (bilevel_OT_trainer:305) INFO: gap_loss: 0.732915 (l2: 0.732915, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:18:24,383 (bilevel_OT_trainer:305) INFO: gap_loss: 0.610854 (l2: 0.610854, kl: 5.9375), raw loss: 5.9375
+2025-12-02 21:18:26,664 (bilevel_OT_trainer:305) INFO: gap_loss: 0.873589 (l2: 0.873589, kl: 4.375), raw loss: 4.375
+2025-12-02 21:18:27,853 (bilevel_OT_trainer:305) INFO: gap_loss: 0.591403 (l2: 0.591403, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:18:28,933 (bilevel_OT_trainer:305) INFO: gap_loss: 0.595685 (l2: 0.595685, kl: 6.65625), raw loss: 6.65625
+2025-12-02 21:18:31,766 (bilevel_OT_trainer:305) INFO: gap_loss: 0.797584 (l2: 0.797584, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:18:33,815 (bilevel_OT_trainer:305) INFO: gap_loss: 0.726599 (l2: 0.726599, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:18:35,180 (bilevel_OT_trainer:305) INFO: gap_loss: 0.580384 (l2: 0.580384, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:18:37,024 (bilevel_OT_trainer:305) INFO: gap_loss: 0.58032 (l2: 0.58032, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:18:38,710 (bilevel_OT_trainer:305) INFO: gap_loss: 0.537875 (l2: 0.537875, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:18:39,891 (bilevel_OT_trainer:305) INFO: gap_loss: 0.525364 (l2: 0.525364, kl: 5.375), raw loss: 5.375
+2025-12-02 21:18:40,865 (bilevel_OT_trainer:305) INFO: gap_loss: 0.506572 (l2: 0.506572, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:18:42,363 (bilevel_OT_trainer:305) INFO: gap_loss: 0.533496 (l2: 0.533496, kl: 4.75), raw loss: 4.75
+2025-12-02 21:18:44,147 (bilevel_OT_trainer:305) INFO: gap_loss: 0.549884 (l2: 0.549884, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:18:45,335 (bilevel_OT_trainer:305) INFO: gap_loss: 0.506525 (l2: 0.506525, kl: 5.125), raw loss: 5.125
+2025-12-02 21:18:46,394 (bilevel_OT_trainer:305) INFO: gap_loss: 0.502262 (l2: 0.502262, kl: 5.25), raw loss: 5.25
+2025-12-02 21:18:46,564 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:18:48,181 (bilevel_OT_trainer:305) INFO: gap_loss: 0.553391 (l2: 0.553391, kl: 5.75), raw loss: 5.75
+2025-12-02 21:18:49,853 (bilevel_OT_trainer:305) INFO: gap_loss: 0.507959 (l2: 0.507959, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:18:50,913 (bilevel_OT_trainer:305) INFO: gap_loss: 0.49347 (l2: 0.49347, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:18:51,974 (bilevel_OT_trainer:305) INFO: gap_loss: 0.497816 (l2: 0.497816, kl: 5.125), raw loss: 5.125
+2025-12-02 21:18:53,063 (bilevel_OT_trainer:305) INFO: gap_loss: 0.69016 (l2: 0.69016, kl: 4.375), raw loss: 4.375
+2025-12-02 21:18:54,323 (bilevel_OT_trainer:305) INFO: gap_loss: 0.795779 (l2: 0.795779, kl: 4.625), raw loss: 4.625
+2025-12-02 21:18:55,567 (bilevel_OT_trainer:305) INFO: gap_loss: 0.719565 (l2: 0.719565, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:18:57,064 (bilevel_OT_trainer:305) INFO: gap_loss: 0.749247 (l2: 0.749247, kl: 4.28125), raw loss: 4.28125
+2025-12-02 21:18:58,035 (bilevel_OT_trainer:305) INFO: gap_loss: 0.532492 (l2: 0.532492, kl: 6.09375), raw loss: 6.09375
+2025-12-02 21:18:59,875 (bilevel_OT_trainer:305) INFO: gap_loss: 0.568804 (l2: 0.568804, kl: 5.53125), raw loss: 5.53125
+2025-12-02 21:19:02,504 (bilevel_OT_trainer:305) INFO: gap_loss: 0.596837 (l2: 0.596837, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:19:03,837 (bilevel_OT_trainer:305) INFO: gap_loss: 0.504992 (l2: 0.504992, kl: 6.09375), raw loss: 6.09375
+2025-12-02 21:19:04,672 (bilevel_OT_trainer:305) INFO: gap_loss: 0.462862 (l2: 0.462862, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:19:06,169 (bilevel_OT_trainer:305) INFO: gap_loss: 0.514382 (l2: 0.514382, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:19:07,217 (bilevel_OT_trainer:305) INFO: gap_loss: 0.478764 (l2: 0.478764, kl: 5.875), raw loss: 5.875
+2025-12-02 21:19:08,149 (bilevel_OT_trainer:305) INFO: gap_loss: 0.483181 (l2: 0.483181, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:19:09,402 (bilevel_OT_trainer:305) INFO: gap_loss: 0.525593 (l2: 0.525593, kl: 6.0), raw loss: 6.0
+2025-12-02 21:19:11,133 (bilevel_OT_trainer:305) INFO: gap_loss: 0.503597 (l2: 0.503597, kl: 4.125), raw loss: 4.125
+2025-12-02 21:19:12,291 (bilevel_OT_trainer:305) INFO: gap_loss: 0.482083 (l2: 0.482083, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:19:14,423 (bilevel_OT_trainer:305) INFO: gap_loss: 0.559268 (l2: 0.559268, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:19:14,781 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:19:16,203 (bilevel_OT_trainer:305) INFO: gap_loss: 0.50606 (l2: 0.50606, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:19:17,274 (bilevel_OT_trainer:305) INFO: gap_loss: 0.479857 (l2: 0.479857, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:19:18,287 (bilevel_OT_trainer:305) INFO: gap_loss: 0.479307 (l2: 0.479307, kl: 5.125), raw loss: 5.125
+2025-12-02 21:19:19,812 (bilevel_OT_trainer:305) INFO: gap_loss: 0.506656 (l2: 0.506656, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:19:21,086 (bilevel_OT_trainer:305) INFO: gap_loss: 0.570763 (l2: 0.570763, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:19:22,479 (bilevel_OT_trainer:305) INFO: gap_loss: 0.646761 (l2: 0.646761, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:19:24,135 (bilevel_OT_trainer:305) INFO: gap_loss: 0.609216 (l2: 0.609216, kl: 5.96875), raw loss: 5.96875
+2025-12-02 21:19:25,299 (bilevel_OT_trainer:305) INFO: gap_loss: 0.575758 (l2: 0.575758, kl: 6.0), raw loss: 6.0
+2025-12-02 21:19:27,230 (bilevel_OT_trainer:305) INFO: gap_loss: 0.692533 (l2: 0.692533, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:19:28,922 (bilevel_OT_trainer:305) INFO: gap_loss: 0.592245 (l2: 0.592245, kl: 4.5), raw loss: 4.5
+2025-12-02 21:19:31,192 (bilevel_OT_trainer:305) INFO: gap_loss: 0.781504 (l2: 0.781504, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:19:32,646 (bilevel_OT_trainer:305) INFO: gap_loss: 0.600503 (l2: 0.600503, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:19:33,914 (bilevel_OT_trainer:305) INFO: gap_loss: 0.451293 (l2: 0.451293, kl: 5.53125), raw loss: 5.53125
+2025-12-02 21:19:35,004 (bilevel_OT_trainer:305) INFO: gap_loss: 0.426132 (l2: 0.426132, kl: 5.5), raw loss: 5.5
+2025-12-02 21:19:36,506 (bilevel_OT_trainer:305) INFO: gap_loss: 0.457269 (l2: 0.457269, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:19:37,820 (bilevel_OT_trainer:305) INFO: gap_loss: 0.450852 (l2: 0.450852, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:19:38,823 (bilevel_OT_trainer:305) INFO: gap_loss: 0.443773 (l2: 0.443773, kl: 5.5), raw loss: 5.5
+2025-12-02 21:19:39,866 (bilevel_OT_trainer:305) INFO: gap_loss: 0.459774 (l2: 0.459774, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:19:40,909 (bilevel_OT_trainer:305) INFO: gap_loss: 0.448207 (l2: 0.448207, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:19:42,107 (bilevel_OT_trainer:305) INFO: gap_loss: 0.458604 (l2: 0.458604, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:19:42,291 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:19:43,214 (bilevel_OT_trainer:305) INFO: gap_loss: 0.446118 (l2: 0.446118, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:19:44,480 (bilevel_OT_trainer:305) INFO: gap_loss: 0.465926 (l2: 0.465926, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:19:45,437 (bilevel_OT_trainer:305) INFO: gap_loss: 0.435505 (l2: 0.435505, kl: 5.75), raw loss: 5.75
+2025-12-02 21:19:47,207 (bilevel_OT_trainer:305) INFO: gap_loss: 0.535834 (l2: 0.535834, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:19:48,473 (bilevel_OT_trainer:305) INFO: gap_loss: 0.431333 (l2: 0.431333, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:19:49,536 (bilevel_OT_trainer:305) INFO: gap_loss: 0.44675 (l2: 0.44675, kl: 6.40625), raw loss: 6.40625
+2025-12-02 21:19:50,583 (bilevel_OT_trainer:305) INFO: gap_loss: 0.439103 (l2: 0.439103, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:19:51,783 (bilevel_OT_trainer:305) INFO: gap_loss: 0.44709 (l2: 0.44709, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:19:56,205 (bilevel_OT_trainer:305) INFO: gap_loss: 0.675321 (l2: 0.675321, kl: 5.96875), raw loss: 5.96875
+2025-12-02 21:19:58,681 (bilevel_OT_trainer:305) INFO: gap_loss: 0.540855 (l2: 0.540855, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:20:00,042 (bilevel_OT_trainer:305) INFO: gap_loss: 0.498285 (l2: 0.498285, kl: 6.28125), raw loss: 6.28125
+2025-12-02 21:20:01,308 (bilevel_OT_trainer:305) INFO: gap_loss: 0.494572 (l2: 0.494572, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:20:02,573 (bilevel_OT_trainer:305) INFO: gap_loss: 0.426098 (l2: 0.426098, kl: 5.0), raw loss: 5.0
+2025-12-02 21:20:03,842 (bilevel_OT_trainer:305) INFO: gap_loss: 0.454699 (l2: 0.454699, kl: 6.28125), raw loss: 6.28125
+2025-12-02 21:20:05,546 (bilevel_OT_trainer:305) INFO: gap_loss: 0.431367 (l2: 0.431367, kl: 3.875), raw loss: 3.875
+2025-12-02 21:20:06,877 (bilevel_OT_trainer:305) INFO: gap_loss: 0.418827 (l2: 0.418827, kl: 5.0), raw loss: 5.0
+2025-12-02 21:20:08,125 (bilevel_OT_trainer:305) INFO: gap_loss: 0.402297 (l2: 0.402297, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:20:09,997 (bilevel_OT_trainer:305) INFO: gap_loss: 0.438779 (l2: 0.438779, kl: 4.1875), raw loss: 4.1875
+2025-12-02 21:20:10,826 (bilevel_OT_trainer:305) INFO: gap_loss: 0.372066 (l2: 0.372066, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:20:11,833 (bilevel_OT_trainer:305) INFO: gap_loss: 0.398258 (l2: 0.398258, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:20:12,015 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:20:12,966 (bilevel_OT_trainer:305) INFO: gap_loss: 0.386235 (l2: 0.386235, kl: 5.125), raw loss: 5.125
+2025-12-02 21:20:14,053 (bilevel_OT_trainer:305) INFO: gap_loss: 0.366777 (l2: 0.366777, kl: 5.25), raw loss: 5.25
+2025-12-02 21:20:15,873 (bilevel_OT_trainer:305) INFO: gap_loss: 0.417141 (l2: 0.417141, kl: 4.84375), raw loss: 4.84375
+2025-12-02 21:20:18,151 (bilevel_OT_trainer:305) INFO: gap_loss: 0.460368 (l2: 0.460368, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:20:19,404 (bilevel_OT_trainer:305) INFO: gap_loss: 0.444856 (l2: 0.444856, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:20:20,630 (bilevel_OT_trainer:305) INFO: gap_loss: 0.451032 (l2: 0.451032, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:20:22,564 (bilevel_OT_trainer:305) INFO: gap_loss: 0.577672 (l2: 0.577672, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:20:23,956 (bilevel_OT_trainer:305) INFO: gap_loss: 0.459405 (l2: 0.459405, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:20:25,016 (bilevel_OT_trainer:305) INFO: gap_loss: 0.386118 (l2: 0.386118, kl: 4.75), raw loss: 4.75
+2025-12-02 21:20:26,260 (bilevel_OT_trainer:305) INFO: gap_loss: 0.410939 (l2: 0.410939, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:20:27,226 (bilevel_OT_trainer:305) INFO: gap_loss: 0.36596 (l2: 0.36596, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:20:28,841 (bilevel_OT_trainer:305) INFO: gap_loss: 0.435104 (l2: 0.435104, kl: 4.46875), raw loss: 4.46875
+2025-12-02 21:20:30,204 (bilevel_OT_trainer:305) INFO: gap_loss: 0.517616 (l2: 0.517616, kl: 8.5), raw loss: 8.5
+2025-12-02 21:20:31,288 (bilevel_OT_trainer:305) INFO: gap_loss: 0.484918 (l2: 0.484918, kl: 7.71875), raw loss: 7.71875
+2025-12-02 21:20:32,846 (bilevel_OT_trainer:305) INFO: gap_loss: 0.533536 (l2: 0.533536, kl: 7.15625), raw loss: 7.15625
+2025-12-02 21:20:34,136 (bilevel_OT_trainer:305) INFO: gap_loss: 0.504115 (l2: 0.504115, kl: 7.8125), raw loss: 7.8125
+2025-12-02 21:20:34,835 (bilevel_OT_trainer:305) INFO: gap_loss: 0.35529 (l2: 0.35529, kl: 5.96875), raw loss: 5.96875
+2025-12-02 21:20:36,199 (bilevel_OT_trainer:305) INFO: gap_loss: 0.430312 (l2: 0.430312, kl: 6.28125), raw loss: 6.28125
+2025-12-02 21:20:37,242 (bilevel_OT_trainer:305) INFO: gap_loss: 0.350542 (l2: 0.350542, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:20:38,447 (bilevel_OT_trainer:305) INFO: gap_loss: 0.390378 (l2: 0.390378, kl: 5.5), raw loss: 5.5
+2025-12-02 21:20:38,637 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:20:40,176 (bilevel_OT_trainer:305) INFO: gap_loss: 0.468852 (l2: 0.468852, kl: 5.375), raw loss: 5.375
+2025-12-02 21:20:41,506 (bilevel_OT_trainer:305) INFO: gap_loss: 0.425316 (l2: 0.425316, kl: 5.8125), raw loss: 5.8125
+2025-12-02 21:20:43,072 (bilevel_OT_trainer:305) INFO: gap_loss: 0.414097 (l2: 0.414097, kl: 4.4375), raw loss: 4.4375
+2025-12-02 21:20:44,419 (bilevel_OT_trainer:305) INFO: gap_loss: 0.413876 (l2: 0.413876, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:20:45,754 (bilevel_OT_trainer:305) INFO: gap_loss: 0.4227 (l2: 0.4227, kl: 5.875), raw loss: 5.875
+2025-12-02 21:20:47,040 (bilevel_OT_trainer:305) INFO: gap_loss: 0.410102 (l2: 0.410102, kl: 5.8125), raw loss: 5.8125
+2025-12-02 21:20:49,858 (bilevel_OT_trainer:305) INFO: gap_loss: 0.520294 (l2: 0.520294, kl: 5.625), raw loss: 5.625
+2025-12-02 21:20:51,958 (bilevel_OT_trainer:305) INFO: gap_loss: 0.475287 (l2: 0.475287, kl: 6.125), raw loss: 6.125
+2025-12-02 21:20:54,979 (bilevel_OT_trainer:305) INFO: gap_loss: 0.62165 (l2: 0.62165, kl: 4.625), raw loss: 4.625
+2025-12-02 21:20:56,416 (bilevel_OT_trainer:305) INFO: gap_loss: 0.418697 (l2: 0.418697, kl: 6.09375), raw loss: 6.09375
+2025-12-02 21:20:57,929 (bilevel_OT_trainer:305) INFO: gap_loss: 0.480282 (l2: 0.480282, kl: 6.15625), raw loss: 6.15625
+2025-12-02 21:20:59,395 (bilevel_OT_trainer:305) INFO: gap_loss: 0.4972 (l2: 0.4972, kl: 5.625), raw loss: 5.625
+2025-12-02 21:21:00,659 (bilevel_OT_trainer:305) INFO: gap_loss: 0.51027 (l2: 0.51027, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:21:02,262 (bilevel_OT_trainer:305) INFO: gap_loss: 0.578872 (l2: 0.578872, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:21:03,303 (bilevel_OT_trainer:305) INFO: gap_loss: 0.416757 (l2: 0.416757, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:21:04,811 (bilevel_OT_trainer:305) INFO: gap_loss: 0.519 (l2: 0.519, kl: 4.125), raw loss: 4.125
+2025-12-02 21:21:06,120 (bilevel_OT_trainer:305) INFO: gap_loss: 0.71502 (l2: 0.71502, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:21:07,347 (bilevel_OT_trainer:305) INFO: gap_loss: 0.691598 (l2: 0.691598, kl: 5.78125), raw loss: 5.78125
+2025-12-02 21:21:08,158 (bilevel_OT_trainer:305) INFO: gap_loss: 0.447596 (l2: 0.447596, kl: 6.125), raw loss: 6.125
+2025-12-02 21:21:09,703 (bilevel_OT_trainer:305) INFO: gap_loss: 0.769984 (l2: 0.769984, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:21:09,972 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:21:11,676 (bilevel_OT_trainer:305) INFO: gap_loss: 0.589064 (l2: 0.589064, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:21:13,280 (bilevel_OT_trainer:305) INFO: gap_loss: 0.493304 (l2: 0.493304, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:21:15,870 (bilevel_OT_trainer:305) INFO: gap_loss: 0.698499 (l2: 0.698499, kl: 5.25), raw loss: 5.25
+2025-12-02 21:21:17,092 (bilevel_OT_trainer:305) INFO: gap_loss: 0.441784 (l2: 0.441784, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:21:18,333 (bilevel_OT_trainer:305) INFO: gap_loss: 0.448901 (l2: 0.448901, kl: 5.90625), raw loss: 5.90625
+2025-12-02 21:21:20,248 (bilevel_OT_trainer:305) INFO: gap_loss: 0.523522 (l2: 0.523522, kl: 4.53125), raw loss: 4.53125
+2025-12-02 21:21:21,347 (bilevel_OT_trainer:305) INFO: gap_loss: 0.395614 (l2: 0.395614, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:21:22,370 (bilevel_OT_trainer:305) INFO: gap_loss: 0.408916 (l2: 0.408916, kl: 5.0), raw loss: 5.0
+2025-12-02 21:21:23,215 (bilevel_OT_trainer:305) INFO: gap_loss: 0.381067 (l2: 0.381067, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:21:24,882 (bilevel_OT_trainer:305) INFO: gap_loss: 0.418773 (l2: 0.418773, kl: 4.125), raw loss: 4.125
+2025-12-02 21:21:26,061 (bilevel_OT_trainer:305) INFO: gap_loss: 0.372751 (l2: 0.372751, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:21:27,332 (bilevel_OT_trainer:305) INFO: gap_loss: 0.398314 (l2: 0.398314, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:21:28,971 (bilevel_OT_trainer:305) INFO: gap_loss: 0.404922 (l2: 0.404922, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:21:30,765 (bilevel_OT_trainer:305) INFO: gap_loss: 0.431606 (l2: 0.431606, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:21:32,138 (bilevel_OT_trainer:305) INFO: gap_loss: 0.388994 (l2: 0.388994, kl: 4.53125), raw loss: 4.53125
+2025-12-02 21:21:33,398 (bilevel_OT_trainer:305) INFO: gap_loss: 0.402615 (l2: 0.402615, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:21:34,629 (bilevel_OT_trainer:305) INFO: gap_loss: 0.407543 (l2: 0.407543, kl: 5.53125), raw loss: 5.53125
+2025-12-02 21:21:36,335 (bilevel_OT_trainer:305) INFO: gap_loss: 0.441913 (l2: 0.441913, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:21:37,982 (bilevel_OT_trainer:305) INFO: gap_loss: 0.419257 (l2: 0.419257, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:21:39,329 (bilevel_OT_trainer:305) INFO: gap_loss: 0.423222 (l2: 0.423222, kl: 6.0), raw loss: 6.0
+2025-12-02 21:21:39,526 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:21:40,640 (bilevel_OT_trainer:305) INFO: gap_loss: 0.401574 (l2: 0.401574, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:21:42,248 (bilevel_OT_trainer:305) INFO: gap_loss: 0.383755 (l2: 0.383755, kl: 4.625), raw loss: 4.625
+2025-12-02 21:21:43,899 (bilevel_OT_trainer:305) INFO: gap_loss: 0.415793 (l2: 0.415793, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:21:44,799 (bilevel_OT_trainer:305) INFO: gap_loss: 0.315418 (l2: 0.315418, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:21:45,800 (bilevel_OT_trainer:305) INFO: gap_loss: 0.454289 (l2: 0.454289, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:21:46,999 (bilevel_OT_trainer:305) INFO: gap_loss: 0.502494 (l2: 0.502494, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:21:48,882 (bilevel_OT_trainer:305) INFO: gap_loss: 0.647932 (l2: 0.647932, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:21:50,040 (bilevel_OT_trainer:305) INFO: gap_loss: 0.419146 (l2: 0.419146, kl: 6.21875), raw loss: 6.21875
+2025-12-02 21:21:51,249 (bilevel_OT_trainer:305) INFO: gap_loss: 0.492248 (l2: 0.492248, kl: 6.3125), raw loss: 6.3125
+2025-12-02 21:21:53,204 (bilevel_OT_trainer:305) INFO: gap_loss: 0.624275 (l2: 0.624275, kl: 5.9375), raw loss: 5.9375
+2025-12-02 21:21:54,463 (bilevel_OT_trainer:305) INFO: gap_loss: 0.447323 (l2: 0.447323, kl: 6.375), raw loss: 6.375
+2025-12-02 21:21:56,301 (bilevel_OT_trainer:305) INFO: gap_loss: 0.630459 (l2: 0.630459, kl: 6.1875), raw loss: 6.1875
+2025-12-02 21:21:57,495 (bilevel_OT_trainer:305) INFO: gap_loss: 0.536032 (l2: 0.536032, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:21:58,600 (bilevel_OT_trainer:305) INFO: gap_loss: 0.496727 (l2: 0.496727, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:21:59,852 (bilevel_OT_trainer:305) INFO: gap_loss: 0.539474 (l2: 0.539474, kl: 5.96875), raw loss: 5.96875
+2025-12-02 21:22:01,381 (bilevel_OT_trainer:305) INFO: gap_loss: 0.532077 (l2: 0.532077, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:22:02,382 (bilevel_OT_trainer:305) INFO: gap_loss: 0.378054 (l2: 0.378054, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:22:03,885 (bilevel_OT_trainer:305) INFO: gap_loss: 0.45694 (l2: 0.45694, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:22:04,918 (bilevel_OT_trainer:305) INFO: gap_loss: 0.372851 (l2: 0.372851, kl: 5.90625), raw loss: 5.90625
+2025-12-02 21:22:05,811 (bilevel_OT_trainer:305) INFO: gap_loss: 0.404363 (l2: 0.404363, kl: 5.71875), raw loss: 5.71875
+2025-12-02 21:22:05,959 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:22:07,048 (bilevel_OT_trainer:305) INFO: gap_loss: 0.420271 (l2: 0.420271, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:22:08,779 (bilevel_OT_trainer:305) INFO: gap_loss: 0.45833 (l2: 0.45833, kl: 5.0), raw loss: 5.0
+2025-12-02 21:22:09,946 (bilevel_OT_trainer:305) INFO: gap_loss: 0.3914 (l2: 0.3914, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:22:11,598 (bilevel_OT_trainer:305) INFO: gap_loss: 0.471882 (l2: 0.471882, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:22:12,500 (bilevel_OT_trainer:305) INFO: gap_loss: 0.917013 (l2: 0.917013, kl: 5.625), raw loss: 5.625
+2025-12-02 21:22:13,401 (bilevel_OT_trainer:305) INFO: gap_loss: 0.891205 (l2: 0.891205, kl: 6.1875), raw loss: 6.1875
+2025-12-02 21:22:14,908 (bilevel_OT_trainer:305) INFO: gap_loss: 1.017813 (l2: 1.017813, kl: 6.71875), raw loss: 6.71875
+2025-12-02 21:22:18,567 (bilevel_OT_trainer:305) INFO: gap_loss: 1.398304 (l2: 1.398304, kl: 4.28125), raw loss: 4.28125
+2025-12-02 21:22:20,281 (bilevel_OT_trainer:305) INFO: gap_loss: 0.482884 (l2: 0.482884, kl: 5.84375), raw loss: 5.84375
+2025-12-02 21:22:21,822 (bilevel_OT_trainer:305) INFO: gap_loss: 0.474374 (l2: 0.474374, kl: 5.25), raw loss: 5.25
+2025-12-02 21:22:23,178 (bilevel_OT_trainer:305) INFO: gap_loss: 0.493911 (l2: 0.493911, kl: 6.65625), raw loss: 6.65625
+2025-12-02 21:22:24,933 (bilevel_OT_trainer:305) INFO: gap_loss: 0.537426 (l2: 0.537426, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:22:26,263 (bilevel_OT_trainer:305) INFO: gap_loss: 0.401188 (l2: 0.401188, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:22:27,839 (bilevel_OT_trainer:305) INFO: gap_loss: 0.419734 (l2: 0.419734, kl: 4.84375), raw loss: 4.84375
+2025-12-02 21:22:29,000 (bilevel_OT_trainer:305) INFO: gap_loss: 0.390152 (l2: 0.390152, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:22:29,937 (bilevel_OT_trainer:305) INFO: gap_loss: 0.377317 (l2: 0.377317, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:22:31,001 (bilevel_OT_trainer:305) INFO: gap_loss: 0.422224 (l2: 0.422224, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:22:32,550 (bilevel_OT_trainer:305) INFO: gap_loss: 0.462759 (l2: 0.462759, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:22:34,585 (bilevel_OT_trainer:305) INFO: gap_loss: 0.504421 (l2: 0.504421, kl: 5.0), raw loss: 5.0
+2025-12-02 21:22:36,249 (bilevel_OT_trainer:305) INFO: gap_loss: 0.472945 (l2: 0.472945, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:22:36,437 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:22:37,257 (bilevel_OT_trainer:305) INFO: gap_loss: 0.474332 (l2: 0.474332, kl: 6.1875), raw loss: 6.1875
+2025-12-02 21:22:38,184 (bilevel_OT_trainer:305) INFO: gap_loss: 0.436449 (l2: 0.436449, kl: 6.8125), raw loss: 6.8125
+2025-12-02 21:22:39,261 (bilevel_OT_trainer:305) INFO: gap_loss: 0.449854 (l2: 0.449854, kl: 6.3125), raw loss: 6.3125
+2025-12-02 21:22:40,507 (bilevel_OT_trainer:305) INFO: gap_loss: 0.46131 (l2: 0.46131, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:22:41,777 (bilevel_OT_trainer:305) INFO: gap_loss: 0.6916 (l2: 0.6916, kl: 5.0), raw loss: 5.0
+2025-12-02 21:22:43,313 (bilevel_OT_trainer:305) INFO: gap_loss: 0.746286 (l2: 0.746286, kl: 5.75), raw loss: 5.75
+2025-12-02 21:22:44,606 (bilevel_OT_trainer:305) INFO: gap_loss: 0.650262 (l2: 0.650262, kl: 5.0), raw loss: 5.0
+2025-12-02 21:22:45,734 (bilevel_OT_trainer:305) INFO: gap_loss: 0.644786 (l2: 0.644786, kl: 5.125), raw loss: 5.125
+2025-12-02 21:22:47,036 (bilevel_OT_trainer:305) INFO: gap_loss: 0.487653 (l2: 0.487653, kl: 6.21875), raw loss: 6.21875
+2025-12-02 21:22:48,605 (bilevel_OT_trainer:305) INFO: gap_loss: 0.511971 (l2: 0.511971, kl: 6.1875), raw loss: 6.1875
+2025-12-02 21:22:50,371 (bilevel_OT_trainer:305) INFO: gap_loss: 0.528974 (l2: 0.528974, kl: 5.96875), raw loss: 5.96875
+2025-12-02 21:22:51,988 (bilevel_OT_trainer:305) INFO: gap_loss: 0.492399 (l2: 0.492399, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:22:53,893 (bilevel_OT_trainer:305) INFO: gap_loss: 0.484755 (l2: 0.484755, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:22:55,006 (bilevel_OT_trainer:305) INFO: gap_loss: 0.38901 (l2: 0.38901, kl: 6.0625), raw loss: 6.0625
+2025-12-02 21:22:56,262 (bilevel_OT_trainer:305) INFO: gap_loss: 0.427555 (l2: 0.427555, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:22:58,008 (bilevel_OT_trainer:305) INFO: gap_loss: 0.471954 (l2: 0.471954, kl: 5.625), raw loss: 5.625
+2025-12-02 21:22:59,963 (bilevel_OT_trainer:305) INFO: gap_loss: 0.488307 (l2: 0.488307, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:23:01,501 (bilevel_OT_trainer:305) INFO: gap_loss: 0.438743 (l2: 0.438743, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:23:02,569 (bilevel_OT_trainer:305) INFO: gap_loss: 0.396697 (l2: 0.396697, kl: 5.8125), raw loss: 5.8125
+2025-12-02 21:23:04,079 (bilevel_OT_trainer:305) INFO: gap_loss: 0.435019 (l2: 0.435019, kl: 5.375), raw loss: 5.375
+2025-12-02 21:23:04,315 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:23:05,874 (bilevel_OT_trainer:305) INFO: gap_loss: 0.523818 (l2: 0.523818, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:23:07,547 (bilevel_OT_trainer:305) INFO: gap_loss: 0.509826 (l2: 0.509826, kl: 5.5), raw loss: 5.5
+2025-12-02 21:23:08,864 (bilevel_OT_trainer:305) INFO: gap_loss: 0.499076 (l2: 0.499076, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:23:10,384 (bilevel_OT_trainer:305) INFO: gap_loss: 0.511235 (l2: 0.511235, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:23:12,609 (bilevel_OT_trainer:305) INFO: gap_loss: 0.734266 (l2: 0.734266, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:23:13,893 (bilevel_OT_trainer:305) INFO: gap_loss: 0.552379 (l2: 0.552379, kl: 6.4375), raw loss: 6.4375
+2025-12-02 21:23:14,876 (bilevel_OT_trainer:305) INFO: gap_loss: 0.51018 (l2: 0.51018, kl: 6.4375), raw loss: 6.4375
+2025-12-02 21:23:16,111 (bilevel_OT_trainer:305) INFO: gap_loss: 0.604969 (l2: 0.604969, kl: 6.0625), raw loss: 6.0625
+2025-12-02 21:23:17,628 (bilevel_OT_trainer:305) INFO: gap_loss: 0.484998 (l2: 0.484998, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:23:18,620 (bilevel_OT_trainer:305) INFO: gap_loss: 0.381432 (l2: 0.381432, kl: 5.5), raw loss: 5.5
+2025-12-02 21:23:20,747 (bilevel_OT_trainer:305) INFO: gap_loss: 0.520413 (l2: 0.520413, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:23:22,150 (bilevel_OT_trainer:305) INFO: gap_loss: 0.461072 (l2: 0.461072, kl: 5.625), raw loss: 5.625
+2025-12-02 21:23:24,127 (bilevel_OT_trainer:305) INFO: gap_loss: 0.476401 (l2: 0.476401, kl: 4.75), raw loss: 4.75
+2025-12-02 21:23:25,971 (bilevel_OT_trainer:305) INFO: gap_loss: 0.469467 (l2: 0.469467, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:23:26,801 (bilevel_OT_trainer:305) INFO: gap_loss: 0.391626 (l2: 0.391626, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:23:27,852 (bilevel_OT_trainer:305) INFO: gap_loss: 0.416503 (l2: 0.416503, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:23:28,550 (bilevel_OT_trainer:305) INFO: gap_loss: 0.382015 (l2: 0.382015, kl: 4.875), raw loss: 4.875
+2025-12-02 21:23:29,272 (bilevel_OT_trainer:305) INFO: gap_loss: 0.393613 (l2: 0.393613, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:23:30,084 (bilevel_OT_trainer:305) INFO: gap_loss: 0.42461 (l2: 0.42461, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:23:30,852 (bilevel_OT_trainer:305) INFO: gap_loss: 0.412793 (l2: 0.412793, kl: 5.90625), raw loss: 5.90625
+2025-12-02 21:23:30,973 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:23:31,617 (bilevel_OT_trainer:305) INFO: gap_loss: 0.403321 (l2: 0.403321, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:23:32,349 (bilevel_OT_trainer:305) INFO: gap_loss: 0.396326 (l2: 0.396326, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:23:32,988 (bilevel_OT_trainer:305) INFO: gap_loss: 0.373588 (l2: 0.373588, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:23:33,905 (bilevel_OT_trainer:305) INFO: gap_loss: 0.397569 (l2: 0.397569, kl: 4.25), raw loss: 4.25
+2025-12-02 21:23:35,704 (bilevel_OT_trainer:305) INFO: gap_loss: 0.726276 (l2: 0.726276, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:23:37,263 (bilevel_OT_trainer:305) INFO: gap_loss: 0.629856 (l2: 0.629856, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:23:38,073 (bilevel_OT_trainer:305) INFO: gap_loss: 0.486686 (l2: 0.486686, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:23:39,091 (bilevel_OT_trainer:305) INFO: gap_loss: 0.578478 (l2: 0.578478, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:23:40,266 (bilevel_OT_trainer:305) INFO: gap_loss: 0.477901 (l2: 0.477901, kl: 6.25), raw loss: 6.25
+2025-12-02 21:23:41,525 (bilevel_OT_trainer:305) INFO: gap_loss: 0.526132 (l2: 0.526132, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:23:42,062 (bilevel_OT_trainer:305) INFO: gap_loss: 0.434405 (l2: 0.434405, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:23:42,944 (bilevel_OT_trainer:305) INFO: gap_loss: 0.497137 (l2: 0.497137, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:23:44,067 (bilevel_OT_trainer:305) INFO: gap_loss: 0.384139 (l2: 0.384139, kl: 6.15625), raw loss: 6.15625
+2025-12-02 21:23:44,751 (bilevel_OT_trainer:305) INFO: gap_loss: 0.358873 (l2: 0.358873, kl: 5.84375), raw loss: 5.84375
+2025-12-02 21:23:45,874 (bilevel_OT_trainer:305) INFO: gap_loss: 0.411867 (l2: 0.411867, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:23:46,827 (bilevel_OT_trainer:305) INFO: gap_loss: 0.406465 (l2: 0.406465, kl: 6.21875), raw loss: 6.21875
+2025-12-02 21:23:47,559 (bilevel_OT_trainer:305) INFO: gap_loss: 0.358208 (l2: 0.358208, kl: 6.46875), raw loss: 6.46875
+2025-12-02 21:23:48,709 (bilevel_OT_trainer:305) INFO: gap_loss: 0.406091 (l2: 0.406091, kl: 5.125), raw loss: 5.125
+2025-12-02 21:23:49,944 (bilevel_OT_trainer:305) INFO: gap_loss: 0.402202 (l2: 0.402202, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:23:50,729 (bilevel_OT_trainer:305) INFO: gap_loss: 0.370289 (l2: 0.370289, kl: 6.03125), raw loss: 6.03125
+2025-12-02 21:23:50,847 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:23:51,523 (bilevel_OT_trainer:305) INFO: gap_loss: 0.374124 (l2: 0.374124, kl: 5.375), raw loss: 5.375
+2025-12-02 21:23:52,771 (bilevel_OT_trainer:305) INFO: gap_loss: 0.424262 (l2: 0.424262, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:23:53,483 (bilevel_OT_trainer:305) INFO: gap_loss: 0.378499 (l2: 0.378499, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:23:54,111 (bilevel_OT_trainer:305) INFO: gap_loss: 0.347526 (l2: 0.347526, kl: 5.5), raw loss: 5.5
+2025-12-02 21:23:54,869 (bilevel_OT_trainer:305) INFO: gap_loss: 0.406885 (l2: 0.406885, kl: 4.84375), raw loss: 4.84375
+2025-12-02 21:23:56,091 (bilevel_OT_trainer:305) INFO: gap_loss: 0.594192 (l2: 0.594192, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:23:57,452 (bilevel_OT_trainer:305) INFO: gap_loss: 0.545673 (l2: 0.545673, kl: 4.21875), raw loss: 4.21875
+2025-12-02 21:23:58,030 (bilevel_OT_trainer:305) INFO: gap_loss: 0.38087 (l2: 0.38087, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:23:58,561 (bilevel_OT_trainer:305) INFO: gap_loss: 0.699153 (l2: 0.699153, kl: 5.53125), raw loss: 5.53125
+2025-12-02 21:23:59,195 (bilevel_OT_trainer:305) INFO: gap_loss: 0.694954 (l2: 0.694954, kl: 5.75), raw loss: 5.75
+2025-12-02 21:24:00,058 (bilevel_OT_trainer:305) INFO: gap_loss: 0.644978 (l2: 0.644978, kl: 5.25), raw loss: 5.25
+2025-12-02 21:24:01,109 (bilevel_OT_trainer:305) INFO: gap_loss: 0.69669 (l2: 0.69669, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:24:02,024 (bilevel_OT_trainer:305) INFO: gap_loss: 0.354887 (l2: 0.354887, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:24:03,065 (bilevel_OT_trainer:305) INFO: gap_loss: 0.373416 (l2: 0.373416, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:24:03,848 (bilevel_OT_trainer:305) INFO: gap_loss: 0.335114 (l2: 0.335114, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:24:04,894 (bilevel_OT_trainer:305) INFO: gap_loss: 0.416489 (l2: 0.416489, kl: 5.96875), raw loss: 5.96875
+2025-12-02 21:24:05,759 (bilevel_OT_trainer:305) INFO: gap_loss: 0.384432 (l2: 0.384432, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:24:06,885 (bilevel_OT_trainer:305) INFO: gap_loss: 0.40724 (l2: 0.40724, kl: 4.84375), raw loss: 4.84375
+2025-12-02 21:24:07,632 (bilevel_OT_trainer:305) INFO: gap_loss: 0.339472 (l2: 0.339472, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:24:08,758 (bilevel_OT_trainer:305) INFO: gap_loss: 0.400934 (l2: 0.400934, kl: 4.53125), raw loss: 4.53125
+2025-12-02 21:24:08,945 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:24:09,705 (bilevel_OT_trainer:305) INFO: gap_loss: 0.39465 (l2: 0.39465, kl: 5.0), raw loss: 5.0
+2025-12-02 21:24:10,508 (bilevel_OT_trainer:305) INFO: gap_loss: 0.396943 (l2: 0.396943, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:24:11,362 (bilevel_OT_trainer:305) INFO: gap_loss: 0.397386 (l2: 0.397386, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:24:11,949 (bilevel_OT_trainer:305) INFO: gap_loss: 0.332103 (l2: 0.332103, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:24:12,726 (bilevel_OT_trainer:305) INFO: gap_loss: 0.475196 (l2: 0.475196, kl: 5.9375), raw loss: 5.9375
+2025-12-02 21:24:13,464 (bilevel_OT_trainer:305) INFO: gap_loss: 0.443687 (l2: 0.443687, kl: 4.875), raw loss: 4.875
+2025-12-02 21:24:14,688 (bilevel_OT_trainer:305) INFO: gap_loss: 0.635198 (l2: 0.635198, kl: 4.5), raw loss: 4.5
+2025-12-02 21:24:16,933 (bilevel_OT_trainer:305) INFO: gap_loss: 0.655389 (l2: 0.655389, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:24:18,680 (bilevel_OT_trainer:305) INFO: gap_loss: 0.483378 (l2: 0.483378, kl: 4.75), raw loss: 4.75
+2025-12-02 21:24:20,438 (bilevel_OT_trainer:305) INFO: gap_loss: 0.558175 (l2: 0.558175, kl: 5.125), raw loss: 5.125
+2025-12-02 21:24:21,280 (bilevel_OT_trainer:305) INFO: gap_loss: 0.365038 (l2: 0.365038, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:24:22,691 (bilevel_OT_trainer:305) INFO: gap_loss: 0.507589 (l2: 0.507589, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:24:24,265 (bilevel_OT_trainer:305) INFO: gap_loss: 0.593284 (l2: 0.593284, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:24:25,967 (bilevel_OT_trainer:305) INFO: gap_loss: 0.464857 (l2: 0.464857, kl: 4.5), raw loss: 4.5
+2025-12-02 21:24:26,801 (bilevel_OT_trainer:305) INFO: gap_loss: 0.37234 (l2: 0.37234, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:24:27,581 (bilevel_OT_trainer:305) INFO: gap_loss: 0.406643 (l2: 0.406643, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:24:28,518 (bilevel_OT_trainer:305) INFO: gap_loss: 0.487965 (l2: 0.487965, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:24:29,361 (bilevel_OT_trainer:305) INFO: gap_loss: 0.415014 (l2: 0.415014, kl: 5.125), raw loss: 5.125
+2025-12-02 21:24:30,909 (bilevel_OT_trainer:305) INFO: gap_loss: 0.577842 (l2: 0.577842, kl: 4.375), raw loss: 4.375
+2025-12-02 21:24:32,397 (bilevel_OT_trainer:305) INFO: gap_loss: 0.551497 (l2: 0.551497, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:24:32,622 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:24:33,871 (bilevel_OT_trainer:305) INFO: gap_loss: 0.428396 (l2: 0.428396, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:24:34,971 (bilevel_OT_trainer:305) INFO: gap_loss: 0.430115 (l2: 0.430115, kl: 4.5625), raw loss: 4.5625
+2025-12-02 21:24:36,161 (bilevel_OT_trainer:305) INFO: gap_loss: 0.368611 (l2: 0.368611, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:24:37,699 (bilevel_OT_trainer:305) INFO: gap_loss: 0.404222 (l2: 0.404222, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:24:38,725 (bilevel_OT_trainer:305) INFO: gap_loss: 0.508171 (l2: 0.508171, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:24:39,651 (bilevel_OT_trainer:305) INFO: gap_loss: 0.513765 (l2: 0.513765, kl: 6.125), raw loss: 6.125
+2025-12-02 21:24:40,880 (bilevel_OT_trainer:305) INFO: gap_loss: 0.625487 (l2: 0.625487, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:24:42,572 (bilevel_OT_trainer:305) INFO: gap_loss: 0.857935 (l2: 0.857935, kl: 4.90625), raw loss: 4.90625
+2025-12-02 21:24:43,387 (bilevel_OT_trainer:305) INFO: gap_loss: 0.391981 (l2: 0.391981, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:24:44,197 (bilevel_OT_trainer:305) INFO: gap_loss: 0.428596 (l2: 0.428596, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:24:45,536 (bilevel_OT_trainer:305) INFO: gap_loss: 0.517375 (l2: 0.517375, kl: 4.6875), raw loss: 4.6875
+2025-12-02 21:24:46,656 (bilevel_OT_trainer:305) INFO: gap_loss: 0.437732 (l2: 0.437732, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:24:47,746 (bilevel_OT_trainer:305) INFO: gap_loss: 0.432291 (l2: 0.432291, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:24:49,086 (bilevel_OT_trainer:305) INFO: gap_loss: 0.434584 (l2: 0.434584, kl: 4.3125), raw loss: 4.3125
+2025-12-02 21:24:50,097 (bilevel_OT_trainer:305) INFO: gap_loss: 0.41827 (l2: 0.41827, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:24:50,926 (bilevel_OT_trainer:305) INFO: gap_loss: 0.376044 (l2: 0.376044, kl: 4.71875), raw loss: 4.71875
+2025-12-02 21:24:51,796 (bilevel_OT_trainer:305) INFO: gap_loss: 0.429808 (l2: 0.429808, kl: 5.75), raw loss: 5.75
+2025-12-02 21:24:52,282 (bilevel_OT_trainer:305) INFO: gap_loss: 0.43445 (l2: 0.43445, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:24:52,852 (bilevel_OT_trainer:305) INFO: gap_loss: 0.46074 (l2: 0.46074, kl: 4.875), raw loss: 4.875
+2025-12-02 21:24:53,865 (bilevel_OT_trainer:305) INFO: gap_loss: 0.473567 (l2: 0.473567, kl: 4.5), raw loss: 4.5
+2025-12-02 21:24:54,069 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:24:55,330 (bilevel_OT_trainer:305) INFO: gap_loss: 0.423696 (l2: 0.423696, kl: 3.453125), raw loss: 3.453125
+2025-12-02 21:24:56,398 (bilevel_OT_trainer:305) INFO: gap_loss: 0.410154 (l2: 0.410154, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:24:57,122 (bilevel_OT_trainer:305) INFO: gap_loss: 0.389463 (l2: 0.389463, kl: 4.53125), raw loss: 4.53125
+2025-12-02 21:24:58,048 (bilevel_OT_trainer:305) INFO: gap_loss: 0.435709 (l2: 0.435709, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:24:58,974 (bilevel_OT_trainer:305) INFO: gap_loss: 0.481363 (l2: 0.481363, kl: 6.1875), raw loss: 6.1875
+2025-12-02 21:24:59,713 (bilevel_OT_trainer:305) INFO: gap_loss: 0.442244 (l2: 0.442244, kl: 6.03125), raw loss: 6.03125
+2025-12-02 21:25:00,432 (bilevel_OT_trainer:305) INFO: gap_loss: 0.450765 (l2: 0.450765, kl: 5.96875), raw loss: 5.96875
+2025-12-02 21:25:01,385 (bilevel_OT_trainer:305) INFO: gap_loss: 0.479264 (l2: 0.479264, kl: 6.28125), raw loss: 6.28125
+2025-12-02 21:25:02,273 (bilevel_OT_trainer:305) INFO: gap_loss: 0.370018 (l2: 0.370018, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:25:03,284 (bilevel_OT_trainer:305) INFO: gap_loss: 0.36352 (l2: 0.36352, kl: 4.625), raw loss: 4.625
+2025-12-02 21:25:04,174 (bilevel_OT_trainer:305) INFO: gap_loss: 0.366676 (l2: 0.366676, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:25:05,399 (bilevel_OT_trainer:305) INFO: gap_loss: 0.41255 (l2: 0.41255, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:25:06,477 (bilevel_OT_trainer:305) INFO: gap_loss: 0.34737 (l2: 0.34737, kl: 4.4375), raw loss: 4.4375
+2025-12-02 21:25:07,515 (bilevel_OT_trainer:305) INFO: gap_loss: 0.351508 (l2: 0.351508, kl: 4.53125), raw loss: 4.53125
+2025-12-02 21:25:08,547 (bilevel_OT_trainer:305) INFO: gap_loss: 0.346839 (l2: 0.346839, kl: 4.25), raw loss: 4.25
+2025-12-02 21:25:09,867 (bilevel_OT_trainer:305) INFO: gap_loss: 0.37841 (l2: 0.37841, kl: 4.53125), raw loss: 4.53125
+2025-12-02 21:25:10,691 (bilevel_OT_trainer:305) INFO: gap_loss: 0.404646 (l2: 0.404646, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:25:11,770 (bilevel_OT_trainer:305) INFO: gap_loss: 0.361197 (l2: 0.361197, kl: 4.125), raw loss: 4.125
+2025-12-02 21:25:12,752 (bilevel_OT_trainer:305) INFO: gap_loss: 0.371508 (l2: 0.371508, kl: 4.75), raw loss: 4.75
+2025-12-02 21:25:13,494 (bilevel_OT_trainer:305) INFO: gap_loss: 0.342846 (l2: 0.342846, kl: 4.875), raw loss: 4.875
+2025-12-02 21:25:13,616 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:25:14,825 (bilevel_OT_trainer:305) INFO: gap_loss: 0.380888 (l2: 0.380888, kl: 4.46875), raw loss: 4.46875
+2025-12-02 21:25:16,170 (bilevel_OT_trainer:305) INFO: gap_loss: 0.362744 (l2: 0.362744, kl: 3.828125), raw loss: 3.828125
+2025-12-02 21:25:18,889 (bilevel_OT_trainer:305) INFO: gap_loss: 0.456237 (l2: 0.456237, kl: 3.28125), raw loss: 3.28125
+2025-12-02 21:25:20,589 (bilevel_OT_trainer:305) INFO: gap_loss: 0.372282 (l2: 0.372282, kl: 3.65625), raw loss: 3.65625
+2025-12-02 21:25:21,627 (bilevel_OT_trainer:305) INFO: gap_loss: 0.573984 (l2: 0.573984, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:25:22,579 (bilevel_OT_trainer:305) INFO: gap_loss: 0.58721 (l2: 0.58721, kl: 5.125), raw loss: 5.125
+2025-12-02 21:25:23,419 (bilevel_OT_trainer:305) INFO: gap_loss: 0.508868 (l2: 0.508868, kl: 5.15625), raw loss: 5.15625
+2025-12-02 21:25:25,391 (bilevel_OT_trainer:305) INFO: gap_loss: 0.826759 (l2: 0.826759, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:25:26,436 (bilevel_OT_trainer:305) INFO: gap_loss: 0.348477 (l2: 0.348477, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:25:28,377 (bilevel_OT_trainer:305) INFO: gap_loss: 0.531012 (l2: 0.531012, kl: 4.1875), raw loss: 4.1875
+2025-12-02 21:25:29,674 (bilevel_OT_trainer:305) INFO: gap_loss: 0.4455 (l2: 0.4455, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:25:31,211 (bilevel_OT_trainer:305) INFO: gap_loss: 0.453306 (l2: 0.453306, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:25:32,380 (bilevel_OT_trainer:305) INFO: gap_loss: 0.362346 (l2: 0.362346, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:25:33,496 (bilevel_OT_trainer:305) INFO: gap_loss: 0.357305 (l2: 0.357305, kl: 4.53125), raw loss: 4.53125
+2025-12-02 21:25:35,006 (bilevel_OT_trainer:305) INFO: gap_loss: 0.400784 (l2: 0.400784, kl: 4.96875), raw loss: 4.96875
+2025-12-02 21:25:36,040 (bilevel_OT_trainer:305) INFO: gap_loss: 0.337619 (l2: 0.337619, kl: 4.15625), raw loss: 4.15625
+2025-12-02 21:25:37,762 (bilevel_OT_trainer:305) INFO: gap_loss: 0.405136 (l2: 0.405136, kl: 4.15625), raw loss: 4.15625
+2025-12-02 21:25:40,657 (bilevel_OT_trainer:305) INFO: gap_loss: 0.463897 (l2: 0.463897, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:25:41,919 (bilevel_OT_trainer:305) INFO: gap_loss: 0.363291 (l2: 0.363291, kl: 5.4375), raw loss: 5.4375
+2025-12-02 21:25:44,151 (bilevel_OT_trainer:305) INFO: gap_loss: 0.473604 (l2: 0.473604, kl: 3.84375), raw loss: 3.84375
+2025-12-02 21:25:44,571 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:25:45,682 (bilevel_OT_trainer:305) INFO: gap_loss: 0.366024 (l2: 0.366024, kl: 5.125), raw loss: 5.125
+2025-12-02 21:25:46,841 (bilevel_OT_trainer:305) INFO: gap_loss: 0.409154 (l2: 0.409154, kl: 5.78125), raw loss: 5.78125
+2025-12-02 21:25:47,412 (bilevel_OT_trainer:305) INFO: gap_loss: 0.339916 (l2: 0.339916, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:25:48,567 (bilevel_OT_trainer:305) INFO: gap_loss: 0.415275 (l2: 0.415275, kl: 5.625), raw loss: 5.625
+2025-12-02 21:25:49,893 (bilevel_OT_trainer:305) INFO: gap_loss: 0.668412 (l2: 0.668412, kl: 4.78125), raw loss: 4.78125
+2025-12-02 21:25:50,873 (bilevel_OT_trainer:305) INFO: gap_loss: 0.569484 (l2: 0.569484, kl: 4.8125), raw loss: 4.8125
+2025-12-02 21:25:51,481 (bilevel_OT_trainer:305) INFO: gap_loss: 0.398556 (l2: 0.398556, kl: 4.59375), raw loss: 4.59375
+2025-12-02 21:25:52,370 (bilevel_OT_trainer:305) INFO: gap_loss: 0.553262 (l2: 0.553262, kl: 4.46875), raw loss: 4.46875
+2025-12-02 21:25:53,055 (bilevel_OT_trainer:305) INFO: gap_loss: 0.290226 (l2: 0.290226, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:25:54,238 (bilevel_OT_trainer:305) INFO: gap_loss: 0.387873 (l2: 0.387873, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:25:54,962 (bilevel_OT_trainer:305) INFO: gap_loss: 0.314019 (l2: 0.314019, kl: 5.84375), raw loss: 5.84375
+2025-12-02 21:25:55,651 (bilevel_OT_trainer:305) INFO: gap_loss: 0.316116 (l2: 0.316116, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:25:56,808 (bilevel_OT_trainer:305) INFO: gap_loss: 0.344875 (l2: 0.344875, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:25:57,599 (bilevel_OT_trainer:305) INFO: gap_loss: 0.305847 (l2: 0.305847, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:25:58,435 (bilevel_OT_trainer:305) INFO: gap_loss: 0.331983 (l2: 0.331983, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:25:59,196 (bilevel_OT_trainer:305) INFO: gap_loss: 0.289449 (l2: 0.289449, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:26:00,854 (bilevel_OT_trainer:305) INFO: gap_loss: 0.40619 (l2: 0.40619, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:26:01,984 (bilevel_OT_trainer:305) INFO: gap_loss: 0.34109 (l2: 0.34109, kl: 4.9375), raw loss: 4.9375
+2025-12-02 21:26:03,020 (bilevel_OT_trainer:305) INFO: gap_loss: 0.338535 (l2: 0.338535, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:26:03,802 (bilevel_OT_trainer:305) INFO: gap_loss: 0.353207 (l2: 0.353207, kl: 5.71875), raw loss: 5.71875
+2025-12-02 21:26:03,901 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:26:04,572 (bilevel_OT_trainer:305) INFO: gap_loss: 0.34061 (l2: 0.34061, kl: 5.8125), raw loss: 5.8125
+2025-12-02 21:26:05,456 (bilevel_OT_trainer:305) INFO: gap_loss: 0.312256 (l2: 0.312256, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:26:06,536 (bilevel_OT_trainer:305) INFO: gap_loss: 0.336718 (l2: 0.336718, kl: 5.03125), raw loss: 5.03125
+2025-12-02 21:26:08,043 (bilevel_OT_trainer:305) INFO: gap_loss: 0.355189 (l2: 0.355189, kl: 4.65625), raw loss: 4.65625
+2025-12-02 21:26:09,273 (bilevel_OT_trainer:305) INFO: gap_loss: 0.546922 (l2: 0.546922, kl: 5.21875), raw loss: 5.21875
+2025-12-02 21:26:10,598 (bilevel_OT_trainer:305) INFO: gap_loss: 0.556839 (l2: 0.556839, kl: 5.65625), raw loss: 5.65625
+2025-12-02 21:26:11,529 (bilevel_OT_trainer:305) INFO: gap_loss: 0.475481 (l2: 0.475481, kl: 5.40625), raw loss: 5.40625
+2025-12-02 21:26:12,376 (bilevel_OT_trainer:305) INFO: gap_loss: 0.449924 (l2: 0.449924, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:26:13,644 (bilevel_OT_trainer:305) INFO: gap_loss: 0.363511 (l2: 0.363511, kl: 4.625), raw loss: 4.625
+2025-12-02 21:26:15,240 (bilevel_OT_trainer:305) INFO: gap_loss: 0.422181 (l2: 0.422181, kl: 4.375), raw loss: 4.375
+2025-12-02 21:26:16,149 (bilevel_OT_trainer:305) INFO: gap_loss: 0.331563 (l2: 0.331563, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:26:16,860 (bilevel_OT_trainer:305) INFO: gap_loss: 0.322515 (l2: 0.322515, kl: 5.3125), raw loss: 5.3125
+2025-12-02 21:26:18,132 (bilevel_OT_trainer:305) INFO: gap_loss: 0.404068 (l2: 0.404068, kl: 4.125), raw loss: 4.125
+2025-12-02 21:26:18,876 (bilevel_OT_trainer:305) INFO: gap_loss: 0.313335 (l2: 0.313335, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:26:20,159 (bilevel_OT_trainer:305) INFO: gap_loss: 0.454045 (l2: 0.454045, kl: 5.0625), raw loss: 5.0625
+2025-12-02 21:26:20,945 (bilevel_OT_trainer:305) INFO: gap_loss: 0.387479 (l2: 0.387479, kl: 5.6875), raw loss: 5.6875
+2025-12-02 21:26:21,542 (bilevel_OT_trainer:305) INFO: gap_loss: 0.371352 (l2: 0.371352, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:26:22,842 (bilevel_OT_trainer:305) INFO: gap_loss: 0.416758 (l2: 0.416758, kl: 5.90625), raw loss: 5.90625
+2025-12-02 21:26:24,159 (bilevel_OT_trainer:305) INFO: gap_loss: 0.391159 (l2: 0.391159, kl: 5.46875), raw loss: 5.46875
+2025-12-02 21:26:25,618 (bilevel_OT_trainer:305) INFO: gap_loss: 0.40437 (l2: 0.40437, kl: 5.375), raw loss: 5.375
+2025-12-02 21:26:25,849 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:26:26,730 (bilevel_OT_trainer:305) INFO: gap_loss: 0.346442 (l2: 0.346442, kl: 5.1875), raw loss: 5.1875
+2025-12-02 21:26:27,986 (bilevel_OT_trainer:305) INFO: gap_loss: 0.360985 (l2: 0.360985, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:26:29,299 (bilevel_OT_trainer:305) INFO: gap_loss: 0.380282 (l2: 0.380282, kl: 5.25), raw loss: 5.25
+2025-12-02 21:26:31,133 (bilevel_OT_trainer:305) INFO: gap_loss: 0.402067 (l2: 0.402067, kl: 4.875), raw loss: 4.875
+2025-12-02 21:26:32,162 (bilevel_OT_trainer:305) INFO: gap_loss: 0.570018 (l2: 0.570018, kl: 6.5), raw loss: 6.5
+2025-12-02 21:26:32,984 (bilevel_OT_trainer:305) INFO: gap_loss: 0.638285 (l2: 0.638285, kl: 5.75), raw loss: 5.75
+2025-12-02 21:26:33,820 (bilevel_OT_trainer:305) INFO: gap_loss: 0.566305 (l2: 0.566305, kl: 6.03125), raw loss: 6.03125
+2025-12-02 21:26:35,106 (bilevel_OT_trainer:305) INFO: gap_loss: 0.729765 (l2: 0.729765, kl: 6.59375), raw loss: 6.59375
+2025-12-02 21:26:35,892 (bilevel_OT_trainer:305) INFO: gap_loss: 0.314143 (l2: 0.314143, kl: 5.34375), raw loss: 5.34375
+2025-12-02 21:26:37,300 (bilevel_OT_trainer:305) INFO: gap_loss: 0.4541 (l2: 0.4541, kl: 5.5625), raw loss: 5.5625
+2025-12-02 21:26:38,167 (bilevel_OT_trainer:305) INFO: gap_loss: 0.360281 (l2: 0.360281, kl: 5.25), raw loss: 5.25
+2025-12-02 21:26:38,567 (bilevel_OT_trainer:305) INFO: gap_loss: 0.331904 (l2: 0.331904, kl: 5.28125), raw loss: 5.28125
+2025-12-02 21:26:39,047 (bilevel_OT_trainer:305) INFO: gap_loss: 0.29729 (l2: 0.29729, kl: 5.09375), raw loss: 5.09375
+2025-12-02 21:26:40,074 (bilevel_OT_trainer:305) INFO: gap_loss: 0.3709 (l2: 0.3709, kl: 5.59375), raw loss: 5.59375
+2025-12-02 21:26:41,666 (bilevel_OT_trainer:305) INFO: gap_loss: 0.348466 (l2: 0.348466, kl: 3.4375), raw loss: 3.4375
+2025-12-02 21:26:42,582 (bilevel_OT_trainer:305) INFO: gap_loss: 0.292993 (l2: 0.292993, kl: 4.21875), raw loss: 4.21875
+2025-12-02 21:26:44,423 (bilevel_OT_trainer:305) INFO: gap_loss: 0.388037 (l2: 0.388037, kl: 4.15625), raw loss: 4.15625
+2025-12-02 21:26:45,617 (bilevel_OT_trainer:305) INFO: gap_loss: 0.317906 (l2: 0.317906, kl: 4.40625), raw loss: 4.40625
+2025-12-02 21:26:46,562 (bilevel_OT_trainer:305) INFO: gap_loss: 0.314267 (l2: 0.314267, kl: 4.46875), raw loss: 4.46875
+2025-12-02 21:26:47,631 (bilevel_OT_trainer:305) INFO: gap_loss: 0.331535 (l2: 0.331535, kl: 4.46875), raw loss: 4.46875
+2025-12-02 21:26:47,799 (fedot:80) INFO: Server finished the emulator alignment...
+2025-12-02 21:26:48,365 (bilevel_OT_trainer:305) INFO: gap_loss: 0.273596 (l2: 0.273596, kl: 5.1875), raw loss: 5.1875

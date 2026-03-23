@@ -1,0 +1,45 @@
+2025-12-02 00:10:14,054 (logging:132) INFO: the current machine is at 127.0.1.1
+2025-12-02 00:10:14,054 (logging:134) INFO: the current dir is /home/tyx/ywp/FedBiOT
+2025-12-02 00:10:14,054 (logging:135) INFO: the output dir is exp/FedAvg_lr_on_synthetic_vfl_data_lr0.05_lstep1
+2025-12-02 00:10:14,669 (splitter_builder:82) WARNING: Splitter  not found or not used.
+2025-12-02 00:10:14,766 (utils:167) INFO: The device information file is not provided
+2025-12-02 00:10:14,812 (fed_runner:195) INFO: Server has been set up ... 
+2025-12-02 00:10:14,845 (fed_runner:245) INFO: Client 1 has been set up ... 
+2025-12-02 00:10:14,891 (fed_runner:245) INFO: Client 2 has been set up ... 
+2025-12-02 00:10:14,902 (vertical_server:106) INFO: ----------- Starting a new training round (Round #1) -------------
+2025-12-02 00:10:14,903 (vertical_server:106) INFO: ----------- Starting a new training round (Round #2) -------------
+2025-12-02 00:10:14,904 (vertical_server:106) INFO: ----------- Starting a new training round (Round #3) -------------
+2025-12-02 00:10:14,905 (vertical_server:106) INFO: ----------- Starting a new training round (Round #4) -------------
+2025-12-02 00:10:14,906 (vertical_server:102) INFO: {'Role': 'Server #', 'Round': 5, 'Results_weighted_avg': {'test_loss': 0.544545, 'test_acc': 0.75, 'test_total': 100.0}, 'Results_avg': {'test_loss': 0.544545, 'test_acc': 0.75, 'test_total': 100.0}, 'Results_fairness': {'test_loss': 0.544545, 'test_acc': 0.75, 'test_total': 100.0}}
+2025-12-02 00:10:14,907 (vertical_server:106) INFO: ----------- Starting a new training round (Round #5) -------------
+2025-12-02 00:10:14,907 (vertical_server:106) INFO: ----------- Starting a new training round (Round #6) -------------
+2025-12-02 00:10:14,908 (vertical_server:106) INFO: ----------- Starting a new training round (Round #7) -------------
+2025-12-02 00:10:14,908 (vertical_server:106) INFO: ----------- Starting a new training round (Round #8) -------------
+2025-12-02 00:10:14,909 (vertical_server:106) INFO: ----------- Starting a new training round (Round #9) -------------
+2025-12-02 00:10:14,910 (vertical_server:102) INFO: {'Role': 'Server #', 'Round': 10, 'Results_weighted_avg': {'test_loss': 0.465592, 'test_acc': 0.79, 'test_total': 100.0}, 'Results_avg': {'test_loss': 0.465592, 'test_acc': 0.79, 'test_total': 100.0}, 'Results_fairness': {'test_loss': 0.465592, 'test_acc': 0.79, 'test_total': 100.0}}
+2025-12-02 00:10:14,910 (vertical_server:106) INFO: ----------- Starting a new training round (Round #10) -------------
+2025-12-02 00:10:14,910 (vertical_server:106) INFO: ----------- Starting a new training round (Round #11) -------------
+2025-12-02 00:10:14,911 (vertical_server:106) INFO: ----------- Starting a new training round (Round #12) -------------
+2025-12-02 00:10:14,911 (vertical_server:106) INFO: ----------- Starting a new training round (Round #13) -------------
+2025-12-02 00:10:14,912 (vertical_server:106) INFO: ----------- Starting a new training round (Round #14) -------------
+2025-12-02 00:10:14,912 (vertical_server:102) INFO: {'Role': 'Server #', 'Round': 15, 'Results_weighted_avg': {'test_loss': 0.409951, 'test_acc': 0.87, 'test_total': 100.0}, 'Results_avg': {'test_loss': 0.409951, 'test_acc': 0.87, 'test_total': 100.0}, 'Results_fairness': {'test_loss': 0.409951, 'test_acc': 0.87, 'test_total': 100.0}}
+2025-12-02 00:10:14,912 (vertical_server:106) INFO: ----------- Starting a new training round (Round #15) -------------
+2025-12-02 00:10:14,913 (vertical_server:106) INFO: ----------- Starting a new training round (Round #16) -------------
+2025-12-02 00:10:14,913 (vertical_server:106) INFO: ----------- Starting a new training round (Round #17) -------------
+2025-12-02 00:10:14,914 (vertical_server:106) INFO: ----------- Starting a new training round (Round #18) -------------
+2025-12-02 00:10:14,914 (vertical_server:106) INFO: ----------- Starting a new training round (Round #19) -------------
+2025-12-02 00:10:14,915 (vertical_server:102) INFO: {'Role': 'Server #', 'Round': 20, 'Results_weighted_avg': {'test_loss': 0.384932, 'test_acc': 0.91, 'test_total': 100.0}, 'Results_avg': {'test_loss': 0.384932, 'test_acc': 0.91, 'test_total': 100.0}, 'Results_fairness': {'test_loss': 0.384932, 'test_acc': 0.91, 'test_total': 100.0}}
+2025-12-02 00:10:14,915 (vertical_server:106) INFO: ----------- Starting a new training round (Round #20) -------------
+2025-12-02 00:10:14,916 (vertical_server:106) INFO: ----------- Starting a new training round (Round #21) -------------
+2025-12-02 00:10:14,916 (vertical_server:106) INFO: ----------- Starting a new training round (Round #22) -------------
+2025-12-02 00:10:14,917 (vertical_server:106) INFO: ----------- Starting a new training round (Round #23) -------------
+2025-12-02 00:10:14,917 (vertical_server:106) INFO: ----------- Starting a new training round (Round #24) -------------
+2025-12-02 00:10:14,918 (vertical_server:102) INFO: {'Role': 'Server #', 'Round': 25, 'Results_weighted_avg': {'test_loss': 0.369801, 'test_acc': 0.93, 'test_total': 100.0}, 'Results_avg': {'test_loss': 0.369801, 'test_acc': 0.93, 'test_total': 100.0}, 'Results_fairness': {'test_loss': 0.369801, 'test_acc': 0.93, 'test_total': 100.0}}
+2025-12-02 00:10:14,918 (vertical_server:106) INFO: ----------- Starting a new training round (Round #25) -------------
+2025-12-02 00:10:14,918 (vertical_server:106) INFO: ----------- Starting a new training round (Round #26) -------------
+2025-12-02 00:10:14,919 (vertical_server:106) INFO: ----------- Starting a new training round (Round #27) -------------
+2025-12-02 00:10:14,919 (vertical_server:106) INFO: ----------- Starting a new training round (Round #28) -------------
+2025-12-02 00:10:14,920 (vertical_server:106) INFO: ----------- Starting a new training round (Round #29) -------------
+2025-12-02 00:10:14,920 (vertical_server:119) INFO: {'Role': 'Server #', 'Round': 30, 'Results_weighted_avg': {'test_loss': 0.359054, 'test_acc': 0.95, 'test_total': 100.0}, 'Results_avg': {'test_loss': 0.359054, 'test_acc': 0.95, 'test_total': 100.0}, 'Results_fairness': {'test_loss': 0.359054, 'test_acc': 0.95, 'test_total': 100.0}}
+2025-12-02 00:10:14,920 (monitor:338) INFO: We will compress the file eval_results.raw into a .gz file, and delete the old one
+2025-12-02 00:10:14,921 (monitor:193) WARNING: You have not tracked the workers' system metrics in $outdir$/system_metrics.log, we will skip the merging. Plz check whether you do not want to call monitor.finish_fl()

@@ -1,0 +1,132 @@
+2025-10-20 18:41:41,388 (logging:132) INFO: the current machine is at 219.216.64.81
+2025-10-20 18:41:41,388 (logging:134) INFO: the current dir is D:\code\FedBiOT
+2025-10-20 18:41:41,388 (logging:135) INFO: the output dir is exp\FedAvg_SimCLR_on_Cifar4CL_lr0.01_lstep5
+2025-10-20 18:45:25,294 (base_translator:133) INFO: number of clients: 5
+2025-10-20 18:45:25,294 (base_translator:135) INFO: 1
+2025-10-20 18:45:25,295 (base_translator:135) INFO: 2
+2025-10-20 18:45:25,295 (base_translator:135) INFO: 3
+2025-10-20 18:45:25,295 (base_translator:135) INFO: 4
+2025-10-20 18:45:25,296 (base_translator:135) INFO: 5
+2025-10-20 18:45:25,306 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:45:25,307 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2025-10-20 18:45:25,308 (fed_runner:630) WARNING: `federate.core.fed_runner.FedRunner` will be removed in the future, please use`federate.core.fed_runner.get_runner` to get Runner.
+2025-10-20 18:45:25,308 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:45:25,309 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2025-10-20 18:45:25,410 (utils:167) INFO: The device information file is not provided
+2025-10-20 18:45:25,596 (fed_runner:921) INFO: Server has been set up ... 
+2025-10-20 18:45:25,833 (fed_runner:979) INFO: Client 1 has been set up ... 
+2025-10-20 18:45:26,058 (fed_runner:979) INFO: Client 2 has been set up ... 
+2025-10-20 18:45:26,281 (fed_runner:979) INFO: Client 3 has been set up ... 
+2025-10-20 18:45:26,505 (fed_runner:979) INFO: Client 4 has been set up ... 
+2025-10-20 18:45:26,721 (fed_runner:979) INFO: Client 5 has been set up ... 
+2025-10-20 18:45:26,722 (trainer:343) INFO: Model meta-info: <class 'federatedscope.cl.model.SimCLR.simclr'>.
+2025-10-20 18:45:26,724 (trainer:351) INFO: Num of original para names: 132.
+2025-10-20 18:45:26,724 (trainer:352) INFO: Num of original trainable para names: 65.
+2025-10-20 18:45:26,724 (trainer:354) INFO: Num of preserved para names in local update: 132. 
+Preserved para names in local update: {'backbone.conv1.weight', 'backbone.layer1.1.bn2.weight', 'backbone.layer2.0.shortcut.1.running_mean', 'backbone.layer2.1.bn1.bias', 'backbone.layer3.0.bn2.running_var', 'backbone.layer2.1.bn1.running_var', 'backbone.layer3.0.shortcut.1.num_batches_tracked', 'backbone.layer3.0.bn1.running_var', 'backbone.layer3.1.bn1.bias', 'backbone.layer1.0.bn1.weight', 'backbone.layer1.1.bn2.running_mean', 'projector.layer2.bias', 'backbone.layer2.1.bn2.bias', 'backbone.layer4.0.bn1.running_var', 'backbone.layer4.1.bn2.num_batches_tracked', 'backbone.layer2.0.shortcut.0.weight', 'backbone.layer3.1.bn2.running_mean', 'backbone.layer2.0.bn2.running_var', 'backbone.layer3.0.bn1.bias', 'backbone.layer3.0.bn1.num_batches_tracked', 'backbone.layer3.1.bn1.num_batches_tracked', 'backbone.layer2.1.conv1.weight', 'backbone.layer4.0.shortcut.1.weight', 'projector.layer1_bn.weight', 'backbone.layer3.0.bn2.weight', 'backbone.layer2.0.shortcut.1.weight', 'projector.layer2_bn.running_var', 'backbone.layer2.0.bn2.num_batches_tracked', 'backbone.bn1.bias', 'backbone.layer3.0.shortcut.0.weight', 'backbone.layer2.0.shortcut.1.bias', 'backbone.layer2.1.bn2.num_batches_tracked', 'backbone.layer4.0.bn1.num_batches_tracked', 'backbone.layer3.0.shortcut.1.running_mean', 'backbone.layer4.0.shortcut.1.bias', 'backbone.layer4.1.bn1.weight', 'projector.layer2_bn.num_batches_tracked', 'backbone.layer1.0.bn1.num_batches_tracked', 'backbone.layer2.0.bn1.num_batches_tracked', 'projector.layer1_bn.num_batches_tracked', 'backbone.layer2.1.bn2.running_mean', 'backbone.layer1.1.bn1.weight', 'backbone.layer4.1.bn1.running_mean', 'backbone.layer1.1.bn2.running_var', 'backbone.layer3.1.conv2.weight', 'backbone.layer1.0.bn1.running_mean', 'backbone.layer1.0.bn1.running_var', 'backbone.layer3.1.bn1.weight', 'backbone.layer3.1.conv1.weight', 'backbone.layer3.1.bn2.weight', 'backbone.layer1.0.bn1.bias', 'backbone.layer1.0.bn2.num_batches_tracked', 'backbone.layer1.0.bn2.running_mean', 'backbone.layer2.0.bn1.bias', 'backbone.layer4.0.bn2.weight', 'backbone.layer4.0.bn2.bias', 'backbone.layer2.0.bn2.weight', 'backbone.layer4.0.bn1.running_mean', 'backbone.layer4.0.bn2.running_mean', 'backbone.layer1.0.conv1.weight', 'backbone.layer3.0.bn2.num_batches_tracked', 'backbone.layer3.0.bn2.running_mean', 'projector.layer2_bn.running_mean', 'backbone.layer4.0.shortcut.1.running_var', 'backbone.layer4.1.conv1.weight', 'backbone.layer2.1.bn1.num_batches_tracked', 'backbone.layer1.0.bn2.bias', 'backbone.layer1.1.bn1.num_batches_tracked', 'backbone.layer2.1.bn2.weight', 'backbone.layer2.0.bn1.running_var', 'backbone.layer2.0.bn2.running_mean', 'backbone.layer4.1.bn1.running_var', 'backbone.layer2.0.bn1.running_mean', 'backbone.layer1.1.bn2.bias', 'rounds_done', 'backbone.layer3.0.conv1.weight', 'backbone.layer4.0.conv2.weight', 'backbone.layer4.0.shortcut.1.num_batches_tracked', 'projector.layer1.weight', 'projector.layer1_bn.running_mean', 'backbone.layer1.0.bn2.running_var', 'backbone.layer1.0.conv2.weight', 'backbone.layer2.0.shortcut.1.running_var', 'backbone.layer4.1.bn2.bias', 'backbone.layer1.1.bn1.running_mean', 'backbone.layer3.0.bn1.weight', 'backbone.bn1.running_mean', 'backbone.layer2.0.conv1.weight', 'backbone.bn1.num_batches_tracked', 'backbone.bn1.weight', 'backbone.layer2.0.shortcut.1.num_batches_tracked', 'backbone.layer4.1.bn1.num_batches_tracked', 'backbone.layer2.0.bn1.weight', 'backbone.bn1.running_var', 'backbone.layer2.0.bn2.bias', 'backbone.layer4.0.bn2.running_var', 'backbone.layer3.0.bn1.running_mean', 'backbone.layer3.1.bn1.running_mean', 'backbone.layer4.0.conv1.weight', 'backbone.layer1.1.bn1.bias', 'backbone.layer3.0.shortcut.1.running_var', 'backbone.layer2.1.conv2.weight', 'backbone.layer4.1.bn2.running_var', 'backbone.layer2.1.bn1.running_mean', 'backbone.layer3.0.shortcut.1.weight', 'backbone.layer3.0.bn2.bias', 'backbone.layer3.1.bn2.running_var', 'backbone.layer4.0.shortcut.1.running_mean', 'backbone.layer3.0.conv2.weight', 'backbone.layer3.1.bn2.bias', 'backbone.layer4.1.bn2.running_mean', 'backbone.layer3.0.shortcut.1.bias', 'backbone.layer1.0.bn2.weight', 'backbone.layer4.0.bn2.num_batches_tracked', 'backbone.layer4.0.bn1.weight', 'backbone.layer3.1.bn1.running_var', 'backbone.layer1.1.bn1.running_var', 'projector.layer1_bn.running_var', 'backbone.layer4.1.bn1.bias', 'backbone.layer3.1.bn2.num_batches_tracked', 'backbone.layer2.1.bn2.running_var', 'backbone.layer4.0.shortcut.0.weight', 'projector.layer2.weight', 'backbone.layer1.1.bn2.num_batches_tracked', 'backbone.layer4.1.conv2.weight', 'backbone.layer4.0.bn1.bias', 'backbone.layer4.1.bn2.weight', 'backbone.layer1.1.conv1.weight', 'backbone.layer2.0.conv2.weight', 'backbone.layer2.1.bn1.weight', 'backbone.layer1.1.conv2.weight', 'projector.layer1_bn.bias'}.
+2025-10-20 18:45:26,725 (trainer:358) INFO: Num of filtered para names in local update: 0. 
+Filtered para names in local update: set().
+2025-10-20 18:45:26,726 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "_hook_on_batch_backward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	}
+2025-10-20 18:45:26,760 (server:882) INFO: ----------- Starting training (Round #0) -------------
+2025-10-20 18:45:34,452 (torch_trainer:351) WARNING: current flop count implementation is for general trainer case: 1) ctx.data_batch = [x, y]; and2) the ctx.model takes only x as input.Please check the forward format or implement your own flop_count function
+2025-10-20 18:45:35,942 (client:357) INFO: {'Role': 'Client #3', 'Round': 0, 'Results_raw': {'train_loss': 7248.890869, 'train_total': 1280, 'train_avg_loss': 5.663196}}
+2025-10-20 18:45:43,543 (torch_trainer:351) WARNING: current flop count implementation is for general trainer case: 1) ctx.data_batch = [x, y]; and2) the ctx.model takes only x as input.Please check the forward format or implement your own flop_count function
+2025-10-20 18:45:45,469 (client:357) INFO: {'Role': 'Client #2', 'Round': 0, 'Results_raw': {'train_loss': 7380.165527, 'train_total': 1280, 'train_avg_loss': 5.765754}}
+2025-10-20 18:45:53,312 (torch_trainer:351) WARNING: current flop count implementation is for general trainer case: 1) ctx.data_batch = [x, y]; and2) the ctx.model takes only x as input.Please check the forward format or implement your own flop_count function
+2025-10-20 18:45:54,716 (client:357) INFO: {'Role': 'Client #5', 'Round': 0, 'Results_raw': {'train_loss': 7301.826782, 'train_total': 1280, 'train_avg_loss': 5.704552}}
+2025-10-20 18:46:02,680 (torch_trainer:351) WARNING: current flop count implementation is for general trainer case: 1) ctx.data_batch = [x, y]; and2) the ctx.model takes only x as input.Please check the forward format or implement your own flop_count function
+2025-10-20 18:46:04,090 (client:357) INFO: {'Role': 'Client #1', 'Round': 0, 'Results_raw': {'train_loss': 7460.03418, 'train_total': 1280, 'train_avg_loss': 5.828152}}
+2025-10-20 18:46:12,101 (torch_trainer:351) WARNING: current flop count implementation is for general trainer case: 1) ctx.data_batch = [x, y]; and2) the ctx.model takes only x as input.Please check the forward format or implement your own flop_count function
+2025-10-20 18:46:13,517 (client:357) INFO: {'Role': 'Client #4', 'Round': 0, 'Results_raw': {'train_loss': 7371.52063, 'train_total': 1280, 'train_avg_loss': 5.759}}
+2025-10-20 18:46:13,585 (server:351) INFO: ----------- Starting a new training round (Round #1) -------------
+2025-10-20 18:46:22,890 (client:357) INFO: {'Role': 'Client #1', 'Round': 1, 'Results_raw': {'train_loss': 6315.388184, 'train_total': 1280, 'train_avg_loss': 4.933897}}
+2025-10-20 18:46:32,286 (client:357) INFO: {'Role': 'Client #3', 'Round': 1, 'Results_raw': {'train_loss': 6268.327515, 'train_total': 1280, 'train_avg_loss': 4.897131}}
+2025-10-20 18:46:41,678 (client:357) INFO: {'Role': 'Client #5', 'Round': 1, 'Results_raw': {'train_loss': 6077.981567, 'train_total': 1280, 'train_avg_loss': 4.748423}}
+2025-10-20 18:46:50,901 (client:357) INFO: {'Role': 'Client #4', 'Round': 1, 'Results_raw': {'train_loss': 6274.863159, 'train_total': 1280, 'train_avg_loss': 4.902237}}
+2025-10-20 18:47:00,076 (client:357) INFO: {'Role': 'Client #2', 'Round': 1, 'Results_raw': {'train_loss': 6409.953491, 'train_total': 1280, 'train_avg_loss': 5.007776}}
+2025-10-20 18:47:00,146 (server:351) INFO: ----------- Starting a new training round (Round #2) -------------
+2025-10-20 18:47:09,472 (client:357) INFO: {'Role': 'Client #3', 'Round': 2, 'Results_raw': {'train_loss': 5422.639771, 'train_total': 1280, 'train_avg_loss': 4.236437}}
+2025-10-20 18:47:18,690 (client:357) INFO: {'Role': 'Client #4', 'Round': 2, 'Results_raw': {'train_loss': 5559.325928, 'train_total': 1280, 'train_avg_loss': 4.343223}}
+2025-10-20 18:47:28,095 (client:357) INFO: {'Role': 'Client #2', 'Round': 2, 'Results_raw': {'train_loss': 5550.669189, 'train_total': 1280, 'train_avg_loss': 4.33646}}
+2025-10-20 18:47:37,479 (client:357) INFO: {'Role': 'Client #5', 'Round': 2, 'Results_raw': {'train_loss': 5541.962402, 'train_total': 1280, 'train_avg_loss': 4.329658}}
+2025-10-20 18:47:46,710 (client:357) INFO: {'Role': 'Client #1', 'Round': 2, 'Results_raw': {'train_loss': 5541.65564, 'train_total': 1280, 'train_avg_loss': 4.329418}}
+2025-10-20 18:47:46,780 (server:351) INFO: ----------- Starting a new training round (Round #3) -------------
+2025-10-20 18:47:56,075 (client:357) INFO: {'Role': 'Client #4', 'Round': 3, 'Results_raw': {'train_loss': 4913.807007, 'train_total': 1280, 'train_avg_loss': 3.838912}}
+2025-10-20 18:48:05,494 (client:357) INFO: {'Role': 'Client #1', 'Round': 3, 'Results_raw': {'train_loss': 4887.164185, 'train_total': 1280, 'train_avg_loss': 3.818097}}
+2025-10-20 18:48:14,890 (client:357) INFO: {'Role': 'Client #2', 'Round': 3, 'Results_raw': {'train_loss': 4766.846924, 'train_total': 1280, 'train_avg_loss': 3.724099}}
+2025-10-20 18:48:24,247 (client:357) INFO: {'Role': 'Client #3', 'Round': 3, 'Results_raw': {'train_loss': 4738.010132, 'train_total': 1280, 'train_avg_loss': 3.70157}}
+2025-10-20 18:48:33,498 (client:357) INFO: {'Role': 'Client #5', 'Round': 3, 'Results_raw': {'train_loss': 4901.909729, 'train_total': 1280, 'train_avg_loss': 3.829617}}
+2025-10-20 18:48:33,567 (server:351) INFO: ----------- Starting a new training round (Round #4) -------------
+2025-10-20 18:48:42,841 (client:357) INFO: {'Role': 'Client #4', 'Round': 4, 'Results_raw': {'train_loss': 4519.320312, 'train_total': 1280, 'train_avg_loss': 3.530719}}
+2025-10-20 18:48:52,055 (client:357) INFO: {'Role': 'Client #1', 'Round': 4, 'Results_raw': {'train_loss': 4606.715454, 'train_total': 1280, 'train_avg_loss': 3.598996}}
+2025-10-20 18:49:01,244 (client:357) INFO: {'Role': 'Client #2', 'Round': 4, 'Results_raw': {'train_loss': 4501.598877, 'train_total': 1280, 'train_avg_loss': 3.516874}}
+2025-10-20 18:49:10,440 (client:357) INFO: {'Role': 'Client #3', 'Round': 4, 'Results_raw': {'train_loss': 4288.722656, 'train_total': 1280, 'train_avg_loss': 3.350565}}
+2025-10-20 18:49:19,638 (client:357) INFO: {'Role': 'Client #5', 'Round': 4, 'Results_raw': {'train_loss': 4416.205322, 'train_total': 1280, 'train_avg_loss': 3.45016}}
+2025-10-20 18:49:19,699 (server:345) INFO: Server: Starting evaluation at the end of round 4.
+2025-10-20 18:49:19,700 (server:351) INFO: ----------- Starting a new training round (Round #5) -------------
+2025-10-20 18:49:19,727 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:49:26,682 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:49:36,226 (client:554) INFO: {'Role': 'Client #1', 'Round': 4, 'Results_raw': {'val_loss': 26923.473839, 'val_total': 7472, 'val_avg_loss': 3.603249, 'test_loss': 5289.644127, 'test_total': 1494, 'test_avg_loss': 3.540592}}
+2025-10-20 18:49:36,250 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:49:43,328 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:49:54,926 (client:554) INFO: {'Role': 'Client #3', 'Round': 4, 'Results_raw': {'val_loss': 42983.0009, 'val_total': 12644, 'val_avg_loss': 3.399478, 'test_loss': 8520.309273, 'test_total': 2528, 'test_avg_loss': 3.370376}}
+2025-10-20 18:49:54,953 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:50:02,160 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:50:10,865 (client:554) INFO: {'Role': 'Client #5', 'Round': 4, 'Results_raw': {'val_loss': 18815.270561, 'val_total': 5421, 'val_avg_loss': 3.470812, 'test_loss': 3668.140024, 'test_total': 1085, 'test_avg_loss': 3.380774}}
+2025-10-20 18:50:10,889 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:50:18,238 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:50:30,964 (client:554) INFO: {'Role': 'Client #2', 'Round': 4, 'Results_raw': {'val_loss': 51792.979069, 'val_total': 14785, 'val_avg_loss': 3.503076, 'test_loss': 10384.01794, 'test_total': 2956, 'test_avg_loss': 3.512861}}
+2025-10-20 18:50:30,989 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:50:38,194 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.

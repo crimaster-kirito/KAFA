@@ -1,0 +1,648 @@
+2026-01-13 23:51:56,408 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-01-13 23:51:56,408 (logging:134) INFO: the current dir is /home/tyx/ywp/FedBiOT
+2026-01-13 23:51:56,408 (logging:135) INFO: the output dir is exp/knowledge_anchor_llama2/sub_exp_20260113235156
+2026-01-13 23:52:07,294 (knowledge_anchor_splitter:61) INFO: 将使用数据集 imdb 作为任务不相关数据源
+2026-01-13 23:52:07,309 (knowledge_anchor_splitter:137) WARNING: 标签提取失败，使用IID分配: The size of tensor a (275) must match the size of tensor b (116) at non-singleton dimension 0
+2026-01-13 23:52:07,309 (knowledge_anchor_splitter:154) INFO: 从外部数据集 imdb 加载无关样本...
+2026-01-13 23:52:07,445 (knowledge_anchor_splitter:282) INFO: ✓ 从IMDB加载了 298 个样本（情感分类任务）
+2026-01-13 23:52:07,450 (knowledge_anchor_splitter:162) INFO: ✓ 成功加载 298 个无关样本（目标: 298）
+2026-01-13 23:52:07,451 (knowledge_anchor_splitter:201) INFO: ✓ 为客户端1注入298个任务不相关样本（来自 imdb）
+2026-01-13 23:52:07,451 (knowledge_anchor_splitter:203) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 23:52:07,451 (knowledge_anchor_splitter:220) INFO: Train数据分配完成: 客户端=[997, 1294, 996]
+2026-01-13 23:52:07,452 (base_translator:120) WARNING: Cannot access train label distribution for splitter, split dataset without considering train label.
+2026-01-13 23:52:07,465 (knowledge_anchor_splitter:137) WARNING: 标签提取失败，使用IID分配: The size of tensor a (213) must match the size of tensor b (325) at non-singleton dimension 0
+2026-01-13 23:52:07,466 (knowledge_anchor_splitter:154) INFO: 从外部数据集 imdb 加载无关样本...
+2026-01-13 23:52:07,597 (knowledge_anchor_splitter:282) INFO: ✓ 从IMDB加载了 298 个样本（情感分类任务）
+2026-01-13 23:52:07,602 (knowledge_anchor_splitter:162) INFO: ✓ 成功加载 298 个无关样本（目标: 298）
+2026-01-13 23:52:07,602 (knowledge_anchor_splitter:201) INFO: ✓ 为客户端0注入298个任务不相关样本（来自 imdb）
+2026-01-13 23:52:07,603 (knowledge_anchor_splitter:203) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 23:52:07,603 (knowledge_anchor_splitter:220) INFO: Train数据分配完成: 客户端=[1295, 996, 996]
+2026-01-13 23:52:07,610 (knowledge_anchor_splitter:137) WARNING: 标签提取失败，使用IID分配: The size of tensor a (279) must match the size of tensor b (145) at non-singleton dimension 0
+2026-01-13 23:52:07,610 (knowledge_anchor_splitter:154) INFO: 从外部数据集 imdb 加载无关样本...
+2026-01-13 23:52:07,740 (knowledge_anchor_splitter:282) INFO: ✓ 从IMDB加载了 149 个样本（情感分类任务）
+2026-01-13 23:52:07,745 (knowledge_anchor_splitter:162) INFO: ✓ 成功加载 149 个无关样本（目标: 149）
+2026-01-13 23:52:07,746 (knowledge_anchor_splitter:201) INFO: ✓ 为客户端1注入149个任务不相关样本（来自 imdb）
+2026-01-13 23:52:07,746 (knowledge_anchor_splitter:203) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 23:52:07,746 (knowledge_anchor_splitter:220) INFO: Train数据分配完成: 客户端=[499, 647, 498]
+2026-01-13 23:52:07,788 (base_translator:133) INFO: number of clients: 3
+2026-01-13 23:52:07,788 (base_translator:135) INFO: 1
+2026-01-13 23:52:07,818 (base_translator:135) INFO: 2
+2026-01-13 23:52:07,855 (base_translator:135) INFO: 3
+2026-01-13 23:52:08,144 (utils:167) INFO: The device information file is not provided
+2026-01-13 23:52:08,145 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 23:53:33,061 (projection_mapper:78) INFO: 初始化ProjectionMapper: small_hidden=2048, large_hidden=4096, rank=8, learnable=True, q_strategy=transpose
+2026-01-13 23:53:33,071 (knowledge_anchor_aggregator:74) INFO: ✓ 已初始化投影映射器: small_hidden=2048, large_hidden=4096, rank=8
+2026-01-13 23:53:33,095 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 23:53:33,097 (knowledge_anchor_trainer:38) INFO: 模型设备: cuda:0
+2026-01-13 23:53:33,097 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 23:53:33,097 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 23:53:33,098 (fed_runner:195) INFO: Server has been set up ... 
+2026-01-13 23:53:33,099 (client:38) INFO: ================================================================================
+2026-01-13 23:53:33,099 (client:39) INFO: 客户端1开始加载小模型...
+2026-01-13 23:53:33,099 (client:40) INFO: 配置的模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 23:53:33,100 (client:50) INFO: ✓ 检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:53:33,100 (client:51) INFO:   绝对路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:53:33,126 (client:66) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-01-13 23:53:33,127 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 23:53:33,127 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-01-13 23:53:42,901 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-01-13 23:53:54,639 (client:71) INFO: ✓ 客户端1成功加载小模型
+2026-01-13 23:53:54,640 (client:72) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-01-13 23:53:54,641 (client:76) INFO:   模型参数量: 1262.97M
+2026-01-13 23:53:54,641 (client:79) INFO: ================================================================================
+2026-01-13 23:53:54,680 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 23:53:54,682 (knowledge_anchor_trainer:38) INFO: 模型设备: cpu
+2026-01-13 23:53:54,682 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 23:53:54,682 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 23:53:57,764 (fed_runner:245) INFO: Client 1 has been set up ... 
+2026-01-13 23:53:57,766 (client:38) INFO: ================================================================================
+2026-01-13 23:53:57,766 (client:39) INFO: 客户端2开始加载小模型...
+2026-01-13 23:53:57,766 (client:40) INFO: 配置的模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 23:53:57,766 (client:50) INFO: ✓ 检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:53:57,767 (client:51) INFO:   绝对路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:53:57,790 (client:66) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-01-13 23:53:57,790 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 23:53:57,791 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-01-13 23:54:07,331 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-01-13 23:54:18,699 (client:71) INFO: ✓ 客户端2成功加载小模型
+2026-01-13 23:54:18,699 (client:72) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-01-13 23:54:18,701 (client:76) INFO:   模型参数量: 1262.97M
+2026-01-13 23:54:18,701 (client:79) INFO: ================================================================================
+2026-01-13 23:54:18,736 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 23:54:18,737 (knowledge_anchor_trainer:38) INFO: 模型设备: cpu
+2026-01-13 23:54:18,737 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 23:54:18,738 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 23:54:21,232 (fed_runner:245) INFO: Client 2 has been set up ... 
+2026-01-13 23:54:21,234 (client:38) INFO: ================================================================================
+2026-01-13 23:54:21,234 (client:39) INFO: 客户端3开始加载小模型...
+2026-01-13 23:54:21,234 (client:40) INFO: 配置的模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 23:54:21,234 (client:50) INFO: ✓ 检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:54:21,234 (client:51) INFO:   绝对路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:54:21,258 (client:66) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-01-13 23:54:21,258 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 23:54:21,259 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-01-13 23:54:30,376 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-01-13 23:54:41,559 (client:71) INFO: ✓ 客户端3成功加载小模型
+2026-01-13 23:54:41,560 (client:72) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-01-13 23:54:41,561 (client:76) INFO:   模型参数量: 1262.97M
+2026-01-13 23:54:41,561 (client:79) INFO: ================================================================================
+2026-01-13 23:54:41,596 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 23:54:41,597 (knowledge_anchor_trainer:38) INFO: 模型设备: cpu
+2026-01-13 23:54:41,597 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 23:54:41,597 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 23:54:43,878 (fed_runner:245) INFO: Client 3 has been set up ... 
+2026-01-13 23:54:43,878 (trainer:343) INFO: Model meta-info: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>.
+2026-01-13 23:54:43,887 (trainer:351) INFO: Num of original para names: 88.
+2026-01-13 23:54:43,887 (trainer:352) INFO: Num of original trainable para names: 289.
+2026-01-13 23:54:43,888 (trainer:354) INFO: Num of preserved para names in local update: 88. 
+Preserved para names in local update: {'base_model.model.model.layers.7.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.20.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.0.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.9.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.10.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.15.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.16.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.2.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.3.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.0.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.7.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.3.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.18.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.5.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.6.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.14.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.16.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.7.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.18.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.5.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.11.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.4.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.21.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.13.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.17.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.20.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.1.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.8.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.14.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.2.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.19.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.4.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.12.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.18.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.19.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.13.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.4.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.2.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.12.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.15.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.14.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.19.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.18.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.9.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.17.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.10.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.9.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.17.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.21.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.10.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.19.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.16.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.14.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.7.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.21.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.20.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.21.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.15.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.11.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.10.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.9.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.15.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.2.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.17.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.11.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.12.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.20.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.5.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.16.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.11.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.13.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.6.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.13.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.5.self_attn.q_proj.lora_A.default.weight'}.
+2026-01-13 23:54:43,888 (trainer:358) INFO: Num of filtered para names in local update: 0. 
+Filtered para names in local update: set().
+2026-01-13 23:54:43,888 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "_hook_on_batch_backward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	}
+2026-01-13 23:55:05,764 (knowledge_anchor_aggregator:125) INFO: ✓ 从模型state_dict提取LoRA参数，包含 128 个参数
+2026-01-13 23:55:05,825 (knowledge_anchor_aggregator:153) INFO: ✓ 下投影完成: 大LoRA(128个参数) -> 小LoRA(128个参数)
+2026-01-13 23:55:05,837 (server:259) INFO: 使用投影后的小LoRA进行broadcast（128个参数）
+2026-01-13 23:55:05,838 (server:882) INFO: ----------- Starting training (Round #0) -------------
+2026-01-13 23:55:06,783 (knowledge_anchor_trainer:203) INFO: 训练设备: cuda:0
+2026-01-13 23:55:06,784 (knowledge_anchor_trainer:205) INFO: ✓ 使用GPU训练 - 设备: cuda:0
+2026-01-13 23:55:07,000 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,000 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,043 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,043 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,084 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,084 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,117 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,118 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,155 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,155 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,188 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,188 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,220 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,220 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,254 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,254 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,286 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,287 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,323 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,323 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,367 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,367 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,400 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,400 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,433 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,433 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,470 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,470 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,503 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,503 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,536 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,536 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,569 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,569 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,602 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,602 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,635 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,635 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,668 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,668 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,701 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,701 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,734 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,734 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,767 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,767 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,800 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,800 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,833 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,833 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,866 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,866 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,899 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,899 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,932 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,932 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,965 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,965 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:07,998 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:07,998 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,031 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,031 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,064 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,064 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,097 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,097 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,130 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,130 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,163 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,163 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,196 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,196 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,229 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,229 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,262 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,262 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,295 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,295 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,327 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,328 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,360 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,361 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,394 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,394 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,427 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,427 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,460 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,460 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,493 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,493 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,526 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,526 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,559 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,559 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,592 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,592 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,630 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,630 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,663 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,663 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,696 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,696 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,729 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,729 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,762 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,762 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,795 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,795 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,828 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,829 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,861 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,861 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,894 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,894 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,927 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,927 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,961 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,961 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:08,993 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:08,993 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,026 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,026 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,059 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,063 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,097 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,097 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,130 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,130 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,163 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,163 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,196 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,196 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,229 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,229 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,262 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,269 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,303 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,303 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,336 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,336 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,368 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,369 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,401 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,402 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,434 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,434 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,467 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,467 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,500 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,501 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,537 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,538 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,571 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,571 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,604 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,604 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,636 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,637 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,670 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,674 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,707 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,707 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,740 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,740 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,773 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,773 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,806 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,806 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,840 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,840 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,872 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,880 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,913 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,913 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,946 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,946 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:09,979 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:09,979 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,012 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,012 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,046 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,056 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,089 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,089 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,123 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,123 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,156 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,156 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,189 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,189 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,222 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,223 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,256 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,263 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,297 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,297 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,330 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,330 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,363 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,363 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,396 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,396 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,429 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,429 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,462 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,462 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,496 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,496 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,528 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,528 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,562 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,562 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,595 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,595 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,628 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,628 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,661 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,661 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,694 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,694 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,727 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,727 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,760 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,760 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,793 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,793 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,827 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,827 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,860 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,860 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,893 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,893 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,926 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,926 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,958 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,959 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:10,991 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:10,991 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,024 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,025 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,058 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,058 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,091 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,091 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,124 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,124 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,157 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,157 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,189 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,190 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,222 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,223 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,255 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,257 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,290 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,290 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,323 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,323 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,356 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,356 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,389 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,390 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,422 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,422 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,455 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,455 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,488 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,489 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,522 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,522 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,555 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,555 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,587 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,588 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,621 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,621 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,654 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,654 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,687 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,687 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,720 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,720 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,757 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,757 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,790 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,790 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,823 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,824 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,856 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,856 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,889 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,889 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,923 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,923 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,956 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,956 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:11,989 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:11,989 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,022 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,022 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,054 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,055 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,087 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,088 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,120 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,120 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,153 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,153 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,187 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,187 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,220 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,220 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,253 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,253 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,286 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,286 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,319 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,319 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,352 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,352 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,385 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,385 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,418 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,418 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,451 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,451 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,484 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,484 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,517 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,517 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,550 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,550 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,583 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,583 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,616 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,617 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,649 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,649 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,682 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,682 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,716 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,716 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,749 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,749 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,782 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,782 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,815 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,815 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,848 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,848 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,881 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,881 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,914 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,914 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,947 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,947 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:12,979 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:12,979 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,012 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,012 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,045 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,045 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,079 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,079 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,112 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,112 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,145 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,145 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,178 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,178 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,211 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,211 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,244 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,244 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,277 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,277 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,310 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,310 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,343 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,343 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,376 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,376 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,409 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,410 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,443 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,443 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,476 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,476 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,508 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,509 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,542 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,542 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,575 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,575 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,608 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,608 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,641 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,641 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,674 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,674 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,708 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,708 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,741 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,741 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,774 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,774 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,808 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,808 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,840 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,841 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,874 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,874 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,907 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,907 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,944 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,944 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:13,977 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:13,977 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,010 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,011 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,044 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,044 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,077 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,077 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,110 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,110 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,143 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,143 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,176 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,176 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,209 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,209 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,242 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,242 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,275 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,275 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,308 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,308 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,341 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,341 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,374 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,374 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,407 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,407 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,441 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,441 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,474 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,474 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,507 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,507 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,540 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,540 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,573 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,573 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,606 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,606 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,639 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,639 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,673 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,673 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,706 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,706 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,739 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,739 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,772 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,772 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,805 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,805 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,838 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,838 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,871 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,871 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,904 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,904 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,937 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,937 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:14,970 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:14,970 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:15,003 (knowledge_anchor_trainer:370) INFO: Batch统计: 相关=0, 无关=1, 新增原型=0, 增量bank大小=0
+2026-01-13 23:55:15,003 (knowledge_anchor_trainer:376) WARNING: ⚠ 跳过batch：所有1个样本任务不相关（将被排除）
+2026-01-13 23:55:15,010 (knowledge_anchor_trainer:396) INFO: ============================================================
+2026-01-13 23:55:15,010 (knowledge_anchor_trainer:397) INFO: 微调统计信息
+2026-01-13 23:55:15,010 (knowledge_anchor_trainer:398) INFO: ============================================================
+2026-01-13 23:55:15,010 (knowledge_anchor_trainer:399) INFO: 总样本数: 240
+2026-01-13 23:55:15,010 (knowledge_anchor_trainer:400) INFO:   ✓ 任务相关样本: 0 (0.0%) - 继续训练
+2026-01-13 23:55:15,010 (knowledge_anchor_trainer:401) INFO:   ✗ 任务无关样本: 240 (100.0%) - 已被排除
+2026-01-13 23:55:15,010 (knowledge_anchor_trainer:402) INFO:   📦 新增原型数: 0 (增量bank大小: 0/100)
+2026-01-13 23:55:15,010 (knowledge_anchor_trainer:403) INFO: ============================================================
+2026-01-13 23:55:15,037 (client:357) INFO: {'Role': 'Client #3', 'Round': 0, 'Results_raw': {'train_loss': 0.0, 'train_total': 0, 'train_avg_loss': 0}}

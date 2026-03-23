@@ -1,0 +1,4033 @@
+2026-01-13 13:18:43,574 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-01-13 13:18:43,575 (logging:134) INFO: the current dir is /home/tyx/ywp/FedBiOT
+2026-01-13 13:18:43,575 (logging:135) INFO: the output dir is exp/knowledge_anchor_llama2/sub_exp_20260113131843
+2026-01-13 13:18:54,486 (knowledge_anchor_splitter:138) WARNING: 标签提取失败，使用IID分配: The size of tensor a (247) must match the size of tensor b (303) at non-singleton dimension 0
+2026-01-13 13:18:54,487 (knowledge_anchor_splitter:174) INFO: ✓ 为客户端1注入119个任务不相关样本
+2026-01-13 13:18:54,487 (knowledge_anchor_splitter:175) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 13:18:54,487 (knowledge_anchor_splitter:176) INFO:   测试数据保持纯净（597个样本），未受影响
+2026-01-13 13:18:54,487 (knowledge_anchor_splitter:202) INFO: 数据分配完成: 服务器=1195, 客户端=[349, 484, 364], 测试=597
+2026-01-13 13:18:54,488 (base_translator:120) WARNING: Cannot access train label distribution for splitter, split dataset without considering train label.
+2026-01-13 13:18:54,495 (knowledge_anchor_splitter:138) WARNING: 标签提取失败，使用IID分配: The size of tensor a (204) must match the size of tensor b (255) at non-singleton dimension 0
+2026-01-13 13:18:54,496 (knowledge_anchor_splitter:174) INFO: ✓ 为客户端0注入119个任务不相关样本
+2026-01-13 13:18:54,496 (knowledge_anchor_splitter:175) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 13:18:54,496 (knowledge_anchor_splitter:176) INFO:   测试数据保持纯净（597个样本），未受影响
+2026-01-13 13:18:54,496 (knowledge_anchor_splitter:202) INFO: 数据分配完成: 服务器=1195, 客户端=[477, 359, 361], 测试=597
+2026-01-13 13:18:54,499 (knowledge_anchor_splitter:138) WARNING: 标签提取失败，使用IID分配: The size of tensor a (123) must match the size of tensor b (332) at non-singleton dimension 0
+2026-01-13 13:18:54,499 (knowledge_anchor_splitter:174) INFO: ✓ 为客户端0注入59个任务不相关样本
+2026-01-13 13:18:54,500 (knowledge_anchor_splitter:175) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 13:18:54,500 (knowledge_anchor_splitter:176) INFO:   测试数据保持纯净（299个样本），未受影响
+2026-01-13 13:18:54,500 (knowledge_anchor_splitter:202) INFO: 数据分配完成: 服务器=598, 客户端=[239, 181, 178], 测试=299
+2026-01-13 13:18:54,540 (base_translator:133) INFO: number of clients: 3
+2026-01-13 13:18:54,540 (base_translator:135) INFO: 1
+2026-01-13 13:18:54,574 (base_translator:135) INFO: 2
+2026-01-13 13:18:54,611 (base_translator:135) INFO: 3
+2026-01-13 13:18:54,688 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 64
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.4, 0.4, 0.2]
+  splitter: knowledge_anchor
+  splitter_args: [{'server_ratio': 0.4, 'client_ratio': 0.4, 'test_ratio': 0.2, 'non_iid_alpha': 0.5, 'task_irrelevant_ratio': 0.1}]
+  subsample: 1.0
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: []
+  trunc_stride: 128
+  type: gsm8k@llm
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 1
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: 0
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 0
+eval:
+  best_res_update_round_wise_key: test_loss
+  count_flops: False
+  freq: 20
+  metrics: ['loss']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'raw']
+  split: ['test', 'val']
+expname: knowledge_anchor_llama2
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 3
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: []
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: knowledgeanchor
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 3
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: 20
+  save_to: checkpoints/knowledge_anchor_llama2.ckpt
+  share_local_model: True
+  total_round_num: 100
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: -1.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{'adapter_package': 'peft', 'adapter_method': 'lora', 'r': 8, 'lora_alpha': 16, 'lora_dropout': 0.05}]
+    mv_to_cpu: True
+    use: True
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 1000
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 8
+  knowledge_anchor:
+    client_model_type: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+    generation_temperature: 0.7
+    intermediate_layer: 16
+    lora_mapping_strategy: interpolate
+    max_new_tokens: 256
+    max_prototypes: 100
+    num_instructions: 10
+    num_prototypes: 50
+    prototype_alignment_weight: 0.3
+    task_relevance_threshold: 0.5
+    train_on_server: True
+    use_instruction_augmentation: True
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 512
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 256
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 1
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: /home/tyx/ywp/FedBiOT/models/llama-2-7b-hf@huggingface_llm
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  use: False
+outdir: exp/knowledge_anchor_llama2/sub_exp_20260113131843
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 30
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.0
+  type: 
+seed: 0
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: True
+  local_update_steps: 30
+  optimizer:
+    betas: (0.9, 0.95)
+    lr: 0.001
+    type: AdamW
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: knowledge_anchor_client
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2026-01-13 13:18:54,690 (worker_builder:215) WARNING: Server for method knowledgeanchor is not implemented. Will use default one
+2026-01-13 13:18:54,903 (utils:167) INFO: The device information file is not provided
+2026-01-13 13:18:54,904 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 13:20:19,528 (fed_runner:195) INFO: Server has been set up ... 
+2026-01-13 13:20:19,530 (client:38) INFO: 客户端1使用小模型: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 13:20:19,530 (client:41) INFO: 客户端1检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 13:20:19,555 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 64
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.4, 0.4, 0.2]
+  splitter: knowledge_anchor
+  splitter_args: [{'server_ratio': 0.4, 'client_ratio': 0.4, 'test_ratio': 0.2, 'non_iid_alpha': 0.5, 'task_irrelevant_ratio': 0.1}]
+  subsample: 1.0
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: []
+  trunc_stride: 128
+  type: gsm8k@llm
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 1
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: 0
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 0
+eval:
+  best_res_update_round_wise_key: test_loss
+  count_flops: False
+  freq: 20
+  metrics: ['loss']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'raw']
+  split: ['test', 'val']
+expname: knowledge_anchor_llama2
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 3
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: []
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: knowledgeanchor
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 3
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: 20
+  save_to: checkpoints/knowledge_anchor_llama2.ckpt
+  share_local_model: True
+  total_round_num: 100
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: -1.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{'adapter_package': 'peft', 'adapter_method': 'lora', 'r': 8, 'lora_alpha': 16, 'lora_dropout': 0.05}]
+    mv_to_cpu: True
+    use: True
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 1000
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 8
+  knowledge_anchor:
+    client_model_type: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+    generation_temperature: 0.7
+    intermediate_layer: 16
+    lora_mapping_strategy: interpolate
+    max_new_tokens: 256
+    max_prototypes: 100
+    num_instructions: 10
+    num_prototypes: 50
+    prototype_alignment_weight: 0.3
+    task_relevance_threshold: 0.5
+    train_on_server: True
+    use_instruction_augmentation: True
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 512
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 256
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 1
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  use: False
+outdir: exp/knowledge_anchor_llama2/sub_exp_20260113131843
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 30
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.0
+  type: 
+seed: 0
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: True
+  local_update_steps: 30
+  optimizer:
+    betas: (0.9, 0.95)
+    lr: 0.001
+    type: AdamW
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: knowledge_anchor_client
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2026-01-13 13:20:19,556 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 13:20:29,409 (client:53) ERROR: 客户端1加载小模型失败: Error(s) in loading state_dict for LlamaForCausalLM:
+	size mismatch for model.layers.0.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.0.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.1.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.1.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.2.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.2.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.3.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.3.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.4.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.4.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.5.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.5.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.6.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.6.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.7.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.7.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.8.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.8.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.9.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.9.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.10.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.10.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.11.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.11.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.12.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.12.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.13.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.13.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.14.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.14.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.15.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.15.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.16.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.16.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.17.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.17.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.18.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.18.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.19.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.19.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.20.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.20.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.21.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.21.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	You may consider adding `ignore_mismatched_sizes=True` in the model `from_pretrained` method.
+2026-01-13 13:20:29,410 (client:54) WARNING: 客户端1将回退使用服务器模型
+2026-01-13 13:20:29,669 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 64
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.4, 0.4, 0.2]
+  splitter: knowledge_anchor
+  splitter_args: [{'server_ratio': 0.4, 'client_ratio': 0.4, 'test_ratio': 0.2, 'non_iid_alpha': 0.5, 'task_irrelevant_ratio': 0.1}]
+  subsample: 1.0
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: []
+  trunc_stride: 128
+  type: gsm8k@llm
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 1
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: 0
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 0
+eval:
+  best_res_update_round_wise_key: test_loss
+  count_flops: False
+  freq: 20
+  metrics: ['loss']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'raw']
+  split: ['test', 'val']
+expname: knowledge_anchor_llama2
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 3
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: []
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: knowledgeanchor
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 3
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: 20
+  save_to: checkpoints/knowledge_anchor_llama2.ckpt
+  share_local_model: True
+  total_round_num: 100
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: -1.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{'adapter_package': 'peft', 'adapter_method': 'lora', 'r': 8, 'lora_alpha': 16, 'lora_dropout': 0.05}]
+    mv_to_cpu: True
+    use: True
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 1000
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 8
+  knowledge_anchor:
+    client_model_type: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+    generation_temperature: 0.7
+    intermediate_layer: 16
+    lora_mapping_strategy: interpolate
+    max_new_tokens: 256
+    max_prototypes: 100
+    num_instructions: 10
+    num_prototypes: 50
+    prototype_alignment_weight: 0.3
+    task_relevance_threshold: 0.5
+    train_on_server: True
+    use_instruction_augmentation: True
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 512
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 256
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 1
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: /home/tyx/ywp/FedBiOT/models/llama-2-7b-hf@huggingface_llm
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  use: False
+outdir: exp/knowledge_anchor_llama2/sub_exp_20260113131843
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 30
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.0
+  type: 
+seed: 0
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: True
+  local_update_steps: 30
+  optimizer:
+    betas: (0.9, 0.95)
+    lr: 0.001
+    type: AdamW
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: knowledge_anchor_client
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2026-01-13 13:20:29,685 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 13:20:29,687 (knowledge_anchor_trainer:38) INFO: 模型设备: cuda:0
+2026-01-13 13:20:29,687 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 13:20:29,687 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 13:20:53,232 (fed_runner:245) INFO: Client 1 has been set up ... 
+2026-01-13 13:20:53,234 (client:38) INFO: 客户端2使用小模型: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 13:20:53,234 (client:41) INFO: 客户端2检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 13:20:53,259 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 64
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.4, 0.4, 0.2]
+  splitter: knowledge_anchor
+  splitter_args: [{'server_ratio': 0.4, 'client_ratio': 0.4, 'test_ratio': 0.2, 'non_iid_alpha': 0.5, 'task_irrelevant_ratio': 0.1}]
+  subsample: 1.0
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: []
+  trunc_stride: 128
+  type: gsm8k@llm
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 1
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: 0
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 0
+eval:
+  best_res_update_round_wise_key: test_loss
+  count_flops: False
+  freq: 20
+  metrics: ['loss']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'raw']
+  split: ['test', 'val']
+expname: knowledge_anchor_llama2
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 3
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: []
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: knowledgeanchor
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 3
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: 20
+  save_to: checkpoints/knowledge_anchor_llama2.ckpt
+  share_local_model: True
+  total_round_num: 100
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: -1.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{'adapter_package': 'peft', 'adapter_method': 'lora', 'r': 8, 'lora_alpha': 16, 'lora_dropout': 0.05}]
+    mv_to_cpu: True
+    use: True
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 1000
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 8
+  knowledge_anchor:
+    client_model_type: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+    generation_temperature: 0.7
+    intermediate_layer: 16
+    lora_mapping_strategy: interpolate
+    max_new_tokens: 256
+    max_prototypes: 100
+    num_instructions: 10
+    num_prototypes: 50
+    prototype_alignment_weight: 0.3
+    task_relevance_threshold: 0.5
+    train_on_server: True
+    use_instruction_augmentation: True
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 512
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 256
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 1
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  use: False
+outdir: exp/knowledge_anchor_llama2/sub_exp_20260113131843
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 30
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.0
+  type: 
+seed: 0
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: True
+  local_update_steps: 30
+  optimizer:
+    betas: (0.9, 0.95)
+    lr: 0.001
+    type: AdamW
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: knowledge_anchor_client
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2026-01-13 13:20:53,260 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 13:21:02,950 (client:53) ERROR: 客户端2加载小模型失败: Error(s) in loading state_dict for LlamaForCausalLM:
+	size mismatch for model.layers.0.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.0.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.1.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.1.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.2.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.2.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.3.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.3.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.4.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.4.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.5.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.5.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.6.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.6.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.7.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.7.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.8.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.8.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.9.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.9.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.10.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.10.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.11.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.11.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.12.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.12.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.13.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.13.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.14.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.14.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.15.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.15.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.16.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.16.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.17.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.17.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.18.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.18.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.19.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.19.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.20.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.20.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.21.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.21.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	You may consider adding `ignore_mismatched_sizes=True` in the model `from_pretrained` method.
+2026-01-13 13:21:02,950 (client:54) WARNING: 客户端2将回退使用服务器模型
+2026-01-13 13:21:03,206 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 64
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.4, 0.4, 0.2]
+  splitter: knowledge_anchor
+  splitter_args: [{'server_ratio': 0.4, 'client_ratio': 0.4, 'test_ratio': 0.2, 'non_iid_alpha': 0.5, 'task_irrelevant_ratio': 0.1}]
+  subsample: 1.0
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: []
+  trunc_stride: 128
+  type: gsm8k@llm
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 1
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: 0
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 0
+eval:
+  best_res_update_round_wise_key: test_loss
+  count_flops: False
+  freq: 20
+  metrics: ['loss']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'raw']
+  split: ['test', 'val']
+expname: knowledge_anchor_llama2
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 3
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: []
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: knowledgeanchor
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 3
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: 20
+  save_to: checkpoints/knowledge_anchor_llama2.ckpt
+  share_local_model: True
+  total_round_num: 100
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: -1.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{'adapter_package': 'peft', 'adapter_method': 'lora', 'r': 8, 'lora_alpha': 16, 'lora_dropout': 0.05}]
+    mv_to_cpu: True
+    use: True
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 1000
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 8
+  knowledge_anchor:
+    client_model_type: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+    generation_temperature: 0.7
+    intermediate_layer: 16
+    lora_mapping_strategy: interpolate
+    max_new_tokens: 256
+    max_prototypes: 100
+    num_instructions: 10
+    num_prototypes: 50
+    prototype_alignment_weight: 0.3
+    task_relevance_threshold: 0.5
+    train_on_server: True
+    use_instruction_augmentation: True
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 512
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 256
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 1
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: /home/tyx/ywp/FedBiOT/models/llama-2-7b-hf@huggingface_llm
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  use: False
+outdir: exp/knowledge_anchor_llama2/sub_exp_20260113131843
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 30
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.0
+  type: 
+seed: 0
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: True
+  local_update_steps: 30
+  optimizer:
+    betas: (0.9, 0.95)
+    lr: 0.001
+    type: AdamW
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: knowledge_anchor_client
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2026-01-13 13:21:03,223 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 13:21:03,224 (knowledge_anchor_trainer:38) INFO: 模型设备: cuda:0
+2026-01-13 13:21:03,224 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 13:21:03,224 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 13:21:26,769 (fed_runner:245) INFO: Client 2 has been set up ... 
+2026-01-13 13:21:26,771 (client:38) INFO: 客户端3使用小模型: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 13:21:26,772 (client:41) INFO: 客户端3检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 13:21:26,796 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 64
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.4, 0.4, 0.2]
+  splitter: knowledge_anchor
+  splitter_args: [{'server_ratio': 0.4, 'client_ratio': 0.4, 'test_ratio': 0.2, 'non_iid_alpha': 0.5, 'task_irrelevant_ratio': 0.1}]
+  subsample: 1.0
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: []
+  trunc_stride: 128
+  type: gsm8k@llm
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 1
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: 0
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 0
+eval:
+  best_res_update_round_wise_key: test_loss
+  count_flops: False
+  freq: 20
+  metrics: ['loss']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'raw']
+  split: ['test', 'val']
+expname: knowledge_anchor_llama2
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 3
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: []
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: knowledgeanchor
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 3
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: 20
+  save_to: checkpoints/knowledge_anchor_llama2.ckpt
+  share_local_model: True
+  total_round_num: 100
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: -1.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{'adapter_package': 'peft', 'adapter_method': 'lora', 'r': 8, 'lora_alpha': 16, 'lora_dropout': 0.05}]
+    mv_to_cpu: True
+    use: True
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 1000
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 8
+  knowledge_anchor:
+    client_model_type: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+    generation_temperature: 0.7
+    intermediate_layer: 16
+    lora_mapping_strategy: interpolate
+    max_new_tokens: 256
+    max_prototypes: 100
+    num_instructions: 10
+    num_prototypes: 50
+    prototype_alignment_weight: 0.3
+    task_relevance_threshold: 0.5
+    train_on_server: True
+    use_instruction_augmentation: True
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 512
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 256
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 1
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  use: False
+outdir: exp/knowledge_anchor_llama2/sub_exp_20260113131843
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 30
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.0
+  type: 
+seed: 0
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: True
+  local_update_steps: 30
+  optimizer:
+    betas: (0.9, 0.95)
+    lr: 0.001
+    type: AdamW
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: knowledge_anchor_client
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2026-01-13 13:21:26,798 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 13:21:36,597 (client:53) ERROR: 客户端3加载小模型失败: Error(s) in loading state_dict for LlamaForCausalLM:
+	size mismatch for model.layers.0.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.0.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.1.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.1.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.2.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.2.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.3.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.3.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.4.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.4.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.5.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.5.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.6.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.6.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.7.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.7.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.8.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.8.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.9.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.9.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.10.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.10.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.11.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.11.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.12.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.12.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.13.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.13.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.14.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.14.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.15.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.15.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.16.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.16.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.17.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.17.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.18.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.18.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.19.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.19.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.20.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.20.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.21.self_attn.k_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	size mismatch for model.layers.21.self_attn.v_proj.weight: copying a param with shape torch.Size([256, 2048]) from checkpoint, the shape in current model is torch.Size([2048, 2048]).
+	You may consider adding `ignore_mismatched_sizes=True` in the model `from_pretrained` method.
+2026-01-13 13:21:36,598 (client:54) WARNING: 客户端3将回退使用服务器模型
+2026-01-13 13:21:36,854 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 64
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.4, 0.4, 0.2]
+  splitter: knowledge_anchor
+  splitter_args: [{'server_ratio': 0.4, 'client_ratio': 0.4, 'test_ratio': 0.2, 'non_iid_alpha': 0.5, 'task_irrelevant_ratio': 0.1}]
+  subsample: 1.0
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: []
+  trunc_stride: 128
+  type: gsm8k@llm
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 1
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: 0
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 0
+eval:
+  best_res_update_round_wise_key: test_loss
+  count_flops: False
+  freq: 20
+  metrics: ['loss']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'raw']
+  split: ['test', 'val']
+expname: knowledge_anchor_llama2
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 3
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: []
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: knowledgeanchor
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 3
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: 20
+  save_to: checkpoints/knowledge_anchor_llama2.ckpt
+  share_local_model: True
+  total_round_num: 100
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: -1.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{'adapter_package': 'peft', 'adapter_method': 'lora', 'r': 8, 'lora_alpha': 16, 'lora_dropout': 0.05}]
+    mv_to_cpu: True
+    use: True
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 1000
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 8
+  knowledge_anchor:
+    client_model_type: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+    generation_temperature: 0.7
+    intermediate_layer: 16
+    lora_mapping_strategy: interpolate
+    max_new_tokens: 256
+    max_prototypes: 100
+    num_instructions: 10
+    num_prototypes: 50
+    prototype_alignment_weight: 0.3
+    task_relevance_threshold: 0.5
+    train_on_server: True
+    use_instruction_augmentation: True
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 512
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 256
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 1
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: /home/tyx/ywp/FedBiOT/models/llama-2-7b-hf@huggingface_llm
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  use: False
+outdir: exp/knowledge_anchor_llama2/sub_exp_20260113131843
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 30
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.0
+  type: 
+seed: 0
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: True
+  local_update_steps: 30
+  optimizer:
+    betas: (0.9, 0.95)
+    lr: 0.001
+    type: AdamW
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: knowledge_anchor_client
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2026-01-13 13:21:36,870 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 13:21:36,871 (knowledge_anchor_trainer:38) INFO: 模型设备: cuda:0
+2026-01-13 13:21:36,872 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 13:21:36,872 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 13:22:00,407 (fed_runner:245) INFO: Client 3 has been set up ... 
+2026-01-13 13:22:00,408 (trainer:343) INFO: Model meta-info: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>.
+2026-01-13 13:22:00,421 (trainer:351) INFO: Num of original para names: 128.
+2026-01-13 13:22:00,421 (trainer:352) INFO: Num of original trainable para names: 419.
+2026-01-13 13:22:00,421 (trainer:354) INFO: Num of preserved para names in local update: 128. 
+Preserved para names in local update: {'base_model.model.model.layers.20.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.30.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.30.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.16.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.20.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.5.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.23.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.31.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.18.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.31.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.17.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.24.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.7.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.13.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.14.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.29.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.29.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.14.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.27.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.13.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.19.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.29.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.21.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.26.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.17.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.23.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.31.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.10.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.27.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.19.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.3.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.5.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.14.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.16.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.28.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.28.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.15.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.5.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.21.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.31.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.25.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.9.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.26.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.11.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.16.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.2.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.9.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.9.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.22.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.13.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.11.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.11.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.8.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.18.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.12.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.28.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.15.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.18.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.16.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.25.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.7.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.2.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.17.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.25.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.22.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.26.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.17.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.9.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.13.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.30.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.2.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.10.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.22.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.27.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.18.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.7.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.5.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.26.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.10.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.20.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.23.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.24.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.25.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.28.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.24.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.22.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.15.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.21.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.30.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.27.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.2.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.11.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.23.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.10.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.19.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.21.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.15.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.19.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.20.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.24.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.1.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.14.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.6.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.8.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.7.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.29.self_attn.q_proj.lora_A.default.weight'}.
+2026-01-13 13:22:00,422 (trainer:358) INFO: Num of filtered para names in local update: 0. 
+Filtered para names in local update: set().
+2026-01-13 13:22:00,422 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "_hook_on_batch_backward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	}
+2026-01-13 13:22:23,985 (server:882) INFO: ----------- Starting training (Round #0) -------------
+2026-01-13 13:22:24,008 (knowledge_anchor_trainer:183) INFO: 训练设备: cuda:0
+2026-01-13 13:22:24,009 (knowledge_anchor_trainer:185) INFO: ✓ 使用GPU训练 - 设备: cuda:0
+2026-01-13 13:22:24,514 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 1/100）
+2026-01-13 13:22:24,514 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 1/100）
+2026-01-13 13:22:24,514 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=1
+2026-01-13 13:22:24,684 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 2/100）
+2026-01-13 13:22:24,685 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 2/100）
+2026-01-13 13:22:24,685 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=2
+2026-01-13 13:22:24,822 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 3/100）
+2026-01-13 13:22:24,822 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 3/100）
+2026-01-13 13:22:24,822 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=3
+2026-01-13 13:22:24,977 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 4/100）
+2026-01-13 13:22:24,977 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 4/100）
+2026-01-13 13:22:24,977 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=4
+2026-01-13 13:22:25,110 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 5/100）
+2026-01-13 13:22:25,110 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 5/100）
+2026-01-13 13:22:25,110 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=5
+2026-01-13 13:22:25,258 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 6/100）
+2026-01-13 13:22:25,258 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 6/100）
+2026-01-13 13:22:25,258 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=6
+2026-01-13 13:22:25,399 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 7/100）
+2026-01-13 13:22:25,399 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 7/100）
+2026-01-13 13:22:25,399 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=7
+2026-01-13 13:22:25,538 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 8/100）
+2026-01-13 13:22:25,538 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 8/100）
+2026-01-13 13:22:25,538 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=8
+2026-01-13 13:22:25,724 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 9/100）
+2026-01-13 13:22:25,724 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 9/100）
+2026-01-13 13:22:25,725 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=9
+2026-01-13 13:22:25,855 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 10/100）
+2026-01-13 13:22:25,855 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 10/100）
+2026-01-13 13:22:25,855 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=10
+2026-01-13 13:22:25,998 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 11/100）
+2026-01-13 13:22:25,998 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 11/100）
+2026-01-13 13:22:25,998 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=11
+2026-01-13 13:22:26,141 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 12/100）
+2026-01-13 13:22:26,141 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 12/100）
+2026-01-13 13:22:26,141 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=12
+2026-01-13 13:22:26,271 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 13/100）
+2026-01-13 13:22:26,271 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 13/100）
+2026-01-13 13:22:26,271 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=13
+2026-01-13 13:22:26,398 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 14/100）
+2026-01-13 13:22:26,399 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 14/100）
+2026-01-13 13:22:26,399 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=14
+2026-01-13 13:22:26,535 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 15/100）
+2026-01-13 13:22:26,535 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 15/100）
+2026-01-13 13:22:26,535 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=15
+2026-01-13 13:22:26,673 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 16/100）
+2026-01-13 13:22:26,673 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 16/100）
+2026-01-13 13:22:26,674 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=16
+2026-01-13 13:22:26,809 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 17/100）
+2026-01-13 13:22:26,809 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 17/100）
+2026-01-13 13:22:26,809 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=17
+2026-01-13 13:22:26,946 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 18/100）
+2026-01-13 13:22:26,946 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 18/100）
+2026-01-13 13:22:26,946 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=18
+2026-01-13 13:22:27,086 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 19/100）
+2026-01-13 13:22:27,086 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 19/100）
+2026-01-13 13:22:27,086 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=19
+2026-01-13 13:22:27,226 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 20/100）
+2026-01-13 13:22:27,226 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 20/100）
+2026-01-13 13:22:27,226 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=20
+2026-01-13 13:22:27,365 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 21/100）
+2026-01-13 13:22:27,365 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 21/100）
+2026-01-13 13:22:27,366 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=21
+2026-01-13 13:22:27,505 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 22/100）
+2026-01-13 13:22:27,505 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 22/100）
+2026-01-13 13:22:27,505 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=22
+2026-01-13 13:22:27,645 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 23/100）
+2026-01-13 13:22:27,645 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 23/100）
+2026-01-13 13:22:27,645 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=23
+2026-01-13 13:22:27,785 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 24/100）
+2026-01-13 13:22:27,785 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 24/100）
+2026-01-13 13:22:27,785 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=24
+2026-01-13 13:22:27,921 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 25/100）
+2026-01-13 13:22:27,921 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 25/100）
+2026-01-13 13:22:27,921 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=25
+2026-01-13 13:22:28,055 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 26/100）
+2026-01-13 13:22:28,055 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 26/100）
+2026-01-13 13:22:28,055 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=26
+2026-01-13 13:22:28,182 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 27/100）
+2026-01-13 13:22:28,182 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 27/100）
+2026-01-13 13:22:28,182 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=27
+2026-01-13 13:22:28,322 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 28/100）
+2026-01-13 13:22:28,322 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 28/100）
+2026-01-13 13:22:28,322 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=28
+2026-01-13 13:22:28,454 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 29/100）
+2026-01-13 13:22:28,454 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 29/100）
+2026-01-13 13:22:28,454 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=29
+2026-01-13 13:22:28,587 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 30/100）
+2026-01-13 13:22:28,587 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 30/100）
+2026-01-13 13:22:28,587 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=30
+2026-01-13 13:22:28,721 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 31/100）
+2026-01-13 13:22:28,721 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 31/100）
+2026-01-13 13:22:28,721 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=31
+2026-01-13 13:22:28,853 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 32/100）
+2026-01-13 13:22:28,854 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 32/100）
+2026-01-13 13:22:28,854 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=32
+2026-01-13 13:22:28,991 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 33/100）
+2026-01-13 13:22:28,991 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 33/100）
+2026-01-13 13:22:28,992 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=33
+2026-01-13 13:22:29,122 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 34/100）
+2026-01-13 13:22:29,122 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 34/100）
+2026-01-13 13:22:29,122 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=34
+2026-01-13 13:22:29,251 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 35/100）
+2026-01-13 13:22:29,251 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 35/100）
+2026-01-13 13:22:29,251 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=35
+2026-01-13 13:22:29,383 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 36/100）
+2026-01-13 13:22:29,383 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 36/100）
+2026-01-13 13:22:29,383 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=36
+2026-01-13 13:22:29,518 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 37/100）
+2026-01-13 13:22:29,518 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 37/100）
+2026-01-13 13:22:29,518 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=37
+2026-01-13 13:22:29,649 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 38/100）
+2026-01-13 13:22:29,650 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 38/100）
+2026-01-13 13:22:29,650 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=38
+2026-01-13 13:22:29,782 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 39/100）
+2026-01-13 13:22:29,782 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 39/100）
+2026-01-13 13:22:29,783 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=39
+2026-01-13 13:22:29,926 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 40/100）
+2026-01-13 13:22:29,926 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 40/100）
+2026-01-13 13:22:29,927 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=40
+2026-01-13 13:22:30,067 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 41/100）
+2026-01-13 13:22:30,067 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 41/100）
+2026-01-13 13:22:30,067 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=41
+2026-01-13 13:22:30,192 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 42/100）
+2026-01-13 13:22:30,192 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 42/100）
+2026-01-13 13:22:30,192 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=42
+2026-01-13 13:22:30,317 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 43/100）
+2026-01-13 13:22:30,317 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 43/100）
+2026-01-13 13:22:30,317 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=43
+2026-01-13 13:22:30,445 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 44/100）
+2026-01-13 13:22:30,445 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 44/100）
+2026-01-13 13:22:30,445 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=44
+2026-01-13 13:22:30,577 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 45/100）
+2026-01-13 13:22:30,577 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 45/100）
+2026-01-13 13:22:30,578 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=45
+2026-01-13 13:22:30,717 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 46/100）
+2026-01-13 13:22:30,717 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 46/100）
+2026-01-13 13:22:30,717 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=46
+2026-01-13 13:22:30,851 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 47/100）
+2026-01-13 13:22:30,851 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 47/100）
+2026-01-13 13:22:30,851 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=47
+2026-01-13 13:22:30,990 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 48/100）
+2026-01-13 13:22:30,990 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 48/100）
+2026-01-13 13:22:30,990 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=48
+2026-01-13 13:22:31,127 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 49/100）
+2026-01-13 13:22:31,128 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 49/100）
+2026-01-13 13:22:31,128 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=49
+2026-01-13 13:22:31,268 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 50/100）
+2026-01-13 13:22:31,268 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 50/100）
+2026-01-13 13:22:31,269 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=50
+2026-01-13 13:22:31,418 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 51/100）
+2026-01-13 13:22:31,418 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 51/100）
+2026-01-13 13:22:31,418 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=51
+2026-01-13 13:22:31,561 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 52/100）
+2026-01-13 13:22:31,561 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 52/100）
+2026-01-13 13:22:31,562 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=52
+2026-01-13 13:22:31,689 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 53/100）
+2026-01-13 13:22:31,689 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 53/100）
+2026-01-13 13:22:31,689 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=53
+2026-01-13 13:22:31,814 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 54/100）
+2026-01-13 13:22:31,814 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 54/100）
+2026-01-13 13:22:31,815 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=54
+2026-01-13 13:22:31,945 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 55/100）
+2026-01-13 13:22:31,946 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 55/100）
+2026-01-13 13:22:31,946 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=55
+2026-01-13 13:22:32,078 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 56/100）
+2026-01-13 13:22:32,078 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 56/100）
+2026-01-13 13:22:32,078 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=56
+2026-01-13 13:22:32,213 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 57/100）
+2026-01-13 13:22:32,213 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 57/100）
+2026-01-13 13:22:32,213 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=57
+2026-01-13 13:22:32,349 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 58/100）
+2026-01-13 13:22:32,349 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 58/100）
+2026-01-13 13:22:32,350 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=58
+2026-01-13 13:22:32,489 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 59/100）
+2026-01-13 13:22:32,489 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 59/100）
+2026-01-13 13:22:32,489 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=59
+2026-01-13 13:22:32,622 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 60/100）
+2026-01-13 13:22:32,622 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 60/100）
+2026-01-13 13:22:32,622 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=60
+2026-01-13 13:22:32,755 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 61/100）
+2026-01-13 13:22:32,755 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 61/100）
+2026-01-13 13:22:32,755 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=61
+2026-01-13 13:22:32,881 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 62/100）
+2026-01-13 13:22:32,881 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 62/100）
+2026-01-13 13:22:32,881 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=62
+2026-01-13 13:22:33,017 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 63/100）
+2026-01-13 13:22:33,017 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 63/100）
+2026-01-13 13:22:33,017 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=63
+2026-01-13 13:22:33,157 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 64/100）
+2026-01-13 13:22:33,157 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 64/100）
+2026-01-13 13:22:33,157 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=64
+2026-01-13 13:22:33,291 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 65/100）
+2026-01-13 13:22:33,291 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 65/100）
+2026-01-13 13:22:33,292 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=65
+2026-01-13 13:22:33,423 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 66/100）
+2026-01-13 13:22:33,423 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 66/100）
+2026-01-13 13:22:33,423 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=66
+2026-01-13 13:22:33,554 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 67/100）
+2026-01-13 13:22:33,554 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 67/100）
+2026-01-13 13:22:33,554 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=67
+2026-01-13 13:22:33,687 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 68/100）
+2026-01-13 13:22:33,687 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 68/100）
+2026-01-13 13:22:33,688 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=68
+2026-01-13 13:22:33,820 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 69/100）
+2026-01-13 13:22:33,820 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 69/100）
+2026-01-13 13:22:33,820 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=69
+2026-01-13 13:22:33,961 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 70/100）
+2026-01-13 13:22:33,961 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 70/100）
+2026-01-13 13:22:33,961 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=70
+2026-01-13 13:22:34,093 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 71/100）
+2026-01-13 13:22:34,093 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 71/100）
+2026-01-13 13:22:34,093 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=71
+2026-01-13 13:22:34,226 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 72/100）
+2026-01-13 13:22:34,226 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 72/100）
+2026-01-13 13:22:34,226 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=72
+2026-01-13 13:22:34,363 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 73/100）
+2026-01-13 13:22:34,363 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 73/100）
+2026-01-13 13:22:34,363 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=73
+2026-01-13 13:22:34,492 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 74/100）
+2026-01-13 13:22:34,492 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 74/100）
+2026-01-13 13:22:34,492 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=74
+2026-01-13 13:22:34,626 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 75/100）
+2026-01-13 13:22:34,626 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 75/100）
+2026-01-13 13:22:34,627 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=75
+2026-01-13 13:22:34,766 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 76/100）
+2026-01-13 13:22:34,766 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 76/100）
+2026-01-13 13:22:34,767 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=76
+2026-01-13 13:22:34,909 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 77/100）
+2026-01-13 13:22:34,909 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 77/100）
+2026-01-13 13:22:34,909 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=77
+2026-01-13 13:22:35,040 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 78/100）
+2026-01-13 13:22:35,040 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 78/100）
+2026-01-13 13:22:35,040 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=78
+2026-01-13 13:22:35,171 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 79/100）
+2026-01-13 13:22:35,171 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 79/100）
+2026-01-13 13:22:35,172 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=79
+2026-01-13 13:22:35,297 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 80/100）
+2026-01-13 13:22:35,297 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 80/100）
+2026-01-13 13:22:35,297 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=80
+2026-01-13 13:22:35,442 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 81/100）
+2026-01-13 13:22:35,442 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 81/100）
+2026-01-13 13:22:35,442 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=81
+2026-01-13 13:22:35,569 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 82/100）
+2026-01-13 13:22:35,569 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 82/100）
+2026-01-13 13:22:35,569 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=82
+2026-01-13 13:22:35,703 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 83/100）
+2026-01-13 13:22:35,703 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 83/100）
+2026-01-13 13:22:35,703 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=83
+2026-01-13 13:22:35,842 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 84/100）
+2026-01-13 13:22:35,842 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 84/100）
+2026-01-13 13:22:35,842 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=84
+2026-01-13 13:22:35,985 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 85/100）
+2026-01-13 13:22:35,985 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 85/100）
+2026-01-13 13:22:35,986 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=85
+2026-01-13 13:22:36,113 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 86/100）
+2026-01-13 13:22:36,113 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 86/100）
+2026-01-13 13:22:36,113 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=86
+2026-01-13 13:22:36,239 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 87/100）
+2026-01-13 13:22:36,239 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 87/100）
+2026-01-13 13:22:36,240 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=87
+2026-01-13 13:22:36,367 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 88/100）
+2026-01-13 13:22:36,367 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 88/100）
+2026-01-13 13:22:36,367 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=88
+2026-01-13 13:22:36,501 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 89/100）
+2026-01-13 13:22:36,501 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 89/100）
+2026-01-13 13:22:36,501 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=89
+2026-01-13 13:22:36,635 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 90/100）
+2026-01-13 13:22:36,635 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 90/100）
+2026-01-13 13:22:36,635 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=90
+2026-01-13 13:22:36,769 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 91/100）
+2026-01-13 13:22:36,769 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 91/100）
+2026-01-13 13:22:36,769 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=91
+2026-01-13 13:22:36,922 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 92/100）
+2026-01-13 13:22:36,922 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 92/100）
+2026-01-13 13:22:36,922 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=92
+2026-01-13 13:22:37,062 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 93/100）
+2026-01-13 13:22:37,062 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 93/100）
+2026-01-13 13:22:37,062 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=93
+2026-01-13 13:22:37,202 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 94/100）
+2026-01-13 13:22:37,202 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 94/100）
+2026-01-13 13:22:37,202 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=94
+2026-01-13 13:22:37,342 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 95/100）
+2026-01-13 13:22:37,342 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 95/100）
+2026-01-13 13:22:37,342 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=95
+2026-01-13 13:22:37,469 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 96/100）
+2026-01-13 13:22:37,469 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 96/100）
+2026-01-13 13:22:37,469 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=96
+2026-01-13 13:22:37,613 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 97/100）
+2026-01-13 13:22:37,613 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 97/100）
+2026-01-13 13:22:37,613 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=97
+2026-01-13 13:22:37,762 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 98/100）
+2026-01-13 13:22:37,762 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 98/100）
+2026-01-13 13:22:37,762 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=98
+2026-01-13 13:22:37,894 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 99/100）
+2026-01-13 13:22:37,894 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 99/100）
+2026-01-13 13:22:37,894 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=99
+2026-01-13 13:22:38,026 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 100/100）
+2026-01-13 13:22:38,026 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 100/100）
+2026-01-13 13:22:38,026 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:38,158 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:38,159 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:38,291 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:38,291 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:38,422 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:38,423 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:38,554 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:38,554 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:38,691 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:38,691 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:38,825 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:38,826 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:38,966 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:38,967 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:39,102 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:39,102 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:39,228 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:39,228 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:39,368 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:39,368 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:39,499 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:39,500 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:39,631 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:39,632 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:39,775 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:39,775 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:39,899 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:39,899 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:40,038 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:40,038 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:40,172 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:40,173 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:40,307 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:40,307 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:40,439 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:40,439 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:40,574 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:40,574 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:40,700 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:40,700 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:40,835 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:40,836 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:40,975 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:40,975 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:41,110 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:41,110 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:41,242 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:41,242 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:41,393 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:41,394 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:41,526 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:41,526 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:41,659 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:41,659 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:41,794 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:41,794 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:41,922 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:41,922 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:42,054 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:42,054 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:42,194 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:42,194 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:42,320 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:42,320 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:42,455 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:42,455 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:42,590 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:42,590 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:42,722 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:42,722 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:42,856 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:42,856 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:42,985 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:42,986 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:43,121 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:43,121 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:43,247 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:43,247 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:43,382 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:43,382 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:43,518 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:43,519 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:43,651 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:43,651 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:43,787 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:43,787 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:43,921 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:43,921 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:44,070 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:44,071 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:44,204 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:44,204 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:44,337 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:44,338 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:44,468 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:44,468 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:44,602 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:44,603 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:44,734 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:44,734 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:44,864 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:44,865 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:45,005 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:45,005 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:45,149 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:45,149 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:45,284 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:45,284 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:45,426 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:45,426 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:45,559 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:45,559 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:45,691 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:45,692 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:45,830 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:45,830 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:45,970 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:45,970 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:46,110 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:46,110 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:46,244 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:46,245 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:46,385 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:46,385 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:46,518 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:46,518 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:46,650 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:46,650 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:46,778 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:46,778 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:46,903 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:46,903 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:47,047 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:47,048 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:47,201 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:47,202 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:47,346 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:47,346 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:47,479 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:47,479 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:47,618 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:47,618 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:47,751 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:47,751 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:47,881 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:47,881 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:48,013 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:48,014 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:48,146 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:48,146 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:48,283 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:48,283 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:48,420 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:48,420 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:48,545 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:48,545 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:48,678 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:48,678 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:48,817 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:48,818 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:48,950 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:48,950 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:49,082 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:49,083 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:49,221 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:49,221 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:49,346 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:49,346 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:49,480 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:49,481 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:49,614 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:49,614 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:49,749 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:49,749 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:49,882 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:49,882 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:50,026 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:50,026 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:50,153 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:50,154 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:50,288 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:50,288 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:50,416 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:50,416 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:50,551 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:50,552 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:50,683 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:50,684 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:50,824 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:50,825 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:50,954 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:50,954 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:51,086 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:51,087 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:51,221 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:51,221 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:51,361 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:51,361 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:51,495 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:51,495 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:51,635 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:51,636 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:51,774 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:51,774 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:51,910 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:51,910 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:52,049 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:52,064 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:52,198 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:52,198 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:52,330 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:52,331 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:52,481 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:52,481 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:52,615 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:52,615 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:52,754 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:52,754 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:52,888 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:52,888 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:53,030 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:53,030 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:53,162 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:53,162 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:53,306 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:53,306 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:53,447 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:53,447 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:53,588 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:53,588 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:53,729 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:53,729 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:53,885 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:53,885 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:54,021 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:54,022 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:54,148 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:54,148 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:54,273 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:54,273 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:54,407 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:54,407 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:54,538 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:54,538 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:54,671 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:54,672 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:54,805 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:54,805 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:54,939 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:54,940 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:55,069 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:55,070 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:55,201 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:55,201 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:55,339 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:55,339 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:55,477 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:55,477 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:55,617 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:55,617 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:55,749 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:55,750 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:55,891 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:55,892 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:56,033 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:56,033 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:56,165 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:56,165 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:56,306 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:56,307 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:56,448 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:56,448 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:56,582 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:56,582 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:56,707 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:56,707 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:56,841 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:56,842 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:56,974 (knowledge_anchor_trainer:291) WARNING: 样本 0: 任务相关但无匹配原型，增量bank已满，无法添加
+2026-01-13 13:22:56,974 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=100
+2026-01-13 13:22:57,080 (knowledge_anchor_trainer:338) INFO: ============================================================
+2026-01-13 13:22:57,083 (knowledge_anchor_trainer:339) INFO: 微调统计信息
+2026-01-13 13:22:57,083 (knowledge_anchor_trainer:340) INFO: ============================================================
+2026-01-13 13:22:57,083 (knowledge_anchor_trainer:341) INFO: 总样本数: 240
+2026-01-13 13:22:57,083 (knowledge_anchor_trainer:342) INFO:   ✓ 任务相关样本: 240 (100.0%) - 继续训练
+2026-01-13 13:22:57,083 (knowledge_anchor_trainer:343) INFO:   ✗ 任务无关样本: 0 (0.0%) - 已被排除
+2026-01-13 13:22:57,083 (knowledge_anchor_trainer:344) INFO:   📦 新增原型数: 100 (增量bank大小: 100/100)
+2026-01-13 13:22:57,083 (knowledge_anchor_trainer:345) INFO: ============================================================
+2026-01-13 13:22:57,125 (client:357) INFO: {'Role': 'Client #3', 'Round': 0, 'Results_raw': {'train_loss': 140.5625, 'train_total': 240, 'train_avg_loss': 0.585677}}
+2026-01-13 13:22:57,267 (knowledge_anchor_trainer:183) INFO: 训练设备: cuda:0
+2026-01-13 13:22:57,267 (knowledge_anchor_trainer:185) INFO: ✓ 使用GPU训练 - 设备: cuda:0
+2026-01-13 13:22:57,333 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 1/100）
+2026-01-13 13:22:57,333 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 1/100）
+2026-01-13 13:22:57,333 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=1
+2026-01-13 13:22:57,472 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 2/100）
+2026-01-13 13:22:57,472 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 2/100）
+2026-01-13 13:22:57,472 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=2
+2026-01-13 13:22:57,622 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 3/100）
+2026-01-13 13:22:57,622 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 3/100）
+2026-01-13 13:22:57,622 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=3
+2026-01-13 13:22:57,758 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 4/100）
+2026-01-13 13:22:57,758 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 4/100）
+2026-01-13 13:22:57,758 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=4
+2026-01-13 13:22:57,884 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 5/100）
+2026-01-13 13:22:57,884 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 5/100）
+2026-01-13 13:22:57,884 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=5
+2026-01-13 13:22:58,017 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 6/100）
+2026-01-13 13:22:58,017 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 6/100）
+2026-01-13 13:22:58,018 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=6
+2026-01-13 13:22:58,144 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 7/100）
+2026-01-13 13:22:58,144 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 7/100）
+2026-01-13 13:22:58,144 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=7
+2026-01-13 13:22:58,270 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 8/100）
+2026-01-13 13:22:58,270 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 8/100）
+2026-01-13 13:22:58,270 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=8
+2026-01-13 13:22:58,401 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 9/100）
+2026-01-13 13:22:58,401 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 9/100）
+2026-01-13 13:22:58,402 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=9
+2026-01-13 13:22:58,532 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 10/100）
+2026-01-13 13:22:58,532 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 10/100）
+2026-01-13 13:22:58,532 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=10
+2026-01-13 13:22:58,677 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 11/100）
+2026-01-13 13:22:58,677 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 11/100）
+2026-01-13 13:22:58,678 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=11
+2026-01-13 13:22:58,812 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 12/100）
+2026-01-13 13:22:58,812 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 12/100）
+2026-01-13 13:22:58,812 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=12
+2026-01-13 13:22:58,956 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 13/100）
+2026-01-13 13:22:58,956 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 13/100）
+2026-01-13 13:22:58,957 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=13
+2026-01-13 13:22:59,103 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 14/100）
+2026-01-13 13:22:59,103 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 14/100）
+2026-01-13 13:22:59,103 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=14
+2026-01-13 13:22:59,241 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 15/100）
+2026-01-13 13:22:59,242 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 15/100）
+2026-01-13 13:22:59,242 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=15
+2026-01-13 13:22:59,375 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 16/100）
+2026-01-13 13:22:59,375 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 16/100）
+2026-01-13 13:22:59,375 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=16
+2026-01-13 13:22:59,510 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 17/100）
+2026-01-13 13:22:59,510 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 17/100）
+2026-01-13 13:22:59,510 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=17
+2026-01-13 13:22:59,649 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 18/100）
+2026-01-13 13:22:59,649 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 18/100）
+2026-01-13 13:22:59,649 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=18
+2026-01-13 13:22:59,776 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 19/100）
+2026-01-13 13:22:59,776 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 19/100）
+2026-01-13 13:22:59,776 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=19
+2026-01-13 13:22:59,909 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 20/100）
+2026-01-13 13:22:59,909 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 20/100）
+2026-01-13 13:22:59,909 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=20
+2026-01-13 13:23:00,050 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 21/100）
+2026-01-13 13:23:00,050 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 21/100）
+2026-01-13 13:23:00,051 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=21
+2026-01-13 13:23:00,183 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 22/100）
+2026-01-13 13:23:00,183 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 22/100）
+2026-01-13 13:23:00,183 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=22
+2026-01-13 13:23:00,315 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 23/100）
+2026-01-13 13:23:00,315 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 23/100）
+2026-01-13 13:23:00,315 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=23
+2026-01-13 13:23:00,447 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 24/100）
+2026-01-13 13:23:00,447 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 24/100）
+2026-01-13 13:23:00,447 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=24
+2026-01-13 13:23:00,583 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 25/100）
+2026-01-13 13:23:00,583 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 25/100）
+2026-01-13 13:23:00,583 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=25
+2026-01-13 13:23:00,717 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 26/100）
+2026-01-13 13:23:00,717 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 26/100）
+2026-01-13 13:23:00,717 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=26
+2026-01-13 13:23:00,858 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 27/100）
+2026-01-13 13:23:00,858 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 27/100）
+2026-01-13 13:23:00,858 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=27
+2026-01-13 13:23:00,997 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 28/100）
+2026-01-13 13:23:00,997 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 28/100）
+2026-01-13 13:23:00,998 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=28
+2026-01-13 13:23:01,131 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 29/100）
+2026-01-13 13:23:01,131 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 29/100）
+2026-01-13 13:23:01,131 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=29
+2026-01-13 13:23:01,256 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 30/100）
+2026-01-13 13:23:01,256 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 30/100）
+2026-01-13 13:23:01,257 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=30
+2026-01-13 13:23:01,391 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 31/100）
+2026-01-13 13:23:01,391 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 31/100）
+2026-01-13 13:23:01,391 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=31
+2026-01-13 13:23:01,519 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 32/100）
+2026-01-13 13:23:01,519 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 32/100）
+2026-01-13 13:23:01,520 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=32
+2026-01-13 13:23:01,654 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 33/100）
+2026-01-13 13:23:01,654 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 33/100）
+2026-01-13 13:23:01,655 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=33
+2026-01-13 13:23:01,780 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 34/100）
+2026-01-13 13:23:01,780 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 34/100）
+2026-01-13 13:23:01,781 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=34
+2026-01-13 13:23:01,911 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 35/100）
+2026-01-13 13:23:01,911 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 35/100）
+2026-01-13 13:23:01,911 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=35
+2026-01-13 13:23:02,037 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 36/100）
+2026-01-13 13:23:02,037 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 36/100）
+2026-01-13 13:23:02,038 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=36
+2026-01-13 13:23:02,163 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 37/100）
+2026-01-13 13:23:02,163 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 37/100）
+2026-01-13 13:23:02,163 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=37
+2026-01-13 13:23:02,288 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 38/100）
+2026-01-13 13:23:02,288 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 38/100）
+2026-01-13 13:23:02,289 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=38
+2026-01-13 13:23:02,414 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 39/100）
+2026-01-13 13:23:02,414 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 39/100）
+2026-01-13 13:23:02,414 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=39
+2026-01-13 13:23:02,542 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 40/100）
+2026-01-13 13:23:02,542 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 40/100）
+2026-01-13 13:23:02,542 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=40
+2026-01-13 13:23:02,677 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 41/100）
+2026-01-13 13:23:02,677 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 41/100）
+2026-01-13 13:23:02,677 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=41
+2026-01-13 13:23:02,804 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 42/100）
+2026-01-13 13:23:02,804 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 42/100）
+2026-01-13 13:23:02,804 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=42
+2026-01-13 13:23:02,945 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 43/100）
+2026-01-13 13:23:02,945 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 43/100）
+2026-01-13 13:23:02,945 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=43
+2026-01-13 13:23:03,095 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 44/100）
+2026-01-13 13:23:03,095 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 44/100）
+2026-01-13 13:23:03,095 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=44
+2026-01-13 13:23:03,234 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 45/100）
+2026-01-13 13:23:03,234 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 45/100）
+2026-01-13 13:23:03,234 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=45
+2026-01-13 13:23:03,366 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 46/100）
+2026-01-13 13:23:03,366 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 46/100）
+2026-01-13 13:23:03,367 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=46
+2026-01-13 13:23:03,501 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 47/100）
+2026-01-13 13:23:03,501 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 47/100）
+2026-01-13 13:23:03,501 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=47
+2026-01-13 13:23:03,628 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 48/100）
+2026-01-13 13:23:03,628 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 48/100）
+2026-01-13 13:23:03,628 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=48
+2026-01-13 13:23:03,764 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 49/100）
+2026-01-13 13:23:03,764 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 49/100）
+2026-01-13 13:23:03,764 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=49
+2026-01-13 13:23:03,897 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 50/100）
+2026-01-13 13:23:03,897 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 50/100）
+2026-01-13 13:23:03,897 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=50
+2026-01-13 13:23:04,031 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 51/100）
+2026-01-13 13:23:04,031 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 51/100）
+2026-01-13 13:23:04,031 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=51
+2026-01-13 13:23:04,158 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 52/100）
+2026-01-13 13:23:04,158 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 52/100）
+2026-01-13 13:23:04,159 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=52
+2026-01-13 13:23:04,291 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 53/100）
+2026-01-13 13:23:04,291 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 53/100）
+2026-01-13 13:23:04,291 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=53
+2026-01-13 13:23:04,421 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 54/100）
+2026-01-13 13:23:04,421 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 54/100）
+2026-01-13 13:23:04,422 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=54
+2026-01-13 13:23:04,554 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 55/100）
+2026-01-13 13:23:04,554 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 55/100）
+2026-01-13 13:23:04,554 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=55
+2026-01-13 13:23:04,680 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 56/100）
+2026-01-13 13:23:04,680 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 56/100）
+2026-01-13 13:23:04,680 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=56
+2026-01-13 13:23:04,814 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 57/100）
+2026-01-13 13:23:04,814 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 57/100）
+2026-01-13 13:23:04,814 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=57
+2026-01-13 13:23:04,945 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 58/100）
+2026-01-13 13:23:04,945 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 58/100）
+2026-01-13 13:23:04,945 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=58
+2026-01-13 13:23:05,090 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 59/100）
+2026-01-13 13:23:05,090 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 59/100）
+2026-01-13 13:23:05,091 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=59
+2026-01-13 13:23:05,218 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 60/100）
+2026-01-13 13:23:05,218 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 60/100）
+2026-01-13 13:23:05,218 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=60
+2026-01-13 13:23:05,357 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 61/100）
+2026-01-13 13:23:05,357 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 61/100）
+2026-01-13 13:23:05,357 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=61
+2026-01-13 13:23:05,491 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 62/100）
+2026-01-13 13:23:05,491 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 62/100）
+2026-01-13 13:23:05,491 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=62
+2026-01-13 13:23:05,644 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 63/100）
+2026-01-13 13:23:05,644 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 63/100）
+2026-01-13 13:23:05,645 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=63
+2026-01-13 13:23:05,779 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 64/100）
+2026-01-13 13:23:05,780 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 64/100）
+2026-01-13 13:23:05,780 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=64
+2026-01-13 13:23:05,916 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 65/100）
+2026-01-13 13:23:05,916 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 65/100）
+2026-01-13 13:23:05,916 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=65
+2026-01-13 13:23:06,051 (knowledge_anchor_trainer:167) INFO: ✓ 新增原型已添加到增量bank（总数: 66/100）
+2026-01-13 13:23:06,052 (knowledge_anchor_trainer:289) INFO: 样本 0: 任务相关但无匹配原型，添加到增量bank（当前bank大小: 66/100）
+2026-01-13 13:23:06,052 (knowledge_anchor_trainer:312) INFO: Batch统计: 相关=1, 无关=0, 新增原型=1, 增量bank大小=66

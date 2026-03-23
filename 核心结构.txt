@@ -1,0 +1,51 @@
+FedBiOT/
+├── federatedscope/              # 核心代码目录
+│   ├── core/                    # 联邦学习基础组件
+│   ├── llm/                     # 大语言模型相关模块（项目重点）
+│   └── 其他特定领域模块（如cv、gfl等）
+├── tests/                       # 测试用例
+└── README.md                    # 项目说明文档
+
+推荐的代码阅读顺序
+*1. 入门阶段 - 了解项目概况
+README.md - 了解项目背景、功能和基本使用方法
+federatedscope/main.py - 项目入口文件，了解整体执行流程
+2. 核心概念理解
+federatedscope/core/ 目录下的核心组件：
+*fed_runner.py - 联邦学习运行器，控制整个训练流程
+*configs/ - 配置系统，理解参数管理方式
+*workers/ - 包含Server和Client类定义
+auxiliaries/ - 辅助功能模块，如数据构建器、运行器构建器等
+3. 项目特色功能 - LLM微调模块
+federatedscope/llm/ 目录：
+model/ - LLM模型和适配器实现
+trainer/ - 微调训练器
+dataloader/ - 数据加载器
+offsite_tuning/ - 核心的FedBiOT算法实现
+4. 实际应用和测试
+tests/ 目录中的测试用例：
+test_fedopt.py - 你之前查看过的测试文件
+test_optimizer.py - 优化器相关测试
+其他测试文件展示了各种功能的使用方法
+关键模块详解
+核心运行流程 (main.py)
+项目从main.py开始执行，主要流程包括：
+
+解析命令行参数和配置文件
+构建数据集
+创建服务器和客户端类
+初始化运行器并执行训练
+联邦学习核心组件 (core/)
+Runner: 控制整个联邦学习过程
+Server/Client: 服务端和客户端的实现
+Configs: 配置管理系统
+Auxiliaries: 各种辅助构建器（数据、模型、运行器等）
+LLM特定功能 (llm/)
+这是项目的核心特色，实现了在联邦学习环境中对大语言模型进行微调的功能，特别是支持在没有完整模型访问权限的情况下进行本地微调。
+
+学习建议
+先从README和main.py入手，了解项目整体架构
+通过测试用例理解具体功能的使用方式
+深入core模块理解联邦学习的基础组件
+最后重点研究llm模块，理解FedBiOT的创新点
+这样的学习路径可以帮助你从整体到细节逐步理解项目的设计理念和实现方式。

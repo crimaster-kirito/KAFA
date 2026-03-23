@@ -1,0 +1,4495 @@
+2025-10-20 18:36:40,258 (logging:132) INFO: the current machine is at 219.216.64.81
+2025-10-20 18:36:40,258 (logging:134) INFO: the current dir is D:\code\FedBiOT
+2025-10-20 18:36:40,258 (logging:135) INFO: the output dir is exp\FedAvg_convnet2_on_femnist_lr0.001_lstep5\sub_exp_20251020183640
+2025-10-20 18:36:40,336 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:42,462 (splitter_builder:82) WARNING: Splitter  not found or not used.
+2025-10-20 18:36:42,488 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:42,490 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:42,492 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:42,560 (utils:167) INFO: The device information file is not provided
+2025-10-20 18:36:42,625 (fed_runner:195) INFO: Server has been set up ... 
+2025-10-20 18:36:42,699 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:42,720 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 10
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: test_data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.6, 0.2, 0.2]
+  splitter: 
+  splitter_args: []
+  subsample: 0.01
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: [['ToTensor', {}], ['Normalize', {'mean': [0.9637], 'std': [0.1592]}]]
+  trunc_stride: 128
+  type: femnist
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 10
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: -1
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 5
+eval:
+  best_res_update_round_wise_key: val_loss
+  count_flops: True
+  freq: 10
+  metrics: ['acc', 'loss_regular']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'fairness', 'raw']
+  split: ['test', 'val']
+expname: FedAvg_convnet2_on_femnist_lr0.001_lstep5
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 10
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: ['num_sample']
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 5
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: -1
+  save_to: 
+  share_local_model: False
+  total_round_num: 20
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: 5.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{}]
+    mv_to_cpu: False
+    use: False
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 100
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 1
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 128
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 2048
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 62
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: convnet2
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  constant: 2.0
+  epsilon: 50.0
+  mu: 0.1
+  use: True
+  w_clip: 0.1
+outdir: exp\FedAvg_convnet2_on_femnist_lr0.001_lstep5\sub_exp_20251020183640
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 5
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.1
+  type: proximal_regularizer
+seed: 123
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: False
+  local_update_steps: 5
+  optimizer:
+    lr: 0.001
+    type: SGD
+    weight_decay: 0.0
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: cvtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-10-20 18:36:42,732 (fed_runner:245) INFO: Client 1 has been set up ... 
+2025-10-20 18:36:42,809 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:42,828 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 10
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: test_data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.6, 0.2, 0.2]
+  splitter: 
+  splitter_args: []
+  subsample: 0.01
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: [['ToTensor', {}], ['Normalize', {'mean': [0.9637], 'std': [0.1592]}]]
+  trunc_stride: 128
+  type: femnist
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 10
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: -1
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 5
+eval:
+  best_res_update_round_wise_key: val_loss
+  count_flops: True
+  freq: 10
+  metrics: ['acc', 'loss_regular']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'fairness', 'raw']
+  split: ['test', 'val']
+expname: FedAvg_convnet2_on_femnist_lr0.001_lstep5
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 10
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: ['num_sample']
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 5
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: -1
+  save_to: 
+  share_local_model: False
+  total_round_num: 20
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: 5.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{}]
+    mv_to_cpu: False
+    use: False
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 100
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 1
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 128
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 2048
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 62
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: convnet2
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  constant: 2.0
+  epsilon: 50.0
+  mu: 0.1
+  use: True
+  w_clip: 0.1
+outdir: exp\FedAvg_convnet2_on_femnist_lr0.001_lstep5\sub_exp_20251020183640
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 5
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.1
+  type: proximal_regularizer
+seed: 123
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: False
+  local_update_steps: 5
+  optimizer:
+    lr: 0.001
+    type: SGD
+    weight_decay: 0.0
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: cvtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-10-20 18:36:42,840 (fed_runner:245) INFO: Client 2 has been set up ... 
+2025-10-20 18:36:42,919 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:42,938 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 10
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: test_data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.6, 0.2, 0.2]
+  splitter: 
+  splitter_args: []
+  subsample: 0.01
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: [['ToTensor', {}], ['Normalize', {'mean': [0.9637], 'std': [0.1592]}]]
+  trunc_stride: 128
+  type: femnist
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 10
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: -1
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 5
+eval:
+  best_res_update_round_wise_key: val_loss
+  count_flops: True
+  freq: 10
+  metrics: ['acc', 'loss_regular']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'fairness', 'raw']
+  split: ['test', 'val']
+expname: FedAvg_convnet2_on_femnist_lr0.001_lstep5
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 10
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: ['num_sample']
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 5
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: -1
+  save_to: 
+  share_local_model: False
+  total_round_num: 20
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: 5.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{}]
+    mv_to_cpu: False
+    use: False
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 100
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 1
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 128
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 2048
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 62
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: convnet2
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  constant: 2.0
+  epsilon: 50.0
+  mu: 0.1
+  use: True
+  w_clip: 0.1
+outdir: exp\FedAvg_convnet2_on_femnist_lr0.001_lstep5\sub_exp_20251020183640
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 5
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.1
+  type: proximal_regularizer
+seed: 123
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: False
+  local_update_steps: 5
+  optimizer:
+    lr: 0.001
+    type: SGD
+    weight_decay: 0.0
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: cvtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-10-20 18:36:42,949 (fed_runner:245) INFO: Client 3 has been set up ... 
+2025-10-20 18:36:43,029 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:43,049 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 10
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: test_data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.6, 0.2, 0.2]
+  splitter: 
+  splitter_args: []
+  subsample: 0.01
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: [['ToTensor', {}], ['Normalize', {'mean': [0.9637], 'std': [0.1592]}]]
+  trunc_stride: 128
+  type: femnist
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 10
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: -1
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 5
+eval:
+  best_res_update_round_wise_key: val_loss
+  count_flops: True
+  freq: 10
+  metrics: ['acc', 'loss_regular']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'fairness', 'raw']
+  split: ['test', 'val']
+expname: FedAvg_convnet2_on_femnist_lr0.001_lstep5
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 10
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: ['num_sample']
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 5
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: -1
+  save_to: 
+  share_local_model: False
+  total_round_num: 20
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: 5.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{}]
+    mv_to_cpu: False
+    use: False
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 100
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 1
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 128
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 2048
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 62
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: convnet2
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  constant: 2.0
+  epsilon: 50.0
+  mu: 0.1
+  use: True
+  w_clip: 0.1
+outdir: exp\FedAvg_convnet2_on_femnist_lr0.001_lstep5\sub_exp_20251020183640
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 5
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.1
+  type: proximal_regularizer
+seed: 123
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: False
+  local_update_steps: 5
+  optimizer:
+    lr: 0.001
+    type: SGD
+    weight_decay: 0.0
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: cvtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-10-20 18:36:43,062 (fed_runner:245) INFO: Client 4 has been set up ... 
+2025-10-20 18:36:43,133 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:43,153 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 10
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: test_data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.6, 0.2, 0.2]
+  splitter: 
+  splitter_args: []
+  subsample: 0.01
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: [['ToTensor', {}], ['Normalize', {'mean': [0.9637], 'std': [0.1592]}]]
+  trunc_stride: 128
+  type: femnist
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 10
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: -1
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 5
+eval:
+  best_res_update_round_wise_key: val_loss
+  count_flops: True
+  freq: 10
+  metrics: ['acc', 'loss_regular']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'fairness', 'raw']
+  split: ['test', 'val']
+expname: FedAvg_convnet2_on_femnist_lr0.001_lstep5
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 10
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: ['num_sample']
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 5
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: -1
+  save_to: 
+  share_local_model: False
+  total_round_num: 20
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: 5.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{}]
+    mv_to_cpu: False
+    use: False
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 100
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 1
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 128
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 2048
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 62
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: convnet2
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  constant: 2.0
+  epsilon: 50.0
+  mu: 0.1
+  use: True
+  w_clip: 0.1
+outdir: exp\FedAvg_convnet2_on_femnist_lr0.001_lstep5\sub_exp_20251020183640
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 5
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.1
+  type: proximal_regularizer
+seed: 123
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: False
+  local_update_steps: 5
+  optimizer:
+    lr: 0.001
+    type: SGD
+    weight_decay: 0.0
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: cvtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-10-20 18:36:43,166 (fed_runner:245) INFO: Client 5 has been set up ... 
+2025-10-20 18:36:43,233 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:43,253 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 10
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: test_data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.6, 0.2, 0.2]
+  splitter: 
+  splitter_args: []
+  subsample: 0.01
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: [['ToTensor', {}], ['Normalize', {'mean': [0.9637], 'std': [0.1592]}]]
+  trunc_stride: 128
+  type: femnist
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 10
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: -1
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 5
+eval:
+  best_res_update_round_wise_key: val_loss
+  count_flops: True
+  freq: 10
+  metrics: ['acc', 'loss_regular']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'fairness', 'raw']
+  split: ['test', 'val']
+expname: FedAvg_convnet2_on_femnist_lr0.001_lstep5
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 10
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: ['num_sample']
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 5
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: -1
+  save_to: 
+  share_local_model: False
+  total_round_num: 20
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: 5.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{}]
+    mv_to_cpu: False
+    use: False
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 100
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 1
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 128
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 2048
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 62
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: convnet2
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  constant: 2.0
+  epsilon: 50.0
+  mu: 0.1
+  use: True
+  w_clip: 0.1
+outdir: exp\FedAvg_convnet2_on_femnist_lr0.001_lstep5\sub_exp_20251020183640
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 5
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.1
+  type: proximal_regularizer
+seed: 123
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: False
+  local_update_steps: 5
+  optimizer:
+    lr: 0.001
+    type: SGD
+    weight_decay: 0.0
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: cvtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-10-20 18:36:43,265 (fed_runner:245) INFO: Client 6 has been set up ... 
+2025-10-20 18:36:43,339 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:43,359 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 10
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: test_data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.6, 0.2, 0.2]
+  splitter: 
+  splitter_args: []
+  subsample: 0.01
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: [['ToTensor', {}], ['Normalize', {'mean': [0.9637], 'std': [0.1592]}]]
+  trunc_stride: 128
+  type: femnist
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 10
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: -1
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 5
+eval:
+  best_res_update_round_wise_key: val_loss
+  count_flops: True
+  freq: 10
+  metrics: ['acc', 'loss_regular']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'fairness', 'raw']
+  split: ['test', 'val']
+expname: FedAvg_convnet2_on_femnist_lr0.001_lstep5
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 10
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: ['num_sample']
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 5
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: -1
+  save_to: 
+  share_local_model: False
+  total_round_num: 20
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: 5.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{}]
+    mv_to_cpu: False
+    use: False
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 100
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 1
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 128
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 2048
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 62
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: convnet2
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  constant: 2.0
+  epsilon: 50.0
+  mu: 0.1
+  use: True
+  w_clip: 0.1
+outdir: exp\FedAvg_convnet2_on_femnist_lr0.001_lstep5\sub_exp_20251020183640
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 5
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.1
+  type: proximal_regularizer
+seed: 123
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: False
+  local_update_steps: 5
+  optimizer:
+    lr: 0.001
+    type: SGD
+    weight_decay: 0.0
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: cvtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-10-20 18:36:43,370 (fed_runner:245) INFO: Client 7 has been set up ... 
+2025-10-20 18:36:43,449 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:43,469 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 10
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: test_data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.6, 0.2, 0.2]
+  splitter: 
+  splitter_args: []
+  subsample: 0.01
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: [['ToTensor', {}], ['Normalize', {'mean': [0.9637], 'std': [0.1592]}]]
+  trunc_stride: 128
+  type: femnist
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 10
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: -1
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 5
+eval:
+  best_res_update_round_wise_key: val_loss
+  count_flops: True
+  freq: 10
+  metrics: ['acc', 'loss_regular']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'fairness', 'raw']
+  split: ['test', 'val']
+expname: FedAvg_convnet2_on_femnist_lr0.001_lstep5
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 10
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: ['num_sample']
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 5
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: -1
+  save_to: 
+  share_local_model: False
+  total_round_num: 20
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: 5.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{}]
+    mv_to_cpu: False
+    use: False
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 100
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 1
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 128
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 2048
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 62
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: convnet2
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  constant: 2.0
+  epsilon: 50.0
+  mu: 0.1
+  use: True
+  w_clip: 0.1
+outdir: exp\FedAvg_convnet2_on_femnist_lr0.001_lstep5\sub_exp_20251020183640
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 5
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.1
+  type: proximal_regularizer
+seed: 123
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: False
+  local_update_steps: 5
+  optimizer:
+    lr: 0.001
+    type: SGD
+    weight_decay: 0.0
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: cvtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-10-20 18:36:43,489 (fed_runner:245) INFO: Client 8 has been set up ... 
+2025-10-20 18:36:43,561 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:43,583 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 10
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: test_data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.6, 0.2, 0.2]
+  splitter: 
+  splitter_args: []
+  subsample: 0.01
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: [['ToTensor', {}], ['Normalize', {'mean': [0.9637], 'std': [0.1592]}]]
+  trunc_stride: 128
+  type: femnist
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 10
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: -1
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 5
+eval:
+  best_res_update_round_wise_key: val_loss
+  count_flops: True
+  freq: 10
+  metrics: ['acc', 'loss_regular']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'fairness', 'raw']
+  split: ['test', 'val']
+expname: FedAvg_convnet2_on_femnist_lr0.001_lstep5
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 10
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: ['num_sample']
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 5
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: -1
+  save_to: 
+  share_local_model: False
+  total_round_num: 20
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: 5.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{}]
+    mv_to_cpu: False
+    use: False
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 100
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 1
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 128
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 2048
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 62
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: convnet2
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  constant: 2.0
+  epsilon: 50.0
+  mu: 0.1
+  use: True
+  w_clip: 0.1
+outdir: exp\FedAvg_convnet2_on_femnist_lr0.001_lstep5\sub_exp_20251020183640
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 5
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.1
+  type: proximal_regularizer
+seed: 123
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: False
+  local_update_steps: 5
+  optimizer:
+    lr: 0.001
+    type: SGD
+    weight_decay: 0.0
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: cvtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-10-20 18:36:43,595 (fed_runner:245) INFO: Client 9 has been set up ... 
+2025-10-20 18:36:43,663 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:36:43,684 (config:243) INFO: the used configs are: 
+adapter:
+  use: False
+aggregator:
+  BFT_args:
+    
+  byzantine_node_num: 0
+  inside_weight: 1.0
+  num_agg_groups: 1
+  num_agg_topk: []
+  outside_weight: 0.0
+  robust_rule: fedavg
+asyn:
+  use: False
+attack:
+  alpha_TV: 0.001
+  alpha_prop_loss: 0
+  attack_method: 
+  attacker_id: -1
+  classifier_PIA: randomforest
+  edge_num: 100
+  edge_path: edge_data/
+  freq: 10
+  info_diff_type: l2
+  inject_round: 0
+  insert_round: 100000
+  label_type: dirty
+  max_ite: 400
+  mean: [0.9637]
+  mia_is_simulate_in: False
+  mia_simulate_in_round: 20
+  pgd_eps: 2
+  pgd_lr: 0.1
+  pgd_poisoning: False
+  poison_ratio: 0.5
+  reconstruct_lr: 0.01
+  reconstruct_optim: Adam
+  scale_para: 1.0
+  scale_poisoning: False
+  self_epoch: 6
+  self_lr: 0.05
+  self_opt: False
+  setting: fix
+  std: [0.1592]
+  target_label_ind: -1
+  trigger_path: trigger/
+  trigger_type: edge
+backend: torch
+cfg_file: 
+check_completeness: False
+criterion:
+  type: CrossEntropyLoss
+data:
+  args: []
+  batch_size: 10
+  cSBM_phi: [0.5, 0.5, 0.5]
+  cache_dir: 
+  consistent_label_distribution: True
+  drop_last: False
+  file_path: 
+  hetero_data_name: []
+  hetero_synth_batch_size: 32
+  hetero_synth_feat_dim: 128
+  hetero_synth_prim_weight: 0.5
+  is_debug: False
+  loader: 
+  max_query_len: 128
+  max_seq_len: 384
+  max_tgt_len: 128
+  num_contrast: 0
+  num_of_client_for_data: []
+  num_steps: 30
+  num_workers: 0
+  pre_transform: []
+  quadratic:
+    dim: 1
+    max_curv: 12.5
+    min_curv: 0.02
+  root: test_data/
+  save_data: False
+  server_holds_all: False
+  shuffle: True
+  sizes: [10, 5]
+  splits: [0.6, 0.2, 0.2]
+  splitter: 
+  splitter_args: []
+  subsample: 0.01
+  target_transform: []
+  test_pre_transform: []
+  test_target_transform: []
+  test_transform: []
+  transform: [['ToTensor', {}], ['Normalize', {'mean': [0.9637], 'std': [0.1592]}]]
+  trunc_stride: 128
+  type: femnist
+  val_pre_transform: []
+  val_target_transform: []
+  val_transform: []
+  walk_length: 2
+dataloader:
+  batch_size: 10
+  drop_last: False
+  num_steps: 30
+  num_workers: 0
+  pin_memory: False
+  shuffle: True
+  sizes: [10, 5]
+  theta: -1
+  type: base
+  walk_length: 2
+device: -1
+distribute:
+  use: False
+early_stop:
+  delta: 0.0
+  improve_indicator_mode: best
+  patience: 5
+eval:
+  best_res_update_round_wise_key: val_loss
+  count_flops: True
+  freq: 10
+  metrics: ['acc', 'loss_regular']
+  monitoring: []
+  report: ['weighted_avg', 'avg', 'fairness', 'raw']
+  split: ['test', 'val']
+expname: FedAvg_convnet2_on_femnist_lr0.001_lstep5
+expname_tag: 
+feat_engr:
+  num_bins: 5
+  scenario: hfl
+  secure:
+    dp:
+      
+    encrypt:
+      type: dummy
+    key_size: 3072
+    type: encrypt
+  selec_threshold: 0.05
+  selec_woe_binning: quantile
+  type: 
+federate:
+  atc_load_from: 
+  atc_vanilla: False
+  client_idx_for_local_train: 0
+  client_num: 10
+  data_weighted_aggr: False
+  ignore_weight: False
+  join_in_info: ['num_sample']
+  make_global_eval: False
+  master_addr: 127.0.0.1
+  master_port: 29500
+  merge_test_data: False
+  merge_val_data: False
+  method: FedAvg
+  mode: standalone
+  online_aggr: False
+  process_num: 1
+  resource_info_file: 
+  restore_from: 
+  sample_client_num: 5
+  sample_client_rate: -1.0
+  sampler: uniform
+  save_client_model: False
+  save_freq: -1
+  save_to: 
+  share_local_model: False
+  total_round_num: 20
+  unseen_clients_rate: 0.0
+  use_diff: False
+  use_ss: False
+fedopt:
+  use: False
+fedprox:
+  use: False
+fedsageplus:
+  a: 1.0
+  b: 1.0
+  c: 1.0
+  fedgen_epoch: 200
+  gen_hidden: 128
+  hide_portion: 0.5
+  loc_epoch: 1
+  num_pred: 5
+fedswa:
+  use: False
+finetune:
+  batch_or_epoch: epoch
+  before_eval: False
+  epoch_linear: 10
+  freeze_param: 
+  local_param: []
+  local_update_steps: 1
+  lr_linear: 0.005
+  optimizer:
+    lr: 0.1
+    type: SGD
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+  simple_tuning: False
+  weight_decay: 0.0
+flitplus:
+  factor_ema: 0.8
+  lambdavat: 0.5
+  tmpFed: 0.5
+  weightReg: 1.0
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.1
+  seq_length: 5
+  standardize: False
+grad:
+  grad_accum_count: 1
+  grad_clip: 5.0
+hpo:
+  fedex:
+    cutoff: 0.0
+    diff: False
+    eta0: -1.0
+    flatten_ss: True
+    gamma: 0.0
+    pi_lr: 0.01
+    psn: False
+    sched: auto
+    ss: 
+    use: False
+  fts:
+    M: 100
+    M_target: 200
+    allow_load_existing_info: True
+    diff: False
+    fed_bo_max_iter: 50
+    g_var: 1e-06
+    gp_opt_schedule: 1
+    local_bo_epochs: 50
+    local_bo_max_iter: 50
+    ls: 1.0
+    obs_noise: 1e-06
+    ss: 
+    target_clients: []
+    use: False
+    v_kernel: 1.0
+    var: 0.1
+  init_cand_num: 16
+  larger_better: False
+  metric: client_summarized_weighted_avg.val_loss
+  num_workers: 0
+  pbt:
+    max_stage: 5
+    perf_threshold: 0.1
+  pfedhpo:
+    discrete: False
+    ss: 
+    target_fl_total_round: 1000
+    train_anchor: False
+    train_fl: False
+    use: False
+  scheduler: rs
+  sha:
+    budgets: []
+    elim_rate: 3
+    iter: 0
+  ss: 
+  table:
+    eps: 0.1
+    idx: 0
+    num: 27
+  trial_index: 0
+  working_folder: hpo
+llm:
+  accelerator:
+    config: 
+    use: False
+  adapter:
+    args: [{}]
+    mv_to_cpu: False
+    use: False
+  cache:
+    model: 
+  chat:
+    max_history_len: 10
+    max_len: 100
+  deepspeed:
+    ds_config: 
+    use: False
+  grad_accum_step: 1
+  offsite_tuning:
+    emu_align:
+      data:
+        root: data
+        splits: [0.8, 0.1, 0.1]
+        type: alpaca@llm
+      exit_after_align: False
+      initial_only: True
+      kl_divergence: raw
+      layerwise_distill: False
+      restore_from: 
+      save_to: 
+      sim_loss: l2
+      train:
+        batch_or_epoch: batch
+        initial_update_rounds: 50
+        kd_loss_weight: 0.9
+        lm_loss_weight: 0.1
+        local_update_steps: 10
+        optimizer:
+          lr: 0.01
+          type: SGD
+      use: False
+    emu_l: 1
+    emu_r: 10
+    eval_type: emu
+    kwargs: [{}]
+    llm_generated:
+      ratio: 0.1
+      use: False
+    save_full_model: False
+    strategy: drop_layer
+    use: False
+  retry_on_nan_loss: False
+  reward_coeff: 0.1
+  tok_len: 128
+model:
+  contrast_temp: 1.0
+  contrast_topk: 100
+  downstream_tasks: []
+  dropout: 0.5
+  embed_size: 8
+  gamma: 0
+  graph_pooling: mean
+  hidden: 2048
+  in_channels: 0
+  input_shape: ()
+  label_smoothing: 0.1
+  lambda_: 0.1
+  layer: 2
+  length_penalty: 2.0
+  max_answer_len: 30
+  max_length: 200
+  max_tree_depth: 3
+  min_length: 1
+  model_num_per_trainer: 1
+  model_type: google/bert_uncased_L-2_H-128_A-2
+  n_best_size: 20
+  no_repeat_ngram_size: 3
+  null_score_diff_threshold: 0.0
+  num_beams: 5
+  num_item: 0
+  num_labels: 1
+  num_of_trees: 10
+  num_user: 0
+  out_channels: 62
+  pretrain_tasks: []
+  stage: 
+  task: node
+  type: convnet2
+  use_bias: True
+  use_contrastive_loss: False
+nbafl:
+  constant: 2.0
+  epsilon: 50.0
+  mu: 0.1
+  use: True
+  w_clip: 0.1
+outdir: exp\FedAvg_convnet2_on_femnist_lr0.001_lstep5\sub_exp_20251020183640
+personalization:
+  K: 5
+  beta: 1.0
+  epoch_feature: 1
+  epoch_linear: 2
+  local_param: []
+  local_update_steps: 5
+  lr: 0.001
+  lr_feature: 0.1
+  lr_linear: 0.1
+  regular_weight: 0.1
+  share_non_trainable_para: False
+  weight_decay: 0.0
+print_decimal_digits: 6
+quantization:
+  method: none
+  nbits: 8
+regularizer:
+  mu: 0.1
+  type: proximal_regularizer
+seed: 123
+sgdmf:
+  use: False
+train:
+  batch_or_epoch: batch
+  data_para_dids: []
+  is_enable_half: False
+  local_update_steps: 5
+  optimizer:
+    lr: 0.001
+    type: SGD
+    weight_decay: 0.0
+  scheduler:
+    type: 
+    warmup_ratio: 0.0
+trainer:
+  disp_freq: 50
+  local_entropy:
+    alpha: 0.75
+    eps: 0.0001
+    gamma: 0.03
+    inc_factor: 1.0
+  sam:
+    adaptive: False
+    eta: 0.0
+    rho: 1.0
+  type: cvtrainer
+  val_freq: 100000000
+use_gpu: True
+verbose: 1
+vertical:
+  use: False
+wandb:
+  use: False
+2025-10-20 18:36:43,695 (fed_runner:245) INFO: Client 10 has been set up ... 
+2025-10-20 18:36:43,696 (trainer:343) INFO: Model meta-info: <class 'federatedscope.cv.model.cnn.ConvNet2'>.
+2025-10-20 18:36:43,696 (trainer:351) INFO: Num of original para names: 18.
+2025-10-20 18:36:43,696 (trainer:352) INFO: Num of original trainable para names: 12.
+2025-10-20 18:36:43,696 (trainer:354) INFO: Num of preserved para names in local update: 18. 
+Preserved para names in local update: {'bn1.weight', 'fc1.bias', 'bn2.bias', 'bn1.running_mean', 'bn2.running_mean', 'bn2.num_batches_tracked', 'bn2.running_var', 'fc2.bias', 'conv1.weight', 'bn1.running_var', 'fc1.weight', 'bn1.bias', 'conv2.weight', 'bn2.weight', 'fc2.weight', 'conv1.bias', 'conv2.bias', 'bn1.num_batches_tracked'}.
+2025-10-20 18:36:43,697 (trainer:358) INFO: Num of filtered para names in local update: 0. 
+Filtered para names in local update: set().
+2025-10-20 18:36:43,697 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size",
+	    "_hook_record_initialization"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "_hook_on_batch_backward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end",
+	    "_hook_del_initialization",
+	    "_hook_inject_noise_in_upload"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_record_initialization"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end",
+	    "_hook_del_initialization"
+	  ]
+	}
+2025-10-20 18:36:43,697 (server:1046) INFO: Server: Client #1 has joined in !
+2025-10-20 18:36:43,697 (server:1046) INFO: Server: Client #2 has joined in !
+2025-10-20 18:36:43,698 (server:1046) INFO: Server: Client #3 has joined in !
+2025-10-20 18:36:43,698 (server:1046) INFO: Server: Client #4 has joined in !
+2025-10-20 18:36:43,698 (server:1046) INFO: Server: Client #5 has joined in !
+2025-10-20 18:36:43,698 (server:1046) INFO: Server: Client #6 has joined in !
+2025-10-20 18:36:43,698 (server:1046) INFO: Server: Client #7 has joined in !
+2025-10-20 18:36:43,699 (server:1046) INFO: Server: Client #8 has joined in !
+2025-10-20 18:36:43,699 (server:1046) INFO: Server: Client #9 has joined in !
+2025-10-20 18:36:43,699 (server:1046) INFO: Server: Client #10 has joined in !
+2025-10-20 18:36:43,818 (server:882) INFO: ----------- Starting training (Round #0) -------------
+2025-10-20 18:36:44,221 (client:357) INFO: {'Role': 'Client #5', 'Round': 0, 'Results_raw': {'train_loss': 206.228857, 'train_loss_regular': 2.607465e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.124577}}
+2025-10-20 18:36:44,348 (client:357) INFO: {'Role': 'Client #1', 'Round': 0, 'Results_raw': {'train_loss': 206.02931, 'train_loss_regular': 2.64755e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.120586}}
+2025-10-20 18:36:44,466 (client:357) INFO: {'Role': 'Client #8', 'Round': 0, 'Results_raw': {'train_loss': 205.756454, 'train_loss_regular': 2.878862e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.115129}}
+2025-10-20 18:36:44,607 (client:357) INFO: {'Role': 'Client #6', 'Round': 0, 'Results_raw': {'train_loss': 206.052094, 'train_loss_regular': 2.959018e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.121042}}
+2025-10-20 18:36:44,727 (client:357) INFO: {'Role': 'Client #9', 'Round': 0, 'Results_raw': {'train_loss': 206.024041, 'train_loss_regular': 2.720322e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.120481}}
+2025-10-20 18:36:44,758 (server:351) INFO: ----------- Starting a new training round (Round #1) -------------
+2025-10-20 18:36:44,982 (client:357) INFO: {'Role': 'Client #4', 'Round': 1, 'Results_raw': {'train_loss': 205.326915, 'train_loss_regular': 2.729466e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.106538}}
+2025-10-20 18:36:45,093 (client:357) INFO: {'Role': 'Client #6', 'Round': 1, 'Results_raw': {'train_loss': 205.648117, 'train_loss_regular': 2.883036e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.112962}}
+2025-10-20 18:36:45,205 (client:357) INFO: {'Role': 'Client #5', 'Round': 1, 'Results_raw': {'train_loss': 205.675716, 'train_loss_regular': 2.607489e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.113514}}
+2025-10-20 18:36:45,346 (client:357) INFO: {'Role': 'Client #3', 'Round': 1, 'Results_raw': {'train_loss': 206.198931, 'train_loss_regular': 2.93338e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.123979}}
+2025-10-20 18:36:45,457 (client:357) INFO: {'Role': 'Client #9', 'Round': 1, 'Results_raw': {'train_loss': 206.211472, 'train_loss_regular': 2.985879e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.124229}}
+2025-10-20 18:36:45,498 (server:351) INFO: ----------- Starting a new training round (Round #2) -------------
+2025-10-20 18:36:45,712 (client:357) INFO: {'Role': 'Client #3', 'Round': 2, 'Results_raw': {'train_loss': 206.118422, 'train_loss_regular': 3.047098e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.122368}}
+2025-10-20 18:36:45,831 (client:357) INFO: {'Role': 'Client #2', 'Round': 2, 'Results_raw': {'train_loss': 206.24023, 'train_loss_regular': 2.818511e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.124805}}
+2025-10-20 18:36:45,945 (client:357) INFO: {'Role': 'Client #9', 'Round': 2, 'Results_raw': {'train_loss': 205.303144, 'train_loss_regular': 3.198704e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.106063}}
+2025-10-20 18:36:46,059 (client:357) INFO: {'Role': 'Client #8', 'Round': 2, 'Results_raw': {'train_loss': 205.558476, 'train_loss_regular': 2.678014e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.11117}}
+2025-10-20 18:36:46,182 (client:357) INFO: {'Role': 'Client #1', 'Round': 2, 'Results_raw': {'train_loss': 206.6189, 'train_loss_regular': 2.713119e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.132378}}
+2025-10-20 18:36:46,216 (server:351) INFO: ----------- Starting a new training round (Round #3) -------------
+2025-10-20 18:36:46,429 (client:357) INFO: {'Role': 'Client #6', 'Round': 3, 'Results_raw': {'train_loss': 205.685439, 'train_loss_regular': 3.013728e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.113709}}
+2025-10-20 18:36:46,551 (client:357) INFO: {'Role': 'Client #2', 'Round': 3, 'Results_raw': {'train_loss': 206.252503, 'train_loss_regular': 2.86052e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.12505}}
+2025-10-20 18:36:46,661 (client:357) INFO: {'Role': 'Client #1', 'Round': 3, 'Results_raw': {'train_loss': 206.362157, 'train_loss_regular': 2.782119e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.127243}}
+2025-10-20 18:36:46,773 (client:357) INFO: {'Role': 'Client #9', 'Round': 3, 'Results_raw': {'train_loss': 206.000996, 'train_loss_regular': 2.766303e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.12002}}
+2025-10-20 18:36:46,895 (client:357) INFO: {'Role': 'Client #7', 'Round': 3, 'Results_raw': {'train_loss': 205.791168, 'train_loss_regular': 2.796384e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.115823}}
+2025-10-20 18:36:46,926 (server:351) INFO: ----------- Starting a new training round (Round #4) -------------
+2025-10-20 18:36:47,157 (client:357) INFO: {'Role': 'Client #7', 'Round': 4, 'Results_raw': {'train_loss': 205.693474, 'train_loss_regular': 2.976509e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.113869}}
+2025-10-20 18:36:47,267 (client:357) INFO: {'Role': 'Client #9', 'Round': 4, 'Results_raw': {'train_loss': 205.176816, 'train_loss_regular': 2.893696e-06, 'train_total': 50, 'train_acc': 0.08, 'train_avg_loss': 4.103536}}
+2025-10-20 18:36:47,381 (client:357) INFO: {'Role': 'Client #3', 'Round': 4, 'Results_raw': {'train_loss': 205.899997, 'train_loss_regular': 2.983091e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.118}}
+2025-10-20 18:36:47,508 (client:357) INFO: {'Role': 'Client #10', 'Round': 4, 'Results_raw': {'train_loss': 205.726728, 'train_loss_regular': 3.036364e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.114535}}
+2025-10-20 18:36:47,621 (client:357) INFO: {'Role': 'Client #6', 'Round': 4, 'Results_raw': {'train_loss': 205.779061, 'train_loss_regular': 2.946775e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.115581}}
+2025-10-20 18:36:47,654 (server:351) INFO: ----------- Starting a new training round (Round #5) -------------
+2025-10-20 18:36:47,870 (client:357) INFO: {'Role': 'Client #10', 'Round': 5, 'Results_raw': {'train_loss': 205.674562, 'train_loss_regular': 2.852772e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.113491}}
+2025-10-20 18:36:47,981 (client:357) INFO: {'Role': 'Client #5', 'Round': 5, 'Results_raw': {'train_loss': 206.050105, 'train_loss_regular': 2.889989e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.121002}}
+2025-10-20 18:36:48,105 (client:357) INFO: {'Role': 'Client #8', 'Round': 5, 'Results_raw': {'train_loss': 205.44384, 'train_loss_regular': 2.863781e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.108877}}
+2025-10-20 18:36:48,219 (client:357) INFO: {'Role': 'Client #1', 'Round': 5, 'Results_raw': {'train_loss': 205.28841, 'train_loss_regular': 2.581562e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.105768}}
+2025-10-20 18:36:48,331 (client:357) INFO: {'Role': 'Client #2', 'Round': 5, 'Results_raw': {'train_loss': 206.343842, 'train_loss_regular': 2.734284e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.126877}}
+2025-10-20 18:36:48,363 (server:351) INFO: ----------- Starting a new training round (Round #6) -------------
+2025-10-20 18:36:48,611 (client:357) INFO: {'Role': 'Client #8', 'Round': 6, 'Results_raw': {'train_loss': 205.687456, 'train_loss_regular': 3.159321e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.113749}}
+2025-10-20 18:36:48,726 (client:357) INFO: {'Role': 'Client #9', 'Round': 6, 'Results_raw': {'train_loss': 205.528426, 'train_loss_regular': 3.205444e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.110569}}
+2025-10-20 18:36:48,840 (client:357) INFO: {'Role': 'Client #2', 'Round': 6, 'Results_raw': {'train_loss': 204.943571, 'train_loss_regular': 2.74698e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.098871}}
+2025-10-20 18:36:48,955 (client:357) INFO: {'Role': 'Client #5', 'Round': 6, 'Results_raw': {'train_loss': 205.434556, 'train_loss_regular': 2.781514e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.108691}}
+2025-10-20 18:36:49,070 (client:357) INFO: {'Role': 'Client #10', 'Round': 6, 'Results_raw': {'train_loss': 205.807986, 'train_loss_regular': 2.822049e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.11616}}
+2025-10-20 18:36:49,103 (server:351) INFO: ----------- Starting a new training round (Round #7) -------------
+2025-10-20 18:36:49,335 (client:357) INFO: {'Role': 'Client #2', 'Round': 7, 'Results_raw': {'train_loss': 205.564971, 'train_loss_regular': 2.940769e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.111299}}
+2025-10-20 18:36:49,451 (client:357) INFO: {'Role': 'Client #8', 'Round': 7, 'Results_raw': {'train_loss': 205.908332, 'train_loss_regular': 2.78323e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.118167}}
+2025-10-20 18:36:49,577 (client:357) INFO: {'Role': 'Client #9', 'Round': 7, 'Results_raw': {'train_loss': 204.975138, 'train_loss_regular': 2.792678e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.099503}}
+2025-10-20 18:36:49,705 (client:357) INFO: {'Role': 'Client #1', 'Round': 7, 'Results_raw': {'train_loss': 205.720286, 'train_loss_regular': 2.924647e-06, 'train_total': 50, 'train_acc': 0.08, 'train_avg_loss': 4.114406}}
+2025-10-20 18:36:49,821 (client:357) INFO: {'Role': 'Client #3', 'Round': 7, 'Results_raw': {'train_loss': 205.252438, 'train_loss_regular': 2.907711e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.105049}}
+2025-10-20 18:36:49,853 (server:351) INFO: ----------- Starting a new training round (Round #8) -------------
+2025-10-20 18:36:50,074 (client:357) INFO: {'Role': 'Client #1', 'Round': 8, 'Results_raw': {'train_loss': 205.355258, 'train_loss_regular': 2.876405e-06, 'train_total': 50, 'train_acc': 0.08, 'train_avg_loss': 4.107105}}
+2025-10-20 18:36:50,211 (client:357) INFO: {'Role': 'Client #10', 'Round': 8, 'Results_raw': {'train_loss': 205.544977, 'train_loss_regular': 2.843478e-06, 'train_total': 50, 'train_acc': 0.08, 'train_avg_loss': 4.1109}}
+2025-10-20 18:36:50,328 (client:357) INFO: {'Role': 'Client #6', 'Round': 8, 'Results_raw': {'train_loss': 205.085363, 'train_loss_regular': 2.738387e-06, 'train_total': 50, 'train_acc': 0.1, 'train_avg_loss': 4.101707}}
+2025-10-20 18:36:50,445 (client:357) INFO: {'Role': 'Client #3', 'Round': 8, 'Results_raw': {'train_loss': 205.133348, 'train_loss_regular': 2.701833e-06, 'train_total': 50, 'train_acc': 0.1, 'train_avg_loss': 4.102667}}
+2025-10-20 18:36:50,579 (client:357) INFO: {'Role': 'Client #9', 'Round': 8, 'Results_raw': {'train_loss': 206.013465, 'train_loss_regular': 2.688611e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.120269}}
+2025-10-20 18:36:50,610 (server:351) INFO: ----------- Starting a new training round (Round #9) -------------
+2025-10-20 18:36:50,839 (client:357) INFO: {'Role': 'Client #7', 'Round': 9, 'Results_raw': {'train_loss': 205.277367, 'train_loss_regular': 2.547404e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.105547}}
+2025-10-20 18:36:50,955 (client:357) INFO: {'Role': 'Client #4', 'Round': 9, 'Results_raw': {'train_loss': 205.936403, 'train_loss_regular': 2.54818e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.118728}}
+2025-10-20 18:36:51,075 (client:357) INFO: {'Role': 'Client #6', 'Round': 9, 'Results_raw': {'train_loss': 205.565147, 'train_loss_regular': 2.847141e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.111303}}
+2025-10-20 18:36:51,213 (client:357) INFO: {'Role': 'Client #9', 'Round': 9, 'Results_raw': {'train_loss': 205.990176, 'train_loss_regular': 2.82233e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.119804}}
+2025-10-20 18:36:51,331 (client:357) INFO: {'Role': 'Client #8', 'Round': 9, 'Results_raw': {'train_loss': 205.169344, 'train_loss_regular': 2.944129e-06, 'train_total': 50, 'train_acc': 0.08, 'train_avg_loss': 4.103387}}
+2025-10-20 18:36:51,363 (server:345) INFO: Server: Starting evaluation at the end of round 9.
+2025-10-20 18:36:51,364 (server:351) INFO: ----------- Starting a new training round (Round #10) -------------
+2025-10-20 18:36:51,513 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,513 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,527 (client:554) INFO: {'Role': 'Client #1', 'Round': 9, 'Results_raw': {'test_loss': 148.250536, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.055556, 'test_avg_loss': 4.11807, 'val_loss': 147.988147, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.055556, 'val_avg_loss': 4.110782}}
+2025-10-20 18:36:51,560 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,560 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,574 (client:554) INFO: {'Role': 'Client #2', 'Round': 9, 'Results_raw': {'test_loss': 131.688004, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.15625, 'test_avg_loss': 4.11525, 'val_loss': 131.775455, 'val_loss_regular': 0.0, 'val_total': 32, 'val_acc': 0.0, 'val_avg_loss': 4.117983}}
+2025-10-20 18:36:51,604 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,604 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,619 (client:554) INFO: {'Role': 'Client #3', 'Round': 9, 'Results_raw': {'test_loss': 152.377048, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.027027, 'test_avg_loss': 4.118299, 'val_loss': 148.065841, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.083333, 'val_avg_loss': 4.11294}}
+2025-10-20 18:36:51,650 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,650 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,666 (client:554) INFO: {'Role': 'Client #4', 'Round': 9, 'Results_raw': {'test_loss': 144.004517, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.057143, 'test_avg_loss': 4.114415, 'val_loss': 143.877971, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.114286, 'val_avg_loss': 4.110799}}
+2025-10-20 18:36:51,696 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,696 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,709 (client:554) INFO: {'Role': 'Client #5', 'Round': 9, 'Results_raw': {'test_loss': 123.161254, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 4.105375, 'val_loss': 123.315992, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 4.110533}}
+2025-10-20 18:36:51,742 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,743 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,756 (client:554) INFO: {'Role': 'Client #6', 'Round': 9, 'Results_raw': {'test_loss': 123.51871, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 4.11729, 'val_loss': 123.460221, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 4.115341}}
+2025-10-20 18:36:51,788 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,788 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,800 (client:554) INFO: {'Role': 'Client #7', 'Round': 9, 'Results_raw': {'test_loss': 127.45217, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.064516, 'test_avg_loss': 4.11136, 'val_loss': 123.555589, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.1, 'val_avg_loss': 4.11852}}
+2025-10-20 18:36:51,831 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,831 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,846 (client:554) INFO: {'Role': 'Client #8', 'Round': 9, 'Results_raw': {'test_loss': 135.839883, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.090909, 'test_avg_loss': 4.11636, 'val_loss': 135.688832, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.060606, 'val_avg_loss': 4.111783}}
+2025-10-20 18:36:51,900 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,900 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,914 (client:554) INFO: {'Role': 'Client #9', 'Round': 9, 'Results_raw': {'test_loss': 143.91655, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.057143, 'test_avg_loss': 4.111901, 'val_loss': 144.262536, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.057143, 'val_avg_loss': 4.121787}}
+2025-10-20 18:36:51,946 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,946 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:51,958 (client:554) INFO: {'Role': 'Client #10', 'Round': 9, 'Results_raw': {'test_loss': 140.085987, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.029412, 'test_avg_loss': 4.120176, 'val_loss': 139.931939, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.058824, 'val_avg_loss': 4.115645}}
+2025-10-20 18:36:52,083 (client:357) INFO: {'Role': 'Client #9', 'Round': 10, 'Results_raw': {'train_loss': 205.863218, 'train_loss_regular': 2.832644e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.117264}}
+2025-10-20 18:36:52,201 (client:357) INFO: {'Role': 'Client #5', 'Round': 10, 'Results_raw': {'train_loss': 206.21006, 'train_loss_regular': 2.65161e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.124201}}
+2025-10-20 18:36:52,319 (client:357) INFO: {'Role': 'Client #3', 'Round': 10, 'Results_raw': {'train_loss': 205.792127, 'train_loss_regular': 2.973283e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.115843}}
+2025-10-20 18:36:52,437 (client:357) INFO: {'Role': 'Client #8', 'Round': 10, 'Results_raw': {'train_loss': 205.189419, 'train_loss_regular': 3.161158e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.103788}}
+2025-10-20 18:36:52,569 (client:357) INFO: {'Role': 'Client #10', 'Round': 10, 'Results_raw': {'train_loss': 205.323839, 'train_loss_regular': 3.060221e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.106477}}
+2025-10-20 18:36:52,572 (server:617) INFO: {'Role': 'Server #', 'Round': 9, 'Results_weighted_avg': {'test_loss': 137.727566, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.072072, 'test_avg_loss': 4.114999, 'val_loss': 136.873255, 'val_loss_regular': 0.0, 'val_total': 33.1, 'val_acc': 0.066465, 'val_avg_loss': 4.11457}, 'Results_avg': {'test_loss': 137.029466, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.073796, 'test_avg_loss': 4.11485, 'val_loss': 136.192252, 'val_loss_regular': 0.0, 'val_total': 33.1, 'val_acc': 0.066308, 'val_avg_loss': 4.114611}, 'Results_fairness': {'test_total': 33.3, 'val_total': 33.1, 'test_loss_std': 9.815422, 'test_loss_bottom_decile': 123.51871, 'test_loss_top_decile': 152.377048, 'test_loss_min': 123.161254, 'test_loss_max': 152.377048, 'test_loss_bottom10%': 123.161254, 'test_loss_top10%': 152.377048, 'test_loss_cos1': 0.997444, 'test_loss_entropy': 2.300013, 'test_loss_regular_std': 0.0, 'test_loss_regular_bottom_decile': 0.0, 'test_loss_regular_top_decile': 0.0, 'test_loss_regular_min': 0.0, 'test_loss_regular_max': 0.0, 'test_loss_regular_bottom10%': 0.0, 'test_loss_regular_top10%': 0.0, 'test_loss_regular_cos1': nan, 'test_loss_regular_entropy': 2.302585, 'test_acc_std': 0.036872, 'test_acc_bottom_decile': 0.029412, 'test_acc_top_decile': 0.15625, 'test_acc_min': 0.027027, 'test_acc_max': 0.15625, 'test_acc_bottom10%': 0.027027, 'test_acc_top10%': 0.15625, 'test_acc_cos1': 0.894551, 'test_acc_entropy': 2.181883, 'test_avg_loss_std': 0.004121, 'test_avg_loss_bottom_decile': 4.11136, 'test_avg_loss_top_decile': 4.120176, 'test_avg_loss_min': 4.105375, 'test_avg_loss_max': 4.120176, 'test_avg_loss_bottom10%': 4.105375, 'test_avg_loss_top10%': 4.120176, 'test_avg_loss_cos1': 0.999999, 'test_avg_loss_entropy': 2.302585, 'val_loss_std': 9.621121, 'val_loss_bottom_decile': 123.460221, 'val_loss_top_decile': 148.065841, 'val_loss_min': 123.315992, 'val_loss_max': 148.065841, 'val_loss_bottom10%': 123.315992, 'val_loss_top10%': 148.065841, 'val_loss_cos1': 0.997514, 'val_loss_entropy': 2.300074, 'val_loss_regular_std': 0.0, 'val_loss_regular_bottom_decile': 0.0, 'val_loss_regular_top_decile': 0.0, 'val_loss_regular_min': 0.0, 'val_loss_regular_max': 0.0, 'val_loss_regular_bottom10%': 0.0, 'val_loss_regular_top10%': 0.0, 'val_loss_regular_cos1': nan, 'val_loss_regular_entropy': 2.302585, 'val_acc_std': 0.029003, 'val_acc_bottom_decile': 0.055556, 'val_acc_top_decile': 0.114286, 'val_acc_min': 0.0, 'val_acc_max': 0.114286, 'val_acc_bottom10%': 0.0, 'val_acc_top10%': 0.114286, 'val_acc_cos1': 0.916189, 'val_acc_entropy': 2.163474, 'val_avg_loss_std': 0.003693, 'val_avg_loss_bottom_decile': 4.110782, 'val_avg_loss_top_decile': 4.121787, 'val_avg_loss_min': 4.110533, 'val_avg_loss_max': 4.121787, 'val_avg_loss_bottom10%': 4.110533, 'val_avg_loss_top10%': 4.121787, 'val_avg_loss_cos1': 1.0, 'val_avg_loss_entropy': 2.302585}}
+2025-10-20 18:36:52,604 (server:351) INFO: ----------- Starting a new training round (Round #11) -------------
+2025-10-20 18:36:52,825 (client:357) INFO: {'Role': 'Client #7', 'Round': 11, 'Results_raw': {'train_loss': 205.594454, 'train_loss_regular': 2.984888e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.111889}}
+2025-10-20 18:36:52,941 (client:357) INFO: {'Role': 'Client #9', 'Round': 11, 'Results_raw': {'train_loss': 205.817566, 'train_loss_regular': 2.833297e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.116351}}
+2025-10-20 18:36:53,067 (client:357) INFO: {'Role': 'Client #1', 'Round': 11, 'Results_raw': {'train_loss': 205.832682, 'train_loss_regular': 3.305702e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.116654}}
+2025-10-20 18:36:53,201 (client:357) INFO: {'Role': 'Client #5', 'Round': 11, 'Results_raw': {'train_loss': 205.433292, 'train_loss_regular': 2.889497e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.108666}}
+2025-10-20 18:36:53,319 (client:357) INFO: {'Role': 'Client #10', 'Round': 11, 'Results_raw': {'train_loss': 205.304661, 'train_loss_regular': 2.680659e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.106093}}
+2025-10-20 18:36:53,351 (server:351) INFO: ----------- Starting a new training round (Round #12) -------------
+2025-10-20 18:36:53,588 (client:357) INFO: {'Role': 'Client #5', 'Round': 12, 'Results_raw': {'train_loss': 205.59948, 'train_loss_regular': 2.747181e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.11199}}
+2025-10-20 18:36:53,706 (client:357) INFO: {'Role': 'Client #6', 'Round': 12, 'Results_raw': {'train_loss': 204.587321, 'train_loss_regular': 3.087484e-06, 'train_total': 50, 'train_acc': 0.08, 'train_avg_loss': 4.091746}}
+2025-10-20 18:36:53,858 (client:357) INFO: {'Role': 'Client #1', 'Round': 12, 'Results_raw': {'train_loss': 205.216107, 'train_loss_regular': 2.685789e-06, 'train_total': 50, 'train_acc': 0.08, 'train_avg_loss': 4.104322}}
+2025-10-20 18:36:53,976 (client:357) INFO: {'Role': 'Client #3', 'Round': 12, 'Results_raw': {'train_loss': 204.408164, 'train_loss_regular': 3.029151e-06, 'train_total': 50, 'train_acc': 0.12, 'train_avg_loss': 4.088163}}
+2025-10-20 18:36:54,101 (client:357) INFO: {'Role': 'Client #2', 'Round': 12, 'Results_raw': {'train_loss': 204.970303, 'train_loss_regular': 2.857693e-06, 'train_total': 50, 'train_acc': 0.12, 'train_avg_loss': 4.099406}}
+2025-10-20 18:36:54,134 (server:351) INFO: ----------- Starting a new training round (Round #13) -------------
+2025-10-20 18:36:54,390 (client:357) INFO: {'Role': 'Client #5', 'Round': 13, 'Results_raw': {'train_loss': 205.850272, 'train_loss_regular': 2.831809e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.117005}}
+2025-10-20 18:36:54,519 (client:357) INFO: {'Role': 'Client #8', 'Round': 13, 'Results_raw': {'train_loss': 205.114574, 'train_loss_regular': 2.955818e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.102291}}
+2025-10-20 18:36:54,644 (client:357) INFO: {'Role': 'Client #9', 'Round': 13, 'Results_raw': {'train_loss': 203.966646, 'train_loss_regular': 2.886147e-06, 'train_total': 50, 'train_acc': 0.12, 'train_avg_loss': 4.079333}}
+2025-10-20 18:36:54,766 (client:357) INFO: {'Role': 'Client #1', 'Round': 13, 'Results_raw': {'train_loss': 205.11858, 'train_loss_regular': 3.025329e-06, 'train_total': 50, 'train_acc': 0.1, 'train_avg_loss': 4.102372}}
+2025-10-20 18:36:54,889 (client:357) INFO: {'Role': 'Client #4', 'Round': 13, 'Results_raw': {'train_loss': 204.606462, 'train_loss_regular': 3.177264e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.092129}}
+2025-10-20 18:36:54,920 (server:351) INFO: ----------- Starting a new training round (Round #14) -------------
+2025-10-20 18:36:55,161 (client:357) INFO: {'Role': 'Client #5', 'Round': 14, 'Results_raw': {'train_loss': 205.69149, 'train_loss_regular': 2.718735e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.11383}}
+2025-10-20 18:36:55,283 (client:357) INFO: {'Role': 'Client #3', 'Round': 14, 'Results_raw': {'train_loss': 204.887056, 'train_loss_regular': 2.70072e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.097741}}
+2025-10-20 18:36:55,405 (client:357) INFO: {'Role': 'Client #7', 'Round': 14, 'Results_raw': {'train_loss': 204.747167, 'train_loss_regular': 2.911526e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.094943}}
+2025-10-20 18:36:55,529 (client:357) INFO: {'Role': 'Client #2', 'Round': 14, 'Results_raw': {'train_loss': 204.948096, 'train_loss_regular': 2.678863e-06, 'train_total': 50, 'train_acc': 0.08, 'train_avg_loss': 4.098962}}
+2025-10-20 18:36:55,652 (client:357) INFO: {'Role': 'Client #8', 'Round': 14, 'Results_raw': {'train_loss': 205.145249, 'train_loss_regular': 2.675143e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.102905}}
+2025-10-20 18:36:55,684 (server:351) INFO: ----------- Starting a new training round (Round #15) -------------
+2025-10-20 18:36:55,908 (client:357) INFO: {'Role': 'Client #8', 'Round': 15, 'Results_raw': {'train_loss': 205.082774, 'train_loss_regular': 2.956465e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.101655}}
+2025-10-20 18:36:56,035 (client:357) INFO: {'Role': 'Client #10', 'Round': 15, 'Results_raw': {'train_loss': 205.124073, 'train_loss_regular': 2.88074e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.102481}}
+2025-10-20 18:36:56,180 (client:357) INFO: {'Role': 'Client #7', 'Round': 15, 'Results_raw': {'train_loss': 204.974899, 'train_loss_regular': 2.958176e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.099498}}
+2025-10-20 18:36:56,301 (client:357) INFO: {'Role': 'Client #3', 'Round': 15, 'Results_raw': {'train_loss': 204.499273, 'train_loss_regular': 3.182898e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.089985}}
+2025-10-20 18:36:56,421 (client:357) INFO: {'Role': 'Client #5', 'Round': 15, 'Results_raw': {'train_loss': 204.961634, 'train_loss_regular': 2.723859e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.099233}}
+2025-10-20 18:36:56,455 (server:351) INFO: ----------- Starting a new training round (Round #16) -------------
+2025-10-20 18:36:56,690 (client:357) INFO: {'Role': 'Client #10', 'Round': 16, 'Results_raw': {'train_loss': 204.742384, 'train_loss_regular': 3.29948e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.094848}}
+2025-10-20 18:36:56,807 (client:357) INFO: {'Role': 'Client #1', 'Round': 16, 'Results_raw': {'train_loss': 204.809427, 'train_loss_regular': 3.014652e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.096189}}
+2025-10-20 18:36:56,927 (client:357) INFO: {'Role': 'Client #3', 'Round': 16, 'Results_raw': {'train_loss': 205.163455, 'train_loss_regular': 2.854929e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.103269}}
+2025-10-20 18:36:57,049 (client:357) INFO: {'Role': 'Client #6', 'Round': 16, 'Results_raw': {'train_loss': 205.147414, 'train_loss_regular': 2.736201e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.102948}}
+2025-10-20 18:36:57,185 (client:357) INFO: {'Role': 'Client #8', 'Round': 16, 'Results_raw': {'train_loss': 203.788071, 'train_loss_regular': 3.078457e-06, 'train_total': 50, 'train_acc': 0.12, 'train_avg_loss': 4.075761}}
+2025-10-20 18:36:57,230 (server:351) INFO: ----------- Starting a new training round (Round #17) -------------
+2025-10-20 18:36:57,451 (client:357) INFO: {'Role': 'Client #8', 'Round': 17, 'Results_raw': {'train_loss': 204.767365, 'train_loss_regular': 2.937823e-06, 'train_total': 50, 'train_acc': 0.08, 'train_avg_loss': 4.095347}}
+2025-10-20 18:36:57,585 (client:357) INFO: {'Role': 'Client #3', 'Round': 17, 'Results_raw': {'train_loss': 204.354086, 'train_loss_regular': 2.909153e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.087082}}
+2025-10-20 18:36:57,709 (client:357) INFO: {'Role': 'Client #4', 'Round': 17, 'Results_raw': {'train_loss': 204.995089, 'train_loss_regular': 2.932078e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.099902}}
+2025-10-20 18:36:57,827 (client:357) INFO: {'Role': 'Client #6', 'Round': 17, 'Results_raw': {'train_loss': 205.207505, 'train_loss_regular': 2.827765e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.10415}}
+2025-10-20 18:36:57,945 (client:357) INFO: {'Role': 'Client #2', 'Round': 17, 'Results_raw': {'train_loss': 204.699497, 'train_loss_regular': 3.400531e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.09399}}
+2025-10-20 18:36:57,984 (server:351) INFO: ----------- Starting a new training round (Round #18) -------------
+2025-10-20 18:36:58,213 (client:357) INFO: {'Role': 'Client #5', 'Round': 18, 'Results_raw': {'train_loss': 204.848843, 'train_loss_regular': 2.544979e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.096977}}
+2025-10-20 18:36:58,343 (client:357) INFO: {'Role': 'Client #8', 'Round': 18, 'Results_raw': {'train_loss': 204.6385, 'train_loss_regular': 3.156916e-06, 'train_total': 50, 'train_acc': 0.08, 'train_avg_loss': 4.09277}}
+2025-10-20 18:36:58,469 (client:357) INFO: {'Role': 'Client #4', 'Round': 18, 'Results_raw': {'train_loss': 204.464898, 'train_loss_regular': 2.856619e-06, 'train_total': 50, 'train_acc': 0.04, 'train_avg_loss': 4.089298}}
+2025-10-20 18:36:58,600 (client:357) INFO: {'Role': 'Client #6', 'Round': 18, 'Results_raw': {'train_loss': 205.16623, 'train_loss_regular': 3.012633e-06, 'train_total': 50, 'train_acc': 0.0, 'train_avg_loss': 4.103325}}
+2025-10-20 18:36:58,717 (client:357) INFO: {'Role': 'Client #3', 'Round': 18, 'Results_raw': {'train_loss': 204.40938, 'train_loss_regular': 2.868176e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.088188}}
+2025-10-20 18:36:58,750 (server:351) INFO: ----------- Starting a new training round (Round #19) -------------
+2025-10-20 18:36:58,972 (client:357) INFO: {'Role': 'Client #3', 'Round': 19, 'Results_raw': {'train_loss': 204.461536, 'train_loss_regular': 3.348171e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.089231}}
+2025-10-20 18:36:59,098 (client:357) INFO: {'Role': 'Client #1', 'Round': 19, 'Results_raw': {'train_loss': 205.435042, 'train_loss_regular': 2.956971e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.108701}}
+2025-10-20 18:36:59,241 (client:357) INFO: {'Role': 'Client #7', 'Round': 19, 'Results_raw': {'train_loss': 205.027423, 'train_loss_regular': 2.612837e-06, 'train_total': 50, 'train_acc': 0.02, 'train_avg_loss': 4.100548}}
+2025-10-20 18:36:59,362 (client:357) INFO: {'Role': 'Client #9', 'Round': 19, 'Results_raw': {'train_loss': 204.450097, 'train_loss_regular': 2.898346e-06, 'train_total': 50, 'train_acc': 0.12, 'train_avg_loss': 4.089002}}
+2025-10-20 18:36:59,493 (client:357) INFO: {'Role': 'Client #10', 'Round': 19, 'Results_raw': {'train_loss': 204.678431, 'train_loss_regular': 3.141673e-06, 'train_total': 50, 'train_acc': 0.06, 'train_avg_loss': 4.093569}}
+2025-10-20 18:36:59,526 (server:362) INFO: Server: Training is finished! Starting evaluation.
+2025-10-20 18:36:59,558 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,558 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,574 (client:554) INFO: {'Role': 'Client #1', 'Round': 19, 'Results_raw': {'test_loss': 147.382936, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.055556, 'test_avg_loss': 4.09397, 'val_loss': 147.116777, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.055556, 'val_avg_loss': 4.086577}}
+2025-10-20 18:36:59,609 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,609 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,626 (client:554) INFO: {'Role': 'Client #2', 'Round': 19, 'Results_raw': {'test_loss': 130.864861, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.15625, 'test_avg_loss': 4.089527, 'val_loss': 131.130491, 'val_loss_regular': 0.0, 'val_total': 32, 'val_acc': 0.0, 'val_avg_loss': 4.097828}}
+2025-10-20 18:36:59,662 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,662 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,678 (client:554) INFO: {'Role': 'Client #3', 'Round': 19, 'Results_raw': {'test_loss': 151.887162, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.027027, 'test_avg_loss': 4.105058, 'val_loss': 147.43202, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.083333, 'val_avg_loss': 4.095334}}
+2025-10-20 18:36:59,712 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,712 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,728 (client:554) INFO: {'Role': 'Client #4', 'Round': 19, 'Results_raw': {'test_loss': 143.225639, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.057143, 'test_avg_loss': 4.092161, 'val_loss': 143.15752, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.114286, 'val_avg_loss': 4.090215}}
+2025-10-20 18:36:59,757 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,757 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,772 (client:554) INFO: {'Role': 'Client #5', 'Round': 19, 'Results_raw': {'test_loss': 122.377119, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 4.079237, 'val_loss': 122.736773, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 4.091226}}
+2025-10-20 18:36:59,802 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,802 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,817 (client:554) INFO: {'Role': 'Client #6', 'Round': 19, 'Results_raw': {'test_loss': 123.010921, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 4.100364, 'val_loss': 122.97514, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 4.099171}}
+2025-10-20 18:36:59,851 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,851 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,877 (client:554) INFO: {'Role': 'Client #7', 'Round': 19, 'Results_raw': {'test_loss': 126.809313, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.064516, 'test_avg_loss': 4.090623, 'val_loss': 122.95362, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.1, 'val_avg_loss': 4.098454}}
+2025-10-20 18:36:59,914 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,915 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,929 (client:554) INFO: {'Role': 'Client #8', 'Round': 19, 'Results_raw': {'test_loss': 135.240163, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.090909, 'test_avg_loss': 4.098187, 'val_loss': 134.949628, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.060606, 'val_avg_loss': 4.089383}}
+2025-10-20 18:36:59,960 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,960 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:59,976 (client:554) INFO: {'Role': 'Client #9', 'Round': 19, 'Results_raw': {'test_loss': 143.154984, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.057143, 'test_avg_loss': 4.090142, 'val_loss': 143.65685, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.057143, 'val_avg_loss': 4.104481}}
+2025-10-20 18:37:00,009 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:00,009 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:00,045 (client:554) INFO: {'Role': 'Client #10', 'Round': 19, 'Results_raw': {'test_loss': 139.448577, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.029412, 'test_avg_loss': 4.101429, 'val_loss': 139.394731, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.058824, 'val_avg_loss': 4.099845}}
+2025-10-20 18:37:00,047 (server:617) INFO: {'Role': 'Server #', 'Round': 19, 'Results_weighted_avg': {'test_loss': 137.037583, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.072072, 'test_avg_loss': 4.094299, 'val_loss': 136.227069, 'val_loss_regular': 0.0, 'val_total': 33.1, 'val_acc': 0.066465, 'val_avg_loss': 4.095177}, 'Results_avg': {'test_loss': 136.340168, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.073796, 'test_avg_loss': 4.09407, 'val_loss': 135.550355, 'val_loss_regular': 0.0, 'val_total': 33.1, 'val_acc': 0.066308, 'val_avg_loss': 4.095251}, 'Results_fairness': {'test_total': 33.3, 'val_total': 33.1, 'test_loss_std': 9.807278, 'test_loss_bottom_decile': 123.010921, 'test_loss_top_decile': 151.887162, 'test_loss_min': 122.377119, 'test_loss_max': 151.887162, 'test_loss_bottom10%': 122.377119, 'test_loss_top10%': 151.887162, 'test_loss_cos1': 0.997423, 'test_loss_entropy': 2.299992, 'test_loss_regular_std': 0.0, 'test_loss_regular_bottom_decile': 0.0, 'test_loss_regular_top_decile': 0.0, 'test_loss_regular_min': 0.0, 'test_loss_regular_max': 0.0, 'test_loss_regular_bottom10%': 0.0, 'test_loss_regular_top10%': 0.0, 'test_loss_regular_cos1': nan, 'test_loss_regular_entropy': 2.302585, 'test_acc_std': 0.036872, 'test_acc_bottom_decile': 0.029412, 'test_acc_top_decile': 0.15625, 'test_acc_min': 0.027027, 'test_acc_max': 0.15625, 'test_acc_bottom10%': 0.027027, 'test_acc_top10%': 0.15625, 'test_acc_cos1': 0.894551, 'test_acc_entropy': 2.181883, 'test_avg_loss_std': 0.007093, 'test_avg_loss_bottom_decile': 4.089527, 'test_avg_loss_top_decile': 4.105058, 'test_avg_loss_min': 4.079237, 'test_avg_loss_max': 4.105058, 'test_avg_loss_bottom10%': 4.079237, 'test_avg_loss_top10%': 4.105058, 'test_avg_loss_cos1': 0.999998, 'test_avg_loss_entropy': 2.302584, 'val_loss_std': 9.561471, 'val_loss_bottom_decile': 122.95362, 'val_loss_top_decile': 147.43202, 'val_loss_min': 122.736773, 'val_loss_max': 147.43202, 'val_loss_bottom10%': 122.736773, 'val_loss_top10%': 147.43202, 'val_loss_cos1': 0.997521, 'val_loss_entropy': 2.300081, 'val_loss_regular_std': 0.0, 'val_loss_regular_bottom_decile': 0.0, 'val_loss_regular_top_decile': 0.0, 'val_loss_regular_min': 0.0, 'val_loss_regular_max': 0.0, 'val_loss_regular_bottom10%': 0.0, 'val_loss_regular_top10%': 0.0, 'val_loss_regular_cos1': nan, 'val_loss_regular_entropy': 2.302585, 'val_acc_std': 0.029003, 'val_acc_bottom_decile': 0.055556, 'val_acc_top_decile': 0.114286, 'val_acc_min': 0.0, 'val_acc_max': 0.114286, 'val_acc_bottom10%': 0.0, 'val_acc_top10%': 0.114286, 'val_acc_cos1': 0.916189, 'val_acc_entropy': 2.163474, 'val_avg_loss_std': 0.005383, 'val_avg_loss_bottom_decile': 4.089383, 'val_avg_loss_top_decile': 4.104481, 'val_avg_loss_min': 4.086577, 'val_avg_loss_max': 4.104481, 'val_avg_loss_bottom10%': 4.086577, 'val_avg_loss_top10%': 4.104481, 'val_avg_loss_cos1': 0.999999, 'val_avg_loss_entropy': 2.302584}}
+2025-10-20 18:37:00,049 (server:420) INFO: Server: Final evaluation is finished! Starting merging results.
+2025-10-20 18:37:00,051 (server:548) INFO: {'Role': 'Server #', 'Round': 'Final', 'Results_raw': {'client_best_individual': {'val_loss_regular': 0.0, 'val_loss': 123.315992, 'test_loss': 123.161254, 'test_loss_regular': 0.0, 'test_total': 30.0, 'test_acc': 0.15625, 'test_avg_loss': 4.105375, 'val_total': 30.0, 'val_acc': 0.114286, 'val_avg_loss': 4.110533}, 'client_summarized_weighted_avg': {'val_loss_regular': 0.0, 'val_loss': 136.873255, 'test_loss': 137.727566, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.072072, 'test_avg_loss': 4.114999, 'val_total': 33.1, 'val_acc': 0.066465, 'val_avg_loss': 4.11457}, 'client_summarized_avg': {'val_loss_regular': 0.0, 'val_loss': 136.192252, 'test_loss': 137.029466, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.073796, 'test_avg_loss': 4.11485, 'val_total': 33.1, 'val_acc': 0.066308, 'val_avg_loss': 4.114611}, 'client_summarized_fairness': {'val_loss_regular_entropy': 2.302585, 'val_loss_regular_cos1': nan, 'val_loss_regular_top10%': 0.0, 'val_loss_regular_bottom10%': 0.0, 'val_loss_regular_max': 0.0, 'val_loss_regular_min': 0.0, 'val_loss_regular_top_decile': 0.0, 'val_loss_regular_bottom_decile': 0.0, 'val_loss_regular_std': 0.0, 'val_loss_entropy': 2.300074, 'val_loss_cos1': 0.997514, 'val_loss_top10%': 148.065841, 'val_loss_bottom10%': 123.315992, 'val_loss_max': 148.065841, 'val_loss_min': 123.315992, 'val_loss_top_decile': 148.065841, 'val_loss_bottom_decile': 123.460221, 'val_loss_std': 9.621121, 'test_total': 33.3, 'val_total': 33.1, 'test_loss_std': 9.815422, 'test_loss_bottom_decile': 123.51871, 'test_loss_top_decile': 152.377048, 'test_loss_min': 123.161254, 'test_loss_max': 152.377048, 'test_loss_bottom10%': 123.161254, 'test_loss_top10%': 152.377048, 'test_loss_cos1': 0.997444, 'test_loss_entropy': 2.300013, 'test_loss_regular_std': 0.0, 'test_loss_regular_bottom_decile': 0.0, 'test_loss_regular_top_decile': 0.0, 'test_loss_regular_min': 0.0, 'test_loss_regular_max': 0.0, 'test_loss_regular_bottom10%': 0.0, 'test_loss_regular_top10%': 0.0, 'test_loss_regular_cos1': nan, 'test_loss_regular_entropy': 2.302585, 'test_acc_std': 0.036872, 'test_acc_bottom_decile': 0.029412, 'test_acc_top_decile': 0.15625, 'test_acc_min': 0.027027, 'test_acc_max': 0.15625, 'test_acc_bottom10%': 0.027027, 'test_acc_top10%': 0.15625, 'test_acc_cos1': 0.894551, 'test_acc_entropy': 2.181883, 'test_avg_loss_std': 0.004121, 'test_avg_loss_bottom_decile': 4.11136, 'test_avg_loss_top_decile': 4.120176, 'test_avg_loss_min': 4.105375, 'test_avg_loss_max': 4.120176, 'test_avg_loss_bottom10%': 4.105375, 'test_avg_loss_top10%': 4.120176, 'test_avg_loss_cos1': 0.999999, 'test_avg_loss_entropy': 2.302585, 'val_acc_std': 0.029003, 'val_acc_bottom_decile': 0.055556, 'val_acc_top_decile': 0.114286, 'val_acc_min': 0.0, 'val_acc_max': 0.114286, 'val_acc_bottom10%': 0.0, 'val_acc_top10%': 0.114286, 'val_acc_cos1': 0.916189, 'val_acc_entropy': 2.163474, 'val_avg_loss_std': 0.003693, 'val_avg_loss_bottom_decile': 4.110782, 'val_avg_loss_top_decile': 4.121787, 'val_avg_loss_min': 4.110533, 'val_avg_loss_max': 4.121787, 'val_avg_loss_bottom10%': 4.110533, 'val_avg_loss_top10%': 4.121787, 'val_avg_loss_cos1': 1.0, 'val_avg_loss_entropy': 2.302585}}}
+2025-10-20 18:37:00,052 (server:567) INFO: {'Role': 'Client #1', 'Round': 20, 'Results_raw': {'test_loss': 147.382936, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.055556, 'test_avg_loss': 4.09397, 'val_loss': 147.116777, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.055556, 'val_avg_loss': 4.086577}}
+2025-10-20 18:37:00,053 (server:567) INFO: {'Role': 'Client #2', 'Round': 20, 'Results_raw': {'test_loss': 130.864861, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.15625, 'test_avg_loss': 4.089527, 'val_loss': 131.130491, 'val_loss_regular': 0.0, 'val_total': 32, 'val_acc': 0.0, 'val_avg_loss': 4.097828}}
+2025-10-20 18:37:00,054 (server:567) INFO: {'Role': 'Client #3', 'Round': 20, 'Results_raw': {'test_loss': 151.887162, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.027027, 'test_avg_loss': 4.105058, 'val_loss': 147.43202, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.083333, 'val_avg_loss': 4.095334}}
+2025-10-20 18:37:00,055 (server:567) INFO: {'Role': 'Client #4', 'Round': 20, 'Results_raw': {'test_loss': 143.225639, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.057143, 'test_avg_loss': 4.092161, 'val_loss': 143.15752, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.114286, 'val_avg_loss': 4.090215}}
+2025-10-20 18:37:00,055 (server:567) INFO: {'Role': 'Client #5', 'Round': 20, 'Results_raw': {'test_loss': 122.377119, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 4.079237, 'val_loss': 122.736773, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 4.091226}}
+2025-10-20 18:37:00,056 (server:567) INFO: {'Role': 'Client #6', 'Round': 20, 'Results_raw': {'test_loss': 123.010921, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 4.100364, 'val_loss': 122.97514, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 4.099171}}
+2025-10-20 18:37:00,057 (server:567) INFO: {'Role': 'Client #7', 'Round': 20, 'Results_raw': {'test_loss': 126.809313, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.064516, 'test_avg_loss': 4.090623, 'val_loss': 122.95362, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.1, 'val_avg_loss': 4.098454}}
+2025-10-20 18:37:00,057 (server:567) INFO: {'Role': 'Client #8', 'Round': 20, 'Results_raw': {'test_loss': 135.240163, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.090909, 'test_avg_loss': 4.098187, 'val_loss': 134.949628, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.060606, 'val_avg_loss': 4.089383}}
+2025-10-20 18:37:00,058 (server:567) INFO: {'Role': 'Client #9', 'Round': 20, 'Results_raw': {'test_loss': 143.154984, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.057143, 'test_avg_loss': 4.090142, 'val_loss': 143.65685, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.057143, 'val_avg_loss': 4.104481}}
+2025-10-20 18:37:00,058 (server:567) INFO: {'Role': 'Client #10', 'Round': 20, 'Results_raw': {'test_loss': 139.448577, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.029412, 'test_avg_loss': 4.101429, 'val_loss': 139.394731, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.058824, 'val_avg_loss': 4.099845}}
+2025-10-20 18:37:00,059 (monitor:173) INFO: In worker #0, the system-related metrics are: {'id': 0, 'fl_end_time_minutes': 0.290572, 'total_model_size': 0, 'total_flops': 0, 'total_upload_bytes': 0, 'total_download_bytes': 534976, 'global_convergence_round': 0, 'local_convergence_round': 0, 'global_convergence_time_minutes': 0, 'local_convergence_time_minutes': 0}
+2025-10-20 18:37:00,060 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:37:00,062 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:37:00,066 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:37:00,068 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:37:00,071 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:37:00,074 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:37:00,076 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:37:00,077 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:37:00,081 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:37:00,084 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:37:00,085 (monitor:338) INFO: We will compress the file eval_results.raw into a .gz file, and delete the old one
+2025-10-20 18:37:00,089 (monitor:246) INFO: After merging the system metrics from all works, we got avg: defaultdict(None, {'id': 'sys_avg', 'sys_avg/fl_end_time_minutes': 0.290572, 'sys_avg/total_model_size': '0.0', 'sys_avg/total_flops': '0.0', 'sys_avg/total_upload_bytes': '0.0', 'sys_avg/total_download_bytes': '522.44K', 'sys_avg/global_convergence_round': 0.0, 'sys_avg/local_convergence_round': 0.0, 'sys_avg/global_convergence_time_minutes': 0.0, 'sys_avg/local_convergence_time_minutes': 0.0})
+2025-10-20 18:37:00,089 (monitor:249) INFO: After merging the system metrics from all works, we got std: defaultdict(None, {'id': 'sys_std', 'sys_std/fl_end_time_minutes': 0.0, 'sys_std/total_model_size': '0.0', 'sys_std/total_flops': '0.0', 'sys_std/total_upload_bytes': '0.0', 'sys_std/total_download_bytes': '0.0', 'sys_std/global_convergence_round': 0.0, 'sys_std/local_convergence_round': 0.0, 'sys_std/global_convergence_time_minutes': 0.0, 'sys_std/local_convergence_time_minutes': 0.0})

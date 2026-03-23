@@ -1,0 +1,3 @@
+2025-11-30 16:07:46,170 (logging:132) INFO: the current machine is at 127.0.1.1
+2025-11-30 16:07:46,170 (logging:134) INFO: the current dir is /home/tyx/ywp/FedBiOT
+2025-11-30 16:07:46,170 (logging:135) INFO: the output dir is exp/FedAvg_decapoda-research/llama-7b-hf@huggingface_llm_on_rosetta_alpaca@llm_lr0.003_lstep30/sub_exp_20251130160746

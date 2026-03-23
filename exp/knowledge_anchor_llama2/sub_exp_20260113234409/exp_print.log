@@ -1,0 +1,286 @@
+2026-01-13 23:44:09,601 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-01-13 23:44:09,601 (logging:134) INFO: the current dir is /home/tyx/ywp/FedBiOT
+2026-01-13 23:44:09,602 (logging:135) INFO: the output dir is exp/knowledge_anchor_llama2/sub_exp_20260113234409
+2026-01-13 23:44:20,418 (knowledge_anchor_splitter:61) INFO: 将使用数据集 imdb 作为任务不相关数据源
+2026-01-13 23:44:20,432 (knowledge_anchor_splitter:137) WARNING: 标签提取失败，使用IID分配: The size of tensor a (275) must match the size of tensor b (116) at non-singleton dimension 0
+2026-01-13 23:44:20,432 (knowledge_anchor_splitter:154) INFO: 从外部数据集 imdb 加载无关样本...
+2026-01-13 23:44:20,569 (knowledge_anchor_splitter:282) INFO: ✓ 从IMDB加载了 298 个样本（情感分类任务）
+2026-01-13 23:44:20,574 (knowledge_anchor_splitter:162) INFO: ✓ 成功加载 298 个无关样本（目标: 298）
+2026-01-13 23:44:20,575 (knowledge_anchor_splitter:201) INFO: ✓ 为客户端1注入298个任务不相关样本（来自 imdb）
+2026-01-13 23:44:20,575 (knowledge_anchor_splitter:203) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 23:44:20,575 (knowledge_anchor_splitter:220) INFO: Train数据分配完成: 客户端=[997, 1294, 996]
+2026-01-13 23:44:20,576 (base_translator:120) WARNING: Cannot access train label distribution for splitter, split dataset without considering train label.
+2026-01-13 23:44:20,589 (knowledge_anchor_splitter:137) WARNING: 标签提取失败，使用IID分配: The size of tensor a (213) must match the size of tensor b (325) at non-singleton dimension 0
+2026-01-13 23:44:20,589 (knowledge_anchor_splitter:154) INFO: 从外部数据集 imdb 加载无关样本...
+2026-01-13 23:44:20,721 (knowledge_anchor_splitter:282) INFO: ✓ 从IMDB加载了 298 个样本（情感分类任务）
+2026-01-13 23:44:20,726 (knowledge_anchor_splitter:162) INFO: ✓ 成功加载 298 个无关样本（目标: 298）
+2026-01-13 23:44:20,727 (knowledge_anchor_splitter:201) INFO: ✓ 为客户端0注入298个任务不相关样本（来自 imdb）
+2026-01-13 23:44:20,727 (knowledge_anchor_splitter:203) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 23:44:20,727 (knowledge_anchor_splitter:220) INFO: Train数据分配完成: 客户端=[1295, 996, 996]
+2026-01-13 23:44:20,734 (knowledge_anchor_splitter:137) WARNING: 标签提取失败，使用IID分配: The size of tensor a (279) must match the size of tensor b (145) at non-singleton dimension 0
+2026-01-13 23:44:20,734 (knowledge_anchor_splitter:154) INFO: 从外部数据集 imdb 加载无关样本...
+2026-01-13 23:44:20,865 (knowledge_anchor_splitter:282) INFO: ✓ 从IMDB加载了 149 个样本（情感分类任务）
+2026-01-13 23:44:20,870 (knowledge_anchor_splitter:162) INFO: ✓ 成功加载 149 个无关样本（目标: 149）
+2026-01-13 23:44:20,871 (knowledge_anchor_splitter:201) INFO: ✓ 为客户端1注入149个任务不相关样本（来自 imdb）
+2026-01-13 23:44:20,871 (knowledge_anchor_splitter:203) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 23:44:20,871 (knowledge_anchor_splitter:220) INFO: Train数据分配完成: 客户端=[499, 647, 498]
+2026-01-13 23:44:20,913 (base_translator:133) INFO: number of clients: 3
+2026-01-13 23:44:20,913 (base_translator:135) INFO: 1
+2026-01-13 23:44:20,943 (base_translator:135) INFO: 2
+2026-01-13 23:44:20,980 (base_translator:135) INFO: 3
+2026-01-13 23:44:21,271 (utils:167) INFO: The device information file is not provided
+2026-01-13 23:44:21,272 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 23:45:46,984 (projection_mapper:78) INFO: 初始化ProjectionMapper: small_hidden=2048, large_hidden=4096, rank=8, learnable=True, q_strategy=transpose
+2026-01-13 23:45:46,993 (knowledge_anchor_aggregator:74) INFO: ✓ 已初始化投影映射器: small_hidden=2048, large_hidden=4096, rank=8
+2026-01-13 23:45:47,017 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 23:45:47,018 (knowledge_anchor_trainer:38) INFO: 模型设备: cuda:0
+2026-01-13 23:45:47,019 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 23:45:47,019 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 23:45:47,019 (fed_runner:195) INFO: Server has been set up ... 
+2026-01-13 23:45:47,021 (client:38) INFO: ================================================================================
+2026-01-13 23:45:47,021 (client:39) INFO: 客户端1开始加载小模型...
+2026-01-13 23:45:47,021 (client:40) INFO: 配置的模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 23:45:47,021 (client:50) INFO: ✓ 检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:45:47,021 (client:51) INFO:   绝对路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:45:47,045 (client:66) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-01-13 23:45:47,045 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 23:45:47,046 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-01-13 23:45:56,821 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-01-13 23:46:08,593 (client:71) INFO: ✓ 客户端1成功加载小模型
+2026-01-13 23:46:08,593 (client:72) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-01-13 23:46:08,594 (client:76) INFO:   模型参数量: 1262.97M
+2026-01-13 23:46:08,594 (client:79) INFO: ================================================================================
+2026-01-13 23:46:08,630 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 23:46:08,645 (knowledge_anchor_trainer:38) INFO: 模型设备: cpu
+2026-01-13 23:46:08,645 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 23:46:08,645 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 23:46:11,733 (fed_runner:245) INFO: Client 1 has been set up ... 
+2026-01-13 23:46:11,735 (client:38) INFO: ================================================================================
+2026-01-13 23:46:11,735 (client:39) INFO: 客户端2开始加载小模型...
+2026-01-13 23:46:11,735 (client:40) INFO: 配置的模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 23:46:11,735 (client:50) INFO: ✓ 检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:46:11,735 (client:51) INFO:   绝对路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:46:11,759 (client:66) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-01-13 23:46:11,759 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 23:46:11,760 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-01-13 23:46:21,303 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-01-13 23:46:32,624 (client:71) INFO: ✓ 客户端2成功加载小模型
+2026-01-13 23:46:32,624 (client:72) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-01-13 23:46:32,625 (client:76) INFO:   模型参数量: 1262.97M
+2026-01-13 23:46:32,625 (client:79) INFO: ================================================================================
+2026-01-13 23:46:32,660 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 23:46:32,679 (knowledge_anchor_trainer:38) INFO: 模型设备: cpu
+2026-01-13 23:46:32,679 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 23:46:32,680 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 23:46:35,159 (fed_runner:245) INFO: Client 2 has been set up ... 
+2026-01-13 23:46:35,161 (client:38) INFO: ================================================================================
+2026-01-13 23:46:35,161 (client:39) INFO: 客户端3开始加载小模型...
+2026-01-13 23:46:35,161 (client:40) INFO: 配置的模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 23:46:35,161 (client:50) INFO: ✓ 检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:46:35,161 (client:51) INFO:   绝对路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 23:46:35,185 (client:66) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-01-13 23:46:35,185 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 23:46:35,186 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-01-13 23:46:44,322 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-01-13 23:46:55,562 (client:71) INFO: ✓ 客户端3成功加载小模型
+2026-01-13 23:46:55,562 (client:72) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-01-13 23:46:55,563 (client:76) INFO:   模型参数量: 1262.97M
+2026-01-13 23:46:55,563 (client:79) INFO: ================================================================================
+2026-01-13 23:46:55,598 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 23:46:55,600 (knowledge_anchor_trainer:38) INFO: 模型设备: cpu
+2026-01-13 23:46:55,600 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 23:46:55,600 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 23:46:57,955 (fed_runner:245) INFO: Client 3 has been set up ... 
+2026-01-13 23:46:57,955 (trainer:343) INFO: Model meta-info: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>.
+2026-01-13 23:46:57,965 (trainer:351) INFO: Num of original para names: 88.
+2026-01-13 23:46:57,965 (trainer:352) INFO: Num of original trainable para names: 289.
+2026-01-13 23:46:57,965 (trainer:354) INFO: Num of preserved para names in local update: 88. 
+Preserved para names in local update: {'base_model.model.model.layers.6.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.2.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.7.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.9.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.2.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.9.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.11.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.16.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.17.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.17.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.5.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.4.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.21.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.6.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.1.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.18.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.20.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.13.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.14.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.19.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.13.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.15.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.18.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.0.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.14.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.10.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.19.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.1.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.8.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.16.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.20.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.19.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.18.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.16.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.7.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.5.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.19.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.7.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.0.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.2.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.5.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.0.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.12.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.5.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.17.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.9.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.9.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.11.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.15.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.13.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.7.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.18.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.10.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.20.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.21.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.12.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.10.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.15.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.11.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.17.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.11.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.15.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.2.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.16.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.20.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.21.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.21.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.14.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.10.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.8.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.14.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.13.self_attn.q_proj.lora_B.default.weight'}.
+2026-01-13 23:46:57,965 (trainer:358) INFO: Num of filtered para names in local update: 0. 
+Filtered para names in local update: set().
+2026-01-13 23:46:57,966 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "_hook_on_batch_backward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	}
+2026-01-13 23:47:18,776 (knowledge_anchor_aggregator:125) INFO: ✓ 从模型state_dict提取LoRA参数，包含 128 个参数
+2026-01-13 23:47:18,836 (knowledge_anchor_aggregator:153) INFO: ✓ 下投影完成: 大LoRA(128个参数) -> 小LoRA(128个参数)
+2026-01-13 23:47:18,836 (server:251) INFO: 使用投影后的小LoRA进行broadcast（128个参数）
+2026-01-13 23:47:18,847 (server:294) WARNING: 临时加载小LoRA失败: Error(s) in loading state_dict for PeftModelForCausalLM:
+	size mismatch for base_model.model.model.layers.0.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.0.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.0.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.0.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.1.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.1.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.1.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.1.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.2.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.2.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.2.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.2.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.3.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.3.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.3.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.4.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.4.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.4.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.4.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.5.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.5.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.5.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.5.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.6.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.6.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.6.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.6.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.7.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.7.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.7.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.7.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.8.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.8.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.8.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.8.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.9.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.9.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.9.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.9.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.10.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.10.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.10.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.10.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.11.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.11.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.11.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.11.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.12.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.12.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.12.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.12.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.13.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.13.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.13.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.13.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.14.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.14.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.14.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.14.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.15.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.15.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.15.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.15.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.16.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.16.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.16.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.16.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.17.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.17.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.17.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.17.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.18.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.18.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.18.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.18.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.19.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.19.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.19.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.19.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.20.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.20.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.20.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.20.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.21.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.21.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.21.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.21.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.22.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.22.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.22.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.22.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.23.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.23.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.23.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.23.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.24.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.24.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.24.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.24.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.25.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.25.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.25.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.25.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.26.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.26.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.26.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.26.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.27.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.27.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.27.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.27.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.28.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.28.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.28.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.28.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.29.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.29.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.29.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.29.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.30.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.30.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.30.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.30.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.31.self_attn.q_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.31.self_attn.q_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).
+	size mismatch for base_model.model.model.layers.31.self_attn.v_proj.lora_A.default.weight: copying a param with shape torch.Size([8, 2048]) from checkpoint, the shape in current model is torch.Size([8, 4096]).
+	size mismatch for base_model.model.model.layers.31.self_attn.v_proj.lora_B.default.weight: copying a param with shape torch.Size([2048, 8]) from checkpoint, the shape in current model is torch.Size([4096, 8]).，使用原始参数
+2026-01-13 23:47:18,866 (server:882) INFO: ----------- Starting training (Round #0) -------------

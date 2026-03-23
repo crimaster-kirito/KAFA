@@ -1,0 +1,94 @@
+# For this configuration, you might need a GPU with at least 32GB of video memory to run.
+
+# Whether to use GPU
+use_gpu: True
+
+# Deciding which GPU to use
+device: 0
+
+# Early stop steps, set `0` to disable
+early_stop:
+  patience: 0
+
+# Federate learning related options
+federate:
+  # `standalone` or `distributed`
+  mode: standalone
+  # Number of communication round
+  total_round_num: 500
+  # Saving path for ckpt
+  save_to: "llama_rosetta_9_fed.ckpt"
+  # Number of dataset being split
+  client_num: 9
+  # Enable for saving memory, all workers share the same model instance
+  share_local_model: True
+
+# Dataset related options
+data:
+  # Root directory where the data stored
+  root: data/
+  # Dataset name
+  type: 'rosetta_alpaca@llm'
+  # Train/val/test splits
+  splits: [0.89,0.1,0.01]
+  # Use meta inforamtion to split `rosetta_alpaca`
+  splitter: 'meta'
+
+# LLM related options
+llm:
+  # Max token length for model input (training)
+  tok_len: 650
+  # ChatBot related options
+  chat:
+    # Max token length for model input (inference)
+    max_len: 1000
+    # Max number of history texts
+    max_history_len: 10
+  # Path for store model cache, default in `~/.cache/`
+  cache:
+    model: ''
+  # PEFT related options
+  adapter:
+    # Set ture to enable PEFT fine-tuning
+    use: True
+    # Args for PEFT fine-tuning
+    args: [ { 'adapter_package': 'peft', 'adapter_method': 'lora', 'r': 8, 'lora_alpha': 32, 'lora_dropout': 0.1 } ]
+
+# DataLoader related options
+dataloader:
+  # Batch size for iter loader
+  batch_size: 1
+
+# Model related options
+model:
+  # Model type (format: {MODEL_REPO}@huggingface_llm)
+  type: 'decapoda-research/llama-7b-hf@huggingface_llm'
+
+# Train related options
+train:
+  # Number of local update steps
+  local_update_steps: 30
+  # `batch` or `epoch` for local_update_steps
+  batch_or_epoch: batch
+  # Optimizer related options
+  optimizer:
+    # Learning rate
+    lr: 0.003
+    # Weight decay
+    weight_decay: 0.0
+  # Set ture to enable `model.half()`
+  is_enable_half: True
+
+# Trainer related options
+trainer:
+  # Trainer type
+  type: llmtrainer
+
+# Evaluation related options
+eval:
+  # Frequency of evaluation
+  freq: 50
+  # Evaluation metrics
+  metrics: ['loss']
+  # Set key to track best model
+  best_res_update_round_wise_key: val_loss

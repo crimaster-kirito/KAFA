@@ -1,0 +1,4 @@
+2025-10-20 18:36:27,258 (logging:132) INFO: the current machine is at 219.216.64.81
+2025-10-20 18:36:27,258 (logging:134) INFO: the current dir is D:\code\FedBiOT
+2025-10-20 18:36:27,258 (logging:135) INFO: the output dir is exp\FedAvg_VMFNet_on_vflmovielens1m_lr1.0_lstep20
+2025-10-20 18:36:37,895 (movielens:148) INFO: Processing ratings.

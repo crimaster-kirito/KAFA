@@ -1,0 +1,817 @@
+2025-10-20 18:35:51,003 (logging:132) INFO: the current machine is at 219.216.64.81
+2025-10-20 18:35:51,003 (logging:134) INFO: the current dir is D:\code\FedBiOT
+2025-10-20 18:35:51,003 (logging:135) INFO: the output dir is exp\FedAvg_convnet2_on_femnist_lr0.01_lstep2\sub_exp_20251020183551
+2025-10-20 18:35:51,083 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:35:52,126 (splitter_builder:82) WARNING: Splitter  not found or not used.
+2025-10-20 18:35:52,142 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:35:52,144 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:35:52,208 (utils:167) INFO: The device information file is not provided
+2025-10-20 18:35:52,213 (fed_runner:195) INFO: Server has been set up ... 
+2025-10-20 18:35:52,222 (trainer_builder:242) INFO: -------- This client is an privacy attacker --------
+2025-10-20 18:35:52,222 (trainer:161) INFO: Remove the hook `_hook_on_batch_backward` from hooks_set at trigger `on_batch_backward`
+2025-10-20 18:35:52,226 (fed_runner:245) INFO: Client 1 has been set up ... 
+2025-10-20 18:35:52,233 (trainer_builder:242) INFO: -------- This client is an privacy attacker --------
+2025-10-20 18:35:52,233 (trainer:161) INFO: Remove the hook `_hook_on_batch_backward` from hooks_set at trigger `on_batch_backward`
+2025-10-20 18:35:52,236 (fed_runner:245) INFO: Client 2 has been set up ... 
+2025-10-20 18:35:52,243 (trainer_builder:242) INFO: -------- This client is an privacy attacker --------
+2025-10-20 18:35:52,245 (trainer:161) INFO: Remove the hook `_hook_on_batch_backward` from hooks_set at trigger `on_batch_backward`
+2025-10-20 18:35:52,247 (fed_runner:245) INFO: Client 3 has been set up ... 
+2025-10-20 18:35:52,255 (trainer_builder:242) INFO: -------- This client is an privacy attacker --------
+2025-10-20 18:35:52,256 (trainer:161) INFO: Remove the hook `_hook_on_batch_backward` from hooks_set at trigger `on_batch_backward`
+2025-10-20 18:35:52,259 (fed_runner:245) INFO: Client 4 has been set up ... 
+2025-10-20 18:35:52,266 (trainer_builder:242) INFO: -------- This client is an privacy attacker --------
+2025-10-20 18:35:52,266 (trainer:161) INFO: Remove the hook `_hook_on_batch_backward` from hooks_set at trigger `on_batch_backward`
+2025-10-20 18:35:52,270 (fed_runner:245) INFO: Client 5 has been set up ... 
+2025-10-20 18:35:52,278 (trainer_builder:242) INFO: -------- This client is an privacy attacker --------
+2025-10-20 18:35:52,278 (trainer:161) INFO: Remove the hook `_hook_on_batch_backward` from hooks_set at trigger `on_batch_backward`
+2025-10-20 18:35:52,281 (fed_runner:245) INFO: Client 6 has been set up ... 
+2025-10-20 18:35:52,289 (trainer_builder:242) INFO: -------- This client is an privacy attacker --------
+2025-10-20 18:35:52,289 (trainer:161) INFO: Remove the hook `_hook_on_batch_backward` from hooks_set at trigger `on_batch_backward`
+2025-10-20 18:35:52,293 (fed_runner:245) INFO: Client 7 has been set up ... 
+2025-10-20 18:35:52,301 (trainer_builder:242) INFO: -------- This client is an privacy attacker --------
+2025-10-20 18:35:52,301 (trainer:161) INFO: Remove the hook `_hook_on_batch_backward` from hooks_set at trigger `on_batch_backward`
+2025-10-20 18:35:52,303 (fed_runner:245) INFO: Client 8 has been set up ... 
+2025-10-20 18:35:52,312 (trainer_builder:242) INFO: -------- This client is an privacy attacker --------
+2025-10-20 18:35:52,312 (trainer:161) INFO: Remove the hook `_hook_on_batch_backward` from hooks_set at trigger `on_batch_backward`
+2025-10-20 18:35:52,315 (fed_runner:245) INFO: Client 9 has been set up ... 
+2025-10-20 18:35:52,322 (trainer_builder:242) INFO: -------- This client is an privacy attacker --------
+2025-10-20 18:35:52,323 (trainer:161) INFO: Remove the hook `_hook_on_batch_backward` from hooks_set at trigger `on_batch_backward`
+2025-10-20 18:35:52,327 (fed_runner:245) INFO: Client 10 has been set up ... 
+2025-10-20 18:35:52,338 (fed_runner:245) INFO: Client 11 has been set up ... 
+2025-10-20 18:35:52,348 (fed_runner:245) INFO: Client 12 has been set up ... 
+2025-10-20 18:35:52,360 (fed_runner:245) INFO: Client 13 has been set up ... 
+2025-10-20 18:35:52,371 (fed_runner:245) INFO: Client 14 has been set up ... 
+2025-10-20 18:35:52,381 (fed_runner:245) INFO: Client 15 has been set up ... 
+2025-10-20 18:35:52,391 (fed_runner:245) INFO: Client 16 has been set up ... 
+2025-10-20 18:35:52,402 (fed_runner:245) INFO: Client 17 has been set up ... 
+2025-10-20 18:35:52,413 (fed_runner:245) INFO: Client 18 has been set up ... 
+2025-10-20 18:35:52,423 (fed_runner:245) INFO: Client 19 has been set up ... 
+2025-10-20 18:35:52,434 (fed_runner:245) INFO: Client 20 has been set up ... 
+2025-10-20 18:35:52,444 (fed_runner:245) INFO: Client 21 has been set up ... 
+2025-10-20 18:35:52,456 (fed_runner:245) INFO: Client 22 has been set up ... 
+2025-10-20 18:35:52,466 (fed_runner:245) INFO: Client 23 has been set up ... 
+2025-10-20 18:35:52,483 (fed_runner:245) INFO: Client 24 has been set up ... 
+2025-10-20 18:35:52,493 (fed_runner:245) INFO: Client 25 has been set up ... 
+2025-10-20 18:35:52,503 (fed_runner:245) INFO: Client 26 has been set up ... 
+2025-10-20 18:35:52,514 (fed_runner:245) INFO: Client 27 has been set up ... 
+2025-10-20 18:35:52,525 (fed_runner:245) INFO: Client 28 has been set up ... 
+2025-10-20 18:35:52,535 (fed_runner:245) INFO: Client 29 has been set up ... 
+2025-10-20 18:35:52,547 (fed_runner:245) INFO: Client 30 has been set up ... 
+2025-10-20 18:35:52,557 (fed_runner:245) INFO: Client 31 has been set up ... 
+2025-10-20 18:35:52,568 (fed_runner:245) INFO: Client 32 has been set up ... 
+2025-10-20 18:35:52,579 (fed_runner:245) INFO: Client 33 has been set up ... 
+2025-10-20 18:35:52,590 (fed_runner:245) INFO: Client 34 has been set up ... 
+2025-10-20 18:35:52,600 (fed_runner:245) INFO: Client 35 has been set up ... 
+2025-10-20 18:35:52,611 (fed_runner:245) INFO: Client 36 has been set up ... 
+2025-10-20 18:35:52,622 (fed_runner:245) INFO: Client 37 has been set up ... 
+2025-10-20 18:35:52,632 (fed_runner:245) INFO: Client 38 has been set up ... 
+2025-10-20 18:35:52,643 (fed_runner:245) INFO: Client 39 has been set up ... 
+2025-10-20 18:35:52,654 (fed_runner:245) INFO: Client 40 has been set up ... 
+2025-10-20 18:35:52,667 (fed_runner:245) INFO: Client 41 has been set up ... 
+2025-10-20 18:35:52,678 (fed_runner:245) INFO: Client 42 has been set up ... 
+2025-10-20 18:35:52,688 (fed_runner:245) INFO: Client 43 has been set up ... 
+2025-10-20 18:35:52,702 (fed_runner:245) INFO: Client 44 has been set up ... 
+2025-10-20 18:35:52,712 (fed_runner:245) INFO: Client 45 has been set up ... 
+2025-10-20 18:35:52,723 (fed_runner:245) INFO: Client 46 has been set up ... 
+2025-10-20 18:35:52,734 (fed_runner:245) INFO: Client 47 has been set up ... 
+2025-10-20 18:35:52,745 (fed_runner:245) INFO: Client 48 has been set up ... 
+2025-10-20 18:35:52,762 (fed_runner:245) INFO: Client 49 has been set up ... 
+2025-10-20 18:35:52,772 (fed_runner:245) INFO: Client 50 has been set up ... 
+2025-10-20 18:35:52,773 (trainer:343) INFO: Model meta-info: <class 'federatedscope.cv.model.cnn.ConvNet2'>.
+2025-10-20 18:35:52,773 (trainer:351) INFO: Num of original para names: 18.
+2025-10-20 18:35:52,773 (trainer:352) INFO: Num of original trainable para names: 12.
+2025-10-20 18:35:52,773 (trainer:354) INFO: Num of preserved para names in local update: 18. 
+Preserved para names in local update: {'bn1.weight', 'fc1.bias', 'bn2.bias', 'bn1.running_mean', 'bn2.running_mean', 'bn2.num_batches_tracked', 'bn2.running_var', 'fc2.bias', 'conv1.weight', 'bn1.running_var', 'fc1.weight', 'bn1.bias', 'conv2.weight', 'bn2.weight', 'fc2.weight', 'conv1.bias', 'conv2.bias', 'bn1.num_batches_tracked'}.
+2025-10-20 18:35:52,773 (trainer:358) INFO: Num of filtered para names in local update: 0. 
+Filtered para names in local update: set().
+2025-10-20 18:35:52,773 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "hook_on_batch_backward_generate_gaussian_noise_gradient"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	}
+2025-10-20 18:35:52,777 (server:882) INFO: ----------- Starting training (Round #0) -------------
+2025-10-20 18:35:52,789 (client:357) INFO: {'Role': 'Client #11', 'Round': 0, 'Results_raw': {'train_loss': 82.365484, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.118274}}
+2025-10-20 18:35:52,804 (client:357) INFO: {'Role': 'Client #14', 'Round': 0, 'Results_raw': {'train_loss': 78.844118, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.942206}}
+2025-10-20 18:35:52,818 (client:357) INFO: {'Role': 'Client #31', 'Round': 0, 'Results_raw': {'train_loss': 91.466622, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.573331}}
+2025-10-20 18:35:52,831 (client:357) INFO: {'Role': 'Client #47', 'Round': 0, 'Results_raw': {'train_loss': 82.56711, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.128356}}
+2025-10-20 18:35:52,845 (client:357) INFO: {'Role': 'Client #19', 'Round': 0, 'Results_raw': {'train_loss': 85.132751, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.256638}}
+2025-10-20 18:35:52,887 (client:357) INFO: {'Role': 'Client #1', 'Round': 0, 'Results_raw': {'train_loss': 82.617812, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.130891}}
+2025-10-20 18:35:52,901 (client:357) INFO: {'Role': 'Client #41', 'Round': 0, 'Results_raw': {'train_loss': 79.245095, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.962255}}
+2025-10-20 18:35:52,914 (client:357) INFO: {'Role': 'Client #13', 'Round': 0, 'Results_raw': {'train_loss': 82.008932, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.100447}}
+2025-10-20 18:35:52,929 (client:357) INFO: {'Role': 'Client #30', 'Round': 0, 'Results_raw': {'train_loss': 79.531631, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.976582}}
+2025-10-20 18:35:52,974 (client:357) INFO: {'Role': 'Client #9', 'Round': 0, 'Results_raw': {'train_loss': 82.840405, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.14202}}
+2025-10-20 18:35:52,987 (client:357) INFO: {'Role': 'Client #22', 'Round': 0, 'Results_raw': {'train_loss': 83.978477, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.198924}}
+2025-10-20 18:35:53,001 (client:357) INFO: {'Role': 'Client #48', 'Round': 0, 'Results_raw': {'train_loss': 84.966512, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.248326}}
+2025-10-20 18:35:53,016 (client:357) INFO: {'Role': 'Client #12', 'Round': 0, 'Results_raw': {'train_loss': 85.336676, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.266834}}
+2025-10-20 18:35:53,028 (client:357) INFO: {'Role': 'Client #42', 'Round': 0, 'Results_raw': {'train_loss': 85.741806, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.28709}}
+2025-10-20 18:35:53,074 (client:357) INFO: {'Role': 'Client #6', 'Round': 0, 'Results_raw': {'train_loss': 82.987318, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.149366}}
+2025-10-20 18:35:53,118 (client:357) INFO: {'Role': 'Client #2', 'Round': 0, 'Results_raw': {'train_loss': 89.225221, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.461261}}
+2025-10-20 18:35:53,161 (client:357) INFO: {'Role': 'Client #7', 'Round': 0, 'Results_raw': {'train_loss': 83.936348, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.196817}}
+2025-10-20 18:35:53,175 (client:357) INFO: {'Role': 'Client #28', 'Round': 0, 'Results_raw': {'train_loss': 81.310291, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.065515}}
+2025-10-20 18:35:53,189 (client:357) INFO: {'Role': 'Client #50', 'Round': 0, 'Results_raw': {'train_loss': 84.511127, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.225556}}
+2025-10-20 18:35:53,203 (client:357) INFO: {'Role': 'Client #25', 'Round': 0, 'Results_raw': {'train_loss': 79.37037, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.968518}}
+2025-10-20 18:35:53,515 (server:351) INFO: ----------- Starting a new training round (Round #1) -------------
+2025-10-20 18:35:53,561 (client:357) INFO: {'Role': 'Client #5', 'Round': 1, 'Results_raw': {'train_loss': 80.312107, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.015605}}
+2025-10-20 18:35:53,606 (client:357) INFO: {'Role': 'Client #6', 'Round': 1, 'Results_raw': {'train_loss': 79.05108, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.952554}}
+2025-10-20 18:35:53,650 (client:357) INFO: {'Role': 'Client #1', 'Round': 1, 'Results_raw': {'train_loss': 83.678598, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.18393}}
+2025-10-20 18:35:53,663 (client:357) INFO: {'Role': 'Client #38', 'Round': 1, 'Results_raw': {'train_loss': 75.082946, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.754147}}
+2025-10-20 18:35:53,682 (client:357) INFO: {'Role': 'Client #24', 'Round': 1, 'Results_raw': {'train_loss': 82.653594, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 4.13268}}
+2025-10-20 18:35:53,698 (client:357) INFO: {'Role': 'Client #11', 'Round': 1, 'Results_raw': {'train_loss': 83.929987, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.196499}}
+2025-10-20 18:35:53,713 (client:357) INFO: {'Role': 'Client #46', 'Round': 1, 'Results_raw': {'train_loss': 75.366032, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.768302}}
+2025-10-20 18:35:53,728 (client:357) INFO: {'Role': 'Client #41', 'Round': 1, 'Results_raw': {'train_loss': 79.93525, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.996763}}
+2025-10-20 18:35:53,743 (client:357) INFO: {'Role': 'Client #39', 'Round': 1, 'Results_raw': {'train_loss': 72.257891, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.612895}}
+2025-10-20 18:35:53,787 (client:357) INFO: {'Role': 'Client #9', 'Round': 1, 'Results_raw': {'train_loss': 78.592756, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.929638}}
+2025-10-20 18:35:53,801 (client:357) INFO: {'Role': 'Client #32', 'Round': 1, 'Results_raw': {'train_loss': 79.596102, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.979805}}
+2025-10-20 18:35:53,816 (client:357) INFO: {'Role': 'Client #49', 'Round': 1, 'Results_raw': {'train_loss': 80.381598, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.01908}}
+2025-10-20 18:35:53,831 (client:357) INFO: {'Role': 'Client #33', 'Round': 1, 'Results_raw': {'train_loss': 74.02786, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.701393}}
+2025-10-20 18:35:53,846 (client:357) INFO: {'Role': 'Client #29', 'Round': 1, 'Results_raw': {'train_loss': 82.584643, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.129232}}
+2025-10-20 18:35:53,890 (client:357) INFO: {'Role': 'Client #3', 'Round': 1, 'Results_raw': {'train_loss': 77.547045, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.877352}}
+2025-10-20 18:35:53,906 (client:357) INFO: {'Role': 'Client #50', 'Round': 1, 'Results_raw': {'train_loss': 82.108419, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 4.105421}}
+2025-10-20 18:35:53,920 (client:357) INFO: {'Role': 'Client #36', 'Round': 1, 'Results_raw': {'train_loss': 79.170547, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.958527}}
+2025-10-20 18:35:53,936 (client:357) INFO: {'Role': 'Client #47', 'Round': 1, 'Results_raw': {'train_loss': 75.312102, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.765605}}
+2025-10-20 18:35:53,950 (client:357) INFO: {'Role': 'Client #34', 'Round': 1, 'Results_raw': {'train_loss': 77.129879, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.856494}}
+2025-10-20 18:35:53,994 (client:357) INFO: {'Role': 'Client #4', 'Round': 1, 'Results_raw': {'train_loss': 78.209329, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.910466}}
+2025-10-20 18:35:54,282 (server:351) INFO: ----------- Starting a new training round (Round #2) -------------
+2025-10-20 18:35:54,304 (client:357) INFO: {'Role': 'Client #41', 'Round': 2, 'Results_raw': {'train_loss': 75.605283, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.780264}}
+2025-10-20 18:35:54,324 (client:357) INFO: {'Role': 'Client #48', 'Round': 2, 'Results_raw': {'train_loss': 72.080932, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.604047}}
+2025-10-20 18:35:54,374 (client:357) INFO: {'Role': 'Client #3', 'Round': 2, 'Results_raw': {'train_loss': 76.96039, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.848019}}
+2025-10-20 18:35:54,392 (client:357) INFO: {'Role': 'Client #25', 'Round': 2, 'Results_raw': {'train_loss': 78.813605, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.94068}}
+2025-10-20 18:35:54,411 (client:357) INFO: {'Role': 'Client #19', 'Round': 2, 'Results_raw': {'train_loss': 75.896344, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.794817}}
+2025-10-20 18:35:54,431 (client:357) INFO: {'Role': 'Client #50', 'Round': 2, 'Results_raw': {'train_loss': 78.827279, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.941364}}
+2025-10-20 18:35:54,452 (client:357) INFO: {'Role': 'Client #49', 'Round': 2, 'Results_raw': {'train_loss': 76.52869, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.826434}}
+2025-10-20 18:35:54,469 (client:357) INFO: {'Role': 'Client #40', 'Round': 2, 'Results_raw': {'train_loss': 85.058937, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.252947}}
+2025-10-20 18:35:54,489 (client:357) INFO: {'Role': 'Client #46', 'Round': 2, 'Results_raw': {'train_loss': 73.981464, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.699073}}
+2025-10-20 18:35:54,509 (client:357) INFO: {'Role': 'Client #42', 'Round': 2, 'Results_raw': {'train_loss': 67.428544, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.371427}}
+2025-10-20 18:35:54,530 (client:357) INFO: {'Role': 'Client #12', 'Round': 2, 'Results_raw': {'train_loss': 68.111165, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.405558}}
+2025-10-20 18:35:54,580 (client:357) INFO: {'Role': 'Client #9', 'Round': 2, 'Results_raw': {'train_loss': 82.887416, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.144371}}
+2025-10-20 18:35:54,634 (client:357) INFO: {'Role': 'Client #10', 'Round': 2, 'Results_raw': {'train_loss': 80.918717, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.045936}}
+2025-10-20 18:35:54,649 (client:357) INFO: {'Role': 'Client #15', 'Round': 2, 'Results_raw': {'train_loss': 73.733974, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.686699}}
+2025-10-20 18:35:54,666 (client:357) INFO: {'Role': 'Client #37', 'Round': 2, 'Results_raw': {'train_loss': 77.91625, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.895813}}
+2025-10-20 18:35:54,684 (client:357) INFO: {'Role': 'Client #22', 'Round': 2, 'Results_raw': {'train_loss': 77.414966, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.870748}}
+2025-10-20 18:35:54,702 (client:357) INFO: {'Role': 'Client #32', 'Round': 2, 'Results_raw': {'train_loss': 66.965609, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.34828}}
+2025-10-20 18:35:54,723 (client:357) INFO: {'Role': 'Client #24', 'Round': 2, 'Results_raw': {'train_loss': 73.632612, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.681631}}
+2025-10-20 18:35:54,742 (client:357) INFO: {'Role': 'Client #14', 'Round': 2, 'Results_raw': {'train_loss': 74.966893, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.748345}}
+2025-10-20 18:35:54,761 (client:357) INFO: {'Role': 'Client #27', 'Round': 2, 'Results_raw': {'train_loss': 71.082838, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.554142}}
+2025-10-20 18:35:55,044 (server:351) INFO: ----------- Starting a new training round (Round #3) -------------
+2025-10-20 18:35:55,066 (client:357) INFO: {'Role': 'Client #44', 'Round': 3, 'Results_raw': {'train_loss': 84.531844, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.226592}}
+2025-10-20 18:35:55,121 (client:357) INFO: {'Role': 'Client #5', 'Round': 3, 'Results_raw': {'train_loss': 75.088453, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.754423}}
+2025-10-20 18:35:55,173 (client:357) INFO: {'Role': 'Client #1', 'Round': 3, 'Results_raw': {'train_loss': 76.491938, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.824597}}
+2025-10-20 18:35:55,195 (client:357) INFO: {'Role': 'Client #33', 'Round': 3, 'Results_raw': {'train_loss': 72.652214, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.632611}}
+2025-10-20 18:35:55,213 (client:357) INFO: {'Role': 'Client #50', 'Round': 3, 'Results_raw': {'train_loss': 74.527135, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.726357}}
+2025-10-20 18:35:55,232 (client:357) INFO: {'Role': 'Client #35', 'Round': 3, 'Results_raw': {'train_loss': 72.137806, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.60689}}
+2025-10-20 18:35:55,287 (client:357) INFO: {'Role': 'Client #7', 'Round': 3, 'Results_raw': {'train_loss': 75.720451, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.786023}}
+2025-10-20 18:35:55,338 (client:357) INFO: {'Role': 'Client #9', 'Round': 3, 'Results_raw': {'train_loss': 73.75762, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.687881}}
+2025-10-20 18:35:55,353 (client:357) INFO: {'Role': 'Client #17', 'Round': 3, 'Results_raw': {'train_loss': 67.712929, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.385646}}
+2025-10-20 18:35:55,372 (client:357) INFO: {'Role': 'Client #16', 'Round': 3, 'Results_raw': {'train_loss': 80.695117, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.034756}}
+2025-10-20 18:35:55,392 (client:357) INFO: {'Role': 'Client #37', 'Round': 3, 'Results_raw': {'train_loss': 71.068597, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.55343}}
+2025-10-20 18:35:55,409 (client:357) INFO: {'Role': 'Client #47', 'Round': 3, 'Results_raw': {'train_loss': 73.713951, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.685698}}
+2025-10-20 18:35:55,429 (client:357) INFO: {'Role': 'Client #27', 'Round': 3, 'Results_raw': {'train_loss': 77.689581, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.884479}}
+2025-10-20 18:35:55,451 (client:357) INFO: {'Role': 'Client #29', 'Round': 3, 'Results_raw': {'train_loss': 74.841733, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.742087}}
+2025-10-20 18:35:55,469 (client:357) INFO: {'Role': 'Client #22', 'Round': 3, 'Results_raw': {'train_loss': 70.550385, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.527519}}
+2025-10-20 18:35:55,489 (client:357) INFO: {'Role': 'Client #30', 'Round': 3, 'Results_raw': {'train_loss': 84.291599, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.21458}}
+2025-10-20 18:35:55,508 (client:357) INFO: {'Role': 'Client #21', 'Round': 3, 'Results_raw': {'train_loss': 70.008137, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.500407}}
+2025-10-20 18:35:55,531 (client:357) INFO: {'Role': 'Client #11', 'Round': 3, 'Results_raw': {'train_loss': 81.813593, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.09068}}
+2025-10-20 18:35:55,547 (client:357) INFO: {'Role': 'Client #20', 'Round': 3, 'Results_raw': {'train_loss': 72.903976, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.645199}}
+2025-10-20 18:35:55,569 (client:357) INFO: {'Role': 'Client #12', 'Round': 3, 'Results_raw': {'train_loss': 78.202763, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.910138}}
+2025-10-20 18:35:55,852 (server:351) INFO: ----------- Starting a new training round (Round #4) -------------
+2025-10-20 18:35:55,874 (client:357) INFO: {'Role': 'Client #23', 'Round': 4, 'Results_raw': {'train_loss': 76.545031, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.827252}}
+2025-10-20 18:35:55,895 (client:357) INFO: {'Role': 'Client #21', 'Round': 4, 'Results_raw': {'train_loss': 75.793643, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.789682}}
+2025-10-20 18:35:55,914 (client:357) INFO: {'Role': 'Client #40', 'Round': 4, 'Results_raw': {'train_loss': 78.499179, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.924959}}
+2025-10-20 18:35:55,937 (client:357) INFO: {'Role': 'Client #26', 'Round': 4, 'Results_raw': {'train_loss': 78.266976, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.913349}}
+2025-10-20 18:35:55,960 (client:357) INFO: {'Role': 'Client #47', 'Round': 4, 'Results_raw': {'train_loss': 74.997222, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.749861}}
+2025-10-20 18:35:55,981 (client:357) INFO: {'Role': 'Client #12', 'Round': 4, 'Results_raw': {'train_loss': 68.630617, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.431531}}
+2025-10-20 18:35:56,000 (client:357) INFO: {'Role': 'Client #20', 'Round': 4, 'Results_raw': {'train_loss': 78.215346, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.910767}}
+2025-10-20 18:35:56,021 (client:357) INFO: {'Role': 'Client #13', 'Round': 4, 'Results_raw': {'train_loss': 69.591992, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.4796}}
+2025-10-20 18:35:56,040 (client:357) INFO: {'Role': 'Client #43', 'Round': 4, 'Results_raw': {'train_loss': 67.169306, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.358465}}
+2025-10-20 18:35:56,060 (client:357) INFO: {'Role': 'Client #15', 'Round': 4, 'Results_raw': {'train_loss': 66.589298, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.329465}}
+2025-10-20 18:35:56,081 (client:357) INFO: {'Role': 'Client #27', 'Round': 4, 'Results_raw': {'train_loss': 72.133706, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.606685}}
+2025-10-20 18:35:56,100 (client:357) INFO: {'Role': 'Client #39', 'Round': 4, 'Results_raw': {'train_loss': 67.377846, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.368892}}
+2025-10-20 18:35:56,121 (client:357) INFO: {'Role': 'Client #17', 'Round': 4, 'Results_raw': {'train_loss': 70.980885, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.549044}}
+2025-10-20 18:35:56,144 (client:357) INFO: {'Role': 'Client #25', 'Round': 4, 'Results_raw': {'train_loss': 71.90567, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.595284}}
+2025-10-20 18:35:56,196 (client:357) INFO: {'Role': 'Client #7', 'Round': 4, 'Results_raw': {'train_loss': 76.259856, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.812993}}
+2025-10-20 18:35:56,245 (client:357) INFO: {'Role': 'Client #8', 'Round': 4, 'Results_raw': {'train_loss': 76.701748, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.835087}}
+2025-10-20 18:35:56,293 (client:357) INFO: {'Role': 'Client #2', 'Round': 4, 'Results_raw': {'train_loss': 73.667409, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.68337}}
+2025-10-20 18:35:56,313 (client:357) INFO: {'Role': 'Client #19', 'Round': 4, 'Results_raw': {'train_loss': 79.272487, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.963624}}
+2025-10-20 18:35:56,333 (client:357) INFO: {'Role': 'Client #42', 'Round': 4, 'Results_raw': {'train_loss': 76.488299, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.824415}}
+2025-10-20 18:35:56,386 (client:357) INFO: {'Role': 'Client #1', 'Round': 4, 'Results_raw': {'train_loss': 76.279018, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.813951}}
+2025-10-20 18:35:56,672 (server:351) INFO: ----------- Starting a new training round (Round #5) -------------
+2025-10-20 18:35:56,709 (client:357) INFO: {'Role': 'Client #43', 'Round': 5, 'Results_raw': {'train_loss': 66.657913, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.332896}}
+2025-10-20 18:35:56,730 (client:357) INFO: {'Role': 'Client #32', 'Round': 5, 'Results_raw': {'train_loss': 82.606235, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 4.130312}}
+2025-10-20 18:35:56,752 (client:357) INFO: {'Role': 'Client #14', 'Round': 5, 'Results_raw': {'train_loss': 66.871114, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.343556}}
+2025-10-20 18:35:56,772 (client:357) INFO: {'Role': 'Client #23', 'Round': 5, 'Results_raw': {'train_loss': 72.017887, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.600894}}
+2025-10-20 18:35:56,790 (client:357) INFO: {'Role': 'Client #30', 'Round': 5, 'Results_raw': {'train_loss': 66.923978, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.346199}}
+2025-10-20 18:35:56,808 (client:357) INFO: {'Role': 'Client #33', 'Round': 5, 'Results_raw': {'train_loss': 74.472439, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.723622}}
+2025-10-20 18:35:56,827 (client:357) INFO: {'Role': 'Client #13', 'Round': 5, 'Results_raw': {'train_loss': 74.513454, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.725673}}
+2025-10-20 18:35:56,846 (client:357) INFO: {'Role': 'Client #44', 'Round': 5, 'Results_raw': {'train_loss': 78.171592, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.90858}}
+2025-10-20 18:35:56,862 (client:357) INFO: {'Role': 'Client #50', 'Round': 5, 'Results_raw': {'train_loss': 76.512375, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.825619}}
+2025-10-20 18:35:56,914 (client:357) INFO: {'Role': 'Client #10', 'Round': 5, 'Results_raw': {'train_loss': 76.314614, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.815731}}
+2025-10-20 18:35:56,964 (client:357) INFO: {'Role': 'Client #6', 'Round': 5, 'Results_raw': {'train_loss': 77.99588, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.899794}}
+2025-10-20 18:35:56,984 (client:357) INFO: {'Role': 'Client #34', 'Round': 5, 'Results_raw': {'train_loss': 66.636474, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.331824}}
+2025-10-20 18:35:57,005 (client:357) INFO: {'Role': 'Client #31', 'Round': 5, 'Results_raw': {'train_loss': 73.828783, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.691439}}
+2025-10-20 18:35:57,023 (client:357) INFO: {'Role': 'Client #28', 'Round': 5, 'Results_raw': {'train_loss': 71.493006, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.57465}}
+2025-10-20 18:35:57,075 (client:357) INFO: {'Role': 'Client #9', 'Round': 5, 'Results_raw': {'train_loss': 74.890368, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.744518}}
+2025-10-20 18:35:57,094 (client:357) INFO: {'Role': 'Client #39', 'Round': 5, 'Results_raw': {'train_loss': 70.093701, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.504685}}
+2025-10-20 18:35:57,146 (client:357) INFO: {'Role': 'Client #7', 'Round': 5, 'Results_raw': {'train_loss': 78.274317, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.913716}}
+2025-10-20 18:35:57,195 (client:357) INFO: {'Role': 'Client #4', 'Round': 5, 'Results_raw': {'train_loss': 77.245629, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.862281}}
+2025-10-20 18:35:57,216 (client:357) INFO: {'Role': 'Client #48', 'Round': 5, 'Results_raw': {'train_loss': 72.182605, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.60913}}
+2025-10-20 18:35:57,237 (client:357) INFO: {'Role': 'Client #46', 'Round': 5, 'Results_raw': {'train_loss': 67.904778, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.395239}}
+2025-10-20 18:35:57,519 (server:351) INFO: ----------- Starting a new training round (Round #6) -------------
+2025-10-20 18:35:57,542 (client:357) INFO: {'Role': 'Client #19', 'Round': 6, 'Results_raw': {'train_loss': 67.335043, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.366752}}
+2025-10-20 18:35:57,559 (client:357) INFO: {'Role': 'Client #12', 'Round': 6, 'Results_raw': {'train_loss': 81.97428, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.098714}}
+2025-10-20 18:35:57,582 (client:357) INFO: {'Role': 'Client #24', 'Round': 6, 'Results_raw': {'train_loss': 78.473721, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.923686}}
+2025-10-20 18:35:57,636 (client:357) INFO: {'Role': 'Client #9', 'Round': 6, 'Results_raw': {'train_loss': 74.463553, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.723178}}
+2025-10-20 18:35:57,653 (client:357) INFO: {'Role': 'Client #25', 'Round': 6, 'Results_raw': {'train_loss': 78.068352, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.903418}}
+2025-10-20 18:35:57,706 (client:357) INFO: {'Role': 'Client #5', 'Round': 6, 'Results_raw': {'train_loss': 78.933532, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.946677}}
+2025-10-20 18:35:57,724 (client:357) INFO: {'Role': 'Client #28', 'Round': 6, 'Results_raw': {'train_loss': 60.12387, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.006194}}
+2025-10-20 18:35:57,741 (client:357) INFO: {'Role': 'Client #21', 'Round': 6, 'Results_raw': {'train_loss': 82.213547, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.110677}}
+2025-10-20 18:35:57,791 (client:357) INFO: {'Role': 'Client #4', 'Round': 6, 'Results_raw': {'train_loss': 77.141361, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.857068}}
+2025-10-20 18:35:57,807 (client:357) INFO: {'Role': 'Client #16', 'Round': 6, 'Results_raw': {'train_loss': 81.50394, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.075197}}
+2025-10-20 18:35:57,829 (client:357) INFO: {'Role': 'Client #48', 'Round': 6, 'Results_raw': {'train_loss': 65.065849, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.253292}}
+2025-10-20 18:35:57,883 (client:357) INFO: {'Role': 'Client #10', 'Round': 6, 'Results_raw': {'train_loss': 75.687962, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.784398}}
+2025-10-20 18:35:57,902 (client:357) INFO: {'Role': 'Client #32', 'Round': 6, 'Results_raw': {'train_loss': 69.643042, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.482152}}
+2025-10-20 18:35:57,920 (client:357) INFO: {'Role': 'Client #43', 'Round': 6, 'Results_raw': {'train_loss': 76.143436, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.807172}}
+2025-10-20 18:35:57,939 (client:357) INFO: {'Role': 'Client #44', 'Round': 6, 'Results_raw': {'train_loss': 72.947247, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.647362}}
+2025-10-20 18:35:57,957 (client:357) INFO: {'Role': 'Client #23', 'Round': 6, 'Results_raw': {'train_loss': 82.691178, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.134559}}
+2025-10-20 18:35:57,977 (client:357) INFO: {'Role': 'Client #49', 'Round': 6, 'Results_raw': {'train_loss': 80.367634, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.018382}}
+2025-10-20 18:35:57,997 (client:357) INFO: {'Role': 'Client #46', 'Round': 6, 'Results_raw': {'train_loss': 69.083149, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.454157}}
+2025-10-20 18:35:58,019 (client:357) INFO: {'Role': 'Client #29', 'Round': 6, 'Results_raw': {'train_loss': 68.696103, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.434805}}
+2025-10-20 18:35:58,074 (client:357) INFO: {'Role': 'Client #1', 'Round': 6, 'Results_raw': {'train_loss': 80.842826, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 4.042141}}
+2025-10-20 18:35:58,361 (server:351) INFO: ----------- Starting a new training round (Round #7) -------------
+2025-10-20 18:35:58,383 (client:357) INFO: {'Role': 'Client #12', 'Round': 7, 'Results_raw': {'train_loss': 71.705098, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.585255}}
+2025-10-20 18:35:58,402 (client:357) INFO: {'Role': 'Client #44', 'Round': 7, 'Results_raw': {'train_loss': 71.791809, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.58959}}
+2025-10-20 18:35:58,454 (client:357) INFO: {'Role': 'Client #5', 'Round': 7, 'Results_raw': {'train_loss': 75.718153, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.785908}}
+2025-10-20 18:35:58,471 (client:357) INFO: {'Role': 'Client #18', 'Round': 7, 'Results_raw': {'train_loss': 75.654652, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.782733}}
+2025-10-20 18:35:58,489 (client:357) INFO: {'Role': 'Client #47', 'Round': 7, 'Results_raw': {'train_loss': 69.197488, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.459874}}
+2025-10-20 18:35:58,509 (client:357) INFO: {'Role': 'Client #25', 'Round': 7, 'Results_raw': {'train_loss': 73.245211, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.662261}}
+2025-10-20 18:35:58,563 (client:357) INFO: {'Role': 'Client #6', 'Round': 7, 'Results_raw': {'train_loss': 70.546544, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.527327}}
+2025-10-20 18:35:58,581 (client:357) INFO: {'Role': 'Client #29', 'Round': 7, 'Results_raw': {'train_loss': 66.976452, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.348823}}
+2025-10-20 18:35:58,601 (client:357) INFO: {'Role': 'Client #21', 'Round': 7, 'Results_raw': {'train_loss': 87.50555, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.375278}}
+2025-10-20 18:35:58,622 (client:357) INFO: {'Role': 'Client #22', 'Round': 7, 'Results_raw': {'train_loss': 66.019328, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.300966}}
+2025-10-20 18:35:58,677 (client:357) INFO: {'Role': 'Client #2', 'Round': 7, 'Results_raw': {'train_loss': 75.766985, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.788349}}
+2025-10-20 18:35:58,694 (client:357) INFO: {'Role': 'Client #13', 'Round': 7, 'Results_raw': {'train_loss': 69.98157, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.499079}}
+2025-10-20 18:35:58,744 (client:357) INFO: {'Role': 'Client #9', 'Round': 7, 'Results_raw': {'train_loss': 75.436563, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.771828}}
+2025-10-20 18:35:58,762 (client:357) INFO: {'Role': 'Client #40', 'Round': 7, 'Results_raw': {'train_loss': 67.750192, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.38751}}
+2025-10-20 18:35:58,781 (client:357) INFO: {'Role': 'Client #43', 'Round': 7, 'Results_raw': {'train_loss': 76.382887, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.819144}}
+2025-10-20 18:35:58,833 (client:357) INFO: {'Role': 'Client #8', 'Round': 7, 'Results_raw': {'train_loss': 67.578359, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.378918}}
+2025-10-20 18:35:58,852 (client:357) INFO: {'Role': 'Client #37', 'Round': 7, 'Results_raw': {'train_loss': 65.029438, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.251472}}
+2025-10-20 18:35:58,869 (client:357) INFO: {'Role': 'Client #49', 'Round': 7, 'Results_raw': {'train_loss': 69.361084, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.468054}}
+2025-10-20 18:35:58,889 (client:357) INFO: {'Role': 'Client #23', 'Round': 7, 'Results_raw': {'train_loss': 71.723282, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.586164}}
+2025-10-20 18:35:58,909 (client:357) INFO: {'Role': 'Client #42', 'Round': 7, 'Results_raw': {'train_loss': 66.213548, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.310677}}
+2025-10-20 18:35:59,195 (server:351) INFO: ----------- Starting a new training round (Round #8) -------------
+2025-10-20 18:35:59,252 (client:357) INFO: {'Role': 'Client #5', 'Round': 8, 'Results_raw': {'train_loss': 76.090584, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.804529}}
+2025-10-20 18:35:59,271 (client:357) INFO: {'Role': 'Client #34', 'Round': 8, 'Results_raw': {'train_loss': 73.465943, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.673297}}
+2025-10-20 18:35:59,289 (client:357) INFO: {'Role': 'Client #40', 'Round': 8, 'Results_raw': {'train_loss': 77.298703, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.864935}}
+2025-10-20 18:35:59,309 (client:357) INFO: {'Role': 'Client #45', 'Round': 8, 'Results_raw': {'train_loss': 72.249501, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.612475}}
+2025-10-20 18:35:59,330 (client:357) INFO: {'Role': 'Client #12', 'Round': 8, 'Results_raw': {'train_loss': 81.107259, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.055363}}
+2025-10-20 18:35:59,350 (client:357) INFO: {'Role': 'Client #37', 'Round': 8, 'Results_raw': {'train_loss': 77.683425, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.884171}}
+2025-10-20 18:35:59,370 (client:357) INFO: {'Role': 'Client #27', 'Round': 8, 'Results_raw': {'train_loss': 62.951493, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.147575}}
+2025-10-20 18:35:59,390 (client:357) INFO: {'Role': 'Client #14', 'Round': 8, 'Results_raw': {'train_loss': 77.716169, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.885808}}
+2025-10-20 18:35:59,410 (client:357) INFO: {'Role': 'Client #30', 'Round': 8, 'Results_raw': {'train_loss': 62.52423, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.126212}}
+2025-10-20 18:35:59,430 (client:357) INFO: {'Role': 'Client #38', 'Round': 8, 'Results_raw': {'train_loss': 65.767875, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.288394}}
+2025-10-20 18:35:59,450 (client:357) INFO: {'Role': 'Client #17', 'Round': 8, 'Results_raw': {'train_loss': 69.176865, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.458843}}
+2025-10-20 18:35:59,470 (client:357) INFO: {'Role': 'Client #41', 'Round': 8, 'Results_raw': {'train_loss': 73.708255, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.685413}}
+2025-10-20 18:35:59,494 (client:357) INFO: {'Role': 'Client #16', 'Round': 8, 'Results_raw': {'train_loss': 81.194043, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.059702}}
+2025-10-20 18:35:59,512 (client:357) INFO: {'Role': 'Client #47', 'Round': 8, 'Results_raw': {'train_loss': 77.884049, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.894202}}
+2025-10-20 18:35:59,567 (client:357) INFO: {'Role': 'Client #7', 'Round': 8, 'Results_raw': {'train_loss': 76.079867, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.803993}}
+2025-10-20 18:35:59,584 (client:357) INFO: {'Role': 'Client #24', 'Round': 8, 'Results_raw': {'train_loss': 72.346928, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.617346}}
+2025-10-20 18:35:59,604 (client:357) INFO: {'Role': 'Client #28', 'Round': 8, 'Results_raw': {'train_loss': 59.816508, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 2.990825}}
+2025-10-20 18:35:59,622 (client:357) INFO: {'Role': 'Client #18', 'Round': 8, 'Results_raw': {'train_loss': 68.370719, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.418536}}
+2025-10-20 18:35:59,675 (client:357) INFO: {'Role': 'Client #8', 'Round': 8, 'Results_raw': {'train_loss': 73.335466, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.666773}}
+2025-10-20 18:35:59,693 (client:357) INFO: {'Role': 'Client #35', 'Round': 8, 'Results_raw': {'train_loss': 66.505063, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.325253}}
+2025-10-20 18:35:59,983 (server:351) INFO: ----------- Starting a new training round (Round #9) -------------
+2025-10-20 18:36:00,007 (client:357) INFO: {'Role': 'Client #23', 'Round': 9, 'Results_raw': {'train_loss': 71.574543, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.578727}}
+2025-10-20 18:36:00,024 (client:357) INFO: {'Role': 'Client #45', 'Round': 9, 'Results_raw': {'train_loss': 69.367073, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.468354}}
+2025-10-20 18:36:00,077 (client:357) INFO: {'Role': 'Client #6', 'Round': 9, 'Results_raw': {'train_loss': 77.888513, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.894426}}
+2025-10-20 18:36:00,096 (client:357) INFO: {'Role': 'Client #28', 'Round': 9, 'Results_raw': {'train_loss': 69.675591, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.48378}}
+2025-10-20 18:36:00,117 (client:357) INFO: {'Role': 'Client #44', 'Round': 9, 'Results_raw': {'train_loss': 73.020208, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.3, 'train_avg_loss': 3.65101}}
+2025-10-20 18:36:00,137 (client:357) INFO: {'Role': 'Client #12', 'Round': 9, 'Results_raw': {'train_loss': 74.780049, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.739002}}
+2025-10-20 18:36:00,154 (client:357) INFO: {'Role': 'Client #15', 'Round': 9, 'Results_raw': {'train_loss': 78.165221, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.908261}}
+2025-10-20 18:36:00,172 (client:357) INFO: {'Role': 'Client #26', 'Round': 9, 'Results_raw': {'train_loss': 70.588698, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.529435}}
+2025-10-20 18:36:00,191 (client:357) INFO: {'Role': 'Client #35', 'Round': 9, 'Results_raw': {'train_loss': 79.606769, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.980338}}
+2025-10-20 18:36:00,210 (client:357) INFO: {'Role': 'Client #37', 'Round': 9, 'Results_raw': {'train_loss': 65.966544, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.298327}}
+2025-10-20 18:36:00,230 (client:357) INFO: {'Role': 'Client #33', 'Round': 9, 'Results_raw': {'train_loss': 75.570602, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.77853}}
+2025-10-20 18:36:00,249 (client:357) INFO: {'Role': 'Client #36', 'Round': 9, 'Results_raw': {'train_loss': 75.047755, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.752388}}
+2025-10-20 18:36:00,270 (client:357) INFO: {'Role': 'Client #32', 'Round': 9, 'Results_raw': {'train_loss': 65.716698, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.285835}}
+2025-10-20 18:36:00,324 (client:357) INFO: {'Role': 'Client #5', 'Round': 9, 'Results_raw': {'train_loss': 80.899076, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.044954}}
+2025-10-20 18:36:00,375 (client:357) INFO: {'Role': 'Client #2', 'Round': 9, 'Results_raw': {'train_loss': 72.993817, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.649691}}
+2025-10-20 18:36:00,396 (client:357) INFO: {'Role': 'Client #24', 'Round': 9, 'Results_raw': {'train_loss': 79.999623, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.999981}}
+2025-10-20 18:36:00,413 (client:357) INFO: {'Role': 'Client #39', 'Round': 9, 'Results_raw': {'train_loss': 71.238024, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.561901}}
+2025-10-20 18:36:00,433 (client:357) INFO: {'Role': 'Client #46', 'Round': 9, 'Results_raw': {'train_loss': 62.767572, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.138379}}
+2025-10-20 18:36:00,486 (client:357) INFO: {'Role': 'Client #10', 'Round': 9, 'Results_raw': {'train_loss': 72.715492, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.635775}}
+2025-10-20 18:36:00,504 (client:357) INFO: {'Role': 'Client #38', 'Round': 9, 'Results_raw': {'train_loss': 74.38267, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.719133}}
+2025-10-20 18:36:00,790 (server:351) INFO: ----------- Starting a new training round (Round #10) -------------
+2025-10-20 18:36:00,813 (client:357) INFO: {'Role': 'Client #23', 'Round': 10, 'Results_raw': {'train_loss': 74.158516, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.707926}}
+2025-10-20 18:36:00,832 (client:357) INFO: {'Role': 'Client #22', 'Round': 10, 'Results_raw': {'train_loss': 69.357069, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.467853}}
+2025-10-20 18:36:00,884 (client:357) INFO: {'Role': 'Client #3', 'Round': 10, 'Results_raw': {'train_loss': 78.11959, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.90598}}
+2025-10-20 18:36:00,903 (client:357) INFO: {'Role': 'Client #12', 'Round': 10, 'Results_raw': {'train_loss': 79.898715, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.994936}}
+2025-10-20 18:36:00,919 (client:357) INFO: {'Role': 'Client #26', 'Round': 10, 'Results_raw': {'train_loss': 75.946925, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.797346}}
+2025-10-20 18:36:00,939 (client:357) INFO: {'Role': 'Client #45', 'Round': 10, 'Results_raw': {'train_loss': 69.114764, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.455738}}
+2025-10-20 18:36:00,956 (client:357) INFO: {'Role': 'Client #20', 'Round': 10, 'Results_raw': {'train_loss': 66.467435, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.323372}}
+2025-10-20 18:36:00,974 (client:357) INFO: {'Role': 'Client #41', 'Round': 10, 'Results_raw': {'train_loss': 70.042305, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.502115}}
+2025-10-20 18:36:01,027 (client:357) INFO: {'Role': 'Client #6', 'Round': 10, 'Results_raw': {'train_loss': 75.155535, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.757777}}
+2025-10-20 18:36:01,044 (client:357) INFO: {'Role': 'Client #19', 'Round': 10, 'Results_raw': {'train_loss': 69.317229, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.465861}}
+2025-10-20 18:36:01,065 (client:357) INFO: {'Role': 'Client #32', 'Round': 10, 'Results_raw': {'train_loss': 74.538801, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.72694}}
+2025-10-20 18:36:01,086 (client:357) INFO: {'Role': 'Client #33', 'Round': 10, 'Results_raw': {'train_loss': 67.81013, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.390507}}
+2025-10-20 18:36:01,104 (client:357) INFO: {'Role': 'Client #28', 'Round': 10, 'Results_raw': {'train_loss': 68.051505, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.402575}}
+2025-10-20 18:36:01,125 (client:357) INFO: {'Role': 'Client #24', 'Round': 10, 'Results_raw': {'train_loss': 65.669594, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.28348}}
+2025-10-20 18:36:01,144 (client:357) INFO: {'Role': 'Client #49', 'Round': 10, 'Results_raw': {'train_loss': 54.12003, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.3, 'train_avg_loss': 2.706002}}
+2025-10-20 18:36:01,195 (client:357) INFO: {'Role': 'Client #7', 'Round': 10, 'Results_raw': {'train_loss': 85.448093, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.272405}}
+2025-10-20 18:36:01,246 (client:357) INFO: {'Role': 'Client #1', 'Round': 10, 'Results_raw': {'train_loss': 81.897893, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.094895}}
+2025-10-20 18:36:01,264 (client:357) INFO: {'Role': 'Client #18', 'Round': 10, 'Results_raw': {'train_loss': 75.810559, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.790528}}
+2025-10-20 18:36:01,283 (client:357) INFO: {'Role': 'Client #50', 'Round': 10, 'Results_raw': {'train_loss': 74.087574, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.704379}}
+2025-10-20 18:36:01,334 (client:357) INFO: {'Role': 'Client #9', 'Round': 10, 'Results_raw': {'train_loss': 72.663095, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.633155}}
+2025-10-20 18:36:01,619 (server:351) INFO: ----------- Starting a new training round (Round #11) -------------
+2025-10-20 18:36:01,642 (client:357) INFO: {'Role': 'Client #22', 'Round': 11, 'Results_raw': {'train_loss': 62.54837, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.127419}}
+2025-10-20 18:36:01,661 (client:357) INFO: {'Role': 'Client #25', 'Round': 11, 'Results_raw': {'train_loss': 76.378427, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.818921}}
+2025-10-20 18:36:01,679 (client:357) INFO: {'Role': 'Client #11', 'Round': 11, 'Results_raw': {'train_loss': 74.438934, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.721947}}
+2025-10-20 18:36:01,698 (client:357) INFO: {'Role': 'Client #13', 'Round': 11, 'Results_raw': {'train_loss': 66.400943, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.320047}}
+2025-10-20 18:36:01,752 (client:357) INFO: {'Role': 'Client #2', 'Round': 11, 'Results_raw': {'train_loss': 76.71243, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.835621}}
+2025-10-20 18:36:01,773 (client:357) INFO: {'Role': 'Client #42', 'Round': 11, 'Results_raw': {'train_loss': 69.961455, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.498073}}
+2025-10-20 18:36:01,792 (client:357) INFO: {'Role': 'Client #12', 'Round': 11, 'Results_raw': {'train_loss': 65.992823, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.299641}}
+2025-10-20 18:36:01,812 (client:357) INFO: {'Role': 'Client #16', 'Round': 11, 'Results_raw': {'train_loss': 75.83374, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.791687}}
+2025-10-20 18:36:01,830 (client:357) INFO: {'Role': 'Client #48', 'Round': 11, 'Results_raw': {'train_loss': 69.433272, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.471664}}
+2025-10-20 18:36:01,849 (client:357) INFO: {'Role': 'Client #19', 'Round': 11, 'Results_raw': {'train_loss': 67.127838, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.356392}}
+2025-10-20 18:36:01,903 (client:357) INFO: {'Role': 'Client #4', 'Round': 11, 'Results_raw': {'train_loss': 78.90204, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.945102}}
+2025-10-20 18:36:01,920 (client:357) INFO: {'Role': 'Client #47', 'Round': 11, 'Results_raw': {'train_loss': 60.508146, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.025407}}
+2025-10-20 18:36:01,939 (client:357) INFO: {'Role': 'Client #35', 'Round': 11, 'Results_raw': {'train_loss': 77.857184, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.892859}}
+2025-10-20 18:36:01,958 (client:357) INFO: {'Role': 'Client #37', 'Round': 11, 'Results_raw': {'train_loss': 67.59367, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.379683}}
+2025-10-20 18:36:01,979 (client:357) INFO: {'Role': 'Client #31', 'Round': 11, 'Results_raw': {'train_loss': 76.190174, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.809509}}
+2025-10-20 18:36:02,001 (client:357) INFO: {'Role': 'Client #46', 'Round': 11, 'Results_raw': {'train_loss': 58.586953, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 2.929348}}
+2025-10-20 18:36:02,021 (client:357) INFO: {'Role': 'Client #15', 'Round': 11, 'Results_raw': {'train_loss': 63.052478, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.152624}}
+2025-10-20 18:36:02,074 (client:357) INFO: {'Role': 'Client #8', 'Round': 11, 'Results_raw': {'train_loss': 73.927596, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.69638}}
+2025-10-20 18:36:02,094 (client:357) INFO: {'Role': 'Client #49', 'Round': 11, 'Results_raw': {'train_loss': 63.588061, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.179403}}
+2025-10-20 18:36:02,144 (client:357) INFO: {'Role': 'Client #10', 'Round': 11, 'Results_raw': {'train_loss': 75.789227, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.789461}}
+2025-10-20 18:36:02,434 (server:351) INFO: ----------- Starting a new training round (Round #12) -------------
+2025-10-20 18:36:02,457 (client:357) INFO: {'Role': 'Client #21', 'Round': 12, 'Results_raw': {'train_loss': 68.819196, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.44096}}
+2025-10-20 18:36:02,475 (client:357) INFO: {'Role': 'Client #29', 'Round': 12, 'Results_raw': {'train_loss': 81.119459, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.055973}}
+2025-10-20 18:36:02,492 (client:357) INFO: {'Role': 'Client #48', 'Round': 12, 'Results_raw': {'train_loss': 70.260391, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.51302}}
+2025-10-20 18:36:02,512 (client:357) INFO: {'Role': 'Client #34', 'Round': 12, 'Results_raw': {'train_loss': 64.861667, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.243083}}
+2025-10-20 18:36:02,563 (client:357) INFO: {'Role': 'Client #2', 'Round': 12, 'Results_raw': {'train_loss': 70.413799, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.52069}}
+2025-10-20 18:36:02,584 (client:357) INFO: {'Role': 'Client #11', 'Round': 12, 'Results_raw': {'train_loss': 71.891513, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.594576}}
+2025-10-20 18:36:02,602 (client:357) INFO: {'Role': 'Client #32', 'Round': 12, 'Results_raw': {'train_loss': 70.823839, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.541192}}
+2025-10-20 18:36:02,625 (client:357) INFO: {'Role': 'Client #37', 'Round': 12, 'Results_raw': {'train_loss': 65.075703, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.253785}}
+2025-10-20 18:36:02,644 (client:357) INFO: {'Role': 'Client #38', 'Round': 12, 'Results_raw': {'train_loss': 64.118364, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.205918}}
+2025-10-20 18:36:02,662 (client:357) INFO: {'Role': 'Client #19', 'Round': 12, 'Results_raw': {'train_loss': 66.55288, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.327644}}
+2025-10-20 18:36:02,682 (client:357) INFO: {'Role': 'Client #27', 'Round': 12, 'Results_raw': {'train_loss': 69.263313, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.463166}}
+2025-10-20 18:36:02,699 (client:357) INFO: {'Role': 'Client #14', 'Round': 12, 'Results_raw': {'train_loss': 63.767045, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.188352}}
+2025-10-20 18:36:02,720 (client:357) INFO: {'Role': 'Client #12', 'Round': 12, 'Results_raw': {'train_loss': 68.845093, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.442255}}
+2025-10-20 18:36:02,740 (client:357) INFO: {'Role': 'Client #33', 'Round': 12, 'Results_raw': {'train_loss': 76.66873, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.833436}}
+2025-10-20 18:36:02,760 (client:357) INFO: {'Role': 'Client #39', 'Round': 12, 'Results_raw': {'train_loss': 74.402814, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.720141}}
+2025-10-20 18:36:02,811 (client:357) INFO: {'Role': 'Client #3', 'Round': 12, 'Results_raw': {'train_loss': 78.017297, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.900865}}
+2025-10-20 18:36:02,832 (client:357) INFO: {'Role': 'Client #45', 'Round': 12, 'Results_raw': {'train_loss': 56.538548, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 2.826927}}
+2025-10-20 18:36:02,852 (client:357) INFO: {'Role': 'Client #17', 'Round': 12, 'Results_raw': {'train_loss': 76.971765, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.848588}}
+2025-10-20 18:36:02,872 (client:357) INFO: {'Role': 'Client #16', 'Round': 12, 'Results_raw': {'train_loss': 72.199287, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.609964}}
+2025-10-20 18:36:02,924 (client:357) INFO: {'Role': 'Client #9', 'Round': 12, 'Results_raw': {'train_loss': 71.154828, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.557741}}
+2025-10-20 18:36:03,207 (server:351) INFO: ----------- Starting a new training round (Round #13) -------------
+2025-10-20 18:36:03,232 (client:357) INFO: {'Role': 'Client #38', 'Round': 13, 'Results_raw': {'train_loss': 61.902974, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.095149}}
+2025-10-20 18:36:03,253 (client:357) INFO: {'Role': 'Client #37', 'Round': 13, 'Results_raw': {'train_loss': 75.216346, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.760817}}
+2025-10-20 18:36:03,272 (client:357) INFO: {'Role': 'Client #50', 'Round': 13, 'Results_raw': {'train_loss': 71.133153, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.556658}}
+2025-10-20 18:36:03,292 (client:357) INFO: {'Role': 'Client #42', 'Round': 13, 'Results_raw': {'train_loss': 78.723259, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.936163}}
+2025-10-20 18:36:03,310 (client:357) INFO: {'Role': 'Client #49', 'Round': 13, 'Results_raw': {'train_loss': 69.677184, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.483859}}
+2025-10-20 18:36:03,332 (client:357) INFO: {'Role': 'Client #46', 'Round': 13, 'Results_raw': {'train_loss': 73.363445, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.668172}}
+2025-10-20 18:36:03,383 (client:357) INFO: {'Role': 'Client #7', 'Round': 13, 'Results_raw': {'train_loss': 76.369205, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.81846}}
+2025-10-20 18:36:03,400 (client:357) INFO: {'Role': 'Client #18', 'Round': 13, 'Results_raw': {'train_loss': 70.479765, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.523988}}
+2025-10-20 18:36:03,452 (client:357) INFO: {'Role': 'Client #9', 'Round': 13, 'Results_raw': {'train_loss': 81.226449, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 4.061322}}
+2025-10-20 18:36:03,471 (client:357) INFO: {'Role': 'Client #35', 'Round': 13, 'Results_raw': {'train_loss': 70.651727, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.532586}}
+2025-10-20 18:36:03,492 (client:357) INFO: {'Role': 'Client #12', 'Round': 13, 'Results_raw': {'train_loss': 65.492852, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.274643}}
+2025-10-20 18:36:03,512 (client:357) INFO: {'Role': 'Client #44', 'Round': 13, 'Results_raw': {'train_loss': 68.634198, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.43171}}
+2025-10-20 18:36:03,532 (client:357) INFO: {'Role': 'Client #26', 'Round': 13, 'Results_raw': {'train_loss': 71.063955, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.553198}}
+2025-10-20 18:36:03,550 (client:357) INFO: {'Role': 'Client #43', 'Round': 13, 'Results_raw': {'train_loss': 81.299143, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.064957}}
+2025-10-20 18:36:03,602 (client:357) INFO: {'Role': 'Client #1', 'Round': 13, 'Results_raw': {'train_loss': 76.263673, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.813184}}
+2025-10-20 18:36:03,620 (client:357) INFO: {'Role': 'Client #33', 'Round': 13, 'Results_raw': {'train_loss': 63.416748, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.170837}}
+2025-10-20 18:36:03,640 (client:357) INFO: {'Role': 'Client #19', 'Round': 13, 'Results_raw': {'train_loss': 63.997817, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.199891}}
+2025-10-20 18:36:03,660 (client:357) INFO: {'Role': 'Client #20', 'Round': 13, 'Results_raw': {'train_loss': 76.094649, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.804732}}
+2025-10-20 18:36:03,680 (client:357) INFO: {'Role': 'Client #36', 'Round': 13, 'Results_raw': {'train_loss': 76.453161, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.822658}}
+2025-10-20 18:36:03,701 (client:357) INFO: {'Role': 'Client #31', 'Round': 13, 'Results_raw': {'train_loss': 77.236726, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.861836}}
+2025-10-20 18:36:03,995 (server:351) INFO: ----------- Starting a new training round (Round #14) -------------
+2025-10-20 18:36:04,018 (client:357) INFO: {'Role': 'Client #44', 'Round': 14, 'Results_raw': {'train_loss': 63.096015, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.154801}}
+2025-10-20 18:36:04,037 (client:357) INFO: {'Role': 'Client #41', 'Round': 14, 'Results_raw': {'train_loss': 69.098372, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.454919}}
+2025-10-20 18:36:04,057 (client:357) INFO: {'Role': 'Client #31', 'Round': 14, 'Results_raw': {'train_loss': 61.454685, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.072734}}
+2025-10-20 18:36:04,111 (client:357) INFO: {'Role': 'Client #1', 'Round': 14, 'Results_raw': {'train_loss': 72.813487, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.640674}}
+2025-10-20 18:36:04,133 (client:357) INFO: {'Role': 'Client #11', 'Round': 14, 'Results_raw': {'train_loss': 72.285147, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.614257}}
+2025-10-20 18:36:04,185 (client:357) INFO: {'Role': 'Client #3', 'Round': 14, 'Results_raw': {'train_loss': 75.301557, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.765078}}
+2025-10-20 18:36:04,235 (client:357) INFO: {'Role': 'Client #10', 'Round': 14, 'Results_raw': {'train_loss': 70.303359, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.515168}}
+2025-10-20 18:36:04,252 (client:357) INFO: {'Role': 'Client #39', 'Round': 14, 'Results_raw': {'train_loss': 71.649547, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.582477}}
+2025-10-20 18:36:04,270 (client:357) INFO: {'Role': 'Client #13', 'Round': 14, 'Results_raw': {'train_loss': 75.239661, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.761983}}
+2025-10-20 18:36:04,291 (client:357) INFO: {'Role': 'Client #50', 'Round': 14, 'Results_raw': {'train_loss': 72.339978, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.616999}}
+2025-10-20 18:36:04,343 (client:357) INFO: {'Role': 'Client #5', 'Round': 14, 'Results_raw': {'train_loss': 78.428283, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.921414}}
+2025-10-20 18:36:04,364 (client:357) INFO: {'Role': 'Client #27', 'Round': 14, 'Results_raw': {'train_loss': 73.684654, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.684233}}
+2025-10-20 18:36:04,414 (client:357) INFO: {'Role': 'Client #6', 'Round': 14, 'Results_raw': {'train_loss': 81.612148, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 4.080607}}
+2025-10-20 18:36:04,433 (client:357) INFO: {'Role': 'Client #46', 'Round': 14, 'Results_raw': {'train_loss': 62.385263, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.119263}}
+2025-10-20 18:36:04,452 (client:357) INFO: {'Role': 'Client #48', 'Round': 14, 'Results_raw': {'train_loss': 70.889862, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.544493}}
+2025-10-20 18:36:04,504 (client:357) INFO: {'Role': 'Client #7', 'Round': 14, 'Results_raw': {'train_loss': 73.635304, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.681765}}
+2025-10-20 18:36:04,522 (client:357) INFO: {'Role': 'Client #12', 'Round': 14, 'Results_raw': {'train_loss': 69.857504, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.492875}}
+2025-10-20 18:36:04,540 (client:357) INFO: {'Role': 'Client #22', 'Round': 14, 'Results_raw': {'train_loss': 68.425407, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.42127}}
+2025-10-20 18:36:04,559 (client:357) INFO: {'Role': 'Client #37', 'Round': 14, 'Results_raw': {'train_loss': 73.953457, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.697673}}
+2025-10-20 18:36:04,580 (client:357) INFO: {'Role': 'Client #25', 'Round': 14, 'Results_raw': {'train_loss': 85.226521, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 4.261326}}
+2025-10-20 18:36:04,865 (server:351) INFO: ----------- Starting a new training round (Round #15) -------------
+2025-10-20 18:36:04,892 (client:357) INFO: {'Role': 'Client #26', 'Round': 15, 'Results_raw': {'train_loss': 66.583166, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.329158}}
+2025-10-20 18:36:04,911 (client:357) INFO: {'Role': 'Client #14', 'Round': 15, 'Results_raw': {'train_loss': 63.142297, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.3, 'train_avg_loss': 3.157115}}
+2025-10-20 18:36:04,929 (client:357) INFO: {'Role': 'Client #50', 'Round': 15, 'Results_raw': {'train_loss': 63.31367, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.165684}}
+2025-10-20 18:36:04,952 (client:357) INFO: {'Role': 'Client #30', 'Round': 15, 'Results_raw': {'train_loss': 67.265108, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.363255}}
+2025-10-20 18:36:04,982 (client:357) INFO: {'Role': 'Client #31', 'Round': 15, 'Results_raw': {'train_loss': 75.715852, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.785793}}
+2025-10-20 18:36:05,016 (client:357) INFO: {'Role': 'Client #20', 'Round': 15, 'Results_raw': {'train_loss': 77.299578, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.864979}}
+2025-10-20 18:36:05,082 (client:357) INFO: {'Role': 'Client #2', 'Round': 15, 'Results_raw': {'train_loss': 72.309337, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.615467}}
+2025-10-20 18:36:05,107 (client:357) INFO: {'Role': 'Client #21', 'Round': 15, 'Results_raw': {'train_loss': 61.962655, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.098133}}
+2025-10-20 18:36:05,171 (client:357) INFO: {'Role': 'Client #9', 'Round': 15, 'Results_raw': {'train_loss': 77.00104, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.850052}}
+2025-10-20 18:36:05,190 (client:357) INFO: {'Role': 'Client #41', 'Round': 15, 'Results_raw': {'train_loss': 66.910024, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.345501}}
+2025-10-20 18:36:05,210 (client:357) INFO: {'Role': 'Client #13', 'Round': 15, 'Results_raw': {'train_loss': 66.686056, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.334303}}
+2025-10-20 18:36:05,229 (client:357) INFO: {'Role': 'Client #45', 'Round': 15, 'Results_raw': {'train_loss': 57.367165, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 2.868358}}
+2025-10-20 18:36:05,250 (client:357) INFO: {'Role': 'Client #46', 'Round': 15, 'Results_raw': {'train_loss': 71.479962, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.573998}}
+2025-10-20 18:36:05,268 (client:357) INFO: {'Role': 'Client #25', 'Round': 15, 'Results_raw': {'train_loss': 66.479073, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.323954}}
+2025-10-20 18:36:05,322 (client:357) INFO: {'Role': 'Client #8', 'Round': 15, 'Results_raw': {'train_loss': 71.62107, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.581053}}
+2025-10-20 18:36:05,372 (client:357) INFO: {'Role': 'Client #7', 'Round': 15, 'Results_raw': {'train_loss': 79.425321, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.971266}}
+2025-10-20 18:36:05,390 (client:357) INFO: {'Role': 'Client #23', 'Round': 15, 'Results_raw': {'train_loss': 76.406021, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.820301}}
+2025-10-20 18:36:05,408 (client:357) INFO: {'Role': 'Client #38', 'Round': 15, 'Results_raw': {'train_loss': 66.259933, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.312997}}
+2025-10-20 18:36:05,431 (client:357) INFO: {'Role': 'Client #40', 'Round': 15, 'Results_raw': {'train_loss': 69.359775, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.467989}}
+2025-10-20 18:36:05,449 (client:357) INFO: {'Role': 'Client #29', 'Round': 15, 'Results_raw': {'train_loss': 64.792883, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.239644}}
+2025-10-20 18:36:05,733 (server:351) INFO: ----------- Starting a new training round (Round #16) -------------
+2025-10-20 18:36:05,760 (client:357) INFO: {'Role': 'Client #44', 'Round': 16, 'Results_raw': {'train_loss': 74.202709, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.710135}}
+2025-10-20 18:36:05,781 (client:357) INFO: {'Role': 'Client #33', 'Round': 16, 'Results_raw': {'train_loss': 67.807231, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.390362}}
+2025-10-20 18:36:05,800 (client:357) INFO: {'Role': 'Client #28', 'Round': 16, 'Results_raw': {'train_loss': 74.458661, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.722933}}
+2025-10-20 18:36:05,822 (client:357) INFO: {'Role': 'Client #45', 'Round': 16, 'Results_raw': {'train_loss': 64.221635, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.211082}}
+2025-10-20 18:36:05,840 (client:357) INFO: {'Role': 'Client #42', 'Round': 16, 'Results_raw': {'train_loss': 72.740583, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.637029}}
+2025-10-20 18:36:05,860 (client:357) INFO: {'Role': 'Client #19', 'Round': 16, 'Results_raw': {'train_loss': 71.020455, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.551023}}
+2025-10-20 18:36:05,912 (client:357) INFO: {'Role': 'Client #6', 'Round': 16, 'Results_raw': {'train_loss': 76.289783, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.814489}}
+2025-10-20 18:36:05,962 (client:357) INFO: {'Role': 'Client #7', 'Round': 16, 'Results_raw': {'train_loss': 80.015395, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 4.00077}}
+2025-10-20 18:36:05,980 (client:357) INFO: {'Role': 'Client #38', 'Round': 16, 'Results_raw': {'train_loss': 67.705305, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.385265}}
+2025-10-20 18:36:05,999 (client:357) INFO: {'Role': 'Client #17', 'Round': 16, 'Results_raw': {'train_loss': 69.814875, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.490744}}
+2025-10-20 18:36:06,021 (client:357) INFO: {'Role': 'Client #15', 'Round': 16, 'Results_raw': {'train_loss': 75.852368, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.792618}}
+2025-10-20 18:36:06,040 (client:357) INFO: {'Role': 'Client #12', 'Round': 16, 'Results_raw': {'train_loss': 78.57857, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.928928}}
+2025-10-20 18:36:06,063 (client:357) INFO: {'Role': 'Client #27', 'Round': 16, 'Results_raw': {'train_loss': 74.646883, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.732344}}
+2025-10-20 18:36:06,082 (client:357) INFO: {'Role': 'Client #40', 'Round': 16, 'Results_raw': {'train_loss': 70.858488, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.542924}}
+2025-10-20 18:36:06,102 (client:357) INFO: {'Role': 'Client #24', 'Round': 16, 'Results_raw': {'train_loss': 65.692585, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.284629}}
+2025-10-20 18:36:06,122 (client:357) INFO: {'Role': 'Client #46', 'Round': 16, 'Results_raw': {'train_loss': 69.233429, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.461671}}
+2025-10-20 18:36:06,142 (client:357) INFO: {'Role': 'Client #47', 'Round': 16, 'Results_raw': {'train_loss': 64.307399, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.21537}}
+2025-10-20 18:36:06,160 (client:357) INFO: {'Role': 'Client #43', 'Round': 16, 'Results_raw': {'train_loss': 64.896505, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.244825}}
+2025-10-20 18:36:06,212 (client:357) INFO: {'Role': 'Client #4', 'Round': 16, 'Results_raw': {'train_loss': 78.654013, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.932701}}
+2025-10-20 18:36:06,262 (client:357) INFO: {'Role': 'Client #1', 'Round': 16, 'Results_raw': {'train_loss': 67.59587, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.379794}}
+2025-10-20 18:36:06,546 (server:351) INFO: ----------- Starting a new training round (Round #17) -------------
+2025-10-20 18:36:06,570 (client:357) INFO: {'Role': 'Client #16', 'Round': 17, 'Results_raw': {'train_loss': 69.6717, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.483585}}
+2025-10-20 18:36:06,590 (client:357) INFO: {'Role': 'Client #32', 'Round': 17, 'Results_raw': {'train_loss': 69.050052, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.452503}}
+2025-10-20 18:36:06,642 (client:357) INFO: {'Role': 'Client #9', 'Round': 17, 'Results_raw': {'train_loss': 72.980056, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.649003}}
+2025-10-20 18:36:06,661 (client:357) INFO: {'Role': 'Client #48', 'Round': 17, 'Results_raw': {'train_loss': 63.129845, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.156492}}
+2025-10-20 18:36:06,680 (client:357) INFO: {'Role': 'Client #24', 'Round': 17, 'Results_raw': {'train_loss': 67.326367, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.366318}}
+2025-10-20 18:36:06,699 (client:357) INFO: {'Role': 'Client #44', 'Round': 17, 'Results_raw': {'train_loss': 79.666176, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.983309}}
+2025-10-20 18:36:06,720 (client:357) INFO: {'Role': 'Client #47', 'Round': 17, 'Results_raw': {'train_loss': 74.965415, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.748271}}
+2025-10-20 18:36:06,738 (client:357) INFO: {'Role': 'Client #41', 'Round': 17, 'Results_raw': {'train_loss': 73.412933, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.670647}}
+2025-10-20 18:36:06,760 (client:357) INFO: {'Role': 'Client #20', 'Round': 17, 'Results_raw': {'train_loss': 75.346305, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.767315}}
+2025-10-20 18:36:06,812 (client:357) INFO: {'Role': 'Client #2', 'Round': 17, 'Results_raw': {'train_loss': 74.524276, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.726214}}
+2025-10-20 18:36:06,832 (client:357) INFO: {'Role': 'Client #22', 'Round': 17, 'Results_raw': {'train_loss': 64.56219, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.228109}}
+2025-10-20 18:36:06,888 (client:357) INFO: {'Role': 'Client #1', 'Round': 17, 'Results_raw': {'train_loss': 75.980659, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.799033}}
+2025-10-20 18:36:06,910 (client:357) INFO: {'Role': 'Client #15', 'Round': 17, 'Results_raw': {'train_loss': 66.342504, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.317125}}
+2025-10-20 18:36:06,930 (client:357) INFO: {'Role': 'Client #39', 'Round': 17, 'Results_raw': {'train_loss': 71.969185, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.598459}}
+2025-10-20 18:36:06,983 (client:357) INFO: {'Role': 'Client #3', 'Round': 17, 'Results_raw': {'train_loss': 76.058741, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.802937}}
+2025-10-20 18:36:07,002 (client:357) INFO: {'Role': 'Client #11', 'Round': 17, 'Results_raw': {'train_loss': 66.196811, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.309841}}
+2025-10-20 18:36:07,024 (client:357) INFO: {'Role': 'Client #27', 'Round': 17, 'Results_raw': {'train_loss': 70.674579, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.533729}}
+2025-10-20 18:36:07,042 (client:357) INFO: {'Role': 'Client #45', 'Round': 17, 'Results_raw': {'train_loss': 63.831499, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.191575}}
+2025-10-20 18:36:07,063 (client:357) INFO: {'Role': 'Client #25', 'Round': 17, 'Results_raw': {'train_loss': 74.945798, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.74729}}
+2025-10-20 18:36:07,084 (client:357) INFO: {'Role': 'Client #29', 'Round': 17, 'Results_raw': {'train_loss': 75.049093, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.752455}}
+2025-10-20 18:36:07,366 (server:351) INFO: ----------- Starting a new training round (Round #18) -------------
+2025-10-20 18:36:07,424 (client:357) INFO: {'Role': 'Client #2', 'Round': 18, 'Results_raw': {'train_loss': 77.096364, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.854818}}
+2025-10-20 18:36:07,445 (client:357) INFO: {'Role': 'Client #23', 'Round': 18, 'Results_raw': {'train_loss': 64.415028, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.220751}}
+2025-10-20 18:36:07,464 (client:357) INFO: {'Role': 'Client #47', 'Round': 18, 'Results_raw': {'train_loss': 63.805809, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.19029}}
+2025-10-20 18:36:07,483 (client:357) INFO: {'Role': 'Client #21', 'Round': 18, 'Results_raw': {'train_loss': 75.903316, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.795166}}
+2025-10-20 18:36:07,502 (client:357) INFO: {'Role': 'Client #42', 'Round': 18, 'Results_raw': {'train_loss': 78.635859, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.931793}}
+2025-10-20 18:36:07,522 (client:357) INFO: {'Role': 'Client #35', 'Round': 18, 'Results_raw': {'train_loss': 73.456275, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.672814}}
+2025-10-20 18:36:07,542 (client:357) INFO: {'Role': 'Client #49', 'Round': 18, 'Results_raw': {'train_loss': 67.320375, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.366019}}
+2025-10-20 18:36:07,594 (client:357) INFO: {'Role': 'Client #3', 'Round': 18, 'Results_raw': {'train_loss': 76.548305, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.3, 'train_avg_loss': 3.827415}}
+2025-10-20 18:36:07,614 (client:357) INFO: {'Role': 'Client #20', 'Round': 18, 'Results_raw': {'train_loss': 68.200226, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.410011}}
+2025-10-20 18:36:07,632 (client:357) INFO: {'Role': 'Client #11', 'Round': 18, 'Results_raw': {'train_loss': 69.6522, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.48261}}
+2025-10-20 18:36:07,685 (client:357) INFO: {'Role': 'Client #10', 'Round': 18, 'Results_raw': {'train_loss': 74.401009, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.72005}}
+2025-10-20 18:36:07,702 (client:357) INFO: {'Role': 'Client #32', 'Round': 18, 'Results_raw': {'train_loss': 70.069644, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.503482}}
+2025-10-20 18:36:07,720 (client:357) INFO: {'Role': 'Client #33', 'Round': 18, 'Results_raw': {'train_loss': 65.559697, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.277985}}
+2025-10-20 18:36:07,739 (client:357) INFO: {'Role': 'Client #50', 'Round': 18, 'Results_raw': {'train_loss': 69.384098, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.0, 'train_avg_loss': 3.469205}}
+2025-10-20 18:36:07,758 (client:357) INFO: {'Role': 'Client #24', 'Round': 18, 'Results_raw': {'train_loss': 62.96258, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.35, 'train_avg_loss': 3.148129}}
+2025-10-20 18:36:07,779 (client:357) INFO: {'Role': 'Client #14', 'Round': 18, 'Results_raw': {'train_loss': 68.765235, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.438262}}
+2025-10-20 18:36:07,800 (client:357) INFO: {'Role': 'Client #22', 'Round': 18, 'Results_raw': {'train_loss': 68.007281, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.35, 'train_avg_loss': 3.400364}}
+2025-10-20 18:36:07,820 (client:357) INFO: {'Role': 'Client #30', 'Round': 18, 'Results_raw': {'train_loss': 66.803157, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.340158}}
+2025-10-20 18:36:07,838 (client:357) INFO: {'Role': 'Client #13', 'Round': 18, 'Results_raw': {'train_loss': 79.317136, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.965857}}
+2025-10-20 18:36:07,860 (client:357) INFO: {'Role': 'Client #19', 'Round': 18, 'Results_raw': {'train_loss': 69.946949, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.497347}}
+2025-10-20 18:36:08,148 (server:351) INFO: ----------- Starting a new training round (Round #19) -------------
+2025-10-20 18:36:08,173 (client:357) INFO: {'Role': 'Client #33', 'Round': 19, 'Results_raw': {'train_loss': 71.603298, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.580165}}
+2025-10-20 18:36:08,194 (client:357) INFO: {'Role': 'Client #14', 'Round': 19, 'Results_raw': {'train_loss': 64.822142, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.241107}}
+2025-10-20 18:36:08,213 (client:357) INFO: {'Role': 'Client #18', 'Round': 19, 'Results_raw': {'train_loss': 77.089567, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.854478}}
+2025-10-20 18:36:08,265 (client:357) INFO: {'Role': 'Client #6', 'Round': 19, 'Results_raw': {'train_loss': 73.429761, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.671488}}
+2025-10-20 18:36:08,283 (client:357) INFO: {'Role': 'Client #23', 'Round': 19, 'Results_raw': {'train_loss': 60.920796, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.1, 'train_avg_loss': 3.04604}}
+2025-10-20 18:36:08,302 (client:357) INFO: {'Role': 'Client #34', 'Round': 19, 'Results_raw': {'train_loss': 61.164382, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.058219}}
+2025-10-20 18:36:08,323 (client:357) INFO: {'Role': 'Client #46', 'Round': 19, 'Results_raw': {'train_loss': 73.783464, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.689173}}
+2025-10-20 18:36:08,377 (client:357) INFO: {'Role': 'Client #8', 'Round': 19, 'Results_raw': {'train_loss': 73.418536, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.670927}}
+2025-10-20 18:36:08,397 (client:357) INFO: {'Role': 'Client #44', 'Round': 19, 'Results_raw': {'train_loss': 67.378898, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.3, 'train_avg_loss': 3.368945}}
+2025-10-20 18:36:08,417 (client:357) INFO: {'Role': 'Client #40', 'Round': 19, 'Results_raw': {'train_loss': 65.36458, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.268229}}
+2025-10-20 18:36:08,435 (client:357) INFO: {'Role': 'Client #37', 'Round': 19, 'Results_raw': {'train_loss': 52.856851, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 2.642843}}
+2025-10-20 18:36:08,453 (client:357) INFO: {'Role': 'Client #11', 'Round': 19, 'Results_raw': {'train_loss': 67.780483, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.389024}}
+2025-10-20 18:36:08,472 (client:357) INFO: {'Role': 'Client #47', 'Round': 19, 'Results_raw': {'train_loss': 67.630479, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.381524}}
+2025-10-20 18:36:08,494 (client:357) INFO: {'Role': 'Client #41', 'Round': 19, 'Results_raw': {'train_loss': 68.980739, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.449037}}
+2025-10-20 18:36:08,513 (client:357) INFO: {'Role': 'Client #50', 'Round': 19, 'Results_raw': {'train_loss': 63.911183, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.195559}}
+2025-10-20 18:36:08,567 (client:357) INFO: {'Role': 'Client #3', 'Round': 19, 'Results_raw': {'train_loss': 74.96213, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.25, 'train_avg_loss': 3.748106}}
+2025-10-20 18:36:08,584 (client:357) INFO: {'Role': 'Client #45', 'Round': 19, 'Results_raw': {'train_loss': 67.448699, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.05, 'train_avg_loss': 3.372435}}
+2025-10-20 18:36:08,603 (client:357) INFO: {'Role': 'Client #27', 'Round': 19, 'Results_raw': {'train_loss': 67.121615, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.356081}}
+2025-10-20 18:36:08,622 (client:357) INFO: {'Role': 'Client #26', 'Round': 19, 'Results_raw': {'train_loss': 65.890818, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.15, 'train_avg_loss': 3.294541}}
+2025-10-20 18:36:08,643 (client:357) INFO: {'Role': 'Client #39', 'Round': 19, 'Results_raw': {'train_loss': 70.423033, 'train_loss_regular': 0.0, 'train_total': 20, 'train_acc': 0.2, 'train_avg_loss': 3.521152}}
+2025-10-20 18:36:08,928 (server:362) INFO: Server: Training is finished! Starting evaluation.
+2025-10-20 18:36:08,944 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:08,945 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:08,955 (client:554) INFO: {'Role': 'Client #1', 'Round': 19, 'Results_raw': {'test_loss': 109.475615, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.305556, 'test_avg_loss': 3.040989, 'val_loss': 108.81404, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.305556, 'val_avg_loss': 3.022612}}
+2025-10-20 18:36:08,975 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:08,975 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:08,983 (client:554) INFO: {'Role': 'Client #2', 'Round': 19, 'Results_raw': {'test_loss': 93.746485, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.40625, 'test_avg_loss': 2.929578, 'val_loss': 105.788644, 'val_loss_regular': 0.0, 'val_total': 32, 'val_acc': 0.28125, 'val_avg_loss': 3.305895}}
+2025-10-20 18:36:09,005 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,005 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,014 (client:554) INFO: {'Role': 'Client #3', 'Round': 19, 'Results_raw': {'test_loss': 129.831596, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.162162, 'test_avg_loss': 3.508962, 'val_loss': 116.179589, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.111111, 'val_avg_loss': 3.227211}}
+2025-10-20 18:36:09,030 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,032 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,040 (client:554) INFO: {'Role': 'Client #4', 'Round': 19, 'Results_raw': {'test_loss': 108.234462, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.171429, 'test_avg_loss': 3.092413, 'val_loss': 108.754015, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.371429, 'val_avg_loss': 3.107258}}
+2025-10-20 18:36:09,060 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,060 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,069 (client:554) INFO: {'Role': 'Client #5', 'Round': 19, 'Results_raw': {'test_loss': 87.886634, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.3, 'test_avg_loss': 2.929554, 'val_loss': 102.319705, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 3.410657}}
+2025-10-20 18:36:09,088 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,088 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,097 (client:554) INFO: {'Role': 'Client #6', 'Round': 19, 'Results_raw': {'test_loss': 101.55977, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 3.385326, 'val_loss': 98.082483, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.3, 'val_avg_loss': 3.269416}}
+2025-10-20 18:36:09,116 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,116 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,123 (client:554) INFO: {'Role': 'Client #7', 'Round': 19, 'Results_raw': {'test_loss': 98.571717, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.258065, 'test_avg_loss': 3.179733, 'val_loss': 91.515381, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.333333, 'val_avg_loss': 3.050513}}
+2025-10-20 18:36:09,139 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,139 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,148 (client:554) INFO: {'Role': 'Client #8', 'Round': 19, 'Results_raw': {'test_loss': 104.799585, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.212121, 'test_avg_loss': 3.175745, 'val_loss': 105.253735, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.212121, 'val_avg_loss': 3.189507}}
+2025-10-20 18:36:09,166 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,166 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,174 (client:554) INFO: {'Role': 'Client #9', 'Round': 19, 'Results_raw': {'test_loss': 107.783195, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.228571, 'test_avg_loss': 3.07952, 'val_loss': 109.712069, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.342857, 'val_avg_loss': 3.134631}}
+2025-10-20 18:36:09,192 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,192 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,200 (client:554) INFO: {'Role': 'Client #10', 'Round': 19, 'Results_raw': {'test_loss': 108.978531, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.323529, 'test_avg_loss': 3.205251, 'val_loss': 114.158219, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.264706, 'val_avg_loss': 3.357595}}
+2025-10-20 18:36:09,218 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,218 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,228 (client:554) INFO: {'Role': 'Client #11', 'Round': 19, 'Results_raw': {'test_loss': 98.825263, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.257143, 'test_avg_loss': 2.823579, 'val_loss': 114.921348, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.285714, 'val_avg_loss': 3.283467}}
+2025-10-20 18:36:09,245 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,245 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,254 (client:554) INFO: {'Role': 'Client #12', 'Round': 19, 'Results_raw': {'test_loss': 120.490272, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.222222, 'test_avg_loss': 3.346952, 'val_loss': 106.49305, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.142857, 'val_avg_loss': 3.042659}}
+2025-10-20 18:36:09,270 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,270 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,278 (client:554) INFO: {'Role': 'Client #13', 'Round': 19, 'Results_raw': {'test_loss': 90.146766, 'test_loss_regular': 0.0, 'test_total': 28, 'test_acc': 0.035714, 'test_avg_loss': 3.219527, 'val_loss': 95.214731, 'val_loss_regular': 0.0, 'val_total': 27, 'val_acc': 0.111111, 'val_avg_loss': 3.526472}}
+2025-10-20 18:36:09,296 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,296 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,304 (client:554) INFO: {'Role': 'Client #14', 'Round': 19, 'Results_raw': {'test_loss': 111.987802, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.147059, 'test_avg_loss': 3.293759, 'val_loss': 99.595784, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.121212, 'val_avg_loss': 3.018054}}
+2025-10-20 18:36:09,323 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,323 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,331 (client:554) INFO: {'Role': 'Client #15', 'Round': 19, 'Results_raw': {'test_loss': 112.948389, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.361111, 'test_avg_loss': 3.137455, 'val_loss': 113.304183, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.257143, 'val_avg_loss': 3.237262}}
+2025-10-20 18:36:09,350 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,350 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,359 (client:554) INFO: {'Role': 'Client #16', 'Round': 19, 'Results_raw': {'test_loss': 117.283535, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.030303, 'test_avg_loss': 3.554047, 'val_loss': 113.291181, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.060606, 'val_avg_loss': 3.433066}}
+2025-10-20 18:36:09,377 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,377 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,385 (client:554) INFO: {'Role': 'Client #17', 'Round': 19, 'Results_raw': {'test_loss': 100.80827, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.323529, 'test_avg_loss': 2.964949, 'val_loss': 103.255998, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.294118, 'val_avg_loss': 3.036941}}
+2025-10-20 18:36:09,403 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,404 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,410 (client:554) INFO: {'Role': 'Client #18', 'Round': 19, 'Results_raw': {'test_loss': 96.039398, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.066667, 'test_avg_loss': 3.201313, 'val_loss': 101.766298, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.1, 'val_avg_loss': 3.39221}}
+2025-10-20 18:36:09,428 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,428 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,438 (client:554) INFO: {'Role': 'Client #19', 'Round': 19, 'Results_raw': {'test_loss': 108.779892, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.147059, 'test_avg_loss': 3.199409, 'val_loss': 103.866989, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.181818, 'val_avg_loss': 3.147485}}
+2025-10-20 18:36:09,456 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,456 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,462 (client:554) INFO: {'Role': 'Client #20', 'Round': 19, 'Results_raw': {'test_loss': 91.998116, 'test_loss_regular': 0.0, 'test_total': 29, 'test_acc': 0.103448, 'test_avg_loss': 3.172349, 'val_loss': 91.32479, 'val_loss_regular': 0.0, 'val_total': 29, 'val_acc': 0.068966, 'val_avg_loss': 3.149131}}
+2025-10-20 18:36:09,482 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,482 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,490 (client:554) INFO: {'Role': 'Client #21', 'Round': 19, 'Results_raw': {'test_loss': 111.302417, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.323529, 'test_avg_loss': 3.2736, 'val_loss': 99.514319, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.424242, 'val_avg_loss': 3.015585}}
+2025-10-20 18:36:09,507 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,508 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,514 (client:554) INFO: {'Role': 'Client #22', 'Round': 19, 'Results_raw': {'test_loss': 113.908709, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.405405, 'test_avg_loss': 3.078614, 'val_loss': 123.152383, 'val_loss_regular': 0.0, 'val_total': 37, 'val_acc': 0.216216, 'val_avg_loss': 3.328443}}
+2025-10-20 18:36:09,535 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,535 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,544 (client:554) INFO: {'Role': 'Client #23', 'Round': 19, 'Results_raw': {'test_loss': 103.294785, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.294118, 'test_avg_loss': 3.038082, 'val_loss': 102.016952, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.294118, 'val_avg_loss': 3.000499}}
+2025-10-20 18:36:09,564 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,565 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,574 (client:554) INFO: {'Role': 'Client #24', 'Round': 19, 'Results_raw': {'test_loss': 110.22573, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.176471, 'test_avg_loss': 3.241933, 'val_loss': 108.987142, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.176471, 'val_avg_loss': 3.205504}}
+2025-10-20 18:36:09,590 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,590 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,599 (client:554) INFO: {'Role': 'Client #25', 'Round': 19, 'Results_raw': {'test_loss': 110.536153, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.058824, 'test_avg_loss': 3.251063, 'val_loss': 113.980596, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.058824, 'val_avg_loss': 3.35237}}
+2025-10-20 18:36:09,616 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,616 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,624 (client:554) INFO: {'Role': 'Client #26', 'Round': 19, 'Results_raw': {'test_loss': 108.405708, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.15625, 'test_avg_loss': 3.387678, 'val_loss': 93.110893, 'val_loss_regular': 0.0, 'val_total': 31, 'val_acc': 0.290323, 'val_avg_loss': 3.003577}}
+2025-10-20 18:36:09,641 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,641 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,648 (client:554) INFO: {'Role': 'Client #27', 'Round': 19, 'Results_raw': {'test_loss': 83.002017, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.366667, 'test_avg_loss': 2.766734, 'val_loss': 97.733307, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.2, 'val_avg_loss': 3.257777}}
+2025-10-20 18:36:09,666 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,667 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,675 (client:554) INFO: {'Role': 'Client #28', 'Round': 19, 'Results_raw': {'test_loss': 97.766059, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.272727, 'test_avg_loss': 2.962608, 'val_loss': 107.61621, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.242424, 'val_avg_loss': 3.261097}}
+2025-10-20 18:36:09,696 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,697 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,705 (client:554) INFO: {'Role': 'Client #29', 'Round': 19, 'Results_raw': {'test_loss': 117.655504, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.333333, 'test_avg_loss': 3.268208, 'val_loss': 104.569279, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.285714, 'val_avg_loss': 2.987694}}
+2025-10-20 18:36:09,723 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,723 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,731 (client:554) INFO: {'Role': 'Client #30', 'Round': 19, 'Results_raw': {'test_loss': 98.992206, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.4, 'test_avg_loss': 2.828349, 'val_loss': 109.605747, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.323529, 'val_avg_loss': 3.223698}}
+2025-10-20 18:36:09,748 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,748 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,759 (client:554) INFO: {'Role': 'Client #31', 'Round': 19, 'Results_raw': {'test_loss': 114.513237, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.25, 'test_avg_loss': 3.180923, 'val_loss': 117.790938, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.166667, 'val_avg_loss': 3.271971}}
+2025-10-20 18:36:09,777 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,777 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,784 (client:554) INFO: {'Role': 'Client #32', 'Round': 19, 'Results_raw': {'test_loss': 102.942412, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.324324, 'test_avg_loss': 2.782227, 'val_loss': 114.844662, 'val_loss_regular': 0.0, 'val_total': 37, 'val_acc': 0.351351, 'val_avg_loss': 3.10391}}
+2025-10-20 18:36:09,802 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,803 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,810 (client:554) INFO: {'Role': 'Client #33', 'Round': 19, 'Results_raw': {'test_loss': 102.882411, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.205882, 'test_avg_loss': 3.025953, 'val_loss': 104.369411, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.176471, 'val_avg_loss': 3.069689}}
+2025-10-20 18:36:09,828 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,828 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,837 (client:554) INFO: {'Role': 'Client #34', 'Round': 19, 'Results_raw': {'test_loss': 106.802311, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.058824, 'test_avg_loss': 3.141244, 'val_loss': 109.303517, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.272727, 'val_avg_loss': 3.312228}}
+2025-10-20 18:36:09,854 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,855 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,864 (client:554) INFO: {'Role': 'Client #35', 'Round': 19, 'Results_raw': {'test_loss': 120.073261, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.166667, 'test_avg_loss': 3.335368, 'val_loss': 108.09528, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.142857, 'val_avg_loss': 3.088437}}
+2025-10-20 18:36:09,880 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,882 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,888 (client:554) INFO: {'Role': 'Client #36', 'Round': 19, 'Results_raw': {'test_loss': 92.899604, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.166667, 'test_avg_loss': 3.096653, 'val_loss': 100.718586, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.2, 'val_avg_loss': 3.357286}}
+2025-10-20 18:36:09,906 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,906 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,913 (client:554) INFO: {'Role': 'Client #37', 'Round': 19, 'Results_raw': {'test_loss': 115.041882, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.314286, 'test_avg_loss': 3.286911, 'val_loss': 104.690435, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.294118, 'val_avg_loss': 3.07913}}
+2025-10-20 18:36:09,934 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,934 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,945 (client:554) INFO: {'Role': 'Client #38', 'Round': 19, 'Results_raw': {'test_loss': 103.657472, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.257143, 'test_avg_loss': 2.961642, 'val_loss': 110.772498, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.235294, 'val_avg_loss': 3.258015}}
+2025-10-20 18:36:09,963 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,963 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,971 (client:554) INFO: {'Role': 'Client #39', 'Round': 19, 'Results_raw': {'test_loss': 112.29663, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.25, 'test_avg_loss': 3.119351, 'val_loss': 104.750327, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.444444, 'val_avg_loss': 2.909731}}
+2025-10-20 18:36:09,987 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,989 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:09,995 (client:554) INFO: {'Role': 'Client #40', 'Round': 19, 'Results_raw': {'test_loss': 117.636909, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.194444, 'test_avg_loss': 3.267692, 'val_loss': 105.496429, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.285714, 'val_avg_loss': 3.014184}}
+2025-10-20 18:36:10,014 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,015 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,023 (client:554) INFO: {'Role': 'Client #41', 'Round': 19, 'Results_raw': {'test_loss': 99.666418, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.225806, 'test_avg_loss': 3.215046, 'val_loss': 99.618337, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.233333, 'val_avg_loss': 3.320611}}
+2025-10-20 18:36:10,038 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,039 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,046 (client:554) INFO: {'Role': 'Client #42', 'Round': 19, 'Results_raw': {'test_loss': 85.178101, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.166667, 'test_avg_loss': 2.83927, 'val_loss': 96.294551, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.166667, 'val_avg_loss': 3.209818}}
+2025-10-20 18:36:10,064 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,064 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,073 (client:554) INFO: {'Role': 'Client #43', 'Round': 19, 'Results_raw': {'test_loss': 109.264774, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.285714, 'test_avg_loss': 3.121851, 'val_loss': 107.691634, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.257143, 'val_avg_loss': 3.076904}}
+2025-10-20 18:36:10,089 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,089 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,100 (client:554) INFO: {'Role': 'Client #44', 'Round': 19, 'Results_raw': {'test_loss': 97.288017, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.314286, 'test_avg_loss': 2.779658, 'val_loss': 109.334695, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.371429, 'val_avg_loss': 3.123848}}
+2025-10-20 18:36:10,117 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,118 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,127 (client:554) INFO: {'Role': 'Client #45', 'Round': 19, 'Results_raw': {'test_loss': 117.146096, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.138889, 'test_avg_loss': 3.254058, 'val_loss': 106.700631, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.142857, 'val_avg_loss': 3.048589}}
+2025-10-20 18:36:10,146 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,146 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,154 (client:554) INFO: {'Role': 'Client #46', 'Round': 19, 'Results_raw': {'test_loss': 100.487188, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.305556, 'test_avg_loss': 2.791311, 'val_loss': 121.584985, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.138889, 'val_avg_loss': 3.377361}}
+2025-10-20 18:36:10,174 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,174 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,182 (client:554) INFO: {'Role': 'Client #47', 'Round': 19, 'Results_raw': {'test_loss': 86.319853, 'test_loss_regular': 0.0, 'test_total': 28, 'test_acc': 0.321429, 'test_avg_loss': 3.082852, 'val_loss': 87.999032, 'val_loss_regular': 0.0, 'val_total': 28, 'val_acc': 0.25, 'val_avg_loss': 3.142823}}
+2025-10-20 18:36:10,200 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,200 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,209 (client:554) INFO: {'Role': 'Client #48', 'Round': 19, 'Results_raw': {'test_loss': 98.893982, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.225806, 'test_avg_loss': 3.190128, 'val_loss': 106.626931, 'val_loss_regular': 0.0, 'val_total': 31, 'val_acc': 0.290323, 'val_avg_loss': 3.439578}}
+2025-10-20 18:36:10,227 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,227 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,235 (client:554) INFO: {'Role': 'Client #49', 'Round': 19, 'Results_raw': {'test_loss': 97.457832, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.125, 'test_avg_loss': 3.045557, 'val_loss': 104.839168, 'val_loss_regular': 0.0, 'val_total': 32, 'val_acc': 0.25, 'val_avg_loss': 3.276224}}
+2025-10-20 18:36:10,252 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,252 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:36:10,260 (client:554) INFO: {'Role': 'Client #50', 'Round': 19, 'Results_raw': {'test_loss': 116.281745, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.257143, 'test_avg_loss': 3.322336, 'val_loss': 112.036111, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.228571, 'val_avg_loss': 3.201032}}
+2025-10-20 18:36:10,266 (server:617) INFO: {'Role': 'Server #', 'Round': 19, 'Results_weighted_avg': {'test_loss': 105.618324, 'test_loss_regular': 0.0, 'test_total': 33.58, 'test_acc': 0.232281, 'test_avg_loss': 3.128049, 'val_loss': 106.388115, 'val_loss_regular': 0.0, 'val_total': 33.22, 'val_acc': 0.234196, 'val_avg_loss': 3.189318}, 'Results_avg': {'test_loss': 105.039894, 'test_loss_regular': 0.0, 'test_total': 33.58, 'test_acc': 0.230076, 'test_avg_loss': 3.127546, 'val_loss': 105.949144, 'val_loss_regular': 0.0, 'val_total': 33.22, 'val_acc': 0.232466, 'val_avg_loss': 3.193193}, 'Results_fairness': {'test_total': 33.58, 'val_total': 33.22, 'test_loss_std': 10.13815, 'test_loss_bottom_decile': 91.998116, 'test_loss_top_decile': 117.636909, 'test_loss_min': 83.002017, 'test_loss_max': 129.831596, 'test_loss_bottom10%': 86.506674, 'test_loss_top10%': 121.137508, 'test_loss_cos1': 0.995375, 'test_loss_entropy': 3.907328, 'test_loss_regular_std': 0.0, 'test_loss_regular_bottom_decile': 0.0, 'test_loss_regular_top_decile': 0.0, 'test_loss_regular_min': 0.0, 'test_loss_regular_max': 0.0, 'test_loss_regular_bottom10%': 0.0, 'test_loss_regular_top10%': 0.0, 'test_loss_regular_cos1': nan, 'test_loss_regular_entropy': 3.912023, 'test_acc_std': 0.098354, 'test_acc_bottom_decile': 0.1, 'test_acc_top_decile': 0.361111, 'test_acc_min': 0.030303, 'test_acc_max': 0.40625, 'test_acc_bottom10%': 0.050066, 'test_acc_top10%': 0.387887, 'test_acc_cos1': 0.919506, 'test_acc_entropy': 3.808223, 'test_avg_loss_std': 0.186836, 'test_avg_loss_bottom_decile': 2.828349, 'test_avg_loss_top_decile': 3.346952, 'test_avg_loss_min': 2.766734, 'test_avg_loss_max': 3.554047, 'test_avg_loss_bottom10%': 2.788702, 'test_avg_loss_top10%': 3.436593, 'test_avg_loss_cos1': 0.99822, 'test_avg_loss_entropy': 3.910229, 'val_loss_std': 7.477707, 'val_loss_bottom_decile': 96.294551, 'val_loss_top_decile': 114.921348, 'val_loss_min': 87.999032, 'val_loss_max': 123.152383, 'val_loss_bottom10%': 91.832965, 'val_loss_top10%': 118.725849, 'val_loss_cos1': 0.997519, 'val_loss_entropy': 3.909518, 'val_loss_regular_std': 0.0, 'val_loss_regular_bottom_decile': 0.0, 'val_loss_regular_top_decile': 0.0, 'val_loss_regular_min': 0.0, 'val_loss_regular_max': 0.0, 'val_loss_regular_bottom10%': 0.0, 'val_loss_regular_top10%': 0.0, 'val_loss_regular_cos1': nan, 'val_loss_regular_entropy': 3.912023, 'val_acc_std': 0.093278, 'val_acc_bottom_decile': 0.111111, 'val_acc_top_decile': 0.351351, 'val_acc_min': 0.058824, 'val_acc_max': 0.444444, 'val_acc_bottom10%': 0.071012, 'val_acc_top10%': 0.392579, 'val_acc_cos1': 0.928075, 'val_acc_entropy': 3.824702, 'val_avg_loss_std': 0.143227, 'val_avg_loss_bottom_decile': 3.015585, 'val_avg_loss_top_decile': 3.39221, 'val_avg_loss_min': 2.909731, 'val_avg_loss_max': 3.526472, 'val_avg_loss_bottom10%': 2.983137, 'val_avg_loss_top10%': 3.440397, 'val_avg_loss_cos1': 0.998996, 'val_avg_loss_entropy': 3.911019}}
+2025-10-20 18:36:10,267 (server:420) INFO: Server: Final evaluation is finished! Starting merging results.
+2025-10-20 18:36:10,268 (server:548) INFO: {'Role': 'Server #', 'Round': 'Final', 'Results_raw': {'client_best_individual': {'val_loss_regular': 0.0, 'val_loss': 87.999032, 'test_loss': 83.002017, 'test_loss_regular': 0.0, 'test_total': 28.0, 'test_acc': 0.40625, 'test_avg_loss': 2.766734, 'val_total': 27.0, 'val_acc': 0.444444, 'val_avg_loss': 2.909731}, 'client_summarized_weighted_avg': {'val_loss_regular': 0.0, 'val_loss': 106.388115, 'test_loss': 105.618324, 'test_loss_regular': 0.0, 'test_total': 33.58, 'test_acc': 0.232281, 'test_avg_loss': 3.128049, 'val_total': 33.22, 'val_acc': 0.234196, 'val_avg_loss': 3.189318}, 'client_summarized_avg': {'val_loss_regular': 0.0, 'val_loss': 105.949144, 'test_loss': 105.039894, 'test_loss_regular': 0.0, 'test_total': 33.58, 'test_acc': 0.230076, 'test_avg_loss': 3.127546, 'val_total': 33.22, 'val_acc': 0.232466, 'val_avg_loss': 3.193193}, 'client_summarized_fairness': {'val_loss_regular_entropy': 3.912023, 'val_loss_regular_cos1': nan, 'val_loss_regular_top10%': 0.0, 'val_loss_regular_bottom10%': 0.0, 'val_loss_regular_max': 0.0, 'val_loss_regular_min': 0.0, 'val_loss_regular_top_decile': 0.0, 'val_loss_regular_bottom_decile': 0.0, 'val_loss_regular_std': 0.0, 'val_loss_entropy': 3.909518, 'val_loss_cos1': 0.997519, 'val_loss_top10%': 118.725849, 'val_loss_bottom10%': 91.832965, 'val_loss_max': 123.152383, 'val_loss_min': 87.999032, 'val_loss_top_decile': 114.921348, 'val_loss_bottom_decile': 96.294551, 'val_loss_std': 7.477707, 'test_total': 33.58, 'val_total': 33.22, 'test_loss_std': 10.13815, 'test_loss_bottom_decile': 91.998116, 'test_loss_top_decile': 117.636909, 'test_loss_min': 83.002017, 'test_loss_max': 129.831596, 'test_loss_bottom10%': 86.506674, 'test_loss_top10%': 121.137508, 'test_loss_cos1': 0.995375, 'test_loss_entropy': 3.907328, 'test_loss_regular_std': 0.0, 'test_loss_regular_bottom_decile': 0.0, 'test_loss_regular_top_decile': 0.0, 'test_loss_regular_min': 0.0, 'test_loss_regular_max': 0.0, 'test_loss_regular_bottom10%': 0.0, 'test_loss_regular_top10%': 0.0, 'test_loss_regular_cos1': nan, 'test_loss_regular_entropy': 3.912023, 'test_acc_std': 0.098354, 'test_acc_bottom_decile': 0.1, 'test_acc_top_decile': 0.361111, 'test_acc_min': 0.030303, 'test_acc_max': 0.40625, 'test_acc_bottom10%': 0.050066, 'test_acc_top10%': 0.387887, 'test_acc_cos1': 0.919506, 'test_acc_entropy': 3.808223, 'test_avg_loss_std': 0.186836, 'test_avg_loss_bottom_decile': 2.828349, 'test_avg_loss_top_decile': 3.346952, 'test_avg_loss_min': 2.766734, 'test_avg_loss_max': 3.554047, 'test_avg_loss_bottom10%': 2.788702, 'test_avg_loss_top10%': 3.436593, 'test_avg_loss_cos1': 0.99822, 'test_avg_loss_entropy': 3.910229, 'val_acc_std': 0.093278, 'val_acc_bottom_decile': 0.111111, 'val_acc_top_decile': 0.351351, 'val_acc_min': 0.058824, 'val_acc_max': 0.444444, 'val_acc_bottom10%': 0.071012, 'val_acc_top10%': 0.392579, 'val_acc_cos1': 0.928075, 'val_acc_entropy': 3.824702, 'val_avg_loss_std': 0.143227, 'val_avg_loss_bottom_decile': 3.015585, 'val_avg_loss_top_decile': 3.39221, 'val_avg_loss_min': 2.909731, 'val_avg_loss_max': 3.526472, 'val_avg_loss_bottom10%': 2.983137, 'val_avg_loss_top10%': 3.440397, 'val_avg_loss_cos1': 0.998996, 'val_avg_loss_entropy': 3.911019}}}
+2025-10-20 18:36:10,270 (server:567) INFO: {'Role': 'Client #1', 'Round': 20, 'Results_raw': {'test_loss': 109.475615, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.305556, 'test_avg_loss': 3.040989, 'val_loss': 108.81404, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.305556, 'val_avg_loss': 3.022612}}
+2025-10-20 18:36:10,271 (server:567) INFO: {'Role': 'Client #2', 'Round': 20, 'Results_raw': {'test_loss': 93.746485, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.40625, 'test_avg_loss': 2.929578, 'val_loss': 105.788644, 'val_loss_regular': 0.0, 'val_total': 32, 'val_acc': 0.28125, 'val_avg_loss': 3.305895}}
+2025-10-20 18:36:10,271 (server:567) INFO: {'Role': 'Client #3', 'Round': 20, 'Results_raw': {'test_loss': 129.831596, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.162162, 'test_avg_loss': 3.508962, 'val_loss': 116.179589, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.111111, 'val_avg_loss': 3.227211}}
+2025-10-20 18:36:10,272 (server:567) INFO: {'Role': 'Client #4', 'Round': 20, 'Results_raw': {'test_loss': 108.234462, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.171429, 'test_avg_loss': 3.092413, 'val_loss': 108.754015, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.371429, 'val_avg_loss': 3.107258}}
+2025-10-20 18:36:10,273 (server:567) INFO: {'Role': 'Client #5', 'Round': 20, 'Results_raw': {'test_loss': 87.886634, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.3, 'test_avg_loss': 2.929554, 'val_loss': 102.319705, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 3.410657}}
+2025-10-20 18:36:10,274 (server:567) INFO: {'Role': 'Client #6', 'Round': 20, 'Results_raw': {'test_loss': 101.55977, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 3.385326, 'val_loss': 98.082483, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.3, 'val_avg_loss': 3.269416}}
+2025-10-20 18:36:10,274 (server:567) INFO: {'Role': 'Client #7', 'Round': 20, 'Results_raw': {'test_loss': 98.571717, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.258065, 'test_avg_loss': 3.179733, 'val_loss': 91.515381, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.333333, 'val_avg_loss': 3.050513}}
+2025-10-20 18:36:10,274 (server:567) INFO: {'Role': 'Client #8', 'Round': 20, 'Results_raw': {'test_loss': 104.799585, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.212121, 'test_avg_loss': 3.175745, 'val_loss': 105.253735, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.212121, 'val_avg_loss': 3.189507}}
+2025-10-20 18:36:10,275 (server:567) INFO: {'Role': 'Client #9', 'Round': 20, 'Results_raw': {'test_loss': 107.783195, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.228571, 'test_avg_loss': 3.07952, 'val_loss': 109.712069, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.342857, 'val_avg_loss': 3.134631}}
+2025-10-20 18:36:10,275 (server:567) INFO: {'Role': 'Client #10', 'Round': 20, 'Results_raw': {'test_loss': 108.978531, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.323529, 'test_avg_loss': 3.205251, 'val_loss': 114.158219, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.264706, 'val_avg_loss': 3.357595}}
+2025-10-20 18:36:10,276 (server:567) INFO: {'Role': 'Client #11', 'Round': 20, 'Results_raw': {'test_loss': 98.825263, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.257143, 'test_avg_loss': 2.823579, 'val_loss': 114.921348, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.285714, 'val_avg_loss': 3.283467}}
+2025-10-20 18:36:10,276 (server:567) INFO: {'Role': 'Client #12', 'Round': 20, 'Results_raw': {'test_loss': 120.490272, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.222222, 'test_avg_loss': 3.346952, 'val_loss': 106.49305, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.142857, 'val_avg_loss': 3.042659}}
+2025-10-20 18:36:10,277 (server:567) INFO: {'Role': 'Client #13', 'Round': 20, 'Results_raw': {'test_loss': 90.146766, 'test_loss_regular': 0.0, 'test_total': 28, 'test_acc': 0.035714, 'test_avg_loss': 3.219527, 'val_loss': 95.214731, 'val_loss_regular': 0.0, 'val_total': 27, 'val_acc': 0.111111, 'val_avg_loss': 3.526472}}
+2025-10-20 18:36:10,277 (server:567) INFO: {'Role': 'Client #14', 'Round': 20, 'Results_raw': {'test_loss': 111.987802, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.147059, 'test_avg_loss': 3.293759, 'val_loss': 99.595784, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.121212, 'val_avg_loss': 3.018054}}
+2025-10-20 18:36:10,278 (server:567) INFO: {'Role': 'Client #15', 'Round': 20, 'Results_raw': {'test_loss': 112.948389, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.361111, 'test_avg_loss': 3.137455, 'val_loss': 113.304183, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.257143, 'val_avg_loss': 3.237262}}
+2025-10-20 18:36:10,278 (server:567) INFO: {'Role': 'Client #16', 'Round': 20, 'Results_raw': {'test_loss': 117.283535, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.030303, 'test_avg_loss': 3.554047, 'val_loss': 113.291181, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.060606, 'val_avg_loss': 3.433066}}
+2025-10-20 18:36:10,279 (server:567) INFO: {'Role': 'Client #17', 'Round': 20, 'Results_raw': {'test_loss': 100.80827, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.323529, 'test_avg_loss': 2.964949, 'val_loss': 103.255998, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.294118, 'val_avg_loss': 3.036941}}
+2025-10-20 18:36:10,280 (server:567) INFO: {'Role': 'Client #18', 'Round': 20, 'Results_raw': {'test_loss': 96.039398, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.066667, 'test_avg_loss': 3.201313, 'val_loss': 101.766298, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.1, 'val_avg_loss': 3.39221}}
+2025-10-20 18:36:10,280 (server:567) INFO: {'Role': 'Client #19', 'Round': 20, 'Results_raw': {'test_loss': 108.779892, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.147059, 'test_avg_loss': 3.199409, 'val_loss': 103.866989, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.181818, 'val_avg_loss': 3.147485}}
+2025-10-20 18:36:10,280 (server:567) INFO: {'Role': 'Client #20', 'Round': 20, 'Results_raw': {'test_loss': 91.998116, 'test_loss_regular': 0.0, 'test_total': 29, 'test_acc': 0.103448, 'test_avg_loss': 3.172349, 'val_loss': 91.32479, 'val_loss_regular': 0.0, 'val_total': 29, 'val_acc': 0.068966, 'val_avg_loss': 3.149131}}
+2025-10-20 18:36:10,281 (server:567) INFO: {'Role': 'Client #21', 'Round': 20, 'Results_raw': {'test_loss': 111.302417, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.323529, 'test_avg_loss': 3.2736, 'val_loss': 99.514319, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.424242, 'val_avg_loss': 3.015585}}
+2025-10-20 18:36:10,282 (server:567) INFO: {'Role': 'Client #22', 'Round': 20, 'Results_raw': {'test_loss': 113.908709, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.405405, 'test_avg_loss': 3.078614, 'val_loss': 123.152383, 'val_loss_regular': 0.0, 'val_total': 37, 'val_acc': 0.216216, 'val_avg_loss': 3.328443}}
+2025-10-20 18:36:10,282 (server:567) INFO: {'Role': 'Client #23', 'Round': 20, 'Results_raw': {'test_loss': 103.294785, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.294118, 'test_avg_loss': 3.038082, 'val_loss': 102.016952, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.294118, 'val_avg_loss': 3.000499}}
+2025-10-20 18:36:10,282 (server:567) INFO: {'Role': 'Client #24', 'Round': 20, 'Results_raw': {'test_loss': 110.22573, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.176471, 'test_avg_loss': 3.241933, 'val_loss': 108.987142, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.176471, 'val_avg_loss': 3.205504}}
+2025-10-20 18:36:10,282 (server:567) INFO: {'Role': 'Client #25', 'Round': 20, 'Results_raw': {'test_loss': 110.536153, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.058824, 'test_avg_loss': 3.251063, 'val_loss': 113.980596, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.058824, 'val_avg_loss': 3.35237}}
+2025-10-20 18:36:10,282 (server:567) INFO: {'Role': 'Client #26', 'Round': 20, 'Results_raw': {'test_loss': 108.405708, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.15625, 'test_avg_loss': 3.387678, 'val_loss': 93.110893, 'val_loss_regular': 0.0, 'val_total': 31, 'val_acc': 0.290323, 'val_avg_loss': 3.003577}}
+2025-10-20 18:36:10,284 (server:567) INFO: {'Role': 'Client #27', 'Round': 20, 'Results_raw': {'test_loss': 83.002017, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.366667, 'test_avg_loss': 2.766734, 'val_loss': 97.733307, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.2, 'val_avg_loss': 3.257777}}
+2025-10-20 18:36:10,285 (server:567) INFO: {'Role': 'Client #28', 'Round': 20, 'Results_raw': {'test_loss': 97.766059, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.272727, 'test_avg_loss': 2.962608, 'val_loss': 107.61621, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.242424, 'val_avg_loss': 3.261097}}
+2025-10-20 18:36:10,285 (server:567) INFO: {'Role': 'Client #29', 'Round': 20, 'Results_raw': {'test_loss': 117.655504, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.333333, 'test_avg_loss': 3.268208, 'val_loss': 104.569279, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.285714, 'val_avg_loss': 2.987694}}
+2025-10-20 18:36:10,286 (server:567) INFO: {'Role': 'Client #30', 'Round': 20, 'Results_raw': {'test_loss': 98.992206, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.4, 'test_avg_loss': 2.828349, 'val_loss': 109.605747, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.323529, 'val_avg_loss': 3.223698}}
+2025-10-20 18:36:10,286 (server:567) INFO: {'Role': 'Client #31', 'Round': 20, 'Results_raw': {'test_loss': 114.513237, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.25, 'test_avg_loss': 3.180923, 'val_loss': 117.790938, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.166667, 'val_avg_loss': 3.271971}}
+2025-10-20 18:36:10,287 (server:567) INFO: {'Role': 'Client #32', 'Round': 20, 'Results_raw': {'test_loss': 102.942412, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.324324, 'test_avg_loss': 2.782227, 'val_loss': 114.844662, 'val_loss_regular': 0.0, 'val_total': 37, 'val_acc': 0.351351, 'val_avg_loss': 3.10391}}
+2025-10-20 18:36:10,287 (server:567) INFO: {'Role': 'Client #33', 'Round': 20, 'Results_raw': {'test_loss': 102.882411, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.205882, 'test_avg_loss': 3.025953, 'val_loss': 104.369411, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.176471, 'val_avg_loss': 3.069689}}
+2025-10-20 18:36:10,288 (server:567) INFO: {'Role': 'Client #34', 'Round': 20, 'Results_raw': {'test_loss': 106.802311, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.058824, 'test_avg_loss': 3.141244, 'val_loss': 109.303517, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.272727, 'val_avg_loss': 3.312228}}
+2025-10-20 18:36:10,288 (server:567) INFO: {'Role': 'Client #35', 'Round': 20, 'Results_raw': {'test_loss': 120.073261, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.166667, 'test_avg_loss': 3.335368, 'val_loss': 108.09528, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.142857, 'val_avg_loss': 3.088437}}
+2025-10-20 18:36:10,289 (server:567) INFO: {'Role': 'Client #36', 'Round': 20, 'Results_raw': {'test_loss': 92.899604, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.166667, 'test_avg_loss': 3.096653, 'val_loss': 100.718586, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.2, 'val_avg_loss': 3.357286}}
+2025-10-20 18:36:10,289 (server:567) INFO: {'Role': 'Client #37', 'Round': 20, 'Results_raw': {'test_loss': 115.041882, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.314286, 'test_avg_loss': 3.286911, 'val_loss': 104.690435, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.294118, 'val_avg_loss': 3.07913}}
+2025-10-20 18:36:10,289 (server:567) INFO: {'Role': 'Client #38', 'Round': 20, 'Results_raw': {'test_loss': 103.657472, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.257143, 'test_avg_loss': 2.961642, 'val_loss': 110.772498, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.235294, 'val_avg_loss': 3.258015}}
+2025-10-20 18:36:10,289 (server:567) INFO: {'Role': 'Client #39', 'Round': 20, 'Results_raw': {'test_loss': 112.29663, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.25, 'test_avg_loss': 3.119351, 'val_loss': 104.750327, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.444444, 'val_avg_loss': 2.909731}}
+2025-10-20 18:36:10,289 (server:567) INFO: {'Role': 'Client #40', 'Round': 20, 'Results_raw': {'test_loss': 117.636909, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.194444, 'test_avg_loss': 3.267692, 'val_loss': 105.496429, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.285714, 'val_avg_loss': 3.014184}}
+2025-10-20 18:36:10,291 (server:567) INFO: {'Role': 'Client #41', 'Round': 20, 'Results_raw': {'test_loss': 99.666418, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.225806, 'test_avg_loss': 3.215046, 'val_loss': 99.618337, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.233333, 'val_avg_loss': 3.320611}}
+2025-10-20 18:36:10,292 (server:567) INFO: {'Role': 'Client #42', 'Round': 20, 'Results_raw': {'test_loss': 85.178101, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.166667, 'test_avg_loss': 2.83927, 'val_loss': 96.294551, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.166667, 'val_avg_loss': 3.209818}}
+2025-10-20 18:36:10,292 (server:567) INFO: {'Role': 'Client #43', 'Round': 20, 'Results_raw': {'test_loss': 109.264774, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.285714, 'test_avg_loss': 3.121851, 'val_loss': 107.691634, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.257143, 'val_avg_loss': 3.076904}}
+2025-10-20 18:36:10,292 (server:567) INFO: {'Role': 'Client #44', 'Round': 20, 'Results_raw': {'test_loss': 97.288017, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.314286, 'test_avg_loss': 2.779658, 'val_loss': 109.334695, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.371429, 'val_avg_loss': 3.123848}}
+2025-10-20 18:36:10,292 (server:567) INFO: {'Role': 'Client #45', 'Round': 20, 'Results_raw': {'test_loss': 117.146096, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.138889, 'test_avg_loss': 3.254058, 'val_loss': 106.700631, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.142857, 'val_avg_loss': 3.048589}}
+2025-10-20 18:36:10,294 (server:567) INFO: {'Role': 'Client #46', 'Round': 20, 'Results_raw': {'test_loss': 100.487188, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.305556, 'test_avg_loss': 2.791311, 'val_loss': 121.584985, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.138889, 'val_avg_loss': 3.377361}}
+2025-10-20 18:36:10,294 (server:567) INFO: {'Role': 'Client #47', 'Round': 20, 'Results_raw': {'test_loss': 86.319853, 'test_loss_regular': 0.0, 'test_total': 28, 'test_acc': 0.321429, 'test_avg_loss': 3.082852, 'val_loss': 87.999032, 'val_loss_regular': 0.0, 'val_total': 28, 'val_acc': 0.25, 'val_avg_loss': 3.142823}}
+2025-10-20 18:36:10,295 (server:567) INFO: {'Role': 'Client #48', 'Round': 20, 'Results_raw': {'test_loss': 98.893982, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.225806, 'test_avg_loss': 3.190128, 'val_loss': 106.626931, 'val_loss_regular': 0.0, 'val_total': 31, 'val_acc': 0.290323, 'val_avg_loss': 3.439578}}
+2025-10-20 18:36:10,295 (server:567) INFO: {'Role': 'Client #49', 'Round': 20, 'Results_raw': {'test_loss': 97.457832, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.125, 'test_avg_loss': 3.045557, 'val_loss': 104.839168, 'val_loss_regular': 0.0, 'val_total': 32, 'val_acc': 0.25, 'val_avg_loss': 3.276224}}
+2025-10-20 18:36:10,296 (server:567) INFO: {'Role': 'Client #50', 'Round': 20, 'Results_raw': {'test_loss': 116.281745, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.257143, 'test_avg_loss': 3.322336, 'val_loss': 112.036111, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.228571, 'val_avg_loss': 3.201032}}
+2025-10-20 18:36:10,296 (monitor:173) INFO: In worker #0, the system-related metrics are: {'id': 0, 'fl_end_time_minutes': 0.301378, 'total_model_size': 0, 'total_flops': 0, 'total_upload_bytes': 0, 'total_download_bytes': 2452144, 'global_convergence_round': 0, 'local_convergence_round': 0, 'global_convergence_time_minutes': 0, 'local_convergence_time_minutes': 0}
+2025-10-20 18:36:10,297 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,298 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,299 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,300 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,300 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,302 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,303 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,303 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,304 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,305 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,305 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,306 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,307 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,308 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,308 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,310 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,311 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,312 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,313 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,314 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,314 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,315 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,316 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,317 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,318 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,318 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,319 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,320 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,320 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,321 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,323 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,323 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,324 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,325 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,325 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,326 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,327 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,328 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,328 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,329 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,330 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,331 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,332 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,333 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,333 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,335 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,335 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,337 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,339 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,339 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:36:10,341 (monitor:338) INFO: We will compress the file eval_results.raw into a .gz file, and delete the old one
+2025-10-20 18:36:10,347 (monitor:246) INFO: After merging the system metrics from all works, we got avg: defaultdict(None, {'id': 'sys_avg', 'sys_avg/fl_end_time_minutes': 0.301378, 'sys_avg/total_model_size': '0.0', 'sys_avg/total_flops': '0.0', 'sys_avg/total_upload_bytes': '0.0', 'sys_avg/total_download_bytes': '2.34M', 'sys_avg/global_convergence_round': 0.0, 'sys_avg/local_convergence_round': 0.0, 'sys_avg/global_convergence_time_minutes': 0.0, 'sys_avg/local_convergence_time_minutes': 0.0})
+2025-10-20 18:36:10,348 (monitor:249) INFO: After merging the system metrics from all works, we got std: defaultdict(None, {'id': 'sys_std', 'sys_std/fl_end_time_minutes': 0.0, 'sys_std/total_model_size': '0.0', 'sys_std/total_flops': '0.0', 'sys_std/total_upload_bytes': '0.0', 'sys_std/total_download_bytes': '0.0', 'sys_std/global_convergence_round': 0.0, 'sys_std/local_convergence_round': 0.0, 'sys_std/global_convergence_time_minutes': 0.0, 'sys_std/local_convergence_time_minutes': 0.0})

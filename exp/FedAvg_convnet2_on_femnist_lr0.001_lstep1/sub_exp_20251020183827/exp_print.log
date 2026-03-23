@@ -1,0 +1,139 @@
+2025-10-20 18:38:27,265 (logging:132) INFO: the current machine is at 219.216.64.81
+2025-10-20 18:38:27,265 (logging:134) INFO: the current dir is D:\code\FedBiOT
+2025-10-20 18:38:27,265 (logging:135) INFO: the output dir is exp\FedAvg_convnet2_on_femnist_lr0.001_lstep1\sub_exp_20251020183827
+2025-10-20 18:38:27,344 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:38:27,367 (splitter_builder:82) WARNING: Splitter  not found or not used.
+2025-10-20 18:38:27,379 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:38:27,381 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:38:27,458 (utils:167) INFO: The device information file is not provided
+2025-10-20 18:38:27,539 (utils:198) INFO: --------- Getting reconstructor: DLG --------------------
+2025-10-20 18:38:27,539 (fed_runner:195) INFO: Server has been set up ... 
+2025-10-20 18:38:27,616 (fed_runner:245) INFO: Client 1 has been set up ... 
+2025-10-20 18:38:27,616 (trainer:343) INFO: Model meta-info: <class 'federatedscope.cv.model.cnn.ConvNet2'>.
+2025-10-20 18:38:27,618 (trainer:351) INFO: Num of original para names: 18.
+2025-10-20 18:38:27,618 (trainer:352) INFO: Num of original trainable para names: 12.
+2025-10-20 18:38:27,618 (trainer:354) INFO: Num of preserved para names in local update: 18. 
+Preserved para names in local update: {'bn1.weight', 'fc1.bias', 'bn2.bias', 'bn1.running_mean', 'bn2.running_mean', 'bn2.num_batches_tracked', 'bn2.running_var', 'fc2.bias', 'conv1.weight', 'bn1.running_var', 'fc1.weight', 'bn1.bias', 'conv2.weight', 'bn2.weight', 'fc2.weight', 'conv1.bias', 'conv2.bias', 'bn1.num_batches_tracked'}.
+2025-10-20 18:38:27,618 (trainer:358) INFO: Num of filtered para names in local update: 0. 
+Filtered para names in local update: set().
+2025-10-20 18:38:27,618 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "_hook_on_batch_backward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	}
+2025-10-20 18:38:27,628 (server:882) INFO: ----------- Starting training (Round #0) -------------
+2025-10-20 18:38:27,657 (client:357) INFO: {'Role': 'Client #1', 'Round': 0, 'Results_raw': {'train_loss': 4.691577, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.691577}}
+2025-10-20 18:38:27,657 (server_attacker:230) INFO: -------- reconstruct round:0, client:1---------
+2025-10-20 18:38:27,679 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 1450.1095
+2025-10-20 18:38:27,827 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 518.2916
+2025-10-20 18:38:27,971 (reconstruction_opt:114) INFO: Ite: 40, gradient difference: 355.0943
+2025-10-20 18:38:28,124 (reconstruction_opt:114) INFO: Ite: 60, gradient difference: 286.5893
+2025-10-20 18:38:28,276 (reconstruction_opt:114) INFO: Ite: 80, gradient difference: 251.1071
+2025-10-20 18:38:28,418 (reconstruction_opt:114) INFO: Ite: 100, gradient difference: 235.3016
+2025-10-20 18:38:28,569 (reconstruction_opt:114) INFO: Ite: 120, gradient difference: 225.7262
+2025-10-20 18:38:28,727 (reconstruction_opt:114) INFO: Ite: 140, gradient difference: 218.3311
+2025-10-20 18:38:28,869 (reconstruction_opt:114) INFO: Ite: 160, gradient difference: 210.0218
+2025-10-20 18:38:29,019 (reconstruction_opt:114) INFO: Ite: 180, gradient difference: 211.6703
+2025-10-20 18:38:29,167 (reconstruction_opt:114) INFO: Ite: 200, gradient difference: 206.3539
+2025-10-20 18:38:29,312 (reconstruction_opt:114) INFO: Ite: 220, gradient difference: 200.3123
+2025-10-20 18:38:29,458 (reconstruction_opt:114) INFO: Ite: 240, gradient difference: 198.2976
+2025-10-20 18:38:29,614 (reconstruction_opt:114) INFO: Ite: 260, gradient difference: 194.5067
+2025-10-20 18:38:29,776 (reconstruction_opt:114) INFO: Ite: 280, gradient difference: 191.912
+2025-10-20 18:38:29,915 (reconstruction_opt:114) INFO: Ite: 300, gradient difference: 190.9849
+2025-10-20 18:38:30,059 (reconstruction_opt:114) INFO: Ite: 320, gradient difference: 192.5164
+2025-10-20 18:38:30,239 (reconstruction_opt:114) INFO: Ite: 340, gradient difference: 187.8924
+2025-10-20 18:38:30,381 (reconstruction_opt:114) INFO: Ite: 360, gradient difference: 187.3736
+2025-10-20 18:38:30,531 (reconstruction_opt:114) INFO: Ite: 380, gradient difference: 187.7054
+2025-10-20 18:38:30,685 (reconstruction_opt:114) INFO: Ite: 400, gradient difference: 190.0182
+2025-10-20 18:38:30,840 (reconstruction_opt:114) INFO: Ite: 420, gradient difference: 189.8502
+2025-10-20 18:38:30,984 (reconstruction_opt:114) INFO: Ite: 440, gradient difference: 190.8685
+2025-10-20 18:38:31,133 (reconstruction_opt:114) INFO: Ite: 460, gradient difference: 190.0051
+2025-10-20 18:38:31,297 (reconstruction_opt:114) INFO: Ite: 480, gradient difference: 186.0079
+2025-10-20 18:38:31,452 (reconstruction_opt:114) INFO: Ite: 500, gradient difference: 185.6467
+2025-10-20 18:38:31,605 (reconstruction_opt:114) INFO: Ite: 520, gradient difference: 189.4868
+2025-10-20 18:38:31,752 (reconstruction_opt:114) INFO: Ite: 540, gradient difference: 188.897
+2025-10-20 18:38:31,902 (reconstruction_opt:114) INFO: Ite: 560, gradient difference: 190.2522
+2025-10-20 18:38:32,048 (reconstruction_opt:114) INFO: Ite: 580, gradient difference: 187.8607
+2025-10-20 18:38:32,193 (reconstruction_opt:114) INFO: Ite: 600, gradient difference: 180.5637
+2025-10-20 18:38:32,333 (reconstruction_opt:114) INFO: Ite: 620, gradient difference: 182.8886
+2025-10-20 18:38:32,502 (reconstruction_opt:114) INFO: Ite: 640, gradient difference: 185.3783
+2025-10-20 18:38:32,644 (reconstruction_opt:114) INFO: Ite: 660, gradient difference: 185.7049
+2025-10-20 18:38:32,786 (reconstruction_opt:114) INFO: Ite: 680, gradient difference: 184.1743
+2025-10-20 18:38:32,926 (reconstruction_opt:114) INFO: Ite: 700, gradient difference: 180.8531
+2025-10-20 18:38:33,070 (reconstruction_opt:114) INFO: Ite: 720, gradient difference: 183.3743
+2025-10-20 18:38:33,217 (reconstruction_opt:114) INFO: Ite: 740, gradient difference: 182.2344
+2025-10-20 18:38:33,365 (reconstruction_opt:114) INFO: Ite: 760, gradient difference: 181.3688
+2025-10-20 18:38:33,519 (reconstruction_opt:114) INFO: Ite: 780, gradient difference: 177.6493
+2025-10-20 18:38:33,661 (reconstruction_opt:114) INFO: Ite: 800, gradient difference: 181.2506
+2025-10-20 18:38:33,825 (reconstruction_opt:114) INFO: Ite: 820, gradient difference: 181.1347
+2025-10-20 18:38:33,969 (reconstruction_opt:114) INFO: Ite: 840, gradient difference: 182.4183
+2025-10-20 18:38:34,113 (reconstruction_opt:114) INFO: Ite: 860, gradient difference: 183.5012
+2025-10-20 18:38:34,256 (reconstruction_opt:114) INFO: Ite: 880, gradient difference: 183.0247
+2025-10-20 18:38:34,412 (reconstruction_opt:114) INFO: Ite: 900, gradient difference: 182.6902
+2025-10-20 18:38:34,584 (reconstruction_opt:114) INFO: Ite: 920, gradient difference: 185.4027
+2025-10-20 18:38:34,734 (reconstruction_opt:114) INFO: Ite: 940, gradient difference: 179.9281
+2025-10-20 18:38:34,895 (reconstruction_opt:114) INFO: Ite: 960, gradient difference: 182.7263
+2025-10-20 18:38:35,054 (reconstruction_opt:114) INFO: Ite: 980, gradient difference: 180.2364
+2025-10-20 18:38:35,201 (reconstruction_opt:114) INFO: Ite: 999, gradient difference: 180.4002
+2025-10-20 18:38:35,202 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 180.400238
+2025-10-20 18:38:35,295 (server:362) INFO: Server: Training is finished! Starting evaluation.
+2025-10-20 18:38:35,350 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:35,350 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:35,389 (client:554) INFO: {'Role': 'Client #1', 'Round': 0, 'Results_raw': {'test_loss': 148.466501, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.027778, 'test_avg_loss': 4.124069, 'val_loss': 148.490995, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.027778, 'val_avg_loss': 4.12475}}
+2025-10-20 18:38:35,390 (server:617) INFO: {'Role': 'Server #', 'Round': 0, 'Results_weighted_avg': {'test_loss': 148.466501, 'test_loss_regular': 0.0, 'test_total': 36.0, 'test_acc': 0.027778, 'test_avg_loss': 4.124069, 'val_loss': 148.490995, 'val_loss_regular': 0.0, 'val_total': 36.0, 'val_acc': 0.027778, 'val_avg_loss': 4.12475}, 'Results_avg': {'test_loss': 148.466501, 'test_loss_regular': 0.0, 'test_total': 36.0, 'test_acc': 0.027778, 'test_avg_loss': 4.124069, 'val_loss': 148.490995, 'val_loss_regular': 0.0, 'val_total': 36.0, 'val_acc': 0.027778, 'val_avg_loss': 4.12475}, 'Results_fairness': {'test_loss': [148.466501], 'test_loss_regular': [0.0], 'test_total': 36.0, 'test_acc': [0.027778], 'test_avg_loss': [4.124069], 'val_loss': [148.490995], 'val_loss_regular': [0.0], 'val_total': 36.0, 'val_acc': [0.027778], 'val_avg_loss': [4.12475]}}
+2025-10-20 18:38:35,392 (server:420) INFO: Server: Final evaluation is finished! Starting merging results.
+2025-10-20 18:38:35,393 (server:548) INFO: {'Role': 'Server #', 'Round': 'Final', 'Results_raw': {'DLG_loss': {0: {1: tensor(180.4002)}}, 'client_best_individual': {'val_loss_regular': 0.0, 'val_loss': 148.490995, 'test_loss': 148.466501, 'test_loss_regular': 0.0, 'test_total': 36.0, 'test_acc': 0.027778, 'test_avg_loss': 4.124069, 'val_total': 36.0, 'val_acc': 0.027778, 'val_avg_loss': 4.12475}, 'client_summarized_weighted_avg': {'val_loss_regular': 0.0, 'val_loss': 148.490995, 'test_loss': 148.466501, 'test_loss_regular': 0.0, 'test_total': 36.0, 'test_acc': 0.027778, 'test_avg_loss': 4.124069, 'val_total': 36.0, 'val_acc': 0.027778, 'val_avg_loss': 4.12475}, 'client_summarized_avg': {'val_loss_regular': 0.0, 'val_loss': 148.490995, 'test_loss': 148.466501, 'test_loss_regular': 0.0, 'test_total': 36.0, 'test_acc': 0.027778, 'test_avg_loss': 4.124069, 'val_total': 36.0, 'val_acc': 0.027778, 'val_avg_loss': 4.12475}, 'client_summarized_fairness': {'val_loss_regular': [0.0], 'val_loss': [148.490995], 'test_loss': [148.466501], 'test_loss_regular': [0.0], 'test_total': 36.0, 'test_acc': [0.027778], 'test_avg_loss': [4.124069], 'val_total': 36.0, 'val_acc': [0.027778], 'val_avg_loss': [4.12475]}}}
+2025-10-20 18:38:35,395 (server:567) INFO: {'Role': 'Client #1', 'Round': 1, 'Results_raw': {'test_loss': 148.466501, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.027778, 'test_avg_loss': 4.124069, 'val_loss': 148.490995, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.027778, 'val_avg_loss': 4.12475}}
+2025-10-20 18:38:35,395 (monitor:173) INFO: In worker #0, the system-related metrics are: {'id': 0, 'fl_end_time_minutes': 0.130972, 'total_model_size': 0, 'total_flops': 0, 'total_upload_bytes': 0, 'total_download_bytes': 5096, 'global_convergence_round': 0, 'local_convergence_round': 0, 'global_convergence_time_minutes': 0, 'local_convergence_time_minutes': 0}
+2025-10-20 18:38:35,396 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:38:35,399 (monitor:338) INFO: We will compress the file eval_results.raw into a .gz file, and delete the old one
+2025-10-20 18:38:35,402 (monitor:246) INFO: After merging the system metrics from all works, we got avg: defaultdict(None, {'id': 'sys_avg', 'sys_avg/fl_end_time_minutes': 0.130972, 'sys_avg/total_model_size': '0.0', 'sys_avg/total_flops': '0.0', 'sys_avg/total_upload_bytes': '0.0', 'sys_avg/total_download_bytes': '4.98K', 'sys_avg/global_convergence_round': 0.0, 'sys_avg/local_convergence_round': 0.0, 'sys_avg/global_convergence_time_minutes': 0.0, 'sys_avg/local_convergence_time_minutes': 0.0})
+2025-10-20 18:38:35,402 (monitor:249) INFO: After merging the system metrics from all works, we got std: defaultdict(None, {'id': 'sys_std', 'sys_std/fl_end_time_minutes': 0.0, 'sys_std/total_model_size': '0.0', 'sys_std/total_flops': '0.0', 'sys_std/total_upload_bytes': '0.0', 'sys_std/total_download_bytes': '0.0', 'sys_std/global_convergence_round': 0.0, 'sys_std/local_convergence_round': 0.0, 'sys_std/global_convergence_time_minutes': 0.0, 'sys_std/local_convergence_time_minutes': 0.0})

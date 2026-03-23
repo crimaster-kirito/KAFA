@@ -1,0 +1,791 @@
+2025-10-20 18:37:20,947 (logging:132) INFO: the current machine is at 219.216.64.81
+2025-10-20 18:37:20,947 (logging:134) INFO: the current dir is D:\code\FedBiOT
+2025-10-20 18:37:20,947 (logging:135) INFO: the output dir is exp\FedAvg_convnet2_on_femnist_lr0.001_lstep1
+2025-10-20 18:37:21,029 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:37:21,240 (splitter_builder:82) WARNING: Splitter  not found or not used.
+2025-10-20 18:37:21,253 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:37:21,254 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2025-10-20 18:37:21,337 (utils:167) INFO: The device information file is not provided
+2025-10-20 18:37:21,417 (utils:212) INFO: ------- Getting reconstructor: InvertGradient ------------------
+2025-10-20 18:37:21,417 (reconstruction_opt:271) INFO: Force the info_diff_type to be cosine similarity loss in InvertGradient attack method!
+2025-10-20 18:37:21,417 (fed_runner:195) INFO: Server has been set up ... 
+2025-10-20 18:37:21,508 (fed_runner:245) INFO: Client 1 has been set up ... 
+2025-10-20 18:37:21,597 (fed_runner:245) INFO: Client 2 has been set up ... 
+2025-10-20 18:37:21,683 (fed_runner:245) INFO: Client 3 has been set up ... 
+2025-10-20 18:37:21,783 (fed_runner:245) INFO: Client 4 has been set up ... 
+2025-10-20 18:37:21,858 (fed_runner:245) INFO: Client 5 has been set up ... 
+2025-10-20 18:37:21,950 (fed_runner:245) INFO: Client 6 has been set up ... 
+2025-10-20 18:37:22,038 (fed_runner:245) INFO: Client 7 has been set up ... 
+2025-10-20 18:37:22,122 (fed_runner:245) INFO: Client 8 has been set up ... 
+2025-10-20 18:37:22,203 (fed_runner:245) INFO: Client 9 has been set up ... 
+2025-10-20 18:37:22,283 (fed_runner:245) INFO: Client 10 has been set up ... 
+2025-10-20 18:37:22,283 (trainer:343) INFO: Model meta-info: <class 'federatedscope.cv.model.cnn.ConvNet2'>.
+2025-10-20 18:37:22,285 (trainer:351) INFO: Num of original para names: 18.
+2025-10-20 18:37:22,285 (trainer:352) INFO: Num of original trainable para names: 12.
+2025-10-20 18:37:22,285 (trainer:354) INFO: Num of preserved para names in local update: 18. 
+Preserved para names in local update: {'bn1.weight', 'fc1.bias', 'bn2.bias', 'bn1.running_mean', 'bn2.running_mean', 'bn2.num_batches_tracked', 'bn2.running_var', 'fc2.bias', 'conv1.weight', 'bn1.running_var', 'fc1.weight', 'bn1.bias', 'conv2.weight', 'bn2.weight', 'fc2.weight', 'conv1.bias', 'conv2.bias', 'bn1.num_batches_tracked'}.
+2025-10-20 18:37:22,285 (trainer:358) INFO: Num of filtered para names in local update: 0. 
+Filtered para names in local update: set().
+2025-10-20 18:37:22,285 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "_hook_on_batch_backward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	}
+2025-10-20 18:37:22,294 (server:882) INFO: ----------- Starting training (Round #0) -------------
+2025-10-20 18:37:22,327 (client:357) INFO: {'Role': 'Client #5', 'Round': 0, 'Results_raw': {'train_loss': 3.291846, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.291846}}
+2025-10-20 18:37:22,360 (client:357) INFO: {'Role': 'Client #1', 'Round': 0, 'Results_raw': {'train_loss': 4.255712, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.255712}}
+2025-10-20 18:37:22,389 (client:357) INFO: {'Role': 'Client #8', 'Round': 0, 'Results_raw': {'train_loss': 3.605543, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.605543}}
+2025-10-20 18:37:22,421 (client:357) INFO: {'Role': 'Client #6', 'Round': 0, 'Results_raw': {'train_loss': 4.201778, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.201778}}
+2025-10-20 18:37:22,451 (client:357) INFO: {'Role': 'Client #9', 'Round': 0, 'Results_raw': {'train_loss': 4.404376, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.404376}}
+2025-10-20 18:37:22,453 (server_attacker:230) INFO: -------- reconstruct round:0, client:5---------
+2025-10-20 18:37:22,502 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.1451
+2025-10-20 18:37:22,765 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.6369
+2025-10-20 18:37:23,003 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.0344
+2025-10-20 18:37:23,003 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.03437
+2025-10-20 18:37:23,085 (server_attacker:230) INFO: -------- reconstruct round:0, client:1---------
+2025-10-20 18:37:23,111 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.5071
+2025-10-20 18:37:23,353 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.5011
+2025-10-20 18:37:23,583 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.5597
+2025-10-20 18:37:23,583 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.559741
+2025-10-20 18:37:23,661 (server_attacker:230) INFO: -------- reconstruct round:0, client:8---------
+2025-10-20 18:37:23,688 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.1383
+2025-10-20 18:37:23,931 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.9751
+2025-10-20 18:37:24,165 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.5782
+2025-10-20 18:37:24,165 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.578169
+2025-10-20 18:37:24,245 (server_attacker:230) INFO: -------- reconstruct round:0, client:6---------
+2025-10-20 18:37:24,270 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.892
+2025-10-20 18:37:24,538 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.1414
+2025-10-20 18:37:24,773 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.2286
+2025-10-20 18:37:24,773 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.228642
+2025-10-20 18:37:24,853 (server_attacker:230) INFO: -------- reconstruct round:0, client:9---------
+2025-10-20 18:37:24,881 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.5348
+2025-10-20 18:37:25,137 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.252
+2025-10-20 18:37:25,367 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9055
+2025-10-20 18:37:25,367 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.905476
+2025-10-20 18:37:25,481 (server:351) INFO: ----------- Starting a new training round (Round #1) -------------
+2025-10-20 18:37:25,514 (client:357) INFO: {'Role': 'Client #4', 'Round': 1, 'Results_raw': {'train_loss': 4.43204, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.43204}}
+2025-10-20 18:37:25,538 (client:357) INFO: {'Role': 'Client #6', 'Round': 1, 'Results_raw': {'train_loss': 4.044834, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.044834}}
+2025-10-20 18:37:25,557 (client:357) INFO: {'Role': 'Client #5', 'Round': 1, 'Results_raw': {'train_loss': 3.939053, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.939053}}
+2025-10-20 18:37:25,589 (client:357) INFO: {'Role': 'Client #3', 'Round': 1, 'Results_raw': {'train_loss': 5.087179, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 5.087179}}
+2025-10-20 18:37:25,611 (client:357) INFO: {'Role': 'Client #9', 'Round': 1, 'Results_raw': {'train_loss': 4.459164, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.459164}}
+2025-10-20 18:37:25,611 (server_attacker:230) INFO: -------- reconstruct round:1, client:4---------
+2025-10-20 18:37:25,637 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.2229
+2025-10-20 18:37:25,881 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.4333
+2025-10-20 18:37:26,123 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9097
+2025-10-20 18:37:26,123 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.90973
+2025-10-20 18:37:26,203 (server_attacker:230) INFO: -------- reconstruct round:1, client:6---------
+2025-10-20 18:37:26,229 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.8729
+2025-10-20 18:37:26,468 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.0924
+2025-10-20 18:37:26,731 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8875
+2025-10-20 18:37:26,731 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.887451
+2025-10-20 18:37:26,811 (server_attacker:230) INFO: -------- reconstruct round:1, client:5---------
+2025-10-20 18:37:26,838 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.0174
+2025-10-20 18:37:27,082 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.9551
+2025-10-20 18:37:27,312 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.6493
+2025-10-20 18:37:27,314 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.649281
+2025-10-20 18:37:27,397 (server_attacker:230) INFO: -------- reconstruct round:1, client:3---------
+2025-10-20 18:37:27,422 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.3993
+2025-10-20 18:37:27,674 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.7939
+2025-10-20 18:37:27,908 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8244
+2025-10-20 18:37:27,908 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.824385
+2025-10-20 18:37:27,988 (server_attacker:230) INFO: -------- reconstruct round:1, client:9---------
+2025-10-20 18:37:28,015 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.3952
+2025-10-20 18:37:28,263 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.0078
+2025-10-20 18:37:28,526 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8882
+2025-10-20 18:37:28,526 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.888208
+2025-10-20 18:37:28,637 (server:351) INFO: ----------- Starting a new training round (Round #2) -------------
+2025-10-20 18:37:28,660 (client:357) INFO: {'Role': 'Client #3', 'Round': 2, 'Results_raw': {'train_loss': 3.399948, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.399948}}
+2025-10-20 18:37:28,691 (client:357) INFO: {'Role': 'Client #2', 'Round': 2, 'Results_raw': {'train_loss': 4.930295, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.930295}}
+2025-10-20 18:37:28,713 (client:357) INFO: {'Role': 'Client #9', 'Round': 2, 'Results_raw': {'train_loss': 3.727995, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.727995}}
+2025-10-20 18:37:28,735 (client:357) INFO: {'Role': 'Client #8', 'Round': 2, 'Results_raw': {'train_loss': 3.047126, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 1.0, 'train_avg_loss': 3.047126}}
+2025-10-20 18:37:28,756 (client:357) INFO: {'Role': 'Client #1', 'Round': 2, 'Results_raw': {'train_loss': 5.172121, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 5.172121}}
+2025-10-20 18:37:28,756 (server_attacker:230) INFO: -------- reconstruct round:2, client:3---------
+2025-10-20 18:37:28,783 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.1326
+2025-10-20 18:37:29,027 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.9415
+2025-10-20 18:37:29,258 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.029
+2025-10-20 18:37:29,258 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.029011
+2025-10-20 18:37:29,499 (server_attacker:230) INFO: -------- reconstruct round:2, client:2---------
+2025-10-20 18:37:29,526 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.5795
+2025-10-20 18:37:29,789 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.8569
+2025-10-20 18:37:30,020 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.0667
+2025-10-20 18:37:30,020 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.066712
+2025-10-20 18:37:30,101 (server_attacker:230) INFO: -------- reconstruct round:2, client:9---------
+2025-10-20 18:37:30,127 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.9305
+2025-10-20 18:37:30,369 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.6638
+2025-10-20 18:37:30,609 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9444
+2025-10-20 18:37:30,609 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.944406
+2025-10-20 18:37:30,689 (server_attacker:230) INFO: -------- reconstruct round:2, client:8---------
+2025-10-20 18:37:30,716 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.8006
+2025-10-20 18:37:30,968 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.7922
+2025-10-20 18:37:31,198 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.7485
+2025-10-20 18:37:31,198 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.748545
+2025-10-20 18:37:31,282 (server_attacker:230) INFO: -------- reconstruct round:2, client:1---------
+2025-10-20 18:37:31,307 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.3498
+2025-10-20 18:37:31,551 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.9184
+2025-10-20 18:37:31,781 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.2672
+2025-10-20 18:37:31,781 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.267214
+2025-10-20 18:37:31,899 (server:351) INFO: ----------- Starting a new training round (Round #3) -------------
+2025-10-20 18:37:31,921 (client:357) INFO: {'Role': 'Client #6', 'Round': 3, 'Results_raw': {'train_loss': 3.667211, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.667211}}
+2025-10-20 18:37:31,941 (client:357) INFO: {'Role': 'Client #2', 'Round': 3, 'Results_raw': {'train_loss': 3.342551, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.342551}}
+2025-10-20 18:37:31,963 (client:357) INFO: {'Role': 'Client #1', 'Round': 3, 'Results_raw': {'train_loss': 3.204578, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.204578}}
+2025-10-20 18:37:31,984 (client:357) INFO: {'Role': 'Client #9', 'Round': 3, 'Results_raw': {'train_loss': 4.23973, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.23973}}
+2025-10-20 18:37:32,013 (client:357) INFO: {'Role': 'Client #7', 'Round': 3, 'Results_raw': {'train_loss': 5.197498, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 5.197498}}
+2025-10-20 18:37:32,013 (server_attacker:230) INFO: -------- reconstruct round:3, client:6---------
+2025-10-20 18:37:32,040 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.7708
+2025-10-20 18:37:32,291 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.5089
+2025-10-20 18:37:32,533 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.3189
+2025-10-20 18:37:32,533 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.318933
+2025-10-20 18:37:32,615 (server_attacker:230) INFO: -------- reconstruct round:3, client:2---------
+2025-10-20 18:37:32,640 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.4015
+2025-10-20 18:37:32,881 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.8334
+2025-10-20 18:37:33,117 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.0292
+2025-10-20 18:37:33,117 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.029207
+2025-10-20 18:37:33,202 (server_attacker:230) INFO: -------- reconstruct round:3, client:1---------
+2025-10-20 18:37:33,226 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.6593
+2025-10-20 18:37:33,479 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.9156
+2025-10-20 18:37:33,707 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8521
+2025-10-20 18:37:33,707 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.852085
+2025-10-20 18:37:33,788 (server_attacker:230) INFO: -------- reconstruct round:3, client:9---------
+2025-10-20 18:37:33,816 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.3253
+2025-10-20 18:37:34,063 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.1743
+2025-10-20 18:37:34,307 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.3473
+2025-10-20 18:37:34,307 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.347302
+2025-10-20 18:37:34,390 (server_attacker:230) INFO: -------- reconstruct round:3, client:7---------
+2025-10-20 18:37:34,413 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.3723
+2025-10-20 18:37:34,657 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.533
+2025-10-20 18:37:34,892 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.1055
+2025-10-20 18:37:34,892 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.105534
+2025-10-20 18:37:35,005 (server:351) INFO: ----------- Starting a new training round (Round #4) -------------
+2025-10-20 18:37:35,028 (client:357) INFO: {'Role': 'Client #7', 'Round': 4, 'Results_raw': {'train_loss': 4.185369, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.185369}}
+2025-10-20 18:37:35,049 (client:357) INFO: {'Role': 'Client #9', 'Round': 4, 'Results_raw': {'train_loss': 5.000963, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 5.000963}}
+2025-10-20 18:37:35,071 (client:357) INFO: {'Role': 'Client #3', 'Round': 4, 'Results_raw': {'train_loss': 3.728365, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.728365}}
+2025-10-20 18:37:35,102 (client:357) INFO: {'Role': 'Client #10', 'Round': 4, 'Results_raw': {'train_loss': 4.409759, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.409759}}
+2025-10-20 18:37:35,121 (client:357) INFO: {'Role': 'Client #6', 'Round': 4, 'Results_raw': {'train_loss': 3.812084, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.812084}}
+2025-10-20 18:37:35,123 (server_attacker:230) INFO: -------- reconstruct round:4, client:7---------
+2025-10-20 18:37:35,148 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.4519
+2025-10-20 18:37:35,401 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2971
+2025-10-20 18:37:35,662 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.3679
+2025-10-20 18:37:35,664 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.367913
+2025-10-20 18:37:35,743 (server_attacker:230) INFO: -------- reconstruct round:4, client:9---------
+2025-10-20 18:37:35,770 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.0631
+2025-10-20 18:37:36,021 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.5147
+2025-10-20 18:37:36,253 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.0774
+2025-10-20 18:37:36,255 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.077374
+2025-10-20 18:37:36,335 (server_attacker:230) INFO: -------- reconstruct round:4, client:3---------
+2025-10-20 18:37:36,360 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.0976
+2025-10-20 18:37:36,612 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.3676
+2025-10-20 18:37:36,851 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.187
+2025-10-20 18:37:36,852 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.186983
+2025-10-20 18:37:36,934 (server_attacker:230) INFO: -------- reconstruct round:4, client:10---------
+2025-10-20 18:37:36,959 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.981
+2025-10-20 18:37:37,206 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.0803
+2025-10-20 18:37:37,434 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9863
+2025-10-20 18:37:37,434 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.986276
+2025-10-20 18:37:37,517 (server_attacker:230) INFO: -------- reconstruct round:4, client:6---------
+2025-10-20 18:37:37,543 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.9486
+2025-10-20 18:37:37,797 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.6831
+2025-10-20 18:37:38,042 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9574
+2025-10-20 18:37:38,042 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.957351
+2025-10-20 18:37:38,155 (server:351) INFO: ----------- Starting a new training round (Round #5) -------------
+2025-10-20 18:37:38,177 (client:357) INFO: {'Role': 'Client #10', 'Round': 5, 'Results_raw': {'train_loss': 3.203058, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.203058}}
+2025-10-20 18:37:38,198 (client:357) INFO: {'Role': 'Client #5', 'Round': 5, 'Results_raw': {'train_loss': 4.15994, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.15994}}
+2025-10-20 18:37:38,218 (client:357) INFO: {'Role': 'Client #8', 'Round': 5, 'Results_raw': {'train_loss': 4.898729, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.898729}}
+2025-10-20 18:37:38,239 (client:357) INFO: {'Role': 'Client #1', 'Round': 5, 'Results_raw': {'train_loss': 4.328771, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.328771}}
+2025-10-20 18:37:38,260 (client:357) INFO: {'Role': 'Client #2', 'Round': 5, 'Results_raw': {'train_loss': 4.291335, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.291335}}
+2025-10-20 18:37:38,260 (server_attacker:230) INFO: -------- reconstruct round:5, client:10---------
+2025-10-20 18:37:38,286 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.4598
+2025-10-20 18:37:38,549 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2687
+2025-10-20 18:37:38,781 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.5475
+2025-10-20 18:37:38,782 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.547517
+2025-10-20 18:37:38,866 (server_attacker:230) INFO: -------- reconstruct round:5, client:5---------
+2025-10-20 18:37:38,890 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.3687
+2025-10-20 18:37:39,134 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2039
+2025-10-20 18:37:39,361 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.0648
+2025-10-20 18:37:39,363 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.064796
+2025-10-20 18:37:39,449 (server_attacker:230) INFO: -------- reconstruct round:5, client:8---------
+2025-10-20 18:37:39,476 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.4265
+2025-10-20 18:37:39,716 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.5109
+2025-10-20 18:37:39,956 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.1601
+2025-10-20 18:37:39,956 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.160102
+2025-10-20 18:37:40,037 (server_attacker:230) INFO: -------- reconstruct round:5, client:1---------
+2025-10-20 18:37:40,062 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.6894
+2025-10-20 18:37:40,324 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.5893
+2025-10-20 18:37:40,557 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.3593
+2025-10-20 18:37:40,557 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.359286
+2025-10-20 18:37:40,639 (server_attacker:230) INFO: -------- reconstruct round:5, client:2---------
+2025-10-20 18:37:40,665 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.5427
+2025-10-20 18:37:40,913 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.0554
+2025-10-20 18:37:41,160 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.3453
+2025-10-20 18:37:41,160 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.345345
+2025-10-20 18:37:41,269 (server:351) INFO: ----------- Starting a new training round (Round #6) -------------
+2025-10-20 18:37:41,291 (client:357) INFO: {'Role': 'Client #8', 'Round': 6, 'Results_raw': {'train_loss': 3.71789, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.71789}}
+2025-10-20 18:37:41,312 (client:357) INFO: {'Role': 'Client #9', 'Round': 6, 'Results_raw': {'train_loss': 4.19717, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.19717}}
+2025-10-20 18:37:41,333 (client:357) INFO: {'Role': 'Client #2', 'Round': 6, 'Results_raw': {'train_loss': 4.16383, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.16383}}
+2025-10-20 18:37:41,355 (client:357) INFO: {'Role': 'Client #5', 'Round': 6, 'Results_raw': {'train_loss': 3.950505, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.950505}}
+2025-10-20 18:37:41,378 (client:357) INFO: {'Role': 'Client #10', 'Round': 6, 'Results_raw': {'train_loss': 5.482169, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 5.482169}}
+2025-10-20 18:37:41,378 (server_attacker:230) INFO: -------- reconstruct round:6, client:8---------
+2025-10-20 18:37:41,402 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.3131
+2025-10-20 18:37:41,667 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.5121
+2025-10-20 18:37:41,900 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.0133
+2025-10-20 18:37:41,900 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.013308
+2025-10-20 18:37:41,980 (server_attacker:230) INFO: -------- reconstruct round:6, client:9---------
+2025-10-20 18:37:42,005 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.3959
+2025-10-20 18:37:42,249 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.6151
+2025-10-20 18:37:42,479 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.3742
+2025-10-20 18:37:42,479 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.374219
+2025-10-20 18:37:42,562 (server_attacker:230) INFO: -------- reconstruct round:6, client:2---------
+2025-10-20 18:37:42,587 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.2874
+2025-10-20 18:37:42,830 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.4147
+2025-10-20 18:37:43,064 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.436
+2025-10-20 18:37:43,065 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.436022
+2025-10-20 18:37:43,145 (server_attacker:230) INFO: -------- reconstruct round:6, client:5---------
+2025-10-20 18:37:43,172 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.9887
+2025-10-20 18:37:43,413 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2082
+2025-10-20 18:37:43,680 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8577
+2025-10-20 18:37:43,680 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.857664
+2025-10-20 18:37:43,762 (server_attacker:230) INFO: -------- reconstruct round:6, client:10---------
+2025-10-20 18:37:43,786 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.2529
+2025-10-20 18:37:44,041 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.718
+2025-10-20 18:37:44,276 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.3174
+2025-10-20 18:37:44,278 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.3174
+2025-10-20 18:37:44,403 (server:351) INFO: ----------- Starting a new training round (Round #7) -------------
+2025-10-20 18:37:44,426 (client:357) INFO: {'Role': 'Client #2', 'Round': 7, 'Results_raw': {'train_loss': 3.103441, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 1.0, 'train_avg_loss': 3.103441}}
+2025-10-20 18:37:44,448 (client:357) INFO: {'Role': 'Client #8', 'Round': 7, 'Results_raw': {'train_loss': 3.348021, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.348021}}
+2025-10-20 18:37:44,472 (client:357) INFO: {'Role': 'Client #9', 'Round': 7, 'Results_raw': {'train_loss': 3.858964, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.858964}}
+2025-10-20 18:37:44,498 (client:357) INFO: {'Role': 'Client #1', 'Round': 7, 'Results_raw': {'train_loss': 3.319951, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.319951}}
+2025-10-20 18:37:44,519 (client:357) INFO: {'Role': 'Client #3', 'Round': 7, 'Results_raw': {'train_loss': 4.595479, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.595479}}
+2025-10-20 18:37:44,519 (server_attacker:230) INFO: -------- reconstruct round:7, client:2---------
+2025-10-20 18:37:44,543 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.6369
+2025-10-20 18:37:44,788 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.7359
+2025-10-20 18:37:45,018 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8528
+2025-10-20 18:37:45,018 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.852844
+2025-10-20 18:37:45,100 (server_attacker:230) INFO: -------- reconstruct round:7, client:8---------
+2025-10-20 18:37:45,124 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.9999
+2025-10-20 18:37:45,367 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.147
+2025-10-20 18:37:45,600 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9099
+2025-10-20 18:37:45,600 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.909902
+2025-10-20 18:37:45,681 (server_attacker:230) INFO: -------- reconstruct round:7, client:9---------
+2025-10-20 18:37:45,708 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.2414
+2025-10-20 18:37:45,947 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.1831
+2025-10-20 18:37:46,180 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8406
+2025-10-20 18:37:46,180 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.840617
+2025-10-20 18:37:46,262 (server_attacker:230) INFO: -------- reconstruct round:7, client:1---------
+2025-10-20 18:37:46,288 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.8721
+2025-10-20 18:37:46,529 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.146
+2025-10-20 18:37:46,758 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.2559
+2025-10-20 18:37:46,760 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.255903
+2025-10-20 18:37:46,840 (server_attacker:230) INFO: -------- reconstruct round:7, client:3---------
+2025-10-20 18:37:46,866 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.3799
+2025-10-20 18:37:47,140 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2237
+2025-10-20 18:37:47,367 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.0263
+2025-10-20 18:37:47,369 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.026283
+2025-10-20 18:37:47,479 (server:351) INFO: ----------- Starting a new training round (Round #8) -------------
+2025-10-20 18:37:47,503 (client:357) INFO: {'Role': 'Client #1', 'Round': 8, 'Results_raw': {'train_loss': 3.342893, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.342893}}
+2025-10-20 18:37:47,523 (client:357) INFO: {'Role': 'Client #10', 'Round': 8, 'Results_raw': {'train_loss': 4.917403, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.917403}}
+2025-10-20 18:37:47,544 (client:357) INFO: {'Role': 'Client #6', 'Round': 8, 'Results_raw': {'train_loss': 2.989101, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 2.989101}}
+2025-10-20 18:37:47,564 (client:357) INFO: {'Role': 'Client #3', 'Round': 8, 'Results_raw': {'train_loss': 3.464005, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.464005}}
+2025-10-20 18:37:47,584 (client:357) INFO: {'Role': 'Client #9', 'Round': 8, 'Results_raw': {'train_loss': 4.153153, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.153153}}
+2025-10-20 18:37:47,584 (server_attacker:230) INFO: -------- reconstruct round:8, client:1---------
+2025-10-20 18:37:47,608 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.0871
+2025-10-20 18:37:47,848 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.6413
+2025-10-20 18:37:48,081 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.6949
+2025-10-20 18:37:48,081 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.694903
+2025-10-20 18:37:48,164 (server_attacker:230) INFO: -------- reconstruct round:8, client:10---------
+2025-10-20 18:37:48,190 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.9222
+2025-10-20 18:37:48,433 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.9462
+2025-10-20 18:37:48,674 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.6047
+2025-10-20 18:37:48,674 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.604723
+2025-10-20 18:37:48,756 (server_attacker:230) INFO: -------- reconstruct round:8, client:6---------
+2025-10-20 18:37:48,782 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.4964
+2025-10-20 18:37:49,027 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2833
+2025-10-20 18:37:49,268 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.1116
+2025-10-20 18:37:49,268 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.111611
+2025-10-20 18:37:49,348 (server_attacker:230) INFO: -------- reconstruct round:8, client:3---------
+2025-10-20 18:37:49,373 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.8482
+2025-10-20 18:37:49,620 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.5771
+2025-10-20 18:37:49,862 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.0139
+2025-10-20 18:37:49,862 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.013889
+2025-10-20 18:37:49,950 (server_attacker:230) INFO: -------- reconstruct round:8, client:9---------
+2025-10-20 18:37:49,974 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.7184
+2025-10-20 18:37:50,227 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.1543
+2025-10-20 18:37:50,459 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.094
+2025-10-20 18:37:50,459 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.094034
+2025-10-20 18:37:50,571 (server:351) INFO: ----------- Starting a new training round (Round #9) -------------
+2025-10-20 18:37:50,594 (client:357) INFO: {'Role': 'Client #7', 'Round': 9, 'Results_raw': {'train_loss': 4.349769, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.349769}}
+2025-10-20 18:37:50,615 (client:357) INFO: {'Role': 'Client #4', 'Round': 9, 'Results_raw': {'train_loss': 3.768475, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.768475}}
+2025-10-20 18:37:50,636 (client:357) INFO: {'Role': 'Client #6', 'Round': 9, 'Results_raw': {'train_loss': 3.228276, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.228276}}
+2025-10-20 18:37:50,656 (client:357) INFO: {'Role': 'Client #9', 'Round': 9, 'Results_raw': {'train_loss': 4.521367, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.521367}}
+2025-10-20 18:37:50,676 (client:357) INFO: {'Role': 'Client #8', 'Round': 9, 'Results_raw': {'train_loss': 3.661664, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.661664}}
+2025-10-20 18:37:50,676 (server_attacker:230) INFO: -------- reconstruct round:9, client:7---------
+2025-10-20 18:37:50,702 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.9095
+2025-10-20 18:37:50,954 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2549
+2025-10-20 18:37:51,182 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8653
+2025-10-20 18:37:51,184 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.865312
+2025-10-20 18:37:51,265 (server_attacker:230) INFO: -------- reconstruct round:9, client:4---------
+2025-10-20 18:37:51,293 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.2885
+2025-10-20 18:37:51,546 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.7825
+2025-10-20 18:37:51,776 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.4448
+2025-10-20 18:37:51,776 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.444758
+2025-10-20 18:37:51,858 (server_attacker:230) INFO: -------- reconstruct round:9, client:6---------
+2025-10-20 18:37:51,884 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.5019
+2025-10-20 18:37:52,166 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.5184
+2025-10-20 18:37:52,394 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9368
+2025-10-20 18:37:52,396 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.93685
+2025-10-20 18:37:52,476 (server_attacker:230) INFO: -------- reconstruct round:9, client:9---------
+2025-10-20 18:37:52,501 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.6098
+2025-10-20 18:37:52,747 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.5948
+2025-10-20 18:37:52,976 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.2988
+2025-10-20 18:37:52,978 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.298818
+2025-10-20 18:37:53,062 (server_attacker:230) INFO: -------- reconstruct round:9, client:8---------
+2025-10-20 18:37:53,088 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.1185
+2025-10-20 18:37:53,329 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.1527
+2025-10-20 18:37:53,563 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8624
+2025-10-20 18:37:53,563 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.862409
+2025-10-20 18:37:53,677 (server:345) INFO: Server: Starting evaluation at the end of round 9.
+2025-10-20 18:37:53,677 (server:351) INFO: ----------- Starting a new training round (Round #10) -------------
+2025-10-20 18:37:53,731 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:53,731 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:53,768 (client:554) INFO: {'Role': 'Client #1', 'Round': 9, 'Results_raw': {'test_loss': 142.727403, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.0, 'test_avg_loss': 3.96465, 'val_loss': 141.791022, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.083333, 'val_avg_loss': 3.938639}}
+2025-10-20 18:37:53,816 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:53,816 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:53,849 (client:554) INFO: {'Role': 'Client #2', 'Round': 9, 'Results_raw': {'test_loss': 125.371753, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.03125, 'test_avg_loss': 3.917867, 'val_loss': 126.049369, 'val_loss_regular': 0.0, 'val_total': 32, 'val_acc': 0.09375, 'val_avg_loss': 3.939043}}
+2025-10-20 18:37:53,901 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:53,901 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:53,940 (client:554) INFO: {'Role': 'Client #3', 'Round': 9, 'Results_raw': {'test_loss': 148.49189, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.027027, 'test_avg_loss': 4.013294, 'val_loss': 142.712098, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.083333, 'val_avg_loss': 3.964225}}
+2025-10-20 18:37:53,993 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:53,993 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,030 (client:554) INFO: {'Role': 'Client #4', 'Round': 9, 'Results_raw': {'test_loss': 137.517084, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.057143, 'test_avg_loss': 3.92906, 'val_loss': 138.690582, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.057143, 'val_avg_loss': 3.962588}}
+2025-10-20 18:37:54,078 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,078 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,111 (client:554) INFO: {'Role': 'Client #5', 'Round': 9, 'Results_raw': {'test_loss': 116.596721, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.133333, 'test_avg_loss': 3.886557, 'val_loss': 119.828565, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.1, 'val_avg_loss': 3.994285}}
+2025-10-20 18:37:54,158 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,159 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,191 (client:554) INFO: {'Role': 'Client #6', 'Round': 9, 'Results_raw': {'test_loss': 119.842022, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.066667, 'test_avg_loss': 3.994734, 'val_loss': 119.008311, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.1, 'val_avg_loss': 3.966944}}
+2025-10-20 18:37:54,241 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,242 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,298 (client:554) INFO: {'Role': 'Client #7', 'Round': 9, 'Results_raw': {'test_loss': 123.247053, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.064516, 'test_avg_loss': 3.975711, 'val_loss': 119.089592, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 3.969653}}
+2025-10-20 18:37:54,348 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,348 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,380 (client:554) INFO: {'Role': 'Client #8', 'Round': 9, 'Results_raw': {'test_loss': 131.188757, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.090909, 'test_avg_loss': 3.975417, 'val_loss': 130.361216, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.151515, 'val_avg_loss': 3.95034}}
+2025-10-20 18:37:54,433 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,433 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,472 (client:554) INFO: {'Role': 'Client #9', 'Round': 9, 'Results_raw': {'test_loss': 138.343535, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.085714, 'test_avg_loss': 3.952672, 'val_loss': 140.457082, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.0, 'val_avg_loss': 4.013059}}
+2025-10-20 18:37:54,524 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,524 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:37:54,559 (client:554) INFO: {'Role': 'Client #10', 'Round': 9, 'Results_raw': {'test_loss': 135.088939, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.058824, 'test_avg_loss': 3.973204, 'val_loss': 135.074589, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.147059, 'val_avg_loss': 3.972782}}
+2025-10-20 18:37:54,581 (client:357) INFO: {'Role': 'Client #9', 'Round': 10, 'Results_raw': {'train_loss': 2.898386, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 2.898386}}
+2025-10-20 18:37:54,601 (client:357) INFO: {'Role': 'Client #5', 'Round': 10, 'Results_raw': {'train_loss': 3.552149, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.552149}}
+2025-10-20 18:37:54,622 (client:357) INFO: {'Role': 'Client #3', 'Round': 10, 'Results_raw': {'train_loss': 3.888182, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.888182}}
+2025-10-20 18:37:54,647 (client:357) INFO: {'Role': 'Client #8', 'Round': 10, 'Results_raw': {'train_loss': 4.93903, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.93903}}
+2025-10-20 18:37:54,671 (client:357) INFO: {'Role': 'Client #10', 'Round': 10, 'Results_raw': {'train_loss': 3.462347, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.462347}}
+2025-10-20 18:37:54,673 (server:617) INFO: {'Role': 'Server #', 'Round': 9, 'Results_weighted_avg': {'test_loss': 132.538973, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.06006, 'test_avg_loss': 3.959205, 'val_loss': 131.958038, 'val_loss_regular': 0.0, 'val_total': 33.1, 'val_acc': 0.087613, 'val_avg_loss': 3.966956}, 'Results_avg': {'test_loss': 131.841516, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.061538, 'test_avg_loss': 3.958317, 'val_loss': 131.306243, 'val_loss_regular': 0.0, 'val_total': 33.1, 'val_acc': 0.08828, 'val_avg_loss': 3.967156}, 'Results_fairness': {'test_total': 33.3, 'val_total': 33.1, 'test_loss_std': 9.865657, 'test_loss_bottom_decile': 119.842022, 'test_loss_top_decile': 148.49189, 'test_loss_min': 116.596721, 'test_loss_max': 148.49189, 'test_loss_bottom10%': 116.596721, 'test_loss_top10%': 148.49189, 'test_loss_cos1': 0.997212, 'test_loss_entropy': 2.299782, 'test_loss_regular_std': 0.0, 'test_loss_regular_bottom_decile': 0.0, 'test_loss_regular_top_decile': 0.0, 'test_loss_regular_min': 0.0, 'test_loss_regular_max': 0.0, 'test_loss_regular_bottom10%': 0.0, 'test_loss_regular_top10%': 0.0, 'test_loss_regular_cos1': nan, 'test_loss_regular_entropy': 2.302585, 'test_acc_std': 0.035439, 'test_acc_bottom_decile': 0.027027, 'test_acc_top_decile': 0.133333, 'test_acc_min': 0.0, 'test_acc_max': 0.133333, 'test_acc_bottom10%': 0.0, 'test_acc_top10%': 0.133333, 'test_acc_cos1': 0.866578, 'test_acc_entropy': 2.09938, 'test_avg_loss_std': 0.035887, 'test_avg_loss_bottom_decile': 3.917867, 'test_avg_loss_top_decile': 4.013294, 'test_avg_loss_min': 3.886557, 'test_avg_loss_max': 4.013294, 'test_avg_loss_bottom10%': 3.886557, 'test_avg_loss_top10%': 4.013294, 'test_avg_loss_cos1': 0.999959, 'test_avg_loss_entropy': 2.302544, 'val_loss_std': 9.237107, 'val_loss_bottom_decile': 119.089592, 'val_loss_top_decile': 142.712098, 'val_loss_min': 119.008311, 'val_loss_max': 142.712098, 'val_loss_bottom10%': 119.008311, 'val_loss_top10%': 142.712098, 'val_loss_cos1': 0.997535, 'val_loss_entropy': 2.300097, 'val_loss_regular_std': 0.0, 'val_loss_regular_bottom_decile': 0.0, 'val_loss_regular_top_decile': 0.0, 'val_loss_regular_min': 0.0, 'val_loss_regular_max': 0.0, 'val_loss_regular_bottom10%': 0.0, 'val_loss_regular_top10%': 0.0, 'val_loss_regular_cos1': nan, 'val_loss_regular_entropy': 2.302585, 'val_acc_std': 0.041276, 'val_acc_bottom_decile': 0.057143, 'val_acc_top_decile': 0.151515, 'val_acc_min': 0.0, 'val_acc_max': 0.151515, 'val_acc_bottom10%': 0.0, 'val_acc_top10%': 0.151515, 'val_acc_cos1': 0.905873, 'val_acc_entropy': 2.150487, 'val_avg_loss_std': 0.021902, 'val_avg_loss_bottom_decile': 3.939043, 'val_avg_loss_top_decile': 4.013059, 'val_avg_loss_min': 3.938639, 'val_avg_loss_max': 4.013059, 'val_avg_loss_bottom10%': 3.938639, 'val_avg_loss_top10%': 4.013059, 'val_avg_loss_cos1': 0.999985, 'val_avg_loss_entropy': 2.30257}}
+2025-10-20 18:37:54,706 (server_attacker:230) INFO: -------- reconstruct round:10, client:9---------
+2025-10-20 18:37:54,735 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.9287
+2025-10-20 18:37:54,990 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.8527
+2025-10-20 18:37:55,225 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.7213
+2025-10-20 18:37:55,225 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.721309
+2025-10-20 18:37:55,307 (server_attacker:230) INFO: -------- reconstruct round:10, client:5---------
+2025-10-20 18:37:55,332 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.0119
+2025-10-20 18:37:55,595 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.0591
+2025-10-20 18:37:55,824 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.1367
+2025-10-20 18:37:55,826 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.136728
+2025-10-20 18:37:55,907 (server_attacker:230) INFO: -------- reconstruct round:10, client:3---------
+2025-10-20 18:37:55,931 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.9552
+2025-10-20 18:37:56,181 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.1306
+2025-10-20 18:37:56,418 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8671
+2025-10-20 18:37:56,418 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.867079
+2025-10-20 18:37:56,501 (server_attacker:230) INFO: -------- reconstruct round:10, client:8---------
+2025-10-20 18:37:56,528 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.0661
+2025-10-20 18:37:56,767 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.1492
+2025-10-20 18:37:57,006 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.3162
+2025-10-20 18:37:57,006 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.316206
+2025-10-20 18:37:57,092 (server_attacker:230) INFO: -------- reconstruct round:10, client:10---------
+2025-10-20 18:37:57,116 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.3022
+2025-10-20 18:37:57,365 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.7917
+2025-10-20 18:37:57,596 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8695
+2025-10-20 18:37:57,596 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.869514
+2025-10-20 18:37:57,706 (server:351) INFO: ----------- Starting a new training round (Round #11) -------------
+2025-10-20 18:37:57,729 (client:357) INFO: {'Role': 'Client #7', 'Round': 11, 'Results_raw': {'train_loss': 4.709272, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.709272}}
+2025-10-20 18:37:57,749 (client:357) INFO: {'Role': 'Client #9', 'Round': 11, 'Results_raw': {'train_loss': 4.251552, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.251552}}
+2025-10-20 18:37:57,769 (client:357) INFO: {'Role': 'Client #1', 'Round': 11, 'Results_raw': {'train_loss': 2.553938, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 1.0, 'train_avg_loss': 2.553938}}
+2025-10-20 18:37:57,790 (client:357) INFO: {'Role': 'Client #5', 'Round': 11, 'Results_raw': {'train_loss': 3.802536, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.802536}}
+2025-10-20 18:37:57,809 (client:357) INFO: {'Role': 'Client #10', 'Round': 11, 'Results_raw': {'train_loss': 3.770538, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.770538}}
+2025-10-20 18:37:57,811 (server_attacker:230) INFO: -------- reconstruct round:11, client:7---------
+2025-10-20 18:37:57,835 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.1306
+2025-10-20 18:37:58,083 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.6324
+2025-10-20 18:37:58,310 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8213
+2025-10-20 18:37:58,312 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.82128
+2025-10-20 18:37:58,394 (server_attacker:230) INFO: -------- reconstruct round:11, client:9---------
+2025-10-20 18:37:58,419 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.2906
+2025-10-20 18:37:58,711 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.7948
+2025-10-20 18:37:58,939 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9641
+2025-10-20 18:37:58,939 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.96407
+2025-10-20 18:37:59,022 (server_attacker:230) INFO: -------- reconstruct round:11, client:1---------
+2025-10-20 18:37:59,046 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.1423
+2025-10-20 18:37:59,289 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.8737
+2025-10-20 18:37:59,526 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.5975
+2025-10-20 18:37:59,526 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.597477
+2025-10-20 18:37:59,608 (server_attacker:230) INFO: -------- reconstruct round:11, client:5---------
+2025-10-20 18:37:59,631 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.923
+2025-10-20 18:37:59,910 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.301
+2025-10-20 18:38:00,160 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.7707
+2025-10-20 18:38:00,161 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.770654
+2025-10-20 18:38:00,244 (server_attacker:230) INFO: -------- reconstruct round:11, client:10---------
+2025-10-20 18:38:00,268 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.6932
+2025-10-20 18:38:00,510 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 10.0396
+2025-10-20 18:38:00,740 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.1617
+2025-10-20 18:38:00,740 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.161749
+2025-10-20 18:38:00,850 (server:351) INFO: ----------- Starting a new training round (Round #12) -------------
+2025-10-20 18:38:00,873 (client:357) INFO: {'Role': 'Client #5', 'Round': 12, 'Results_raw': {'train_loss': 3.32818, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.32818}}
+2025-10-20 18:38:00,894 (client:357) INFO: {'Role': 'Client #6', 'Round': 12, 'Results_raw': {'train_loss': 2.413149, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 1.0, 'train_avg_loss': 2.413149}}
+2025-10-20 18:38:00,914 (client:357) INFO: {'Role': 'Client #1', 'Round': 12, 'Results_raw': {'train_loss': 4.878351, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.878351}}
+2025-10-20 18:38:00,934 (client:357) INFO: {'Role': 'Client #3', 'Round': 12, 'Results_raw': {'train_loss': 4.128224, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.128224}}
+2025-10-20 18:38:00,954 (client:357) INFO: {'Role': 'Client #2', 'Round': 12, 'Results_raw': {'train_loss': 4.119705, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.119705}}
+2025-10-20 18:38:00,956 (server_attacker:230) INFO: -------- reconstruct round:12, client:5---------
+2025-10-20 18:38:00,979 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.2177
+2025-10-20 18:38:01,265 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2861
+2025-10-20 18:38:01,508 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.6653
+2025-10-20 18:38:01,508 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.665281
+2025-10-20 18:38:01,588 (server_attacker:230) INFO: -------- reconstruct round:12, client:6---------
+2025-10-20 18:38:01,613 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.8732
+2025-10-20 18:38:01,856 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.4613
+2025-10-20 18:38:02,093 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.2427
+2025-10-20 18:38:02,093 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.242672
+2025-10-20 18:38:02,176 (server_attacker:230) INFO: -------- reconstruct round:12, client:1---------
+2025-10-20 18:38:02,203 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.9277
+2025-10-20 18:38:02,440 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.7035
+2025-10-20 18:38:02,697 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9038
+2025-10-20 18:38:02,699 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.90383
+2025-10-20 18:38:02,780 (server_attacker:230) INFO: -------- reconstruct round:12, client:3---------
+2025-10-20 18:38:02,806 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.9302
+2025-10-20 18:38:03,057 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.3116
+2025-10-20 18:38:03,293 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9109
+2025-10-20 18:38:03,293 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.910885
+2025-10-20 18:38:03,374 (server_attacker:230) INFO: -------- reconstruct round:12, client:2---------
+2025-10-20 18:38:03,399 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.9986
+2025-10-20 18:38:03,646 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.3068
+2025-10-20 18:38:03,874 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.4667
+2025-10-20 18:38:03,876 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.466732
+2025-10-20 18:38:03,990 (server:351) INFO: ----------- Starting a new training round (Round #13) -------------
+2025-10-20 18:38:04,013 (client:357) INFO: {'Role': 'Client #5', 'Round': 13, 'Results_raw': {'train_loss': 3.521589, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.521589}}
+2025-10-20 18:38:04,035 (client:357) INFO: {'Role': 'Client #8', 'Round': 13, 'Results_raw': {'train_loss': 5.372488, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 5.372488}}
+2025-10-20 18:38:04,056 (client:357) INFO: {'Role': 'Client #9', 'Round': 13, 'Results_raw': {'train_loss': 3.986655, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.986655}}
+2025-10-20 18:38:04,079 (client:357) INFO: {'Role': 'Client #1', 'Round': 13, 'Results_raw': {'train_loss': 3.815029, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.815029}}
+2025-10-20 18:38:04,099 (client:357) INFO: {'Role': 'Client #4', 'Round': 13, 'Results_raw': {'train_loss': 4.736164, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.736164}}
+2025-10-20 18:38:04,101 (server_attacker:230) INFO: -------- reconstruct round:13, client:5---------
+2025-10-20 18:38:04,125 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.0618
+2025-10-20 18:38:04,384 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.6487
+2025-10-20 18:38:04,623 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.554
+2025-10-20 18:38:04,623 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.554009
+2025-10-20 18:38:04,707 (server_attacker:230) INFO: -------- reconstruct round:13, client:8---------
+2025-10-20 18:38:04,731 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.8612
+2025-10-20 18:38:04,972 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2547
+2025-10-20 18:38:05,216 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.1903
+2025-10-20 18:38:05,218 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.190269
+2025-10-20 18:38:05,299 (server_attacker:230) INFO: -------- reconstruct round:13, client:9---------
+2025-10-20 18:38:05,324 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.9738
+2025-10-20 18:38:05,582 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.4598
+2025-10-20 18:38:05,835 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9679
+2025-10-20 18:38:05,835 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.967937
+2025-10-20 18:38:05,915 (server_attacker:230) INFO: -------- reconstruct round:13, client:1---------
+2025-10-20 18:38:05,939 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.6362
+2025-10-20 18:38:06,183 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2873
+2025-10-20 18:38:06,412 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.1782
+2025-10-20 18:38:06,412 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.178189
+2025-10-20 18:38:06,499 (server_attacker:230) INFO: -------- reconstruct round:13, client:4---------
+2025-10-20 18:38:06,524 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.5124
+2025-10-20 18:38:06,781 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.3728
+2025-10-20 18:38:07,024 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.2687
+2025-10-20 18:38:07,024 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.268654
+2025-10-20 18:38:07,144 (server:351) INFO: ----------- Starting a new training round (Round #14) -------------
+2025-10-20 18:38:07,165 (client:357) INFO: {'Role': 'Client #5', 'Round': 14, 'Results_raw': {'train_loss': 5.279779, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 5.279779}}
+2025-10-20 18:38:07,187 (client:357) INFO: {'Role': 'Client #3', 'Round': 14, 'Results_raw': {'train_loss': 3.908005, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.908005}}
+2025-10-20 18:38:07,207 (client:357) INFO: {'Role': 'Client #7', 'Round': 14, 'Results_raw': {'train_loss': 2.873645, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 2.873645}}
+2025-10-20 18:38:07,229 (client:357) INFO: {'Role': 'Client #2', 'Round': 14, 'Results_raw': {'train_loss': 4.552271, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.552271}}
+2025-10-20 18:38:07,249 (client:357) INFO: {'Role': 'Client #8', 'Round': 14, 'Results_raw': {'train_loss': 2.921167, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 2.921167}}
+2025-10-20 18:38:07,249 (server_attacker:230) INFO: -------- reconstruct round:14, client:5---------
+2025-10-20 18:38:07,273 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.735
+2025-10-20 18:38:07,538 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.7641
+2025-10-20 18:38:07,783 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.2939
+2025-10-20 18:38:07,783 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.29387
+2025-10-20 18:38:07,862 (server_attacker:230) INFO: -------- reconstruct round:14, client:3---------
+2025-10-20 18:38:07,888 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.6834
+2025-10-20 18:38:08,143 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.9562
+2025-10-20 18:38:08,372 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.4024
+2025-10-20 18:38:08,372 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.402382
+2025-10-20 18:38:08,472 (server_attacker:230) INFO: -------- reconstruct round:14, client:7---------
+2025-10-20 18:38:08,497 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.2746
+2025-10-20 18:38:08,738 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.6252
+2025-10-20 18:38:08,968 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.7616
+2025-10-20 18:38:08,968 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.76159
+2025-10-20 18:38:09,049 (server_attacker:230) INFO: -------- reconstruct round:14, client:2---------
+2025-10-20 18:38:09,077 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.4042
+2025-10-20 18:38:09,317 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.4561
+2025-10-20 18:38:09,547 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8233
+2025-10-20 18:38:09,547 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.823273
+2025-10-20 18:38:09,627 (server_attacker:230) INFO: -------- reconstruct round:14, client:8---------
+2025-10-20 18:38:09,657 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.6711
+2025-10-20 18:38:09,902 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.9271
+2025-10-20 18:38:10,152 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.593
+2025-10-20 18:38:10,152 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.593002
+2025-10-20 18:38:10,265 (server:351) INFO: ----------- Starting a new training round (Round #15) -------------
+2025-10-20 18:38:10,289 (client:357) INFO: {'Role': 'Client #8', 'Round': 15, 'Results_raw': {'train_loss': 4.603226, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.603226}}
+2025-10-20 18:38:10,310 (client:357) INFO: {'Role': 'Client #10', 'Round': 15, 'Results_raw': {'train_loss': 3.659587, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.659587}}
+2025-10-20 18:38:10,330 (client:357) INFO: {'Role': 'Client #7', 'Round': 15, 'Results_raw': {'train_loss': 3.112621, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.112621}}
+2025-10-20 18:38:10,351 (client:357) INFO: {'Role': 'Client #3', 'Round': 15, 'Results_raw': {'train_loss': 2.797248, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 2.797248}}
+2025-10-20 18:38:10,371 (client:357) INFO: {'Role': 'Client #5', 'Round': 15, 'Results_raw': {'train_loss': 4.136769, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.136769}}
+2025-10-20 18:38:10,372 (server_attacker:230) INFO: -------- reconstruct round:15, client:8---------
+2025-10-20 18:38:10,396 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.5347
+2025-10-20 18:38:10,658 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2577
+2025-10-20 18:38:10,887 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.1256
+2025-10-20 18:38:10,889 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.125648
+2025-10-20 18:38:10,981 (server_attacker:230) INFO: -------- reconstruct round:15, client:10---------
+2025-10-20 18:38:11,009 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.6055
+2025-10-20 18:38:11,293 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.1576
+2025-10-20 18:38:11,523 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.5649
+2025-10-20 18:38:11,523 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.564911
+2025-10-20 18:38:11,605 (server_attacker:230) INFO: -------- reconstruct round:15, client:7---------
+2025-10-20 18:38:11,631 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.1006
+2025-10-20 18:38:11,882 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.159
+2025-10-20 18:38:12,116 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.1118
+2025-10-20 18:38:12,116 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.111832
+2025-10-20 18:38:12,201 (server_attacker:230) INFO: -------- reconstruct round:15, client:3---------
+2025-10-20 18:38:12,224 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.0474
+2025-10-20 18:38:12,466 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.3309
+2025-10-20 18:38:12,705 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.5979
+2025-10-20 18:38:12,705 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.59788
+2025-10-20 18:38:12,787 (server_attacker:230) INFO: -------- reconstruct round:15, client:5---------
+2025-10-20 18:38:12,812 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.5883
+2025-10-20 18:38:13,060 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.7824
+2025-10-20 18:38:13,305 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.376
+2025-10-20 18:38:13,305 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.376032
+2025-10-20 18:38:13,414 (server:351) INFO: ----------- Starting a new training round (Round #16) -------------
+2025-10-20 18:38:13,437 (client:357) INFO: {'Role': 'Client #10', 'Round': 16, 'Results_raw': {'train_loss': 3.284176, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.284176}}
+2025-10-20 18:38:13,459 (client:357) INFO: {'Role': 'Client #1', 'Round': 16, 'Results_raw': {'train_loss': 2.746449, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 1.0, 'train_avg_loss': 2.746449}}
+2025-10-20 18:38:13,489 (client:357) INFO: {'Role': 'Client #3', 'Round': 16, 'Results_raw': {'train_loss': 4.867069, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.867069}}
+2025-10-20 18:38:13,509 (client:357) INFO: {'Role': 'Client #6', 'Round': 16, 'Results_raw': {'train_loss': 5.655109, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 5.655109}}
+2025-10-20 18:38:13,529 (client:357) INFO: {'Role': 'Client #8', 'Round': 16, 'Results_raw': {'train_loss': 4.40097, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.40097}}
+2025-10-20 18:38:13,530 (server_attacker:230) INFO: -------- reconstruct round:16, client:10---------
+2025-10-20 18:38:13,555 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.5964
+2025-10-20 18:38:13,802 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.926
+2025-10-20 18:38:14,043 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.1218
+2025-10-20 18:38:14,043 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.121821
+2025-10-20 18:38:14,132 (server_attacker:230) INFO: -------- reconstruct round:16, client:1---------
+2025-10-20 18:38:14,157 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.3239
+2025-10-20 18:38:14,416 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.8123
+2025-10-20 18:38:14,652 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.5271
+2025-10-20 18:38:14,652 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.527072
+2025-10-20 18:38:14,733 (server_attacker:230) INFO: -------- reconstruct round:16, client:3---------
+2025-10-20 18:38:14,759 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.5834
+2025-10-20 18:38:15,017 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.7211
+2025-10-20 18:38:15,252 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.2388
+2025-10-20 18:38:15,252 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.238822
+2025-10-20 18:38:15,333 (server_attacker:230) INFO: -------- reconstruct round:16, client:6---------
+2025-10-20 18:38:15,359 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.395
+2025-10-20 18:38:15,602 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.8726
+2025-10-20 18:38:15,862 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.7136
+2025-10-20 18:38:15,862 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.713558
+2025-10-20 18:38:15,941 (server_attacker:230) INFO: -------- reconstruct round:16, client:8---------
+2025-10-20 18:38:15,964 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.044
+2025-10-20 18:38:16,229 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.7946
+2025-10-20 18:38:16,470 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.0111
+2025-10-20 18:38:16,470 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.011119
+2025-10-20 18:38:16,584 (server:351) INFO: ----------- Starting a new training round (Round #17) -------------
+2025-10-20 18:38:16,607 (client:357) INFO: {'Role': 'Client #8', 'Round': 17, 'Results_raw': {'train_loss': 2.568891, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 2.568891}}
+2025-10-20 18:38:16,627 (client:357) INFO: {'Role': 'Client #3', 'Round': 17, 'Results_raw': {'train_loss': 3.190058, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.190058}}
+2025-10-20 18:38:16,650 (client:357) INFO: {'Role': 'Client #4', 'Round': 17, 'Results_raw': {'train_loss': 3.589194, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.589194}}
+2025-10-20 18:38:16,669 (client:357) INFO: {'Role': 'Client #6', 'Round': 17, 'Results_raw': {'train_loss': 2.937353, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 2.937353}}
+2025-10-20 18:38:16,690 (client:357) INFO: {'Role': 'Client #2', 'Round': 17, 'Results_raw': {'train_loss': 5.3045, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 5.3045}}
+2025-10-20 18:38:16,690 (server_attacker:230) INFO: -------- reconstruct round:17, client:8---------
+2025-10-20 18:38:16,714 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.4107
+2025-10-20 18:38:16,966 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2425
+2025-10-20 18:38:17,198 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.7137
+2025-10-20 18:38:17,198 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.713665
+2025-10-20 18:38:17,280 (server_attacker:230) INFO: -------- reconstruct round:17, client:3---------
+2025-10-20 18:38:17,307 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.5783
+2025-10-20 18:38:17,561 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.4048
+2025-10-20 18:38:17,787 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9929
+2025-10-20 18:38:17,787 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.992878
+2025-10-20 18:38:17,869 (server_attacker:230) INFO: -------- reconstruct round:17, client:4---------
+2025-10-20 18:38:17,895 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.306
+2025-10-20 18:38:18,141 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.2624
+2025-10-20 18:38:18,367 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.2252
+2025-10-20 18:38:18,367 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.225195
+2025-10-20 18:38:18,455 (server_attacker:230) INFO: -------- reconstruct round:17, client:6---------
+2025-10-20 18:38:18,480 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.357
+2025-10-20 18:38:18,725 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.3859
+2025-10-20 18:38:18,956 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.3937
+2025-10-20 18:38:18,956 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.393682
+2025-10-20 18:38:19,039 (server_attacker:230) INFO: -------- reconstruct round:17, client:2---------
+2025-10-20 18:38:19,064 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.7757
+2025-10-20 18:38:19,321 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.6487
+2025-10-20 18:38:19,556 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.3794
+2025-10-20 18:38:19,558 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.379447
+2025-10-20 18:38:19,671 (server:351) INFO: ----------- Starting a new training round (Round #18) -------------
+2025-10-20 18:38:19,695 (client:357) INFO: {'Role': 'Client #5', 'Round': 18, 'Results_raw': {'train_loss': 4.742979, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.742979}}
+2025-10-20 18:38:19,714 (client:357) INFO: {'Role': 'Client #8', 'Round': 18, 'Results_raw': {'train_loss': 4.605857, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 4.605857}}
+2025-10-20 18:38:19,735 (client:357) INFO: {'Role': 'Client #4', 'Round': 18, 'Results_raw': {'train_loss': 3.934856, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.934856}}
+2025-10-20 18:38:19,757 (client:357) INFO: {'Role': 'Client #6', 'Round': 18, 'Results_raw': {'train_loss': 3.436852, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.436852}}
+2025-10-20 18:38:19,777 (client:357) INFO: {'Role': 'Client #3', 'Round': 18, 'Results_raw': {'train_loss': 3.831237, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.831237}}
+2025-10-20 18:38:19,777 (server_attacker:230) INFO: -------- reconstruct round:18, client:5---------
+2025-10-20 18:38:19,802 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.359
+2025-10-20 18:38:20,050 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.1004
+2025-10-20 18:38:20,298 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8248
+2025-10-20 18:38:20,298 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.824825
+2025-10-20 18:38:20,383 (server_attacker:230) INFO: -------- reconstruct round:18, client:8---------
+2025-10-20 18:38:20,409 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.8067
+2025-10-20 18:38:20,690 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.747
+2025-10-20 18:38:20,931 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.4252
+2025-10-20 18:38:20,931 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.425225
+2025-10-20 18:38:21,130 (server_attacker:230) INFO: -------- reconstruct round:18, client:4---------
+2025-10-20 18:38:21,155 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.7766
+2025-10-20 18:38:21,412 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.5665
+2025-10-20 18:38:21,644 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.2757
+2025-10-20 18:38:21,644 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.275682
+2025-10-20 18:38:21,724 (server_attacker:230) INFO: -------- reconstruct round:18, client:6---------
+2025-10-20 18:38:21,749 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.2657
+2025-10-20 18:38:21,988 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.7924
+2025-10-20 18:38:22,269 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.0742
+2025-10-20 18:38:22,270 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.074234
+2025-10-20 18:38:22,357 (server_attacker:230) INFO: -------- reconstruct round:18, client:3---------
+2025-10-20 18:38:22,384 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.9512
+2025-10-20 18:38:22,657 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.7692
+2025-10-20 18:38:22,889 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.3953
+2025-10-20 18:38:22,889 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.39534
+2025-10-20 18:38:23,002 (server:351) INFO: ----------- Starting a new training round (Round #19) -------------
+2025-10-20 18:38:23,024 (client:357) INFO: {'Role': 'Client #3', 'Round': 19, 'Results_raw': {'train_loss': 2.893836, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 2.893836}}
+2025-10-20 18:38:23,044 (client:357) INFO: {'Role': 'Client #1', 'Round': 19, 'Results_raw': {'train_loss': 3.059051, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.059051}}
+2025-10-20 18:38:23,068 (client:357) INFO: {'Role': 'Client #7', 'Round': 19, 'Results_raw': {'train_loss': 3.893835, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.893835}}
+2025-10-20 18:38:23,090 (client:357) INFO: {'Role': 'Client #9', 'Round': 19, 'Results_raw': {'train_loss': 2.521616, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 1.0, 'train_avg_loss': 2.521616}}
+2025-10-20 18:38:23,110 (client:357) INFO: {'Role': 'Client #10', 'Round': 19, 'Results_raw': {'train_loss': 3.598742, 'train_loss_regular': 0.0, 'train_total': 1, 'train_acc': 0.0, 'train_avg_loss': 3.598742}}
+2025-10-20 18:38:23,112 (server_attacker:230) INFO: -------- reconstruct round:19, client:3---------
+2025-10-20 18:38:23,138 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.1508
+2025-10-20 18:38:23,383 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.3099
+2025-10-20 18:38:23,654 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.541
+2025-10-20 18:38:23,656 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.540988
+2025-10-20 18:38:23,739 (server_attacker:230) INFO: -------- reconstruct round:19, client:1---------
+2025-10-20 18:38:23,763 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.5355
+2025-10-20 18:38:24,023 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.7497
+2025-10-20 18:38:24,259 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.5389
+2025-10-20 18:38:24,259 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.538867
+2025-10-20 18:38:24,359 (server_attacker:230) INFO: -------- reconstruct round:19, client:7---------
+2025-10-20 18:38:24,383 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.0081
+2025-10-20 18:38:24,652 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 9.4326
+2025-10-20 18:38:24,899 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 9.385
+2025-10-20 18:38:24,899 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 9.385045
+2025-10-20 18:38:24,987 (server_attacker:230) INFO: -------- reconstruct round:19, client:9---------
+2025-10-20 18:38:25,012 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 9.6429
+2025-10-20 18:38:25,272 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.6801
+2025-10-20 18:38:25,519 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.9764
+2025-10-20 18:38:25,519 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.976433
+2025-10-20 18:38:25,600 (server_attacker:230) INFO: -------- reconstruct round:19, client:10---------
+2025-10-20 18:38:25,624 (reconstruction_opt:114) INFO: Ite: 0, gradient difference: 10.1148
+2025-10-20 18:38:25,896 (reconstruction_opt:114) INFO: Ite: 20, gradient difference: 8.4832
+2025-10-20 18:38:26,142 (reconstruction_opt:114) INFO: Ite: 39, gradient difference: 8.8989
+2025-10-20 18:38:26,144 (server_attacker:283) INFO: Finish DLG attack; Final DLG reconstruction loss: 8.89885
+2025-10-20 18:38:26,256 (server:362) INFO: Server: Training is finished! Starting evaluation.
+2025-10-20 18:38:26,308 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,310 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,345 (client:554) INFO: {'Role': 'Client #1', 'Round': 19, 'Results_raw': {'test_loss': 137.520427, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.055556, 'test_avg_loss': 3.820012, 'val_loss': 132.422156, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.055556, 'val_avg_loss': 3.678393}}
+2025-10-20 18:38:26,395 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,395 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,430 (client:554) INFO: {'Role': 'Client #2', 'Round': 19, 'Results_raw': {'test_loss': 119.240494, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.15625, 'test_avg_loss': 3.726265, 'val_loss': 121.647559, 'val_loss_regular': 0.0, 'val_total': 32, 'val_acc': 0.0, 'val_avg_loss': 3.801486}}
+2025-10-20 18:38:26,495 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,495 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,531 (client:554) INFO: {'Role': 'Client #3', 'Round': 19, 'Results_raw': {'test_loss': 145.23833, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.027027, 'test_avg_loss': 3.92536, 'val_loss': 135.705436, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.083333, 'val_avg_loss': 3.769595}}
+2025-10-20 18:38:26,584 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,584 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,629 (client:554) INFO: {'Role': 'Client #4', 'Round': 19, 'Results_raw': {'test_loss': 128.844373, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.057143, 'test_avg_loss': 3.681268, 'val_loss': 130.751344, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.114286, 'val_avg_loss': 3.735753}}
+2025-10-20 18:38:26,674 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,676 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,706 (client:554) INFO: {'Role': 'Client #5', 'Round': 19, 'Results_raw': {'test_loss': 107.603773, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 3.586792, 'val_loss': 112.699795, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 3.75666}}
+2025-10-20 18:38:26,753 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,753 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,784 (client:554) INFO: {'Role': 'Client #6', 'Round': 19, 'Results_raw': {'test_loss': 114.695711, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 3.82319, 'val_loss': 115.281644, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 3.842721}}
+2025-10-20 18:38:26,835 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,835 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,867 (client:554) INFO: {'Role': 'Client #7', 'Round': 19, 'Results_raw': {'test_loss': 115.232644, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.064516, 'test_avg_loss': 3.717182, 'val_loss': 114.107908, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.1, 'val_avg_loss': 3.803597}}
+2025-10-20 18:38:26,914 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,914 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:26,950 (client:554) INFO: {'Role': 'Client #8', 'Round': 19, 'Results_raw': {'test_loss': 124.528284, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.090909, 'test_avg_loss': 3.773584, 'val_loss': 123.109859, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.060606, 'val_avg_loss': 3.730602}}
+2025-10-20 18:38:27,001 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:27,001 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:27,036 (client:554) INFO: {'Role': 'Client #9', 'Round': 19, 'Results_raw': {'test_loss': 131.876757, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.057143, 'test_avg_loss': 3.767907, 'val_loss': 134.951946, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.057143, 'val_avg_loss': 3.85577}}
+2025-10-20 18:38:27,086 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:27,086 (context:226) WARNING: cur_mode `test` mismatch mode `val`, will use `val` to calculate `ctx.var`.
+2025-10-20 18:38:27,123 (client:554) INFO: {'Role': 'Client #10', 'Round': 19, 'Results_raw': {'test_loss': 131.574966, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.029412, 'test_avg_loss': 3.869852, 'val_loss': 129.419197, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.058824, 'val_avg_loss': 3.806447}}
+2025-10-20 18:38:27,127 (server:617) INFO: {'Role': 'Server #', 'Round': 19, 'Results_weighted_avg': {'test_loss': 126.395398, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.072072, 'test_avg_loss': 3.77284, 'val_loss': 125.590601, 'val_loss_regular': 0.0, 'val_total': 33.1, 'val_acc': 0.066465, 'val_avg_loss': 3.776728}, 'Results_avg': {'test_loss': 125.635576, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.073796, 'test_avg_loss': 3.769141, 'val_loss': 125.009684, 'val_loss_regular': 0.0, 'val_total': 33.1, 'val_acc': 0.066308, 'val_avg_loss': 3.778102}, 'Results_fairness': {'test_total': 33.3, 'val_total': 33.1, 'test_loss_std': 10.978221, 'test_loss_bottom_decile': 114.695711, 'test_loss_top_decile': 145.23833, 'test_loss_min': 107.603773, 'test_loss_max': 145.23833, 'test_loss_bottom10%': 107.603773, 'test_loss_top10%': 145.23833, 'test_loss_cos1': 0.996204, 'test_loss_entropy': 2.298767, 'test_loss_regular_std': 0.0, 'test_loss_regular_bottom_decile': 0.0, 'test_loss_regular_top_decile': 0.0, 'test_loss_regular_min': 0.0, 'test_loss_regular_max': 0.0, 'test_loss_regular_bottom10%': 0.0, 'test_loss_regular_top10%': 0.0, 'test_loss_regular_cos1': nan, 'test_loss_regular_entropy': 2.302585, 'test_acc_std': 0.036872, 'test_acc_bottom_decile': 0.029412, 'test_acc_top_decile': 0.15625, 'test_acc_min': 0.027027, 'test_acc_max': 0.15625, 'test_acc_bottom10%': 0.027027, 'test_acc_top10%': 0.15625, 'test_acc_cos1': 0.894551, 'test_acc_entropy': 2.181883, 'test_avg_loss_std': 0.092514, 'test_avg_loss_bottom_decile': 3.681268, 'test_avg_loss_top_decile': 3.92536, 'test_avg_loss_min': 3.586792, 'test_avg_loss_max': 3.92536, 'test_avg_loss_bottom10%': 3.586792, 'test_avg_loss_top10%': 3.92536, 'test_avg_loss_cos1': 0.999699, 'test_avg_loss_entropy': 2.302283, 'val_loss_std': 8.369785, 'val_loss_bottom_decile': 114.107908, 'val_loss_top_decile': 135.705436, 'val_loss_min': 112.699795, 'val_loss_max': 135.705436, 'val_loss_bottom10%': 112.699795, 'val_loss_top10%': 135.705436, 'val_loss_cos1': 0.997766, 'val_loss_entropy': 2.300331, 'val_loss_regular_std': 0.0, 'val_loss_regular_bottom_decile': 0.0, 'val_loss_regular_top_decile': 0.0, 'val_loss_regular_min': 0.0, 'val_loss_regular_max': 0.0, 'val_loss_regular_bottom10%': 0.0, 'val_loss_regular_top10%': 0.0, 'val_loss_regular_cos1': nan, 'val_loss_regular_entropy': 2.302585, 'val_acc_std': 0.029003, 'val_acc_bottom_decile': 0.055556, 'val_acc_top_decile': 0.114286, 'val_acc_min': 0.0, 'val_acc_max': 0.114286, 'val_acc_bottom10%': 0.0, 'val_acc_top10%': 0.114286, 'val_acc_cos1': 0.916189, 'val_acc_entropy': 2.163474, 'val_avg_loss_std': 0.051703, 'val_avg_loss_bottom_decile': 3.730602, 'val_avg_loss_top_decile': 3.85577, 'val_avg_loss_min': 3.678393, 'val_avg_loss_max': 3.85577, 'val_avg_loss_bottom10%': 3.678393, 'val_avg_loss_top10%': 3.85577, 'val_avg_loss_cos1': 0.999906, 'val_avg_loss_entropy': 2.302491}}
+2025-10-20 18:38:27,129 (server:420) INFO: Server: Final evaluation is finished! Starting merging results.
+2025-10-20 18:38:27,161 (server:548) INFO: {'Role': 'Server #', 'Round': 'Final', 'Results_raw': {'DLG_loss': {0: {5: tensor(9.0344), 1: tensor(8.5597), 8: tensor(9.5782), 6: tensor(9.2286), 9: tensor(8.9055)}, 1: {4: tensor(8.9097), 6: tensor(8.8875), 5: tensor(8.6493), 3: tensor(8.8244), 9: tensor(8.8882)}, 2: {3: tensor(9.029), 2: tensor(9.0667), 9: tensor(8.9444), 8: tensor(8.7485), 1: tensor(9.2672)}, 3: {6: tensor(9.3189), 2: tensor(9.0292), 1: tensor(8.8521), 9: tensor(9.3473), 7: tensor(9.1055)}, 4: {7: tensor(8.3679), 9: tensor(9.0774), 3: tensor(9.187), 10: tensor(8.9863), 6: tensor(8.9574)}, 5: {10: tensor(8.5475), 5: tensor(9.0648), 8: tensor(9.1601), 1: tensor(9.3593), 2: tensor(8.3453)}, 6: {8: tensor(9.0133), 9: tensor(9.3742), 2: tensor(8.436), 5: tensor(8.8577), 10: tensor(8.3174)}, 7: {2: tensor(8.8528), 8: tensor(8.9099), 9: tensor(8.8406), 1: tensor(9.2559), 3: tensor(9.0263)}, 8: {1: tensor(8.6949), 10: tensor(8.6047), 6: tensor(9.1116), 3: tensor(9.0139), 9: tensor(9.094)}, 9: {7: tensor(8.8653), 4: tensor(9.4448), 6: tensor(8.9368), 9: tensor(9.2988), 8: tensor(8.8624)}, 10: {9: tensor(8.7213), 5: tensor(9.1367), 3: tensor(8.8671), 8: tensor(8.3162), 10: tensor(8.8695)}, 11: {7: tensor(8.8213), 9: tensor(8.9641), 1: tensor(8.5975), 5: tensor(8.7707), 10: tensor(9.1617)}, 12: {5: tensor(8.6653), 6: tensor(9.2427), 1: tensor(8.9038), 3: tensor(8.9109), 2: tensor(9.4667)}, 13: {5: tensor(8.554), 8: tensor(9.1903), 9: tensor(8.9679), 1: tensor(9.1782), 4: tensor(9.2687)}, 14: {5: tensor(9.2939), 3: tensor(9.4024), 7: tensor(8.7616), 2: tensor(8.8233), 8: tensor(8.593)}, 15: {8: tensor(9.1256), 10: tensor(8.5649), 7: tensor(9.1118), 3: tensor(8.5979), 5: tensor(9.376)}, 16: {10: tensor(8.1218), 1: tensor(8.5271), 3: tensor(9.2388), 6: tensor(8.7136), 8: tensor(9.0111)}, 17: {8: tensor(8.7137), 3: tensor(8.9929), 4: tensor(9.2252), 6: tensor(9.3937), 2: tensor(9.3794)}, 18: {5: tensor(8.8248), 8: tensor(8.4252), 4: tensor(8.2757), 6: tensor(9.0742), 3: tensor(8.3953)}, 19: {3: tensor(8.541), 1: tensor(8.5389), 7: tensor(9.385), 9: tensor(8.9764), 10: tensor(8.8989)}}, 'client_best_individual': {'val_loss_regular': 0.0, 'val_loss': 119.008311, 'test_loss': 116.596721, 'test_loss_regular': 0.0, 'test_total': 30.0, 'test_acc': 0.133333, 'test_avg_loss': 3.886557, 'val_total': 30.0, 'val_acc': 0.151515, 'val_avg_loss': 3.938639}, 'client_summarized_weighted_avg': {'val_loss_regular': 0.0, 'val_loss': 131.958038, 'test_loss': 132.538973, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.06006, 'test_avg_loss': 3.959205, 'val_total': 33.1, 'val_acc': 0.087613, 'val_avg_loss': 3.966956}, 'client_summarized_avg': {'val_loss_regular': 0.0, 'val_loss': 131.306243, 'test_loss': 131.841516, 'test_loss_regular': 0.0, 'test_total': 33.3, 'test_acc': 0.061538, 'test_avg_loss': 3.958317, 'val_total': 33.1, 'val_acc': 0.08828, 'val_avg_loss': 3.967156}, 'client_summarized_fairness': {'val_loss_regular_entropy': 2.302585, 'val_loss_regular_cos1': nan, 'val_loss_regular_top10%': 0.0, 'val_loss_regular_bottom10%': 0.0, 'val_loss_regular_max': 0.0, 'val_loss_regular_min': 0.0, 'val_loss_regular_top_decile': 0.0, 'val_loss_regular_bottom_decile': 0.0, 'val_loss_regular_std': 0.0, 'val_loss_entropy': 2.300097, 'val_loss_cos1': 0.997535, 'val_loss_top10%': 142.712098, 'val_loss_bottom10%': 119.008311, 'val_loss_max': 142.712098, 'val_loss_min': 119.008311, 'val_loss_top_decile': 142.712098, 'val_loss_bottom_decile': 119.089592, 'val_loss_std': 9.237107, 'test_total': 33.3, 'val_total': 33.1, 'test_loss_std': 9.865657, 'test_loss_bottom_decile': 119.842022, 'test_loss_top_decile': 148.49189, 'test_loss_min': 116.596721, 'test_loss_max': 148.49189, 'test_loss_bottom10%': 116.596721, 'test_loss_top10%': 148.49189, 'test_loss_cos1': 0.997212, 'test_loss_entropy': 2.299782, 'test_loss_regular_std': 0.0, 'test_loss_regular_bottom_decile': 0.0, 'test_loss_regular_top_decile': 0.0, 'test_loss_regular_min': 0.0, 'test_loss_regular_max': 0.0, 'test_loss_regular_bottom10%': 0.0, 'test_loss_regular_top10%': 0.0, 'test_loss_regular_cos1': nan, 'test_loss_regular_entropy': 2.302585, 'test_acc_std': 0.035439, 'test_acc_bottom_decile': 0.027027, 'test_acc_top_decile': 0.133333, 'test_acc_min': 0.0, 'test_acc_max': 0.133333, 'test_acc_bottom10%': 0.0, 'test_acc_top10%': 0.133333, 'test_acc_cos1': 0.866578, 'test_acc_entropy': 2.09938, 'test_avg_loss_std': 0.035887, 'test_avg_loss_bottom_decile': 3.917867, 'test_avg_loss_top_decile': 4.013294, 'test_avg_loss_min': 3.886557, 'test_avg_loss_max': 4.013294, 'test_avg_loss_bottom10%': 3.886557, 'test_avg_loss_top10%': 4.013294, 'test_avg_loss_cos1': 0.999959, 'test_avg_loss_entropy': 2.302544, 'val_acc_std': 0.041276, 'val_acc_bottom_decile': 0.057143, 'val_acc_top_decile': 0.151515, 'val_acc_min': 0.0, 'val_acc_max': 0.151515, 'val_acc_bottom10%': 0.0, 'val_acc_top10%': 0.151515, 'val_acc_cos1': 0.905873, 'val_acc_entropy': 2.150487, 'val_avg_loss_std': 0.021902, 'val_avg_loss_bottom_decile': 3.939043, 'val_avg_loss_top_decile': 4.013059, 'val_avg_loss_min': 3.938639, 'val_avg_loss_max': 4.013059, 'val_avg_loss_bottom10%': 3.938639, 'val_avg_loss_top10%': 4.013059, 'val_avg_loss_cos1': 0.999985, 'val_avg_loss_entropy': 2.30257}}}
+2025-10-20 18:38:27,192 (server:567) INFO: {'Role': 'Client #1', 'Round': 20, 'Results_raw': {'test_loss': 137.520427, 'test_loss_regular': 0.0, 'test_total': 36, 'test_acc': 0.055556, 'test_avg_loss': 3.820012, 'val_loss': 132.422156, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.055556, 'val_avg_loss': 3.678393}}
+2025-10-20 18:38:27,192 (server:567) INFO: {'Role': 'Client #2', 'Round': 20, 'Results_raw': {'test_loss': 119.240494, 'test_loss_regular': 0.0, 'test_total': 32, 'test_acc': 0.15625, 'test_avg_loss': 3.726265, 'val_loss': 121.647559, 'val_loss_regular': 0.0, 'val_total': 32, 'val_acc': 0.0, 'val_avg_loss': 3.801486}}
+2025-10-20 18:38:27,192 (server:567) INFO: {'Role': 'Client #3', 'Round': 20, 'Results_raw': {'test_loss': 145.23833, 'test_loss_regular': 0.0, 'test_total': 37, 'test_acc': 0.027027, 'test_avg_loss': 3.92536, 'val_loss': 135.705436, 'val_loss_regular': 0.0, 'val_total': 36, 'val_acc': 0.083333, 'val_avg_loss': 3.769595}}
+2025-10-20 18:38:27,192 (server:567) INFO: {'Role': 'Client #4', 'Round': 20, 'Results_raw': {'test_loss': 128.844373, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.057143, 'test_avg_loss': 3.681268, 'val_loss': 130.751344, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.114286, 'val_avg_loss': 3.735753}}
+2025-10-20 18:38:27,194 (server:567) INFO: {'Role': 'Client #5', 'Round': 20, 'Results_raw': {'test_loss': 107.603773, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 3.586792, 'val_loss': 112.699795, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 3.75666}}
+2025-10-20 18:38:27,194 (server:567) INFO: {'Role': 'Client #6', 'Round': 20, 'Results_raw': {'test_loss': 114.695711, 'test_loss_regular': 0.0, 'test_total': 30, 'test_acc': 0.1, 'test_avg_loss': 3.82319, 'val_loss': 115.281644, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.066667, 'val_avg_loss': 3.842721}}
+2025-10-20 18:38:27,194 (server:567) INFO: {'Role': 'Client #7', 'Round': 20, 'Results_raw': {'test_loss': 115.232644, 'test_loss_regular': 0.0, 'test_total': 31, 'test_acc': 0.064516, 'test_avg_loss': 3.717182, 'val_loss': 114.107908, 'val_loss_regular': 0.0, 'val_total': 30, 'val_acc': 0.1, 'val_avg_loss': 3.803597}}
+2025-10-20 18:38:27,196 (server:567) INFO: {'Role': 'Client #8', 'Round': 20, 'Results_raw': {'test_loss': 124.528284, 'test_loss_regular': 0.0, 'test_total': 33, 'test_acc': 0.090909, 'test_avg_loss': 3.773584, 'val_loss': 123.109859, 'val_loss_regular': 0.0, 'val_total': 33, 'val_acc': 0.060606, 'val_avg_loss': 3.730602}}
+2025-10-20 18:38:27,196 (server:567) INFO: {'Role': 'Client #9', 'Round': 20, 'Results_raw': {'test_loss': 131.876757, 'test_loss_regular': 0.0, 'test_total': 35, 'test_acc': 0.057143, 'test_avg_loss': 3.767907, 'val_loss': 134.951946, 'val_loss_regular': 0.0, 'val_total': 35, 'val_acc': 0.057143, 'val_avg_loss': 3.85577}}
+2025-10-20 18:38:27,196 (server:567) INFO: {'Role': 'Client #10', 'Round': 20, 'Results_raw': {'test_loss': 131.574966, 'test_loss_regular': 0.0, 'test_total': 34, 'test_acc': 0.029412, 'test_avg_loss': 3.869852, 'val_loss': 129.419197, 'val_loss_regular': 0.0, 'val_total': 34, 'val_acc': 0.058824, 'val_avg_loss': 3.806447}}
+2025-10-20 18:38:27,198 (monitor:173) INFO: In worker #0, the system-related metrics are: {'id': 0, 'fl_end_time_minutes': 1.096356, 'total_model_size': 0, 'total_flops': 0, 'total_upload_bytes': 0, 'total_download_bytes': 531696, 'global_convergence_round': 0, 'local_convergence_round': 0, 'global_convergence_time_minutes': 0, 'local_convergence_time_minutes': 0}
+2025-10-20 18:38:27,198 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:38:27,200 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:38:27,204 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:38:27,206 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:38:27,208 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:38:27,210 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:38:27,214 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:38:27,216 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:38:27,218 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:38:27,222 (active_client:34) INFO: ============== receiving Finish Message ==============
+2025-10-20 18:38:27,224 (monitor:338) INFO: We will compress the file eval_results.raw into a .gz file, and delete the old one
+2025-10-20 18:38:27,225 (monitor:246) INFO: After merging the system metrics from all works, we got avg: defaultdict(None, {'id': 'sys_avg', 'sys_avg/fl_end_time_minutes': 1.096356, 'sys_avg/total_model_size': '0.0', 'sys_avg/total_flops': '0.0', 'sys_avg/total_upload_bytes': '0.0', 'sys_avg/total_download_bytes': '519.23K', 'sys_avg/global_convergence_round': 0.0, 'sys_avg/local_convergence_round': 0.0, 'sys_avg/global_convergence_time_minutes': 0.0, 'sys_avg/local_convergence_time_minutes': 0.0})
+2025-10-20 18:38:27,227 (monitor:249) INFO: After merging the system metrics from all works, we got std: defaultdict(None, {'id': 'sys_std', 'sys_std/fl_end_time_minutes': 0.0, 'sys_std/total_model_size': '0.0', 'sys_std/total_flops': '0.0', 'sys_std/total_upload_bytes': '0.0', 'sys_std/total_download_bytes': '0.0', 'sys_std/global_convergence_round': 0.0, 'sys_std/local_convergence_round': 0.0, 'sys_std/global_convergence_time_minutes': 0.0, 'sys_std/local_convergence_time_minutes': 0.0})

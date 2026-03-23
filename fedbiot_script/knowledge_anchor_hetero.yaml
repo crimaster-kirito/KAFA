@@ -1,0 +1,99 @@
+use_gpu: True
+device: 0
+early_stop:
+  patience: 0
+
+federate:
+  mode: standalone
+  client_num: 3  # 固定3个客户端
+  total_round_num: 100
+  save_to: "checkpoints/knowledge_anchor_hetero.ckpt"
+  save_freq: 20
+  share_local_model: True
+  online_aggr: False
+  method: "knowledgeanchor"  # 使用知识锚点方法
+
+data:
+  root: data/
+  # 方式1: 单数据集模式（原有方式）
+  # type: 'gsm8k@llm'
+  
+  # 方式2: 异构数据集模式（扩展方式）
+  # 注意：当前LLM数据加载器还不完全支持多数据集，需要进一步扩展
+  # 这里先展示配置格式
+  type: 'gsm8k@llm'  # 主数据集
+  splits: [0.4, 0.4, 0.2]  # 40%服务器，40%客户端，20%测试
+  splitter: 'knowledge_anchor'  # 使用知识锚点数据分配器
+  splitter_args:
+    - server_ratio: 0.4
+      client_ratio: 0.4
+      test_ratio: 0.2
+      non_iid_alpha: 0.5  # Dirichlet参数，控制non-IID程度
+      task_irrelevant_ratio: 0.1  # 任务不相关数据比例
+      # 异构数据集配置（如果启用）
+      # hetero_datasets: ['gsm8k@llm', 'alpaca@llm', 'dolly-15k@llm']
+      # hetero_distribution: 'uniform'  # 'uniform', 'proportional', 'dirichlet'
+
+llm:
+  grad_accum_step: 8
+  tok_len: 512
+  chat:
+    max_len: 1000
+  adapter:
+    use: True
+    mv_to_cpu: True
+    args: 
+      - adapter_package: 'peft'
+        adapter_method: 'lora'
+        r: 8
+        lora_alpha: 16
+        lora_dropout: 0.05
+  knowledge_anchor:
+    # 服务器端配置
+    num_instructions: 10
+    num_prototypes: 50
+    intermediate_layer: 16
+    generation_temperature: 0.7
+    max_new_tokens: 256
+    train_on_server: True
+    
+    # 客户端配置
+    client_model_type: '/home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm'
+    task_relevance_threshold: 0.5
+    prototype_alignment_weight: 0.3
+    use_instruction_augmentation: True
+    
+    # LoRA映射配置
+    lora_mapping_strategy: 'interpolate'
+    max_prototypes: 100
+
+dataloader:
+  batch_size: 1
+
+model:
+  type: '/home/tyx/ywp/FedBiOT/models/llama-2-7b-hf@huggingface_llm'
+
+train:
+  local_update_steps: 30
+  batch_or_epoch: batch
+  optimizer:
+    type: AdamW
+    lr: 0.001
+    betas: (0.9, 0.95)
+  is_enable_half: True
+
+criterion:
+  type: CrossEntropyLoss
+
+trainer:
+  type: knowledge_anchor_client
+
+eval:
+  freq: 20
+  metrics: ['loss']
+  best_res_update_round_wise_key: 'test_loss'
+  report: ['weighted_avg', 'avg', 'raw']
+  count_flops: False
+
+expname: "knowledge_anchor_hetero"
+

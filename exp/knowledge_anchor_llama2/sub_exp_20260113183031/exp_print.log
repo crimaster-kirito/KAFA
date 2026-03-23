@@ -1,0 +1,152 @@
+2026-01-13 18:30:31,640 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-01-13 18:30:31,640 (logging:134) INFO: the current dir is /home/tyx/ywp/FedBiOT
+2026-01-13 18:30:31,640 (logging:135) INFO: the output dir is exp/knowledge_anchor_llama2/sub_exp_20260113183031
+2026-01-13 18:30:42,591 (knowledge_anchor_splitter:61) INFO: 将使用数据集 imdb 作为任务不相关数据源
+2026-01-13 18:30:42,607 (knowledge_anchor_splitter:137) WARNING: 标签提取失败，使用IID分配: The size of tensor a (275) must match the size of tensor b (116) at non-singleton dimension 0
+2026-01-13 18:30:42,607 (knowledge_anchor_splitter:154) INFO: 从外部数据集 imdb 加载无关样本...
+2026-01-13 18:30:42,747 (knowledge_anchor_splitter:282) INFO: ✓ 从IMDB加载了 298 个样本（情感分类任务）
+2026-01-13 18:30:42,753 (knowledge_anchor_splitter:162) INFO: ✓ 成功加载 298 个无关样本（目标: 298）
+2026-01-13 18:30:42,754 (knowledge_anchor_splitter:201) INFO: ✓ 为客户端1注入298个任务不相关样本（来自 imdb）
+2026-01-13 18:30:42,754 (knowledge_anchor_splitter:203) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 18:30:42,754 (knowledge_anchor_splitter:220) INFO: Train数据分配完成: 客户端=[997, 1294, 996]
+2026-01-13 18:30:42,755 (base_translator:120) WARNING: Cannot access train label distribution for splitter, split dataset without considering train label.
+2026-01-13 18:30:42,770 (knowledge_anchor_splitter:137) WARNING: 标签提取失败，使用IID分配: The size of tensor a (213) must match the size of tensor b (325) at non-singleton dimension 0
+2026-01-13 18:30:42,770 (knowledge_anchor_splitter:154) INFO: 从外部数据集 imdb 加载无关样本...
+2026-01-13 18:30:42,902 (knowledge_anchor_splitter:282) INFO: ✓ 从IMDB加载了 298 个样本（情感分类任务）
+2026-01-13 18:30:42,908 (knowledge_anchor_splitter:162) INFO: ✓ 成功加载 298 个无关样本（目标: 298）
+2026-01-13 18:30:42,909 (knowledge_anchor_splitter:201) INFO: ✓ 为客户端0注入298个任务不相关样本（来自 imdb）
+2026-01-13 18:30:42,909 (knowledge_anchor_splitter:203) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 18:30:42,909 (knowledge_anchor_splitter:220) INFO: Train数据分配完成: 客户端=[1295, 996, 996]
+2026-01-13 18:30:42,917 (knowledge_anchor_splitter:137) WARNING: 标签提取失败，使用IID分配: The size of tensor a (279) must match the size of tensor b (145) at non-singleton dimension 0
+2026-01-13 18:30:42,917 (knowledge_anchor_splitter:154) INFO: 从外部数据集 imdb 加载无关样本...
+2026-01-13 18:30:43,049 (knowledge_anchor_splitter:282) INFO: ✓ 从IMDB加载了 149 个样本（情感分类任务）
+2026-01-13 18:30:43,055 (knowledge_anchor_splitter:162) INFO: ✓ 成功加载 149 个无关样本（目标: 149）
+2026-01-13 18:30:43,056 (knowledge_anchor_splitter:201) INFO: ✓ 为客户端1注入149个任务不相关样本（来自 imdb）
+2026-01-13 18:30:43,056 (knowledge_anchor_splitter:203) INFO:   这些样本将在训练时通过原型库相似度判断被识别为无关并排除
+2026-01-13 18:30:43,056 (knowledge_anchor_splitter:220) INFO: Train数据分配完成: 客户端=[499, 647, 498]
+2026-01-13 18:30:43,100 (base_translator:133) INFO: number of clients: 3
+2026-01-13 18:30:43,100 (base_translator:135) INFO: 1
+2026-01-13 18:30:43,131 (base_translator:135) INFO: 2
+2026-01-13 18:30:43,168 (base_translator:135) INFO: 3
+2026-01-13 18:30:43,477 (utils:167) INFO: The device information file is not provided
+2026-01-13 18:30:43,478 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 18:32:10,344 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 18:32:10,346 (knowledge_anchor_trainer:38) INFO: 模型设备: cuda:0
+2026-01-13 18:32:10,346 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 18:32:10,346 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 18:32:10,346 (fed_runner:195) INFO: Server has been set up ... 
+2026-01-13 18:32:10,348 (client:38) INFO: ================================================================================
+2026-01-13 18:32:10,348 (client:39) INFO: 客户端1开始加载小模型...
+2026-01-13 18:32:10,348 (client:40) INFO: 配置的模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 18:32:10,348 (client:50) INFO: ✓ 检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 18:32:10,348 (client:51) INFO:   绝对路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 18:32:10,374 (client:66) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-01-13 18:32:10,375 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 18:32:10,376 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-01-13 18:32:20,239 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-01-13 18:32:31,826 (client:71) INFO: ✓ 客户端1成功加载小模型
+2026-01-13 18:32:31,826 (client:72) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-01-13 18:32:31,828 (client:76) INFO:   模型参数量: 1262.97M
+2026-01-13 18:32:31,828 (client:79) INFO: ================================================================================
+2026-01-13 18:32:31,863 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 18:32:31,865 (knowledge_anchor_trainer:38) INFO: 模型设备: cpu
+2026-01-13 18:32:31,865 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 18:32:31,865 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 18:32:34,997 (fed_runner:245) INFO: Client 1 has been set up ... 
+2026-01-13 18:32:34,999 (client:38) INFO: ================================================================================
+2026-01-13 18:32:34,999 (client:39) INFO: 客户端2开始加载小模型...
+2026-01-13 18:32:34,999 (client:40) INFO: 配置的模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 18:32:34,999 (client:50) INFO: ✓ 检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 18:32:34,999 (client:51) INFO:   绝对路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 18:32:35,023 (client:66) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-01-13 18:32:35,023 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 18:32:35,024 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-01-13 18:32:44,764 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-01-13 18:32:56,140 (client:71) INFO: ✓ 客户端2成功加载小模型
+2026-01-13 18:32:56,140 (client:72) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-01-13 18:32:56,141 (client:76) INFO:   模型参数量: 1262.97M
+2026-01-13 18:32:56,141 (client:79) INFO: ================================================================================
+2026-01-13 18:32:56,177 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 18:32:56,178 (knowledge_anchor_trainer:38) INFO: 模型设备: cpu
+2026-01-13 18:32:56,178 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 18:32:56,178 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 18:32:58,576 (fed_runner:245) INFO: Client 2 has been set up ... 
+2026-01-13 18:32:58,578 (client:38) INFO: ================================================================================
+2026-01-13 18:32:58,578 (client:39) INFO: 客户端3开始加载小模型...
+2026-01-13 18:32:58,579 (client:40) INFO: 配置的模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-01-13 18:32:58,579 (client:50) INFO: ✓ 检测到本地模型路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 18:32:58,579 (client:51) INFO:   绝对路径: /home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0
+2026-01-13 18:32:58,603 (client:66) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-01-13 18:32:58,603 (model_builder:137) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-01-13 18:32:58,604 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-01-13 18:33:07,677 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-01-13 18:33:19,013 (client:71) INFO: ✓ 客户端3成功加载小模型
+2026-01-13 18:33:19,013 (client:72) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-01-13 18:33:19,014 (client:76) INFO:   模型参数量: 1262.97M
+2026-01-13 18:33:19,014 (client:79) INFO: ================================================================================
+2026-01-13 18:33:19,050 (knowledge_anchor_trainer:35) INFO: Trainer初始化 - Device: cuda:0
+2026-01-13 18:33:19,051 (knowledge_anchor_trainer:38) INFO: 模型设备: cpu
+2026-01-13 18:33:19,051 (knowledge_anchor_trainer:42) INFO: CUDA可用 - GPU数量: 1
+2026-01-13 18:33:19,051 (knowledge_anchor_trainer:45) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-01-13 18:33:21,643 (fed_runner:245) INFO: Client 3 has been set up ... 
+2026-01-13 18:33:21,643 (trainer:343) INFO: Model meta-info: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>.
+2026-01-13 18:33:21,653 (trainer:351) INFO: Num of original para names: 88.
+2026-01-13 18:33:21,653 (trainer:352) INFO: Num of original trainable para names: 289.
+2026-01-13 18:33:21,653 (trainer:354) INFO: Num of preserved para names in local update: 88. 
+Preserved para names in local update: {'base_model.model.model.layers.15.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.17.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.14.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.7.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.10.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.15.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.10.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.10.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.1.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.16.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.13.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.7.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.17.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.2.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.4.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.19.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.2.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.21.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.11.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.14.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.19.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.17.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.2.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.9.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.15.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.18.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.19.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.9.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.14.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.3.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.18.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.5.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.5.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.14.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.21.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.8.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.11.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.12.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.18.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.13.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.16.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.20.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.18.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.7.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.21.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.5.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.19.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.11.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.20.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.9.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.11.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.17.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.7.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.13.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.13.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.20.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.16.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.5.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.10.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.9.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.15.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.20.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.2.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.16.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.21.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.0.self_attn.v_proj.lora_A.default.weight'}.
+2026-01-13 18:33:21,653 (trainer:358) INFO: Num of filtered para names in local update: 0. 
+Filtered para names in local update: set().
+2026-01-13 18:33:21,653 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "_hook_on_batch_backward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	}
+2026-01-13 18:33:42,223 (server:882) INFO: ----------- Starting training (Round #0) -------------
