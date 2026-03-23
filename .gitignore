@@ -1,6 +1,2 @@
 data/squad/train.jsonl
 test_data/cifar-10-python.tar.gz
-# 可选：忽略其他大文件或临时文件
-*.log
-*.pyc
-__pycache__/
