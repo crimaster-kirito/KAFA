@@ -1,12 +1,6 @@
-# FedBiOT: LLM Local Fine-tuning in Federated Learning without Full Model
+# KAFA
 
-![](https://img.shields.io/badge/language-python-blue.svg)
-![](https://img.shields.io/badge/license-Apache-000000.svg)
-[![Website](https://img.shields.io/badge/website-FederatedScope-0000FF)](https://federatedscope.io/)
-[![Playground](https://shields.io/badge/JupyterLab-Enjoy%20Your%20FL%20Journey!-F37626?logo=jupyter)](https://colab.research.google.com/github/alibaba/FederatedScope)
-[![Contributing](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://federatedscope.io/docs/contributor/)
-
-![Workflow of FedBiOT](./workflow.jpg)
+![Workflow of FedBiOT](./KAFA.png)
 
 FederatedScope-LLM (FS-LLM) is a comprehensive package for federated fine-tuning large language models, which provide:
 
@@ -300,4 +294,4 @@ If you find FedBiOT useful for your research or development, please cite the fol
   booktitle = {Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining},
   pages = {5260–5271}
 }
-```
+```"# KAFA" 
