@@ -207,6 +207,60 @@ def load_jsonls(file_paths,
     return list_data_dict
 
 
+def _load_jsonl_records(file_paths):
+    records = []
+    for fp in file_paths:
+        if not os.path.exists(fp):
+            continue
+        with open(fp, 'r', encoding='utf-8') as handle:
+            for line in handle:
+                line = line.strip()
+                if not line:
+                    continue
+                records.append(json.loads(line))
+    return records
+
+
+def _make_llm_records_from_classification(records, label_map, instruction):
+    list_data_dict = []
+    for item in records:
+        label = item.get('label', item.get('labels', None))
+        if label is None:
+            continue
+        label_name = label_map.get(int(label), str(label))
+        list_data_dict.append({
+            'instruction': instruction,
+            'input': item.get('text', ''),
+            'output': label_name,
+            'category': label_name,
+        })
+    return list_data_dict
+
+
+def _make_llm_records_from_squad(records):
+    list_data_dict = []
+    for item in records:
+        answers = item.get('answers', {})
+        answer_text = ''
+        if isinstance(answers, dict):
+            texts = answers.get('text', [])
+            if texts:
+                answer_text = texts[0]
+        elif isinstance(answers, list) and answers:
+            answer_text = answers[0].get('text', '')
+        if not answer_text:
+            continue
+        question = item.get('question', '')
+        context = item.get('context', '')
+        list_data_dict.append({
+            'instruction': 'Answer the question based on the context.',
+            'input': f'Question: {question}\nContext: {context}',
+            'output': answer_text,
+            'category': 'squad',
+        })
+    return list_data_dict
+
+
 def load_llm_dataset(config=None, **kwargs):
     model_name, _ = config.model.type.split('@')
     tokenizer, num_new_tokens = \
@@ -284,6 +338,57 @@ def load_llm_dataset(config=None, **kwargs):
         for i in range(len(list_data_dict)):
             list_data_dict[i]['output'] = \
                 list_data_dict[i]['output'].replace('####', 'The answer is')
+        dataset = LLMDataset(list_data_dict, tokenizer)
+
+    elif dataset_name.lower() == 'squad':
+        files = [
+            os.path.join(config.data.root, 'train.jsonl'),
+            os.path.join(config.data.root, 'test.jsonl'),
+        ]
+        records = _load_jsonl_records(files)
+        list_data_dict = _make_llm_records_from_squad(records)
+        if not list_data_dict:
+            raise FileNotFoundError(
+                f'No SQuAD jsonl files found under {config.data.root}.')
+        dataset = LLMDataset(list_data_dict, tokenizer)
+
+    elif dataset_name.lower() == 'imdb':
+        files = [
+            os.path.join(config.data.root, 'train.jsonl'),
+            os.path.join(config.data.root, 'test.jsonl'),
+        ]
+        records = _load_jsonl_records(files)
+        label_map = {
+            0: 'negative',
+            1: 'positive',
+        }
+        list_data_dict = _make_llm_records_from_classification(
+            records, label_map,
+            'Classify the sentiment of the review as positive or negative.')
+        if not list_data_dict:
+            raise FileNotFoundError(
+                f'No IMDB jsonl files found under {config.data.root}.')
+        dataset = LLMDataset(list_data_dict, tokenizer)
+
+    elif dataset_name.lower() == 'agnews':
+        files = [
+            os.path.join(config.data.root, 'train.jsonl'),
+            os.path.join(config.data.root, 'test.jsonl'),
+        ]
+        records = _load_jsonl_records(files)
+        label_map = {
+            0: 'World',
+            1: 'Sports',
+            2: 'Business',
+            3: 'Sci/Tech',
+        }
+        list_data_dict = _make_llm_records_from_classification(
+            records, label_map,
+            'Classify the news article into World, Sports, Business, or Sci/Tech.'
+        )
+        if not list_data_dict:
+            raise FileNotFoundError(
+                f'No AGNews jsonl files found under {config.data.root}.')
         dataset = LLMDataset(list_data_dict, tokenizer)
 
     elif dataset_name.lower() == 'code_search_net':

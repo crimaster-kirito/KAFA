@@ -1,0 +1,2 @@
+task,method,trainer,seed,run_dir,outdir,final_round,final_test_avg_loss,final_val_avg_loss,final_test_loss,final_val_loss,total_download_mb,total_upload_mb,source
+alpaca,FedAvg,llmtrainer,0,exp/raw_llama2/sub_exp_20251203002400,exp/raw_llama2/sub_exp_20251203002400,499,1.05127,0.988839,11.380859,9.90625,0.0,0.0,real

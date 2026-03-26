@@ -1,0 +1,136 @@
+use_gpu: true
+device: 0
+seed: 43
+early_stop:
+  patience: 0
+outdir: exp/kafa_matrix/gsm8k/kafa_wo_relevance/seed_43
+expname: gsm8k_kafa_wo_relevance_seed43
+federate:
+  mode: standalone
+  client_num: 3
+  total_round_num: 30
+  share_local_model: true
+  online_aggr: false
+  save_freq: 5
+  method: knowledgeanchor
+  save_to: exp/kafa_matrix/gsm8k/kafa_wo_relevance/seed_43/gsm8k_kafa_wo_relevance_seed43.ckpt
+data:
+  root: data/gsm8k
+  type: gsm8k@llm
+  splits:
+  - 0.4
+  - 0.4
+  - 0.2
+  splitter: iid
+  splitter_args:
+  - server_ratio: 0.4
+    client_ratio: 0.4
+    test_ratio: 0.2
+    non_iid_alpha: 0.5
+    task_irrelevant_ratio: 0.1
+    irrelevant_dataset: imdb
+llm:
+  grad_accum_step: 4
+  tok_len: 768
+  cache:
+    model: ''
+  chat:
+    max_len: 256
+  adapter:
+    use: true
+    mv_to_cpu: false
+    args:
+    - adapter_package: peft
+      adapter_method: lora
+      r: 8
+      lora_alpha: 16
+      lora_dropout: 0.05
+  offsite_tuning:
+    use: false
+    save_full_model: true
+    emu_l: 0
+    emu_r: 30
+    strategy: drop_layer
+    kwargs:
+    - drop_ratio: 0.5
+    emu_align:
+      use: true
+      initial_only: false
+      sim_loss: l2
+      layerwise_distill: false
+      kl_divergence: raw
+      data:
+        root: data/gsm8k
+        type: gsm8k@llm
+        splits:
+        - 0.8
+        - 0.1
+        - 0.1
+      train:
+        local_update_steps: 5
+        initial_update_rounds: 30
+        batch_or_epoch: batch
+        lm_loss_weight: 1.0
+        kd_loss_weight: 0.0
+  knowledge_anchor:
+    num_instructions: 8
+    num_prototypes: 150
+    intermediate_layer: 16
+    generation_temperature: 0.7
+    max_new_tokens: 256
+    soft_label_temperature: 4.0
+    task_description_seed: 43
+    task_description_samples: 100
+    client_model_type: ''
+    task_relevance_threshold: 0.5
+    prototype_alignment_weight: 0.5
+    use_instruction_augmentation: true
+    top_k_prototypes: 5
+    prototype_temperature: 0.1
+    distill_weight: 1.0
+    enable_mse_relevance: false
+    relevance_mse_multiplier: 1.5
+    incremental_mse_multiplier: 0.8
+    train_on_server: true
+    lora_mapping_strategy: interpolate
+    max_prototypes: 100
+    use_projection_lora: true
+    small_hidden: 4096
+    large_hidden: 4096
+    projection_learnable: true
+    q_strategy: transpose
+    lora_update_lr: 1.0
+  paths:
+    server_model: models/llama-2-7b-hf
+    client_model: ''
+    data_root: data/gsm8k
+    output_root: exp/kafa_matrix
+    cache_dir: ''
+dataloader:
+  batch_size: 1
+model:
+  type: models/llama-2-7b-hf@huggingface_llm
+train:
+  local_update_steps: 4
+  batch_or_epoch: batch
+  optimizer:
+    type: AdamW
+    lr: 0.001
+    betas: (0.9, 0.95)
+  is_enable_half: true
+criterion:
+  type: CrossEntropyLoss
+trainer:
+  type: knowledge_anchor_client
+eval:
+  freq: 5
+  metrics:
+  - loss
+  best_res_update_round_wise_key: test_loss
+  report:
+  - weighted_avg
+  - avg
+  - raw
+  count_flops: false
+privacy:
+  use_dp: false

@@ -1,0 +1,73 @@
+task,family,method,comm_mb_per_round,comm_mb_cumulative,rounds
+gsm8k,reasoning,local-only,0.0,0.0,30
+gsm8k,reasoning,rawfedavg,220.0,6600.0,30
+gsm8k,reasoning,fedprox,220.0,6600.0,30
+gsm8k,reasoning,fedopt,220.0,6600.0,30
+gsm8k,reasoning,offsite-tuning,175.0,5250.0,30
+gsm8k,reasoning,pfedme,220.0,6600.0,30
+gsm8k,reasoning,ditto,220.0,6600.0,30
+gsm8k,reasoning,kafa-full,95.0,2850.0,30
+gsm8k,reasoning,kafa-w/o projection,220.0,6600.0,30
+gsm8k,reasoning,kafa-w/o instruction,95.0,2850.0,30
+gsm8k,reasoning,kafa-w/o distill,95.0,2850.0,30
+gsm8k,reasoning,kafa-w/o relevance,95.0,2850.0,30
+alpaca,generation,local-only,0.0,0.0,20
+alpaca,generation,rawfedavg,220.0,4400.0,20
+alpaca,generation,fedprox,220.0,4400.0,20
+alpaca,generation,fedopt,220.0,4400.0,20
+alpaca,generation,offsite-tuning,175.0,3500.0,20
+alpaca,generation,pfedme,220.0,4400.0,20
+alpaca,generation,ditto,220.0,4400.0,20
+alpaca,generation,kafa-full,95.0,1900.0,20
+alpaca,generation,kafa-w/o projection,220.0,4400.0,20
+alpaca,generation,kafa-w/o instruction,95.0,1900.0,20
+alpaca,generation,kafa-w/o distill,95.0,1900.0,20
+alpaca,generation,kafa-w/o relevance,95.0,1900.0,20
+dolly-15k,generation,local-only,0.0,0.0,20
+dolly-15k,generation,rawfedavg,220.0,4400.0,20
+dolly-15k,generation,fedprox,220.0,4400.0,20
+dolly-15k,generation,fedopt,220.0,4400.0,20
+dolly-15k,generation,offsite-tuning,175.0,3500.0,20
+dolly-15k,generation,pfedme,220.0,4400.0,20
+dolly-15k,generation,ditto,220.0,4400.0,20
+dolly-15k,generation,kafa-full,95.0,1900.0,20
+dolly-15k,generation,kafa-w/o projection,220.0,4400.0,20
+dolly-15k,generation,kafa-w/o instruction,95.0,1900.0,20
+dolly-15k,generation,kafa-w/o distill,95.0,1900.0,20
+dolly-15k,generation,kafa-w/o relevance,95.0,1900.0,20
+squad,extraction,local-only,0.0,0.0,20
+squad,extraction,rawfedavg,220.0,4400.0,20
+squad,extraction,fedprox,220.0,4400.0,20
+squad,extraction,fedopt,220.0,4400.0,20
+squad,extraction,offsite-tuning,175.0,3500.0,20
+squad,extraction,pfedme,220.0,4400.0,20
+squad,extraction,ditto,220.0,4400.0,20
+squad,extraction,kafa-full,95.0,1900.0,20
+squad,extraction,kafa-w/o projection,220.0,4400.0,20
+squad,extraction,kafa-w/o instruction,95.0,1900.0,20
+squad,extraction,kafa-w/o distill,95.0,1900.0,20
+squad,extraction,kafa-w/o relevance,95.0,1900.0,20
+imdb,classification,local-only,0.0,0.0,15
+imdb,classification,rawfedavg,220.0,3300.0,15
+imdb,classification,fedprox,220.0,3300.0,15
+imdb,classification,fedopt,220.0,3300.0,15
+imdb,classification,offsite-tuning,175.0,2625.0,15
+imdb,classification,pfedme,220.0,3300.0,15
+imdb,classification,ditto,220.0,3300.0,15
+imdb,classification,kafa-full,95.0,1425.0,15
+imdb,classification,kafa-w/o projection,220.0,3300.0,15
+imdb,classification,kafa-w/o instruction,95.0,1425.0,15
+imdb,classification,kafa-w/o distill,95.0,1425.0,15
+imdb,classification,kafa-w/o relevance,95.0,1425.0,15
+agnews,classification,local-only,0.0,0.0,15
+agnews,classification,rawfedavg,220.0,3300.0,15
+agnews,classification,fedprox,220.0,3300.0,15
+agnews,classification,fedopt,220.0,3300.0,15
+agnews,classification,offsite-tuning,175.0,2625.0,15
+agnews,classification,pfedme,220.0,3300.0,15
+agnews,classification,ditto,220.0,3300.0,15
+agnews,classification,kafa-full,95.0,1425.0,15
+agnews,classification,kafa-w/o projection,220.0,3300.0,15
+agnews,classification,kafa-w/o instruction,95.0,1425.0,15
+agnews,classification,kafa-w/o distill,95.0,1425.0,15
+agnews,classification,kafa-w/o relevance,95.0,1425.0,15

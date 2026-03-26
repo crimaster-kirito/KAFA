@@ -429,13 +429,16 @@ Generate {self.num_instructions} instruction templates that match the dataset st
             logger.warning("无法获取logits，跳过软标签计算")
             soft_labels = None
         
+        avg_proto_dist = self._compute_avg_pairwise_mse(cluster_centers)
+
         prototype_bank = {
             'prototypes': cluster_centers,  # [num_prototypes, hidden_dim]
             'cluster_labels': cluster_labels,  # [num_samples]
             'cluster_sizes': cluster_sizes,  # [num_prototypes]
             'soft_labels': soft_labels,  # [num_prototypes, vocab_size] 或 None
             'num_prototypes': actual_num_prototypes,
-            'hidden_dim': all_hidden_states.shape[1]
+            'hidden_dim': all_hidden_states.shape[1],
+            'avg_prototype_distance': avg_proto_dist
         }
         
         return prototype_bank
@@ -469,3 +472,19 @@ Generate {self.num_instructions} instruction templates that match the dataset st
         logger.info("知识锚点生成完成")
         return knowledge_anchor
 
+    @staticmethod
+    def _compute_avg_pairwise_mse(prototypes: torch.Tensor) -> float:
+        """Compute mean pairwise MSE distance among prototypes."""
+        if prototypes is None or len(prototypes) <= 1:
+            return 0.0
+        if not isinstance(prototypes, torch.Tensor):
+            prototypes = torch.tensor(prototypes, dtype=torch.float32)
+        proto = prototypes.float()
+        diff = proto.unsqueeze(1) - proto.unsqueeze(0)
+        mse = (diff * diff).mean(dim=-1)
+        k = mse.shape[0]
+        mask = ~torch.eye(k, dtype=torch.bool, device=mse.device)
+        vals = mse[mask]
+        if vals.numel() == 0:
+            return 0.0
+        return float(vals.mean().item())

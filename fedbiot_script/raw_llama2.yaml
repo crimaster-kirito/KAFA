@@ -45,7 +45,7 @@ dataloader:
   batch_size: 4
 model:
   #type: 'meta-llama/Llama-2-7b-hf@huggingface_llm'
-  type: '/home/tyx/ywp/FedBiOT/models/llama-2-7b-hf@huggingface_llm'
+  type: 'models/llama-2-7b-hf@huggingface_llm'
 train:
   local_update_steps: 30
   batch_or_epoch: batch

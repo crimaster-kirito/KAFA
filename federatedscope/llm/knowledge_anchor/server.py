@@ -124,6 +124,9 @@ class KnowledgeAnchorServer(Server):
             dataloader=train_loader,
             task_description=None  # 可以从配置中获取
         )
+
+        # 将服务器端原型下投影到客户端隐藏维度（保证客户端可直接计算相似度/MSE）
+        self._project_anchor_prototypes_for_clients()
         
         # 输出生成的知识锚点摘要
         if self.knowledge_anchor:
@@ -169,6 +172,61 @@ class KnowledgeAnchorServer(Server):
         )
         
         return self.knowledge_anchor
+
+    def _project_anchor_prototypes_for_clients(self):
+        """Project prototype bank to client hidden size on server side."""
+        if not self.knowledge_anchor:
+            return
+        if not hasattr(self, 'aggregator') or \
+                not hasattr(self.aggregator, 'projection_mapper') or \
+                self.aggregator.projection_mapper is None:
+            return
+
+        prototype_bank = self.knowledge_anchor.get('prototype_bank', {})
+        prototypes = prototype_bank.get('prototypes', None)
+        if prototypes is None:
+            return
+
+        if not isinstance(prototypes, torch.Tensor):
+            prototypes = torch.tensor(prototypes, dtype=torch.float32)
+
+        mapper = self.aggregator.projection_mapper
+        if prototypes.dim() != 2:
+            logger.warning(f"原型维度异常，期望2维，实际{prototypes.dim()}维，跳过下投影")
+            return
+
+        large_hidden = prototypes.shape[-1]
+        target_large_hidden = getattr(mapper, 'large_hidden', large_hidden)
+        if large_hidden != target_large_hidden:
+            logger.warning(
+                f"原型hidden_size({large_hidden})与投影器large_hidden({target_large_hidden})不一致，跳过下投影")
+            return
+
+        p_mat = mapper.P.detach().to(prototypes.device)
+        projected = prototypes @ p_mat.t()
+        prototype_bank['prototypes_large'] = prototypes
+        prototype_bank['prototypes'] = projected.detach().cpu()
+        prototype_bank['hidden_dim'] = projected.shape[-1]
+        prototype_bank['avg_prototype_distance'] = self._compute_avg_pairwise_mse(
+            prototype_bank['prototypes'])
+
+        logger.info(
+            f"✓ 原型库下投影完成: ({prototypes.shape[0]}, {prototypes.shape[-1]}) -> "
+            f"({projected.shape[0]}, {projected.shape[-1]})")
+
+    @staticmethod
+    def _compute_avg_pairwise_mse(prototypes):
+        if prototypes is None:
+            return 0.0
+        if not isinstance(prototypes, torch.Tensor):
+            prototypes = torch.tensor(prototypes, dtype=torch.float32)
+        if prototypes.shape[0] <= 1:
+            return 0.0
+        diffs = prototypes.unsqueeze(1) - prototypes.unsqueeze(0)
+        mse = (diffs * diffs).mean(dim=-1)
+        mask = ~torch.eye(mse.shape[0], dtype=torch.bool, device=mse.device)
+        vals = mse[mask]
+        return float(vals.mean().item()) if vals.numel() > 0 else 0.0
 
     def train_on_server_data(self):
         """
@@ -328,4 +386,3 @@ class KnowledgeAnchorServer(Server):
         
         # 调用父类方法
         return super().check_and_move_on(check_eval_result, min_received_num)
-

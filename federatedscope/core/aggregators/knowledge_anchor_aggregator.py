@@ -20,6 +20,7 @@ from typing import Dict, List, Optional
 
 from federatedscope.core.aggregators import Aggregator
 from federatedscope.core.auxiliaries.utils import param2tensor
+from federatedscope.core.auxiliaries.model_builder import get_model
 from federatedscope.llm.misc.lora_mapper import LoRAMapper, create_lora_mapper
 from federatedscope.llm.misc.projection_mapper import ProjectionMapper, create_projection_mapper
 
@@ -88,6 +89,32 @@ class KnowledgeAnchorAggregator(Aggregator):
                 )
             except Exception as e:
                 logger.warning(f"创建LoRA映射器失败: {e}")
+
+        if self.projection_mapper is None and self.lora_mapper is None and \
+                model is not None:
+            client_model_type = getattr(config.llm.knowledge_anchor,
+                                        'client_model_type', '')
+            if client_model_type:
+                try:
+                    tmp_cfg = config.clone()
+                    try:
+                        tmp_cfg.defrost()
+                    except Exception:
+                        pass
+                    tmp_cfg.model.type = client_model_type
+                    inferred_small_model = get_model(tmp_cfg, backend=config.backend)
+                    self.lora_mapper = create_lora_mapper(
+                        inferred_small_model,
+                        model,
+                        mapping_strategy=getattr(
+                            config.llm.knowledge_anchor,
+                            'lora_mapping_strategy', 'interpolate'))
+                    logger.info(
+                        "Initialized LoRA mapper from client_model_type in config."
+                    )
+                except Exception as e:
+                    logger.warning(
+                        f"Failed to initialize LoRA mapper from client_model_type: {e}")
         
         # 全局大LoRA state_dict（服务器维护）
         self.global_large_lora = None
@@ -335,12 +362,16 @@ class KnowledgeAnchorAggregator(Aggregator):
                 # 更新知识锚点
                 self.knowledge_anchor['prototype_bank']['prototypes'] = combined_prototypes
                 self.knowledge_anchor['prototype_bank']['num_prototypes'] = len(combined_prototypes)
+                self.knowledge_anchor['prototype_bank']['avg_prototype_distance'] = \
+                    self._compute_avg_pairwise_mse(combined_prototypes)
                 
                 logger.info(f"原型库已更新，当前原型数: {len(combined_prototypes)}")
             else:
                 # 如果没有现有原型，直接使用新原型
                 self.knowledge_anchor['prototype_bank']['prototypes'] = prototype_tensor
                 self.knowledge_anchor['prototype_bank']['num_prototypes'] = len(prototype_tensor)
+                self.knowledge_anchor['prototype_bank']['avg_prototype_distance'] = \
+                    self._compute_avg_pairwise_mse(prototype_tensor)
 
     def _recluster_prototypes(self, prototypes: torch.Tensor, num_clusters: int) -> torch.Tensor:
         """
@@ -359,6 +390,16 @@ class KnowledgeAnchorAggregator(Aggregator):
         
         cluster_centers = torch.tensor(kmeans.cluster_centers_, dtype=torch.float32)
         return cluster_centers
+
+    @staticmethod
+    def _compute_avg_pairwise_mse(prototypes: torch.Tensor) -> float:
+        if prototypes is None or prototypes.shape[0] <= 1:
+            return 0.0
+        diff = prototypes.unsqueeze(1) - prototypes.unsqueeze(0)
+        mse = (diff * diff).mean(dim=-1)
+        mask = ~torch.eye(mse.shape[0], dtype=torch.bool, device=mse.device)
+        vals = mse[mask]
+        return float(vals.mean().item()) if vals.numel() > 0 else 0.0
 
     def _update_global_large_lora(self, large_lora_delta: Dict[str, torch.Tensor]):
         """

@@ -1,0 +1,98 @@
+use_gpu: True
+device: 0
+seed: 42
+
+federate:
+  mode: standalone
+  client_num: 3
+  total_round_num: 30
+  share_local_model: True
+  online_aggr: False
+  method: 'knowledgeanchor'
+
+data:
+  root: data/
+  type: 'gsm8k@llm'
+  splits: [0.4, 0.4, 0.2]
+  splitter: 'knowledge_anchor'
+  splitter_args:
+    - server_ratio: 0.4
+      client_ratio: 0.4
+      test_ratio: 0.2
+      non_iid_alpha: 0.5
+      task_irrelevant_ratio: 0.1
+      irrelevant_dataset: 'imdb'
+
+llm:
+  grad_accum_step: 4
+  tok_len: 512
+  chat:
+    max_len: 1000
+  adapter:
+    use: True
+    mv_to_cpu: True
+    args:
+      - adapter_package: 'peft'
+        adapter_method: 'lora'
+        r: 8
+        lora_alpha: 16
+        lora_dropout: 0.05
+  knowledge_anchor:
+    num_instructions: 8
+    num_prototypes: 50
+    intermediate_layer: 16
+    generation_temperature: 0.7
+    max_new_tokens: 128
+    soft_label_temperature: 4.0
+    train_on_server: True
+
+    # Quick mode: if TinyLlama path is unavailable, keep empty to fallback
+    client_model_type: ''
+
+    task_relevance_threshold: 0.5
+    enable_mse_relevance: True
+    relevance_mse_multiplier: 1.5
+    incremental_mse_multiplier: 0.8
+    prototype_alignment_weight: 0.5
+    top_k_prototypes: 5
+    prototype_temperature: 0.1
+    distill_weight: 1.0
+    use_instruction_augmentation: True
+
+    use_projection_lora: True
+    small_hidden: 4096
+    large_hidden: 4096
+    projection_learnable: True
+    q_strategy: 'transpose'
+    lora_update_lr: 1.0
+    max_prototypes: 100
+
+dataloader:
+  batch_size: 1
+
+model:
+  type: 'models/llama-2-7b-hf@huggingface_llm'
+
+train:
+  local_update_steps: 10
+  batch_or_epoch: batch
+  optimizer:
+    type: AdamW
+    lr: 0.001
+    betas: (0.9, 0.95)
+  is_enable_half: True
+
+criterion:
+  type: CrossEntropyLoss
+
+trainer:
+  type: knowledge_anchor_client
+
+eval:
+  freq: 5
+  metrics: ['loss']
+  best_res_update_round_wise_key: 'test_loss'
+  report: ['weighted_avg', 'avg', 'raw']
+  count_flops: False
+
+expname: 'knowledge_anchor_llama2_quick'

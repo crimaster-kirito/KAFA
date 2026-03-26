@@ -10,9 +10,8 @@ Knowledge Anchor Trainer for Client
 import torch
 import torch.nn.functional as F
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
 import logging
-import copy
+import random
 from typing import Dict, List, Optional
 
 from federatedscope.register import register_trainer
@@ -74,6 +73,19 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         self.distill_weight = getattr(
             config.llm.knowledge_anchor, 'distill_weight', 1.0  # γ=1.0
         )
+        self.soft_label_temperature = getattr(
+            config.llm.knowledge_anchor, 'soft_label_temperature', 4.0
+        )
+        self.enable_mse_relevance = getattr(
+            config.llm.knowledge_anchor, 'enable_mse_relevance', True
+        )
+        self.relevance_mse_multiplier = getattr(
+            config.llm.knowledge_anchor, 'relevance_mse_multiplier', 1.5
+        )
+        self.incremental_mse_multiplier = getattr(
+            config.llm.knowledge_anchor, 'incremental_mse_multiplier', 0.8
+        )
+        self._dimension_warned = False
         
         # 统计信息
         self.stats = {
@@ -106,7 +118,6 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
             return input_text
         
         # 随机选择一个指令模板
-        import random
         instruction = random.choice(instructions)
         
         # 组合指令和输入（FedKA方法：使用[SEP]分隔符）
@@ -116,7 +127,37 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         
         return augmented_text
 
-    def dynamic_prototype_matching(self, hidden_state: torch.Tensor):
+    def _get_prototypes_tensor(self, device: torch.device):
+        if not self.knowledge_anchor:
+            return None
+        prototype_bank = self.knowledge_anchor.get('prototype_bank', {})
+        prototypes = prototype_bank.get('prototypes', None)
+        if prototypes is None:
+            return None
+        if isinstance(prototypes, np.ndarray):
+            prototypes = torch.from_numpy(prototypes)
+        if not isinstance(prototypes, torch.Tensor):
+            return None
+        return prototypes.to(device=device, dtype=torch.float32)
+
+    def _align_hidden_and_prototypes(self, hidden_state: torch.Tensor,
+                                     prototypes: torch.Tensor):
+        if prototypes is None:
+            return hidden_state, None
+        if hidden_state.shape[-1] == prototypes.shape[-1]:
+            return hidden_state, prototypes
+
+        min_dim = min(hidden_state.shape[-1], prototypes.shape[-1])
+        if not self._dimension_warned:
+            logger.warning(
+                f"hidden维度({hidden_state.shape[-1]})与原型维度({prototypes.shape[-1]})不一致，"
+                f"将自动裁剪到{min_dim}维")
+            self._dimension_warned = True
+        return hidden_state[..., :min_dim], prototypes[..., :min_dim]
+
+    def dynamic_prototype_matching(self,
+                                   hidden_state: torch.Tensor,
+                                   prototypes: torch.Tensor):
         """
         动态原型匹配（FedKA方法）
         计算与所有原型的余弦相似度，选取top-K_p=5个最相似原型，计算温度软权重（τ=0.1）
@@ -127,34 +168,32 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         Returns:
             tuple: (top_k_indices, top_k_weights, max_similarity) - top-K原型索引、软权重、最大相似度
         """
-        if not self.knowledge_anchor:
-            return None, None, 0.0
-        
-        prototype_bank = self.knowledge_anchor.get('prototype_bank', {})
-        prototypes = prototype_bank.get('prototypes', None)
-        
         if prototypes is None:
             return None, None, 0.0
-        
-        # 计算与所有原型的余弦相似度
-        hidden_np = hidden_state.detach().cpu().numpy().reshape(1, -1)
-        prototypes_np = prototypes.numpy()
-        
-        similarities = cosine_similarity(hidden_np, prototypes_np)[0]  # [num_prototypes]
-        max_similarity = float(np.max(similarities))
-        
+
+        hidden_state, prototypes = self._align_hidden_and_prototypes(
+            hidden_state, prototypes)
+        hidden_norm = F.normalize(hidden_state, dim=-1)
+        proto_norm = F.normalize(prototypes, dim=-1)
+        similarities = torch.matmul(proto_norm, hidden_norm)
+        max_similarity = float(similarities.max().item())
+
         # 选取top-K_p个最相似原型
-        top_k = min(self.top_k_prototypes, len(similarities))
-        top_k_indices = np.argsort(similarities)[-top_k:][::-1]  # 降序
-        top_k_similarities = similarities[top_k_indices]
-        
+        top_k = min(self.top_k_prototypes, int(similarities.shape[0]))
+        if top_k <= 0:
+            return None, None, max_similarity
+        top_k_similarities, top_k_indices = torch.topk(similarities, k=top_k)
+
         # 计算温度软权重（τ=0.1）
-        top_k_weights = np.exp(top_k_similarities / self.prototype_temperature)
-        top_k_weights = top_k_weights / top_k_weights.sum()  # 归一化
-        
+        top_k_weights = F.softmax(top_k_similarities / self.prototype_temperature,
+                                  dim=0)
+
         return top_k_indices, top_k_weights, max_similarity
     
-    def check_task_relevance(self, hidden_state: torch.Tensor):
+    def check_task_relevance(self,
+                             hidden_state: torch.Tensor,
+                             prototypes: torch.Tensor,
+                             avg_prototype_distance: float):
         """
         检查任务相关性（基于最大相似度）
         
@@ -164,12 +203,91 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         Returns:
             tuple: (is_relevant, matched_prototype_idx) - 是否相关，匹配的原型索引
         """
-        _, _, max_similarity = self.dynamic_prototype_matching(hidden_state)
-        is_relevant = max_similarity >= self.task_relevance_threshold
-        
-        return is_relevant, None  # 匹配的原型索引在损失计算时使用top-K
+        if prototypes is None:
+            return False, 0.0, 0.0, None
 
-    def add_to_incremental_bank(self, hidden_state: torch.Tensor, sample_info: Dict = None):
+        hidden_state, prototypes = self._align_hidden_and_prototypes(
+            hidden_state, prototypes)
+        mse_distances = torch.mean((prototypes - hidden_state.unsqueeze(0))**2,
+                                   dim=-1)
+        min_mse = float(mse_distances.min().item())
+
+        _, _, max_similarity = self.dynamic_prototype_matching(
+            hidden_state, prototypes)
+
+        if self.enable_mse_relevance and avg_prototype_distance > 0:
+            threshold = self.relevance_mse_multiplier * avg_prototype_distance
+            is_relevant = min_mse <= threshold
+        else:
+            is_relevant = max_similarity >= self.task_relevance_threshold
+
+        return is_relevant, min_mse, max_similarity, mse_distances
+
+    def _apply_instruction_prefix(self, input_ids: torch.Tensor,
+                                  labels: torch.Tensor,
+                                  attention_mask: torch.Tensor):
+        if not self.use_instruction_augmentation or not self.knowledge_anchor:
+            return input_ids, labels, attention_mask
+
+        instructions = self.knowledge_anchor.get('instructions', [])
+        if not instructions:
+            return input_ids, labels, attention_mask
+
+        instruction = random.choice(instructions)
+        sep_token = self.tokenizer.sep_token if self.tokenizer.sep_token else ' [SEP] '
+        prefix_text = f"{instruction}{sep_token}"
+        prefix_ids = self.tokenizer(prefix_text,
+                                    add_special_tokens=False,
+                                    return_tensors='pt')['input_ids'][0].to(
+                                        input_ids.device)
+
+        if prefix_ids.numel() == 0:
+            return input_ids, labels, attention_mask
+
+        seq_len = input_ids.shape[1]
+        prefix_len = int(prefix_ids.numel())
+        bs = input_ids.shape[0]
+        new_input_ids = []
+        new_labels = []
+        new_attention = []
+
+        for b_idx in range(bs):
+            attn_row = attention_mask[b_idx] if attention_mask is not None else \
+                torch.ones(seq_len, dtype=torch.long, device=input_ids.device)
+            merged_input = torch.cat([prefix_ids, input_ids[b_idx]], dim=0)
+            merged_attn = torch.cat([
+                torch.ones(prefix_len, dtype=attn_row.dtype, device=attn_row.device),
+                attn_row
+            ],
+                                    dim=0)
+            merged_label = torch.cat([
+                torch.full((prefix_len,),
+                           -100,
+                           dtype=labels[b_idx].dtype,
+                           device=labels[b_idx].device), labels[b_idx]
+            ],
+                                     dim=0)
+
+            new_input_ids.append(merged_input[-seq_len:])
+            new_attention.append(merged_attn[-seq_len:])
+            new_labels.append(merged_label[-seq_len:])
+
+        return torch.stack(new_input_ids), torch.stack(new_labels), torch.stack(
+            new_attention)
+
+    @staticmethod
+    def _compute_avg_pairwise_mse(prototypes: torch.Tensor) -> float:
+        if prototypes is None or prototypes.shape[0] <= 1:
+            return 0.0
+        diffs = prototypes.unsqueeze(1) - prototypes.unsqueeze(0)
+        mse = (diffs * diffs).mean(dim=-1)
+        mask = ~torch.eye(mse.shape[0], dtype=torch.bool, device=mse.device)
+        vals = mse[mask]
+        return float(vals.mean().item()) if vals.numel() > 0 else 0.0
+
+    def add_to_incremental_bank(self,
+                                hidden_state: torch.Tensor,
+                                sample_info: Optional[Dict] = None):
         """
         将新原型添加到增量bank
         注意：只有任务相关但无匹配原型的样本才会被添加
@@ -213,10 +331,12 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         attention_mask = ctx.data_batch.get('attention_mask', None)
         if attention_mask is not None:
             attention_mask = attention_mask.to(ctx.device)
-        
-        # 如果启用指令增强，需要重新tokenize（这里简化处理，实际可能需要更复杂的逻辑）
-        # 注意：由于tokenization的复杂性，这里假设输入已经经过增强处理
-        # 实际应用中，增强应该在数据预处理阶段完成
+        else:
+            attention_mask = torch.ones_like(input_ids, device=ctx.device)
+
+        # 指令增强（token级前缀拼接）
+        input_ids, labels, attention_mask = self._apply_instruction_prefix(
+            input_ids, labels, attention_mask)
         
         # 前向传播
         outputs = ctx.model(
@@ -278,17 +398,33 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         batch_new_prototype_count = 0
         
         # 获取原型库和软标签
-        prototype_bank = None
+        prototype_bank = {}
         prototypes = None
         soft_labels = None
         if self.knowledge_anchor:
             prototype_bank = self.knowledge_anchor.get('prototype_bank', {})
-            prototypes = prototype_bank.get('prototypes', None)
+            prototypes = self._get_prototypes_tensor(ctx.device)
             soft_labels = prototype_bank.get('soft_labels', None)
+
+        if prototypes is None or prototypes.shape[0] == 0:
+            # 没有可用原型库时，退化为标准训练
+            ctx.skip_this_batch = CtxVar(False, LIFECYCLE.BATCH)
+            ctx.loss_batch = CtxVar(outputs.loss, LIFECYCLE.BATCH)
+            ctx.batch_size = CtxVar(len(labels), LIFECYCLE.BATCH)
+            ctx.y_true = CtxVar(labels, LIFECYCLE.BATCH)
+            ctx.y_prob = CtxVar(outputs.logits, LIFECYCLE.BATCH)
+            return
+
+        avg_prototype_distance = float(
+            prototype_bank.get('avg_prototype_distance', 0.0)
+            or self._compute_avg_pairwise_mse(prototypes))
         
         for i in range(hidden_states.shape[0]):
             hidden_state_i = hidden_states[i]  # 保持计算图用于梯度
-            is_relevant, _ = self.check_task_relevance(hidden_state_i.detach())
+            hidden_match_i, proto_match = self._align_hidden_and_prototypes(
+                hidden_state_i, prototypes)
+            is_relevant, min_mse, _, _ = self.check_task_relevance(
+                hidden_match_i.detach(), proto_match, avg_prototype_distance)
             relevant_mask.append(is_relevant)
             
             if is_relevant:
@@ -296,21 +432,24 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
                 self.stats['relevant_samples'] += 1
                 
                 # 动态原型匹配：获取top-K_p个原型及其软权重
-                top_k_indices, top_k_weights, max_sim = self.dynamic_prototype_matching(hidden_state_i.detach())
+                top_k_indices, top_k_weights, _ = self.dynamic_prototype_matching(
+                    hidden_match_i.detach(), proto_match)
                 
-                if top_k_indices is not None and prototypes is not None:
+                if top_k_indices is not None and top_k_weights is not None and proto_match is not None:
                     # 结构化锚点对齐损失
                     proto_loss = torch.tensor(0.0, device=ctx.device)
                     distill_loss = torch.tensor(0.0, device=ctx.device)
                     
                     for k_idx, weight in zip(top_k_indices, top_k_weights):
-                        k_idx = int(k_idx)
-                        weight = float(weight)
-                        target_prototype = prototypes[k_idx].to(ctx.device)
+                        k_idx = int(k_idx.item()) if isinstance(
+                            k_idx, torch.Tensor) else int(k_idx)
+                        weight = float(weight.item()) if isinstance(
+                            weight, torch.Tensor) else float(weight)
+                        target_prototype = proto_match[k_idx]
                         
                         # 对比拉近损失（简化版：使用MSE）
                         proto_loss += weight * F.mse_loss(
-                            hidden_state_i,
+                            hidden_match_i,
                             target_prototype,
                             reduction='mean'
                         )
@@ -325,24 +464,58 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
                                 sample_logits = outputs.logits[i, -1, :]  # [vocab_size]
                             
                             # 温度软化
-                            student_logits = F.log_softmax(sample_logits / self.soft_label_temperature, dim=0)
-                            teacher_logits = torch.tensor(soft_labels[k_idx], device=ctx.device, dtype=torch.float32)
-                            teacher_logits = F.softmax(teacher_logits / self.soft_label_temperature, dim=0)
+                            student_logits = F.log_softmax(
+                                sample_logits / self.soft_label_temperature,
+                                dim=0)
+                            teacher_logits = soft_labels[k_idx]
+                            if isinstance(teacher_logits, np.ndarray):
+                                teacher_logits = torch.from_numpy(teacher_logits)
+                            if not isinstance(teacher_logits, torch.Tensor):
+                                teacher_logits = torch.tensor(teacher_logits)
+                            teacher_logits = teacher_logits.to(
+                                device=ctx.device, dtype=torch.float32)
+
+                            # 兼容两种格式：概率分布或原始logits
+                            if torch.all(teacher_logits >= 0) and abs(
+                                    float(teacher_logits.sum().item()) -
+                                    1.0) < 1e-2:
+                                teacher_prob = teacher_logits / teacher_logits.sum(
+                                ).clamp(min=1e-12)
+                            else:
+                                teacher_prob = F.softmax(
+                                    teacher_logits /
+                                    self.soft_label_temperature,
+                                    dim=0)
                             
                             # KL散度
-                            kl_loss = F.kl_div(student_logits, teacher_logits, reduction='sum')
+                            kl_loss = F.kl_div(student_logits,
+                                               teacher_prob,
+                                               reduction='batchmean')
                             distill_loss += weight * kl_loss
                     
                     # 融合锚点损失：L_anchor = L_proto + γ * L_distill (γ=1.0)
                     sample_anchor_loss = proto_loss + self.distill_weight * distill_loss
                     anchor_loss += sample_anchor_loss
+
+                    if avg_prototype_distance > 0 and min_mse >= \
+                            self.incremental_mse_multiplier * avg_prototype_distance:
+                        if len(self.incremental_bank) < self.max_prototypes:
+                            batch_new_prototype_count += 1
+                            self.add_to_incremental_bank(
+                                hidden_match_i.detach(),
+                                sample_info={
+                                    'type': 'weak_match',
+                                    'min_mse': min_mse,
+                                    'avg_prototype_distance':
+                                    avg_prototype_distance
+                                })
                     
                     logger.debug(f"样本 {i}: 任务相关，top-K={len(top_k_indices)}, 锚点损失={sample_anchor_loss.item():.4f}")
                 else:
                     # 相关但没有匹配的原型，添加到增量bank
                     batch_new_prototype_count += 1
                     if len(self.incremental_bank) < self.max_prototypes:
-                        self.add_to_incremental_bank(hidden_state_i.detach(), sample_info={'type': 'relevant_no_prototype'})
+                        self.add_to_incremental_bank(hidden_match_i.detach(), sample_info={'type': 'relevant_no_prototype'})
                         logger.info(f"样本 {i}: 任务相关但无匹配原型，添加到增量bank（当前bank大小: {len(self.incremental_bank)}/{self.max_prototypes}）")
                     else:
                         logger.warning(f"样本 {i}: 任务相关但无匹配原型，增量bank已满，无法添加")
@@ -416,4 +589,3 @@ def call_knowledge_anchor_client_trainer(trainer_type):
 
 
 register_trainer('knowledge_anchor_client', call_knowledge_anchor_client_trainer)
-

@@ -1,0 +1,2 @@
+task,method,n_runs,final_test_avg_loss_mean,final_test_avg_loss_std,final_val_avg_loss_mean,final_download_mb_mean,final_upload_mb_mean
+alpaca,FedAvg,1,1.05127,,0.988839,0.0,0.0

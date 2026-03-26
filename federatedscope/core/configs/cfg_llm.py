@@ -131,6 +131,9 @@ def extend_llm_cfg(cfg):
     cfg.llm.knowledge_anchor.top_k_prototypes = 5  # K_p=5: Top-K prototypes for dynamic matching
     cfg.llm.knowledge_anchor.prototype_temperature = 0.1  # τ=0.1: Temperature for prototype soft weights
     cfg.llm.knowledge_anchor.distill_weight = 1.0  # γ=1.0: Weight for distillation loss in anchor loss
+    cfg.llm.knowledge_anchor.enable_mse_relevance = True  # Use MSE-based relevance rule
+    cfg.llm.knowledge_anchor.relevance_mse_multiplier = 1.5  # irrelevant if min_mse > 1.5 * avg_proto_dist
+    cfg.llm.knowledge_anchor.incremental_mse_multiplier = 0.8  # add to incremental bank if min_mse >= 0.8 * avg
     
     # Server-side training
     cfg.llm.knowledge_anchor.train_on_server = True  # Whether to fine-tune on server data
@@ -138,6 +141,22 @@ def extend_llm_cfg(cfg):
     # LoRA mapping configuration
     cfg.llm.knowledge_anchor.lora_mapping_strategy = 'interpolate'  # 'direct', 'many_to_one', 'interpolate'
     cfg.llm.knowledge_anchor.max_prototypes = 100  # Max prototypes before reclustering
+    cfg.llm.knowledge_anchor.use_projection_lora = True
+    cfg.llm.knowledge_anchor.small_hidden = 2048
+    cfg.llm.knowledge_anchor.large_hidden = 4096
+    cfg.llm.knowledge_anchor.projection_learnable = True
+    cfg.llm.knowledge_anchor.q_strategy = 'transpose'  # 'transpose', 'pseudo_inverse', 'learnable'
+    cfg.llm.knowledge_anchor.lora_update_lr = 1.0
+
+    # ---------------------------------------------------------------------- #
+    # Runtime path hints for experiment orchestration
+    # ---------------------------------------------------------------------- #
+    cfg.llm.paths = CN()
+    cfg.llm.paths.server_model = ''
+    cfg.llm.paths.client_model = ''
+    cfg.llm.paths.data_root = ''
+    cfg.llm.paths.output_root = ''
+    cfg.llm.paths.cache_dir = ''
 
 
 def assert_llm_cfg(cfg):

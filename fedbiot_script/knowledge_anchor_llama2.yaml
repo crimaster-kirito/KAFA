@@ -50,7 +50,7 @@ llm:
     train_on_server: True  # 是否在服务器端数据上微调
     
     # 客户端配置
-    client_model_type: '/home/tyx/ywp/FedBiOT/models/tinyllama-1.1b-chat-v1.0@huggingface_llm'  # 客户端小模型（本地路径）
+    client_model_type: 'models/tinyllama-1.1b-chat-v1.0@huggingface_llm'  # client-side compressed model path
     task_relevance_threshold: 0.5  # 任务相关性阈值（余弦相似度）
     prototype_alignment_weight: 0.3  # 原型对齐损失权重
     use_instruction_augmentation: True  # 是否使用指令增强
@@ -64,7 +64,7 @@ dataloader:
 
 model:
   # 服务器端模型：Llama-7B
-  type: '/home/tyx/ywp/FedBiOT/models/llama-2-7b-hf@huggingface_llm'
+  type: 'models/llama-2-7b-hf@huggingface_llm'
   # 客户端模型：DistilLlama（需要在代码中指定）
   # client_model_type: 'distilgpt2@huggingface_llm'  # 示例，需要根据实际模型调整
 
@@ -91,4 +91,3 @@ eval:
   count_flops: False
 
 expname: "knowledge_anchor_llama2"
-
