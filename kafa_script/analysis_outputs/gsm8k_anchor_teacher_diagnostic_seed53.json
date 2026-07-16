@@ -1,0 +1,69 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_anchor_teacher_signal_diagnostic",
+  "seed": 53,
+  "teacher_model": ".cache/models/Qwen2.5-1.5B",
+  "teacher_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "anchor_examples": 128,
+  "teacher_steps": 40,
+  "mean_teacher_anchor_train_loss": 0.8313384309411049,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "teacher_loss_audit": {
+    "conflict": {
+      "positive_kinds": [
+        "conflict"
+      ],
+      "positives": 102,
+      "auroc": 0.9227782021899669,
+      "average_precision": 0.883373491886349
+    },
+    "off_task": {
+      "positive_kinds": [
+        "off_task"
+      ],
+      "positives": 51,
+      "auroc": 0.19502630320420852,
+      "average_precision": 0.12582373481687548
+    },
+    "harmful": {
+      "positive_kinds": [
+        "conflict",
+        "off_task"
+      ],
+      "positives": 153,
+      "auroc": 0.7190811599720794,
+      "average_precision": 0.8529245900894731
+    },
+    "by_kind_quantiles": {
+      "clean": {
+        "q10": 0.21919532120227814,
+        "q25": 0.4974597990512848,
+        "median": 0.7230770587921143,
+        "mean": 0.7868094639400545
+      },
+      "conflict": {
+        "q10": 0.9806456565856934,
+        "q25": 1.609816551208496,
+        "median": 2.3201417922973633,
+        "mean": 2.3382961723734352
+      },
+      "off_task": {
+        "q10": 0.08366869390010834,
+        "q25": 0.186538964509964,
+        "median": 0.36802998185157776,
+        "mean": 0.6594982310472166
+      }
+    }
+  },
+  "limitations": [
+    "Diagnostic only; no teacher score selects examples in this run.",
+    "Teacher sees only public anchors and no official GSM8K test labels."
+  ]
+}

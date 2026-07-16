@@ -1,0 +1,56 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_public_anchor_teacher_numeric_rank",
+  "seed": 61,
+  "teacher_model": ".cache/models/Qwen2.5-1.5B",
+  "teacher_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_model": ".cache/models/SmolLM2-360M",
+  "client_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "anchor_examples": 128,
+  "teacher_steps": 40,
+  "client_steps": 40,
+  "teacher_mean_train_loss": 0.7967376932501793,
+  "client_mean_train_loss": 1.2998131543397904,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "selection": {
+    "keep_count": 128,
+    "numeric_eligible": 208,
+    "selected_kind_counts": {
+      "clean": 102,
+      "conflict": 23,
+      "off_task": 3
+    },
+    "selected_source_ids_sha256": "c89dd4bcbf883afba49b040b9a629bbe2d719d55eadd35fd25a3532ae641d2cc",
+    "selected_teacher_loss_range": [
+      0.018856586888432503,
+      2.0267035961151123
+    ]
+  },
+  "evaluation_split": "development",
+  "evaluation_examples": 512,
+  "initial": {
+    "exact_match": 0.01953125,
+    "invalid_output_rate": 0.02734375,
+    "examples": 512,
+    "prediction_sha256": "f9ae6b7f17af98da279ef45dd353d8be666ee2dba259c06bd05e9a96f5ca23bb"
+  },
+  "final": {
+    "exact_match": 0.025390625,
+    "invalid_output_rate": 0.0,
+    "examples": 512,
+    "prediction_sha256": "b288812880ff3ef4ded1732ed0728e3c03f47252a851b52ed59073994b7ccfb0"
+  },
+  "client_train_wall_seconds": 4.696117288898677,
+  "peak_allocated_gpu_bytes": 5984957440,
+  "limitations": [
+    "Official-test labels are loaded only when explicitly requested under a frozen final protocol.",
+    "Selection audit labels are recorded only after selection and never used to rank examples."
+  ]
+}

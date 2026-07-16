@@ -1,0 +1,3151 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-07-15",
+  "task_id": "trec_coarse_server_v1",
+  "task_spec_sha256": "ae1fb2f0457b63ea7aae981848d0e57989b3924d29258138f28a3f72e5949f88",
+  "source": {
+    "train_url": "https://cogcomp.seas.upenn.edu/Data/QA/QC/train_5500.label",
+    "official_test_url": "https://cogcomp.seas.upenn.edu/Data/QA/QC/TREC_10.label",
+    "license": "unknown",
+    "encoding": "latin-1",
+    "record_id": "sha256(original line bytes including line terminator)"
+  },
+  "datasets": {
+    "target_train": {
+      "path_hint": ".cache/datasets/trec/train_5500.label",
+      "sha256": "9e4c8bdcaffb96ed61041bd64b564183d52793a8e91d84fc3a8646885f466ec3",
+      "raw_line_count": 5452,
+      "unique_record_count": 5382,
+      "exact_duplicate_lines_removed": 70
+    },
+    "target_official_test": {
+      "path_hint": ".cache/datasets/trec/TREC_10.label",
+      "sha256": "033f22c028c2bbba9ca682f68ffe204dc1aa6e1cf35dd6207f2d4ca67f0d0e8e",
+      "count": 500,
+      "inspection_policy": "manifest generation hashes and counts raw lines only; it does not parse test labels or questions"
+    },
+    "off_task_train": {
+      "path_hint": ".cache/datasets/imdb/train.jsonl",
+      "sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef",
+      "count": 25000,
+      "dataset": "IMDb train"
+    }
+  },
+  "selection": {
+    "namespace": "kafa-trec-coarse-v1",
+    "ranking": "sha256(namespace + '|' + source_id), ascending per class",
+    "allocation_order": [
+      "anchor",
+      "development",
+      "client_0",
+      "client_1",
+      "client_2"
+    ],
+    "per_class": {
+      "anchor": 12,
+      "development": 12,
+      "client_0": 20,
+      "client_1": 20,
+      "client_2": 20
+    },
+    "all_partitions_disjoint": true,
+    "exact_duplicate_source_lines_removed_before_ranking": true,
+    "unused_train_count": 4878
+  },
+  "splits": {
+    "anchor": {
+      "count": 72,
+      "class_counts": {
+        "ABBR": 12,
+        "DESC": 12,
+        "ENTY": 12,
+        "HUM": 12,
+        "LOC": 12,
+        "NUM": 12
+      },
+      "source_ids_sha256": "c46c5dc68d9b1ecaef19c1ef789bd4e43c36c90b494a24e345820053d596f2b1",
+      "records": [
+        {
+          "source_id": "025d3fb664e7fde70fbd12c3a9c167c39d85569f77eb1a622f938d3c6adc37bc",
+          "line": 5141,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "045652fbaf0997e391393de023d806f0ac7d10d3947fdc28cd815407bf5477c5",
+          "line": 3796,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "05d823ffc2478197bc18765a516bb185b4f65918b8e02e0bcb2fc7821d8c9341",
+          "line": 3366,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "08ed9ea006576bea9396eba6095adac42a4cfd5b41cc4a27896babcaf4ebe421",
+          "line": 4409,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "098390334c953647ec2452cadf7a70f889bb4eabe9b73d713cb034dc7668ceed",
+          "line": 5026,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "0b2661494c583f569708e54ffb9444704214f04e9d7dc1351199b48cc5c96a08",
+          "line": 2534,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "0b558b80170cd402ddee459d581b58fad6e06c241245f955472d3414f5085493",
+          "line": 4549,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "0e46db4b16b93f7dea094d2860ed91d2b2bdefaf91b2b75d533e766b18641ad5",
+          "line": 2500,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "137d3730686c7c3f2d48ceacb0f5e916bd59092afcc21a3529c0699cb0868a5a",
+          "line": 4839,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "15cc6a5a44e8a8475d65fab7964e9760ea156f7324594f7fd00a7c13870cf93b",
+          "line": 3471,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "1dc482e8f9da76ba4fa3fd3f9bd76ec4cba949fa2a59f39b8c81c897f2e36f77",
+          "line": 4533,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "1e2c49de4bca06b9d3438269ff08c189c547d5b2102f68a1f521a0594172f0ae",
+          "line": 3739,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "1fd633d9a4e1902d469128c0c92ced2e3d0d6dc905ee2be1ed9145c8bbb60298",
+          "line": 3523,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "26d68f19b6188f53d06674355fa8bee35382358cd4d0543014eea07f0bf52719",
+          "line": 1895,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "27ef36e12dfa9ae29ac1703e6b6ca527b1d34234c6cbbca0370130137c2db383",
+          "line": 1060,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "3a31e7e258f84812153434775d553b16b5ac1b4fab2b77c5409960ce1563775e",
+          "line": 1350,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "45911e7765951dd93d728b05f757646d5c6ea7a6c4c0be0325aab8c3fc17cad7",
+          "line": 138,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "4e802f017969c2b24e7e09a384db9022f2c97ffedd702ecd34f616199a4374ab",
+          "line": 405,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "4eb63f6e29535b9cd982eee15b0f101ae03ea63330078a470907cdea497763b0",
+          "line": 4870,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "50a5c1e73cb7bf9d7f75545180b01283e5438d4d0df05dd72d33352a11d2b739",
+          "line": 1303,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "5283971ed9729d660419112da441a0bdf29d9d0b78e3b3e919b04ae22cae4a54",
+          "line": 3307,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "5287659d3de660dfbf3a70123ef30c04fdfe53f149d21e5e5d5dbc897f35fe07",
+          "line": 3299,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "53925e247469611f64fb2a330b580436ada9b3d9e34276297536f303ad456692",
+          "line": 2420,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "545d53333ba6db513612405c96fc76b392e7c5afca6d961ff54aa973263d2184",
+          "line": 4362,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "59946cd43e3df22167b0f8ad1e1a5aac3c80bb6fd4252267b6a6e31e96d4eb7b",
+          "line": 3447,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "59c673a6f965e44db8587c948721f255b9f458566fa79e1ceeb3cedce872b857",
+          "line": 4076,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "5cb6da2682067c523ba098afe0eb74e2263bad22ae4c329749eff11c0b53c1aa",
+          "line": 5190,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "67c60dec7639be59d939b7a6e0247adcd6ba6616000adfcdd7b638476d31f4cc",
+          "line": 766,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "6c72b6765726849ea5b6ea3ccbc1e380b6401e401f4983709f1a60822a162494",
+          "line": 3189,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "6f66ed645da741d00a44718446a8962a256945b062ee9c6ddbb8fdd07bf8c454",
+          "line": 2217,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "6fcf71e29f7c57f0552eae3682ab0d69dc4207ed5e7187790e4623cf739a112e",
+          "line": 466,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "774743c11f067c2e65adad2c839cc42a1a2be8076128a932bc48ecc257bb1341",
+          "line": 3959,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "7dee35028f84b416ccc7b3fc732bf1740dfa81dd0d622827bdb9ecaf4a3461fe",
+          "line": 2648,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "826a9df4310e51274b6393560c5f68f98acb7f81f85eae524a4d9910737b3b9e",
+          "line": 5289,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "8496ca992f1f9bfaeec8c426c0943906c83680af10e75d56aa07e8f0949bbe61",
+          "line": 170,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "86d4b96902477de67c4356fbe6a31f3a3166d94de105dcbdd1231a43c73b4357",
+          "line": 3389,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "86dba8a7bc5603b33e602434ef218fc79587d49a415973ed47a253bf6b51dcd1",
+          "line": 4471,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "8b137e13001862e51b769538dcc5dd571ddc11ee695e0fdbf36c4c79b11cc761",
+          "line": 650,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "8c365c664631b1ec5caf137d330f49ae199113b5ab979c8cc5efaadbf0957aa9",
+          "line": 4544,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "8c9d6223a0815d138cebbda4defa21592f1698c2a4240f7b7cd8419b295820c7",
+          "line": 3904,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "93bc9201af2ae7e4429b261f140a81b0fa53070922a7588d2446e8ed0b7dd7ca",
+          "line": 2649,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "a1b3631345aad6369b566bfc0cc1581abeffd08d920349f492ab963d1fc6d0b1",
+          "line": 2580,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "a46c324d718ae0cc10d5e78dec8e0bd66ce22348ecfae491f4c6b06df9028852",
+          "line": 4568,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "a92f7b30345f914e95f2beeab1580c647541437db63eb7f8b76042717bc2e765",
+          "line": 3542,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "adcb22d457c021e6936530fbec3f63b58924c89776b2dc620900a68cb939dd3d",
+          "line": 4504,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "b554262dea2f0b7b2046d683ec0329921d31ec84320ccc1935ca9e8f2389745b",
+          "line": 3010,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "b62411e3da7dcc8cad079c77e10598ddb40ed78f1c64aebf78d9801a1cf610bd",
+          "line": 4129,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "bfcc81b8d24e2a547e0be808fcaa29d8fe7f52fce67639951abb0bad030ebb65",
+          "line": 3707,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "c0396ea621348d3e1a2dbe278ad8173426f9cf0a9b547cf02ad93aa64e4afce4",
+          "line": 1479,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "c37071e2112e73636105ddbc5fe6847db2710e3c35b911804e757a0fc717555b",
+          "line": 1280,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "c719a069de9ee4cd5cd05f690b671fca5ae2146f2f3fe15c42fe0b50e135f1a5",
+          "line": 5044,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "cbd830e304312fd7242d95045e24c2722a5893811fee8eb7a751a3dbe6be749f",
+          "line": 310,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "ccb45dd4bc6f86b86f4ac4c34347e3fd5a33a3dc5258c507c04ed532954479e0",
+          "line": 4272,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "d0e25a90a59e5868a5715852796c65174332cff995205870475b25b6335baff5",
+          "line": 5002,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "d1988729f7a7486778f4456ce52791c99580a5cda5951d933e9c5128236061bc",
+          "line": 5005,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "d1aa2aad67f5b442f544efca873e967a1b552b616f816961a00b52bef79a5ef2",
+          "line": 4160,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "d43398904d21911bffcee7538b5dc78002e9adec9824db27615302f699a3a79c",
+          "line": 9,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "d86264ad4f2a3b88d8ddc55f02eaa950713114ce2fdd84463bdd59de29529489",
+          "line": 4676,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "da29aa0aff8380e93dab14facd6f2b8107dfc72d2004b2fd0f6172efd8cb47e8",
+          "line": 4376,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "daeb84e24ccc58f10e056d3701aa0f09dc1b620143f7e17000d0222269d1c084",
+          "line": 829,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "dc0b4e115ff5ca1de3def5446489c698882715c1767bd37dc59a7ac604de702a",
+          "line": 519,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "e2f9e06d8dc40c54dbbf716347b91b20406a30fc3f7074fd09b5c0e0485384ad",
+          "line": 5013,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "e703d9ca989915a057f7c24c9c332041e68307af1b63a1d55613ce62db6ad18f",
+          "line": 2316,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "e7364d600a4450a692c99ac73cdae80266f8f764fe85b835060d06f4b0e7a930",
+          "line": 707,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "edd7fb2e7ec966006b9d1b1c0d38e21186de5342a0e0ebd1b5501d19a3223a6b",
+          "line": 2379,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "f07c31b815aef6408675c62ff1765b27dfbd29436ff7fb0b564a5dad9c75a55c",
+          "line": 4807,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "f0d75302a432a9667befed5f455231fddfcd55fe3803c914db28041875c05975",
+          "line": 456,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "f135f3ea6e01b1776700714a038cd25173dcc3dfabc0cd32fa942e310a879d88",
+          "line": 105,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "f1999ddaf6426b2d4b6933e48b94a8e40401a7cdbd4512ecd437c7df6523426e",
+          "line": 148,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "f203d59b1e75ea05a43f130b84f442b2739590bd5f1e399369c2c415eeb13793",
+          "line": 196,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "fa4ab0203ca2224c306df2273219c6a7fab466271e890fdab215209e84a32035",
+          "line": 4078,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "fb3e1b731fb69322f48370290ee5756c37eb020ae751dedf5921dea9aa5fca81",
+          "line": 16,
+          "label": 4,
+          "coarse_label": "LOC"
+        }
+      ]
+    },
+    "development": {
+      "count": 72,
+      "class_counts": {
+        "ABBR": 12,
+        "DESC": 12,
+        "ENTY": 12,
+        "HUM": 12,
+        "LOC": 12,
+        "NUM": 12
+      },
+      "source_ids_sha256": "5761905b122522ba0a8dd92c3c021f4dad1754d0b91ec11de74077f89e8c17b5",
+      "records": [
+        {
+          "source_id": "0042b55c534493d1c60d05085c53833c354dd010722c71d0bde3138235a97853",
+          "line": 2914,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "071550eac65a18583427e221a98f0c1d10a7c9a5b470947797954e53358cc434",
+          "line": 487,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "133ba6d23bfd263adb713f5fb676ccb7bae5462e684cac7bcc1644815639c592",
+          "line": 5249,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "16065f8f61cfd0052e7289608f052ed8db1fcb08242228cc5d0097dda6aafd22",
+          "line": 4213,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "1761c3046042ce76043abe2c6d799f5294792878456faae7055e0b14f11bb787",
+          "line": 1021,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "1c8bf88c6a16d805c3a154ab5f1e5d7ffb04aa6d20aeb01d3c7c70f086aa9bab",
+          "line": 1027,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "1e36be5f4b9b7617018ace09908e7b6f345aea3b2403c9ebc0258d67581363a5",
+          "line": 2787,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "1ec95c3f2ce27e90e23a03a584c9ecfe1b0d9964e59c32a50784bccb62fc0cd4",
+          "line": 986,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "1fd95d65b3658fa1fdfd979ae39d757b69777f5d1d84a0d7a7846bcaf4948bfe",
+          "line": 3346,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "22f73de86b4fff88fd6a224199a2f55fb24410f32e3d36bc8b83e4b2ca82d84a",
+          "line": 4099,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "282f7cac8905a4f07c282a5c87342d327980d08ce4ba360645f4a5431cf230b5",
+          "line": 3129,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "298079f2ca202aa371cfe6b5a41d6a0b864aac14c780f1463c4e8743b8684174",
+          "line": 5230,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "2f51fa257b395a3bb5e7d7baf53b2855816aee70bc9ba5d8a307bcca656b5b5b",
+          "line": 5328,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "3468361a63573c13f6aa477d50c14b9350cebd5d043baf80a49b5991ffe22924",
+          "line": 333,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "3bf4716556f0261455f550e74f3a4417be48cb233d425beecae2819c99b4b429",
+          "line": 945,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "418ca5d6e76ed6805f492f01f43d156fa6c4a3a20f730960fefdb54f5c135170",
+          "line": 477,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "45bf83e1420a06f4abbf4ac4ba961c980885b0ff40731dac69440f40cd434f3b",
+          "line": 4016,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "480436014297c44d200b19b3b5ef487dd7e8e06f5760ea404b5f9c8538760c5c",
+          "line": 2222,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "49af095395226e9c89c2c43ab9af98b837ed083de07eecaffcca88a260368cc3",
+          "line": 2169,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "4c3bb8e4ccda9601cb11f7db8db8c7292c496913d1ef9f7121d34240ce02e388",
+          "line": 5382,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "4d10e7aa2010ba05fa2c3aa0bc9236bce186dc50ec8363237fad2ec9b4779883",
+          "line": 3417,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "51c739029c1ed2052f823e4335857f9bd32414b23097e58471c158fd0f75d2fb",
+          "line": 5341,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "53f6911084c52ed217ea5c349ba27f7a1efb55f9760a96bf53b94c2962f1d4ac",
+          "line": 5263,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "55805d5dbdbfa42824f9e03712c077ea859cddb635a68d37b367ee199ebb412b",
+          "line": 1162,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "56bb7647ebb0136261ce2847d5aa3715ce3a726c4763cf5f5583f2a37ea8b487",
+          "line": 2611,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "57833030f650ed791bac16d896b92fc40a00d03a7ea79f9ba6b245ebeb8441f7",
+          "line": 3424,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "57ebd0a4cb9aa176ca5aa9f77275f554c02c5791a48f48865d8c03cf50d3dcf9",
+          "line": 4055,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "64923fe78d810215940e949dc5fbb8981d7e13781f6a07797859235f54bb743a",
+          "line": 3136,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "655000f245ddd2528e1eef888df34ce1a46e48fb1e755ce6226a6a5caf2b5226",
+          "line": 4519,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "6834fcf79478ba26c6954be85f96061920269885a307ebe4780d4a2fbbc18810",
+          "line": 2246,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "69f51b87123cda8b269f3d06a608a8bf6b51867f60329133a20becb8b88df5e6",
+          "line": 5316,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "7107797c84658104bbb7f50ab11b1309521f20d5e225988a1f005fa77955db41",
+          "line": 2264,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "7467e55116daa60de0231e08fc20cb0f3884fbe4700051f3b254abfad78258ad",
+          "line": 4490,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "79f92e2114d204089e5a61b16a1263ed65284649fea2e8f361ced6df2e74e43b",
+          "line": 444,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "7bc1e94f8daa3129f8da28c8f768ba4085ed9fa48cceda061123c5cb6ab8fe09",
+          "line": 765,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "7d8aa4fa1b8acd94b887ba7e0a5ed6756285307265b764fe8292a7c567fcbba1",
+          "line": 1390,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "854d75a293afe26233c92d5b595502a2478397f75d16f3216bf2c6b7ab5b581e",
+          "line": 372,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "8ee9b18e2fb3b2b3ffc1340005aadc1d4cc38ed5d3ceb924eb8cd829a60f0544",
+          "line": 1336,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "8fe32b0f4cc473a8576b1310aca35b519123e051d4a813c3f13fcb9ba88d784c",
+          "line": 437,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "92bd730858847dc378296aa1ed86e7222a1fd3f0d20b7db4e03e38d96dbdbcdf",
+          "line": 441,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "95b17dc38bf1abfde880ad71b86d6c3235e56871d1dfebedb7945b407bd8ca81",
+          "line": 4706,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "9bb9dd4739de58eb93e8ef5d423734921e344fcc47bf33bda34b19e32d2e459d",
+          "line": 661,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "9e07ec882d8d9d9ad03449ce1fba2f5b32646a21cb6f8ecb38d454d592160a4a",
+          "line": 2070,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "9fecae9b16dfffd376992e3888c29f9928f618cad3f24ffcede656d86f3fef33",
+          "line": 5327,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "a163676c8e25b81ff42fa6551046de654aefb603ac221b3cd7f9c81b54734bf3",
+          "line": 3296,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "a2a1907330fc008084858a6f71e88560cdf6f2d7e7bca83b777dd05f22b4d97e",
+          "line": 3969,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "a4a8cf3260e505e51a52852d4c4356367dbb9eeefc87c12009264025c1a4e34f",
+          "line": 109,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "a73cfd3b37de186eef8cd3cf5f5a8c7ff643df1afaf46d4ad18e728f18dbc3cf",
+          "line": 3960,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "a81da7a509ba6e8f02ca465596859dbdea4a448495ea5679bcdecd8ee3dc9494",
+          "line": 4678,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "acf3dc104d98744e762085b80eb4b21d4577923c5428745bc893710d9beaaca0",
+          "line": 5160,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "ad01af51f869735607c47a35838fa3ffd40768293d6efdedc0f885075bfd35f9",
+          "line": 2564,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "b414af6a384c89c9dcaafce3040543d941f7d8500c0af5dafe8fb55e4701c8e9",
+          "line": 849,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "b4438063ee1ff5fddb9897dd6619d4342a336ef7547c3171c24ebf4129bb1a3f",
+          "line": 2962,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "bf6a7b14e6c7258eece12079a6f4f2abf4fb37a0bb4d285904d365bc103ab3f9",
+          "line": 5059,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "c19725250372ff90a769328b25c6044b9e40cb494ccd54dbc0fc4e9a533785d9",
+          "line": 825,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "c3fbd285c621e9b4056d55f9e52ae35dc38024902a09c25080751220f8e364dc",
+          "line": 151,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "cff5f36818cf04ad004960ef6d6c981757caf3dbbbfdaae8a30eb161ed908878",
+          "line": 4856,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "d266b8cb2e28ebda917e8e5007d728d57b8c2a536458790d1eea045da3556af6",
+          "line": 5310,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "d3fb7fceadd265a3b6c30363e974e6974fe5f2a83636086e4249d78571281753",
+          "line": 1455,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "d52949622b121ff7b67cab6555fdcb99cfdd77df0af5cd73bf7fb1d4a8820a8b",
+          "line": 3719,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "d67ccb872cc191d2e8b5fa6db818e63b4180c0bf5f21e52e38fc5e62780ac67a",
+          "line": 2646,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "dcd92d049f609128a74665b20c69eeda52c36bdc7addf8808b4f04a2f6844977",
+          "line": 4936,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "df7acabe12380f57ea48273ceab492fc9de3606cc4b0004dc403cacefb08c2e2",
+          "line": 31,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "dfd03709140f631b0cd7e311dbfd18e79b3512852bf943b4fb79b6d3e3699260",
+          "line": 2602,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "e32faf5baf3be642199ec255ae9f2b5d6fff16e97d903deb14b14752d093a34d",
+          "line": 3336,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "efcad544a622921c3a2ec0dcda1b546b6696321da7311bd060eacbe9258d3c0e",
+          "line": 3893,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "f3deac105c1cc51de890445a685d9dc528c0f67db7668618bfa26a2e8e365d87",
+          "line": 3395,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "f45f8534a037d5b8e6aad1b81a0aea0c2db334c2386da6efe07dd9790f77905b",
+          "line": 1055,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "f5d02fb1ad524c8a00e966d76bef2649fed05ec1fdc2b27b95847c0c7e8a0d89",
+          "line": 4659,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "fb519806cd3e5d58e35fcec70f74a75f941af20d7f64c296148907f3bc4b745d",
+          "line": 894,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "ff8d4086ba0e72f6669f1c3785c0b86d8cba2db30e2896410cd8658d389ecb93",
+          "line": 5209,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "ffdcb9f87b3127df7f984f13d4c079cdc1888f39b0e2a6c838dfb836e04b3732",
+          "line": 5155,
+          "label": 4,
+          "coarse_label": "LOC"
+        }
+      ]
+    },
+    "client_0": {
+      "count": 120,
+      "class_counts": {
+        "ABBR": 20,
+        "DESC": 20,
+        "ENTY": 20,
+        "HUM": 20,
+        "LOC": 20,
+        "NUM": 20
+      },
+      "source_ids_sha256": "189870857d5822416ce19a1a3e81f99e63ce81d6918362c714450de73eef61d8",
+      "records": [
+        {
+          "source_id": "02ab97aa89c4732b05b0809223a56fc2a033b8fec3f528bb60cc4b38f751dfb5",
+          "line": 866,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "02c32847079719e959bba45b56ca93f6acdd4df29ba5f7c285cb291b88017a02",
+          "line": 3188,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "072988a629ec8a80087b219509c0ab14fccf39e2242cbd5dabc718b0a423a8f2",
+          "line": 2380,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "077a464e0d6c9ea640047eef1104c5a89987433980e6cc690410aa855c191ea2",
+          "line": 435,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "079a46a99341508bde4db95baf3fa9c8f998dcca4f986e4de1348d142bbf0569",
+          "line": 3051,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "07ff249258a5dde5b829d9d0fd14a6d80367a1166c486dc8c1f1f2f030d90631",
+          "line": 694,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "08d95fb735196f683f0c6827a2fcb97bbd53a53f4a6e062bb53fff3f734179da",
+          "line": 2046,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "0a29ae61c6f0dea9eb3ffcbecc8dd3c1d4bf5d11880e3a3cabec66a93e496d3a",
+          "line": 3348,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "0cb4d301cc505d08fc5566def741358064461a4f8f3ae80494ba3aa370b20068",
+          "line": 3593,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "0e0daf7b4a65b4b7b3ee07982b77587cf3629f5c244d32b3c6b5ad23699c11d1",
+          "line": 3676,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "0fa147937ec3377f1ef372418a4b6b183faafa82e79722f6a7fe452163b33fed",
+          "line": 3176,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "0ff236d52c47bbff2832eaa274cab40c6bc7cb31b2739ecd9ba59d1945b57ed5",
+          "line": 4741,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "120344c597c1ddff4de0850e31b1f1b0ebb871ae7ebc8f9c04704080a690ab8e",
+          "line": 2731,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "13d25bc3dc2b0e81d008cfee1755abfca9decd40e361b5e360ee3bd86dd3b576",
+          "line": 2086,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "14609464795ef194e630fba50497bf3caa16e0b832a4717e8da10eff41c93e5b",
+          "line": 463,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "17b9889fd7837a47d45ade0c66d81e86775a5b0d9f92702a3ecf60a994fdac02",
+          "line": 532,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "189b10ecc1fbb33a4280afece266c87c6450d8a76b8d8c09e1daababa49ad702",
+          "line": 3190,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "19f48a4cf44636c9e028680b8235ac93084470432099202d46067ade3a2a4caa",
+          "line": 2051,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "1ca9fb8ab9ce07279df2082e1f386008622f05be67dea2b73028131077ab5bf8",
+          "line": 4019,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "1ccc60ff57a667fc9e717700e3895b3a013534372472da7c63ebd0995afbfca6",
+          "line": 5254,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "1de50a50a80e4d5b1cd845e49a21e216887bdcbfc120dd205df4c37ff6e329cc",
+          "line": 1856,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "2183c1400cd27414f3e7845727934864459c5bef4e625dddc41d20b6298a338f",
+          "line": 1679,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "21ded899e10dc1fa676ad8b2463f6bb606606d4fee24c4b2dc87aac8e60866dd",
+          "line": 1222,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "2646ee54dd7620ed823484ae5da9ac95ebfba14bf20e330b09b38b5394509aff",
+          "line": 1911,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "26496bd9cea21c5d0958c93080ef234a8abc69d586e1032f2e41c98f06305723",
+          "line": 1089,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "2a0baa18bac949ea958da640c90c1387fa26fa4e974bf31a2623a5ab42910acf",
+          "line": 5177,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "2a9168beda65e31271b2533504b8670a63565adbfe2bcac216661755aff5d961",
+          "line": 745,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "32183a47fc14fb8bc53eed7233dbf3edc1414820f98f0b790ba59ac44bac34b4",
+          "line": 2253,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "321d263b6e33fdc1b5144e59d65dc640298c5e92118474102e925f4ea0ef376a",
+          "line": 3054,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "326b9506ae786f3537c319b27a098bae8bd86ff2f11949dee557698e74b927eb",
+          "line": 5094,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "32a8fe215e77cc926eb3604b11878a9f154697f68f9f1c25957c4090a0600437",
+          "line": 2522,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "33f12bcdd5043d22d20871176e0291c56e11a5b31bb9636812526816639828cf",
+          "line": 983,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "3877c03d6b75295f905f22b6ece10062a2bbeef313a875705e359ac8a9f29d03",
+          "line": 590,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "38bc35d00005eefa29597f3448dac9ec1cbb0081402743474334d8955a0cf70d",
+          "line": 1625,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "3aa58fc7183016400e3f19638751ccb1912fcc052aadfcec9fdfeee75ddc8e2a",
+          "line": 1644,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "3e25f99e924ae26cd4eb086d21642fbebd07cddbd8bdddb0b86981a05efc8c53",
+          "line": 3379,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "40baedc337a224dfcd760ad7d7baac772bdac1fee395f2f5e5082a0a6fbc6df9",
+          "line": 1128,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "425d72ede28e272a4c19e3839f0313bbf36d25da8998662e6c51bb2c0503e8bf",
+          "line": 2561,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "453c19a3805207cf0aa6f78b426c00cee3aa0173d900cf0fdc7d9ecade09b634",
+          "line": 4963,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "46dbdc1689d485fa6c9627111b23a38e79e6e59e1741fdf40f56e337955c0481",
+          "line": 4456,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "47398b9167cb39276db77662e5428a1a428252501c226c837f3e6d7e390e61a6",
+          "line": 1381,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "4791d4fb1398608822932ba15f144b3f1e89169d37195f539136e4e255d46ed3",
+          "line": 4252,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "48723418bba6232124d9da08b9720d10e493dcbb12f24b684e84f62a559166dd",
+          "line": 2686,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "4a8ea098102b0432e6cdb0d612d5b81a93b4a0d11b0fdf44922154db0a8a1117",
+          "line": 585,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "4be1b1afa8075540cd15deb5112ecb4c6d46f1ffe62cd8580bb726211379803f",
+          "line": 850,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "4d8e427ef183bca96043dce8cba134aba5a7483b839357af4f8baa7dedc06332",
+          "line": 5335,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "4f4310da2552fad93f8cd7015adfe5ae06fad8a66e2bafb8f3fbfe9507c750e4",
+          "line": 1042,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "51976fc812378d790f310fbd74cdb1f82a79b6ab8568505aec72b2b33cece868",
+          "line": 4310,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "542fd0306a1888642a789856879ee957177ddcf471695fb60816fbe22fa10211",
+          "line": 2728,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "54463cedea1051c47fc1cba018dc413ce37c80e765e79093e3f7267b35f1cd33",
+          "line": 2757,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "545c3417095230d67cefd0c2a22720a9ff17280465b35d2c24c0b60f917fec1c",
+          "line": 3662,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "56ba2ebaae9ba382ba75523e07111ba685ee7f0d919d672e29d16d8c8ec3d33a",
+          "line": 3882,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "56eb5100346d9dfe4a2dff0f784e4894d40fdb0cb02b9fd211d6258156c11faa",
+          "line": 3573,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "58d0e8318e202dea52a43e51996b14d11e48f1b14dbb423bd256e108bd1ab057",
+          "line": 2254,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "5cadfc97500254916c3dfbec70c93422b0468c2abe7434f51a1117caa7097648",
+          "line": 5407,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "5f4097ce55898c7bfc3400a82407249b13304e4450a74d2868525c33784a5467",
+          "line": 422,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "611839cacaa56c5d66c4cbe56e35dc590da0271ae10f915c7ce3828fd64efed3",
+          "line": 3551,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "622fa46f3f3fb35592ae6b55947abe1d4000af969fa9e962803044901fe608e6",
+          "line": 3548,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "6300fdade28cf42eb7b123b17daa6daf648e9db3d8af3b96b7dcb286b15f1e83",
+          "line": 1919,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "684df4eb7dbd8730a625555decbe027d22a14da1e93cc49eb8893d1707d9f71b",
+          "line": 222,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "6c90f61c6f479203d93bd18d552b8bce73c085765d78587d46cc8f94bd036bbc",
+          "line": 2650,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "70049bc836f163a9a54dc4203e3f08b029aa5fc29e67cc5c96c5ed5319980006",
+          "line": 4346,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "710484aeefe4a18837e7dd2b749df9b7a170144de3bc68d06fe04150802759d3",
+          "line": 649,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "750cab3a25acb3f24e6b41d32d320bc5d71a1b3efde5d86726ea6f65093fc7fa",
+          "line": 911,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "75e859cc63f09ee8739c14ca37ddf75db13b6618c09b4fd644aa5647aeffa524",
+          "line": 2318,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "77113e33eadd34522ee566a2805795d18e05e669bc408781cb536a06eca08b45",
+          "line": 1514,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "7d974ffdd3f12122d5cb539cc3f9bb8450c9c3bdf08ced4e9a4f22cb78017f2b",
+          "line": 2040,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "7fc6fc3f60d35efab4ed3656c1f4e5630ccd2742b7f516e8676fad2fb84a3d13",
+          "line": 2934,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "827a50e7ff607e83547a16186c4bf5bea550b0b436d537381d25b925cb92f93b",
+          "line": 4827,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "82bcdbec65ad40705fe23942480c7a3f1cfe65129693e82e46b014440d3a1aba",
+          "line": 2236,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "8310f15bf0e26bd94ba4289e299e8e20495907e36c15dd5d564ee3a867950bf5",
+          "line": 1422,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "848a8669752e080db0f23d6165df28adf52e54cd24e781e66bd2a9aee2868940",
+          "line": 2847,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "881dee99729426c1426c7034b0e74dd7291c0574eb657ca7ba3c2890e9e97587",
+          "line": 5187,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "8d4f86d5d0e2e750490e21434a263c89796ab17b71ca13b1075d3eea92cbfe1e",
+          "line": 4377,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "94b1b613350e1083ab29086fb4c13f67460cbb9869078839e8326a2281ff2df0",
+          "line": 2267,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "977b4de098ae0c3e030707eaa99c86e9413792e9cbb89f418425fec4c35557db",
+          "line": 3840,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "979287161f10c3fc33058b0aaa421b7a03fdf517e49af3162f85cd5a43d94ce0",
+          "line": 3801,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "98448e85a8314fecb227308d756a20165a79096dfa52bebc1a025188b7008b3a",
+          "line": 1585,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "9a281b2429a694a0276c6b8ce5b1943231f7757c16ab6ee440a3537938c10e7f",
+          "line": 1803,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "a1af3a911bf383c3196670acc5ae9d66b92161a48cee443908c179a043c9c6a0",
+          "line": 4639,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "a5a8ea8cbb1af40219293fcbc22c95205a70646d928112d3dbe310ff82e86682",
+          "line": 5028,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "a73c26621acf7116b3f392e24a4e916baa4ab0e7ef2a9680fe76af7e0f9e5236",
+          "line": 305,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "a93a509bc1f575073171312c49eb0281d5fdd80f59121c3d326ef1c3b47dc285",
+          "line": 5450,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "aa9644e4be782375120e3dab297bbacbc57ed781bf073e3b68cf1bb4631c8225",
+          "line": 1547,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "ac2c7d990e747afa148ee816a25ce777d027358a89f026c7ce7a7f868a55514b",
+          "line": 2120,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "ace3dc91576b5f58d770752c34158847d98713910a391d80534dcb7510a017ab",
+          "line": 860,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "b6143338a2b1b866d7fe7388dfa550d14258870cd0146059263f476504ec976a",
+          "line": 4520,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "b713963c162ae434f4320e525bb90479228273330b9faa3faba34714550d9a9a",
+          "line": 177,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "baa1ed9a0e9746d586404d3dff5a4a37e801602900c0a85246040a997e7691e9",
+          "line": 2016,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "c3e865797bc84710c44d8ee69aeae308003becfb436e8e15a1981d18cb61eedf",
+          "line": 3140,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "c93471e385227bf310a8bf1d5440419934457b7b4bd5446802fb29c374df9f3f",
+          "line": 2497,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "c939f81eacf96fefb6d4fbef5f3ec24d5df2adeafd6f435bdf34d27b4ee8fe9c",
+          "line": 1688,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "cc85ca0668067003415c351bea9b2feb1094069decc04e10f59776712fff9bf5",
+          "line": 295,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "cea10cf3bcafc7661d8abaa56c71f9f91aab729d09be81a7079828262e1af66c",
+          "line": 910,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "d8fc7ee745bae34f03e72a08576a3555a9fe8bed573f831624a3c1d1db08904a",
+          "line": 2520,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "df67b3a106ebc5f668885ac65c6edeca50564b150b057264c311f7fc31a642cf",
+          "line": 4457,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "e13932121e69612fbccb1641766aa39ff23988f6db9d40fba18889e30cb85764",
+          "line": 4336,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "e1a71c2f292bb3137fbc30fd56102e55f6e2b4d9220ac16af224ab80c58da5e9",
+          "line": 1886,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "e1fa5fe68f14942ccb99b53e3c08ec79d76b7c6167e709ba4b267e3d693dc114",
+          "line": 501,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "e55051f2881f1da33b185c9fed238d4f1beaf7e3d759b07f6b02a878670f4e74",
+          "line": 2774,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "e80ca864c6c332b3a102da893380bd62659b765298c137043910ae4c94348a96",
+          "line": 5146,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "e88ce244a8250257d7346fdbe52fc761d9c39f7ccd5397ad3125932c4fb00371",
+          "line": 2501,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "eb0c3bd9c159b8fc5d20d1f527b393d56461d02b8a490f016de81fd53e4d77f1",
+          "line": 1232,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "ec1c88bc082137d038ff6fae4e62986ec3e70f1e423853e011dd86be014d0edf",
+          "line": 5068,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "ece07601a41284258b5a232e9fb1fe64e359fa186db22880fe028e6ed92f934f",
+          "line": 1332,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "edf12ef5f7f68e0eeac63c4bf8a0a7a5c5694deaf73640547504156822512bd8",
+          "line": 3180,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "f14519b74ecb2eccf9b1c12fbd20c95208734945b2049ea929d6056ef2c559ee",
+          "line": 1616,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "f48ee409e694da7df2aee3f79cd3ec6a2ec4f5bbc799d0a768d4397760dbb983",
+          "line": 3064,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "f4b814f161da7d1aafbd7cd2779015abfbba37862e1d808933201dd0f687f8a7",
+          "line": 5142,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "f54964f6943f0699f8798d3addb3caa63e389e0bbfe41f31dcdd139b56b2bcbf",
+          "line": 4550,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "f59785a4f22854fd7fe559f854b98c3cec2359b1cdf4344b11c29e8907f457ee",
+          "line": 4762,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "f76b0bcc74fe9143c76710d7becbeb5bb468af9bcbc7cae3a2da3c293b33ee34",
+          "line": 3730,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "f7aa45bd7311c7b73ee5fe16b5b231aed2f599bfa8dde83089aa75bde89474b7",
+          "line": 1912,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "f7c053a1895acfd743b5e274106486defc31ebad12625e5bf4ecf71299219e2c",
+          "line": 1258,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "f93edb5fac52804954e167908fa59d45665369079e7f5f46adf82518725906eb",
+          "line": 4612,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "fb4a22725ecea44f180fce441b6a361650968c5d519ad73f651366bde3a91baa",
+          "line": 855,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "fd4c646acd979246e938f652ebb115d802cdac3f8e49415292e65cbc7ebc4b8a",
+          "line": 2200,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "fe407d16ef71e675b3e050629c3bfd4fd3e41764926bcefcb006c924dfe3b3cf",
+          "line": 1121,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "fe54b6eb9d4ebef58e7a3fb6de2136e0cd447b44f23bfe670538fa754b838e92",
+          "line": 3881,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "fff902fccc5e2aecdd59895ab3b2eea7b89ba39fdf17192b27f683d00644055b",
+          "line": 133,
+          "label": 1,
+          "coarse_label": "ENTY"
+        }
+      ]
+    },
+    "client_1": {
+      "count": 120,
+      "class_counts": {
+        "ABBR": 20,
+        "DESC": 20,
+        "ENTY": 20,
+        "HUM": 20,
+        "LOC": 20,
+        "NUM": 20
+      },
+      "source_ids_sha256": "b3c9cdb60b60f178c43b2b12ccfb1e81a24941956453c5c835821542a1330661",
+      "records": [
+        {
+          "source_id": "07e3a8700907329503af99061d4aae40ba256d1b5ed06811e0142f9c7494e255",
+          "line": 58,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "08afc702dc3bfeeb699217f603220aeffbf7a8558d45956e0009a405c8fcfdd3",
+          "line": 3525,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "08f3c605f959d40061cfa2d16874e5e1376b44cd2a681a0e2b12e0389a7ac29b",
+          "line": 1544,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "0dc7f08d27b0bd56d7dd163b1f2b0cda8821878fed7513608fc6c44b5d622d07",
+          "line": 4829,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "0fe0153eea3c1c242ba48bbaa422fe1503d5ce49f73068e2af45473e7a5e7e47",
+          "line": 699,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "1090ff64f1d6e006bf97ff53e374d54303d3614b6290b81238452bf39b85a33d",
+          "line": 4800,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "11219e9568dff992006949a69839eaf861627a0268d34f44621d5b34142f663d",
+          "line": 5180,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "12f5657572c52b12b61b14d4678374b9e29f7c9bea6efed7fc0e6e2e68ac65d2",
+          "line": 4250,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "1384ef702c20e2724a3aec8a8019ef00dc594924a9c294b6bd7e541ca950cd36",
+          "line": 3587,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "14224a2d38d68b19f6acf8d58df1288d54e70933afdb548b81aaeb741ad73c51",
+          "line": 4115,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "165e3c8f83e806e8f6bc4bcb3cae262406563fa9bcc873f674cd026b4513e86b",
+          "line": 4508,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "16e7e4d6b5c0fb860aff358fa41010ea331fdbcbc47584a2bf70fc638d6f10ee",
+          "line": 1873,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "170f09d09294508922266c116d29a8e1c2d3823c839be210e5f48cd713f97dab",
+          "line": 1198,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "1a2dccf2ad3f76ced3a6abac8c7311d2d0644310e557c3038fdfc4487c44359e",
+          "line": 3128,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "1ab8412ec2bf1b49d2c055a933d63bf2113dc532431f0b802b327a58ba96d5c9",
+          "line": 1242,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "1ef3dea3cb9a5fa29fad181615655b8141c00e9de8fc886d387b902ade37a159",
+          "line": 981,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "2133709dcb7780d202add9b72d4c3dd7690543f7f66dfd8c63a7dcbc004dccdc",
+          "line": 5280,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "2231428e4b0e48be513ed82e1398a1a2fb7139f356903a84a133ec813617cc29",
+          "line": 973,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "23c7ac1ababee99b0e21a307ac089c02576c48dee635a8c541679f4636c19c26",
+          "line": 3761,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "26e1df543054f420c37cee7374281899e21d3bd0d2dcf855d1915dfb2d3093b1",
+          "line": 4263,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "2a30b6d72d45f09136e09c97c0a955b677341f4972405917eddcbe463e224b68",
+          "line": 4815,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "2ac1d768a5215282456d9246ea1aa845e0165142262ecf85f2283771c9fabecf",
+          "line": 1028,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "2b251e63ab94e0bd05e3e21aae0a790a95263383985fbcb6f9b5322787095b2e",
+          "line": 4172,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "2c4ad97b64cb07945d2d4951cb9ebcacc9e9b5e57cd9c3f8a97d5c459f6bd4c2",
+          "line": 4427,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "2cdbabfe4c97ffc3928acd1ea2c7fd67d4439a3b0f37d370440f304c274dcfbc",
+          "line": 4143,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "2da4e98a07325ad618ae60d670fa89b7e0816935c6a0f60a6725d394cee09c58",
+          "line": 1278,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "2daeae0f01e181cd5648ef2d816a8bcea901e156eccd5b9bef7f99c3030571b5",
+          "line": 2149,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "2e41c73da689ca70ad84d3e0a550015a713d703a597c3313814829fc876a60d0",
+          "line": 3521,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "2e51032fdb265ddbb3384e3d69019487aae9ae23f2a71db6baeac08bd2c16f5b",
+          "line": 2296,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "3297f3dc43fd26c60a80eedabdfe41ccf67a9e65e6446510cfa086d1639f0dd3",
+          "line": 3622,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "330e48f6327371742808cb2c3817e2281081a3227ae604cc9ac2413f4d9e0ef4",
+          "line": 1530,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "355eb735136b6f4fd8732f03d9e43cd678afefbb2ebd757c878a6016e0cd4677",
+          "line": 632,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "3cae1b4c1144575638df5e138755bd2d288726ec296be3abf6d3e7347430f4f4",
+          "line": 3788,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "40a57f0ff934bac967f7b583dc598617c7a6474834a57e3c100e4e8c11d17345",
+          "line": 2545,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "42a03dc1817f2d7dd6581806ff1b81ab9525878e4cee8737280439fbedf1b610",
+          "line": 1584,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "439847c2320f281591ce0c5235fc3a1d7fd823c80de6684daaba06fcc5139462",
+          "line": 2837,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "464c6ff0782d67082813c728a3f910b43d595d50f04e726846f835f4b5e40f7b",
+          "line": 4680,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "469bb1844b3749647e4ec320ae67ab357a6695f75770bb91b3bd68c37d9d4d3e",
+          "line": 3452,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "46db433cba49a2909b1f43249c064d06c228da82e095bc2ad1c3973a119f4f79",
+          "line": 1315,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "4721db9aacaedc903edbf701ba93397dc8469b929105778299ba9fa032295ec1",
+          "line": 4404,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "49d6c1c70ee060555216b3e609fbfdca0d995fdf77c546366d4e81435654bc85",
+          "line": 669,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "4c9ad44a421d06bfd7359ad624ba2af8e15b71e76df91ee1dbd9298396273e93",
+          "line": 1965,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "4ff49bbd911d9439c7f7e97c1eacfbab6308b8863f5e4bba21f3de06cef47e4b",
+          "line": 4875,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "539b29751720256f11fa33a0665787e22d5e7c9f2b74281707ef8ed10839198b",
+          "line": 3567,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "55c9130bdd239aaa20a93dc8663c5e5ee63ab365b57d307f5dc8c85465420132",
+          "line": 3361,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "581486e1bf4f87bb0a6f06449e6962e894091f6163e056d7c8e3b24294368792",
+          "line": 5300,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "59cacbaae248a1714ef880ba82071e95fc4bdb0bc4af573bb543ea200e98b885",
+          "line": 887,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "5cc4dc1105b9126ad3c51c10f382eaac9a1fc5c91446c872f6976fe15e08ee47",
+          "line": 382,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "5fefa2ac51889f4026fd52001b4f5b52bb31a434e270f482dc70523d5e40723c",
+          "line": 3729,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "60525b5eb9a4336532bdb3238378dc373be3725ee72bb49227d843c9a49ea92d",
+          "line": 3972,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "617933aeda0d4962c4c658a12402bf1a6ce430db97e8183b6df87747abb36370",
+          "line": 1305,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "66d2b89db935a5ac83a407f8c0c4b9fa13c04b02751786d58a8a00c9a7451cef",
+          "line": 1728,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "68ad511f1002d1b09739dd25395e261bebb4706cb6161850fbe3705e0b9c1fe8",
+          "line": 4903,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "6b07b2cba0082f3a00ef5a194f205219e068cce8d85831ddff0931a255bfc64b",
+          "line": 2833,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "6b935207f56c84f166eba6ee54f0fbffcb52e485011927022d2effece803c247",
+          "line": 2732,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "71440301b45f26a6c8448ea0798416d1a62b904711dd661c1f22bea34ce7f93b",
+          "line": 12,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "7455af5c62e915aede1b306c62b976af47f3da8a80c0d9533b7cf0dee220c338",
+          "line": 297,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "74a43aa6b893e67d162687666fd80c3e7f117ccbddc2f770302010e5552fcddc",
+          "line": 5281,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "75ca602185fe8da40c8c4c5020cc4f1361c413c470b9207c464e2bf987a16e17",
+          "line": 2445,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "760525a9bda18c4f3e20ce2c74c40ec2827705286226cd4b3b41be8ffeba4dc9",
+          "line": 5448,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "7a20586d60c09e53589b99850b2d0fe80d5cfc94a17ffbe1798972d1a6e2781b",
+          "line": 5261,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "7a2088cd4cfad23b4182bce1b95ea1f2f7c33bd563730a1666670f0b01f82f74",
+          "line": 262,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "7a5e75bdda3254abad683a4b80b137c656ef9e05e618946f304d3b310be53ab4",
+          "line": 4074,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "7c21239444889941089b9c3005ee634915781d5706f46f3408de66b74493fad9",
+          "line": 1077,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "7c32af90486c38f7d9cb3741fee7eb9991774674ccdce222eb3e1c00f3626017",
+          "line": 4229,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "7e60e4bdccace01a993bdfc47b85cc0c2b76966f61582c3325c2f04d2c4183da",
+          "line": 192,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "8151d983eb43b934084311c86bb173989d5424b2c367118a26b8452afb677f43",
+          "line": 226,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "82b56e102f894127126e99fa9e39cb38a47c3aff5464d2185ebd5c006ce6d352",
+          "line": 542,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "8346b78521505fe8a75bf65ddba1be7b096d2d17316bce71de93078f534a9066",
+          "line": 4348,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "86a001ad49110253318421f0efd98bb7b6928028ea0415a92bcef78b34ce870b",
+          "line": 5259,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "89127e4f8f26e527665de347e0b15357c4b5c0b536fe5574960fb76db6b5a948",
+          "line": 4709,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "8baf8c5f57519aa69c8abbd1a21ad234bf7be3415d9d7c2d95a843ec272f1d23",
+          "line": 712,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "8db0fb7e257f4d0b160db079a4b965631991190972bf4ae4c10403b1e6a2e10a",
+          "line": 3579,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "8f70d25b774fd8289af49f90580a8c0af2a99e9428997b7ecb924fce4f82c56c",
+          "line": 5306,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "90384c678bc0876b20f7359d3264be5e4514fea19f4f5a503c88aebfa5acf1aa",
+          "line": 4814,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "94ec7ae3c11bbb3e159b1e2204250c30b0dbec782ac4cc833acad1c47f4ae25e",
+          "line": 2261,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "992e216bd0ead1692ce5b9c5242079dae146f15f7ab7cad11d3597dd6f785ae0",
+          "line": 3098,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "9a77d9bde27153160f2961ee678ad552b37e032920ab478276f6dea6716ff49e",
+          "line": 2923,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "a28f3c1333f6edffdb797a5f9953ca651999fc2bacc3866e01d7fa35c2d72629",
+          "line": 142,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "a344140e88a9b780ccc6e6c9daa7e738efca62b2fd8c83de56a628f3e2270b39",
+          "line": 5092,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "a85536a94ceabeee7accd80cd031dd66514c2215b304dc33ce83363fa7808ca1",
+          "line": 5132,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "b2e5a7eccb840f4fec3e50f4c633213eb99f5fce4eab58038f65f9e6e60cf961",
+          "line": 5318,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "b38528f2eafa1135f3c3222186724612316d7b39b493c8935d7d6c31cf13e14e",
+          "line": 3012,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "b38fb2d5a7f92198e30bd2e1dcfd16bb626f3382303fed72815d46fb188982c8",
+          "line": 1668,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "b52c10018f85ec120b95d72f534f2b4287f974b0f89f9fae2fd0e6f03da41d18",
+          "line": 4081,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "b65c0c526dbf32696f466fafb8774f057fcf9646375d6785b55ecb4357f69a4b",
+          "line": 279,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "b8d272190f4b60b75c2d45286c8b654d0bb190196fc2e383fe06b0ebc07d8023",
+          "line": 1269,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "ba156e2cfbfd22043c2aab9de68ce452df41a9cfb7a787dea4c0d21e13756104",
+          "line": 2357,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "bb6d149bc41e769fb48ebeffb000c34c4adedff233c23e8459b529cc933416f0",
+          "line": 82,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "bbefa81ce5ef6505b4888191736cdf7a9e6fb21a0ab9ff2bfbad0a909a96717c",
+          "line": 1574,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "bed7c5bc8c982a2b58028e94643a5a40f0e7ccc4f2972b3e691513c1444c50e8",
+          "line": 1208,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "bff7ee7f36d32e2e54f3e60bf8699c10447b236371b79fa9e75c6a87b22f103d",
+          "line": 569,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "c1900dad62c8b3d0b18830c8bd0e1d8559430940521c63b10ab5271578138774",
+          "line": 2654,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "c2fd561e5938b8483a9767a0ad3ce06816075cf4e4a40216110caed18df919f1",
+          "line": 2997,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "c42212aac0a8f5d26513fb7479746316fde8ae3917fea5292f0b93c123b1a2d7",
+          "line": 3584,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "c4448cb9f400cdd532ba11429467f1362c1bfe596253372727e78ba40187c69f",
+          "line": 4933,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "c775ead3e4855ece1a96323d4f7c7988bda6fe2a3c60759fe12d663333c8afd7",
+          "line": 3337,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "c9adc40a5298b6e6a4d6e989721e748ca3bd26e3a0022420d42310057315413d",
+          "line": 210,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "cb1de6cdf73e48edf5fe44fb1b66cad9b140969b2e0a2fc8c597f991ff9d0dba",
+          "line": 1844,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "cfdaa66785e2a2393555ea9e8fc9b2bce93ac2cbf7327cd90bed216907d78e12",
+          "line": 2716,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "d068878996523b359cef9410009a71d2bd378d6c5946c1322ba01a155a5c204e",
+          "line": 1460,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "d07dc9cb7d528126baccad8970af4bba7b4abf4ac90f549c3f74daa9c08cad3e",
+          "line": 1614,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "d0bdb370280706dfd579c29aab6348a469435db6891e3ffdcd9c5ecf89314304",
+          "line": 5063,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "d1885b339203a3b1d50ca5b6ddf6a1ebc66c2a0aad10063f6b77f57b0c0facb6",
+          "line": 1397,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "d38e4e9a781bca2356f7b857095245b68bff057153a93876d9e0fd0f08373df3",
+          "line": 533,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "d4d1a4fa7a28db0f130e510cd0836b05704edea435557dfca47a32748cf48ad5",
+          "line": 994,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "daa13158d3fa13d043ea7424860fe846777743ad45713d55201a99e71a796e39",
+          "line": 4159,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "dc635b7aeaea6a73befb5c6a0460bdf8ab5a87de1aaf6097bf96ff3c1227f2a9",
+          "line": 2145,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "e315851258a4328e83ff4c113af1a6341f3727b0f231daa1030a6a5585594667",
+          "line": 2143,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "e9b76d6053c2b0da7ca5d578b7f9396df570b7151eab744882d26f0087b77ff5",
+          "line": 309,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "eab37b22e4a4192f69fdd867708c8a8fa52558e4ee5b9ec5360a2c7070711140",
+          "line": 4559,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "eb2292ba50d7559db1d920ab07fe124ffb6e32593eb93e7ca12031ebdd8d4c30",
+          "line": 4340,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "ec5edf127dbe6da6439000474e31f1643265936ff25bfd796edfa8b001272a0e",
+          "line": 1564,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "ecdbb27a1b41de7260c89e94b92a352e7d659e7173f850fd7bf1cf739143dab5",
+          "line": 3493,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "ee6df83500d9ee6cec6c027dfcf7da10de4df690d8f9675dcd309c94f2167c12",
+          "line": 5389,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "f339b1b869fc5137a9b0ebf3bf7c4ce3e295a085c63ab9c2ef6856027f25580b",
+          "line": 3244,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "f64c1da5a395a1ffaae9472c5c1d5f632f651dd8b51f4f7ba7805548cca69519",
+          "line": 377,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "f73ec940148acfdd7b6ea8f473df2390634df5357b9bc92e12b44a16d7887097",
+          "line": 2157,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "fad10e7a960102ccacff02810c19f17504612037f6372cbe5cabbc1eb4d82655",
+          "line": 674,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "fb75088b12fcb20d374c8ea2526fc6bc36e5328b50dc80d99b956663857f5b1f",
+          "line": 1578,
+          "label": 5,
+          "coarse_label": "NUM"
+        }
+      ]
+    },
+    "client_2": {
+      "count": 120,
+      "class_counts": {
+        "ABBR": 20,
+        "DESC": 20,
+        "ENTY": 20,
+        "HUM": 20,
+        "LOC": 20,
+        "NUM": 20
+      },
+      "source_ids_sha256": "bcc273950ab5c57c93130f1450cca5bfcd8ad189399ded3add38fa322ddc34cd",
+      "records": [
+        {
+          "source_id": "08a1bf0aa1b2bacaa80d3ffdbf5d7047d148bf2d16a5b958ef990ea4f136d224",
+          "line": 3008,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "097d46de54fcaddbc529b715b1cd01cf46347b4bfbf1398057a20f6530768291",
+          "line": 4425,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "0c13bafc8056a7abdbaecca58bc7d35e9601685882535ff48062c0f4ba6733d6",
+          "line": 2410,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "0c5444f3daa721c12d42201ca2f85295716a7b203d0c95ad226ed59d089cecf6",
+          "line": 1256,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "0d22fbe367e30f6bb2265378097052222fd3089f195280f7f8a19a7103f4815c",
+          "line": 1985,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "12d56626445f24b62b55b107b61b829350e1dd8b66926c9a96e98ac274c03fc7",
+          "line": 2336,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "13f95e6111fbe43d0802f9320f33ff03e5116dd8a5a9640ba9575747ba9c6591",
+          "line": 2693,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "1406d2f577abed90e062750b88eebfd88fd4ef54bf82e2180bb07d9fc69f3449",
+          "line": 2068,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "149da0f846917b0d1caf440eebae134e45b0a4d3c01154951561e754eb619311",
+          "line": 2351,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "1a04c298a867ac7422ba362057e8746da0f92387f13e24099f2c6c47480db183",
+          "line": 4105,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "1b2ade7d3759f5728e42ab83a32a27c7ebe08913a2ec47d49e79063ce6c42788",
+          "line": 1041,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "1b7a6dedfded4145588adba5043c5c3e62ee52f095b9b8e7214c8971ae49166b",
+          "line": 5273,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "1dae863c6f59ca0fb599db0142fde2142ee58ca6e08a7182a2e41878394babd0",
+          "line": 5258,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "1db811a97bf23e003cb6bcfa2c546e4a7d1d9ea67cace979bee9390b853a139c",
+          "line": 1988,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "1e7af79a431a79a0484a1e624273669d30a500e092c09900d0905ca33fa06d58",
+          "line": 285,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "1f1975a01833b690e824ebc19f66234ca833f57255316dfcc9b1c6983ed29c9c",
+          "line": 86,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "221fe33a181ae1e3d66d0afab14cc28779fd2254cda569eb78353b042322022f",
+          "line": 3516,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "235ee4e923c04e50e08be95c82a50a4d64fee9ef61995a9d24b49c1f09a0b332",
+          "line": 2209,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "250d5dd9a2b1c246e9aac3ac236998f5ac7977561e9978e97f3dc8f4b3b0f905",
+          "line": 1582,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "2ae8487bc8177f818893e5190db61f38cf426ed18017aa92d85383e8160b83f3",
+          "line": 2947,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "2c0a3a565d63d36df29f78477ae61e984b180e99ce672b5aba5683d6fc82cd4d",
+          "line": 897,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "2c5e03ae6c56e5d8c4dfbb3d4298f4fbfa718b5694dfa328b8f09d3815cdb787",
+          "line": 2593,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "2dee47bc349711e4d1dea332fcc7b428d4233a7a9322c62ecba7811340c058af",
+          "line": 311,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "32cfd7ae406d33f2090caeebd78d8737aa65fb331ed4050949a976ca0301df0d",
+          "line": 1758,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "370dc9e1463b8078530184070af1412f549dc6d9ebb4e6a9133ff0bb4eec2114",
+          "line": 575,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "3979181b6ae1d0a9419872f612b58c2cbd8a5a27340b247b816bfc1b1cd52311",
+          "line": 2741,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "3db44c1830402093ba2025384ed5443c90a940bb5aad1cce24aa0f247d9d9a6a",
+          "line": 2515,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "3db5363688c032aa9b9095b12cbde842c355f28762389ea2a1f20f4f5cbf6667",
+          "line": 1545,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "4508cf3fc1fda27001f9c68b0a034b0785683c43d7d856551f38201d9c54945a",
+          "line": 5,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "490cc32fe00d3fe569dd2a1fd0f3f839919c93d5f7271cade70522c4a21d72ef",
+          "line": 4007,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "49a1ff8ccf583a29ee4dd01cc11c29fbf52cd0f679341ce1c0a0bb5cc0ce22fe",
+          "line": 4749,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "4a6a58ba7438910f16a22e61f6d817409d2030b5bc3f1273678c6d8990b5ed1d",
+          "line": 4926,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "4b04883c0a08f23aea2286dc9b3a5b0d2f440f4613ad8173cab64d45156e074d",
+          "line": 3915,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "4b852ca6208d58c9a47c5ada6e07291877936e48c0af139ca9e5585e19c0ea30",
+          "line": 3460,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "50bb49b094a58aa17534aac6917745247d9e879e72e01359f0d4bde95eba1253",
+          "line": 917,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "53b8406f00f0339e5d60035e5d4910c2e25464bf85cde23fcacc602c8474ccb3",
+          "line": 1435,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "5877f85aece7641ea2d79f1a72c70876f75a01fa5df5566d4146cd70f1379dc6",
+          "line": 4990,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "5fdd51a9a7f5b99de53753d8fb49ea177b998642f9c4f931d0f151bb99b778ec",
+          "line": 1554,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "62b4eaee91a005883294254551d9c7311bfeb22ed51029896a2be41839e6cbe5",
+          "line": 3979,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "6304ad7cb7aa9b046c50de81dd5ae6eea1f309e9b60d72487d48f7fd3edae68e",
+          "line": 4443,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "64bcbc35b50ee982c7c9ac1ae5e1a51cfaf1630a5ce056f7c69467eb022d2c7c",
+          "line": 1936,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "68eb57e0ae16ee923c4bb562f86f4a7137313eb000f3f8312d2a3ee50c50f778",
+          "line": 3705,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "6c8478922b329a9ac035daf72a5939c0afba0f50b94d7d76666a90aac43e3a4d",
+          "line": 230,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "6d17f42bdef29cd93b023f1e56de1924ac116d8abfce94064a96ced807ad2752",
+          "line": 620,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "6e7915bfb458057445de530a8c23886fa5273f0542ba071ea885c21770bd9b2c",
+          "line": 3231,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "7187ae8e8284c23fccbe36e67ce65b6969854ff4cab6a25ecabad4da56cdf279",
+          "line": 2956,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "7324edcc9e9911e9a758e8ac0bb1b2b13bb70f6c984a8f89bf50a16d277f5b41",
+          "line": 4964,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "7506c05faf1319f5eeb8490b90d2e90cfbcdceb5618dd231b26da9d94c94193b",
+          "line": 101,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "75100a1293cb61d64ea00c27dac6902d5d2889d4d10a7e43df74fa8104c32ccd",
+          "line": 414,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "751f5f1857b340bcb41e4e8ae03ee1d00a7c1cbfb4ce773bca929848a9db9ebd",
+          "line": 5207,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "77d474c84191ed1da3e049e8114637a12d350f6403809c43943d0661853987e9",
+          "line": 1881,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "788ffd9312499f74103df35521e5cfb56c3c90537b679fd1a51ace1b1ad49e8b",
+          "line": 1526,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "79d5cb4893f04ed00e47db37bb8add0a60f7f0fcfd56ad71be66a8c2c42b08a1",
+          "line": 3204,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "7ba9d39c8cc3b9ec90f9a53f5abc598c6545ebec29496a5f5bbb211d6f424205",
+          "line": 891,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "7db84db63d6813c31f4d2c5f9486f5562e0aeecc942acf9dd1b4cd39059cefcd",
+          "line": 4556,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "808643e74f7de241f18fb468546d3e660ad9b8b31676b7f0561babfba3b5df42",
+          "line": 1743,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "81e5205ab9ccedf07bc78e4e61b164a1835a96a8d52b76bb4862dd049a3a25e8",
+          "line": 3377,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "8222bddf1646eb03a4e35dba9afa66e547cce1b8b401c817fbb81cd339709e62",
+          "line": 48,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "8357bede3f8d9af8c781aa22452a254df7cc45a5ee5e1d984cacafc5c0ce6d93",
+          "line": 4946,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "83c03ac5737a29c34678c00ec4f0203b1a3043114cc9fce1efbf7d86aeb6e1c6",
+          "line": 1788,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "84c83e49364aa104ee1d109ba4f118b8681267ea17ebb73d3483c01b5cce6a79",
+          "line": 3694,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "85a6fa7f4e3f4f885aed8946945e8985e9d40cb44d1f4a603573a290de982636",
+          "line": 3347,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "8960c2d25df01b6ed78fef61871be059443762cb8749c78c0a5fb6d778d62cf9",
+          "line": 1963,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "8a4cc8675bf2cd22d7c618eb084362625f854f6a086effcec22a1598a27b44de",
+          "line": 5380,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "8ff25cd5a232b207f1bf34949311cdc2d8d0e29f960ce78fb720b0f14fd91cf1",
+          "line": 2124,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "916c4200fdb3736e8cd3484c8e4f386f70197054af97493019eefce4c7e3b128",
+          "line": 1693,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "943963e77790e28809ab42807d4e1acfb427ddf966fa789feef6915b3ee7f95d",
+          "line": 547,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "95dc66268871b703c0ad48143aed2652b708dc91c80d2855b43057837b3d6572",
+          "line": 3342,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "96d73f04ecbcb907950939a86e69c80e2c55b47944a21a83afed27aac847efee",
+          "line": 495,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "98f5504f8f85b4bec40d5fffe475398ad3d35f8603f9791617a27c6c34044663",
+          "line": 4455,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "9b7dfb1b97d480eb029dba3b7729b2da908ba12f5b9d87138c9a7a09d4f71db2",
+          "line": 2946,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "a154f075e033e4ebe8a0606b2d09deeae9b3ce83e111c8df9b3e4a138771afdd",
+          "line": 2949,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "a1c3f576d08dbd065ea556cee155d5982e6baf765fd243cd9987f87f6efe3194",
+          "line": 2977,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "a35d587746e84f22ea71f39aee65a467d379e882eaaaf4d60847b329af6439ed",
+          "line": 2433,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "a4129c4efb6c4cbcd461cc4324598cdb521078f6efff6a86f61cd7eb82118624",
+          "line": 2210,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "a4316bed7cd91191da5f152db47a883b6f872139575d70ae62f019460ee7db36",
+          "line": 2421,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "aea1e918fc74745d3b2c8b435fd57ce2f9b790d57a9659086ef741a5e6b0d9b6",
+          "line": 4600,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "aec96a5af4971b9c3b6ec0553aafd6043ce03c6e0f29df4103e1d3c8a4e2e152",
+          "line": 1645,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "b1091e62b9b205a6bc05ecd2c7fbc8c4999329b8ffa9b0a2e86246572645ef9a",
+          "line": 1364,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "b37a0a327833b568c379c1eb06d55985c1438928f39b7cbf62933fd88aec0566",
+          "line": 3822,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "b536532c2a1508e9d676a64b4c5c0e23800e704c5484ea1d2630476e3c563115",
+          "line": 2347,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "b53e1b56ca3a7c68bfa21268fb26240aac1c73c1447f332988102d76feac064e",
+          "line": 4258,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "b645b1fa831ae04015ac4230ee71c62e68176b50c271c8ef6a4e02a6e74478aa",
+          "line": 2138,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "b669c4d5172be37af0a0a8f35308677a52a3155305d36622b54858a7e8a1baa6",
+          "line": 1661,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "b8de2dd54bd3075db879f3173c39ea8ef5681ee8dd01cc5cf7bf28c69b1e27ae",
+          "line": 4017,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "bcb549a89aa686ef0b0827e4c917dff2dfc1d8f2d1ec87d826b6fde6bf737ee0",
+          "line": 4288,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "bfc11eccd0d6f1243ea4ecf387e90524d23b7d577bb87f5e75d255f7ea5991eb",
+          "line": 1945,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "c00c96f3c30960afb562ec07879cb97cf489c27d053460665b9ee8e8923a0f32",
+          "line": 328,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "c18c667d359920f07231fa9f13224944c6204f5c0278592670c4750af55a3f35",
+          "line": 5067,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "c44ddbc7279149dea94cf6fdb9c4ca7e4ef80e7b9e518a6893929ec6851d0d05",
+          "line": 648,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "c4cec6be5c7b4f0a17a63b72ef8785a5e22149048c712a52922c5833b660e638",
+          "line": 1674,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "c620b31bf14d20b8fe1d777d0174c226b22f854e83185f83322dfa0b5342c8e1",
+          "line": 1314,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "c6299179f31e7d8c8251a228ed70f942e9d7d22f42c7ab034e7c94cd64f8d04e",
+          "line": 4148,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "c65109a829631e06d77f12f70ce89486fc010ccccc9823664b0e36c1f05fa4e2",
+          "line": 308,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "c6e9f14870d22d5ca84ed473f655260801d371270c697f0fdda5cb87a65b85f1",
+          "line": 3487,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "c8d50a334638280e564d695dfe14b8dd12099b544a861caea797d129ac1e0d0c",
+          "line": 1999,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "cbafadde11644f4f95808188a92af0895bb3a3e7fd2e9fc99555067c23fa40ac",
+          "line": 2651,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "cbd4cb975f74cdca1f1027d08b0085ee290f987610b35c30df5b49012cbc5d01",
+          "line": 3411,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "cbe20ccb921d1a983d0172f1e980906ed738b7db0b790934c773bc57cf83e876",
+          "line": 2166,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "cf4553457fb3b9370674a4279fd29b0cd17545646f1864f9cd8c4ea332157eb7",
+          "line": 3356,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "d0adb3202972722e9f0389eb98aa5b3ec0b7be461380239c8251d3ca501e4dd6",
+          "line": 2142,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "d1f77c1bcde6afa06e0bafbae1fbb6d9fccd36823a86b9433c46021e2e44d265",
+          "line": 1842,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "d2199d0f8d81a5ae011e7f8c2e0efee8570da0e008df7d0d39d5773ac7a257de",
+          "line": 654,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "d652b8b06dc581a7cfbc34bbe2e55675c395f63b4faa2c006f8accdc08711686",
+          "line": 1717,
+          "label": 0,
+          "coarse_label": "ABBR"
+        },
+        {
+          "source_id": "d7dad09babef467a1636e27c94436fd6649adc0af7bd2d6a6465a49b070a9f70",
+          "line": 1123,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "db7e3a8e106463c111d2d5ad135f29b84b52cd615aea5932e7eb2790744154e9",
+          "line": 1267,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "e039eaf93cc765dfbcb96febf0bee26b50a73a7fd63fa5ae128f3cc6fed18648",
+          "line": 1565,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "e257a5c379c353001c6cb17b2d61ada171f8fb34dbe27ad49a8180d08b768310",
+          "line": 3085,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "e28ef2334b112b91c1957fd160cbfc43417669777bbd2ff900a77d2c3d39ec00",
+          "line": 4245,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "e4205e2609aee9d5022681a8c20fd70c2578caf028f7cb0e036e0eaf20c68edc",
+          "line": 1897,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "e500ee2425a7ad5eb1ece699e4a79f65cf8ac72c2b2b9b09b3e331534bd6fd26",
+          "line": 3033,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "e60d3d65fc5f0a1c350c102a90728504854c5523f55989deb8bde18e309c462c",
+          "line": 4522,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "e76a66f17a3ea04cfcf0b97bfaaecaa274e62c4b98d1e073c91e8535e7305e47",
+          "line": 2403,
+          "label": 5,
+          "coarse_label": "NUM"
+        },
+        {
+          "source_id": "e9749ecc614a0d72927c634f75f830ac3ddef45d0dba6060f6bb9c7b2c1099fb",
+          "line": 367,
+          "label": 2,
+          "coarse_label": "DESC"
+        },
+        {
+          "source_id": "ea6d5e9b858769c2eb0d0a7e5b9bf600c3475d6eecbaabc83d5e0ff3834fe7c0",
+          "line": 2061,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "eff4450e64d7b07e198bc37926e8fe1f7f110b020ce10b8d2cf028dca663017c",
+          "line": 2218,
+          "label": 4,
+          "coarse_label": "LOC"
+        },
+        {
+          "source_id": "f10a96ff297afb353d8189c2f9997ca26766a59b1179dc6f5a4bf07c5cded228",
+          "line": 2309,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "f70b26303cf54183955fe6afc0d0956232ce1cf7dce509c74b6afc67c5453a26",
+          "line": 282,
+          "label": 1,
+          "coarse_label": "ENTY"
+        },
+        {
+          "source_id": "fad3301dfa3d7094aadfccd00694f125f047b26bff8f92348afeaf6f7c496c6d",
+          "line": 1750,
+          "label": 3,
+          "coarse_label": "HUM"
+        },
+        {
+          "source_id": "fb2e3e317fe936fd14ad3bdc02a482df373e04155a1c0b560715e7c1acb60238",
+          "line": 1765,
+          "label": 3,
+          "coarse_label": "HUM"
+        }
+      ]
+    }
+  }
+}

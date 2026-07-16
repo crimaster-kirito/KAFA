@@ -1,0 +1,41 @@
+{
+  "name": "yoruba_natural_noise_development_protocol_v1",
+  "status": "frozen_before_any_yoruba_natural-noise_training_run",
+  "dataset": {
+    "name": "COMPRISE_Data13_Y-BBCTopics_V1.0",
+    "doi": "10.5281/zenodo.5998515",
+    "archive_md5": "8396b354b6f0eea019788e5886d0a57c",
+    "weak_training_examples": 1340,
+    "clean_development_examples": 189,
+    "clean_test_examples": 379,
+    "measured_training_noise_rate": 0.3328358208955224,
+    "labels": ["africa", "entertainment", "health", "nigeria", "politics", "sport", "world"]
+  },
+  "models": [
+    "Qwen/Qwen2.5-0.5B",
+    "HuggingFaceTB/SmolLM2-360M",
+    "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+  ],
+  "methods": [
+    "naive single-model LoRA",
+    "two-peer Co-Teaching LoRA ensemble"
+  ],
+  "development_seeds": [84, 85, 86],
+  "fixed_hyperparameters": {
+    "training_examples": 1340,
+    "steps": 256,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "max_length": 128,
+    "learning_rate": 0.001,
+    "lora_rank": 4,
+    "coteaching_forget_rate": 0.3328358208955224
+  },
+  "primary_metric": "Co-Teaching ensemble clean-development accuracy versus naive accuracy",
+  "analysis": "Three family-wise one-sided paired contrasts, Holm-corrected together; macro-F1 is a secondary imbalance audit",
+  "development_gate": "Freeze and run the clean test split only if every family has nonnegative mean accuracy gain and at least one family has Holm-adjusted p < 0.05; otherwise retain this as development-only evidence.",
+  "claim_boundary": "The observed weak-label error rate is supplied to Co-Teaching as an oracle forget rate; clean labels are used only for post-selection audit and clean development evaluation.",
+  "test_policy": "The 379-example clean test split remains unused until the development gate is evaluated.",
+  "evidence_label": "benchmark_dev",
+  "paper_result": false
+}

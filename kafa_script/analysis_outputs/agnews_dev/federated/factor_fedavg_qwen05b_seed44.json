@@ -1,0 +1,91 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "factor_fedavg",
+  "seed": 44,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "clients": 3,
+  "examples_per_client": 256,
+  "total_unique_train_examples": 768,
+  "eval_examples": 800,
+  "rounds": 5,
+  "local_steps": 8,
+  "total_client_optimizer_steps": 120,
+  "initial": {
+    "accuracy": 0.48625001311302185,
+    "macro_f1": 0.4413959728553891,
+    "label_nll": 1.4834338426589966,
+    "ece": 0.1666544359177351,
+    "per_class_recall": [
+      0.3400000035762787,
+      0.5899999737739563,
+      0.9900000095367432,
+      0.02500000037252903
+    ]
+  },
+  "final": {
+    "accuracy": 0.8812500238418579,
+    "macro_f1": 0.8806991726160049,
+    "label_nll": 0.4029165506362915,
+    "ece": 0.04543690104037523,
+    "per_class_recall": [
+      0.8600000143051147,
+      0.9800000190734863,
+      0.8100000023841858,
+      0.875
+    ]
+  },
+  "round_records": [
+    {
+      "round": 1,
+      "client_mean_losses": [
+        1.0879560336470604,
+        1.282934807240963,
+        1.0638841949403286
+      ]
+    },
+    {
+      "round": 2,
+      "client_mean_losses": [
+        0.5836672838777304,
+        0.7987960167229176,
+        0.8957379460334778
+      ]
+    },
+    {
+      "round": 3,
+      "client_mean_losses": [
+        0.7130762413144112,
+        0.6647355854511261,
+        0.7806609272956848
+      ]
+    },
+    {
+      "round": 4,
+      "client_mean_losses": [
+        0.4722502902150154,
+        0.6705285906791687,
+        0.7204609587788582
+      ]
+    },
+    {
+      "round": 5,
+      "client_mean_losses": [
+        0.7160657532513142,
+        0.43127979524433613,
+        0.5063583590090275
+      ]
+    }
+  ],
+  "train_wall_seconds": 26.864853001898155,
+  "peak_allocated_gpu_bytes": 4735018496,
+  "serialized_global_adapter_bytes": 1113859,
+  "measured_total_communication_bytes": 33415770,
+  "client_partition_ids_sha256": [
+    "91802fbb86af0687dfe4d07cddf5371b32b0c46e822073e37952b95ccd7f2ec9",
+    "6c3ea63dc793a8dba4dac76326cde3318d22c5ecb49dcbcdc5295356e4dff3da",
+    "227624d0a6d5925f0260ec589874ffb1f1e9cb5065866801d7981fec2a2b1e87"
+  ]
+}

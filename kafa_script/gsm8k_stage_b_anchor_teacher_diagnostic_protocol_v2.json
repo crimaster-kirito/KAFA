@@ -1,0 +1,12 @@
+{
+  "name": "gsm8k_stage_b_anchor_teacher_diagnostic_protocol_v2",
+  "status": "frozen_before_replication",
+  "base_diagnostic": "gsm8k_stage_b_anchor_teacher_diagnostic_protocol_v1.json",
+  "replication_seeds": [53, 54],
+  "criterion": "Report both runs regardless of outcome. Only if both conflict AUROC values exceed the local-loss diagnostic reference 0.756 may a separate teacher-filtering endpoint protocol be drafted.",
+  "teacher": {"model": "Qwen/Qwen2.5-1.5B", "anchors": 128, "steps": 40, "batch_size": 4, "learning_rate": 0.001},
+  "client_mixture": {"conflict_ratio": 0.4, "off_task_ratio": 0.2, "client_pool": 0},
+  "official_test_labels": "prohibited",
+  "evidence_label": "benchmark_dev",
+  "paper_result": false
+}

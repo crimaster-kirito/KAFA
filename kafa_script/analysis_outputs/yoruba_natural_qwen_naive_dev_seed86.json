@@ -1,0 +1,62 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "dataset": "COMPRISE_Data13_Y-BBCTopics_V1.0",
+  "dataset_doi": "10.5281/zenodo.5998515",
+  "method": "naive",
+  "seed": 86,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "training_file_sha256": "da82ce5b09203bbc7d2019feabb24caab1c2dc3d7e57d6e95e73088681ddeb6b",
+  "clean_training_file_sha256": "6ea72acbd8bd7712e2ce566642ed67410e92166209c86c984f8fc6700e3a2aee",
+  "evaluation_file_sha256": "2d4fe2cd7a0845b52d3e0ee2b6f272b0918df477d64aa301b7adca03cbb20a8d",
+  "evaluation_split": "dev",
+  "labels": [
+    "africa",
+    "entertainment",
+    "health",
+    "nigeria",
+    "politics",
+    "sport",
+    "world"
+  ],
+  "train_examples": 1340,
+  "eval_examples": 189,
+  "measured_training_noise_rate": 0.3328358208955224,
+  "forget_rate": null,
+  "forget_rate_uses_clean_training_labels": false,
+  "steps": 256,
+  "batch_size": 8,
+  "learning_rate": 0.001,
+  "final": {
+    "accuracy": 0.6984127163887024,
+    "macro_f1": 0.6889215963227409,
+    "label_nll": 0.852651834487915,
+    "per_class_recall": [
+      0.23076923191547394,
+      0.800000011920929,
+      0.5714285969734192,
+      0.6811594367027283,
+      0.782608687877655,
+      0.8571428656578064,
+      0.6666666865348816
+    ]
+  },
+  "selected_kind_counts": [
+    {
+      "clean_label_match": 1356,
+      "noisy_label_conflict": 688
+    }
+  ],
+  "mean_objective": [
+    1.419403076171875
+  ],
+  "train_wall_seconds": 244.74777496000752,
+  "peak_allocated_gpu_bytes": 3704126976,
+  "serialized_adapter_bytes": 1115203,
+  "limitations": [
+    "Co-Teaching receives the measured natural-noise fraction as oracle information.",
+    "Clean training labels are used only to audit selections, never in optimization.",
+    "The causal label interface is not a reproduction of Delora's GPT-4o-assisted pipeline."
+  ]
+}

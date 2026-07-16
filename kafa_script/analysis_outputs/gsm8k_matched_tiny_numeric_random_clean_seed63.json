@@ -1,0 +1,46 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_numeric_random_numeric_rank",
+  "seed": 63,
+  "client_model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+  "client_weight_sha256": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "client_index": 0,
+  "mixture_counts": {
+    "clean": 256
+  },
+  "selection": {
+    "selector": "numeric_random",
+    "keep_count": 128,
+    "numeric_eligible": 256,
+    "selected_kind_counts": {
+      "clean": 128
+    },
+    "selected_source_ids_sha256": "3331ed8592619bbbc45799ee5b089045af51145a18f1f4ea3a25a02eaad3ad4e",
+    "selected_loss_range": null,
+    "wall_seconds": 0.0001066490076482296
+  },
+  "development_examples": 512,
+  "client_steps": 40,
+  "initial": {
+    "exact_match": 0.015625,
+    "invalid_output_rate": 0.1796875,
+    "examples": 512,
+    "prediction_sha256": "38db58b7d533f296126aa4b50b64a47b0e682faaf8203a45c8ea880ba95ad7e1"
+  },
+  "final": {
+    "exact_match": 0.01953125,
+    "invalid_output_rate": 0.0,
+    "examples": 512,
+    "prediction_sha256": "f1d729e4b343d4eab13209f14c5ddabadcfe1f919e92a79e09824fd3e8a26c37"
+  },
+  "client_mean_train_loss": 1.5323499038815498,
+  "client_train_wall_seconds": 3.1569412199314684,
+  "peak_allocated_gpu_bytes": 3772225536,
+  "limitations": [
+    "Development-only; official GSM8K test is not loaded.",
+    "Contamination kind is recorded only for post-selection audit."
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "study": "within_client_real_mixture_mechanism",
+  "method": "local_lora_adaptive_balanced_rank",
+  "seed": 44,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "requested_conflict_ratio": 0.0,
+  "requested_off_task_ratio": 0.0,
+  "realized_counts": {
+    "clean": 256
+  },
+  "train_examples": 256,
+  "selected_train_examples": 256,
+  "selected_realized_counts": {
+    "clean": 256
+  },
+  "selection_metadata": {
+    "uses_hidden_mixture_labels": false,
+    "keep_fraction": 1.0,
+    "kept": 256,
+    "gate_quantile": 0.25,
+    "gate_statistic": 0.8399099707603455,
+    "gate_threshold": 0.7,
+    "gate_triggered": false,
+    "diagnostics_path": "kafa_script/analysis_outputs/agnews_dev/anchor_diagnostics/qwen05b_clean_seed44.json"
+  },
+  "eval_examples": 800,
+  "steps": 40,
+  "batch_size": 8,
+  "learning_rate": 0.001,
+  "last_batch_train_loss": 0.09405070543289185,
+  "initial": {
+    "accuracy": 0.48625001311302185,
+    "macro_f1": 0.4413959728553891,
+    "label_nll": 1.4834338426589966,
+    "ece": 0.1666544359177351,
+    "per_class_recall": [
+      0.3400000035762787,
+      0.5899999737739563,
+      0.9900000095367432,
+      0.02500000037252903
+    ]
+  },
+  "final": {
+    "accuracy": 0.8550000190734863,
+    "macro_f1": 0.8525949567556381,
+    "label_nll": 0.46362537145614624,
+    "ece": 0.03689650588785298,
+    "per_class_recall": [
+      0.8999999761581421,
+      0.9950000047683716,
+      0.8149999976158142,
+      0.7099999785423279
+    ]
+  },
+  "train_wall_seconds": 4.56650614598766,
+  "peak_allocated_gpu_bytes": 4735016960,
+  "serialized_adapter_bytes": 1115203,
+  "base_agnews_ids_sha256": "d6ae25817da315bf378fac0c572bd17e4d3dd04c85f122e70f6967d67272671f",
+  "mixture_assignment_sha256": "485c27a530240d4c5063bd7a0ce804252064f4627ed4a4841a2705c428eee307"
+}

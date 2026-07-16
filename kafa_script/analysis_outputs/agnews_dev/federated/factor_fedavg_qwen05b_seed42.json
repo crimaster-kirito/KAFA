@@ -1,0 +1,91 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "factor_fedavg",
+  "seed": 42,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "clients": 3,
+  "examples_per_client": 256,
+  "total_unique_train_examples": 768,
+  "eval_examples": 800,
+  "rounds": 5,
+  "local_steps": 8,
+  "total_client_optimizer_steps": 120,
+  "initial": {
+    "accuracy": 0.48625001311302185,
+    "macro_f1": 0.4413959728553891,
+    "label_nll": 1.4834338426589966,
+    "ece": 0.1666544359177351,
+    "per_class_recall": [
+      0.3400000035762787,
+      0.5899999737739563,
+      0.9900000095367432,
+      0.02500000037252903
+    ]
+  },
+  "final": {
+    "accuracy": 0.8337500095367432,
+    "macro_f1": 0.8300776928663254,
+    "label_nll": 0.47961029410362244,
+    "ece": 0.01611042971489951,
+    "per_class_recall": [
+      0.9300000071525574,
+      0.9750000238418579,
+      0.7950000166893005,
+      0.6349999904632568
+    ]
+  },
+  "round_records": [
+    {
+      "round": 1,
+      "client_mean_losses": [
+        1.1908511593937874,
+        1.1073229163885117,
+        1.190043330192566
+      ]
+    },
+    {
+      "round": 2,
+      "client_mean_losses": [
+        0.8492712788283825,
+        0.680156547576189,
+        0.8089730553328991
+      ]
+    },
+    {
+      "round": 3,
+      "client_mean_losses": [
+        0.7118743481114507,
+        0.6294158473610878,
+        0.8134487699717283
+      ]
+    },
+    {
+      "round": 4,
+      "client_mean_losses": [
+        0.5833488795906305,
+        0.43137922417372465,
+        0.6848305985331535
+      ]
+    },
+    {
+      "round": 5,
+      "client_mean_losses": [
+        0.42270152550190687,
+        0.5785353444516659,
+        0.6360049089416862
+      ]
+    }
+  ],
+  "train_wall_seconds": 9.7768682630267,
+  "peak_allocated_gpu_bytes": 4735021568,
+  "serialized_global_adapter_bytes": 1113859,
+  "measured_total_communication_bytes": 33415770,
+  "client_partition_ids_sha256": [
+    "6e6b33b973aad2080ad737782f22517cb2f61cc8583996d310508c5e831a9c68",
+    "ca50431f345025adb020b7f51f8726d9ae76e669a4d68b98a72e4474d75e7de2",
+    "565bc99a9ebce7f6456c4f5b601c172478d1d76336bd28de9c84ea0268cddfb3"
+  ]
+}

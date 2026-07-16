@@ -1,0 +1,47 @@
+{
+  "status": "real synthetic-data mechanism pilot",
+  "paper_result": false,
+  "configuration": {
+    "seeds": [
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119
+    ],
+    "conflict_ratios": [
+      0.0,
+      0.2,
+      0.4,
+      0.6
+    ],
+    "off_task_ratios": [
+      0.0,
+      0.2
+    ],
+    "clients": 8,
+    "samples_per_client": 128,
+    "dimension": 24,
+    "rounds": 40,
+    "lr": 0.4,
+    "anchor_groups": 8,
+    "adaptive_protocol": "kafa_script/router_adaptive_protocol.json",
+    "output_dir": "kafa_script/analysis_outputs/router_holdout_v1"
+  },
+  "n_runs": 800
+}

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/root/projects/KAFA/kafa_script/run_trec_server_ablation.py", line 376, in <module>
+    main()
+  File "/root/projects/KAFA/kafa_script/run_trec_server_ablation.py", line 281, in main
+    mean_objective = train_server_round(
+  File "/root/projects/KAFA/kafa_script/run_trec_server_ablation.py", line 140, in train_server_round
+    objective.backward()
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/_tensor.py", line 631, in backward
+    torch.autograd.backward(
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/autograd/__init__.py", line 381, in backward
+    _engine_run_backward(
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/autograd/graph.py", line 869, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

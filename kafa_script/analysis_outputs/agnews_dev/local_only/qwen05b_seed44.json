@@ -1,0 +1,43 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "local_only",
+  "seed": 44,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "train_examples": 256,
+  "eval_examples": 800,
+  "steps": 40,
+  "batch_size": 8,
+  "learning_rate": 0.001,
+  "last_batch_train_loss": 0.09405070543289185,
+  "initial": {
+    "accuracy": 0.48625001311302185,
+    "macro_f1": 0.4413959728553891,
+    "label_nll": 1.4834338426589966,
+    "ece": 0.1666544359177351,
+    "per_class_recall": [
+      0.3400000035762787,
+      0.5899999737739563,
+      0.9900000095367432,
+      0.02500000037252903
+    ]
+  },
+  "final": {
+    "accuracy": 0.8550000190734863,
+    "macro_f1": 0.8525949567556381,
+    "label_nll": 0.46362537145614624,
+    "ece": 0.03689650588785298,
+    "per_class_recall": [
+      0.8999999761581421,
+      0.9950000047683716,
+      0.8149999976158142,
+      0.7099999785423279
+    ]
+  },
+  "train_wall_seconds": 2.9769838869106025,
+  "peak_allocated_gpu_bytes": 4735016960,
+  "serialized_adapter_bytes": 1115203,
+  "train_record_ids_sha256": "d6ae25817da315bf378fac0c572bd17e4d3dd04c85f122e70f6967d67272671f"
+}

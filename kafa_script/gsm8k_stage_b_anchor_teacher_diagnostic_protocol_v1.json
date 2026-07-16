@@ -1,0 +1,13 @@
+{
+  "name": "gsm8k_stage_b_anchor_teacher_diagnostic_protocol_v1",
+  "status": "frozen_before_anchor_teacher_diagnostic",
+  "purpose": "Measure whether a public-anchor-trained independent teacher provides a stronger observable conflict signal than the local student.",
+  "teacher": {"model": "Qwen/Qwen2.5-1.5B", "training_data": "first 128 frozen manifest anchors", "steps": 40, "batch_size": 4, "learning_rate": 0.001, "adapter": "rank-4 q_proj/v_proj LoRA"},
+  "audit_data": {"client_pool": 0, "seed": 52, "condition": "40% deterministic numeric conflict + 20% frozen SQuAD off-task", "records": 256},
+  "signal": "teacher causal loss of the supplied local supervised answer under the target-task prompt; audit-only, never influenced by kind labels",
+  "metrics": ["AUROC", "average precision", "kind-stratified loss quantiles"],
+  "decision_boundary": "If conflict discrimination is not materially stronger than local-loss AUROC 0.756, do not build a teacher-filtering candidate. If it is stronger, freeze a separate router protocol before endpoint experiments.",
+  "official_test_labels": "prohibited",
+  "evidence_label": "benchmark_dev",
+  "paper_result": false
+}

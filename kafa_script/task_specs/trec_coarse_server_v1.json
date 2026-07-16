@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "task_id": "trec_coarse_server_v1",
+  "prompt_template": "Classify what kind of answer the question asks for: abbreviation, entity, description, human, location, or number.\nQuestion: {text}\nAnswer type:",
+  "verbalizers": [
+    "abbreviation",
+    "entity",
+    "description",
+    "human",
+    "location",
+    "number"
+  ],
+  "conflict_permutation": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    0
+  ],
+  "text_field": "text",
+  "label_field": "label"
+}

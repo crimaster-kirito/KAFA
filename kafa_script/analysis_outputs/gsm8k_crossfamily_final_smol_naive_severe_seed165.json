@@ -1,0 +1,45 @@
+{
+  "evidence_label": "benchmark_holdout",
+  "paper_result": false,
+  "method": "gsm8k_local_naive_mixture",
+  "seed": 165,
+  "model": ".cache/models/SmolLM2-360M",
+  "model_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "client_index": 0,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "conflict_ratio": 0.4,
+  "off_task_ratio": 0.2,
+  "evaluation_split": "official_test",
+  "evaluation_examples": 1319,
+  "steps": 40,
+  "batch_size": 4,
+  "learning_rate": 0.001,
+  "max_length": 256,
+  "max_new_tokens": 16,
+  "mean_train_loss": 1.4969872161746025,
+  "initial": {
+    "exact_match": 0.017437452615617893,
+    "invalid_output_rate": 0.029567854435178165,
+    "examples": 1319,
+    "prediction_sha256": "92670c5e23f390184be7ce6b63fa172964513eb2fa2a14f79132835d809a4ae1"
+  },
+  "final": {
+    "exact_match": 0.02122820318423048,
+    "invalid_output_rate": 0.0,
+    "examples": 1319,
+    "prediction_sha256": "5f4b2536e68bcba8ef47ca9119206e5092ffb2182eb32e0c65e0d066507a330d"
+  },
+  "train_wall_seconds": 4.300348666962236,
+  "peak_allocated_gpu_bytes": 2676911616,
+  "mixture_source_ids_sha256": "6a515c1b2c1c27598faa85aab8588ec5b2229ee3afbae7ede7ff777b05953dbd",
+  "limitations": [
+    "Official-test labels are loaded only when explicitly requested under a frozen final protocol.",
+    "No routing is applied in this naive mixture baseline."
+  ]
+}

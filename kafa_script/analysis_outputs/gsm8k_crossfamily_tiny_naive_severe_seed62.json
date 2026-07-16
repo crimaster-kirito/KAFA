@@ -1,0 +1,45 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_local_naive_mixture",
+  "seed": 62,
+  "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+  "model_weight_sha256": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "client_index": 0,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "conflict_ratio": 0.4,
+  "off_task_ratio": 0.2,
+  "evaluation_split": "development",
+  "evaluation_examples": 512,
+  "steps": 40,
+  "batch_size": 4,
+  "learning_rate": 0.001,
+  "max_length": 256,
+  "max_new_tokens": 16,
+  "mean_train_loss": 1.275119911879301,
+  "initial": {
+    "exact_match": 0.015625,
+    "invalid_output_rate": 0.1796875,
+    "examples": 512,
+    "prediction_sha256": "38db58b7d533f296126aa4b50b64a47b0e682faaf8203a45c8ea880ba95ad7e1"
+  },
+  "final": {
+    "exact_match": 0.005859375,
+    "invalid_output_rate": 0.0,
+    "examples": 512,
+    "prediction_sha256": "d99ed5a75cd7a1ce03a5eced0b33b687dfb32066653371111960d86c59ea53eb"
+  },
+  "train_wall_seconds": 8.863406331045553,
+  "peak_allocated_gpu_bytes": 4560852480,
+  "mixture_source_ids_sha256": "d7b799bad50729c5990c5eeaa06e7a71f55c1b223e7f9b4cc53b4bd50369c3b1",
+  "limitations": [
+    "Official-test labels are loaded only when explicitly requested under a frozen final protocol.",
+    "No routing is applied in this naive mixture baseline."
+  ]
+}

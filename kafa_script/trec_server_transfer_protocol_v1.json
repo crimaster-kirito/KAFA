@@ -1,0 +1,85 @@
+{
+  "name": "trec_server_transfer_protocol_v1",
+  "status": "frozen_after_instrumentation_smokes_before_validated_development_matrix_and_before_any_official_evaluation",
+  "created_utc": "2026-07-15",
+  "purpose": "Independent six-class client-to-server transfer benchmark for the training-only trust endpoint.",
+  "task": {
+    "task_id": "trec_coarse_server_v1",
+    "task_spec": "kafa_script/task_specs/trec_coarse_server_v1.json",
+    "task_spec_semantic_sha256": "ae1fb2f0457b63ea7aae981848d0e57989b3924d29258138f28a3f72e5949f88",
+    "off_task_spec": "kafa_script/task_specs/imdb_sentiment_server_v1.json",
+    "off_task_spec_semantic_sha256": "908c7746c1292f08f2a9d06c9bfc4a54e3345227a267ec20ce57893ae53024b3",
+    "manifest": "kafa_script/trec_server_manifest_v1.json",
+    "manifest_file_sha256": "45286f493ee9d981a42af8b6fb3b8fb1d9b0b3e43557f85b4c927cf99aad0e1d",
+    "target_train_sha256": "9e4c8bdcaffb96ed61041bd64b564183d52793a8e91d84fc3a8646885f466ec3",
+    "target_official_test_sha256": "033f22c028c2bbba9ca682f68ffe204dc1aa6e1cf35dd6207f2d4ca67f0d0e8e",
+    "off_task_train_sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef"
+  },
+  "test_access_history": {
+    "before_freeze": "The source file was downloaded, hashed, and line-counted for feasibility; no TREC model prediction or aggregate performance metric existed.",
+    "instrumentation_smokes_before_final_freeze": "Seed 241 anchor/routed and seed 242 anchor development jobs ran while audit fields were being repaired; an initial seed 243 routed job then exposed an infeasible per-class quota under globally assigned contamination. These artifacts are invalidated. The scientific ratios, models, steps, and router threshold were not tuned; contamination placement was corrected to deterministic class-balanced apportionment before the complete development matrix and any official evaluation.",
+    "development_rule": "Development runs must not open, parse, tokenize, or evaluate the official-test file.",
+    "official_rule": "After implementation and development sanity checks, all predeclared official seeds and both primary comparators are reported regardless of direction."
+  },
+  "implementation": {
+    "runner": "kafa_script/run_generic_classification_distillation.py",
+    "runner_file_sha256": "be53095f467fe468d770339e1e94e11240fc6f523b8d4be1f52e6098d9650e45",
+    "classification_task_core": "kafa_script/classification_task.py",
+    "classification_task_file_sha256": "6ec3c64acfe15a1bc60e38ee55e5b062d8b39183b63957400352717eba16a7ea"
+  },
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "max_length": 128,
+    "teacher_aggregation": "uniform",
+    "teacher_temperature": 0.1,
+    "anchor_supervision_weight": 1.0,
+    "routed_distillation_weight": 0.25,
+    "conflict_ratio": 0.4,
+    "off_task_ratio": 0.2,
+    "routing_keep_fraction": 0.5,
+    "routing_gate_threshold": 0.8,
+    "contamination_assignment": "class_balanced_deterministic_apportionment",
+    "routing_quota_per_claimed_class": 10,
+    "anchor_examples": 72,
+    "development_examples": 72,
+    "client_examples_each": 120,
+    "official_test_examples": 500,
+    "conflict_permutation": [1, 2, 3, 4, 5, 0]
+  },
+  "development": {
+    "seeds": [241, 242, 243],
+    "comparators": ["public_anchor_only", "routed_distillation"],
+    "role": "Implementation, finite-loss, payload-simplex, and routing sanity only; no hyperparameter or comparator selection.",
+    "advance_rule": "Run the official matrix after both comparators complete all three seeds with finite metrics and all audit invariants passing, regardless of which comparator is better."
+  },
+  "official_evaluation": {
+    "seeds": [251, 252, 253, 254, 255],
+    "comparators": ["public_anchor_only", "routed_distillation"],
+    "primary_metric": "accuracy",
+    "secondary_metrics": ["macro_f1", "canonical_label_nll", "ECE", "per_class_recall"],
+    "analysis": "Report every seed and the paired routed-minus-anchor mean. Use a two-sided paired Student-t interval and test across the five seed differences; the interval describes seed variation only, not test-sample or task-population uncertainty.",
+    "direction_policy": "Report and interpret the result regardless of sign; no success threshold is used to suppress a negative or null result."
+  },
+  "evidence_boundaries": [
+    "TREC's published data license is recorded as unknown.",
+    "The 500-example official test has 0.2 percentage-point accuracy resolution and limited statistical power.",
+    "The ABBR training class has only 86 raw examples, constraining balanced partitions.",
+    "Canonical probability exchange is tokenizer-agnostic at the class interface, not invariant to verbalizer tokenization.",
+    "No privacy or secure-aggregation claim is made.",
+    "Potential benchmark contamination from language-model pretraining is not ruled out."
+  ]
+}

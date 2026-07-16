@@ -1,0 +1,52 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "study": "within_client_real_mixture_mechanism",
+  "method": "naive_local_lora",
+  "seed": 42,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "requested_conflict_ratio": 0.4,
+  "requested_off_task_ratio": 0.2,
+  "realized_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "train_examples": 256,
+  "eval_examples": 800,
+  "steps": 40,
+  "batch_size": 8,
+  "learning_rate": 0.001,
+  "last_batch_train_loss": 0.9922332167625427,
+  "initial": {
+    "accuracy": 0.48625001311302185,
+    "macro_f1": 0.4413959728553891,
+    "label_nll": 1.4834338426589966,
+    "ece": 0.1666544359177351,
+    "per_class_recall": [
+      0.3400000035762787,
+      0.5899999737739563,
+      0.9900000095367432,
+      0.02500000037252903
+    ]
+  },
+  "final": {
+    "accuracy": 0.637499988079071,
+    "macro_f1": 0.6358861476182938,
+    "label_nll": 1.055395483970642,
+    "ece": 0.22760749433655292,
+    "per_class_recall": [
+      0.7900000214576721,
+      0.4000000059604645,
+      0.8100000023841858,
+      0.550000011920929
+    ]
+  },
+  "train_wall_seconds": 3.2504714401438832,
+  "peak_allocated_gpu_bytes": 4735024640,
+  "serialized_adapter_bytes": 1115203,
+  "base_agnews_ids_sha256": "5cf4955362932c653ccf219eb73fe28fefc69f5fe08b6c619e8b0343d3526d59",
+  "mixture_assignment_sha256": "2879f94f87260c8504c14e981e91b87f10b7e340af3c0c1f1e2a50d7d774de38"
+}

@@ -1,0 +1,37 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_local_final_answer_adaptation",
+  "seed": 52,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "client_index": 0,
+  "train_examples": 256,
+  "development_examples": 4,
+  "steps": 1,
+  "batch_size": 1,
+  "learning_rate": 0.001,
+  "max_length": 192,
+  "max_new_tokens": 8,
+  "mean_train_loss": 2.564767360687256,
+  "initial": {
+    "exact_match": 0.0,
+    "invalid_output_rate": 0.25,
+    "examples": 4,
+    "prediction_sha256": "4b73fad87091a9c9aaf4f86f7fd2a01e1634a37eae3c9b7d3481e0702d8d98d0"
+  },
+  "final": {
+    "exact_match": 0.0,
+    "invalid_output_rate": 0.5,
+    "examples": 4,
+    "prediction_sha256": "33306bcc9ba86926625d5f1b09a1cec536c5469290e57b06de8c99f22e4ed74b"
+  },
+  "train_wall_seconds": 0.18932553101330996,
+  "peak_allocated_gpu_bytes": 1226713600,
+  "train_source_indices_sha256": "809b890cd32dfb200c702321fe9fe5b037a8bf9659cec8016b1c35abc0eeb313",
+  "limitations": [
+    "Development-only runner; it cannot read or score the official GSM8K test split.",
+    "It supervises final answers rather than rationales and does not establish reasoning faithfulness."
+  ]
+}

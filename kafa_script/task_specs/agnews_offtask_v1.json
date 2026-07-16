@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "task_id": "agnews_offtask_v1",
+  "prompt_template": "Classify the news article into exactly one category: World, Sports, Business, or Science.\nArticle: {text}\nCategory:",
+  "verbalizers": [
+    "World",
+    "Sports",
+    "Business",
+    "Science"
+  ],
+  "conflict_permutation": [
+    1,
+    2,
+    3,
+    0
+  ],
+  "text_field": "text",
+  "label_field": "label"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "gsm8k_stage_b_development_protocol_v3",
+  "status": "frozen_before_gsm8k_router_development; supersedes_v2_for_router_runs",
+  "purpose": "Development-only test of a task-appropriate local selector; not a final or paper result.",
+  "manifest": "kafa_script/gsm8k_benchmark_manifest_v1.json",
+  "base_conditions": {"clean": {"conflict_ratio": 0.0, "off_task_ratio": 0.0}, "severe": {"conflict_ratio": 0.4, "off_task_ratio": 0.2}},
+  "router": {
+    "name": "relative_anchor_gradient_rank",
+    "anchor_source": "first 16 manifest anchor indices in stored manifest order",
+    "reference": "cosine of each selected anchor-example LoRA gradient to the mean anchor gradient",
+    "client_statistic": "25th percentile of each mixture-example cosine to the same mean anchor gradient",
+    "gate": "route iff client_q25 / max(reference_q25, 1e-12) < threshold",
+    "threshold_candidates": [0.6, 0.8, 1.0],
+    "selection_when_gated": "retain the lowest-risk 50% by mean rank of negative gradient cosine and supervised loss; no contamination kind or target label is read",
+    "clean_safety_gate": "A selected candidate must not reduce clean EM by more than 2 pp versus naive clean adaptation on all development seeds."
+  },
+  "development_seeds": [52, 53, 54],
+  "evaluation": {"split": "first 64 manifest development questions for initial diagnostic", "metric": "greedy generated normalized numeric exact match", "official_test_labels": "prohibited"},
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "selection_rule": "Choose at most one threshold after all listed development seeds and both clean/severe conditions finish. Freeze a new final protocol before touching official GSM8K test labels."
+}

@@ -1,0 +1,56 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_public_anchor_teacher_numeric_rank",
+  "seed": 63,
+  "teacher_model": ".cache/models/Qwen2.5-1.5B",
+  "teacher_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_model": ".cache/models/SmolLM2-360M",
+  "client_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "anchor_examples": 128,
+  "teacher_steps": 40,
+  "client_steps": 40,
+  "teacher_mean_train_loss": 0.785158921778202,
+  "client_mean_train_loss": 1.3062871634960174,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "selection": {
+    "keep_count": 128,
+    "numeric_eligible": 209,
+    "selected_kind_counts": {
+      "clean": 100,
+      "conflict": 24,
+      "off_task": 4
+    },
+    "selected_source_ids_sha256": "f2ff06e46a5177aa068591ac184e0a1149a2454f747f51b6ea44e8982bdf2bae",
+    "selected_teacher_loss_range": [
+      0.009184700436890125,
+      1.5833936929702759
+    ]
+  },
+  "evaluation_split": "development",
+  "evaluation_examples": 512,
+  "initial": {
+    "exact_match": 0.01953125,
+    "invalid_output_rate": 0.02734375,
+    "examples": 512,
+    "prediction_sha256": "f9ae6b7f17af98da279ef45dd353d8be666ee2dba259c06bd05e9a96f5ca23bb"
+  },
+  "final": {
+    "exact_match": 0.01953125,
+    "invalid_output_rate": 0.0,
+    "examples": 512,
+    "prediction_sha256": "9360283cc82b725be8b8dc13f4a541b486f8b96c98ad8a0294a5dec6532a9053"
+  },
+  "client_train_wall_seconds": 4.25787294912152,
+  "peak_allocated_gpu_bytes": 5985360896,
+  "limitations": [
+    "Official-test labels are loaded only when explicitly requested under a frozen final protocol.",
+    "Selection audit labels are recorded only after selection and never used to rank examples."
+  ]
+}

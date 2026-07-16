@@ -1,0 +1,61 @@
+{
+  "name": "heterogeneous_routed_final_protocol_v1",
+  "status": "frozen_before_final_seed_execution",
+  "task": "AG News controlled four-class classification",
+  "server": {
+    "model": "Qwen/Qwen2.5-1.5B",
+    "lora_rank": 4,
+    "lora_alpha": 8,
+    "server_steps_per_round": 40,
+    "server_learning_rate": 0.0001,
+    "public_anchor_supervision_weight": 1.0
+  },
+  "communication_rounds": 1,
+  "round_scope": "This protocol freezes the one-round comparison currently implemented. A separate protocol is required before any multi-round claim.",
+  "clients": [
+    "Qwen/Qwen2.5-0.5B",
+    "HuggingFaceTB/SmolLM2-360M",
+    "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+  ],
+  "client_data": {
+    "partition": "disjoint, 256 target-task source examples per client, 64 per AG News class before mixture",
+    "local_steps_per_round": 40,
+    "batch_size": 8,
+    "learning_rate": 0.001,
+    "mixtures": [
+      {"conflict_ratio": 0.0, "off_task_ratio": 0.0, "name": "clean"},
+      {"conflict_ratio": 0.4, "off_task_ratio": 0.2, "name": "severe_joint"}
+    ]
+  },
+  "public_anchors": {
+    "per_class": 32,
+    "text_and_labels_public": true,
+    "client_upload": "four canonical-label probabilities per anchor"
+  },
+  "router": {
+    "name": "relative_balanced_rank",
+    "gate": "client q25 class-conditional anchor gradient cosine divided by anchor-reference q25",
+    "gate_threshold": 0.8,
+    "keep_fraction_when_triggered": 0.5,
+    "selection": "equal quota by claimed target label using mean percentile ranks of negative gradient cosine, loss, and canonical-label inconsistency",
+    "off_task_action_when_triggered": "no target-label quota; excluded from selected target-task set"
+  },
+  "heterogeneous_server_objectives": [
+    "public_anchor_only (distillation_weight=0)",
+    "uniform_client_probability_distillation (distillation_weight=1)",
+    "anchor_accuracy_weighted_probability_distillation (temperature=0.1)",
+    "routed_uniform_client_probability_distillation (candidate method)"
+  ],
+  "development_history": {
+    "used_for_selection": [42, 43, 44],
+    "must_not_be_reused_as_final_seeds": true
+  },
+  "final_seeds": [142, 143, 144],
+  "evaluation": {
+    "development_manifest_per_class": 200,
+    "final": "official AG News test split, never used in routing or hyperparameter selection",
+    "metrics": ["accuracy", "macro_f1", "canonical_label_nll", "ECE", "per_class_recall", "communication_bytes", "wall_time", "peak_gpu_memory"],
+    "statistics": "paired seed comparisons, 95% confidence intervals, Holm correction over primary method comparisons"
+  },
+  "claim_gate": "Routed distillation must beat public-anchor-only under matched client/server steps and communication accounting, preserve the clean setting within 2 percentage points, and reproduce across all final seeds before an algorithmic claim."
+}

@@ -1,0 +1,201 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "multi_round_canonical_probability_distillation",
+  "seed": 144,
+  "rounds": 2,
+  "client_routing": "none",
+  "client_data": "disjoint target-source partition",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "server_model": ".cache/models/Qwen2.5-1.5B",
+  "server_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_models": [
+    ".cache/models/Qwen2.5-0.5B",
+    ".cache/models/SmolLM2-360M",
+    ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+  ],
+  "anchor_examples": 128,
+  "evaluation_split": "official_test",
+  "evaluation_examples": 7600,
+  "client_steps_per_round": 40,
+  "server_steps_per_round": 40,
+  "client_batch_size": 8,
+  "server_batch_size": 8,
+  "anchor_score_batch_size": 8,
+  "distillation_weight": 0.0,
+  "anchor_supervision_weight": 1.0,
+  "teacher_aggregation": "uniform",
+  "initial": {
+    "accuracy": 0.7307894825935364,
+    "macro_f1": 0.7023210003972054,
+    "label_nll": 1.0064278841018677,
+    "ece": 0.048995938876032596,
+    "per_class_recall": [
+      0.7931578755378723,
+      0.9800000190734863,
+      0.9205263257026672,
+      0.22947368025779724
+    ]
+  },
+  "round_records": [
+    {
+      "round": 1,
+      "client_records": [
+        {
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "mean_local_loss": 1.4013903975486754,
+          "selected_examples": 256,
+          "selected_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "routing": {
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "anchor_label_accuracy": 0.3046875,
+          "payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        },
+        {
+          "model": ".cache/models/SmolLM2-360M",
+          "mean_local_loss": 1.6310535818338394,
+          "selected_examples": 256,
+          "selected_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "routing": {
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "anchor_label_accuracy": 0.390625,
+          "payload_bytes": 3625,
+          "adapter_bytes": 1681855
+        },
+        {
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "mean_local_loss": 1.1677565649151802,
+          "selected_examples": 256,
+          "selected_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "routing": {
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "anchor_label_accuracy": 0.484375,
+          "payload_bytes": 3625,
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ],
+      "mean_server_objective": 0.5381103515625,
+      "client_to_server_payload_bytes": 10875,
+      "server_development": null
+    },
+    {
+      "round": 2,
+      "client_records": [
+        {
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "mean_local_loss": 0.9701578736305236,
+          "selected_examples": 256,
+          "selected_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "routing": {
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "anchor_label_accuracy": 0.484375,
+          "payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        },
+        {
+          "model": ".cache/models/SmolLM2-360M",
+          "mean_local_loss": 1.117375734448433,
+          "selected_examples": 256,
+          "selected_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "routing": {
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "anchor_label_accuracy": 0.65625,
+          "payload_bytes": 3625,
+          "adapter_bytes": 1681855
+        },
+        {
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "mean_local_loss": 0.49776087887585163,
+          "selected_examples": 256,
+          "selected_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "routing": {
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "anchor_label_accuracy": 0.484375,
+          "payload_bytes": 3625,
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ],
+      "mean_server_objective": 0.3086639404296875,
+      "client_to_server_payload_bytes": 10875,
+      "server_development": {
+        "accuracy": 0.8486841917037964,
+        "macro_f1": 0.8490274548530579,
+        "label_nll": 0.7877391576766968,
+        "ece": 0.04278338046242425,
+        "per_class_recall": [
+          0.8257894515991211,
+          0.9778947234153748,
+          0.780526340007782,
+          0.8105263113975525
+        ]
+      }
+    }
+  ],
+  "final": {
+    "accuracy": 0.8486841917037964,
+    "macro_f1": 0.8490274548530579,
+    "label_nll": 0.7877391576766968,
+    "ece": 0.04278338046242425,
+    "per_class_recall": [
+      0.8257894515991211,
+      0.9778947234153748,
+      0.780526340007782,
+      0.8105263113975525
+    ]
+  },
+  "total_client_to_server_payload_bytes": 21750,
+  "total_wall_seconds": 280.6529990551062,
+  "peak_allocated_gpu_bytes": 17262234112,
+  "limitations": [
+    "Clients retain local adapters but receive no server adapter broadcast because architectures are incompatible.",
+    "No privacy claim is made for public-anchor probability exchange.",
+    "Development runner only; final claims require frozen seeds and official test evaluation."
+  ]
+}

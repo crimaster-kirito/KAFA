@@ -1,0 +1,173 @@
+{
+  "name": "trec_server_post_primary_ablation_v1",
+  "status": "refrozen_after_selected_composition_instrumentation_repair_before_any_valid_official_ablation_record",
+  "created_utc": "2026-07-15",
+  "role": "post_primary_reused_official_test_mechanistic_ablation",
+  "confirmatory": false,
+  "purpose": "Decompose clean client utility, severe-mixture damage, and routing contribution after the primary TREC result exposed a compound comparison.",
+  "parent_primary_protocol": {
+    "path": "kafa_script/trec_server_transfer_protocol_v1.json",
+    "sha256": "ee43c7d4ee8d6ac4a3fc3caecc78e4ad3625157f223e27b37db49efe65dff099"
+  },
+  "official_test_access_history": {
+    "previously_accessed": true,
+    "scope": "The complete primary 5-by-2 TREC official matrix and its aggregate results were observed before this ablation was designed.",
+    "interpretation": "These runs reuse the same official test but use ten new jointly assigned seeds. They are not a new holdout, independent replication, preregistration, or repair of the primary inference.",
+    "reporting_rule": "Run and report the complete four-arm matrix regardless of direction. Do not extend seeds adaptively or suppress a completed arm.",
+    "failure_rule": "An infrastructure failure may be rerun only for the same seed and arm; preserve the failed temporary log and never replace a valid completed record selectively."
+  },
+  "ablation_instrumentation_history": {
+    "invalidated_runner_sha256": "9538e587b110afda1b7353ad69eb4ad8caf8602c4ea8882a5cd59218c95730ec",
+    "development_runs": "A complete 3-by-4 development matrix exposed that selected_kind_counts_audit_only copied full mixture counts even though training correctly used the selected rows. All twelve records and their logs were moved to an explicitly invalidated directory.",
+    "official_runs": "One seed-261 anchor-only job completed while the development report was being generated. The scheduler was stopped immediately; that record and log were invalidated before any four-arm official comparison or ablation aggregate existed.",
+    "repair": "Only the audit counter was changed from Counter(mixture) to Counter(selected). Scientific data construction, selection, training, payload, evaluation, seeds, contrasts, and hyperparameters were unchanged. The complete development matrix must be rerun under the new runner hash before official execution."
+  },
+  "task": {
+    "task_id": "trec_coarse_server_v1",
+    "task_spec": "kafa_script/task_specs/trec_coarse_server_v1.json",
+    "task_spec_semantic_sha256": "ae1fb2f0457b63ea7aae981848d0e57989b3924d29258138f28a3f72e5949f88",
+    "off_task_spec": "kafa_script/task_specs/imdb_sentiment_server_v1.json",
+    "off_task_spec_semantic_sha256": "908c7746c1292f08f2a9d06c9bfc4a54e3345227a267ec20ce57893ae53024b3",
+    "manifest": "kafa_script/trec_server_manifest_v1.json",
+    "manifest_file_sha256": "45286f493ee9d981a42af8b6fb3b8fb1d9b0b3e43557f85b4c927cf99aad0e1d",
+    "target_train_sha256": "9e4c8bdcaffb96ed61041bd64b564183d52793a8e91d84fc3a8646885f466ec3",
+    "target_official_test_sha256": "033f22c028c2bbba9ca682f68ffe204dc1aa6e1cf35dd6207f2d4ca67f0d0e8e",
+    "off_task_train_sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef"
+  },
+  "implementation": {
+    "ablation_runner": "kafa_script/run_trec_server_ablation.py",
+    "ablation_runner_file_sha256": "7afb6461c48bdee5d6782e77b6f4039228aeffeab39ebc9d4ffbe43c7d56b79e",
+    "frozen_primary_runner": "kafa_script/run_generic_classification_distillation.py",
+    "frozen_primary_runner_file_sha256": "be53095f467fe468d770339e1e94e11240fc6f523b8d4be1f52e6098d9650e45",
+    "classification_task_core": "kafa_script/classification_task.py",
+    "classification_task_file_sha256": "6ec3c64acfe15a1bc60e38ee55e5b062d8b39183b63957400352717eba16a7ea"
+  },
+  "model_weight_sha256": {
+    ".cache/models/Qwen2.5-1.5B/model.safetensors": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+    ".cache/models/Qwen2.5-0.5B/model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+    ".cache/models/SmolLM2-360M/model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+    ".cache/models/TinyLlama-1.1B-Chat-v1.0/model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933"
+  },
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "max_length": 128,
+    "teacher_aggregation": "uniform_arithmetic_mean",
+    "probability_transform": "softmax_negative_token_normalized_candidate_loss_without_temperature",
+    "anchor_supervision_weight": 1.0,
+    "distillation_weight": 0.25,
+    "routing_keep_fraction": 0.5,
+    "routing_gate_threshold": 0.8,
+    "contamination_assignment": "class_balanced_deterministic_apportionment",
+    "anchor_examples": 72,
+    "development_examples": 72,
+    "client_examples_each": 120,
+    "official_test_examples": 500,
+    "conflict_permutation": [1, 2, 3, 4, 5, 0]
+  },
+  "method_configuration": {
+    "public_anchor_only": {
+      "conflict_ratio": 0.4,
+      "off_task_ratio": 0.2,
+      "selection": "no_client_path"
+    },
+    "clean_unfiltered_distillation": {
+      "conflict_ratio": 0.0,
+      "off_task_ratio": 0.0,
+      "selection": "all_examples"
+    },
+    "severe_unfiltered_distillation": {
+      "conflict_ratio": 0.4,
+      "off_task_ratio": 0.2,
+      "selection": "all_examples"
+    },
+    "severe_routed_distillation": {
+      "conflict_ratio": 0.4,
+      "off_task_ratio": 0.2,
+      "selection": "relative_balanced_routing"
+    }
+  },
+  "development": {
+    "seeds": [258, 259, 260],
+    "comparators": [
+      "public_anchor_only",
+      "clean_unfiltered_distillation",
+      "severe_unfiltered_distillation",
+      "severe_routed_distillation"
+    ],
+    "role": "Implementation, mixture-identity, finite-metric, payload, and route-path validation only; no method or hyperparameter selection.",
+    "advance_rule": "Run all official arms after the complete 3-by-4 matrix passes every invariant, regardless of development direction."
+  },
+  "official_evaluation": {
+    "seeds": [261, 262, 263, 264, 265, 266, 267, 268, 269, 270],
+    "comparators": [
+      "public_anchor_only",
+      "clean_unfiltered_distillation",
+      "severe_unfiltered_distillation",
+      "severe_routed_distillation"
+    ],
+    "primary_metric": "accuracy",
+    "primary_contrasts": [
+      {
+        "name": "clean_client_utility",
+        "left": "clean_unfiltered_distillation",
+        "right": "public_anchor_only"
+      },
+      {
+        "name": "severe_contamination_effect",
+        "left": "severe_unfiltered_distillation",
+        "right": "clean_unfiltered_distillation"
+      },
+      {
+        "name": "routing_increment",
+        "left": "severe_routed_distillation",
+        "right": "severe_unfiltered_distillation"
+      }
+    ],
+    "analysis": "For each adjacent contrast report all ten seed differences, paired mean, descriptive 95% Student-t interval, and two-sided paired t p-value. Apply Holm correction jointly to exactly these three accuracy p-values at family-wise alpha 0.05. Also report an exact two-sided sign-flip sensitivity p-value, which is not the decision gate.",
+    "net_effect": "Severe routed minus anchor-only is the sum of the three adjacent point contrasts and is descriptive only; do not add a fourth primary test.",
+    "secondary_metrics": [
+      "macro_f1",
+      "canonical_label_nll",
+      "ECE",
+      "per_class_recall",
+      "selection_composition",
+      "serialized_probability_tensor_bytes",
+      "peak_allocated_gpu_bytes",
+      "scheduler_specific_wall_seconds"
+    ],
+    "secondary_policy": "Report complete values and descriptive intervals without a confirmatory secondary claim or selective p-value.",
+    "equivalence_policy": "No equivalence margin or TOST is specified; a nonsignificant contrast is inconclusive, not evidence of equality or neutrality."
+  },
+  "matrix_invariants": [
+    "All four arms must complete for every development and official seed with no extra or duplicate JSON record.",
+    "Severe unfiltered and severe routed records must have identical per-seed per-client mixture_assignment_sha256 values.",
+    "Clean, severe-unfiltered, and severe-routed arms use identical client models, base source IDs, client steps, and server update budgets.",
+    "Public-anchor-only matches server initialization, anchor data, server update budget, prompt, and seed but intentionally has no client path.",
+    "Every probability tensor is a finite 72-by-6 simplex payload and every recorded wire hash is recomputed.",
+    "Development execution must not open or hash the official-test raw file."
+  ],
+  "power_boundary": "Using the observed primary seed-scale variation only as a rough planning scale, ten seeds with a three-test family is suited to effects around two percentage points; it cannot rule out smaller effects or establish task-population equivalence.",
+  "evidence_boundaries": [
+    "This protocol was designed after the TREC official test and primary results were observed.",
+    "Results are post-primary mechanistic evidence on a reused official test, not an independent holdout or confirmation.",
+    "The controlled severe mixture does not establish robustness to naturally occurring corruption.",
+    "TREC's published data license is recorded as unknown and pretraining contamination is not ruled out.",
+    "The 500-example official test and ten seeds do not define a population of tasks or models.",
+    "No privacy, secure aggregation, deployment efficiency, or general cross-task claim is authorized.",
+    "Wall time is scheduler-specific; only severe-unfiltered versus severe-routed matches client models, data mixture, and optimizer steps."
+  ]
+}

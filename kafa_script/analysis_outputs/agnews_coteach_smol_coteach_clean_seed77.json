@@ -1,0 +1,104 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "co_teaching_lora",
+  "seed": 77,
+  "model": ".cache/models/SmolLM2-360M",
+  "model_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "conflict_ratio": 0.0,
+  "off_task_ratio": 0.0,
+  "forget_rate": 0.0,
+  "forget_rate_uses_known_contamination": true,
+  "mixture_counts": {
+    "clean": 256
+  },
+  "train_examples": 256,
+  "eval_examples": 800,
+  "steps": 40,
+  "batch_size": 8,
+  "peer_initial": [
+    {
+      "accuracy": 0.4437499940395355,
+      "macro_f1": 0.42287009209394455,
+      "label_nll": 2.0408496856689453,
+      "ece": 0.08127540088025853,
+      "per_class_recall": [
+        0.925000011920929,
+        0.3199999928474426,
+        0.20999999344348907,
+        0.3199999928474426
+      ]
+    },
+    {
+      "accuracy": 0.4437499940395355,
+      "macro_f1": 0.42287009209394455,
+      "label_nll": 2.0408496856689453,
+      "ece": 0.08127540088025853,
+      "per_class_recall": [
+        0.925000011920929,
+        0.3199999928474426,
+        0.20999999344348907,
+        0.3199999928474426
+      ]
+    }
+  ],
+  "peer_final": [
+    {
+      "accuracy": 0.8525000214576721,
+      "macro_f1": 0.850954458117485,
+      "label_nll": 0.5357992053031921,
+      "ece": 0.05081760915345512,
+      "per_class_recall": [
+        0.875,
+        0.9950000047683716,
+        0.75,
+        0.7900000214576721
+      ]
+    },
+    {
+      "accuracy": 0.8424999713897705,
+      "macro_f1": 0.8417495638132095,
+      "label_nll": 0.5469139218330383,
+      "ece": 0.04361324892670382,
+      "per_class_recall": [
+        0.8450000286102295,
+        0.9950000047683716,
+        0.7300000190734863,
+        0.800000011920929
+      ]
+    }
+  ],
+  "ensemble_final": {
+    "accuracy": 0.8487499952316284,
+    "macro_f1": 0.8476823717355728,
+    "label_nll": 0.5021827816963196,
+    "ece": 0.050637682594242506,
+    "per_class_recall": [
+      0.8600000143051147,
+      0.9950000047683716,
+      0.7400000095367432,
+      0.800000011920929
+    ]
+  },
+  "mean_peer_objective": [
+    0.82198486328125,
+    0.8357421875
+  ],
+  "exchanged_selected_kind_counts": [
+    {
+      "clean": 320
+    },
+    {
+      "clean": 320
+    }
+  ],
+  "train_wall_seconds": 34.62686831597239,
+  "peak_allocated_gpu_bytes": 4417760768,
+  "serialized_two_adapter_bytes": 3367294,
+  "mixture_assignment_sha256": "1ef75b4018248e9c2e811fab65c482e17b402071d7d077c9d3489a3a1d810d24",
+  "limitations": [
+    "Co-Teaching uses two full client backbones and an oracle forget rate equal to known contamination.",
+    "The joint condition includes off-task examples although the original method targets finite-label noise."
+  ]
+}

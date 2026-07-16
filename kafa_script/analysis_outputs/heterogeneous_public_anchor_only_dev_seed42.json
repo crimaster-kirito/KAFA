@@ -1,0 +1,64 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "public_anchor_only",
+  "scope": "one-round heterogeneous development baseline with disjoint client target data",
+  "seed": 42,
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "server_model": ".cache/models/Qwen2.5-1.5B",
+  "server_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_records": [
+    {
+      "model": ".cache/models/Qwen2.5-0.5B",
+      "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+      "mean_client_train_loss": 2.7386507987976074,
+      "anchor_probability_payload_bytes": 3625,
+      "train_examples": 256,
+      "base_target_ids_sha256": "09c8d5353b707c220ce87bea311358b40f3bce0e17c7cf66d54ea21397acee66",
+      "mixture_assignment_sha256": "be3887acb99da4c041c1a498ffbab4616675f2c7e6523fa64cdb6be149e07b88"
+    }
+  ],
+  "client_count": 1,
+  "client_data_mode": "disjoint",
+  "anchor_examples": 128,
+  "eval_examples": 800,
+  "client_steps": 1,
+  "server_steps": 40,
+  "client_learning_rate": 0.001,
+  "server_learning_rate": 0.0001,
+  "anchor_supervision_weight": 1.0,
+  "distillation_weight": 0.0,
+  "mean_server_distillation_loss": 0.544091796875,
+  "initial": {
+    "accuracy": 0.7512500286102295,
+    "macro_f1": 0.7163837999105453,
+    "label_nll": 1.026460886001587,
+    "ece": 0.07665245898533612,
+    "per_class_recall": [
+      0.8799999952316284,
+      0.9800000190734863,
+      0.9300000071525574,
+      0.2150000035762787
+    ]
+  },
+  "final": {
+    "accuracy": 0.8125,
+    "macro_f1": 0.8047874420881271,
+    "label_nll": 0.8164610862731934,
+    "ece": 0.042803492018720135,
+    "per_class_recall": [
+      0.9150000214576721,
+      0.9900000095367432,
+      0.8500000238418579,
+      0.4950000047683716
+    ]
+  },
+  "measured_client_to_server_payload_bytes": 3625,
+  "total_wall_seconds": 68.82481263391674,
+  "peak_allocated_gpu_bytes": 17261661184,
+  "limitations": [
+    "One communication round only; this is not a convergence study.",
+    "Anchor texts are public; hard anchor labels are used only when anchor_supervision_weight is positive.",
+    "This measures compatibility, not privacy, convergence, or a final federated result."
+  ]
+}

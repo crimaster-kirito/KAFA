@@ -1,0 +1,53 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_relative_anchor_gradient_rank",
+  "seed": 54,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "client_index": 0,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "routing": {
+    "gate_triggered": true,
+    "gate_ratio": 0.349837783585548,
+    "client_q25": 0.29160863161087036,
+    "reference_q25": 0.8335538506507874,
+    "selected": 128,
+    "selected_kind_counts": {
+      "clean": 70,
+      "conflict": 33,
+      "off_task": 25
+    },
+    "record_order_sha256": "cb6778d5e7c4b2a16c233f45246723708adcdebf8429534bc7752d094137e0a4"
+  },
+  "router_anchor_size": 16,
+  "routing_threshold": 0.8,
+  "routing_keep_fraction": 0.5,
+  "development_examples": 64,
+  "steps": 40,
+  "initial": {
+    "exact_match": 0.0,
+    "invalid_output_rate": 0.421875,
+    "examples": 64,
+    "prediction_sha256": "afcc63d43365231bd0303241f38d2e795c4327d82a912b115f1e2de8daf08d22"
+  },
+  "final": {
+    "exact_match": 0.046875,
+    "invalid_output_rate": 0.0,
+    "examples": 64,
+    "prediction_sha256": "2d63b3d01b9e0b237622cb40fe24b889514772d55a99993b671b36f8b3e7017c"
+  },
+  "mean_train_loss": 0.828936767205596,
+  "train_wall_seconds": 2.9480639309622347,
+  "peak_allocated_gpu_bytes": 4154297856,
+  "limitations": [
+    "Development-only; official GSM8K test is not loaded.",
+    "Selection is a candidate diagnostic and uses no contamination kind."
+  ]
+}

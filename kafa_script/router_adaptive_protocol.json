@@ -1,0 +1,32 @@
+{
+  "protocol_version": "1.0",
+  "frozen_before_holdout_evaluation": true,
+  "development_seeds": [42, 43, 44, 45, 46],
+  "holdout_seeds": [100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119],
+  "estimated_conflict_statistic": "fraction of per-sample mean anchor cosine utilities below zero",
+  "benign_threshold": 0.30,
+  "severe_threshold": 0.50,
+  "regimes": {
+    "benign": "unweighted client mean gradient",
+    "moderate": "micro-batch-anchor soft LCB routing without conflict gate",
+    "severe": "micro-batch-anchor LCB routing with conflict gate"
+  },
+  "router": {
+    "temperature": 0.12,
+    "margin": 0.0,
+    "uncertainty_beta": 0.5,
+    "min_weight": 0.01,
+    "anchor_groups": 8
+  },
+  "evaluation": {
+    "conflict_ratios": [0.0, 0.2, 0.4, 0.6],
+    "off_task_ratios": [0.0, 0.2],
+    "primary_baseline": "hard_filter",
+    "primary_metric": "test_accuracy",
+    "benign_noninferiority_margin_pp": 2.0,
+    "severe_superiority_required": true,
+    "paired_test": "two-sided paired t-test",
+    "alpha": 0.05
+  },
+  "decision_rule": "Continue to LLM smoke experiments only if adaptive routing is no worse than FedAvg by more than 2 pp in the zero-conflict/zero-off-task setting and significantly outperforms hard filtering in at least one setting with total corruption >= 0.6."
+}

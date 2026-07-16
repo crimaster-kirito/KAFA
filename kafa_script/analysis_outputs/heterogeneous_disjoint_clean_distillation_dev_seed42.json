@@ -1,0 +1,82 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "canonical_probability_distillation",
+  "scope": "one-round heterogeneous development baseline with disjoint client target data",
+  "seed": 42,
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "server_model": ".cache/models/Qwen2.5-1.5B",
+  "server_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_records": [
+    {
+      "model": ".cache/models/Qwen2.5-0.5B",
+      "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+      "mean_client_train_loss": 0.6470030269585549,
+      "anchor_probability_payload_bytes": 3625,
+      "train_examples": 256,
+      "base_target_ids_sha256": "09c8d5353b707c220ce87bea311358b40f3bce0e17c7cf66d54ea21397acee66",
+      "mixture_assignment_sha256": "de569144859a20e1aefa93e8b0604983e11a9b2924d72adecb20764d2fc54e45"
+    },
+    {
+      "model": ".cache/models/SmolLM2-360M",
+      "model_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+      "mean_client_train_loss": 1.018316925317049,
+      "anchor_probability_payload_bytes": 3625,
+      "train_examples": 256,
+      "base_target_ids_sha256": "008a0059f9f717c7a8fa52988d0bb7deced3e68f2c76dcc444e2f8e6d6c35b09",
+      "mixture_assignment_sha256": "ffaef7318b5b9b6c800295368b1041fcd6ab4f09ccb6977c340c8acfa72e82b7"
+    },
+    {
+      "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+      "model_weight_sha256": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+      "mean_client_train_loss": 0.7973093756474554,
+      "anchor_probability_payload_bytes": 3625,
+      "train_examples": 256,
+      "base_target_ids_sha256": "513aac876f9484e9660ad26827884d924a1ff6e19a57d293867d8b74b9b99ade",
+      "mixture_assignment_sha256": "200c73676adebfdae221f300dd36087391f96d890bc7a356604e7b18606e471d"
+    }
+  ],
+  "client_count": 3,
+  "client_data_mode": "disjoint",
+  "anchor_examples": 128,
+  "eval_examples": 800,
+  "client_steps": 40,
+  "server_steps": 40,
+  "client_learning_rate": 0.001,
+  "server_learning_rate": 0.0001,
+  "anchor_supervision_weight": 1.0,
+  "distillation_weight": 1.0,
+  "mean_server_distillation_loss": 1.3959858193993568,
+  "initial": {
+    "accuracy": 0.7512500286102295,
+    "macro_f1": 0.7163837999105453,
+    "label_nll": 1.026460886001587,
+    "ece": 0.07665245898533612,
+    "per_class_recall": [
+      0.8799999952316284,
+      0.9800000190734863,
+      0.9300000071525574,
+      0.2150000035762787
+    ]
+  },
+  "final": {
+    "accuracy": 0.8037499785423279,
+    "macro_f1": 0.7984675318002701,
+    "label_nll": 0.7683640122413635,
+    "ece": 0.01956136425724253,
+    "per_class_recall": [
+      0.8949999809265137,
+      0.9900000095367432,
+      0.8050000071525574,
+      0.5249999761581421
+    ]
+  },
+  "measured_client_to_server_payload_bytes": 10875,
+  "total_wall_seconds": 93.92099545407109,
+  "peak_allocated_gpu_bytes": 17261661184,
+  "limitations": [
+    "One communication round only; this is not a convergence study.",
+    "Anchor texts are public; hard anchor labels are used only when anchor_supervision_weight is positive.",
+    "This measures compatibility, not privacy, convergence, or a final federated result."
+  ]
+}

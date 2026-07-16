@@ -1,0 +1,72 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "study": "within_client_real_mixture_mechanism",
+  "method": "local_lora_adaptive_balanced_relative_rank",
+  "seed": 42,
+  "model": ".cache/models/SmolLM2-360M",
+  "model_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "requested_conflict_ratio": 0.4,
+  "requested_off_task_ratio": 0.2,
+  "realized_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "train_examples": 256,
+  "selected_train_examples": 128,
+  "selected_realized_counts": {
+    "clean": 92,
+    "conflict": 36
+  },
+  "selection_metadata": {
+    "uses_hidden_mixture_labels": false,
+    "keep_fraction": 0.5,
+    "kept": 128,
+    "gate_quantile": 0.25,
+    "gate_statistic": 0.4555789663294242,
+    "raw_gate_statistic": 0.26863744854927063,
+    "gate_name": "client_q25_over_anchor_reference_q25",
+    "gate_threshold": 0.8,
+    "gate_triggered": true,
+    "class_balanced": true,
+    "diagnostics_path": "kafa_script/analysis_outputs/agnews_dev/anchor_diagnostics/v2_smollm360m_c40_o20_seed42.json",
+    "diagnostics_record_order_sha256": "da5a3df88df837f6b7b97477a7f9d15d7d5bf33c289c70f585839b3ff77ba5d8",
+    "score": "mean within-client percentile rank of negative anchor cosine, loss, and semantic inconsistency"
+  },
+  "eval_examples": 800,
+  "steps": 40,
+  "batch_size": 8,
+  "learning_rate": 0.001,
+  "last_batch_train_loss": 0.7392678260803223,
+  "initial": {
+    "accuracy": 0.4437499940395355,
+    "macro_f1": 0.42287009209394455,
+    "label_nll": 2.0408496856689453,
+    "ece": 0.08127540088025853,
+    "per_class_recall": [
+      0.925000011920929,
+      0.3199999928474426,
+      0.20999999344348907,
+      0.3199999928474426
+    ]
+  },
+  "final": {
+    "accuracy": 0.7737500071525574,
+    "macro_f1": 0.769358441233635,
+    "label_nll": 0.7880499362945557,
+    "ece": 0.17533431167248636,
+    "per_class_recall": [
+      0.7950000166893005,
+      0.9900000095367432,
+      0.6399999856948853,
+      0.6700000166893005
+    ]
+  },
+  "train_wall_seconds": 5.7658044409472495,
+  "peak_allocated_gpu_bytes": 2659626496,
+  "serialized_adapter_bytes": 1683647,
+  "base_agnews_ids_sha256": "5cf4955362932c653ccf219eb73fe28fefc69f5fe08b6c619e8b0343d3526d59",
+  "mixture_assignment_sha256": "2879f94f87260c8504c14e981e91b87f10b7e340af3c0c1f1e2a50d7d774de38"
+}

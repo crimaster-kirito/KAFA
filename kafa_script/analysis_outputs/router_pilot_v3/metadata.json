@@ -1,0 +1,28 @@
+{
+  "status": "real synthetic-data mechanism pilot",
+  "paper_result": false,
+  "configuration": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "conflict_ratios": [
+      0.0,
+      0.2,
+      0.4,
+      0.6
+    ],
+    "off_task_ratio": 0.2,
+    "clients": 8,
+    "samples_per_client": 128,
+    "dimension": 24,
+    "rounds": 40,
+    "lr": 0.4,
+    "anchor_groups": 8,
+    "output_dir": "kafa_script/analysis_outputs/router_pilot_v3"
+  },
+  "n_runs": 80
+}

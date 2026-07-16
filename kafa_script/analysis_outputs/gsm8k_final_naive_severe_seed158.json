@@ -1,0 +1,45 @@
+{
+  "evidence_label": "benchmark_holdout",
+  "paper_result": false,
+  "method": "gsm8k_local_naive_mixture",
+  "seed": 158,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "client_index": 0,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "conflict_ratio": 0.4,
+  "off_task_ratio": 0.2,
+  "evaluation_split": "official_test",
+  "evaluation_examples": 1319,
+  "steps": 40,
+  "batch_size": 4,
+  "learning_rate": 0.001,
+  "max_length": 256,
+  "max_new_tokens": 16,
+  "mean_train_loss": 1.3003998860716819,
+  "initial": {
+    "exact_match": 0.01288855193328279,
+    "invalid_output_rate": 0.45564821834723274,
+    "examples": 1319,
+    "prediction_sha256": "7ebee3b65e11f3f0ea06601aae56139779d12fb99f606ee79187732005c1ba82"
+  },
+  "final": {
+    "exact_match": 0.05534495830174375,
+    "invalid_output_rate": 0.0,
+    "examples": 1319,
+    "prediction_sha256": "d8d52766d3de09e1263c91c4671cebfad76bbeda5d6e5c884ba074dfa98e1e63"
+  },
+  "train_wall_seconds": 7.77745082299225,
+  "peak_allocated_gpu_bytes": 4159540736,
+  "mixture_source_ids_sha256": "835f000239bdeb81982a35205dce50a0a984edb0f0a3428cc4230b76a3f1668b",
+  "limitations": [
+    "Official-test labels are loaded only when explicitly requested under a frozen final protocol.",
+    "No routing is applied in this naive mixture baseline."
+  ]
+}

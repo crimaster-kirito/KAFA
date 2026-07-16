@@ -1,0 +1,45 @@
+{
+  "name": "gsm8k_cross_family_development_protocol_v1",
+  "status": "frozen_before_cross_family_development_runs",
+  "question": "Does the public-anchor Qwen2.5-1.5B teacher endpoint improve contaminated local adaptation for non-Qwen decoder-only clients?",
+  "manifest": "gsm8k_benchmark_manifest_v1.json",
+  "models": {
+    "teacher": "Qwen/Qwen2.5-1.5B",
+    "clients": [
+      {
+        "name": "HuggingFaceTB/SmolLM2-360M",
+        "family": "SmolLM2",
+        "weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f"
+      },
+      {
+        "name": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+        "family": "Llama",
+        "weight_sha256": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933"
+      }
+    ]
+  },
+  "conditions": {
+    "clean": {"conflict_ratio": 0.0, "off_task_ratio": 0.0},
+    "severe": {"conflict_ratio": 0.4, "off_task_ratio": 0.2}
+  },
+  "fixed_hyperparameters": {
+    "anchor_size": 128,
+    "teacher_steps": 40,
+    "client_steps": 40,
+    "batch_size": 4,
+    "learning_rate": 0.001,
+    "keep_count": 128,
+    "max_length": 256,
+    "max_new_tokens": 16
+  },
+  "development_seeds": [61, 62, 63],
+  "evaluation": {
+    "split": "all 512 frozen development questions",
+    "metric": "normalized greedy numeric exact match",
+    "official_test_labels": "prohibited"
+  },
+  "primary_contrast": "teacher severe minus naive severe, paired within client family and seed",
+  "decision_rule": "A client family advances only if every clean paired difference is at least -2 pp and the severe mean paired difference is positive. A general cross-family claim additionally requires both client families to advance; confidence intervals remain descriptive with three seeds.",
+  "evidence_label": "benchmark_dev",
+  "paper_result": false
+}

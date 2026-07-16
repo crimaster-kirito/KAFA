@@ -1,0 +1,63 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "dataset": "COMPRISE_Data09_H-VOA-Topics_V1.0",
+  "dataset_doi": "10.5281/zenodo.5997635",
+  "method": "coteach",
+  "seed": 81,
+  "model": ".cache/models/SmolLM2-360M",
+  "model_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+  "training_file_sha256": "6b9cedf948bc6ea1612f0a11ae52db128892152b9d2cd882fd4e4a25b2d9cb25",
+  "clean_training_file_sha256": "662bf8849d34f4163032afede21c2f2d103a956a6d6d6925b7a8b2577f8e5c62",
+  "evaluation_file_sha256": "ca5629d297dec8c6f7878180ba2aa0a5852bafb57acc6b3ea4dc43cf600446e7",
+  "evaluation_split": "dev",
+  "labels": [
+    "africa",
+    "health",
+    "nigeria",
+    "politics",
+    "world"
+  ],
+  "train_examples": 2045,
+  "eval_examples": 290,
+  "measured_training_noise_rate": 0.5036674816625917,
+  "forget_rate": 0.5036674816625917,
+  "forget_rate_uses_clean_training_labels": true,
+  "steps": 256,
+  "batch_size": 8,
+  "learning_rate": 0.001,
+  "final": {
+    "accuracy": 0.27931034564971924,
+    "macro_f1": 0.0934018425643444,
+    "label_nll": 4.699410915374756,
+    "per_class_recall": [
+      0.0,
+      0.0,
+      0.01587301678955555,
+      0.0,
+      1.0
+    ]
+  },
+  "selected_kind_counts": [
+    {
+      "clean_label_match": 470,
+      "noisy_label_conflict": 552
+    },
+    {
+      "clean_label_match": 473,
+      "noisy_label_conflict": 549
+    }
+  ],
+  "mean_objective": [
+    0.44194626808166504,
+    0.4441690444946289
+  ],
+  "train_wall_seconds": 85.97225153096952,
+  "peak_allocated_gpu_bytes": 3334515712,
+  "serialized_adapter_bytes": 3367294,
+  "limitations": [
+    "Co-Teaching receives the measured natural-noise fraction as oracle information.",
+    "Clean training labels are used only to audit selections, never in optimization.",
+    "The causal label interface is not a reproduction of Delora's GPT-4o-assisted pipeline."
+  ]
+}

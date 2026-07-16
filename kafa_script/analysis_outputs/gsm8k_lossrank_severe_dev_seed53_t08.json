@@ -1,0 +1,94 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_relative_anchor_gradient_rank",
+  "seed": 53,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "client_index": 0,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "routing": {
+    "gate_triggered": true,
+    "gate_ratio": 0.2035187314705645,
+    "client_q25": 0.16928942501544952,
+    "reference_q25": 0.8318125009536743,
+    "selected": 128,
+    "numeric_interface_only": true,
+    "risk_mode": "loss_only",
+    "eligible_before_rank": 211,
+    "selected_kind_counts": {
+      "clean": 77,
+      "conflict": 45,
+      "off_task": 6
+    },
+    "record_order_sha256": "a577332b4b7f495a37b4a6f8197ee901819f4f4f489ce4f34f83ee0898b94994",
+    "audit_not_used_for_selection": {
+      "conflict": {
+        "positive_kinds": [
+          "conflict"
+        ],
+        "positives": 102,
+        "negatives": 154,
+        "anchor_cosine_auroc": 0.4894957983193277,
+        "anchor_cosine_auprc": 0.4386958067448525,
+        "loss_auroc": 0.7997198879551821,
+        "loss_auprc": 0.6488141102864183
+      },
+      "off_task": {
+        "positive_kinds": [
+          "off_task"
+        ],
+        "positives": 51,
+        "negatives": 205,
+        "anchor_cosine_auroc": 0.9159253945480631,
+        "anchor_cosine_auprc": 0.5441904034850107,
+        "loss_auroc": 0.08627450980392157,
+        "loss_auprc": 0.15352699784657226
+      },
+      "harmful": {
+        "positive_kinds": [
+          "conflict",
+          "off_task"
+        ],
+        "positives": 153,
+        "negatives": 103,
+        "anchor_cosine_auroc": 0.7654673519893395,
+        "anchor_cosine_auprc": 0.8407239195083376,
+        "loss_auroc": 0.5242718446601942,
+        "loss_auprc": 0.6812640336180227
+      }
+    }
+  },
+  "router_anchor_size": 16,
+  "routing_threshold": 0.8,
+  "routing_keep_fraction": 0.5,
+  "numeric_interface_only": true,
+  "risk_mode": "loss_only",
+  "development_examples": 64,
+  "steps": 40,
+  "initial": {
+    "exact_match": 0.0,
+    "invalid_output_rate": 0.421875,
+    "examples": 64,
+    "prediction_sha256": "afcc63d43365231bd0303241f38d2e795c4327d82a912b115f1e2de8daf08d22"
+  },
+  "final": {
+    "exact_match": 0.0625,
+    "invalid_output_rate": 0.0,
+    "examples": 64,
+    "prediction_sha256": "357c44e2b85497d22851555808b645fcf5754b9f8279fe4d7e10b19dc7b8f905"
+  },
+  "mean_train_loss": 1.1340003475546836,
+  "train_wall_seconds": 3.0450188950635493,
+  "peak_allocated_gpu_bytes": 4156132864,
+  "limitations": [
+    "Development-only; official GSM8K test is not loaded.",
+    "Selection is a candidate diagnostic and uses no contamination kind."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "adaptive_balanced_relative_rank_v2",
+  "status": "development_protocol_selected_on_three_model_seed42_diagnostics",
+  "change_from_v1": "Replace the architecture-dependent raw q25 anchor-cosine gate with client-q25 divided by the same model's clean anchor-reference q25.",
+  "safety_gate": {
+    "client_quantile": 0.25,
+    "reference": "class-conditional scores of frozen clean anchor examples against their class anchor direction",
+    "trigger_if_client_q25_over_reference_q25_below": 0.8,
+    "non_trigger_action": "train all local examples"
+  },
+  "triggered_routing": {
+    "score": "mean rank of negative anchor cosine, loss, and semantic inconsistency",
+    "keep_fraction": 0.5,
+    "class_balanced_by_claimed_target_label": true,
+    "off_task_schema_handling": "no target-label quota when routing triggers"
+  },
+  "fixed_training": {
+    "train_examples_before_routing": 256,
+    "steps": 40,
+    "batch_size": 8,
+    "rank": 4,
+    "learning_rate": 0.001
+  },
+  "evaluation_status": "development only; must be frozen before unseen seeds and test split"
+}

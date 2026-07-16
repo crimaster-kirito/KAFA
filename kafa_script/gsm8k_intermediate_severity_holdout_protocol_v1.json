@@ -1,0 +1,41 @@
+{
+  "name": "gsm8k_intermediate_severity_holdout_protocol_v1",
+  "status": "frozen_before_secondary_holdout_runs",
+  "scope": "secondary confirmatory analysis; official GSM8K test is not accessed",
+  "evaluation_manifest": "gsm8k_secondary_holdout_manifest_v1.json",
+  "evaluation_manifest_sha256": "60e1c2ce19c6247546563fe0e8109c53bccfe425fdf66348483da35039c210d0",
+  "parent_manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "models": {
+    "teacher": "Qwen/Qwen2.5-1.5B",
+    "clients": ["Qwen/Qwen2.5-0.5B", "HuggingFaceTB/SmolLM2-360M", "TinyLlama/TinyLlama-1.1B-Chat-v1.0"]
+  },
+  "methods": ["naive all-example adaptation", "public-anchor teacher numeric rank"],
+  "severity_levels": [
+    {"name": "clean", "conflict_ratio": 0.0, "off_task_ratio": 0.0},
+    {"name": "medium", "conflict_ratio": 0.2, "off_task_ratio": 0.1},
+    {"name": "severe", "conflict_ratio": 0.4, "off_task_ratio": 0.2}
+  ],
+  "holdout_seeds": [72, 73, 74],
+  "fixed_hyperparameters": {
+    "anchor_size": 128,
+    "teacher_steps": 40,
+    "client_steps": 40,
+    "batch_size": 4,
+    "eval_batch_size": 16,
+    "skip_initial_eval": true,
+    "learning_rate": 0.001,
+    "keep_count": 128,
+    "max_length": 256,
+    "max_new_tokens": 16
+  },
+  "evaluation": {
+    "examples": 1024,
+    "metric": "normalized greedy numeric exact match",
+    "official_test_access": "prohibited",
+    "overlap_with_anchor_development_client_pools": 0
+  },
+  "primary_summary": "paired teacher-minus-naive EM by family and severity; report all nine contrasts with Holm adjustment and descriptive intervals",
+  "curve_summary": "report mean EM and mean paired gain at clean, medium, and severe levels; no threshold or model selection uses this holdout",
+  "claim_gate": "No new algorithm claim. A robustness-curve statement requires clean safety (all clean differences >= -2 pp) and nonnegative mean teacher gain at both medium and severe for every family.",
+  "paper_result": false
+}

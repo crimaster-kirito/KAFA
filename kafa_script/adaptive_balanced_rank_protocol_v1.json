@@ -1,0 +1,41 @@
+{
+  "name": "adaptive_balanced_rank_v1",
+  "status": "frozen_after_development_seed_42",
+  "purpose": "Independent development replication only; no parameter retuning on seeds 43 or 44.",
+  "scoring": {
+    "anchor_cosine": "class-conditional LoRA-gradient cosine; harmful direction is negative cosine",
+    "loss": "per-example causal answer loss; harmful direction is higher loss",
+    "semantic_margin": "claimed canonical-label loss minus best canonical-label loss; harmful direction is higher margin",
+    "ensemble": "unweighted mean of within-client percentile ranks of the three harmful directions"
+  },
+  "safety_gate": {
+    "raw_anchor_cosine_quantile": 0.25,
+    "trigger_if_below": 0.7,
+    "non_trigger_action": "train all local examples"
+  },
+  "triggered_routing": {
+    "keep_fraction": 0.5,
+    "selection": "lowest ensemble scores within each claimed target label",
+    "quota_per_claimed_label": "round(total_examples * keep_fraction / 4)",
+    "off_task_handling": "off-task instruction schema has no target label and is excluded when target-label quota routing triggers"
+  },
+  "fixed_training": {
+    "train_examples_before_routing": 256,
+    "steps": 40,
+    "batch_size": 8,
+    "lora_rank": 4,
+    "lora_alpha": 8,
+    "learning_rate": 0.001,
+    "evaluation_examples": 800
+  },
+  "required_comparators": [
+    "naive_local_lora",
+    "adaptive_balanced_rank_v1",
+    "oracle_clean_only_reference"
+  ],
+  "predeclared_gates": {
+    "clean_degradation_max_pp": 2.0,
+    "report_per_seed": true,
+    "do_not_claim_significance_before_three_seeds": true
+  }
+}

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/root/projects/KAFA/kafa_script/run_trec_server_ablation.py", line 376, in <module>
+    main()
+  File "/root/projects/KAFA/kafa_script/run_trec_server_ablation.py", line 290, in main
+    final = core.evaluate(
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/root/projects/KAFA/kafa_script/run_generic_classification_distillation.py", line 296, in evaluate
+    matrix = candidate_loss_matrix(model, tokenizer, rows, spec, device,
+  File "/root/projects/KAFA/kafa_script/run_generic_classification_distillation.py", line 285, in candidate_loss_matrix
+    token_losses = F.cross_entropy(logits.transpose(1, 2), targets,
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/functional.py", line 3504, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.28 GiB. GPU 0 has a total capacity of 47.37 GiB of which 727.56 MiB is free. Including non-PyTorch memory, this process has 8.39 GiB memory in use. Process 881453 has 38.25 GiB memory in use. Of the allocated memory 7.52 GiB is allocated by PyTorch, and 419.51 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

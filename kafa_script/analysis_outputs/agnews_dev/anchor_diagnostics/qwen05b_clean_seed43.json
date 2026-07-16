@@ -1,0 +1,4433 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "study": "anchor_gradient_separation_diagnostic",
+  "seed": 43,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "conflict_ratio": 0.0,
+  "off_task_ratio": 0.0,
+  "anchor_per_class": 32,
+  "sample_count": 256,
+  "scoring_seconds": 66.34505177405663,
+  "by_kind": {
+    "clean": {
+      "count": 256,
+      "mean_loss": 1.47128984273877,
+      "mean_anchor_cosine": 0.8610967372951563
+    },
+    "conflict": {
+      "count": 0,
+      "mean_loss": null,
+      "mean_anchor_cosine": null
+    },
+    "off_task": {
+      "count": 0,
+      "mean_loss": null,
+      "mean_anchor_cosine": null
+    }
+  },
+  "harmful_vs_clean": {
+    "positive_kinds": [
+      "conflict",
+      "off_task"
+    ],
+    "positives": 0,
+    "negatives": 256,
+    "anchor_cosine_auroc": null,
+    "anchor_cosine_auprc": null,
+    "loss_auroc": null,
+    "loss_auprc": null
+  },
+  "conflict_vs_clean_excluding_off_task": {
+    "positive_kinds": [
+      "conflict"
+    ],
+    "positives": 0,
+    "negatives": 256,
+    "anchor_cosine_auroc": null,
+    "anchor_cosine_auprc": null,
+    "loss_auroc": null,
+    "loss_auprc": null
+  },
+  "semantic_conflict_vs_clean": {
+    "positive_kinds": [
+      "conflict"
+    ],
+    "positives": 0,
+    "negatives": 256,
+    "semantic_margin_auroc": null,
+    "semantic_margin_auprc": null
+  },
+  "rank_ensemble_conflict_vs_clean": {
+    "positive_kinds": [
+      "conflict"
+    ],
+    "positives": 0,
+    "negatives": 256,
+    "rank_ensemble_auroc": null,
+    "rank_ensemble_auprc": null
+  },
+  "record_order_sha256": "f477a43e484acb155351274785f1054c190eef3a4920eebdf234300c3fb3022b",
+  "records": [
+    {
+      "kind": "clean",
+      "source_id": "0c162b0e744d226bdc33d2ec50b4b0ca5ec96a165df50f5024540584061851cd",
+      "claimed_label": 0,
+      "loss": 1.0562288761138916,
+      "anchor_cosine": 0.9099788665771484,
+      "all_applicable_cosines": [
+        0.9099788665771484
+      ],
+      "semantic_candidate_losses": [
+        1.109375,
+        2.859375,
+        0.85546875,
+        3.359375
+      ],
+      "semantic_inconsistency_margin": 0.25390625
+    },
+    {
+      "kind": "clean",
+      "source_id": "078423a140dbcd3a43fdfdb53e28e86eda7aac43367606409c1dad4d0b60bb8a",
+      "claimed_label": 0,
+      "loss": 1.3028225898742676,
+      "anchor_cosine": 0.8920407295227051,
+      "all_applicable_cosines": [
+        0.8920407295227051
+      ],
+      "semantic_candidate_losses": [
+        1.2109375,
+        2.96875,
+        0.83984375,
+        2.96875
+      ],
+      "semantic_inconsistency_margin": 0.37109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "b8299a660fa6bb08400f1b2ea847001605ba32e0c39e9a26806a474b997d0e6b",
+      "claimed_label": 0,
+      "loss": 1.7266271114349365,
+      "anchor_cosine": 0.7976202964782715,
+      "all_applicable_cosines": [
+        0.7976202964782715
+      ],
+      "semantic_candidate_losses": [
+        1.8203125,
+        0.9453125,
+        1.0703125,
+        4.8125
+      ],
+      "semantic_inconsistency_margin": 0.875
+    },
+    {
+      "kind": "clean",
+      "source_id": "e607f1885d2c20f050ea03293d864f344c838ac20663ef8e1e999e81433364e3",
+      "claimed_label": 0,
+      "loss": 1.7120566368103027,
+      "anchor_cosine": 0.8096724152565002,
+      "all_applicable_cosines": [
+        0.8096724152565002
+      ],
+      "semantic_candidate_losses": [
+        1.703125,
+        3.453125,
+        0.45703125,
+        3.328125
+      ],
+      "semantic_inconsistency_margin": 1.24609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "fe85c1b3a056871adc19cd54be7624b0a8e7ea89a0747792a901a08ffa195a14",
+      "claimed_label": 0,
+      "loss": 1.407545804977417,
+      "anchor_cosine": 0.8910600543022156,
+      "all_applicable_cosines": [
+        0.8910600543022156
+      ],
+      "semantic_candidate_losses": [
+        1.40625,
+        4.09375,
+        0.65625,
+        2.78125
+      ],
+      "semantic_inconsistency_margin": 0.75
+    },
+    {
+      "kind": "clean",
+      "source_id": "1980239d41ef396c42794c57a2c73934e6ce1c1e39efe38d307b4a1922877d89",
+      "claimed_label": 0,
+      "loss": 1.2126646041870117,
+      "anchor_cosine": 0.866835355758667,
+      "all_applicable_cosines": [
+        0.866835355758667
+      ],
+      "semantic_candidate_losses": [
+        1.140625,
+        2.765625,
+        1.015625,
+        4.125
+      ],
+      "semantic_inconsistency_margin": 0.125
+    },
+    {
+      "kind": "clean",
+      "source_id": "f2ff68f4951cd6225dfe6a44445dc9fe66958e9e400bb11f2440781bf013cf53",
+      "claimed_label": 0,
+      "loss": 1.232331395149231,
+      "anchor_cosine": 0.8895294666290283,
+      "all_applicable_cosines": [
+        0.8895294666290283
+      ],
+      "semantic_candidate_losses": [
+        1.2109375,
+        1.8359375,
+        1.0859375,
+        3.59375
+      ],
+      "semantic_inconsistency_margin": 0.125
+    },
+    {
+      "kind": "clean",
+      "source_id": "87e60d7e1e46dc5feec63fe9eb697bbd95f697fc45c7f1924cd586f541db733d",
+      "claimed_label": 0,
+      "loss": 0.8890449404716492,
+      "anchor_cosine": 0.8560014963150024,
+      "all_applicable_cosines": [
+        0.8560014963150024
+      ],
+      "semantic_candidate_losses": [
+        0.88671875,
+        2.890625,
+        1.015625,
+        3.890625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "47e8d51d232a95d86a2d872d33bfa9469d0ce94a2118cf27fe06a32fdb9f2806",
+      "claimed_label": 0,
+      "loss": 0.9189547896385193,
+      "anchor_cosine": 0.8978185057640076,
+      "all_applicable_cosines": [
+        0.8978185057640076
+      ],
+      "semantic_candidate_losses": [
+        0.91015625,
+        2.90625,
+        0.91015625,
+        3.90625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "757b2ffd38f1e7f0fc551f496e9269fd3037b9bd30763524dbc7b3c89435f19d",
+      "claimed_label": 0,
+      "loss": 1.5861048698425293,
+      "anchor_cosine": 0.9125075936317444,
+      "all_applicable_cosines": [
+        0.9125075936317444
+      ],
+      "semantic_candidate_losses": [
+        1.53125,
+        2.78125,
+        0.66015625,
+        4.15625
+      ],
+      "semantic_inconsistency_margin": 0.87109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "fd98ad28f3e2749c61c7359fe3c96e106748f8bea2831c32f8acc67763cae552",
+      "claimed_label": 0,
+      "loss": 1.0389761924743652,
+      "anchor_cosine": 0.9269174337387085,
+      "all_applicable_cosines": [
+        0.9269174337387085
+      ],
+      "semantic_candidate_losses": [
+        1.0703125,
+        3.078125,
+        0.9453125,
+        2.828125
+      ],
+      "semantic_inconsistency_margin": 0.125
+    },
+    {
+      "kind": "clean",
+      "source_id": "c254e7631878459a0e83a8aa827beea461505510c0744bf1c3daac1d7b315ef1",
+      "claimed_label": 0,
+      "loss": 1.763647198677063,
+      "anchor_cosine": 0.9219263195991516,
+      "all_applicable_cosines": [
+        0.9219263195991516
+      ],
+      "semantic_candidate_losses": [
+        1.6640625,
+        3.171875,
+        0.54296875,
+        3.546875
+      ],
+      "semantic_inconsistency_margin": 1.12109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "53f41c6c9bdbc9916825bbc7c4204b0edc888a0385a86b08bfc15f51c9335c9b",
+      "claimed_label": 0,
+      "loss": 1.312685251235962,
+      "anchor_cosine": 0.8915096521377563,
+      "all_applicable_cosines": [
+        0.8915096521377563
+      ],
+      "semantic_candidate_losses": [
+        1.2734375,
+        2.265625,
+        1.0234375,
+        3.265625
+      ],
+      "semantic_inconsistency_margin": 0.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "7e547f66bea829ad8041680fb6047fd46478cba87d79ecab7965bffe32c92bcb",
+      "claimed_label": 0,
+      "loss": 2.2808539867401123,
+      "anchor_cosine": 0.8539686799049377,
+      "all_applicable_cosines": [
+        0.8539686799049377
+      ],
+      "semantic_candidate_losses": [
+        2.390625,
+        3.015625,
+        0.271484375,
+        4.03125
+      ],
+      "semantic_inconsistency_margin": 2.119140625
+    },
+    {
+      "kind": "clean",
+      "source_id": "4a550e13ae7f6cdc891486aed480d25430ee481a9af9a6c3bea9df0565fe7835",
+      "claimed_label": 0,
+      "loss": 0.9132559299468994,
+      "anchor_cosine": 0.9220790863037109,
+      "all_applicable_cosines": [
+        0.9220790863037109
+      ],
+      "semantic_candidate_losses": [
+        0.90234375,
+        2.03125,
+        1.28125,
+        4.15625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "685ee38b3c470ebf9824ff4e3d89c03e49639c1216bb32355db1b95a04ceb29a",
+      "claimed_label": 0,
+      "loss": 0.7533813714981079,
+      "anchor_cosine": 0.8924276232719421,
+      "all_applicable_cosines": [
+        0.8924276232719421
+      ],
+      "semantic_candidate_losses": [
+        0.80859375,
+        2.4375,
+        1.6796875,
+        3.3125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "72caa4f255b9622373f063cc4f0acf345f00423daf69c36304af2cbd731286ea",
+      "claimed_label": 0,
+      "loss": 0.9396417140960693,
+      "anchor_cosine": 0.9024727940559387,
+      "all_applicable_cosines": [
+        0.9024727940559387
+      ],
+      "semantic_candidate_losses": [
+        1.046875,
+        3.046875,
+        0.79296875,
+        4.53125
+      ],
+      "semantic_inconsistency_margin": 0.25390625
+    },
+    {
+      "kind": "clean",
+      "source_id": "fa440a333d8f173a19bb001dfd9cc50bb9cf9ad96afd920950181428ab856ba8",
+      "claimed_label": 0,
+      "loss": 1.0746772289276123,
+      "anchor_cosine": 0.9255222678184509,
+      "all_applicable_cosines": [
+        0.9255222678184509
+      ],
+      "semantic_candidate_losses": [
+        1.1484375,
+        3.015625,
+        0.7734375,
+        4.28125
+      ],
+      "semantic_inconsistency_margin": 0.375
+    },
+    {
+      "kind": "clean",
+      "source_id": "919383d321502a75dde833bb003ae46d9d1476e7698a2549e73b8047e7d8043b",
+      "claimed_label": 0,
+      "loss": 0.9383645057678223,
+      "anchor_cosine": 0.931186854839325,
+      "all_applicable_cosines": [
+        0.931186854839325
+      ],
+      "semantic_candidate_losses": [
+        0.96875,
+        2.84375,
+        0.96875,
+        3.84375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "256a01dfbc676689e165d02d0fbd949a82852e0dcf18a812712802d86cfdba3e",
+      "claimed_label": 0,
+      "loss": 1.1230270862579346,
+      "anchor_cosine": 0.8946254253387451,
+      "all_applicable_cosines": [
+        0.8946254253387451
+      ],
+      "semantic_candidate_losses": [
+        1.03125,
+        2.03125,
+        1.28125,
+        4.15625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "64fea228457ac07d34fcad0cb843ed7bcc4ccce5a86730c539f406f699233a3d",
+      "claimed_label": 0,
+      "loss": 1.1011054515838623,
+      "anchor_cosine": 0.9018528461456299,
+      "all_applicable_cosines": [
+        0.9018528461456299
+      ],
+      "semantic_candidate_losses": [
+        1.046875,
+        2.171875,
+        0.92578125,
+        3.671875
+      ],
+      "semantic_inconsistency_margin": 0.12109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "11c765eccc53961a7229c02403175e0fa8a5663347c22709606579c5b2daf155",
+      "claimed_label": 0,
+      "loss": 0.9789597392082214,
+      "anchor_cosine": 0.8235227465629578,
+      "all_applicable_cosines": [
+        0.8235227465629578
+      ],
+      "semantic_candidate_losses": [
+        0.9375,
+        3.4375,
+        1.1875,
+        4.0
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "f08ef52f5597d712199de91398d589ceef932eaf51760abcf7eac1f10b7e18f0",
+      "claimed_label": 0,
+      "loss": 1.1770343780517578,
+      "anchor_cosine": 0.9220728874206543,
+      "all_applicable_cosines": [
+        0.9220728874206543
+      ],
+      "semantic_candidate_losses": [
+        1.2109375,
+        3.21875,
+        0.9609375,
+        2.34375
+      ],
+      "semantic_inconsistency_margin": 0.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "f6a0e3a7c37861c1c77320670847edab3731d48cd51e52937071ccd74163ab51",
+      "claimed_label": 0,
+      "loss": 1.1518689393997192,
+      "anchor_cosine": 0.8902818560600281,
+      "all_applicable_cosines": [
+        0.8902818560600281
+      ],
+      "semantic_candidate_losses": [
+        1.140625,
+        2.765625,
+        1.015625,
+        2.765625
+      ],
+      "semantic_inconsistency_margin": 0.125
+    },
+    {
+      "kind": "clean",
+      "source_id": "c0cc5b10086d1cea12ff70958e630d2781927a4574a3bd426eae2843e5fd5d37",
+      "claimed_label": 0,
+      "loss": 1.5233513116836548,
+      "anchor_cosine": 0.920740008354187,
+      "all_applicable_cosines": [
+        0.920740008354187
+      ],
+      "semantic_candidate_losses": [
+        1.4453125,
+        3.1875,
+        0.56640625,
+        3.9375
+      ],
+      "semantic_inconsistency_margin": 0.87890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "65bd528922015dee524ab65c92cab59cf5b9bcb1a08337314a8746867a924052",
+      "claimed_label": 0,
+      "loss": 1.1565134525299072,
+      "anchor_cosine": 0.9189592599868774,
+      "all_applicable_cosines": [
+        0.9189592599868774
+      ],
+      "semantic_candidate_losses": [
+        1.125,
+        2.375,
+        1.125,
+        3.75
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "24d3d30a3e87848e6e0a9624dbf35f37178055f581f3e2cfe6df5021c5f42306",
+      "claimed_label": 0,
+      "loss": 2.5444657802581787,
+      "anchor_cosine": 0.7137753367424011,
+      "all_applicable_cosines": [
+        0.7137753367424011
+      ],
+      "semantic_candidate_losses": [
+        2.421875,
+        3.671875,
+        0.41796875,
+        3.046875
+      ],
+      "semantic_inconsistency_margin": 2.00390625
+    },
+    {
+      "kind": "clean",
+      "source_id": "e8ffb8b8f29b6311a79c5809d12045dacb12c842f0e98334e6bae7f953299a72",
+      "claimed_label": 0,
+      "loss": 1.1250104904174805,
+      "anchor_cosine": 0.8659346699714661,
+      "all_applicable_cosines": [
+        0.8659346699714661
+      ],
+      "semantic_candidate_losses": [
+        1.1875,
+        3.8125,
+        0.69140625,
+        3.5625
+      ],
+      "semantic_inconsistency_margin": 0.49609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "8a6c822be5041353d69a97504d6b027b06b023841b6857402d0012fcaed38bf3",
+      "claimed_label": 0,
+      "loss": 1.458383321762085,
+      "anchor_cosine": 0.9081592559814453,
+      "all_applicable_cosines": [
+        0.9081592559814453
+      ],
+      "semantic_candidate_losses": [
+        1.5546875,
+        3.171875,
+        0.55078125,
+        3.921875
+      ],
+      "semantic_inconsistency_margin": 1.00390625
+    },
+    {
+      "kind": "clean",
+      "source_id": "d0c2cd6a22d80f74cdd05537da8f8980454095008f011c9dedd0087866429082",
+      "claimed_label": 0,
+      "loss": 0.7981811165809631,
+      "anchor_cosine": 0.8678150773048401,
+      "all_applicable_cosines": [
+        0.8678150773048401
+      ],
+      "semantic_candidate_losses": [
+        0.79296875,
+        3.421875,
+        1.2890625,
+        3.671875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "5f53a74ea869836a74c3d71bd3d131903261b2232a7c3b4f002818b873ede463",
+      "claimed_label": 0,
+      "loss": 2.2393174171447754,
+      "anchor_cosine": 0.8416954874992371,
+      "all_applicable_cosines": [
+        0.8416954874992371
+      ],
+      "semantic_candidate_losses": [
+        2.15625,
+        2.28125,
+        0.404296875,
+        3.28125
+      ],
+      "semantic_inconsistency_margin": 1.751953125
+    },
+    {
+      "kind": "clean",
+      "source_id": "03e01a1869ef29736ea0558f56919a81dd1acb5796c7126160383925cc6f91e0",
+      "claimed_label": 0,
+      "loss": 1.6153686046600342,
+      "anchor_cosine": 0.8941313028335571,
+      "all_applicable_cosines": [
+        0.8941313028335571
+      ],
+      "semantic_candidate_losses": [
+        1.78125,
+        2.40625,
+        0.53515625,
+        4.34375
+      ],
+      "semantic_inconsistency_margin": 1.24609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "6bb0a98ba7c32359bba50d7f379e67f80306d05779fa2e1d0b972928c9c9adeb",
+      "claimed_label": 0,
+      "loss": 1.1381351947784424,
+      "anchor_cosine": 0.8642448782920837,
+      "all_applicable_cosines": [
+        0.8642448782920837
+      ],
+      "semantic_candidate_losses": [
+        1.125,
+        2.875,
+        0.875,
+        4.0
+      ],
+      "semantic_inconsistency_margin": 0.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "6bb134614ae11b0bfd4039e7e387a802aa31c39f9ae11830831a84f0013075a3",
+      "claimed_label": 0,
+      "loss": 1.322881817817688,
+      "anchor_cosine": 0.9161002039909363,
+      "all_applicable_cosines": [
+        0.9161002039909363
+      ],
+      "semantic_candidate_losses": [
+        1.375,
+        2.25,
+        0.87109375,
+        3.75
+      ],
+      "semantic_inconsistency_margin": 0.50390625
+    },
+    {
+      "kind": "clean",
+      "source_id": "cd5b84ba00d688496b049500fa35ca7ff2df4a6cc86ee64d0db08aa45d5218e2",
+      "claimed_label": 0,
+      "loss": 2.2265894412994385,
+      "anchor_cosine": 0.7260292172431946,
+      "all_applicable_cosines": [
+        0.7260292172431946
+      ],
+      "semantic_candidate_losses": [
+        2.234375,
+        2.484375,
+        0.3515625,
+        4.46875
+      ],
+      "semantic_inconsistency_margin": 1.8828125
+    },
+    {
+      "kind": "clean",
+      "source_id": "961a8dcd8df34c6065d0031bb45c2d853f4c5200e7f51987cdff0b05f63f15e4",
+      "claimed_label": 0,
+      "loss": 0.7210711240768433,
+      "anchor_cosine": 0.8406375646591187,
+      "all_applicable_cosines": [
+        0.8406375646591187
+      ],
+      "semantic_candidate_losses": [
+        0.74609375,
+        2.75,
+        1.25,
+        3.625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "3dffff34fdfe11d766a1071af1aa2f6bae99d7aa037bbbf7eb5e5082da404beb",
+      "claimed_label": 0,
+      "loss": 1.6682331562042236,
+      "anchor_cosine": 0.8349864482879639,
+      "all_applicable_cosines": [
+        0.8349864482879639
+      ],
+      "semantic_candidate_losses": [
+        1.5703125,
+        1.9453125,
+        0.94140625,
+        2.6875
+      ],
+      "semantic_inconsistency_margin": 0.62890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "a67c3670d2cb0fb1082305bbaa37177566e8203fed602fa67f31f9f3561df58d",
+      "claimed_label": 0,
+      "loss": 0.7360298037528992,
+      "anchor_cosine": 0.813880205154419,
+      "all_applicable_cosines": [
+        0.813880205154419
+      ],
+      "semantic_candidate_losses": [
+        0.73828125,
+        2.984375,
+        1.359375,
+        3.984375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "0f2afc0a7b0d7d73349bdd1980c7c05ab446b56df02946863e7763c17d9b0af5",
+      "claimed_label": 0,
+      "loss": 1.8051704168319702,
+      "anchor_cosine": 0.8941367268562317,
+      "all_applicable_cosines": [
+        0.8941367268562317
+      ],
+      "semantic_candidate_losses": [
+        1.8125,
+        2.8125,
+        0.5625,
+        2.6875
+      ],
+      "semantic_inconsistency_margin": 1.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "5d5673a365b1ce99d97819d5bba5dd35973351bd263969dbec46c006da4118c9",
+      "claimed_label": 0,
+      "loss": 2.7234714031219482,
+      "anchor_cosine": 0.8056643605232239,
+      "all_applicable_cosines": [
+        0.8056643605232239
+      ],
+      "semantic_candidate_losses": [
+        2.796875,
+        1.9296875,
+        0.42578125,
+        2.796875
+      ],
+      "semantic_inconsistency_margin": 2.37109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "f87fbdf48594648bb195431f59a37fdfcad9400da8dc9557c7e9c8a3b38ac31d",
+      "claimed_label": 0,
+      "loss": 2.0347418785095215,
+      "anchor_cosine": 0.7768329977989197,
+      "all_applicable_cosines": [
+        0.7768329977989197
+      ],
+      "semantic_candidate_losses": [
+        1.921875,
+        1.796875,
+        0.79296875,
+        2.796875
+      ],
+      "semantic_inconsistency_margin": 1.12890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "d555515410d136097ddaf8072267d3a0138382fefc744fa5cc88eaabd5c0cf00",
+      "claimed_label": 0,
+      "loss": 0.7755802869796753,
+      "anchor_cosine": 0.8432309627532959,
+      "all_applicable_cosines": [
+        0.8432309627532959
+      ],
+      "semantic_candidate_losses": [
+        0.734375,
+        1.984375,
+        1.484375,
+        3.234375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "9118b6ce6accf077871b3ace6ddcfe930a951a112dc7740afaa14c88460d7be1",
+      "claimed_label": 0,
+      "loss": 2.040292263031006,
+      "anchor_cosine": 0.7570614814758301,
+      "all_applicable_cosines": [
+        0.7570614814758301
+      ],
+      "semantic_candidate_losses": [
+        2.03125,
+        2.03125,
+        0.65234375,
+        3.53125
+      ],
+      "semantic_inconsistency_margin": 1.37890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "db4360cd103aa6fe2759f3b6be6b8e74d6154c7a1a41f6f9452becaff47c8fba",
+      "claimed_label": 0,
+      "loss": 0.8352434039115906,
+      "anchor_cosine": 0.9103489518165588,
+      "all_applicable_cosines": [
+        0.9103489518165588
+      ],
+      "semantic_candidate_losses": [
+        0.90625,
+        2.15625,
+        1.15625,
+        3.53125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "11505dddf2a88cd840da9a0d4de65313c6e0a7a27f623e9cc20ee982e6bf7a7a",
+      "claimed_label": 0,
+      "loss": 1.8001739978790283,
+      "anchor_cosine": 0.8884631395339966,
+      "all_applicable_cosines": [
+        0.8884631395339966
+      ],
+      "semantic_candidate_losses": [
+        1.875,
+        2.0,
+        0.5,
+        4.25
+      ],
+      "semantic_inconsistency_margin": 1.375
+    },
+    {
+      "kind": "clean",
+      "source_id": "56f7dd5d73bfa4dbef05fbb8b81c8dabf8077b98465c62f0df545089e91d2eb0",
+      "claimed_label": 0,
+      "loss": 0.5489651560783386,
+      "anchor_cosine": 0.813023030757904,
+      "all_applicable_cosines": [
+        0.813023030757904
+      ],
+      "semantic_candidate_losses": [
+        0.546875,
+        3.546875,
+        1.296875,
+        4.28125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "a79be91c83d2196be3f7a7ae358c881f8ec070ab41fab3b7280c886f64434dc0",
+      "claimed_label": 0,
+      "loss": 0.6040360927581787,
+      "anchor_cosine": 0.8384130597114563,
+      "all_applicable_cosines": [
+        0.8384130597114563
+      ],
+      "semantic_candidate_losses": [
+        0.61328125,
+        2.609375,
+        1.359375,
+        3.109375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "21ae938ab6d3e78188504b14cb2213ef5283c9197dbfd59b467e390b2f811320",
+      "claimed_label": 0,
+      "loss": 0.7549731731414795,
+      "anchor_cosine": 0.8634616136550903,
+      "all_applicable_cosines": [
+        0.8634616136550903
+      ],
+      "semantic_candidate_losses": [
+        0.83984375,
+        1.96875,
+        1.34375,
+        2.96875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "37ba574ac9effb9ef9bc62a21e425da9c5ba5b85d094e87a4ad3d8c53105f0a3",
+      "claimed_label": 0,
+      "loss": 1.3716334104537964,
+      "anchor_cosine": 0.9430524706840515,
+      "all_applicable_cosines": [
+        0.9430524706840515
+      ],
+      "semantic_candidate_losses": [
+        1.3515625,
+        2.984375,
+        0.8515625,
+        2.984375
+      ],
+      "semantic_inconsistency_margin": 0.5
+    },
+    {
+      "kind": "clean",
+      "source_id": "6883bce88d6055af42008abd967af5bb376d8329027567244058c080ea7214f9",
+      "claimed_label": 0,
+      "loss": 0.8302993774414062,
+      "anchor_cosine": 0.7948413491249084,
+      "all_applicable_cosines": [
+        0.7948413491249084
+      ],
+      "semantic_candidate_losses": [
+        0.8828125,
+        2.875,
+        0.8828125,
+        3.625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "bcc25b7d50cbc2eac743818fe9a68e1b2b3e4136117db9150cfa0485b507776c",
+      "claimed_label": 0,
+      "loss": 1.5517408847808838,
+      "anchor_cosine": 0.8422154784202576,
+      "all_applicable_cosines": [
+        0.8422154784202576
+      ],
+      "semantic_candidate_losses": [
+        1.5390625,
+        2.921875,
+        0.54296875,
+        3.296875
+      ],
+      "semantic_inconsistency_margin": 0.99609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "40c861b543da09b2bdf9773b2b0be8bc24db17d091e5185c4f97f5f192c55722",
+      "claimed_label": 0,
+      "loss": 1.1688382625579834,
+      "anchor_cosine": 0.9067983031272888,
+      "all_applicable_cosines": [
+        0.9067983031272888
+      ],
+      "semantic_candidate_losses": [
+        1.1640625,
+        2.03125,
+        0.9140625,
+        3.78125
+      ],
+      "semantic_inconsistency_margin": 0.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "415afb9125ad395b841bd2e5656e2fb32565813403a4ddf1ec10bf1cdffaf391",
+      "claimed_label": 0,
+      "loss": 0.7694606781005859,
+      "anchor_cosine": 0.8636738657951355,
+      "all_applicable_cosines": [
+        0.8636738657951355
+      ],
+      "semantic_candidate_losses": [
+        0.734375,
+        2.734375,
+        1.359375,
+        2.609375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "a14ca685423f656508c9bc58b72ca003b9165e3412668693e22387358878f523",
+      "claimed_label": 0,
+      "loss": 1.0103037357330322,
+      "anchor_cosine": 0.9121713042259216,
+      "all_applicable_cosines": [
+        0.9121713042259216
+      ],
+      "semantic_candidate_losses": [
+        1.0,
+        2.0,
+        1.25,
+        2.625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "4fd8b8bf0c61ccc0807ae95e789f394367ff45dd433ae20345211f3723532d71",
+      "claimed_label": 0,
+      "loss": 1.2474727630615234,
+      "anchor_cosine": 0.8902312517166138,
+      "all_applicable_cosines": [
+        0.8902312517166138
+      ],
+      "semantic_candidate_losses": [
+        1.265625,
+        2.890625,
+        0.63671875,
+        4.625
+      ],
+      "semantic_inconsistency_margin": 0.62890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "7c0f8787eb68a65ba1aa604acf901c449618aff834e224409c298038faf16f80",
+      "claimed_label": 0,
+      "loss": 1.3915808200836182,
+      "anchor_cosine": 0.8258776664733887,
+      "all_applicable_cosines": [
+        0.8258776664733887
+      ],
+      "semantic_candidate_losses": [
+        1.3828125,
+        2.75,
+        0.75390625,
+        2.75
+      ],
+      "semantic_inconsistency_margin": 0.62890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "c171a88f067146884dc28d66ca5be376ccd6ef65a0da1fa060e354d862388881",
+      "claimed_label": 0,
+      "loss": 1.4780678749084473,
+      "anchor_cosine": 0.8789983987808228,
+      "all_applicable_cosines": [
+        0.8789983987808228
+      ],
+      "semantic_candidate_losses": [
+        1.484375,
+        2.484375,
+        0.859375,
+        2.984375
+      ],
+      "semantic_inconsistency_margin": 0.625
+    },
+    {
+      "kind": "clean",
+      "source_id": "e5e0d5235f2372afadf6adbca047e14b4df49bbd0d27b3a25a50b1a3e97443ca",
+      "claimed_label": 0,
+      "loss": 1.0946564674377441,
+      "anchor_cosine": 0.9221560955047607,
+      "all_applicable_cosines": [
+        0.9221560955047607
+      ],
+      "semantic_candidate_losses": [
+        1.1640625,
+        3.28125,
+        0.9140625,
+        2.40625
+      ],
+      "semantic_inconsistency_margin": 0.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "a2a254fc66ea8cd8c8c320f058dc5e7bef67506328a7e520d194bf5264f992a7",
+      "claimed_label": 0,
+      "loss": 1.1110496520996094,
+      "anchor_cosine": 0.9151279330253601,
+      "all_applicable_cosines": [
+        0.9151279330253601
+      ],
+      "semantic_candidate_losses": [
+        1.0703125,
+        2.453125,
+        0.8203125,
+        3.828125
+      ],
+      "semantic_inconsistency_margin": 0.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "7da2768ec4bd1727f312d2cf9670af9c79ecfae58d131b4f10e1e98137282063",
+      "claimed_label": 0,
+      "loss": 2.334104299545288,
+      "anchor_cosine": 0.6931501030921936,
+      "all_applicable_cosines": [
+        0.6931501030921936
+      ],
+      "semantic_candidate_losses": [
+        2.375,
+        1.0078125,
+        0.75390625,
+        5.3125
+      ],
+      "semantic_inconsistency_margin": 1.62109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "ca847eab8d29863a21ad384ba85c6a7d234167ffa9fe66e225010fece4296811",
+      "claimed_label": 0,
+      "loss": 1.1338328123092651,
+      "anchor_cosine": 0.9309860467910767,
+      "all_applicable_cosines": [
+        0.9309860467910767
+      ],
+      "semantic_candidate_losses": [
+        1.1484375,
+        1.8984375,
+        1.1484375,
+        3.265625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "15dc880d7e29cbbabb8249d0efb62012fa6642c43bf8ae15117def9ef5afa3db",
+      "claimed_label": 0,
+      "loss": 1.4471416473388672,
+      "anchor_cosine": 0.912530779838562,
+      "all_applicable_cosines": [
+        0.912530779838562
+      ],
+      "semantic_candidate_losses": [
+        1.5234375,
+        3.40625,
+        0.7734375,
+        2.03125
+      ],
+      "semantic_inconsistency_margin": 0.75
+    },
+    {
+      "kind": "clean",
+      "source_id": "11dfb7976f9cd9fe3ef7106f8e50562bf026a50852eba92a7d67547f878731b8",
+      "claimed_label": 0,
+      "loss": 1.5671401023864746,
+      "anchor_cosine": 0.8418236374855042,
+      "all_applicable_cosines": [
+        0.8418236374855042
+      ],
+      "semantic_candidate_losses": [
+        1.7578125,
+        2.015625,
+        0.5078125,
+        4.0
+      ],
+      "semantic_inconsistency_margin": 1.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "0cacaa384e231d531bc9e2a5a48c3a325a3956dfe1dc0c31b8bbe50806c580da",
+      "claimed_label": 0,
+      "loss": 1.6637002229690552,
+      "anchor_cosine": 0.8438073396682739,
+      "all_applicable_cosines": [
+        0.8438073396682739
+      ],
+      "semantic_candidate_losses": [
+        1.6171875,
+        2.25,
+        0.74609375,
+        4.0
+      ],
+      "semantic_inconsistency_margin": 0.87109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "224d004e8020779fdc466fbeca94161311a5602fd5a73f837a5168a58a57399e",
+      "claimed_label": 1,
+      "loss": 0.4590994119644165,
+      "anchor_cosine": 0.8968273401260376,
+      "all_applicable_cosines": [
+        0.8968273401260376
+      ],
+      "semantic_candidate_losses": [
+        2.53125,
+        0.412109375,
+        1.6640625,
+        4.15625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "ad3cc842ac95754d2810e476463f86569d31e754ff1c8022035cc9021452dff6",
+      "claimed_label": 1,
+      "loss": 0.6009684205055237,
+      "anchor_cosine": 0.9151854515075684,
+      "all_applicable_cosines": [
+        0.9151854515075684
+      ],
+      "semantic_candidate_losses": [
+        2.03125,
+        0.65625,
+        1.40625,
+        4.65625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "67d646c9e9f11476bf2d478df5541479bb5c1ad25fa131d614938135d4ee4ab1",
+      "claimed_label": 1,
+      "loss": 0.7472531795501709,
+      "anchor_cosine": 0.9016315937042236,
+      "all_applicable_cosines": [
+        0.9016315937042236
+      ],
+      "semantic_candidate_losses": [
+        2.796875,
+        0.80078125,
+        0.80078125,
+        5.1875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "0962d03692292d3e26faa0e6983fe2e92b6367e56ab3695247d18cec9f226b34",
+      "claimed_label": 1,
+      "loss": 0.9892281293869019,
+      "anchor_cosine": 0.8598530292510986,
+      "all_applicable_cosines": [
+        0.8598530292510986
+      ],
+      "semantic_candidate_losses": [
+        3.0625,
+        1.0546875,
+        0.55859375,
+        5.9375
+      ],
+      "semantic_inconsistency_margin": 0.49609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "f2880b6e24432fc1e36496ee7935c930446c239bf6cfc931b840728af156ea8f",
+      "claimed_label": 1,
+      "loss": 1.0388338565826416,
+      "anchor_cosine": 0.9367872476577759,
+      "all_applicable_cosines": [
+        0.9367872476577759
+      ],
+      "semantic_candidate_losses": [
+        1.6171875,
+        0.98828125,
+        1.1171875,
+        4.375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "ee0cffeb922e511632b8c3a6ae580d4b8f852e8f81fe6512fe1476dafc98b729",
+      "claimed_label": 1,
+      "loss": 0.5901809334754944,
+      "anchor_cosine": 0.9015213251113892,
+      "all_applicable_cosines": [
+        0.9015213251113892
+      ],
+      "semantic_candidate_losses": [
+        2.625,
+        0.6171875,
+        1.1171875,
+        5.25
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "8466981148b2597880ff10faeb1760e40b14d8fe457a002f4ca93c91822e9519",
+      "claimed_label": 1,
+      "loss": 1.329150676727295,
+      "anchor_cosine": 0.9060085415840149,
+      "all_applicable_cosines": [
+        0.9060085415840149
+      ],
+      "semantic_candidate_losses": [
+        1.9296875,
+        1.3046875,
+        0.6796875,
+        4.6875
+      ],
+      "semantic_inconsistency_margin": 0.625
+    },
+    {
+      "kind": "clean",
+      "source_id": "cd7d404dc24f68ca24cc5e63249ae0a1d9c42351e3f8b7a4bebeb54ca87f6221",
+      "claimed_label": 1,
+      "loss": 0.8721189498901367,
+      "anchor_cosine": 0.9010690450668335,
+      "all_applicable_cosines": [
+        0.9010690450668335
+      ],
+      "semantic_candidate_losses": [
+        2.25,
+        0.875,
+        0.875,
+        4.625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "1ecf904e2c39a2cf9f9549d4bd361831fba087cf15620dc49d9130be5a34496a",
+      "claimed_label": 1,
+      "loss": 1.0489792823791504,
+      "anchor_cosine": 0.9259318113327026,
+      "all_applicable_cosines": [
+        0.9259318113327026
+      ],
+      "semantic_candidate_losses": [
+        1.90625,
+        0.90234375,
+        1.03125,
+        4.78125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "9931b776dbc6bce4e555b808480c547e6d9159a36346e24d0ffc550040ec1fac",
+      "claimed_label": 1,
+      "loss": 1.050052523612976,
+      "anchor_cosine": 0.9128665924072266,
+      "all_applicable_cosines": [
+        0.9128665924072266
+      ],
+      "semantic_candidate_losses": [
+        1.8046875,
+        1.0546875,
+        0.9296875,
+        4.3125
+      ],
+      "semantic_inconsistency_margin": 0.125
+    },
+    {
+      "kind": "clean",
+      "source_id": "ad0b3df9b1b9d2048441d06bfa2ecf4cb7beffd83b78c810922479e0a40edba7",
+      "claimed_label": 1,
+      "loss": 0.6229936480522156,
+      "anchor_cosine": 0.9162087440490723,
+      "all_applicable_cosines": [
+        0.9162087440490723
+      ],
+      "semantic_candidate_losses": [
+        1.9453125,
+        0.5703125,
+        1.4453125,
+        5.6875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "e9d799464d2ecbebde63de7ed25d162ab17eb98b246d7714f812bd2faae9e7ad",
+      "claimed_label": 1,
+      "loss": 1.2254563570022583,
+      "anchor_cosine": 0.8294777870178223,
+      "all_applicable_cosines": [
+        0.8294777870178223
+      ],
+      "semantic_candidate_losses": [
+        2.140625,
+        1.140625,
+        0.76171875,
+        4.5
+      ],
+      "semantic_inconsistency_margin": 0.37890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "3281043086a3c150d0b591db645401edb4e567dc71e9a103d7bfe82a6d6b9cac",
+      "claimed_label": 1,
+      "loss": 0.6666758060455322,
+      "anchor_cosine": 0.8956553936004639,
+      "all_applicable_cosines": [
+        0.8956553936004639
+      ],
+      "semantic_candidate_losses": [
+        2.515625,
+        0.64453125,
+        1.140625,
+        5.59375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "46684707f6a02f707801d5bc7cf7806ce42a8c6ef66b995377a8697c79c3e873",
+      "claimed_label": 1,
+      "loss": 0.9838194847106934,
+      "anchor_cosine": 0.9122593998908997,
+      "all_applicable_cosines": [
+        0.9122593998908997
+      ],
+      "semantic_candidate_losses": [
+        1.46875,
+        0.83984375,
+        1.34375,
+        5.15625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "ef24da4fb8ac4ff6f343892037c482727c3986cf566673507b4212fed48c9a45",
+      "claimed_label": 1,
+      "loss": 0.7540733218193054,
+      "anchor_cosine": 0.8990046381950378,
+      "all_applicable_cosines": [
+        0.8990046381950378
+      ],
+      "semantic_candidate_losses": [
+        2.296875,
+        0.80078125,
+        1.046875,
+        4.0625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "6b18dca7fd48025c4bdd40a922aa1f1ea61929ef4c209cd94c9fadcd54d72765",
+      "claimed_label": 1,
+      "loss": 0.7032044529914856,
+      "anchor_cosine": 0.871006965637207,
+      "all_applicable_cosines": [
+        0.871006965637207
+      ],
+      "semantic_candidate_losses": [
+        2.171875,
+        0.6796875,
+        1.1796875,
+        5.8125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "fbb9cbed19b083a818f17756888cf85f5205e8b2e5fddd061ec8f5e3ffb93b2c",
+      "claimed_label": 1,
+      "loss": 0.6896371245384216,
+      "anchor_cosine": 0.9139969348907471,
+      "all_applicable_cosines": [
+        0.9139969348907471
+      ],
+      "semantic_candidate_losses": [
+        2.265625,
+        0.6484375,
+        1.1484375,
+        4.90625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "866d61a4ce9486221347625450f97cdf5b772226013b3f058a86f57ead24173c",
+      "claimed_label": 1,
+      "loss": 0.9121980667114258,
+      "anchor_cosine": 0.8278332352638245,
+      "all_applicable_cosines": [
+        0.8278332352638245
+      ],
+      "semantic_candidate_losses": [
+        2.1875,
+        0.93359375,
+        1.0546875,
+        4.125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "5105b10b5671b771d7196241b7618c66f52b55bcf1eb0f3c1caf4b0b0dfb0eb2",
+      "claimed_label": 1,
+      "loss": 1.8250176906585693,
+      "anchor_cosine": 0.7137258052825928,
+      "all_applicable_cosines": [
+        0.7137258052825928
+      ],
+      "semantic_candidate_losses": [
+        1.96875,
+        1.71875,
+        0.59765625,
+        3.84375
+      ],
+      "semantic_inconsistency_margin": 1.12109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "755e94c4f0c714c7531cba44a3e705614123fe43f8fb5565a6b417c709b1ea7e",
+      "claimed_label": 1,
+      "loss": 1.0666359663009644,
+      "anchor_cosine": 0.9228714108467102,
+      "all_applicable_cosines": [
+        0.9228714108467102
+      ],
+      "semantic_candidate_losses": [
+        2.359375,
+        0.98828125,
+        0.73828125,
+        4.875
+      ],
+      "semantic_inconsistency_margin": 0.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "a7d2b16b7e89c4ab9bf0472f3ce5ec070fa39d1df6c5c9ffd713b15629810e2b",
+      "claimed_label": 1,
+      "loss": 0.9646363258361816,
+      "anchor_cosine": 0.9145892262458801,
+      "all_applicable_cosines": [
+        0.9145892262458801
+      ],
+      "semantic_candidate_losses": [
+        2.015625,
+        1.0078125,
+        0.88671875,
+        4.0
+      ],
+      "semantic_inconsistency_margin": 0.12109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "73791b871694ad78c3055cf04beb9a09168ab870ad4122207d0bb02a8b274c82",
+      "claimed_label": 1,
+      "loss": 1.2051615715026855,
+      "anchor_cosine": 0.9049416780471802,
+      "all_applicable_cosines": [
+        0.9049416780471802
+      ],
+      "semantic_candidate_losses": [
+        1.921875,
+        1.296875,
+        0.66796875,
+        4.53125
+      ],
+      "semantic_inconsistency_margin": 0.62890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "e8afde2018cd416720ed3855869b945352414d28ccdc30a65dc514af68276cf9",
+      "claimed_label": 1,
+      "loss": 0.3969265818595886,
+      "anchor_cosine": 0.7256876230239868,
+      "all_applicable_cosines": [
+        0.7256876230239868
+      ],
+      "semantic_candidate_losses": [
+        2.421875,
+        0.421875,
+        1.671875,
+        5.96875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "fe34ad1aa4bf9b71761316773faa5ebcc1bc08f71cb03fad9b70cad19c1c9501",
+      "claimed_label": 1,
+      "loss": 1.6139109134674072,
+      "anchor_cosine": 0.827827513217926,
+      "all_applicable_cosines": [
+        0.827827513217926
+      ],
+      "semantic_candidate_losses": [
+        2.203125,
+        1.703125,
+        0.70703125,
+        4.28125
+      ],
+      "semantic_inconsistency_margin": 0.99609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "c2058ddcc82a4d3b3a7f9803618a4edf8236c2ad0ca09cb798587be2048d2197",
+      "claimed_label": 1,
+      "loss": 0.61418217420578,
+      "anchor_cosine": 0.9038545489311218,
+      "all_applicable_cosines": [
+        0.9038545489311218
+      ],
+      "semantic_candidate_losses": [
+        3.1875,
+        0.55859375,
+        1.0546875,
+        5.5625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "3da91096ab065d916f818f2a7826a8d8944dbd0350868901ae87ac0866e1e629",
+      "claimed_label": 1,
+      "loss": 1.5695829391479492,
+      "anchor_cosine": 0.746809720993042,
+      "all_applicable_cosines": [
+        0.746809720993042
+      ],
+      "semantic_candidate_losses": [
+        2.109375,
+        1.734375,
+        0.609375,
+        4.03125
+      ],
+      "semantic_inconsistency_margin": 1.125
+    },
+    {
+      "kind": "clean",
+      "source_id": "6b371ad05443f83cd83e5eb2f3aa602f1e2784094a85d2d99679aeea5ede6882",
+      "claimed_label": 1,
+      "loss": 1.0919753313064575,
+      "anchor_cosine": 0.769096851348877,
+      "all_applicable_cosines": [
+        0.769096851348877
+      ],
+      "semantic_candidate_losses": [
+        2.90625,
+        1.03125,
+        0.65234375,
+        5.65625
+      ],
+      "semantic_inconsistency_margin": 0.37890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "72efb78b99b09b5d9213d7a1986e5a6515b70c14843b5561bc216cf3370db6a0",
+      "claimed_label": 1,
+      "loss": 1.3025147914886475,
+      "anchor_cosine": 0.8754374980926514,
+      "all_applicable_cosines": [
+        0.8754374980926514
+      ],
+      "semantic_candidate_losses": [
+        2.5,
+        1.375,
+        0.5,
+        5.875
+      ],
+      "semantic_inconsistency_margin": 0.875
+    },
+    {
+      "kind": "clean",
+      "source_id": "6d0ebb9a62aa9e146ece98b8a8b173a3d604b355b9ad3ad49344d659faf56896",
+      "claimed_label": 1,
+      "loss": 0.9263034462928772,
+      "anchor_cosine": 0.8728233575820923,
+      "all_applicable_cosines": [
+        0.8728233575820923
+      ],
+      "semantic_candidate_losses": [
+        3.1875,
+        0.9296875,
+        0.6796875,
+        4.4375
+      ],
+      "semantic_inconsistency_margin": 0.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "3c5e6807f8c41f5283fcfe33dcf5777d09f2825ae480bc13bc21314de046997a",
+      "claimed_label": 1,
+      "loss": 1.399517297744751,
+      "anchor_cosine": 0.8361782431602478,
+      "all_applicable_cosines": [
+        0.8361782431602478
+      ],
+      "semantic_candidate_losses": [
+        1.875,
+        1.375,
+        0.75,
+        4.3125
+      ],
+      "semantic_inconsistency_margin": 0.625
+    },
+    {
+      "kind": "clean",
+      "source_id": "9767dd4486f5c26264d645f94081d4c1fdcf46ee1d797f81daffe88b0c5836ec",
+      "claimed_label": 1,
+      "loss": 1.336644172668457,
+      "anchor_cosine": 0.8683936595916748,
+      "all_applicable_cosines": [
+        0.8683936595916748
+      ],
+      "semantic_candidate_losses": [
+        2.171875,
+        1.4296875,
+        0.67578125,
+        3.859375
+      ],
+      "semantic_inconsistency_margin": 0.75390625
+    },
+    {
+      "kind": "clean",
+      "source_id": "6a07e5db3633fa1a7c0b74f525571ce7cfa94df38c239276f80f9560843ed71c",
+      "claimed_label": 1,
+      "loss": 0.6228137612342834,
+      "anchor_cosine": 0.761092483997345,
+      "all_applicable_cosines": [
+        0.761092483997345
+      ],
+      "semantic_candidate_losses": [
+        2.125,
+        0.62109375,
+        1.3671875,
+        5.25
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "9febc4070d2a2521dcfdaf4b64b4def327c84d3a62070c6f929316fef67b416b",
+      "claimed_label": 1,
+      "loss": 0.5654025077819824,
+      "anchor_cosine": 0.8946486711502075,
+      "all_applicable_cosines": [
+        0.8946486711502075
+      ],
+      "semantic_candidate_losses": [
+        2.515625,
+        0.515625,
+        1.390625,
+        4.28125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "4feecf1ef310f4e6905dab29c59db48d4fe2504b7284a63912ccd6a4585f0ca9",
+      "claimed_label": 1,
+      "loss": 1.322139859199524,
+      "anchor_cosine": 0.8949339389801025,
+      "all_applicable_cosines": [
+        0.8949339389801025
+      ],
+      "semantic_candidate_losses": [
+        2.5625,
+        1.3203125,
+        0.56640625,
+        4.75
+      ],
+      "semantic_inconsistency_margin": 0.75390625
+    },
+    {
+      "kind": "clean",
+      "source_id": "52d7239e666be6bcdbae270063c11dfb6535cb34fa8e1e3a643a05375247b524",
+      "claimed_label": 1,
+      "loss": 0.704379677772522,
+      "anchor_cosine": 0.8225468397140503,
+      "all_applicable_cosines": [
+        0.8225468397140503
+      ],
+      "semantic_candidate_losses": [
+        2.203125,
+        0.70703125,
+        1.203125,
+        4.84375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "b644f58c7243cabf6a576961ad3c07d12a748c0442ff1a454df94a7ce73f277b",
+      "claimed_label": 1,
+      "loss": 0.28903552889823914,
+      "anchor_cosine": 0.5892008543014526,
+      "all_applicable_cosines": [
+        0.5892008543014526
+      ],
+      "semantic_candidate_losses": [
+        2.78125,
+        0.275390625,
+        2.15625,
+        6.78125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "ebf58f89ce896e095679488eefb751656cac84544dba0e915a0cc158222d02d0",
+      "claimed_label": 1,
+      "loss": 1.4373854398727417,
+      "anchor_cosine": 0.818819522857666,
+      "all_applicable_cosines": [
+        0.818819522857666
+      ],
+      "semantic_candidate_losses": [
+        2.234375,
+        1.3671875,
+        0.61328125,
+        4.5
+      ],
+      "semantic_inconsistency_margin": 0.75390625
+    },
+    {
+      "kind": "clean",
+      "source_id": "b6f563022573c30d41a655e1b96814b74d43906fc649cc90f83f099e4081566c",
+      "claimed_label": 1,
+      "loss": 0.5294679999351501,
+      "anchor_cosine": 0.895595371723175,
+      "all_applicable_cosines": [
+        0.895595371723175
+      ],
+      "semantic_candidate_losses": [
+        2.53125,
+        0.5390625,
+        1.2890625,
+        5.03125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "e880de4991d70cec5f04270e49b2dc651730eeed5b94ed3379863d585a3c5d33",
+      "claimed_label": 1,
+      "loss": 0.6418785452842712,
+      "anchor_cosine": 0.8937427997589111,
+      "all_applicable_cosines": [
+        0.8937427997589111
+      ],
+      "semantic_candidate_losses": [
+        3.1875,
+        0.6875,
+        0.9375,
+        5.1875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "988e7c20c60a78c4b223f435ac995ef461d521c7d4138a5e3993e9cde69d1f32",
+      "claimed_label": 1,
+      "loss": 1.1122652292251587,
+      "anchor_cosine": 0.9162048101425171,
+      "all_applicable_cosines": [
+        0.9162048101425171
+      ],
+      "semantic_candidate_losses": [
+        1.7890625,
+        1.1640625,
+        0.91796875,
+        4.34375
+      ],
+      "semantic_inconsistency_margin": 0.24609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "2d6dc3a8eb6db0233b3fe07a8d2921b8b8c48924eef6ac0cfa508c33f740b2a3",
+      "claimed_label": 1,
+      "loss": 0.5095832943916321,
+      "anchor_cosine": 0.8917767405509949,
+      "all_applicable_cosines": [
+        0.8917767405509949
+      ],
+      "semantic_candidate_losses": [
+        2.796875,
+        0.546875,
+        1.171875,
+        6.625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "11886baca2019d227afa05eb1376dd6eef9370da48152c92e05865274d5a912c",
+      "claimed_label": 1,
+      "loss": 0.8762161731719971,
+      "anchor_cosine": 0.8754824995994568,
+      "all_applicable_cosines": [
+        0.8754824995994568
+      ],
+      "semantic_candidate_losses": [
+        2.3125,
+        0.94140625,
+        0.81640625,
+        5.4375
+      ],
+      "semantic_inconsistency_margin": 0.125
+    },
+    {
+      "kind": "clean",
+      "source_id": "8b413ef0c3ed7dc82603234710227f0affc69ab6601b13fa908cda55e3509cab",
+      "claimed_label": 1,
+      "loss": 0.9955890774726868,
+      "anchor_cosine": 0.8604748249053955,
+      "all_applicable_cosines": [
+        0.8604748249053955
+      ],
+      "semantic_candidate_losses": [
+        1.9921875,
+        0.99609375,
+        1.1171875,
+        4.1875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "752a8370f95a6257217c932fe2d1aa826467645f60d5b1f558ee76725972d693",
+      "claimed_label": 1,
+      "loss": 1.2507210969924927,
+      "anchor_cosine": 0.7173990607261658,
+      "all_applicable_cosines": [
+        0.7173990607261658
+      ],
+      "semantic_candidate_losses": [
+        1.6640625,
+        1.1640625,
+        0.9140625,
+        4.53125
+      ],
+      "semantic_inconsistency_margin": 0.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "ffc3478b7a0b541bd641f87f1dde312585a3629f24b2c0a37dd0f17c875e374d",
+      "claimed_label": 1,
+      "loss": 1.4749702215194702,
+      "anchor_cosine": 0.7987841963768005,
+      "all_applicable_cosines": [
+        0.7987841963768005
+      ],
+      "semantic_candidate_losses": [
+        2.46875,
+        1.46875,
+        0.47265625,
+        5.15625
+      ],
+      "semantic_inconsistency_margin": 0.99609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "b10a2d933db5a89629b7368f7cc42e471085606cac4dd8e92989e771a7b98061",
+      "claimed_label": 1,
+      "loss": 1.3097838163375854,
+      "anchor_cosine": 0.8562746047973633,
+      "all_applicable_cosines": [
+        0.8562746047973633
+      ],
+      "semantic_candidate_losses": [
+        2.46875,
+        1.21875,
+        0.59375,
+        4.09375
+      ],
+      "semantic_inconsistency_margin": 0.625
+    },
+    {
+      "kind": "clean",
+      "source_id": "9c9182d846cdc27423047770b1aeb4e80cf9bc537278451835110f0fc3cbfcba",
+      "claimed_label": 1,
+      "loss": 0.8295838832855225,
+      "anchor_cosine": 0.9136463403701782,
+      "all_applicable_cosines": [
+        0.9136463403701782
+      ],
+      "semantic_candidate_losses": [
+        2.375,
+        0.875,
+        0.875,
+        4.625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "ad15d7dea31ff1d614773f3bc2ba37636b7eb9987be6f9a953e2f378b248076d",
+      "claimed_label": 1,
+      "loss": 0.9804210662841797,
+      "anchor_cosine": 0.8429915904998779,
+      "all_applicable_cosines": [
+        0.8429915904998779
+      ],
+      "semantic_candidate_losses": [
+        1.859375,
+        0.86328125,
+        1.109375,
+        4.625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "f20c84709a75e77b77b2cd8872f935fafd465ca55540a401eff70fe9c2dd551e",
+      "claimed_label": 1,
+      "loss": 1.6755046844482422,
+      "anchor_cosine": 0.8691814541816711,
+      "all_applicable_cosines": [
+        0.8691814541816711
+      ],
+      "semantic_candidate_losses": [
+        2.078125,
+        1.5859375,
+        0.5859375,
+        3.578125
+      ],
+      "semantic_inconsistency_margin": 1.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "c5724fa94ee1c2b3b5e648a06475cfb00c7922d359af4abefb160c1953361c98",
+      "claimed_label": 1,
+      "loss": 1.2517287731170654,
+      "anchor_cosine": 0.8379396200180054,
+      "all_applicable_cosines": [
+        0.8379396200180054
+      ],
+      "semantic_candidate_losses": [
+        2.25,
+        1.2578125,
+        0.6328125,
+        4.5
+      ],
+      "semantic_inconsistency_margin": 0.625
+    },
+    {
+      "kind": "clean",
+      "source_id": "315ad8adfcd05abcc82285df074c42c27d87573b3fe67953b2ccb33bf03f964e",
+      "claimed_label": 1,
+      "loss": 1.2343841791152954,
+      "anchor_cosine": 0.7829792499542236,
+      "all_applicable_cosines": [
+        0.7829792499542236
+      ],
+      "semantic_candidate_losses": [
+        1.890625,
+        1.265625,
+        1.140625,
+        3.515625
+      ],
+      "semantic_inconsistency_margin": 0.125
+    },
+    {
+      "kind": "clean",
+      "source_id": "c058e0aea6f8c96fc8c5c0a938467dac3c7aca94e44a8d40be53aaf8dfacdd32",
+      "claimed_label": 1,
+      "loss": 0.5072625279426575,
+      "anchor_cosine": 0.9099622964859009,
+      "all_applicable_cosines": [
+        0.9099622964859009
+      ],
+      "semantic_candidate_losses": [
+        2.65625,
+        0.5234375,
+        1.2734375,
+        5.65625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "919d3102f49c3da985b8e0bc455271074e43783463f490d910e06a92b9cee0f3",
+      "claimed_label": 1,
+      "loss": 1.1043524742126465,
+      "anchor_cosine": 0.8755173683166504,
+      "all_applicable_cosines": [
+        0.8755173683166504
+      ],
+      "semantic_candidate_losses": [
+        2.90625,
+        1.03125,
+        0.66015625,
+        4.40625
+      ],
+      "semantic_inconsistency_margin": 0.37109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "e66c6697bc34aba4a33fcad18a7ee2246e9f4a1d339b60ba0d0bf1a7a9052400",
+      "claimed_label": 1,
+      "loss": 0.5987033843994141,
+      "anchor_cosine": 0.9103224873542786,
+      "all_applicable_cosines": [
+        0.9103224873542786
+      ],
+      "semantic_candidate_losses": [
+        2.0625,
+        0.5703125,
+        1.5703125,
+        4.375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "7d7585601042cd16d6fdf7781818e8f3fc7cec2f7682443b85cfcc4a2a7eb257",
+      "claimed_label": 1,
+      "loss": 1.1234018802642822,
+      "anchor_cosine": 0.8223589062690735,
+      "all_applicable_cosines": [
+        0.8223589062690735
+      ],
+      "semantic_candidate_losses": [
+        2.578125,
+        1.2109375,
+        0.5859375,
+        4.09375
+      ],
+      "semantic_inconsistency_margin": 0.625
+    },
+    {
+      "kind": "clean",
+      "source_id": "08f54f2d6ea9cca842b64eb7fb84c29110982a0b3c7e8be0e827d1d22e2f9141",
+      "claimed_label": 1,
+      "loss": 1.013169288635254,
+      "anchor_cosine": 0.901673436164856,
+      "all_applicable_cosines": [
+        0.901673436164856
+      ],
+      "semantic_candidate_losses": [
+        1.78125,
+        1.03125,
+        0.90625,
+        5.15625
+      ],
+      "semantic_inconsistency_margin": 0.125
+    },
+    {
+      "kind": "clean",
+      "source_id": "9bb3c5bb0374bb2da16e0cfc81fea91a491f598a89a15b264e1979e305af8daf",
+      "claimed_label": 1,
+      "loss": 0.7420022487640381,
+      "anchor_cosine": 0.9262499809265137,
+      "all_applicable_cosines": [
+        0.9262499809265137
+      ],
+      "semantic_candidate_losses": [
+        2.421875,
+        0.6640625,
+        1.1640625,
+        5.84375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "b14f33178b32e768363746dbe46cf6e4d7b26d37b0c42d5aba0cd1f7eda6262b",
+      "claimed_label": 1,
+      "loss": 0.9939208030700684,
+      "anchor_cosine": 0.8462544083595276,
+      "all_applicable_cosines": [
+        0.8462544083595276
+      ],
+      "semantic_candidate_losses": [
+        2.09375,
+        0.96484375,
+        1.0859375,
+        4.28125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "cc480517f26fd1db363d87245920e94d9bd361838c51b7f32150bc809e064b83",
+      "claimed_label": 1,
+      "loss": 0.5377150774002075,
+      "anchor_cosine": 0.9011038541793823,
+      "all_applicable_cosines": [
+        0.9011038541793823
+      ],
+      "semantic_candidate_losses": [
+        3.0,
+        0.5,
+        1.25,
+        5.6875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "230177db71dcd1d0d7ccb28cfcc841724c756df09171b5e2eb8123555b9113f1",
+      "claimed_label": 1,
+      "loss": 1.0564045906066895,
+      "anchor_cosine": 0.876214325428009,
+      "all_applicable_cosines": [
+        0.876214325428009
+      ],
+      "semantic_candidate_losses": [
+        1.9453125,
+        1.1953125,
+        0.9453125,
+        3.703125
+      ],
+      "semantic_inconsistency_margin": 0.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "1f1183a3b8ea36cbe0049fed3d321804e8c7352db692edfe4258e7f50a8a8a36",
+      "claimed_label": 1,
+      "loss": 1.0177971124649048,
+      "anchor_cosine": 0.916441023349762,
+      "all_applicable_cosines": [
+        0.916441023349762
+      ],
+      "semantic_candidate_losses": [
+        2.75,
+        1.0078125,
+        0.62890625,
+        5.375
+      ],
+      "semantic_inconsistency_margin": 0.37890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "a41707fa076a7592b265377cfb7e9b06825646a96d7b96f6bcee61b358873808",
+      "claimed_label": 1,
+      "loss": 1.214651346206665,
+      "anchor_cosine": 0.9038193225860596,
+      "all_applicable_cosines": [
+        0.9038193225860596
+      ],
+      "semantic_candidate_losses": [
+        2.1875,
+        1.1875,
+        0.6875,
+        4.6875
+      ],
+      "semantic_inconsistency_margin": 0.5
+    },
+    {
+      "kind": "clean",
+      "source_id": "1df891236b5ad39867ae898d12d0bb132763aa7d08f67fddee1f65820d7d4f56",
+      "claimed_label": 1,
+      "loss": 0.9598649740219116,
+      "anchor_cosine": 0.9005452990531921,
+      "all_applicable_cosines": [
+        0.9005452990531921
+      ],
+      "semantic_candidate_losses": [
+        2.125,
+        1.0,
+        1.0,
+        4.0
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "a3a8945e8d58740fb830fc93e9ce4116f1f08f487cb4d024674c442f103e01dd",
+      "claimed_label": 1,
+      "loss": 1.1238811016082764,
+      "anchor_cosine": 0.8436044454574585,
+      "all_applicable_cosines": [
+        0.8436044454574585
+      ],
+      "semantic_candidate_losses": [
+        1.96875,
+        1.09375,
+        0.84375,
+        4.46875
+      ],
+      "semantic_inconsistency_margin": 0.25
+    },
+    {
+      "kind": "clean",
+      "source_id": "51b632419885ab0b96b2ab5c2485703bdd461cbad3d75e13a8ed2a7ad11f0cb1",
+      "claimed_label": 2,
+      "loss": 0.6026504039764404,
+      "anchor_cosine": 0.819599449634552,
+      "all_applicable_cosines": [
+        0.819599449634552
+      ],
+      "semantic_candidate_losses": [
+        1.84375,
+        2.09375,
+        0.59765625,
+        3.90625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "c194dc849f21eabc5418041fc44531e1176ad0827bb6c4ba20b174800ab70c6b",
+      "claimed_label": 2,
+      "loss": 0.2482779175043106,
+      "anchor_cosine": 0.8733883500099182,
+      "all_applicable_cosines": [
+        0.8733883500099182
+      ],
+      "semantic_candidate_losses": [
+        2.125,
+        3.625,
+        0.2451171875,
+        4.125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "95484fd4e22426965d8d36f364cb1d4951ec333097972c0042b73af1a4d31644",
+      "claimed_label": 2,
+      "loss": 0.17406734824180603,
+      "anchor_cosine": 0.8788835406303406,
+      "all_applicable_cosines": [
+        0.8788835406303406
+      ],
+      "semantic_candidate_losses": [
+        2.671875,
+        3.796875,
+        0.1689453125,
+        4.65625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "0eb201379222bc657c1091b22bd474087b2b58331ad172f5311d06997a59b560",
+      "claimed_label": 2,
+      "loss": 0.27882739901542664,
+      "anchor_cosine": 0.8123481869697571,
+      "all_applicable_cosines": [
+        0.8123481869697571
+      ],
+      "semantic_candidate_losses": [
+        2.171875,
+        4.0625,
+        0.3046875,
+        4.1875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "472ed99ba2ea868bc3d553a9982261c69c9549b07789a8b04bc71555fdfbfc74",
+      "claimed_label": 2,
+      "loss": 0.19840961694717407,
+      "anchor_cosine": 0.9091000556945801,
+      "all_applicable_cosines": [
+        0.9091000556945801
+      ],
+      "semantic_candidate_losses": [
+        2.59375,
+        3.21875,
+        0.2119140625,
+        4.21875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "cfaa3f55f94c8110c825c6588a6fd4d3a9284e3997f5fa5ab6aecc6c154ca6ea",
+      "claimed_label": 2,
+      "loss": 0.19984637200832367,
+      "anchor_cosine": 0.8510348200798035,
+      "all_applicable_cosines": [
+        0.8510348200798035
+      ],
+      "semantic_candidate_losses": [
+        2.1875,
+        4.4375,
+        0.189453125,
+        4.4375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "1820e192267f7fa4bef325d7ed8137b828982db642ca43d13b19d80c18ad5ac7",
+      "claimed_label": 2,
+      "loss": 0.38657763600349426,
+      "anchor_cosine": 0.9183205366134644,
+      "all_applicable_cosines": [
+        0.9183205366134644
+      ],
+      "semantic_candidate_losses": [
+        1.8671875,
+        2.609375,
+        0.36328125,
+        4.125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "2be108e767190bc483a69ede835ef0d56b520f385a106cefe5b813a440f8597c",
+      "claimed_label": 2,
+      "loss": 0.2598884105682373,
+      "anchor_cosine": 0.8694586753845215,
+      "all_applicable_cosines": [
+        0.8694586753845215
+      ],
+      "semantic_candidate_losses": [
+        2.734375,
+        2.609375,
+        0.240234375,
+        4.6875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "c60a69cb1a82e70aa5414ee5801432d01671033961002c0a4729ef6a090420a3",
+      "claimed_label": 2,
+      "loss": 2.7356653213500977,
+      "anchor_cosine": 0.1471235752105713,
+      "all_applicable_cosines": [
+        0.1471235752105713
+      ],
+      "semantic_candidate_losses": [
+        5.78125,
+        4.34375,
+        2.78125,
+        9.125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "1a648b53cbad17044cc9106eb6b076b4d9e6a897d7349eeb5f9cb88c959a8ab0",
+      "claimed_label": 2,
+      "loss": 0.5260913968086243,
+      "anchor_cosine": 0.8595076203346252,
+      "all_applicable_cosines": [
+        0.8595076203346252
+      ],
+      "semantic_candidate_losses": [
+        1.4765625,
+        3.09375,
+        0.4765625,
+        3.96875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "fb697a4de1d6868d16413ee03c848239c7ee7948db6b0e57bb7da0a264beabe9",
+      "claimed_label": 2,
+      "loss": 0.3505459427833557,
+      "anchor_cosine": 0.8671590089797974,
+      "all_applicable_cosines": [
+        0.8671590089797974
+      ],
+      "semantic_candidate_losses": [
+        1.71875,
+        3.84375,
+        0.34765625,
+        4.78125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "55127d54b0f09e5d7f3f191d7fd30d337ba1261a9432a9df2cf09e1e5710ce61",
+      "claimed_label": 2,
+      "loss": 0.26418089866638184,
+      "anchor_cosine": 0.8890145421028137,
+      "all_applicable_cosines": [
+        0.8890145421028137
+      ],
+      "semantic_candidate_losses": [
+        2.65625,
+        2.65625,
+        0.279296875,
+        4.28125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "8367bf8d536b73a7513fad99500e15414b34a51376e7bee87d41931fb9d10c92",
+      "claimed_label": 2,
+      "loss": 0.4526076316833496,
+      "anchor_cosine": 0.7868587970733643,
+      "all_applicable_cosines": [
+        0.7868587970733643
+      ],
+      "semantic_candidate_losses": [
+        1.875,
+        3.0,
+        0.5,
+        3.25
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "da36ba9ea5789047555477e42fefde6f33da0ce63b9c9d6e2f4254b140e1aeb1",
+      "claimed_label": 2,
+      "loss": 0.22551748156547546,
+      "anchor_cosine": 0.8709120154380798,
+      "all_applicable_cosines": [
+        0.8709120154380798
+      ],
+      "semantic_candidate_losses": [
+        2.46875,
+        3.09375,
+        0.2158203125,
+        4.96875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "cf5702df58710eae028897c3311ac882adbed7ab205cd6b706e11e4af6921064",
+      "claimed_label": 2,
+      "loss": 0.21258962154388428,
+      "anchor_cosine": 0.8789768218994141,
+      "all_applicable_cosines": [
+        0.8789768218994141
+      ],
+      "semantic_candidate_losses": [
+        2.21875,
+        3.71875,
+        0.2119140625,
+        4.90625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "b0d5d7a4c9abf22cdca7b20a04ba14fede1f29a7673b9d002e09d98bf5cac109",
+      "claimed_label": 2,
+      "loss": 0.23840966820716858,
+      "anchor_cosine": 0.8353992104530334,
+      "all_applicable_cosines": [
+        0.8353992104530334
+      ],
+      "semantic_candidate_losses": [
+        2.46875,
+        3.59375,
+        0.2138671875,
+        4.09375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "134d6dbf85ddd8f5d94b8615080e0c3cff85d53ab6593fb9b1fa2193f34b0ca1",
+      "claimed_label": 2,
+      "loss": 0.2384631186723709,
+      "anchor_cosine": 0.8843662738800049,
+      "all_applicable_cosines": [
+        0.8843662738800049
+      ],
+      "semantic_candidate_losses": [
+        2.234375,
+        3.359375,
+        0.240234375,
+        5.0625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "a9fe76a06d6f728f39352ddc6e310f97e17a808458603d2b946cc2fbe4895195",
+      "claimed_label": 2,
+      "loss": 0.17516684532165527,
+      "anchor_cosine": 0.8981068134307861,
+      "all_applicable_cosines": [
+        0.8981068134307861
+      ],
+      "semantic_candidate_losses": [
+        2.921875,
+        3.171875,
+        0.1650390625,
+        5.15625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "36f474de4320c0eedd93a81e9e416d65edb88869831684b89a845901194011a2",
+      "claimed_label": 2,
+      "loss": 0.1815754622220993,
+      "anchor_cosine": 0.8988195061683655,
+      "all_applicable_cosines": [
+        0.8988195061683655
+      ],
+      "semantic_candidate_losses": [
+        2.921875,
+        2.921875,
+        0.1728515625,
+        5.4375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "e7393c117bf5e8ac43e2b0da7eb83bcc9a4853f0bdab499d6f306a5fb8cdd51a",
+      "claimed_label": 2,
+      "loss": 0.41882073879241943,
+      "anchor_cosine": 0.8530005216598511,
+      "all_applicable_cosines": [
+        0.8530005216598511
+      ],
+      "semantic_candidate_losses": [
+        2.40625,
+        3.28125,
+        0.412109375,
+        3.28125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "baa6f86c988dea459c3a56cb7ed901811f40daa566150c21bbd66d29e0df9a8f",
+      "claimed_label": 2,
+      "loss": 0.29216882586479187,
+      "anchor_cosine": 0.8191319108009338,
+      "all_applicable_cosines": [
+        0.8191319108009338
+      ],
+      "semantic_candidate_losses": [
+        2.421875,
+        2.421875,
+        0.291015625,
+        5.71875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "3361ca388d8da83e0af43220c6f19e60f7643a2a55866d2e778bd65b815b145a",
+      "claimed_label": 2,
+      "loss": 0.35142678022384644,
+      "anchor_cosine": 0.8125382661819458,
+      "all_applicable_cosines": [
+        0.8125382661819458
+      ],
+      "semantic_candidate_losses": [
+        1.84375,
+        3.96875,
+        0.345703125,
+        4.09375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "b87814de790256ec83a97294f3d0eb1ae33f8a3a5ea01b9238764ea16a322d34",
+      "claimed_label": 2,
+      "loss": 0.4369875490665436,
+      "anchor_cosine": 0.8476020097732544,
+      "all_applicable_cosines": [
+        0.8476020097732544
+      ],
+      "semantic_candidate_losses": [
+        1.6875,
+        3.0625,
+        0.43359375,
+        3.5625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "f7dab5f302b0437aaf7603960c34fb8cde673507453d7d81dbd4542d756d74aa",
+      "claimed_label": 2,
+      "loss": 0.36918431520462036,
+      "anchor_cosine": 0.885487973690033,
+      "all_applicable_cosines": [
+        0.885487973690033
+      ],
+      "semantic_candidate_losses": [
+        1.7265625,
+        3.859375,
+        0.353515625,
+        4.09375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "d42e0ffc434f058ca36f090bc4cf1f80389928f6eaa12fa78de14e53fb96a6b6",
+      "claimed_label": 2,
+      "loss": 0.638195812702179,
+      "anchor_cosine": 0.8842147588729858,
+      "all_applicable_cosines": [
+        0.8842147588729858
+      ],
+      "semantic_candidate_losses": [
+        1.7109375,
+        3.078125,
+        0.58203125,
+        3.328125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "9e8d0ca3710a0654462f44ab14adb7ba7b8640c273c13509beb15f1ea19c8f2a",
+      "claimed_label": 2,
+      "loss": 0.2774091362953186,
+      "anchor_cosine": 0.8338873982429504,
+      "all_applicable_cosines": [
+        0.8338873982429504
+      ],
+      "semantic_candidate_losses": [
+        2.15625,
+        3.03125,
+        0.279296875,
+        4.71875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "ebfc4db790f8516b4be0104e31f8d9640166fd99edb5d3194a7a1d03b5f1e97a",
+      "claimed_label": 2,
+      "loss": 0.3745129108428955,
+      "anchor_cosine": 0.8800557255744934,
+      "all_applicable_cosines": [
+        0.8800557255744934
+      ],
+      "semantic_candidate_losses": [
+        1.7578125,
+        3.765625,
+        0.38671875,
+        3.765625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "73c0be2db991b83614513f34a5535752917383c926ae87b5d4a4ce2ab1b09e70",
+      "claimed_label": 2,
+      "loss": 0.5327693223953247,
+      "anchor_cosine": 0.8064632415771484,
+      "all_applicable_cosines": [
+        0.8064632415771484
+      ],
+      "semantic_candidate_losses": [
+        2.296875,
+        1.921875,
+        0.55078125,
+        4.0625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "cb4b77699fe7efc8a64b3c5e28a55ec47446e3b30a30043311e1708b4c858c21",
+      "claimed_label": 2,
+      "loss": 2.9407920837402344,
+      "anchor_cosine": 0.15693935751914978,
+      "all_applicable_cosines": [
+        0.15693935751914978
+      ],
+      "semantic_candidate_losses": [
+        5.53125,
+        4.90625,
+        2.96875,
+        9.6875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "ee0234342427c6e9439cc614c5f500d5d01f8973345e517e3c0a060d0ae5edf9",
+      "claimed_label": 2,
+      "loss": 0.2988739609718323,
+      "anchor_cosine": 0.8121368288993835,
+      "all_applicable_cosines": [
+        0.8121368288993835
+      ],
+      "semantic_candidate_losses": [
+        2.546875,
+        1.921875,
+        0.296875,
+        5.03125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "df50dfcbe2355e7833644813ade21eba1afdf2c26e925a78dcf73c17f60300b3",
+      "claimed_label": 2,
+      "loss": 0.36235758662223816,
+      "anchor_cosine": 0.8370713591575623,
+      "all_applicable_cosines": [
+        0.8370713591575623
+      ],
+      "semantic_candidate_losses": [
+        2.328125,
+        2.703125,
+        0.32421875,
+        3.703125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "42ecddcff078d2fcbc6f0b332c1ebd416a262742ed51482cdae9066c51ae7b95",
+      "claimed_label": 2,
+      "loss": 0.20955777168273926,
+      "anchor_cosine": 0.8948978781700134,
+      "all_applicable_cosines": [
+        0.8948978781700134
+      ],
+      "semantic_candidate_losses": [
+        2.8125,
+        3.1875,
+        0.1923828125,
+        3.8125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "462d99266945902248de1708100bef60f4a3bf142c6f5dc939a391a5e960abef",
+      "claimed_label": 2,
+      "loss": 0.7008031010627747,
+      "anchor_cosine": 0.7674825191497803,
+      "all_applicable_cosines": [
+        0.7674825191497803
+      ],
+      "semantic_candidate_losses": [
+        1.7421875,
+        1.3671875,
+        0.7421875,
+        4.4375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "1f2439cac862da790a29e10b45f9027c156acf86164082ea3ec3daa246b4a73b",
+      "claimed_label": 2,
+      "loss": 0.32735899090766907,
+      "anchor_cosine": 0.9105648398399353,
+      "all_applicable_cosines": [
+        0.9105648398399353
+      ],
+      "semantic_candidate_losses": [
+        1.921875,
+        3.171875,
+        0.30078125,
+        4.875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "7f675e5f233bb100c6d85c60747e26e68d7383a48f02b816322ac88c89e16016",
+      "claimed_label": 2,
+      "loss": 0.5772551894187927,
+      "anchor_cosine": 0.8350781202316284,
+      "all_applicable_cosines": [
+        0.8350781202316284
+      ],
+      "semantic_candidate_losses": [
+        1.5234375,
+        3.015625,
+        0.5234375,
+        4.53125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "23d5acc985ad12d255824d41a85e22b9c7b18cbcbe9673f7f7a3dc7609e0c996",
+      "claimed_label": 2,
+      "loss": 0.28747761249542236,
+      "anchor_cosine": 0.8600459694862366,
+      "all_applicable_cosines": [
+        0.8600459694862366
+      ],
+      "semantic_candidate_losses": [
+        1.78125,
+        4.28125,
+        0.283203125,
+        4.65625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "67112272c0479c3b95355e7796980c02f4415e4fa8614bc48d38e4a60120aef2",
+      "claimed_label": 2,
+      "loss": 0.254993736743927,
+      "anchor_cosine": 0.8707852363586426,
+      "all_applicable_cosines": [
+        0.8707852363586426
+      ],
+      "semantic_candidate_losses": [
+        2.03125,
+        3.03125,
+        0.28125,
+        4.53125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "66990b8eb16d5f6915e58a173fc6bcd0b6ae84e0f1d460bf06bf80610825d964",
+      "claimed_label": 2,
+      "loss": 0.20540793240070343,
+      "anchor_cosine": 0.9186304211616516,
+      "all_applicable_cosines": [
+        0.9186304211616516
+      ],
+      "semantic_candidate_losses": [
+        2.578125,
+        3.203125,
+        0.203125,
+        4.8125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "2bbc88eb63d330ad9c5bfd04b9c95860893b93ba7d67d56dd6be5f599eb32012",
+      "claimed_label": 2,
+      "loss": 0.2034774124622345,
+      "anchor_cosine": 0.8974548578262329,
+      "all_applicable_cosines": [
+        0.8974548578262329
+      ],
+      "semantic_candidate_losses": [
+        2.4375,
+        3.9375,
+        0.193359375,
+        4.3125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "9c6e5dea8675204bd0f09675bf4f3c6bb09f92020548bb0f25736024f835bb22",
+      "claimed_label": 2,
+      "loss": 0.2808370590209961,
+      "anchor_cosine": 0.845733106136322,
+      "all_applicable_cosines": [
+        0.845733106136322
+      ],
+      "semantic_candidate_losses": [
+        3.03125,
+        2.40625,
+        0.279296875,
+        3.40625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "215dd6f6e2829d652bde8b8c29bcd385cbe172714722ade9e4bd3134ca64b2b8",
+      "claimed_label": 2,
+      "loss": 0.5748702883720398,
+      "anchor_cosine": 0.8224897980690002,
+      "all_applicable_cosines": [
+        0.8224897980690002
+      ],
+      "semantic_candidate_losses": [
+        1.9140625,
+        2.65625,
+        0.5390625,
+        3.03125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "5ada655ced9090e62693823a0ee886ccbde2baee300dc3886f4e738ce98c6e42",
+      "claimed_label": 2,
+      "loss": 0.44307905435562134,
+      "anchor_cosine": 0.8894028663635254,
+      "all_applicable_cosines": [
+        0.8894028663635254
+      ],
+      "semantic_candidate_losses": [
+        1.828125,
+        3.203125,
+        0.453125,
+        4.5625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "f591efd295c7e6b9e2011110d3f363071353ea191e1cc6c67b1a86e4b80113c1",
+      "claimed_label": 2,
+      "loss": 0.2678236663341522,
+      "anchor_cosine": 0.8072220683097839,
+      "all_applicable_cosines": [
+        0.8072220683097839
+      ],
+      "semantic_candidate_losses": [
+        2.890625,
+        2.140625,
+        0.265625,
+        4.75
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "7fe520ed64f91f28c247e5cbe11001899453ce5c847758325f41385f8ba8b2a6",
+      "claimed_label": 2,
+      "loss": 0.4148136079311371,
+      "anchor_cosine": 0.8112596869468689,
+      "all_applicable_cosines": [
+        0.8112596869468689
+      ],
+      "semantic_candidate_losses": [
+        2.5,
+        1.7421875,
+        0.37109375,
+        5.0
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "c683e23b7c66f24fd9ef55507b6f81f2df6899dcb534eb254d1ff127a57d6f25",
+      "claimed_label": 2,
+      "loss": 0.3752407133579254,
+      "anchor_cosine": 0.8125361204147339,
+      "all_applicable_cosines": [
+        0.8125361204147339
+      ],
+      "semantic_candidate_losses": [
+        2.234375,
+        2.109375,
+        0.35546875,
+        4.71875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "83fcf1a25029ddd689a7751d60fb965cb694dd4052e966ac26e21fc4ada13b4c",
+      "claimed_label": 2,
+      "loss": 0.4670957028865814,
+      "anchor_cosine": 0.9165503978729248,
+      "all_applicable_cosines": [
+        0.9165503978729248
+      ],
+      "semantic_candidate_losses": [
+        1.890625,
+        3.140625,
+        0.392578125,
+        3.890625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "73932a49a7092943bc60bc66edfc58db744dce9bc5c5636216ad84a0180ff8e0",
+      "claimed_label": 2,
+      "loss": 0.33536842465400696,
+      "anchor_cosine": 0.8359752297401428,
+      "all_applicable_cosines": [
+        0.8359752297401428
+      ],
+      "semantic_candidate_losses": [
+        2.9375,
+        2.1875,
+        0.3203125,
+        4.5
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "091ff015abe2a1f36d1cf9cb3c0126ba74196b8fee9b090af3cb98d875bacf95",
+      "claimed_label": 2,
+      "loss": 0.27864110469818115,
+      "anchor_cosine": 0.89701908826828,
+      "all_applicable_cosines": [
+        0.89701908826828
+      ],
+      "semantic_candidate_losses": [
+        2.640625,
+        2.765625,
+        0.267578125,
+        4.65625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "00cada75034ffc431038cae759b1fce27ca7317244809c050c8bb32bf3372188",
+      "claimed_label": 2,
+      "loss": 0.2732665240764618,
+      "anchor_cosine": 0.849391758441925,
+      "all_applicable_cosines": [
+        0.849391758441925
+      ],
+      "semantic_candidate_losses": [
+        2.28125,
+        2.65625,
+        0.28515625,
+        4.28125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "7adb77cee424aa4a110c831778d382a49a3e9c7473824e918fa65125f3f35f12",
+      "claimed_label": 2,
+      "loss": 3.4265167713165283,
+      "anchor_cosine": 0.10561668127775192,
+      "all_applicable_cosines": [
+        0.10561668127775192
+      ],
+      "semantic_candidate_losses": [
+        3.640625,
+        5.90625,
+        3.515625,
+        8.3125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "91e1d7c112b67f6ebb0d67bb02e0983c0340ede62782c90f86e2d518ad6dbed9",
+      "claimed_label": 2,
+      "loss": 0.14357659220695496,
+      "anchor_cosine": 0.8914307951927185,
+      "all_applicable_cosines": [
+        0.8914307951927185
+      ],
+      "semantic_candidate_losses": [
+        2.765625,
+        3.640625,
+        0.140625,
+        5.28125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "36c9ddc8a5919777a8ee201a8ad1702ed1b9468c77d93e49c65d7acec9fb9a08",
+      "claimed_label": 2,
+      "loss": 0.7297943234443665,
+      "anchor_cosine": 0.7593173384666443,
+      "all_applicable_cosines": [
+        0.7593173384666443
+      ],
+      "semantic_candidate_losses": [
+        1.546875,
+        2.046875,
+        0.671875,
+        3.171875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "333d7c453c98cb82d87ffcd5bb3d35d4ae8329581eba05c1b195fbdec6b552ce",
+      "claimed_label": 2,
+      "loss": 0.41836753487586975,
+      "anchor_cosine": 0.8361518383026123,
+      "all_applicable_cosines": [
+        0.8361518383026123
+      ],
+      "semantic_candidate_losses": [
+        1.53125,
+        3.03125,
+        0.40625,
+        4.28125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "58e8aee4fd413624c707b02862756be08c71a8c420445b35292fd31f3852a29f",
+      "claimed_label": 2,
+      "loss": 0.4427633583545685,
+      "anchor_cosine": 0.8983526825904846,
+      "all_applicable_cosines": [
+        0.8983526825904846
+      ],
+      "semantic_candidate_losses": [
+        2.03125,
+        2.15625,
+        0.408203125,
+        4.03125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "d7fb1733203d027972344a9b6e33cdbc9954320a1eb8938f1770bbcc3be4702b",
+      "claimed_label": 2,
+      "loss": 0.6887207627296448,
+      "anchor_cosine": 0.7910317778587341,
+      "all_applicable_cosines": [
+        0.7910317778587341
+      ],
+      "semantic_candidate_losses": [
+        2.015625,
+        1.7734375,
+        0.7734375,
+        2.515625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "9076d2c3a16c8f0dc4bb09b3fe620c4779c3560610f97af381b26922c4e9f0d1",
+      "claimed_label": 2,
+      "loss": 0.22281485795974731,
+      "anchor_cosine": 0.7916576266288757,
+      "all_applicable_cosines": [
+        0.7916576266288757
+      ],
+      "semantic_candidate_losses": [
+        2.328125,
+        3.453125,
+        0.2080078125,
+        5.09375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "686a2203d4a89285858fb8fe5efa1a5ae7fa4fabb5ccc478da3d8c3c4599df36",
+      "claimed_label": 2,
+      "loss": 0.28382256627082825,
+      "anchor_cosine": 0.8866498470306396,
+      "all_applicable_cosines": [
+        0.8866498470306396
+      ],
+      "semantic_candidate_losses": [
+        2.765625,
+        2.515625,
+        0.265625,
+        4.125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "2ca687a252204c9e170d0cc8c4c97ecb07377c80ba5171313360acdff412e976",
+      "claimed_label": 2,
+      "loss": 0.21314124763011932,
+      "anchor_cosine": 0.896848201751709,
+      "all_applicable_cosines": [
+        0.896848201751709
+      ],
+      "semantic_candidate_losses": [
+        2.953125,
+        2.828125,
+        0.201171875,
+        4.0625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "ed2a5e96285b037408bce979d8b2c69245c55f71153fefb73bfc77bef8fa74a2",
+      "claimed_label": 2,
+      "loss": 0.32942995429039,
+      "anchor_cosine": 0.8912237286567688,
+      "all_applicable_cosines": [
+        0.8912237286567688
+      ],
+      "semantic_candidate_losses": [
+        2.40625,
+        2.53125,
+        0.279296875,
+        4.28125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "73449266094db26b831ba96895bd0807fb80469930e72e3a7f5b48f3899c2dad",
+      "claimed_label": 2,
+      "loss": 0.1278896927833557,
+      "anchor_cosine": 0.8294775485992432,
+      "all_applicable_cosines": [
+        0.8294775485992432
+      ],
+      "semantic_candidate_losses": [
+        3.359375,
+        3.859375,
+        0.11328125,
+        5.125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "2d097616adf5eb16883612c60ea697e424c3cb82081db7aee651f32261f11412",
+      "claimed_label": 2,
+      "loss": 0.3827728033065796,
+      "anchor_cosine": 0.8684561252593994,
+      "all_applicable_cosines": [
+        0.8684561252593994
+      ],
+      "semantic_candidate_losses": [
+        2.375,
+        2.25,
+        0.3828125,
+        3.25
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "d386a343477a069e9adbf90e414ecc2d05ee179a0fd4c20a33a7c0f53e172974",
+      "claimed_label": 2,
+      "loss": 0.4345899224281311,
+      "anchor_cosine": 0.8586834073066711,
+      "all_applicable_cosines": [
+        0.8586834073066711
+      ],
+      "semantic_candidate_losses": [
+        2.53125,
+        2.90625,
+        0.404296875,
+        2.53125
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "d99551b1395811b24a64eb5f7ebc1232e76e03c0f037529df58315c7307c9080",
+      "claimed_label": 2,
+      "loss": 0.3685148358345032,
+      "anchor_cosine": 0.8951429128646851,
+      "all_applicable_cosines": [
+        0.8951429128646851
+      ],
+      "semantic_candidate_losses": [
+        2.46875,
+        2.09375,
+        0.337890625,
+        4.71875
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "1d900858d27c4c58cb9944927e191e5efbaebc531e2bcc1a558992feb8605016",
+      "claimed_label": 2,
+      "loss": 0.4013415277004242,
+      "anchor_cosine": 0.8852570056915283,
+      "all_applicable_cosines": [
+        0.8852570056915283
+      ],
+      "semantic_candidate_losses": [
+        1.984375,
+        2.359375,
+        0.357421875,
+        5.09375
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "f50a105448d457055a0f9c63f79bf09a9620bf9e744809092748b3e55bb8a9ce",
+      "claimed_label": 3,
+      "loss": 3.085645914077759,
+      "anchor_cosine": 0.9292427897453308,
+      "all_applicable_cosines": [
+        0.9292427897453308
+      ],
+      "semantic_candidate_losses": [
+        2.609375,
+        3.859375,
+        0.2333984375,
+        2.984375
+      ],
+      "semantic_inconsistency_margin": 2.7509765625
+    },
+    {
+      "kind": "clean",
+      "source_id": "dc34013ae9e8c45154378e20258ee7ab6319ed49b813bf18804d0f325b5a5686",
+      "claimed_label": 3,
+      "loss": 3.1215410232543945,
+      "anchor_cosine": 0.9590342044830322,
+      "all_applicable_cosines": [
+        0.9590342044830322
+      ],
+      "semantic_candidate_losses": [
+        2.359375,
+        2.984375,
+        0.3515625,
+        3.234375
+      ],
+      "semantic_inconsistency_margin": 2.8828125
+    },
+    {
+      "kind": "clean",
+      "source_id": "02be25238ac864761175252f10a5818a2c9ac439badcacfcbd129acea9981a8f",
+      "claimed_label": 3,
+      "loss": 4.249948501586914,
+      "anchor_cosine": 0.9149754047393799,
+      "all_applicable_cosines": [
+        0.9149754047393799
+      ],
+      "semantic_candidate_losses": [
+        2.328125,
+        2.078125,
+        0.3359375,
+        4.46875
+      ],
+      "semantic_inconsistency_margin": 4.1328125
+    },
+    {
+      "kind": "clean",
+      "source_id": "3f78196b860844c5b883f8c0926fd430f77653b73e76023425feb8666c029033",
+      "claimed_label": 3,
+      "loss": 2.8378052711486816,
+      "anchor_cosine": 0.8886444568634033,
+      "all_applicable_cosines": [
+        0.8886444568634033
+      ],
+      "semantic_candidate_losses": [
+        2.28125,
+        3.03125,
+        0.41015625,
+        2.90625
+      ],
+      "semantic_inconsistency_margin": 2.49609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "9872555b54e83deef34ec3ed99cbc4409b60b60f8dc391c3850c485e492652d5",
+      "claimed_label": 3,
+      "loss": 3.5237369537353516,
+      "anchor_cosine": 0.8955709934234619,
+      "all_applicable_cosines": [
+        0.8955709934234619
+      ],
+      "semantic_candidate_losses": [
+        1.8125,
+        2.4375,
+        0.5625,
+        3.4375
+      ],
+      "semantic_inconsistency_margin": 2.875
+    },
+    {
+      "kind": "clean",
+      "source_id": "032992d7910147aea3623ca94e1ab4c27092d26c7e5e3ca997385fea1deed441",
+      "claimed_label": 3,
+      "loss": 1.8748406171798706,
+      "anchor_cosine": 0.78188556432724,
+      "all_applicable_cosines": [
+        0.78188556432724
+      ],
+      "semantic_candidate_losses": [
+        1.4765625,
+        2.234375,
+        0.85546875,
+        1.9765625
+      ],
+      "semantic_inconsistency_margin": 1.12109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "237f9b4ac8deb7b3d799997950a6aed7698bb8c202ba9956d60d52247a684889",
+      "claimed_label": 3,
+      "loss": 3.0988407135009766,
+      "anchor_cosine": 0.9188007116317749,
+      "all_applicable_cosines": [
+        0.9188007116317749
+      ],
+      "semantic_candidate_losses": [
+        2.140625,
+        1.765625,
+        0.51953125,
+        3.015625
+      ],
+      "semantic_inconsistency_margin": 2.49609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "93aef5aeab4524f09f568f9fd841109a2cae44bf312c37cafdf671a48113e5e1",
+      "claimed_label": 3,
+      "loss": 2.816169023513794,
+      "anchor_cosine": 0.887152910232544,
+      "all_applicable_cosines": [
+        0.887152910232544
+      ],
+      "semantic_candidate_losses": [
+        0.83203125,
+        2.578125,
+        1.203125,
+        2.703125
+      ],
+      "semantic_inconsistency_margin": 1.87109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "f0b246fe24623ffceda2a2b197b85981c2bffa790950c6ea42af5710662d9864",
+      "claimed_label": 3,
+      "loss": 3.785097122192383,
+      "anchor_cosine": 0.9136905074119568,
+      "all_applicable_cosines": [
+        0.9136905074119568
+      ],
+      "semantic_candidate_losses": [
+        2.171875,
+        2.046875,
+        0.421875,
+        3.796875
+      ],
+      "semantic_inconsistency_margin": 3.375
+    },
+    {
+      "kind": "clean",
+      "source_id": "f0148a0428ca6cb7b3c0c5eecdd0766543c3d847abbcb1308f461fddcf2b16cb",
+      "claimed_label": 3,
+      "loss": 3.80294132232666,
+      "anchor_cosine": 0.9485337138175964,
+      "all_applicable_cosines": [
+        0.9485337138175964
+      ],
+      "semantic_candidate_losses": [
+        2.40625,
+        2.65625,
+        0.28515625,
+        3.90625
+      ],
+      "semantic_inconsistency_margin": 3.62109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "d08e70fe199bfeff454d5d98d3b8dd51d875daedd1cc1e451a3c813d72b04c01",
+      "claimed_label": 3,
+      "loss": 2.974912166595459,
+      "anchor_cosine": 0.9003197550773621,
+      "all_applicable_cosines": [
+        0.9003197550773621
+      ],
+      "semantic_candidate_losses": [
+        2.46875,
+        2.59375,
+        0.345703125,
+        2.96875
+      ],
+      "semantic_inconsistency_margin": 2.623046875
+    },
+    {
+      "kind": "clean",
+      "source_id": "fa202b601eb6f28e7d338b22b5014e87d22f07985d931e6a7efdb7244a5bf1d0",
+      "claimed_label": 3,
+      "loss": 3.9437942504882812,
+      "anchor_cosine": 0.9338955283164978,
+      "all_applicable_cosines": [
+        0.9338955283164978
+      ],
+      "semantic_candidate_losses": [
+        2.59375,
+        2.09375,
+        0.3359375,
+        3.84375
+      ],
+      "semantic_inconsistency_margin": 3.5078125
+    },
+    {
+      "kind": "clean",
+      "source_id": "095e825a3c2718196e114ef660ed1e72b122fd38a7ba820f0a7e97db0203401f",
+      "claimed_label": 3,
+      "loss": 2.959421157836914,
+      "anchor_cosine": 0.9192753434181213,
+      "all_applicable_cosines": [
+        0.9192753434181213
+      ],
+      "semantic_candidate_losses": [
+        2.5625,
+        4.0625,
+        0.314453125,
+        3.0625
+      ],
+      "semantic_inconsistency_margin": 2.748046875
+    },
+    {
+      "kind": "clean",
+      "source_id": "eddd742241ad094e836f93023c18e7751ce3d597457822d824c10b8861604827",
+      "claimed_label": 3,
+      "loss": 3.086799383163452,
+      "anchor_cosine": 0.9043134450912476,
+      "all_applicable_cosines": [
+        0.9043134450912476
+      ],
+      "semantic_candidate_losses": [
+        2.046875,
+        4.0625,
+        0.302734375,
+        3.296875
+      ],
+      "semantic_inconsistency_margin": 2.994140625
+    },
+    {
+      "kind": "clean",
+      "source_id": "c8935daafdcd963b683d2eea819ed90c9b21754adc5c0362c31c797e3b1ba047",
+      "claimed_label": 3,
+      "loss": 2.857642650604248,
+      "anchor_cosine": 0.9201961755752563,
+      "all_applicable_cosines": [
+        0.9201961755752563
+      ],
+      "semantic_candidate_losses": [
+        2.34375,
+        3.71875,
+        0.341796875,
+        2.84375
+      ],
+      "semantic_inconsistency_margin": 2.501953125
+    },
+    {
+      "kind": "clean",
+      "source_id": "ca49e3e4f73a6e4272c88461d6537ac919846ecd11ee41ec80150c211412d170",
+      "claimed_label": 3,
+      "loss": 4.388869762420654,
+      "anchor_cosine": 0.8396081328392029,
+      "all_applicable_cosines": [
+        0.8396081328392029
+      ],
+      "semantic_candidate_losses": [
+        3.390625,
+        3.640625,
+        0.1357421875,
+        4.5
+      ],
+      "semantic_inconsistency_margin": 4.3642578125
+    },
+    {
+      "kind": "clean",
+      "source_id": "8c948f0dea729a1d611cedba5e0713a081f7e8fe9c2c99caf80c8f5a8306b424",
+      "claimed_label": 3,
+      "loss": 4.279574871063232,
+      "anchor_cosine": 0.8919050693511963,
+      "all_applicable_cosines": [
+        0.8919050693511963
+      ],
+      "semantic_candidate_losses": [
+        2.125,
+        3.875,
+        0.251953125,
+        4.4375
+      ],
+      "semantic_inconsistency_margin": 4.185546875
+    },
+    {
+      "kind": "clean",
+      "source_id": "12146c05f30decd551c7e4f29c1d10622ff64c780d60be25c00f321fe4dd617e",
+      "claimed_label": 3,
+      "loss": 3.055607795715332,
+      "anchor_cosine": 0.9233722686767578,
+      "all_applicable_cosines": [
+        0.9233722686767578
+      ],
+      "semantic_candidate_losses": [
+        2.796875,
+        3.171875,
+        0.2890625,
+        3.171875
+      ],
+      "semantic_inconsistency_margin": 2.8828125
+    },
+    {
+      "kind": "clean",
+      "source_id": "adc81b0158e6a2361708e5e34098d56310f106f1c0fd7de477e77b0c79a80a56",
+      "claimed_label": 3,
+      "loss": 1.2976129055023193,
+      "anchor_cosine": 0.6162096858024597,
+      "all_applicable_cosines": [
+        0.6162096858024597
+      ],
+      "semantic_candidate_losses": [
+        1.8515625,
+        2.34375,
+        1.2265625,
+        1.3515625
+      ],
+      "semantic_inconsistency_margin": 0.125
+    },
+    {
+      "kind": "clean",
+      "source_id": "c3c9abc125f7566f4efce72dbb339351e111c07bc8f521ce94598f2d57dd6faa",
+      "claimed_label": 3,
+      "loss": 2.670379400253296,
+      "anchor_cosine": 0.8670216202735901,
+      "all_applicable_cosines": [
+        0.8670216202735901
+      ],
+      "semantic_candidate_losses": [
+        2.765625,
+        3.015625,
+        0.271484375,
+        2.765625
+      ],
+      "semantic_inconsistency_margin": 2.494140625
+    },
+    {
+      "kind": "clean",
+      "source_id": "b149d9338cb999d28fc7d4272e5873c398642e701c0a8db14c6c62e7a0272463",
+      "claimed_label": 3,
+      "loss": 3.4415698051452637,
+      "anchor_cosine": 0.8654288053512573,
+      "all_applicable_cosines": [
+        0.8654288053512573
+      ],
+      "semantic_candidate_losses": [
+        2.4375,
+        3.0625,
+        0.30859375,
+        3.5625
+      ],
+      "semantic_inconsistency_margin": 3.25390625
+    },
+    {
+      "kind": "clean",
+      "source_id": "bb680d3c2d4830280d48af29ee7d304eb7436b4a0b4be16bf8924b4ec17c9e2b",
+      "claimed_label": 3,
+      "loss": 4.177340984344482,
+      "anchor_cosine": 0.9176413416862488,
+      "all_applicable_cosines": [
+        0.9176413416862488
+      ],
+      "semantic_candidate_losses": [
+        3.0625,
+        2.8125,
+        0.1796875,
+        4.1875
+      ],
+      "semantic_inconsistency_margin": 4.0078125
+    },
+    {
+      "kind": "clean",
+      "source_id": "d1fec307a89435be9d1af4bea9187234a0274d87cc8cedbed7faefa7ebde9890",
+      "claimed_label": 3,
+      "loss": 3.439236879348755,
+      "anchor_cosine": 0.9316216707229614,
+      "all_applicable_cosines": [
+        0.9316216707229614
+      ],
+      "semantic_candidate_losses": [
+        2.828125,
+        3.203125,
+        0.2001953125,
+        3.453125
+      ],
+      "semantic_inconsistency_margin": 3.2529296875
+    },
+    {
+      "kind": "clean",
+      "source_id": "51dfc601d8f9013aededc94c98b50b31a79688a1466d9d8ddc78795a6b163fd5",
+      "claimed_label": 3,
+      "loss": 3.477980613708496,
+      "anchor_cosine": 0.9143539071083069,
+      "all_applicable_cosines": [
+        0.9143539071083069
+      ],
+      "semantic_candidate_losses": [
+        2.265625,
+        2.390625,
+        0.390625,
+        3.390625
+      ],
+      "semantic_inconsistency_margin": 3.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "fd5a3e3855aa6804e2ed04e81c083466b7731f4136e20cdb422c18c61dd0feb1",
+      "claimed_label": 3,
+      "loss": 3.460239887237549,
+      "anchor_cosine": 0.9128644466400146,
+      "all_applicable_cosines": [
+        0.9128644466400146
+      ],
+      "semantic_candidate_losses": [
+        3.109375,
+        3.109375,
+        0.2294921875,
+        3.359375
+      ],
+      "semantic_inconsistency_margin": 3.1298828125
+    },
+    {
+      "kind": "clean",
+      "source_id": "992583155251abb4459d5eb8f2ff931513041c0c0a485b91aa89f4adaafc42c2",
+      "claimed_label": 3,
+      "loss": 2.6820549964904785,
+      "anchor_cosine": 0.8854919672012329,
+      "all_applicable_cosines": [
+        0.8854919672012329
+      ],
+      "semantic_candidate_losses": [
+        2.1875,
+        2.9375,
+        0.443359375,
+        2.6875
+      ],
+      "semantic_inconsistency_margin": 2.244140625
+    },
+    {
+      "kind": "clean",
+      "source_id": "ada9cfbf1a04f7a20efdda640c845278c2bc6d38bb9968b2119691059803c8e6",
+      "claimed_label": 3,
+      "loss": 3.0061538219451904,
+      "anchor_cosine": 0.8948654532432556,
+      "all_applicable_cosines": [
+        0.8948654532432556
+      ],
+      "semantic_candidate_losses": [
+        2.28125,
+        1.90625,
+        0.52734375,
+        3.03125
+      ],
+      "semantic_inconsistency_margin": 2.50390625
+    },
+    {
+      "kind": "clean",
+      "source_id": "d28b52937a230df54abe86dbd692b0e92f331447d5631bdd056c2ab645ff1807",
+      "claimed_label": 3,
+      "loss": 4.024036407470703,
+      "anchor_cosine": 0.9271465539932251,
+      "all_applicable_cosines": [
+        0.9271465539932251
+      ],
+      "semantic_candidate_losses": [
+        2.796875,
+        2.171875,
+        0.294921875,
+        4.03125
+      ],
+      "semantic_inconsistency_margin": 3.736328125
+    },
+    {
+      "kind": "clean",
+      "source_id": "079278cfb22f520fd30c7408bb44bc250143dab549112adb7766f0698aba0b10",
+      "claimed_label": 3,
+      "loss": 2.724215269088745,
+      "anchor_cosine": 0.9375911355018616,
+      "all_applicable_cosines": [
+        0.9375911355018616
+      ],
+      "semantic_candidate_losses": [
+        1.640625,
+        2.890625,
+        0.640625,
+        2.640625
+      ],
+      "semantic_inconsistency_margin": 2.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "d21952151a98ce2e4cc44ecc536121b68294f733ad4db60b92e4d30e6cdec42b",
+      "claimed_label": 3,
+      "loss": 2.944521903991699,
+      "anchor_cosine": 0.8696949481964111,
+      "all_applicable_cosines": [
+        0.8696949481964111
+      ],
+      "semantic_candidate_losses": [
+        2.09375,
+        2.21875,
+        0.462890625,
+        2.84375
+      ],
+      "semantic_inconsistency_margin": 2.380859375
+    },
+    {
+      "kind": "clean",
+      "source_id": "644970a43b1177bae0cae96e951c286eaee4b461d66da96e9c493737204c1798",
+      "claimed_label": 3,
+      "loss": 3.5846877098083496,
+      "anchor_cosine": 0.9433198571205139,
+      "all_applicable_cosines": [
+        0.9433198571205139
+      ],
+      "semantic_candidate_losses": [
+        2.703125,
+        3.203125,
+        0.1982421875,
+        3.828125
+      ],
+      "semantic_inconsistency_margin": 3.6298828125
+    },
+    {
+      "kind": "clean",
+      "source_id": "05ef92194998fd62e30b8750c61a3468ff7f24949b61f086d4c9f90febf3e137",
+      "claimed_label": 3,
+      "loss": 3.6753008365631104,
+      "anchor_cosine": 0.8988608121871948,
+      "all_applicable_cosines": [
+        0.8988608121871948
+      ],
+      "semantic_candidate_losses": [
+        3.03125,
+        3.40625,
+        0.1630859375,
+        3.78125
+      ],
+      "semantic_inconsistency_margin": 3.6181640625
+    },
+    {
+      "kind": "clean",
+      "source_id": "2358621c1e8aa092f28126b8a97cd5277e853809b1e0d0bd2b675cc544a4db18",
+      "claimed_label": 3,
+      "loss": 3.093595504760742,
+      "anchor_cosine": 0.9421442747116089,
+      "all_applicable_cosines": [
+        0.9421442747116089
+      ],
+      "semantic_candidate_losses": [
+        1.8828125,
+        2.140625,
+        0.63671875,
+        3.140625
+      ],
+      "semantic_inconsistency_margin": 2.50390625
+    },
+    {
+      "kind": "clean",
+      "source_id": "e6ff87b7401c93880184d5a67de194f8b45fcc8542f7e1617f73c88a8b5cd8aa",
+      "claimed_label": 3,
+      "loss": 2.6490509510040283,
+      "anchor_cosine": 0.8938090205192566,
+      "all_applicable_cosines": [
+        0.8938090205192566
+      ],
+      "semantic_candidate_losses": [
+        2.03125,
+        2.40625,
+        0.66015625,
+        2.65625
+      ],
+      "semantic_inconsistency_margin": 1.99609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "22a2675b92cfedd296e686ba2fd7a253250c62cd2ffeb4d182dcd42ede384733",
+      "claimed_label": 3,
+      "loss": 2.911583423614502,
+      "anchor_cosine": 0.9132619500160217,
+      "all_applicable_cosines": [
+        0.9132619500160217
+      ],
+      "semantic_candidate_losses": [
+        2.40625,
+        2.90625,
+        0.287109375,
+        3.03125
+      ],
+      "semantic_inconsistency_margin": 2.744140625
+    },
+    {
+      "kind": "clean",
+      "source_id": "89f6137fe6ba9c69c40577665759fbff667534046a144f66fea30993274dea24",
+      "claimed_label": 3,
+      "loss": 2.326331853866577,
+      "anchor_cosine": 0.9083477854728699,
+      "all_applicable_cosines": [
+        0.9083477854728699
+      ],
+      "semantic_candidate_losses": [
+        2.6875,
+        3.4375,
+        0.4375,
+        2.4375
+      ],
+      "semantic_inconsistency_margin": 2.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "ec733fdd76d6a8893702d2cd69363d97dda18b6ba6e74d58dfeb0c0839c449bd",
+      "claimed_label": 3,
+      "loss": 3.4908289909362793,
+      "anchor_cosine": 0.9235570430755615,
+      "all_applicable_cosines": [
+        0.9235570430755615
+      ],
+      "semantic_candidate_losses": [
+        3.390625,
+        2.390625,
+        0.259765625,
+        3.515625
+      ],
+      "semantic_inconsistency_margin": 3.255859375
+    },
+    {
+      "kind": "clean",
+      "source_id": "de334fbc5fdde959e21596b97771557818c8a401026ddb818ef120023fda6e13",
+      "claimed_label": 3,
+      "loss": 3.007124900817871,
+      "anchor_cosine": 0.8722817301750183,
+      "all_applicable_cosines": [
+        0.8722817301750183
+      ],
+      "semantic_candidate_losses": [
+        2.75,
+        2.875,
+        0.2431640625,
+        3.25
+      ],
+      "semantic_inconsistency_margin": 3.0068359375
+    },
+    {
+      "kind": "clean",
+      "source_id": "80e9fe21869b66fd5298be7eded9a87affc47b6c71d8922a4492c929a56e933f",
+      "claimed_label": 3,
+      "loss": 3.266277313232422,
+      "anchor_cosine": 0.9303871989250183,
+      "all_applicable_cosines": [
+        0.9303871989250183
+      ],
+      "semantic_candidate_losses": [
+        1.515625,
+        2.140625,
+        0.640625,
+        3.265625
+      ],
+      "semantic_inconsistency_margin": 2.625
+    },
+    {
+      "kind": "clean",
+      "source_id": "2a69cb96064160c907205b89d56e8ca64b7ab17eda215632fd4b56dd63eecfc8",
+      "claimed_label": 3,
+      "loss": 2.4308011531829834,
+      "anchor_cosine": 0.8338424563407898,
+      "all_applicable_cosines": [
+        0.8338424563407898
+      ],
+      "semantic_candidate_losses": [
+        2.140625,
+        3.140625,
+        0.384765625,
+        2.515625
+      ],
+      "semantic_inconsistency_margin": 2.130859375
+    },
+    {
+      "kind": "clean",
+      "source_id": "f099ad491f02ad7b92dc671b78c849d12a7a01160e9d9c2c5fdfcb02f3cadca1",
+      "claimed_label": 3,
+      "loss": 2.5881855487823486,
+      "anchor_cosine": 0.867658793926239,
+      "all_applicable_cosines": [
+        0.867658793926239
+      ],
+      "semantic_candidate_losses": [
+        2.515625,
+        1.890625,
+        0.76953125,
+        2.515625
+      ],
+      "semantic_inconsistency_margin": 1.74609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "5cd3d210e9c396766cf85220ae07850139183cb3c999bf910c2d1674fbe0f055",
+      "claimed_label": 3,
+      "loss": 3.39597225189209,
+      "anchor_cosine": 0.8863565921783447,
+      "all_applicable_cosines": [
+        0.8863565921783447
+      ],
+      "semantic_candidate_losses": [
+        2.28125,
+        2.65625,
+        0.40625,
+        3.40625
+      ],
+      "semantic_inconsistency_margin": 3.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "468a2611feadc306fd6e8703fc3f1d4988bf7216848695f8b7c070bc53438288",
+      "claimed_label": 3,
+      "loss": 2.112851858139038,
+      "anchor_cosine": 0.866655707359314,
+      "all_applicable_cosines": [
+        0.866655707359314
+      ],
+      "semantic_candidate_losses": [
+        1.3828125,
+        2.515625,
+        0.88671875,
+        2.015625
+      ],
+      "semantic_inconsistency_margin": 1.12890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "898304977bc0fc8c8304ca0ef501b84e22904fc73941d7b226f212a8527757ca",
+      "claimed_label": 3,
+      "loss": 2.296818733215332,
+      "anchor_cosine": 0.7602571845054626,
+      "all_applicable_cosines": [
+        0.7602571845054626
+      ],
+      "semantic_candidate_losses": [
+        0.98046875,
+        1.8515625,
+        1.3515625,
+        2.359375
+      ],
+      "semantic_inconsistency_margin": 1.37890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "2b579b7850248ed592bef4389a377c070f5c9b2517d5b8e48b45bfa6dae866c6",
+      "claimed_label": 3,
+      "loss": 2.4976089000701904,
+      "anchor_cosine": 0.9014398455619812,
+      "all_applicable_cosines": [
+        0.9014398455619812
+      ],
+      "semantic_candidate_losses": [
+        2.21875,
+        2.84375,
+        0.470703125,
+        2.59375
+      ],
+      "semantic_inconsistency_margin": 2.123046875
+    },
+    {
+      "kind": "clean",
+      "source_id": "99c094613494f960d2cb686cca89ea064feab1a648e7719a2a8b189fdbdc11bc",
+      "claimed_label": 3,
+      "loss": 3.2025153636932373,
+      "anchor_cosine": 0.7791449427604675,
+      "all_applicable_cosines": [
+        0.7791449427604675
+      ],
+      "semantic_candidate_losses": [
+        2.859375,
+        2.484375,
+        0.482421875,
+        3.234375
+      ],
+      "semantic_inconsistency_margin": 2.751953125
+    },
+    {
+      "kind": "clean",
+      "source_id": "22dbafd47e65472a1ad3718c9e2498dc766729c5f6de17facd5f81a48f86482a",
+      "claimed_label": 3,
+      "loss": 3.4522862434387207,
+      "anchor_cosine": 0.9376991987228394,
+      "all_applicable_cosines": [
+        0.9376991987228394
+      ],
+      "semantic_candidate_losses": [
+        2.59375,
+        4.09375,
+        0.212890625,
+        3.46875
+      ],
+      "semantic_inconsistency_margin": 3.255859375
+    },
+    {
+      "kind": "clean",
+      "source_id": "e01ea6deb81fc3e1652235b2df4bf22322a7056896dc8d875731a9e9657ae9e2",
+      "claimed_label": 3,
+      "loss": 4.026241779327393,
+      "anchor_cosine": 0.9057400822639465,
+      "all_applicable_cosines": [
+        0.9057400822639465
+      ],
+      "semantic_candidate_losses": [
+        2.234375,
+        2.359375,
+        0.359375,
+        4.25
+      ],
+      "semantic_inconsistency_margin": 3.890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "257e6ddeb940a739d90acf4a6b7131a5ac1c6c2dad4939a6a4432e041a2db9e1",
+      "claimed_label": 3,
+      "loss": 3.073629379272461,
+      "anchor_cosine": 0.9462496042251587,
+      "all_applicable_cosines": [
+        0.9462496042251587
+      ],
+      "semantic_candidate_losses": [
+        2.15625,
+        2.28125,
+        0.4140625,
+        3.15625
+      ],
+      "semantic_inconsistency_margin": 2.7421875
+    },
+    {
+      "kind": "clean",
+      "source_id": "f2f126d43e4ee2e6cf76aa95b00caea44c264acbaa01a8a2a12f073eae83b6a5",
+      "claimed_label": 3,
+      "loss": 2.600654125213623,
+      "anchor_cosine": 0.875299334526062,
+      "all_applicable_cosines": [
+        0.875299334526062
+      ],
+      "semantic_candidate_losses": [
+        2.75,
+        1.625,
+        0.50390625,
+        2.625
+      ],
+      "semantic_inconsistency_margin": 2.12109375
+    },
+    {
+      "kind": "clean",
+      "source_id": "7d14b4c5c8a87dc1073a92df58060871d14ca8a937e81916ae2b51f647bb9a54",
+      "claimed_label": 3,
+      "loss": 0.8951064348220825,
+      "anchor_cosine": 0.6661033034324646,
+      "all_applicable_cosines": [
+        0.6661033034324646
+      ],
+      "semantic_candidate_losses": [
+        2.265625,
+        3.890625,
+        1.015625,
+        0.890625
+      ],
+      "semantic_inconsistency_margin": 0.0
+    },
+    {
+      "kind": "clean",
+      "source_id": "06d13af8812f027eea8640fd60dcc3c768f884c4aaad2ae210edeaf4c15cdac1",
+      "claimed_label": 3,
+      "loss": 3.2907471656799316,
+      "anchor_cosine": 0.9420403838157654,
+      "all_applicable_cosines": [
+        0.9420403838157654
+      ],
+      "semantic_candidate_losses": [
+        2.765625,
+        3.140625,
+        0.26171875,
+        3.390625
+      ],
+      "semantic_inconsistency_margin": 3.12890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "af053952c452f4242eec4cbc142fd114f48e9bd2d27d47b546902ed6f2b37639",
+      "claimed_label": 3,
+      "loss": 3.422959566116333,
+      "anchor_cosine": 0.9176120162010193,
+      "all_applicable_cosines": [
+        0.9176120162010193
+      ],
+      "semantic_candidate_losses": [
+        2.0,
+        3.0,
+        0.376953125,
+        3.625
+      ],
+      "semantic_inconsistency_margin": 3.248046875
+    },
+    {
+      "kind": "clean",
+      "source_id": "1fc7b1a528db30d09d08e8f9b691870fc6e47055c5c690b6e6737374e242a22b",
+      "claimed_label": 3,
+      "loss": 3.538245439529419,
+      "anchor_cosine": 0.9259790778160095,
+      "all_applicable_cosines": [
+        0.9259790778160095
+      ],
+      "semantic_candidate_losses": [
+        2.796875,
+        3.921875,
+        0.177734375,
+        3.546875
+      ],
+      "semantic_inconsistency_margin": 3.369140625
+    },
+    {
+      "kind": "clean",
+      "source_id": "460d1a7b7e8d1921f95ca0ff4fc3ac6d5de52f2e24c14b552abce4baa9153c67",
+      "claimed_label": 3,
+      "loss": 3.715846061706543,
+      "anchor_cosine": 0.9073079824447632,
+      "all_applicable_cosines": [
+        0.9073079824447632
+      ],
+      "semantic_candidate_losses": [
+        2.328125,
+        2.578125,
+        0.44921875,
+        3.828125
+      ],
+      "semantic_inconsistency_margin": 3.37890625
+    },
+    {
+      "kind": "clean",
+      "source_id": "beadd91806862a920d117ec8e644e0d245311398397d523a0d7005bfc09dcfa8",
+      "claimed_label": 3,
+      "loss": 3.3058230876922607,
+      "anchor_cosine": 0.9236955642700195,
+      "all_applicable_cosines": [
+        0.9236955642700195
+      ],
+      "semantic_candidate_losses": [
+        2.421875,
+        2.671875,
+        0.296875,
+        3.421875
+      ],
+      "semantic_inconsistency_margin": 3.125
+    },
+    {
+      "kind": "clean",
+      "source_id": "4964231867b784c1e3a9717f916eb3b87e12babff68b0eecb4454c696ee553e3",
+      "claimed_label": 3,
+      "loss": 2.8943681716918945,
+      "anchor_cosine": 0.8234884142875671,
+      "all_applicable_cosines": [
+        0.8234884142875671
+      ],
+      "semantic_candidate_losses": [
+        2.859375,
+        3.234375,
+        0.2373046875,
+        3.109375
+      ],
+      "semantic_inconsistency_margin": 2.8720703125
+    },
+    {
+      "kind": "clean",
+      "source_id": "156fa79d8b247d24aa470b41c2ce10372630a4111ac43231fb8a965fa87c4c4c",
+      "claimed_label": 3,
+      "loss": 2.680966854095459,
+      "anchor_cosine": 0.8335800170898438,
+      "all_applicable_cosines": [
+        0.8335800170898438
+      ],
+      "semantic_candidate_losses": [
+        2.03125,
+        3.03125,
+        0.53515625,
+        2.78125
+      ],
+      "semantic_inconsistency_margin": 2.24609375
+    },
+    {
+      "kind": "clean",
+      "source_id": "6e15c97fce277c05a820a6211c67a65cf350fdc909943e76f4d218318dbe9f7b",
+      "claimed_label": 3,
+      "loss": 4.370137691497803,
+      "anchor_cosine": 0.8722977638244629,
+      "all_applicable_cosines": [
+        0.8722977638244629
+      ],
+      "semantic_candidate_losses": [
+        2.40625,
+        2.40625,
+        0.287109375,
+        4.28125
+      ],
+      "semantic_inconsistency_margin": 3.994140625
+    },
+    {
+      "kind": "clean",
+      "source_id": "ecd20920fa8c2f72680ac0de776a2b7121875e06c3746f3431dd210ad16f872f",
+      "claimed_label": 3,
+      "loss": 3.081721544265747,
+      "anchor_cosine": 0.895725429058075,
+      "all_applicable_cosines": [
+        0.895725429058075
+      ],
+      "semantic_candidate_losses": [
+        2.671875,
+        2.921875,
+        0.298828125,
+        3.171875
+      ],
+      "semantic_inconsistency_margin": 2.873046875
+    },
+    {
+      "kind": "clean",
+      "source_id": "ce21caa783b461367cbcc81bde9962ec9ce29745e702025182138d404dc18dca",
+      "claimed_label": 3,
+      "loss": 2.71354079246521,
+      "anchor_cosine": 0.932407796382904,
+      "all_applicable_cosines": [
+        0.932407796382904
+      ],
+      "semantic_candidate_losses": [
+        2.59375,
+        3.09375,
+        0.341796875,
+        2.84375
+      ],
+      "semantic_inconsistency_margin": 2.501953125
+    },
+    {
+      "kind": "clean",
+      "source_id": "1232b668904379a95a72984d93c27942ab3d1f236f6c395e5b2e31f950b663cf",
+      "claimed_label": 3,
+      "loss": 2.6274337768554688,
+      "anchor_cosine": 0.8952385783195496,
+      "all_applicable_cosines": [
+        0.8952385783195496
+      ],
+      "semantic_candidate_losses": [
+        2.078125,
+        3.203125,
+        0.455078125,
+        2.828125
+      ],
+      "semantic_inconsistency_margin": 2.373046875
+    },
+    {
+      "kind": "clean",
+      "source_id": "1acf7d008ed42fc9cefb15fe555ec2520914114eb0b79d553e7fd4ff215d169b",
+      "claimed_label": 3,
+      "loss": 2.501359462738037,
+      "anchor_cosine": 0.8451570272445679,
+      "all_applicable_cosines": [
+        0.8451570272445679
+      ],
+      "semantic_candidate_losses": [
+        3.03125,
+        3.40625,
+        0.275390625,
+        2.53125
+      ],
+      "semantic_inconsistency_margin": 2.255859375
+    },
+    {
+      "kind": "clean",
+      "source_id": "cade1c90cd504bbf60b5a2c66df2716d04142de2b0cb40b1b648b233381c0958",
+      "claimed_label": 3,
+      "loss": 3.344405174255371,
+      "anchor_cosine": 0.9270014762878418,
+      "all_applicable_cosines": [
+        0.9270014762878418
+      ],
+      "semantic_candidate_losses": [
+        1.875,
+        3.375,
+        0.376953125,
+        3.375
+      ],
+      "semantic_inconsistency_margin": 2.998046875
+    }
+  ],
+  "limitations": [
+    "Hidden kinds are used only for post-hoc diagnostic metrics.",
+    "Off-task samples use the maximum class-anchor cosine, a conservative acceptance score.",
+    "Scores are measured at the pretrained LoRA initialization and may change during training.",
+    "Semantic consistency is evaluated only for AG News clean/conflict samples; off-task detection is separate."
+  ]
+}

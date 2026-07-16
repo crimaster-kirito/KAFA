@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/root/projects/KAFA/kafa_script/run_trec_server_ablation.py", line 374, in <module>
+    main()
+  File "/root/projects/KAFA/kafa_script/run_trec_server_ablation.py", line 343, in main
+    "clients": [core.artifact_hashes(path) for path in client_paths],
+  File "/root/projects/KAFA/kafa_script/run_trec_server_ablation.py", line 343, in <listcomp>
+    "clients": [core.artifact_hashes(path) for path in client_paths],
+  File "/root/projects/KAFA/kafa_script/run_generic_classification_distillation.py", line 520, in artifact_hashes
+    result[name] = sha256_file(path)
+  File "/root/projects/KAFA/kafa_script/run_generic_classification_distillation.py", line 49, in sha256_file
+    digest.update(chunk)
+KeyboardInterrupt

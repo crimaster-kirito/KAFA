@@ -1,0 +1,51 @@
+{
+  "evidence_label": "benchmark_holdout",
+  "paper_result": false,
+  "method": "gsm8k_public_anchor_teacher_numeric_rank",
+  "seed": 73,
+  "teacher_model": ".cache/models/Qwen2.5-1.5B",
+  "teacher_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_model": ".cache/models/Qwen2.5-0.5B",
+  "client_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "evaluation_manifest_sha256": "60e1c2ce19c6247546563fe0e8109c53bccfe425fdf66348483da35039c210d0",
+  "anchor_examples": 128,
+  "teacher_steps": 40,
+  "client_steps": 40,
+  "teacher_mean_train_loss": 0.8095295749604702,
+  "teacher_train_wall_seconds": 5.370124723995104,
+  "teacher_scoring_wall_seconds": 9.234062166884542,
+  "client_mean_train_loss": 0.8961282216012478,
+  "mixture_counts": {
+    "clean": 256
+  },
+  "selection": {
+    "keep_count": 128,
+    "numeric_eligible": 256,
+    "selected_kind_counts": {
+      "clean": 128
+    },
+    "selected_source_ids_sha256": "c23c5282bb4646b196d33078d23531a4f14701830cf42a95e0c07883c21dba09",
+    "selected_teacher_loss_range": [
+      0.007238511927425861,
+      0.7340129017829895
+    ]
+  },
+  "evaluation_split": "secondary_holdout",
+  "evaluation_examples": 1024,
+  "initial": null,
+  "final": {
+    "exact_match": 0.0654296875,
+    "invalid_output_rate": 0.0,
+    "examples": 1024,
+    "prediction_sha256": "3a99269ff6b97eca8878c42960a30493589e05f2363fe9ee1ec0d83a72d39897"
+  },
+  "client_train_wall_seconds": 3.457522609969601,
+  "total_wall_seconds": 42.65152388298884,
+  "peak_allocated_gpu_bytes": 5983867904,
+  "limitations": [
+    "Official-test labels are loaded only when explicitly requested under a frozen final protocol.",
+    "Selection audit labels are recorded only after selection and never used to rank examples."
+  ]
+}

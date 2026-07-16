@@ -1,0 +1,48 @@
+{
+  "name": "agnews_post_observation_seed_replication_protocol_v1",
+  "status": "frozen_after_observing_seeds_142_144_and_before_running_seeds_145_149",
+  "purpose": "Test seed robustness of the small negative AG News effect without retuning the method.",
+  "evidence_boundary": "This is a post-observation independent-seed replication on an already accessed official test set, not a new untouched holdout or preregistered primary test.",
+  "parent_protocol": "kafa_script/heterogeneous_routed_final_protocol_v2.json",
+  "parent_result": "kafa_script/analysis_outputs/FINAL_HETEROGENEOUS_RESULTS.md",
+  "replication_seeds": [145, 146, 147, 148, 149],
+  "comparators": [
+    "strict public-anchor-only equal-work control",
+    "relative-balanced-rank routed canonical-probability distillation"
+  ],
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "teacher_temperature": 0.1,
+    "anchor_supervision_weight": 1.0,
+    "routed_distillation_weight": 0.25,
+    "teacher_aggregation": "uniform",
+    "routing_keep_fraction": 0.5,
+    "routing_gate_threshold": 0.8,
+    "conflict_ratio": 0.4,
+    "off_task_ratio": 0.2,
+    "anchor_per_class": 32,
+    "max_length": 128,
+    "evaluation_split": "official_test",
+    "evaluation_examples": 7600
+  },
+  "replication_gate": "Support seed robustness only if at least four of five new routed-minus-anchor accuracy differences are nonpositive and their mean is nonpositive.",
+  "analysis": "Report every new paired difference, a descriptive 95% t interval, the replication gate, and the original three-seed and combined eight-seed summaries separately.",
+  "prohibited_actions": [
+    "No hyperparameter or routing changes after any replication seed is observed.",
+    "Do not describe the replication set as an untouched holdout.",
+    "Do not replace the original three-seed preregistered result with the combined estimate."
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_public_anchor_teacher_numeric_rank",
+  "seed": 71,
+  "teacher_model": ".cache/models/Qwen2.5-1.5B",
+  "teacher_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+  "client_weight_sha256": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "anchor_examples": 128,
+  "teacher_steps": 40,
+  "client_steps": 40,
+  "teacher_mean_train_loss": 0.7836482770740986,
+  "teacher_train_wall_seconds": 5.5949734130408615,
+  "teacher_scoring_wall_seconds": 8.111225701170042,
+  "client_mean_train_loss": 1.4178524777293204,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "selection": {
+    "keep_count": 128,
+    "numeric_eligible": 208,
+    "selected_kind_counts": {
+      "clean": 98,
+      "conflict": 27,
+      "off_task": 3
+    },
+    "selected_source_ids_sha256": "ea83c95860368b9af4b5cd4ab0d77e36ab90abca7ed9c7e4fc9a44f7624249a3",
+    "selected_teacher_loss_range": [
+      0.007508059032261372,
+      1.7765429019927979
+    ]
+  },
+  "evaluation_split": "development",
+  "evaluation_examples": 64,
+  "initial": {
+    "exact_match": 0.046875,
+    "invalid_output_rate": 0.1875,
+    "examples": 64,
+    "prediction_sha256": "f7a515d1063c6a8c69daf8518ac175f775d3f3862b06e0290f4ab2050b941d5d"
+  },
+  "final": {
+    "exact_match": 0.03125,
+    "invalid_output_rate": 0.0,
+    "examples": 64,
+    "prediction_sha256": "300a953934af16d1f984f5022eae94f3b8513b4ec3a6be4551554642d1398d2a"
+  },
+  "client_train_wall_seconds": 3.037056084955111,
+  "total_wall_seconds": 29.560079196933657,
+  "peak_allocated_gpu_bytes": 5984377856,
+  "limitations": [
+    "Official-test labels are loaded only when explicitly requested under a frozen final protocol.",
+    "Selection audit labels are recorded only after selection and never used to rank examples."
+  ]
+}

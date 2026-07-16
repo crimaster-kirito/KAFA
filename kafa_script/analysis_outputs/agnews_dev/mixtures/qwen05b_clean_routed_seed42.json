@@ -1,0 +1,62 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "study": "within_client_real_mixture_mechanism",
+  "method": "local_lora_rank_ensemble",
+  "seed": 42,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "requested_conflict_ratio": 0.0,
+  "requested_off_task_ratio": 0.0,
+  "realized_counts": {
+    "clean": 256
+  },
+  "train_examples": 256,
+  "selected_train_examples": 128,
+  "selected_realized_counts": {
+    "clean": 128
+  },
+  "selection_metadata": {
+    "uses_hidden_mixture_labels": false,
+    "keep_fraction": 0.5,
+    "kept": 128,
+    "diagnostics_path": "kafa_script/analysis_outputs/agnews_dev/anchor_diagnostics/qwen05b_clean_seed42.json",
+    "diagnostics_record_order_sha256": "26d2cba210adb6c4ec05547c0e9f5c2f6452149d9fdadf5778a5f7e642d49d5a",
+    "score": "mean within-client percentile rank of negative anchor cosine, loss, and semantic inconsistency"
+  },
+  "eval_examples": 800,
+  "steps": 40,
+  "batch_size": 8,
+  "learning_rate": 0.001,
+  "last_batch_train_loss": 0.008159467950463295,
+  "initial": {
+    "accuracy": 0.48625001311302185,
+    "macro_f1": 0.4413959728553891,
+    "label_nll": 1.4834338426589966,
+    "ece": 0.1666544359177351,
+    "per_class_recall": [
+      0.3400000035762787,
+      0.5899999737739563,
+      0.9900000095367432,
+      0.02500000037252903
+    ]
+  },
+  "final": {
+    "accuracy": 0.7237499952316284,
+    "macro_f1": 0.6680020391941071,
+    "label_nll": 2.452622175216675,
+    "ece": 0.23280924031860195,
+    "per_class_recall": [
+      0.8399999737739563,
+      0.9850000143051147,
+      0.9750000238418579,
+      0.0949999988079071
+    ]
+  },
+  "train_wall_seconds": 3.044016788015142,
+  "peak_allocated_gpu_bytes": 4735018496,
+  "serialized_adapter_bytes": 1115203,
+  "base_agnews_ids_sha256": "5cf4955362932c653ccf219eb73fe28fefc69f5fe08b6c619e8b0343d3526d59",
+  "mixture_assignment_sha256": "d5260d6069d7f8daac0109c365af4c36855bf383a9b48681ead15e297a46ab8e"
+}

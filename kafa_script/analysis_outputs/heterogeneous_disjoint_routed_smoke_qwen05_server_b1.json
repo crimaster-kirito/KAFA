@@ -1,0 +1,125 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "canonical_probability_distillation",
+  "scope": "one-round heterogeneous development baseline with disjoint client target data",
+  "seed": 42,
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "server_model": ".cache/models/Qwen2.5-0.5B",
+  "server_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "client_records": [
+    {
+      "model": ".cache/models/Qwen2.5-0.5B",
+      "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+      "mean_client_train_loss": 1.372547686100006,
+      "anchor_probability_payload_bytes": 2089,
+      "train_examples": 256,
+      "selected_train_examples": 128,
+      "routing": {
+        "gate_ratio": 0.32630503447503845,
+        "client_q25": 0.28546005487442017,
+        "reference_q25": 0.8748257756233215,
+        "gate_triggered": true,
+        "selected": 128,
+        "quota_per_claimed_label": 32,
+        "score_record_order_sha256": "2dcde72460e44bed9c89043135a0d3ef48e226c5fab773599168bd8a76701a76"
+      },
+      "anchor_label_accuracy": 0.78125,
+      "anchor_label_nll": 0.7372658848762512,
+      "base_target_ids_sha256": "09c8d5353b707c220ce87bea311358b40f3bce0e17c7cf66d54ea21397acee66",
+      "mixture_assignment_sha256": "be3887acb99da4c041c1a498ffbab4616675f2c7e6523fa64cdb6be149e07b88"
+    },
+    {
+      "model": ".cache/models/SmolLM2-360M",
+      "model_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+      "mean_client_train_loss": 1.6785808503627777,
+      "anchor_probability_payload_bytes": 2089,
+      "train_examples": 256,
+      "selected_train_examples": 128,
+      "routing": {
+        "gate_ratio": 0.44235905649741547,
+        "client_q25": 0.25660455226898193,
+        "reference_q25": 0.5800820589065552,
+        "gate_triggered": true,
+        "selected": 128,
+        "quota_per_claimed_label": 32,
+        "score_record_order_sha256": "5832146f56ba2a5b98b990bbc66a5115ca5c0d05d9126d0f972f551b36311bc2"
+      },
+      "anchor_label_accuracy": 0.34375,
+      "anchor_label_nll": 1.2604141235351562,
+      "base_target_ids_sha256": "008a0059f9f717c7a8fa52988d0bb7deced3e68f2c76dcc444e2f8e6d6c35b09",
+      "mixture_assignment_sha256": "e7ef99ec733762a46c5e7e28082f2675ef749f90c297709031e4870b28614cb6"
+    },
+    {
+      "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+      "model_weight_sha256": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+      "mean_client_train_loss": 4.272113561630249,
+      "anchor_probability_payload_bytes": 2089,
+      "train_examples": 256,
+      "selected_train_examples": 128,
+      "routing": {
+        "gate_ratio": 0.4548705782206228,
+        "client_q25": 0.3163363039493561,
+        "reference_q25": 0.6954424381256104,
+        "gate_triggered": true,
+        "selected": 128,
+        "quota_per_claimed_label": 32,
+        "score_record_order_sha256": "8a277b3252c4c77cfc145cef71168e2c8d7b08ad6863152754a2c62bba8c189a"
+      },
+      "anchor_label_accuracy": 0.65625,
+      "anchor_label_nll": 1.1494512557983398,
+      "base_target_ids_sha256": "513aac876f9484e9660ad26827884d924a1ff6e19a57d293867d8b74b9b99ade",
+      "mixture_assignment_sha256": "ce5e096bd889e7465da8b7f8a1fdabf4b0d8f1e0ffa6edffc3b5d20da0afdf4e"
+    }
+  ],
+  "client_count": 3,
+  "client_data_mode": "disjoint",
+  "anchor_examples": 32,
+  "eval_examples": 80,
+  "client_steps": 4,
+  "server_steps": 4,
+  "client_learning_rate": 0.001,
+  "server_learning_rate": 0.0001,
+  "anchor_supervision_weight": 1.0,
+  "distillation_weight": 1.0,
+  "teacher_aggregation": "uniform",
+  "teacher_temperature": 0.1,
+  "teacher_weights": [
+    0.3333333432674408,
+    0.3333333432674408,
+    0.3333333432674408
+  ],
+  "mean_server_distillation_loss": 2.8587840795516968,
+  "initial": {
+    "accuracy": 0.4749999940395355,
+    "macro_f1": 0.4258761554956436,
+    "label_nll": 1.468017578125,
+    "ece": 0.2056413386017084,
+    "per_class_recall": [
+      0.3499999940395355,
+      0.550000011920929,
+      1.0,
+      0.0
+    ]
+  },
+  "final": {
+    "accuracy": 0.5874999761581421,
+    "macro_f1": 0.5358585566282272,
+    "label_nll": 1.35516357421875,
+    "ece": 0.17560959194088355,
+    "per_class_recall": [
+      0.699999988079071,
+      0.6499999761581421,
+      1.0,
+      0.0
+    ]
+  },
+  "measured_client_to_server_payload_bytes": 6267,
+  "total_wall_seconds": 335.3772734599188,
+  "peak_allocated_gpu_bytes": 9750812672,
+  "limitations": [
+    "One communication round only; this is not a convergence study.",
+    "Anchor texts are public; hard anchor labels are used only when anchor_supervision_weight is positive.",
+    "This measures compatibility, not privacy, convergence, or a final federated result."
+  ]
+}

@@ -1,0 +1,373 @@
+{
+  "schema_version": "agnews_server_ablation_v1",
+  "evidence_label": "post_primary_development",
+  "paper_result": false,
+  "method": "severe_routed_distillation",
+  "method_configuration": {
+    "conflict_ratio": 0.4,
+    "off_task_ratio": 0.2,
+    "selection": "relative_balanced_routing"
+  },
+  "seed": 272,
+  "started_utc": "2026-07-15T14:25:09.664450+00:00",
+  "protocol_sha256": "9dd4d2696780eb67491dba440507639a9651dddbd991c8e94f892c09ee49b4ec",
+  "runner_file_sha256": "0717e893c2dc9a20391d7817777b69a4770356eda7233ae763c378eecb983bdd",
+  "parent_manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "holdout_manifest_sha256": "bc4aa188648ad67ada9fc186e4d26f4598057d94e2b36e24d41aaa738bfef15a",
+  "full_args": {
+    "protocol": "kafa_script/agnews_server_post_primary_ablation_v1.json",
+    "parent_manifest": "kafa_script/benchmark_manifest_v1.json",
+    "holdout_manifest": "kafa_script/agnews_secondary_holdout_manifest_v1.json",
+    "agnews_data": ".cache/datasets/agnews/train.jsonl",
+    "imdb_data": ".cache/datasets/imdb/train.jsonl",
+    "method": "severe_routed_distillation",
+    "evaluation_split": "development",
+    "seed": 272,
+    "output": "kafa_script/analysis_outputs/agnews_server_ablation/development/seed272_severe_routed_distillation.json"
+  },
+  "full_args_sha256": "589e41ae62f6929806abcb10864ed2281995b600549083ff3812ea399df72838",
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "anchor_supervision_weight": 1.0,
+    "distillation_weight": 0.25,
+    "teacher_aggregation": "uniform_probability_mean",
+    "routing_keep_fraction": 0.5,
+    "routing_gate_threshold": 0.8,
+    "anchor_per_class": 32,
+    "development_per_class": 200,
+    "client_target_per_class": 64,
+    "max_length": 128
+  },
+  "git": {
+    "commit": "37b595c0df2d76c57ba88cbba6e0695c5240ae50",
+    "dirty": true
+  },
+  "datasets": {
+    "agnews_train_sha256": "4fe547d3954adbccc000719839572ddd158c57b718e3b9bb8f3fbdffc01592ba",
+    "imdb_train_sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef",
+    "official_test_accessed": false
+  },
+  "model_artifacts": {
+    "server": {
+      "model.safetensors": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+      "config.json": "0e8c8aa86468aba09c9d32157ff4bc2301c7e6c50e4398960425b2ea71e66f77",
+      "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+      "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "clients": [
+      {
+        "model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+        "config.json": "479dcf0c5286339e41ad3992cd08ae88a467c4187587936248e2b7c96283484b",
+        "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+        "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      },
+      {
+        "model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+        "config.json": "34f7801487078de7e434e19162c497e5cc6ff397080e40e8586627cb68a5168a",
+        "tokenizer.json": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+        "tokenizer_config.json": "4bb9af56a342753d39374f4016a16574cab299fe088e896f425ce3c433f61424",
+        "vocab.json": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79",
+        "merges.txt": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+      },
+      {
+        "model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+        "config.json": "486bedda3a6988332e60d9638a09ca4b260d34ebcf1b19e22cf3b140b63d8fe9",
+        "tokenizer.json": "bcd04f0eadf90287bd26e1a183ac487d8a141b09b06aecb7725bbdd343640f2e",
+        "tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+        "tokenizer_config.json": "7b41ba7d0eb91e77914ca3dafde559ea3e19878769b7e68409e89bed5222e77a"
+      }
+    ]
+  },
+  "split_source_ids_sha256": {
+    "anchor": "8d1a371cdf2a3f53e4f5e989248ab770db86edf7b882272cb48749adb5c81aa6",
+    "evaluation": "b80239e0be208a080f017eb31647ec263eff62d5768caffb704894c708e95bbb",
+    "frozen_holdout": "2e02e3f9cff7988c0ad376bce1d5cc61a36671e18e0d1003cbb5625b102ca684",
+    "client_0": "00ba433ae85d46f94137a36bb5c92ddf3d500d2a3d677a6d169b3d7b269ee324",
+    "client_1": "8633fc463d54234a192b28859d5cb6bae0d7277f4048a91c62536e3b15940a73",
+    "client_2": "6d20f230317eb494a72febbe73454e6b1ccee9d9e7ed055fc021ec46f5e11414"
+  },
+  "mixture_assignment_sha256": [
+    "49465d3087db6195da02dc71b9b651f982ae1bc64580c5f2de1e201122a0cb86",
+    "1984e711b80be7ad80b00c1708e781d48046823a6a0d75ee61ef9f5fd943fcd4",
+    "cc3026f414fab50f4e0fd44a834b32286c0b1b3a83a1e6d47d1133299add5861"
+  ],
+  "evaluation_split": "development",
+  "evaluation_examples": 800,
+  "anchor_examples": 128,
+  "round_records": [
+    {
+      "round": 1,
+      "client_records": [
+        {
+          "client_index": 0,
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "base_target_ids_sha256": "00ba433ae85d46f94137a36bb5c92ddf3d500d2a3d677a6d169b3d7b269ee324",
+          "mixture_assignment_sha256": "49465d3087db6195da02dc71b9b651f982ae1bc64580c5f2de1e201122a0cb86",
+          "selected_ids_sha256": "b1f283bc2ee17c51fc40556c4a5b07fe076011d8cc6b4ceacf211d07de3f4b48",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 95,
+            "conflict": 33
+          },
+          "mean_local_loss": 1.0087076775729655,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.2620632461148813,
+            "client_q25": 0.22074247896671295,
+            "reference_q25": 0.8423252105712891,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "ce21c75f9d572a03c67356246f6756d86ebad47afa8fdbbf4fe2c9eaa4518910"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "c2047c482adbae745be4cadf6bde10e7408a86eb19c875715ff5560e0157a0b5",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        },
+        {
+          "client_index": 1,
+          "model": ".cache/models/SmolLM2-360M",
+          "base_target_ids_sha256": "8633fc463d54234a192b28859d5cb6bae0d7277f4048a91c62536e3b15940a73",
+          "mixture_assignment_sha256": "1984e711b80be7ad80b00c1708e781d48046823a6a0d75ee61ef9f5fd943fcd4",
+          "selected_ids_sha256": "de31d996f1473b1e7e1d0dbe43e6d228b46ab1c405f88e526d3a01d1cfa105c6",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 87,
+            "conflict": 41
+          },
+          "mean_local_loss": 1.2298188641667367,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.46558112445813554,
+            "client_q25": 0.2787873148918152,
+            "reference_q25": 0.5987942814826965,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "82732e8137cc8c93768719a18ecda6ab8f563c2af2602867c73ee4d1516a73d9"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "338301f7a6c25cf62a6dd5ec8da4b28080ad221d080cebfc94b3f6b820d13819",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1681855
+        },
+        {
+          "client_index": 2,
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "base_target_ids_sha256": "6d20f230317eb494a72febbe73454e6b1ccee9d9e7ed055fc021ec46f5e11414",
+          "mixture_assignment_sha256": "cc3026f414fab50f4e0fd44a834b32286c0b1b3a83a1e6d47d1133299add5861",
+          "selected_ids_sha256": "6ed47ee6e2973ee3525d0f026d52ec297dfb15755b1f37add718fa880b0b8f2c",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 91,
+            "conflict": 37
+          },
+          "mean_local_loss": 1.0209093762561678,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.5790776197742317,
+            "client_q25": 0.3512902557849884,
+            "reference_q25": 0.6066375970840454,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "837037f58bf25ec0b8b82a3c73a4d3b9956ca1ba6c173287cd8279b4a2af005a"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "e0be911070390823b93f9d7e15054beaa7dc36eadadbd5e550a4616b10b50ac1",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "mean_server_objective": 0.9223627850413323
+    },
+    {
+      "round": 2,
+      "client_records": [
+        {
+          "client_index": 0,
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "base_target_ids_sha256": "00ba433ae85d46f94137a36bb5c92ddf3d500d2a3d677a6d169b3d7b269ee324",
+          "mixture_assignment_sha256": "49465d3087db6195da02dc71b9b651f982ae1bc64580c5f2de1e201122a0cb86",
+          "selected_ids_sha256": "97a9dafab1bf170625fd6a442b105b3f38b7c44250a67af9015a5334546f8569",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 98,
+            "conflict": 30
+          },
+          "mean_local_loss": 0.4563447028398514,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.3607230411041263,
+            "client_q25": 0.26649802923202515,
+            "reference_q25": 0.7387884855270386,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "ce21c75f9d572a03c67356246f6756d86ebad47afa8fdbbf4fe2c9eaa4518910"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "89de061f322858be72d9a0fc064deb6049da4df30ef33dfe104bd4246704622a",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        },
+        {
+          "client_index": 1,
+          "model": ".cache/models/SmolLM2-360M",
+          "base_target_ids_sha256": "8633fc463d54234a192b28859d5cb6bae0d7277f4048a91c62536e3b15940a73",
+          "mixture_assignment_sha256": "1984e711b80be7ad80b00c1708e781d48046823a6a0d75ee61ef9f5fd943fcd4",
+          "selected_ids_sha256": "ae8d0b747e73d07338e46e3a6a11df1195e01e19257e93ed4045d01b5121a662",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 92,
+            "conflict": 36
+          },
+          "mean_local_loss": 0.7239761598408222,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.6361048940376379,
+            "client_q25": 0.5102748274803162,
+            "reference_q25": 0.8021866083145142,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "82732e8137cc8c93768719a18ecda6ab8f563c2af2602867c73ee4d1516a73d9"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "c5f748fe39dfdc3e7a8bdd062e2eb224dcc2daf9add763b65cb5baa824245f30",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1681855
+        },
+        {
+          "client_index": 2,
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "base_target_ids_sha256": "6d20f230317eb494a72febbe73454e6b1ccee9d9e7ed055fc021ec46f5e11414",
+          "mixture_assignment_sha256": "cc3026f414fab50f4e0fd44a834b32286c0b1b3a83a1e6d47d1133299add5861",
+          "selected_ids_sha256": "7b4bad95f99842fbcfb1b134524b0a1ff424f0b3e7eee707f020be00b448298e",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 97,
+            "conflict": 31
+          },
+          "mean_local_loss": 0.2673976277932525,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.351186181273181,
+            "client_q25": 0.257235050201416,
+            "reference_q25": 0.7324748635292053,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "837037f58bf25ec0b8b82a3c73a4d3b9956ca1ba6c173287cd8279b4a2af005a"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "55a9d72906c8f05529ef6904ca51a1ecb43f2fff68ca3dfeef4fcf2d682d9bc4",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "mean_server_objective": 0.6351879313588142
+    }
+  ],
+  "final": {
+    "accuracy": 0.8700000047683716,
+    "macro_f1": 0.869729533791542,
+    "label_nll": 0.6774196028709412,
+    "ece": 0.041755795711651444,
+    "per_class_recall": [
+      0.875,
+      0.9900000095367432,
+      0.8149999976158142,
+      0.800000011920929
+    ]
+  },
+  "total_client_to_server_payload_bytes": 21750,
+  "wall_seconds": 454.42098525795154,
+  "peak_allocated_gpu_bytes": 17262234624,
+  "evidence_boundaries": [
+    "The holdout records were selected after primary results were observed; this is post-primary evidence.",
+    "The evaluation records are disjoint from anchors, development, and all clients in this runner, but originate from the AG News training distribution.",
+    "A reconstruction found that 303 evaluation IDs had appeared in at least one prior server-client allocation; the split is not globally untouched.",
+    "This is not a new task, external replication, preregistration, or proof of broad robustness.",
+    "The audit-only clean/conflict/off-task composition is never used as a routing input.",
+    "Off-task membership is identifiable through the explicit task interface; clean versus conflict identity is not provided to the router.",
+    "The public-anchor-only arm omits the client path here; the older AG primary strict control instead executed shadow clients with zero distillation weight.",
+    "No privacy, secure aggregation, or deployment-efficiency claim is authorized."
+  ]
+}

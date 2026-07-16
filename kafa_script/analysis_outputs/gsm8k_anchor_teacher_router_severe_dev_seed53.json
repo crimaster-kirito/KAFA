@@ -1,0 +1,55 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_public_anchor_teacher_numeric_rank",
+  "seed": 53,
+  "teacher_model": ".cache/models/Qwen2.5-1.5B",
+  "teacher_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_model": ".cache/models/Qwen2.5-0.5B",
+  "client_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "anchor_examples": 128,
+  "teacher_steps": 40,
+  "client_steps": 40,
+  "teacher_mean_train_loss": 0.8313384309411049,
+  "client_mean_train_loss": 1.0482176691293716,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "selection": {
+    "keep_count": 128,
+    "numeric_eligible": 211,
+    "selected_kind_counts": {
+      "clean": 99,
+      "conflict": 23,
+      "off_task": 6
+    },
+    "selected_source_ids_sha256": "13b282f07c1d99e8e6cd1fa4107df558fb139f9e812b047c6a4e16f708452eb9",
+    "selected_teacher_loss_range": [
+      0.03057284839451313,
+      1.5605270862579346
+    ]
+  },
+  "development_examples": 64,
+  "initial": {
+    "exact_match": 0.0,
+    "invalid_output_rate": 0.421875,
+    "examples": 64,
+    "prediction_sha256": "afcc63d43365231bd0303241f38d2e795c4327d82a912b115f1e2de8daf08d22"
+  },
+  "final": {
+    "exact_match": 0.078125,
+    "invalid_output_rate": 0.0,
+    "examples": 64,
+    "prediction_sha256": "d32b9f63039617aa754c223b32fb7145084885947abe72f07900d5fa3299cad2"
+  },
+  "client_train_wall_seconds": 3.0119291201699525,
+  "peak_allocated_gpu_bytes": 5984957440,
+  "limitations": [
+    "Development-only; official GSM8K test is never loaded.",
+    "Selection audit labels are recorded only after selection and never used to rank examples."
+  ]
+}

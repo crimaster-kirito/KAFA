@@ -1,0 +1,56 @@
+Traceback (most recent call last):
+  File "/root/projects/KAFA/kafa_script/run_trec_server_ablation.py", line 376, in <module>
+    main()
+  File "/root/projects/KAFA/kafa_script/run_trec_server_ablation.py", line 238, in main
+    mean_loss = core.train_client(
+  File "/root/projects/KAFA/kafa_script/run_generic_classification_distillation.py", line 395, in train_client
+    loss = model(**batch).loss
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/projects/KAFA/.venv/lib/python3.10/site-packages/peft/peft_model.py", line 1923, in forward
+    return self.base_model(
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/projects/KAFA/.venv/lib/python3.10/site-packages/peft/tuners/tuners_utils.py", line 311, in forward
+    return self.model.forward(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 449, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 384, in forward
+    hidden_states = decoder_layer(
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 234, in forward
+    hidden_states, _ = self.self_attn(
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 163, in forward
+    key_states, value_states = past_key_values.update(key_states, value_states, self.layer_idx, cache_kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/cache_utils.py", line 776, in update
+    keys, values = self.layers[layer_idx].update(key_states, value_states, cache_kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/cache_utils.py", line 117, in update
+    self.lazy_initialization(key_states)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/cache_utils.py", line 94, in lazy_initialization
+    self.keys = torch.tensor([], dtype=self.dtype, device=self.device)
+KeyboardInterrupt

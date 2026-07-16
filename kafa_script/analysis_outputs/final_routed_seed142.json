@@ -1,0 +1,225 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "multi_round_canonical_probability_distillation",
+  "seed": 142,
+  "rounds": 2,
+  "client_routing": "relative_balanced_rank",
+  "client_data": "disjoint target-source partition",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "server_model": ".cache/models/Qwen2.5-1.5B",
+  "server_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_models": [
+    ".cache/models/Qwen2.5-0.5B",
+    ".cache/models/SmolLM2-360M",
+    ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+  ],
+  "anchor_examples": 128,
+  "evaluation_split": "official_test",
+  "evaluation_examples": 7600,
+  "client_steps_per_round": 40,
+  "server_steps_per_round": 40,
+  "client_batch_size": 8,
+  "server_batch_size": 8,
+  "anchor_score_batch_size": 8,
+  "distillation_weight": 0.25,
+  "anchor_supervision_weight": 1.0,
+  "teacher_aggregation": "uniform",
+  "initial": {
+    "accuracy": 0.7307894825935364,
+    "macro_f1": 0.7023210003972054,
+    "label_nll": 1.0064278841018677,
+    "ece": 0.048995938876032596,
+    "per_class_recall": [
+      0.7931578755378723,
+      0.9800000190734863,
+      0.9205263257026672,
+      0.22947368025779724
+    ]
+  },
+  "round_records": [
+    {
+      "round": 1,
+      "client_records": [
+        {
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "mean_local_loss": 0.9251626126468182,
+          "selected_examples": 128,
+          "selected_kind_counts": {
+            "clean": 97,
+            "conflict": 31
+          },
+          "routing": {
+            "gate_ratio": 0.3409250718065286,
+            "client_q25": 0.2886736989021301,
+            "reference_q25": 0.846736490726471,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "4471e494d5d4deb6780f5e508f2f149e810e0e2d59c2cf3279bfdbc9fe5f1f3f"
+          },
+          "anchor_label_accuracy": 0.8125,
+          "payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        },
+        {
+          "model": ".cache/models/SmolLM2-360M",
+          "mean_local_loss": 1.2051351949572564,
+          "selected_examples": 128,
+          "selected_kind_counts": {
+            "clean": 91,
+            "conflict": 37
+          },
+          "routing": {
+            "gate_ratio": 0.2238911225681793,
+            "client_q25": 0.13506516814231873,
+            "reference_q25": 0.603262722492218,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "0bfdb4ba5fee12887f729ddaf829736712fbc95b5646776a4c0637937fa29c78"
+          },
+          "anchor_label_accuracy": 0.796875,
+          "payload_bytes": 3625,
+          "adapter_bytes": 1681855
+        },
+        {
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "mean_local_loss": 1.0033422879874707,
+          "selected_examples": 128,
+          "selected_kind_counts": {
+            "clean": 85,
+            "conflict": 43
+          },
+          "routing": {
+            "gate_ratio": 0.5607421727047486,
+            "client_q25": 0.3379712700843811,
+            "reference_q25": 0.6027213335037231,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "dad212246ccfb485385f7522709edf1971489a0f4637033eb365e9d27a025830"
+          },
+          "anchor_label_accuracy": 0.828125,
+          "payload_bytes": 3625,
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ],
+      "mean_server_objective": 0.8553678341209888,
+      "client_to_server_payload_bytes": 10875,
+      "server_development": null
+    },
+    {
+      "round": 2,
+      "client_records": [
+        {
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "mean_local_loss": 0.3933244613930583,
+          "selected_examples": 128,
+          "selected_kind_counts": {
+            "clean": 99,
+            "conflict": 29
+          },
+          "routing": {
+            "gate_ratio": 0.351641183914344,
+            "client_q25": 0.18391546607017517,
+            "reference_q25": 0.5230202674865723,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "4471e494d5d4deb6780f5e508f2f149e810e0e2d59c2cf3279bfdbc9fe5f1f3f"
+          },
+          "anchor_label_accuracy": 0.7890625,
+          "payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        },
+        {
+          "model": ".cache/models/SmolLM2-360M",
+          "mean_local_loss": 0.5817462425678969,
+          "selected_examples": 128,
+          "selected_kind_counts": {
+            "clean": 99,
+            "conflict": 29
+          },
+          "routing": {
+            "gate_ratio": 0.5071697249926962,
+            "client_q25": 0.40778523683547974,
+            "reference_q25": 0.8040409684181213,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "0bfdb4ba5fee12887f729ddaf829736712fbc95b5646776a4c0637937fa29c78"
+          },
+          "anchor_label_accuracy": 0.828125,
+          "payload_bytes": 3625,
+          "adapter_bytes": 1681855
+        },
+        {
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "mean_local_loss": 0.29684892781078814,
+          "selected_examples": 128,
+          "selected_kind_counts": {
+            "clean": 95,
+            "conflict": 33
+          },
+          "routing": {
+            "gate_ratio": 0.393282601340066,
+            "client_q25": 0.271925151348114,
+            "reference_q25": 0.6914243102073669,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "dad212246ccfb485385f7522709edf1971489a0f4637033eb365e9d27a025830"
+          },
+          "anchor_label_accuracy": 0.8125,
+          "payload_bytes": 3625,
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ],
+      "mean_server_objective": 0.6124419901520014,
+      "client_to_server_payload_bytes": 10875,
+      "server_development": {
+        "accuracy": 0.8392105102539062,
+        "macro_f1": 0.838594451546669,
+        "label_nll": 0.7405197024345398,
+        "ece": 0.014608614128519548,
+        "per_class_recall": [
+          0.8342105150222778,
+          0.9857894778251648,
+          0.8089473843574524,
+          0.7278947234153748
+        ]
+      }
+    }
+  ],
+  "final": {
+    "accuracy": 0.8392105102539062,
+    "macro_f1": 0.838594451546669,
+    "label_nll": 0.7405197024345398,
+    "ece": 0.014608614128519548,
+    "per_class_recall": [
+      0.8342105150222778,
+      0.9857894778251648,
+      0.8089473843574524,
+      0.7278947234153748
+    ]
+  },
+  "total_client_to_server_payload_bytes": 21750,
+  "total_wall_seconds": 553.7462141499855,
+  "peak_allocated_gpu_bytes": 17262234624,
+  "limitations": [
+    "Clients retain local adapters but receive no server adapter broadcast because architectures are incompatible.",
+    "No privacy claim is made for public-anchor probability exchange.",
+    "Development runner only; final claims require frozen seeds and official test evaluation."
+  ]
+}

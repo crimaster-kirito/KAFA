@@ -1,0 +1,44 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_local_naive_mixture",
+  "seed": 56,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "client_index": 0,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "conflict_ratio": 0.4,
+  "off_task_ratio": 0.2,
+  "development_examples": 512,
+  "steps": 40,
+  "batch_size": 4,
+  "learning_rate": 0.001,
+  "max_length": 256,
+  "max_new_tokens": 16,
+  "mean_train_loss": 1.2428601130843162,
+  "initial": {
+    "exact_match": 0.009765625,
+    "invalid_output_rate": 0.3984375,
+    "examples": 512,
+    "prediction_sha256": "c5ecc75af49020e54a2c903985547285e5d0cd982a4caef49d89a749b3d4cb7e"
+  },
+  "final": {
+    "exact_match": 0.021484375,
+    "invalid_output_rate": 0.0,
+    "examples": 512,
+    "prediction_sha256": "b578ba1cab1d96a7cb194981e07185c1edf49252a4a0cb8de72e5adbb04a046c"
+  },
+  "train_wall_seconds": 3.1225841890554875,
+  "peak_allocated_gpu_bytes": 4170046976,
+  "mixture_source_ids_sha256": "61837aee13bfdb818ceed012916cdc2a034370a8967171d1b7740c7878782fd4",
+  "limitations": [
+    "Development-only; official GSM8K test is not loaded.",
+    "No routing is applied in this naive mixture baseline."
+  ]
+}

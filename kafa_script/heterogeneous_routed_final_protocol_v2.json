@@ -1,0 +1,46 @@
+{
+  "name": "heterogeneous_routed_final_protocol_v2",
+  "status": "frozen_after_development_selection_before_official_test",
+  "interpretation": "Validation of a negative/benchmark finding. The routed method is not presumed to beat public-anchor-only.",
+  "model_configuration": {
+    "server": "Qwen/Qwen2.5-1.5B",
+    "clients": [
+      "Qwen/Qwen2.5-0.5B",
+      "HuggingFaceTB/SmolLM2-360M",
+      "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "client_target_source_partition": "three disjoint balanced 256-example AG News client pools",
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "server_learning_rate": 0.0001,
+    "public_anchor_per_class": 32,
+    "public_anchor_supervision_weight": 1.0
+  },
+  "severe_mixture": {"conflict_ratio": 0.4, "off_task_ratio": 0.2},
+  "candidate_router": {
+    "name": "relative_balanced_rank",
+    "gate_threshold": 0.8,
+    "keep_fraction": 0.5,
+    "quota": "equal per claimed target class",
+    "server_distillation_weight": 0.25,
+    "teacher_aggregation": "uniform"
+  },
+  "primary_comparators": [
+    "public_anchor_only (distillation_weight=0)",
+    "routed heterogeneous distillation"
+  ],
+  "final_seeds": [142, 143, 144],
+  "evaluation": {
+    "split": "full official AG News test set",
+    "test_labels_may_only_be_used_for_reporting": true,
+    "metrics": ["accuracy", "macro_f1", "canonical_label_nll", "ECE", "per_class_recall", "client_to_server_payload_bytes", "wall_time", "peak_gpu_memory"],
+    "analysis": "paired seed differences, 95% confidence intervals; report all seeds even if candidate loses"
+  },
+  "predeclared_interpretation": {
+    "candidate_beats_anchor_only": "Investigate statistical support but do not claim beyond tested scope.",
+    "candidate_does_not_beat_anchor_only": "Frame the paper as a benchmark/diagnostic study: local routing reduces harm but public anchors remain the strongest server objective under this controlled setting."
+  }
+}

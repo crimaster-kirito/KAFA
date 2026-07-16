@@ -1,0 +1,15 @@
+{
+  "name": "gsm8k_anchor_teacher_final_protocol_v1",
+  "status": "frozen_after_full_development_replication_before_official_test",
+  "candidate": "public_anchor_teacher_numeric_rank",
+  "models": {"teacher": "Qwen/Qwen2.5-1.5B", "client": "Qwen/Qwen2.5-0.5B"},
+  "fixed_hyperparameters": {"anchor_size": 128, "teacher_steps": 40, "client_steps": 40, "batch_size": 4, "learning_rate": 0.001, "keep_count": 128, "max_length": 256, "max_new_tokens": 16},
+  "conditions": {"clean": {"conflict_ratio": 0.0, "off_task_ratio": 0.0}, "severe": {"conflict_ratio": 0.4, "off_task_ratio": 0.2}},
+  "comparisons": ["naive local adaptation", "public-anchor-teacher numeric ranking"],
+  "final_seeds": [158, 159, 160],
+  "evaluation": {"split": "all 1319 official GSM8K test questions", "metric": "normalized greedy final numeric exact match", "test_label_use": "reporting only"},
+  "analysis": "Report all per-seed outcomes, paired difference, descriptive 95% t interval, and clean safety. Do not retune or rerun selectively.",
+  "claim_boundary": "A passing result is evidence only for the controlled public-anchor, synthetic-conflict setting and Qwen teacher/client pair. It does not establish heterogeneous federation until a matched cross-family server experiment succeeds.",
+  "evidence_label": "benchmark_holdout",
+  "paper_result": false
+}

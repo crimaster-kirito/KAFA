@@ -1,0 +1,71 @@
+{
+  "evidence_label": "smoke_real",
+  "paper_result": false,
+  "method": "canonical_probability_distillation",
+  "scope": "one-round heterogeneous compatibility smoke; clients share the same selected mixture",
+  "seed": 42,
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "server_model": ".cache/models/Qwen2.5-1.5B",
+  "server_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_records": [
+    {
+      "model": ".cache/models/Qwen2.5-0.5B",
+      "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+      "mean_client_train_loss": 1.7667138576507568,
+      "anchor_probability_payload_bytes": 2089,
+      "train_examples": 256
+    },
+    {
+      "model": ".cache/models/SmolLM2-360M",
+      "model_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+      "mean_client_train_loss": 2.502463221549988,
+      "anchor_probability_payload_bytes": 2089,
+      "train_examples": 256
+    },
+    {
+      "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+      "model_weight_sha256": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+      "mean_client_train_loss": 4.73528516292572,
+      "anchor_probability_payload_bytes": 2089,
+      "train_examples": 256
+    }
+  ],
+  "client_count": 3,
+  "anchor_examples": 32,
+  "eval_examples": 80,
+  "client_steps": 4,
+  "server_steps": 4,
+  "mean_server_distillation_loss": 1.5864162147045135,
+  "initial": {
+    "accuracy": 0.75,
+    "macro_f1": 0.7129381373524666,
+    "label_nll": 0.9962829351425171,
+    "ece": 0.10459794569760561,
+    "per_class_recall": [
+      0.8999999761581421,
+      0.949999988079071,
+      0.949999988079071,
+      0.20000000298023224
+    ]
+  },
+  "final": {
+    "accuracy": 0.26249998807907104,
+    "macro_f1": 0.1258503459393978,
+    "label_nll": 1.6445801258087158,
+    "ece": 0.26322010601870716,
+    "per_class_recall": [
+      1.0,
+      0.0,
+      0.0,
+      0.05000000074505806
+    ]
+  },
+  "measured_client_to_server_payload_bytes": 6267,
+  "total_wall_seconds": 27.551043523009866,
+  "peak_allocated_gpu_bytes": 17262233088,
+  "limitations": [
+    "Smoke only: all clients use a controlled common mixture rather than disjoint client partitions.",
+    "Anchor texts are public and labels are not used in server distillation loss.",
+    "This measures compatibility, not privacy, convergence, or a final federated result."
+  ]
+}

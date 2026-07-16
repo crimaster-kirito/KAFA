@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/root/projects/KAFA/kafa_script/run_agnews_server_ablation.py", line 397, in <module>
+    main()
+  File "/root/projects/KAFA/kafa_script/run_agnews_server_ablation.py", line 323, in main
+    "teacher_weights": ([1 / len(probability_matrices)] *
+ZeroDivisionError: division by zero

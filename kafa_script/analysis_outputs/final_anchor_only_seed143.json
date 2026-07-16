@@ -1,0 +1,127 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "multi_round_canonical_probability_distillation",
+  "seed": 143,
+  "rounds": 2,
+  "client_routing": "none",
+  "client_data": "disjoint target-source partition",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "server_model": ".cache/models/Qwen2.5-1.5B",
+  "server_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_models": [
+    ".cache/models/Qwen2.5-0.5B"
+  ],
+  "anchor_examples": 128,
+  "evaluation_split": "official_test",
+  "evaluation_examples": 7600,
+  "client_steps_per_round": 1,
+  "server_steps_per_round": 40,
+  "client_batch_size": 8,
+  "server_batch_size": 8,
+  "anchor_score_batch_size": 8,
+  "distillation_weight": 0.0,
+  "anchor_supervision_weight": 1.0,
+  "teacher_aggregation": "uniform",
+  "initial": {
+    "accuracy": 0.7307894825935364,
+    "macro_f1": 0.7023210003972054,
+    "label_nll": 1.0064278841018677,
+    "ece": 0.048995938876032596,
+    "per_class_recall": [
+      0.7931578755378723,
+      0.9800000190734863,
+      0.9205263257026672,
+      0.22947368025779724
+    ]
+  },
+  "round_records": [
+    {
+      "round": 1,
+      "client_records": [
+        {
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "mean_local_loss": 2.273315906524658,
+          "selected_examples": 256,
+          "selected_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "routing": {
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "anchor_label_accuracy": 0.6484375,
+          "payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        }
+      ],
+      "teacher_weights": [
+        1.0
+      ],
+      "mean_server_objective": 0.55303955078125,
+      "client_to_server_payload_bytes": 3625,
+      "server_development": null
+    },
+    {
+      "round": 2,
+      "client_records": [
+        {
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "mean_local_loss": 1.8926905393600464,
+          "selected_examples": 256,
+          "selected_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "routing": {
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "anchor_label_accuracy": 0.734375,
+          "payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        }
+      ],
+      "teacher_weights": [
+        1.0
+      ],
+      "mean_server_objective": 0.280157470703125,
+      "client_to_server_payload_bytes": 3625,
+      "server_development": {
+        "accuracy": 0.8365789651870728,
+        "macro_f1": 0.8344240784645081,
+        "label_nll": 0.8847823143005371,
+        "ece": 0.07327052562322933,
+        "per_class_recall": [
+          0.901578962802887,
+          0.9710526466369629,
+          0.8178947567939758,
+          0.6557894945144653
+        ]
+      }
+    }
+  ],
+  "final": {
+    "accuracy": 0.8365789651870728,
+    "macro_f1": 0.8344240784645081,
+    "label_nll": 0.8847823143005371,
+    "ece": 0.07327052562322933,
+    "per_class_recall": [
+      0.901578962802887,
+      0.9710526466369629,
+      0.8178947567939758,
+      0.6557894945144653
+    ]
+  },
+  "total_client_to_server_payload_bytes": 7250,
+  "total_wall_seconds": 250.29878017003648,
+  "peak_allocated_gpu_bytes": 17262234112,
+  "limitations": [
+    "Clients retain local adapters but receive no server adapter broadcast because architectures are incompatible.",
+    "No privacy claim is made for public-anchor probability exchange.",
+    "Development runner only; final claims require frozen seeds and official test evaluation."
+  ]
+}

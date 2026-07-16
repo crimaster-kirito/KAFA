@@ -1,0 +1,19 @@
+# KAFA research environment, frozen 2026-07-14.
+# Create with the CUDA-enabled PyTorch build appropriate for the host, then:
+#   python -m pip install -r environment/requirements-kafa-research.txt
+# PyTorch is intentionally documented rather than installed from PyPI because
+# the CUDA wheel/index is host-specific. The validated host uses 2.11.0+cu128.
+torch==2.11.0+cu128
+transformers==4.57.6
+tokenizers==0.22.2
+peft==0.18.1
+accelerate==1.12.0
+safetensors==0.8.0
+numpy==2.2.6
+pandas==2.3.3
+pyarrow==25.0.0
+scipy==1.15.3
+pytest==9.1.1
+pypdf==6.14.2
+protobuf==3.19.4
+grpcio==1.64.1

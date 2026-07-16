@@ -1,0 +1,44 @@
+{
+  "name": "gsm8k_cross_family_final_protocol_v1",
+  "status": "frozen_after_development_gate_before_official_test",
+  "selected_from": "gsm8k_cross_family_development_protocol_v1.json",
+  "selection_evidence": "GSM8K_CROSS_FAMILY_DEVELOPMENT.md",
+  "manifest": "gsm8k_benchmark_manifest_v1.json",
+  "models": {
+    "teacher": "Qwen/Qwen2.5-1.5B",
+    "clients": ["HuggingFaceTB/SmolLM2-360M", "TinyLlama/TinyLlama-1.1B-Chat-v1.0"]
+  },
+  "conditions": {
+    "clean": {"conflict_ratio": 0.0, "off_task_ratio": 0.0},
+    "severe": {"conflict_ratio": 0.4, "off_task_ratio": 0.2}
+  },
+  "fixed_hyperparameters": {
+    "anchor_size": 128,
+    "teacher_steps": 40,
+    "client_steps": 40,
+    "batch_size": 4,
+    "learning_rate": 0.001,
+    "keep_count": 128,
+    "max_length": 256,
+    "max_new_tokens": 16
+  },
+  "holdout_seeds": [164, 165, 166],
+  "evaluation": {
+    "split": "all 1319 official GSM8K test questions",
+    "metric": "normalized greedy numeric exact match",
+    "retuning_after_test_access": "prohibited"
+  },
+  "primary_hypotheses": [
+    "SmolLM2 teacher severe EM exceeds paired naive severe EM",
+    "TinyLlama teacher severe EM exceeds paired naive severe EM"
+  ],
+  "analysis": {
+    "test": "one-sided paired t test within family across seeds",
+    "multiplicity": "Holm correction across the two primary family hypotheses at alpha 0.05",
+    "effect": "paired mean EM difference in percentage points with descriptive 95% t interval",
+    "clean_safety": "every paired teacher-minus-naive clean difference must be at least -2 percentage points"
+  },
+  "claim_gate": "A family supports a holdout result only if its Holm-adjusted severe hypothesis is significant and clean safety holds. A general cross-family claim requires both families to pass.",
+  "evidence_label": "benchmark_holdout",
+  "paper_result": false
+}

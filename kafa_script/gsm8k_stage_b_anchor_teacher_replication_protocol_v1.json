@@ -1,0 +1,14 @@
+{
+  "name": "gsm8k_stage_b_anchor_teacher_replication_protocol_v1",
+  "status": "frozen_after_64_question_development_selection_before_full_development_replication",
+  "candidate": "public_anchor_teacher_numeric_rank from gsm8k_stage_b_anchor_teacher_router_protocol_v1.json",
+  "models": {"teacher": "Qwen/Qwen2.5-1.5B", "client": "Qwen/Qwen2.5-0.5B"},
+  "conditions": {"clean": {"conflict_ratio": 0.0, "off_task_ratio": 0.0}, "severe": {"conflict_ratio": 0.4, "off_task_ratio": 0.2}},
+  "fixed_hyperparameters": {"anchor_size": 128, "teacher_steps": 40, "client_steps": 40, "batch_size": 4, "learning_rate": 0.001, "keep_count": 128, "max_length": 256, "max_new_tokens": 16},
+  "replication_seeds": [55, 56, 57],
+  "evaluation": {"split": "all 512 frozen development questions", "metric": "normalized greedy numeric exact match", "official_test_labels": "prohibited"},
+  "comparisons": ["naive local severe adaptation", "public-anchor-teacher routed severe adaptation", "naive clean adaptation", "public-anchor-teacher routed clean adaptation"],
+  "decision_rule": "Advance only if all clean paired differences are at least -2 pp and the severe paired 95% t interval against naive severe is strictly above zero. Otherwise reject before official-test protocol drafting.",
+  "evidence_label": "benchmark_dev",
+  "paper_result": false
+}

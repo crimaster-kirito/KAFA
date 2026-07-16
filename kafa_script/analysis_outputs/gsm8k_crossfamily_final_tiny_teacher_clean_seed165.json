@@ -1,0 +1,52 @@
+{
+  "evidence_label": "benchmark_holdout",
+  "paper_result": false,
+  "method": "gsm8k_public_anchor_teacher_numeric_rank",
+  "seed": 165,
+  "teacher_model": ".cache/models/Qwen2.5-1.5B",
+  "teacher_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+  "client_weight_sha256": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "anchor_examples": 128,
+  "teacher_steps": 40,
+  "client_steps": 40,
+  "teacher_mean_train_loss": 0.8078134790062904,
+  "client_mean_train_loss": 1.411575871706009,
+  "mixture_counts": {
+    "clean": 256
+  },
+  "selection": {
+    "keep_count": 128,
+    "numeric_eligible": 256,
+    "selected_kind_counts": {
+      "clean": 128
+    },
+    "selected_source_ids_sha256": "03f64d5bfed79bdec1ff5af763e5160365e9f20464208817a424c9a8370e18c6",
+    "selected_teacher_loss_range": [
+      0.006971416529268026,
+      0.7528973817825317
+    ]
+  },
+  "evaluation_split": "official_test",
+  "evaluation_examples": 1319,
+  "initial": {
+    "exact_match": 0.022744503411675512,
+    "invalid_output_rate": 0.20242608036391205,
+    "examples": 1319,
+    "prediction_sha256": "fc2396eef4f49090d2fc809ca9a2a2f841d2780c5ad4d7d0c345d16da8036a5a"
+  },
+  "final": {
+    "exact_match": 0.0310841546626232,
+    "invalid_output_rate": 0.0,
+    "examples": 1319,
+    "prediction_sha256": "ae87382f2dc91bd0eb5c99ab54785f49d6e015470049bf3354bfc6f2b0ee1e22"
+  },
+  "client_train_wall_seconds": 2.9335727421566844,
+  "peak_allocated_gpu_bytes": 5983802368,
+  "limitations": [
+    "Official-test labels are loaded only when explicitly requested under a frozen final protocol.",
+    "Selection audit labels are recorded only after selection and never used to rank examples."
+  ]
+}

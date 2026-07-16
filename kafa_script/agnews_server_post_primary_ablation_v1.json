@@ -1,0 +1,199 @@
+{
+  "name": "agnews_server_post_primary_ablation_v1",
+  "status": "refrozen_after_prior_training_exposure_audit_with_all_previous_records_invalidated",
+  "refreeze_initiated_utc": "2026-07-15T14:09:22+00:00",
+  "purpose": "Decompose the compound AG News routed-versus-anchor result on a newly frozen, client-disjoint, train-derived evaluation holdout.",
+  "chronology": {
+    "already_observed": [
+      "AG News official-test primary seeds 142-144",
+      "AG News official-test post-observation replication seeds 145-149",
+      "AG News development results used during method construction",
+      "TREC and GSM8K results reported in the current draft",
+      "Development metrics from 11 completed records under invalidated protocol e53e3b4b",
+      "A reconstruction showing 303 holdout IDs were allocated to at least one prior AG server client across seeds 42-44 and 142-149"
+    ],
+    "not_observed_at_freeze": [
+      "Any aggregate evaluation prediction or metric on the exact 4,000-record secondary holdout",
+      "Any valid result under the final protocol hash and final runner hash"
+    ],
+    "classification": "post-primary run-disjoint same-task resampling ablation; not globally untouched data, preregistered, externally timestamped, or an independent task replication"
+  },
+  "parent_protocols": {
+    "primary": {
+      "path": "kafa_script/heterogeneous_routed_final_protocol_v2.json",
+      "sha256": "69ab272c7e7cbbf168c347b97d4d89f993c8a2d047127431541be8d617938df6"
+    },
+    "seed_replication": {
+      "path": "kafa_script/agnews_post_observation_seed_replication_protocol_v1.json",
+      "sha256": "e952b40e07d830e0ea8ced6dafda31fd24e6549b661b87dc3941e278aedbd5a8"
+    }
+  },
+  "implementation": {
+    "file_sha256": {
+      "kafa_script/run_agnews_server_ablation.py": "0717e893c2dc9a20391d7817777b69a4770356eda7233ae763c378eecb983bdd",
+      "kafa_script/run_heterogeneous_distillation_rounds_dev.py": "ca21b04e8e49213eb301131800e89fd1c5c0ff76f4532ac02e878c57a658b387",
+      "kafa_script/run_heterogeneous_distillation_dev.py": "051e77d3bb857d11bf8b8df519c808945ba0341c2ae31f19f5d48c2cb8fb679f",
+      "kafa_script/run_agnews_local_dev.py": "ed5ee85ee3f5b3200731e3a221fa468a0f868de694e6a7664aa82f18b14572e7",
+      "kafa_script/run_agnews_mixture_dev.py": "85fba66dd871013a94c4a4661ba78849c8c88df191f7ba95cbfcfd958fb7ecf6",
+      "kafa_script/run_real_data_plumbing_smoke.py": "973676c6de16e4fcc4d6d0b7ae3a7297b49a587b54a624f4522f0368a5fcb324",
+      "kafa_script/prepare_agnews_secondary_holdout.py": "439439e5395682b3b7d56d9b0b9dd7247b7e4abaee61906c2d1d109a40dfbd13"
+    }
+  },
+  "instrumentation_repair": {
+    "attempt": "development seed 271 public_anchor_only",
+    "failure": "The no-client arm attempted to form a teacher-weight audit list using division by zero.",
+    "evidence_observed": "No JSON record or evaluation metric was written; the exception occurred during first-round audit-record construction.",
+    "repair": "Represent the absent teacher ensemble with an empty teacher_weights list.",
+    "preserved_log": "kafa_script/analysis_outputs/agnews_server_ablation/development/failures/seed271_public_anchor_only.pre_record_zero_division.log",
+    "old_runner_sha256": "ecb434a71cd4065e06dbd98dca443536d48660ee32653ca913be21a48fc9d245",
+    "repaired_runner_sha256_at_stage": "8dc8f7a92f05a5a4f5afc6ba75ccd5dbea40488982bb6058def07f3fee77da26"
+  },
+  "chronology_repair": {
+    "issue": "The first protocol wrote a nominal frozen_utc of 13:45 even though its filesystem mtime was 13:31 and valid development processes began from 13:31 onward.",
+    "action": "Stopped the matrix, retained all logs, invalidated all four completed JSON records, and refroze with the actual refreeze time before accepting any result under this protocol hash.",
+    "invalidated_protocol_sha256": "1f95815023545ea614dd80c49fec8df64074f5567d7f8b9e586d16b165f760d9",
+    "invalidated_records": 4,
+    "invalidated_location": "kafa_script/analysis_outputs/agnews_server_ablation/invalidated_future_freeze_timestamp",
+    "claim_effect": "No performance value from the invalidated records is used for tuning, gating, inference, or the paper."
+  },
+  "prior_training_exposure_repair": {
+    "issue": "The secondary records are excluded from clients in the new runner, but the first evidence wording incorrectly implied global historical non-exposure.",
+    "audit": {
+      "reconstructed_prior_server_seeds": [42, 43, 44, 142, 143, 144, 145, 146, 147, 148, 149],
+      "per_seed_holdout_overlap": {"42": 30, "43": 40, "44": 25, "142": 31, "143": 31, "144": 23, "145": 37, "146": 25, "147": 27, "148": 24, "149": 22},
+      "unique_holdout_ids_previously_allocated": 303
+    },
+    "action": "Stopped the matrix at 11 of 12 completed records, retained 23 JSON/log artifacts, invalidated every completed record, changed the evidence label and phase name, and refroze before any secondary-holdout evaluation.",
+    "invalidated_protocol_sha256": "e53e3b4bff3917253fdf1718868f7f3bd227062eeb2839b699db11070e7795cb",
+    "invalidated_records": 11,
+    "invalidated_location": "kafa_script/analysis_outputs/agnews_server_ablation/invalidated_prior_training_exposure_claim",
+    "final_scope": "The split is evaluation-disjoint from every client in this runner, but not globally untouched across the research history."
+  },
+  "data": {
+    "parent_manifest": "kafa_script/benchmark_manifest_v1.json",
+    "parent_manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+    "holdout_manifest": "kafa_script/agnews_secondary_holdout_manifest_v1.json",
+    "holdout_manifest_sha256": "bc4aa188648ad67ada9fc186e4d26f4598057d94e2b36e24d41aaa738bfef15a",
+    "agnews_train_sha256": "4fe547d3954adbccc000719839572ddd158c57b718e3b9bb8f3fbdffc01592ba",
+    "imdb_train_sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef",
+    "secondary_holdout_examples": 4000,
+    "secondary_holdout_per_class": 1000,
+    "secondary_holdout_ids_sha256": "2e02e3f9cff7988c0ad376bce1d5cc61a36671e18e0d1003cbb5625b102ca684",
+    "isolation": "The runner excludes the complete holdout ID set from every client allocation in every arm and seed. The official AG News test is not opened."
+  },
+  "model_weight_sha256": {
+    ".cache/models/Qwen2.5-1.5B/model.safetensors": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+    ".cache/models/Qwen2.5-0.5B/model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+    ".cache/models/SmolLM2-360M/model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+    ".cache/models/TinyLlama-1.1B-Chat-v1.0/model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933"
+  },
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "anchor_supervision_weight": 1.0,
+    "distillation_weight": 0.25,
+    "teacher_aggregation": "uniform_probability_mean",
+    "routing_keep_fraction": 0.5,
+    "routing_gate_threshold": 0.8,
+    "anchor_per_class": 32,
+    "development_per_class": 200,
+    "client_target_per_class": 64,
+    "max_length": 128
+  },
+  "method_configuration": {
+    "public_anchor_only": {
+      "conflict_ratio": 0.4,
+      "off_task_ratio": 0.2,
+      "selection": "no_client_path"
+    },
+    "clean_unfiltered_distillation": {
+      "conflict_ratio": 0.0,
+      "off_task_ratio": 0.0,
+      "selection": "all_examples"
+    },
+    "severe_unfiltered_distillation": {
+      "conflict_ratio": 0.4,
+      "off_task_ratio": 0.2,
+      "selection": "all_examples"
+    },
+    "severe_routed_distillation": {
+      "conflict_ratio": 0.4,
+      "off_task_ratio": 0.2,
+      "selection": "relative_balanced_routing"
+    }
+  },
+  "development": {
+    "seeds": [271, 272, 273],
+    "comparators": [
+      "public_anchor_only",
+      "clean_unfiltered_distillation",
+      "severe_unfiltered_distillation",
+      "severe_routed_distillation"
+    ],
+    "gate": "Implementation-only: all 12 records must validate; C and D must have identical per-seed mixtures; no overlap may occur; all metrics are reported regardless of direction. No performance threshold or tuning is permitted."
+  },
+  "secondary_holdout": {
+    "seeds": [281, 282, 283, 284, 285, 286, 287, 288, 289, 290],
+    "comparators": [
+      "public_anchor_only",
+      "clean_unfiltered_distillation",
+      "severe_unfiltered_distillation",
+      "severe_routed_distillation"
+    ],
+    "execution_rule": "Run the complete 10-by-4 matrix regardless of development directions; never add seeds based on observed results."
+  },
+  "analysis": {
+    "primary_metric": "accuracy",
+    "paired_unit": "common seed",
+    "tests": "two-sided paired Student t-tests",
+    "confidence_intervals": "two-sided 95% Student-t intervals over paired seed differences",
+    "multiplicity": "one Holm family containing exactly the three adjacent accuracy contrasts",
+    "adjacent_contrasts": [
+      {"id": "clean_client_utility", "left": "clean_unfiltered_distillation", "right": "public_anchor_only"},
+      {"id": "joint_severe_mixture_effect", "left": "severe_unfiltered_distillation", "right": "clean_unfiltered_distillation"},
+      {"id": "complete_routing_intervention", "left": "severe_routed_distillation", "right": "severe_unfiltered_distillation"}
+    ],
+    "sensitivity": "exact two-sided paired sign-flip p-values computed from integer correct-count differences",
+    "descriptive_only": [
+      "severe_routed_distillation minus public_anchor_only net accuracy",
+      "macro_f1",
+      "label_nll",
+      "ece",
+      "per_class_recall",
+      "selection composition",
+      "payload bytes",
+      "wall time",
+      "peak allocated GPU memory"
+    ],
+    "prohibited": [
+      "No fourth test for the routed-minus-anchor net contrast",
+      "No secondary-metric p-values",
+      "No equivalence claim from a non-significant contrast",
+      "No component-specific attribution because severe jointly changes conflict and off-task rates",
+      "No attribution to routing scores alone because the complete intervention changes set size and composition"
+    ]
+  },
+  "evidence_boundaries": [
+    "The holdout records were selected after primary results were observed; this is post-primary evidence.",
+    "The evaluation records are disjoint from anchors, development, and all clients in this runner, but originate from the AG News training distribution.",
+    "A reconstruction found that 303 evaluation IDs had appeared in at least one prior server-client allocation; the split is not globally untouched.",
+    "This is not a new task, external replication, preregistration, or proof of broad robustness.",
+    "The audit-only clean/conflict/off-task composition is never used as a routing input.",
+    "Off-task membership is identifiable through the explicit task interface; clean versus conflict identity is not provided to the router.",
+    "The public-anchor-only arm omits the client path here; the older AG primary strict control instead executed shadow clients with zero distillation weight.",
+    "No privacy, secure aggregation, or deployment-efficiency claim is authorized."
+  ]
+}

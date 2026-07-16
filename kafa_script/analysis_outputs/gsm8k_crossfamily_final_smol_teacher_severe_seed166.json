@@ -1,0 +1,56 @@
+{
+  "evidence_label": "benchmark_holdout",
+  "paper_result": false,
+  "method": "gsm8k_public_anchor_teacher_numeric_rank",
+  "seed": 166,
+  "teacher_model": ".cache/models/Qwen2.5-1.5B",
+  "teacher_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_model": ".cache/models/SmolLM2-360M",
+  "client_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "anchor_examples": 128,
+  "teacher_steps": 40,
+  "client_steps": 40,
+  "teacher_mean_train_loss": 0.7716486841440201,
+  "client_mean_train_loss": 1.3285877630114555,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "selection": {
+    "keep_count": 128,
+    "numeric_eligible": 207,
+    "selected_kind_counts": {
+      "clean": 96,
+      "conflict": 30,
+      "off_task": 2
+    },
+    "selected_source_ids_sha256": "b27936d1e5f5567f0b40752ad16bf39502e6bcdc645d0fefc18930a69b522f7c",
+    "selected_teacher_loss_range": [
+      0.011050411500036716,
+      1.582256555557251
+    ]
+  },
+  "evaluation_split": "official_test",
+  "evaluation_examples": 1319,
+  "initial": {
+    "exact_match": 0.017437452615617893,
+    "invalid_output_rate": 0.029567854435178165,
+    "examples": 1319,
+    "prediction_sha256": "92670c5e23f390184be7ce6b63fa172964513eb2fa2a14f79132835d809a4ae1"
+  },
+  "final": {
+    "exact_match": 0.04397270659590599,
+    "invalid_output_rate": 0.0,
+    "examples": 1319,
+    "prediction_sha256": "341c57393dae65a3e857b6ef179c75509eab68d14025fe90e1fc9b52450673dc"
+  },
+  "client_train_wall_seconds": 4.325538155855611,
+  "peak_allocated_gpu_bytes": 5985506304,
+  "limitations": [
+    "Official-test labels are loaded only when explicitly requested under a frozen final protocol.",
+    "Selection audit labels are recorded only after selection and never used to rank examples."
+  ]
+}

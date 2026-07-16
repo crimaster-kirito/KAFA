@@ -1,0 +1,55 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "study": "within_client_real_mixture_mechanism",
+  "method": "naive_local_lora",
+  "seed": 76,
+  "model": ".cache/models/SmolLM2-360M",
+  "model_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "requested_conflict_ratio": 0.0,
+  "requested_off_task_ratio": 0.0,
+  "realized_counts": {
+    "clean": 256
+  },
+  "train_examples": 256,
+  "selected_train_examples": 256,
+  "selected_realized_counts": {
+    "clean": 256
+  },
+  "selection_metadata": null,
+  "eval_examples": 800,
+  "steps": 40,
+  "batch_size": 8,
+  "learning_rate": 0.001,
+  "last_batch_train_loss": 0.9176547527313232,
+  "initial": {
+    "accuracy": 0.4437499940395355,
+    "macro_f1": 0.42287009209394455,
+    "label_nll": 2.0408496856689453,
+    "ece": 0.08127540088025853,
+    "per_class_recall": [
+      0.925000011920929,
+      0.3199999928474426,
+      0.20999999344348907,
+      0.3199999928474426
+    ]
+  },
+  "final": {
+    "accuracy": 0.824999988079071,
+    "macro_f1": 0.8212284445762634,
+    "label_nll": 0.529106616973877,
+    "ece": 0.03783633781131357,
+    "per_class_recall": [
+      0.9100000262260437,
+      0.9649999737739563,
+      0.8349999785423279,
+      0.5899999737739563
+    ]
+  },
+  "train_wall_seconds": 8.975301398895681,
+  "peak_allocated_gpu_bytes": 2659053056,
+  "serialized_adapter_bytes": 1683647,
+  "base_agnews_ids_sha256": "2bf023045e534f1f75ee10ca87a0c3de8894dfef15ec4ec294e1bfc587a879b7",
+  "mixture_assignment_sha256": "cb50254f1938846e6e8a94fe91910ba7f7d9b9a94c8e884caf3df59faad3b605"
+}

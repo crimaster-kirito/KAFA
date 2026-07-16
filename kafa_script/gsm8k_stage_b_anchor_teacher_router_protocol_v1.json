@@ -1,0 +1,19 @@
+{
+  "name": "gsm8k_stage_b_anchor_teacher_router_protocol_v1",
+  "status": "frozen_before_endpoint_development",
+  "premise": "Replicated public-anchor-trained 1.5B teacher conflict AUROC exceeds 0.756 local-loss reference on seeds 52--54 (0.989, 0.923, 0.934).",
+  "candidate": {
+    "name": "public_anchor_teacher_numeric_rank",
+    "teacher": "Qwen2.5-1.5B rank-4 LoRA trained only on first 128 public GSM8K anchors for 40 steps, batch 4, lr 1e-3",
+    "client": "Qwen2.5-0.5B rank-4 LoRA",
+    "selector": "among examples whose supplied supervised answer is numeric, retain the 128 lowest teacher-loss examples; no kind, provenance, original correct conflict answer, or test label is read",
+    "client_training": "40 local steps, batch 4, lr 1e-3",
+    "expected_limitation": "Teacher ranking can still retain plausible conflicts or numeric off-task examples."
+  },
+  "conditions": {"clean": {"conflict_ratio": 0.0, "off_task_ratio": 0.0}, "severe": {"conflict_ratio": 0.4, "off_task_ratio": 0.2}},
+  "development_seeds": [52, 53, 54],
+  "evaluation": {"split": "first 64 manifest development questions", "metric": "normalized greedy numeric exact match", "official_test_labels": "prohibited"},
+  "decision_rule": "Reject if any clean difference is below -2 pp or the severe paired 95% interval includes zero. Only a passing candidate may receive a newly frozen official-test protocol.",
+  "evidence_label": "benchmark_dev",
+  "paper_result": false
+}

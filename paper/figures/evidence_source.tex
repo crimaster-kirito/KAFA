@@ -1,0 +1,66 @@
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.18}
+\input{evidence_data.tex}
+
+\definecolor{qwenblue}{HTML}{2878B5}
+\definecolor{smolorange}{HTML}{E07A1F}
+\definecolor{tinygreen}{HTML}{3A923A}
+\definecolor{gridgray}{HTML}{D7DBDD}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={group size=2 by 1,horizontal sep=16mm},
+  width=8.1cm,height=5.25cm,
+  tick label style={font=\sffamily\fontsize{7.2}{8}\selectfont},
+  label style={font=\sffamily\fontsize{8}{9}\selectfont},
+  title style={font=\sffamily\bfseries\fontsize{8.5}{9.5}\selectfont},
+  legend style={font=\sffamily\fontsize{7}{8}\selectfont,draw=none,
+                fill=none,cells={anchor=west}},
+  axis line style={black!65},tick style={black!65},
+  ymajorgrids,grid style={gridgray,dashed},
+]
+\nextgroupplot[
+  title={(a) GSM8K teacher-ranking severity curve},
+  xmin=-.2,xmax=2.2,ymin=-4.2,ymax=8.2,
+  xtick={0,1,2},xticklabels={Clean,Medium,Severe},
+  ylabel={Teacher $-$ naive EM (pp)},
+  legend columns=3,legend pos=north west,
+]
+\addplot+[qwenblue,thick,mark=*,error bars/.cd,y dir=both,y explicit]
+  coordinates \QwenSeverity;
+\addlegendentry{Qwen}
+\addplot+[smolorange,thick,mark=square*,error bars/.cd,y dir=both,y explicit]
+  coordinates \SmolSeverity;
+\addlegendentry{SmolLM2}
+\addplot+[tinygreen,thick,mark=triangle*,error bars/.cd,y dir=both,y explicit]
+  coordinates \TinySeverity;
+\addlegendentry{TinyLlama}
+\draw[black!70,densely dotted] (axis cs:-.2,0) -- (axis cs:2.2,0);
+
+\nextgroupplot[
+  title={(b) Co-Teaching on natural weak labels},
+  xmin=-.55,xmax=1.55,ymin=-31,ymax=16,
+  xtick={0,1},xticklabels={Hausa (50.4\%),Yoruba (33.3\%)},
+  ylabel={Co-Teaching $-$ naive accuracy (pp)},
+  ybar=1.5pt,bar width=7pt,
+  legend columns=3,
+  legend style={at={(0.5,-0.20)},anchor=north},
+]
+\addplot+[draw=qwenblue,fill=qwenblue!70,error bars/.cd,y dir=both,y explicit]
+  coordinates \QwenNatural;
+\addlegendentry{Qwen}
+\addplot+[draw=smolorange,fill=smolorange!70,error bars/.cd,y dir=both,y explicit]
+  coordinates \SmolNatural;
+\addlegendentry{SmolLM2}
+\addplot+[draw=tinygreen,fill=tinygreen!70,error bars/.cd,y dir=both,y explicit]
+  coordinates \TinyNatural;
+\addlegendentry{TinyLlama}
+\draw[black!70,densely dotted] (axis cs:-.55,0) -- (axis cs:1.55,0);
+\end{groupplot}
+\end{tikzpicture}
+\end{document}

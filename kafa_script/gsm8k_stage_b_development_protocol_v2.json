@@ -1,0 +1,31 @@
+{
+  "name": "gsm8k_stage_b_development_protocol_v2",
+  "status": "frozen_before_mixture_development; supersedes_v1_before_mixture_runs",
+  "purpose": "A diagnostic numerical-reasoning replication, not a final or paper result.",
+  "manifest": "kafa_script/gsm8k_benchmark_manifest_v1.json",
+  "task": {
+    "dataset": "openai/gsm8k main",
+    "target": "normalized final numeric answer after the official #### delimiter",
+    "primary_metric": "exact match of normalized final answer",
+    "official_test_rule": "The 1,319 official test labels are unavailable to prompts, anchors, routing, tuning, and early stopping; use them only after a separately frozen final protocol."
+  },
+  "models": {
+    "server": "Qwen/Qwen2.5-1.5B",
+    "clients": ["Qwen/Qwen2.5-0.5B", "HuggingFaceTB/SmolLM2-360M", "TinyLlama/TinyLlama-1.1B-Chat-v1.0"]
+  },
+  "development_conditions": {
+    "clean": {"conflict_ratio": 0.0, "off_task_ratio": 0.0},
+    "severe_final_answer_conflict": {"conflict_ratio": 0.4, "off_task_ratio": 0.2}
+  },
+  "corruption": {
+    "conflict": "For each selected GSM8K question, replace the final numeric answer with the answer of a deterministic different question in the same client pool. Do not alter rationales because this runner does not supervise rationales.",
+    "off_task": {"dataset": "SQuAD v1 processed test cache", "path": ".cache/datasets/squad/test.jsonl", "sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620", "prompt": "contextual extractive question answering", "selection": "SHA-256 rank of stage-b-off-task-v1|seed|client-index|SQuAD id; first required rows"},
+    "rationale": "Do not claim rationale robustness unless a separate rationale-corruption condition is pre-registered."
+  },
+  "candidate_comparisons": ["local naive mixed adaptation", "local relative balanced routing", "public-anchor-only server adaptation", "uniform heterogeneous canonical-answer distillation", "routed heterogeneous canonical-answer distillation"],
+  "development_seeds": [52, 53, 54],
+  "selection_rule": "Any prompt, LoRA target modules, answer parser, threshold, sample count, or loss coefficient is selected only on the manifest development partition and these seeds. The official test must not be opened until a new final protocol is committed.",
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "failure_interpretation": "If canonical-answer distillation does not outperform public-anchor-only on GSM8K development, retain it as a cross-task negative replication; do not add an algorithmic claim."
+}

@@ -1,0 +1,55 @@
+{
+  "evidence_label": "benchmark_holdout",
+  "paper_result": false,
+  "method": "gsm8k_public_anchor_teacher_numeric_rank",
+  "seed": 72,
+  "teacher_model": ".cache/models/Qwen2.5-1.5B",
+  "teacher_weight_sha256": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+  "client_model": ".cache/models/SmolLM2-360M",
+  "client_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "evaluation_manifest_sha256": "60e1c2ce19c6247546563fe0e8109c53bccfe425fdf66348483da35039c210d0",
+  "anchor_examples": 128,
+  "teacher_steps": 40,
+  "client_steps": 40,
+  "teacher_mean_train_loss": 0.7896182842552661,
+  "teacher_train_wall_seconds": 4.479917291086167,
+  "teacher_scoring_wall_seconds": 6.312024113023654,
+  "client_mean_train_loss": 1.359331028163433,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "selection": {
+    "keep_count": 128,
+    "numeric_eligible": 209,
+    "selected_kind_counts": {
+      "clean": 99,
+      "conflict": 25,
+      "off_task": 4
+    },
+    "selected_source_ids_sha256": "5619279e9f05ef975f3b02ca673812232e61abb0512c1d1bbb4234e6cbdee560",
+    "selected_teacher_loss_range": [
+      0.013255158439278603,
+      1.6667643785476685
+    ]
+  },
+  "evaluation_split": "secondary_holdout",
+  "evaluation_examples": 1024,
+  "initial": null,
+  "final": {
+    "exact_match": 0.0205078125,
+    "invalid_output_rate": 0.0,
+    "examples": 1024,
+    "prediction_sha256": "7f8be650965f24b4d507a34844c6e34bfe024b4a79e82e2657b8630b34afbf8d"
+  },
+  "client_train_wall_seconds": 4.458008063957095,
+  "total_wall_seconds": 40.73429974913597,
+  "peak_allocated_gpu_bytes": 5984244736,
+  "limitations": [
+    "Official-test labels are loaded only when explicitly requested under a frozen final protocol.",
+    "Selection audit labels are recorded only after selection and never used to rank examples."
+  ]
+}

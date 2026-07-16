@@ -1,0 +1,29 @@
+{
+  "name": "agnews_coteaching_development_protocol_v1",
+  "status": "frozen_after_smoke_before_development_runs",
+  "scope": "strong compatible noisy-label baseline on finite-label AG News; development-only",
+  "models": ["Qwen/Qwen2.5-0.5B", "HuggingFaceTB/SmolLM2-360M", "TinyLlama/TinyLlama-1.1B-Chat-v1.0"],
+  "methods": ["naive single-model LoRA", "two-peer Co-Teaching LoRA ensemble"],
+  "conditions": [
+    {"name": "clean", "conflict_ratio": 0.0, "off_task_ratio": 0.0, "forget_rate": 0.0},
+    {"name": "conflict40", "conflict_ratio": 0.4, "off_task_ratio": 0.0, "forget_rate": 0.4},
+    {"name": "joint", "conflict_ratio": 0.4, "off_task_ratio": 0.2, "forget_rate": 0.6}
+  ],
+  "development_seeds": [75, 76, 77],
+  "fixed_hyperparameters": {
+    "train_per_class": 64,
+    "evaluation_examples": 800,
+    "steps": 40,
+    "batch_size": 8,
+    "eval_batch_size": 32,
+    "max_length": 128,
+    "learning_rate": 0.001,
+    "lora_rank": 4
+  },
+  "primary_metric": "Co-Teaching ensemble constrained-label accuracy versus naive accuracy",
+  "analysis": "Holm correction over six contaminated family-by-condition contrasts; clean differences are safety audits",
+  "claim_boundary": "Co-Teaching receives the true total contamination fraction as its forget rate and uses two complete client backbones/adapters. The joint off-task condition extends beyond its original finite-label-noise assumption.",
+  "delora_boundary": "A faithful Delora run additionally requires GPT-4o positive-set construction and relabeling; no substituted local model is reported under the Delora name.",
+  "evidence_label": "benchmark_dev",
+  "paper_result": false
+}

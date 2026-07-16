@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "task_id": "imdb_sentiment_server_v1",
+  "prompt_template": "Classify the movie review sentiment into exactly one category: Negative or Positive.\nReview: {text}\nSentiment:",
+  "verbalizers": [
+    "Negative",
+    "Positive"
+  ],
+  "conflict_permutation": [
+    1,
+    0
+  ],
+  "text_field": "text",
+  "label_field": "label"
+}

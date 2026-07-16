@@ -1,0 +1,33 @@
+{
+  "name": "gsm8k_matched_selection_baselines_protocol_v1",
+  "status": "frozen_after_cross_family_holdout_before_baseline_development_runs",
+  "purpose": "Test whether the teacher endpoint's development gain is explained by numeric-interface filtering, retaining 128 examples, or client-local small-loss selection.",
+  "scope": "post-hoc baseline development study; not part of the completed primary holdout family tests",
+  "models": ["HuggingFaceTB/SmolLM2-360M", "TinyLlama/TinyLlama-1.1B-Chat-v1.0"],
+  "selectors": {
+    "numeric_random": "uniformly sample 128 examples from numeric-answer-eligible mixture examples with a fixed selector RNG",
+    "client_small_loss": "retain the 128 lowest answer-loss numeric examples under the unadapted client"
+  },
+  "conditions": {
+    "clean": {"conflict_ratio": 0.0, "off_task_ratio": 0.0},
+    "severe": {"conflict_ratio": 0.4, "off_task_ratio": 0.2}
+  },
+  "fixed_hyperparameters": {
+    "client_steps": 40,
+    "batch_size": 4,
+    "learning_rate": 0.001,
+    "keep_count": 128,
+    "max_length": 256,
+    "max_new_tokens": 16
+  },
+  "development_seeds": [61, 62, 63],
+  "evaluation": {"split": "all 512 frozen development questions", "official_test_labels": "prohibited"},
+  "comparisons": [
+    "teacher versus numeric_random paired within family, condition, and seed",
+    "teacher versus client_small_loss paired within family, condition, and seed",
+    "all selectors use 128 selected examples and 40 client optimizer steps"
+  ],
+  "interpretation": "If teacher does not exceed both matched selectors in severe mean EM while remaining clean-safe, its apparent benefit cannot be attributed specifically to the public-anchor trust signal.",
+  "evidence_label": "benchmark_dev",
+  "paper_result": false
+}

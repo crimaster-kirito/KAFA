@@ -1,0 +1,18 @@
+{
+  "name": "gsm8k_stage_b_development_protocol_v5",
+  "status": "frozen_before_loss-ranked-numeric-router-development; supersedes_v4_for_new_candidate",
+  "motivation": "A v4 audit on seed 52 found supervised loss discriminates numeric conflicts (AUROC 0.756) while anchor-gradient cosine primarily discriminates off-task QA (AUROC 0.941).",
+  "candidate": {
+    "name": "numeric_interface_loss_rank_router",
+    "gate": "same 16-anchor relative-gradient gate at threshold 0.8, used only to decide whether routing is needed",
+    "when_gated": "exclude non-numeric supervised answers, then retain the lowest supervised-loss 50% of the original mixture count among remaining examples",
+    "selection_signal": "per-example causal loss under the initial local model",
+    "prohibited": "contamination kind, source provenance, hidden correct answer of conflict examples, and official test labels",
+    "expected_scope": "Addresses readily inconsistent numeric answers; it is not expected to identify a plausible but wrong answer with low loss."
+  },
+  "development_seeds": [52, 53, 54],
+  "evaluation": {"split": "first 64 manifest development questions", "metric": "normalized numeric exact match", "official_test_labels": "prohibited"},
+  "decision_rule": "Run all three clean and severe seeds once. Reject if any clean drop exceeds 2 pp or the paired severe 95% interval includes zero; freeze a separate final protocol before official GSM8K testing.",
+  "evidence_label": "benchmark_dev",
+  "paper_result": false
+}

@@ -1,0 +1,50 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "method": "gsm8k_numeric_random_numeric_rank",
+  "seed": 61,
+  "client_model": ".cache/models/SmolLM2-360M",
+  "client_weight_sha256": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+  "manifest_sha256": "03ce4cac6dad028975adc1467d5c841e69a4f14dafb1427af71599b7174a7292",
+  "squad_sha256": "c1a980a88112a7630c07de593713d86e1414bc3039c7779b6506a622c0711620",
+  "client_index": 0,
+  "mixture_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "selection": {
+    "selector": "numeric_random",
+    "keep_count": 128,
+    "numeric_eligible": 208,
+    "selected_kind_counts": {
+      "clean": 67,
+      "conflict": 59,
+      "off_task": 2
+    },
+    "selected_source_ids_sha256": "2528843e38733a3a31ddb7f17ee446d4175e4aab5a34fef96681a2b52ae2e5e6",
+    "selected_loss_range": null,
+    "wall_seconds": 9.844708256423473e-05
+  },
+  "development_examples": 512,
+  "client_steps": 40,
+  "initial": {
+    "exact_match": 0.01953125,
+    "invalid_output_rate": 0.02734375,
+    "examples": 512,
+    "prediction_sha256": "f9ae6b7f17af98da279ef45dd353d8be666ee2dba259c06bd05e9a96f5ca23bb"
+  },
+  "final": {
+    "exact_match": 0.01171875,
+    "invalid_output_rate": 0.0,
+    "examples": 512,
+    "prediction_sha256": "1519c44d9da9520863cba8ea1f2c7ef00e91e7987bdd4e138243cc16654aa0ef"
+  },
+  "client_mean_train_loss": 1.2773284316062927,
+  "client_train_wall_seconds": 4.49582143407315,
+  "peak_allocated_gpu_bytes": 2592036352,
+  "limitations": [
+    "Development-only; official GSM8K test is not loaded.",
+    "Contamination kind is recorded only for post-selection audit."
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "study": "within_client_real_mixture_mechanism",
+  "method": "local_lora_adaptive_balanced_rank",
+  "seed": 44,
+  "model": ".cache/models/Qwen2.5-0.5B",
+  "model_weight_sha256": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "requested_conflict_ratio": 0.4,
+  "requested_off_task_ratio": 0.2,
+  "realized_counts": {
+    "clean": 103,
+    "conflict": 102,
+    "off_task": 51
+  },
+  "train_examples": 256,
+  "selected_train_examples": 128,
+  "selected_realized_counts": {
+    "clean": 97,
+    "conflict": 31
+  },
+  "selection_metadata": {
+    "uses_hidden_mixture_labels": false,
+    "keep_fraction": 0.5,
+    "kept": 128,
+    "gate_quantile": 0.25,
+    "gate_statistic": 0.2599130868911743,
+    "gate_threshold": 0.7,
+    "gate_triggered": true,
+    "class_balanced": true,
+    "diagnostics_path": "kafa_script/analysis_outputs/agnews_dev/anchor_diagnostics/qwen05b_mixed_seed44.json",
+    "diagnostics_record_order_sha256": "5b84d413a6f16f5144169dff2c6b0b12aa6999829ff400f4f5e108fec62502b5",
+    "score": "mean within-client percentile rank of negative anchor cosine, loss, and semantic inconsistency"
+  },
+  "eval_examples": 800,
+  "steps": 40,
+  "batch_size": 8,
+  "learning_rate": 0.001,
+  "last_batch_train_loss": 0.7985129952430725,
+  "initial": {
+    "accuracy": 0.48625001311302185,
+    "macro_f1": 0.4413959728553891,
+    "label_nll": 1.4834338426589966,
+    "ece": 0.1666544359177351,
+    "per_class_recall": [
+      0.3400000035762787,
+      0.5899999737739563,
+      0.9900000095367432,
+      0.02500000037252903
+    ]
+  },
+  "final": {
+    "accuracy": 0.800000011920929,
+    "macro_f1": 0.7982878535985947,
+    "label_nll": 0.6320317983627319,
+    "ece": 0.08601411462586839,
+    "per_class_recall": [
+      0.6499999761581421,
+      0.9750000238418579,
+      0.8050000071525574,
+      0.7699999809265137
+    ]
+  },
+  "train_wall_seconds": 4.5802155181299895,
+  "peak_allocated_gpu_bytes": 4735018496,
+  "serialized_adapter_bytes": 1115203,
+  "base_agnews_ids_sha256": "d6ae25817da315bf378fac0c572bd17e4d3dd04c85f122e70f6967d67272671f",
+  "mixture_assignment_sha256": "7cba413f07e0866d62d0c489e0506569e65b8208ad6d5f9fcbc0fb04a9151b40"
+}

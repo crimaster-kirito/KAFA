@@ -1,0 +1,57 @@
+{
+  "evidence_label": "benchmark_dev",
+  "paper_result": false,
+  "study": "within_client_real_mixture_mechanism",
+  "method": "naive_local_lora",
+  "seed": 75,
+  "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+  "model_weight_sha256": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+  "manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "requested_conflict_ratio": 0.4,
+  "requested_off_task_ratio": 0.0,
+  "realized_counts": {
+    "clean": 154,
+    "conflict": 102
+  },
+  "train_examples": 256,
+  "selected_train_examples": 256,
+  "selected_realized_counts": {
+    "clean": 154,
+    "conflict": 102
+  },
+  "selection_metadata": null,
+  "eval_examples": 800,
+  "steps": 40,
+  "batch_size": 8,
+  "learning_rate": 0.001,
+  "last_batch_train_loss": 0.6067765355110168,
+  "initial": {
+    "accuracy": 0.36375001072883606,
+    "macro_f1": 0.29110580822452903,
+    "label_nll": 5.741386890411377,
+    "ece": 0.1890985067584552,
+    "per_class_recall": [
+      0.9800000190734863,
+      0.19499999284744263,
+      0.27000001072883606,
+      0.009999999776482582
+    ]
+  },
+  "final": {
+    "accuracy": 0.5962499976158142,
+    "macro_f1": 0.5510841980576515,
+    "label_nll": 0.5058501958847046,
+    "ece": 0.23532087379135191,
+    "per_class_recall": [
+      0.10999999940395355,
+      0.9150000214576721,
+      0.41499999165534973,
+      0.9449999928474426
+    ]
+  },
+  "train_wall_seconds": 12.116452085087076,
+  "peak_allocated_gpu_bytes": 4539323904,
+  "serialized_adapter_bytes": 2283867,
+  "base_agnews_ids_sha256": "d749b47e05c6a1840a3bf4a06f3c138be1fc54df1a723f50d126e1962d54e1a1",
+  "mixture_assignment_sha256": "feecb109621fd47cf176ab03b0b262552d888c2e5fff8556f88ead3d0c195bb8"
+}

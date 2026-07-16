@@ -1,0 +1,19 @@
+{
+  "name": "gsm8k_stage_b_development_protocol_v4",
+  "status": "frozen_before_numeric-interface-router-development; supersedes_v3_for_new_candidate",
+  "purpose": "Test whether an observable answer-interface compatibility check removes non-numeric off-task QA without using contamination labels.",
+  "base_protocol": "gsm8k_stage_b_development_protocol_v3.json",
+  "candidate": {
+    "name": "numeric_interface_relative_anchor_gradient_rank",
+    "gate": "same relative 25th-percentile anchor-gradient cosine gate, threshold 0.8",
+    "when_gated": "discard examples whose supplied supervised answer cannot be normalized as a finite numeric string, then retain the lowest-risk 50% of the original mixture count by the same gradient/loss rank",
+    "observable_signal": "the exact supervised answer string already supplied to local training",
+    "prohibited_signal": "contamination kind, SQuAD provenance, test labels, or hidden original GSM8K answer for a conflict example",
+    "expected_scope": "This can identify non-numeric off-task examples but cannot identify numeric off-task answers or numeric answer conflicts by interface alone."
+  },
+  "development_seeds": [52, 53, 54],
+  "evaluation": {"split": "first 64 manifest development questions", "metric": "normalized numeric exact match", "official_test_labels": "prohibited"},
+  "decision_rule": "Evaluate all three clean and severe seeds once. If either clean safety fails or the severe paired interval includes zero, reject this candidate rather than carrying it to final testing.",
+  "evidence_label": "benchmark_dev",
+  "paper_result": false
+}

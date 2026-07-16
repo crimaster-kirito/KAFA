@@ -1,2 +1,12 @@
 data/squad/train.jsonl
 test_data/cifar-10-python.tar.gz
+.venv/
+.cache/
+models/research/
+__pycache__/
+*.py[cod]
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
