@@ -1,0 +1,25 @@
+{
+  "name": "imdb_official_start_audit_v1",
+  "audit_utc": "2026-07-16T10:12:35Z",
+  "boundary": "Immediately before the first authorized IMDb official-test model-evaluation process.",
+  "original_protocol_sha256": "fbfc13064eca36163397017521474dde6aeda7c4304215b97491845c14ee9166",
+  "matched_control_protocol_sha256": "47175564a023ea59e0137c847bdf747e3ec70b436ae52bc51a0f92f9b2670d64",
+  "development": {
+    "original_records_verified": 12,
+    "original_report_sha256": "8de92dcdc4ba9f7d1ad097b88a915b6d94b293141b295aa67171dfc0b3c5237b",
+    "matched_control_records_verified": 9,
+    "matched_control_report_sha256": "4143e9797f2a37849659e67208ebd375ffa505cf5b816c9df9f4295852e4cfdc",
+    "routed_functional_equivalence_pairs": 3
+  },
+  "verifier_sha256": {
+    "original": "b63008c9dc05d5fcfd54a56abe24270916ee3227da25c2aca00b363c4007b7f0",
+    "matched_control": "93007274ccfd77e7b8b4a55def489968eece82853c2a66bd7ba434bc6ca79527",
+    "routed_equivalence": "2c8678f7bcca3c00fb304ab4e9774bdea04f8b9bb5e9eeb996798baf8d1f18dd"
+  },
+  "official_boundary": {
+    "original_official_files": 0,
+    "matched_control_official_files": 0,
+    "active_official_runner_processes": 0
+  },
+  "interpretation": "This retained-workspace audit supports the stated prospective boundary but is not external timestamping or independent preregistration."
+}

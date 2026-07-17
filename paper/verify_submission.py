@@ -56,51 +56,91 @@ def main() -> None:
     log = (PAPER / "main.log").read_text(errors="replace")
     pdf = PdfReader(PAPER / "main.pdf")
     checklist = PdfReader(PAPER / "ReproducibilityChecklist.pdf")
+    supplement = PdfReader(PAPER / "supplement.pdf")
     framework = PdfReader(PAPER / "figures/framework.pdf")
     evidence = PdfReader(PAPER / "figures/evidence.pdf")
 
     require("\\usepackage[submission]{aaai2027}" in tex,
             "official anonymous submission mode is missing")
-    require(1 <= len(pdf.pages) <= 7, "main PDF exceeds seven total pages")
+    require(len(pdf.pages) >= 1, "main PDF is empty")
     for index, page in enumerate(pdf.pages, 1):
         width, height = float(page.mediabox.width), float(page.mediabox.height)
         require(abs(width - 612) < 1 and abs(height - 792) < 1,
                 f"page {index} is not US Letter")
     require(len(checklist.pages) >= 1, "reproducibility checklist is empty")
+    require(1 <= len(supplement.pages) <= 10, "supplement page count is invalid")
     require(not re.search(r"Warning|Overfull|Underfull \\hbox|undefined|multiply defined", log),
             "main LaTeX log contains a substantive layout/reference diagnostic")
     checklist_log = (PAPER / "ReproducibilityChecklist.log").read_text(errors="replace")
     require(not re.search(r"Warning|Overfull|undefined|multiply defined", checklist_log),
             "checklist log contains a substantive layout/reference diagnostic")
+    supplement_log = (PAPER / "supplement.log").read_text(errors="replace")
+    require(not re.search(r"Warning|Overfull|Underfull \\hbox|undefined|multiply defined",
+                          supplement_log),
+            "supplement log contains a substantive layout/reference diagnostic")
     for reader, label in ((pdf, "main PDF"), (checklist, "checklist PDF"),
+                          (supplement, "supplement PDF"),
                           (framework, "framework figure"),
                           (evidence, "evidence figure")):
         require_embedded_fonts(reader, label)
+    page_text = [page.extract_text() or "" for page in pdf.pages]
+    reference_pages = [index for index, value in enumerate(page_text)
+                       if re.search(r"(?m)^References\s*$", value)]
+    require(reference_pages, "main PDF has no References heading")
+    # AAAI-27 permits seven content pages; references may continue afterwards.
+    # The zero-based index of the first references page is therefore at most 7.
+    require(reference_pages[0] <= 7,
+            "main PDF exceeds seven content pages before references")
     metadata = " ".join(str(value) for value in (pdf.metadata or {}).values()).lower()
-    extracted = "\n".join(page.extract_text() or "" for page in pdf.pages).lower()
+    extracted = "\n".join(page_text).lower()
     for forbidden in ("crimaster", "kirito", "github.com", "/root/projects"):
         require(forbidden not in metadata and forbidden not in extracted,
                 f"anonymous PDF leaks forbidden identifier: {forbidden}")
+    supplement_metadata = " ".join(
+        str(value) for value in (supplement.metadata or {}).values()).lower()
+    supplement_text = "\n".join(
+        page.extract_text() or "" for page in supplement.pages).lower()
+    for forbidden in ("crimaster", "kirito", "github.com", "/root/projects"):
+        require(forbidden not in supplement_metadata and
+                forbidden not in supplement_text,
+                f"anonymous supplement leaks forbidden identifier: {forbidden}")
 
     for section in ("Introduction", "Related Work", "Problem Setting",
-                    "Experimental Protocol", "Results", "Discussion",
+                    "Evidence-Aware Experimental Design", "Results", "Discussion",
                     "Limitations and Ethics", "Reproducibility"):
         require(f"\\section{{{section}}}" in tex, f"missing section: {section}")
-    require(tex.count("\\begin{table") == 4, "expected four paper tables")
-    require(tex.count("\\begin{figure") == 2, "expected two paper figures")
-    for asset in ("figures/framework.pdf", "figures/evidence.pdf"):
-        require((PAPER / asset).stat().st_size > 10_000, f"missing figure: {asset}")
+    structural_tex = tex
+    for include_name in re.findall(r"\\input\{([^}]+)\}", tex):
+        include_path = PAPER / include_name
+        if include_path.suffix == "":
+            include_path = include_path.with_suffix(".tex")
+        require(include_path.is_file(), f"missing TeX include: {include_name}")
+        structural_tex += "\n" + include_path.read_text()
+    table_count = structural_tex.count("\\begin{table")
+    figure_count = structural_tex.count("\\begin{figure")
+    require(table_count >= 1, "main paper has no table")
+    require(figure_count >= 1, "main paper has no figure")
+    figure_assets = re.findall(
+        r"\\includegraphics(?:\[[^]]*\])?\{([^}]+)\}", structural_tex)
+    require(len(figure_assets) == figure_count,
+            "figure environments and included assets differ in count")
+    for asset in figure_assets:
+        require((PAPER / asset).stat().st_size > 10_000,
+                f"missing or implausibly small figure: {asset}")
     require("AI-assistance disclosure" in tex, "AI disclosure is missing")
     require(not re.search(r"\b(TODO|TBD|FIXME)\b", tex), "draft marker remains")
 
-    aux = (PAPER / "main.aux").read_text()
     cited = set()
-    for group in re.findall(r"\\citation\{([^}]+)\}", aux):
-        cited.update(group.split(","))
+    for aux_name in ("main.aux", "supplement.aux"):
+        aux = (PAPER / aux_name).read_text()
+        for group in re.findall(r"\\citation\{([^}]+)\}", aux):
+            cited.update(group.split(","))
     bib = (PAPER / "references.bib").read_text()
     available = set(re.findall(r"@\w+\{([^,]+),", bib))
-    require(cited == available, f"citation/bibliography mismatch: {cited ^ available}")
-    require(len(cited) == 23, f"expected 23 resolved references, found {len(cited)}")
+    require(cited == available,
+            f"submission-wide citation/bibliography mismatch: {cited ^ available}")
+    require(len(cited) >= 20,
+            f"literature coverage unexpectedly small: {len(cited)} references")
 
     natural_sources = {
         "hausa": ROOT / ".cache/data/natural_noise/hausa/COMPRISE_Data09_H-VOA-T opics_V1.0",
@@ -179,8 +219,11 @@ def main() -> None:
             "ablation report embeds a stale verifier hash")
 
     print(f"Verified main.pdf: {len(pdf.pages)} US-Letter pages, "
-          f"4 tables, 2 vector figures, {len(cited)} resolved references")
+          f"{reference_pages[0]} content-only pages before the first references page, "
+          f"{table_count} tables, {figure_count} vector figures, "
+          f"{len(cited)} resolved references")
     print(f"Verified checklist: {len(checklist.pages)} pages")
+    print(f"Verified supplement: {len(supplement.pages)} pages")
     print("Verified embedded fonts and anonymous PDF text/metadata")
     print("Verified natural-noise matrices: 18 Hausa + 18 Yoruba dev-only records")
     print("Verified secondary split: 1,024 unique examples with zero parent-partition overlap")

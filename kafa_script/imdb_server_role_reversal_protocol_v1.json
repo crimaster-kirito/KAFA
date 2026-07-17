@@ -1,6 +1,6 @@
 {
   "name": "imdb_server_role_reversal_protocol_v1",
-  "status": "frozen_before_any_imdb_target_model_evaluation_or_test_json_decoding",
+  "status": "refrozen_after_pre_record_training_line_audit_repair_before_any_imdb_metric_or_test_json_decoding",
   "freeze_initiated_utc": "2026-07-15T14:18:00+00:00",
   "purpose": "Prospectively test whether the TREC severe-routed versus severe-unfiltered accuracy reversal repeats when IMDb sentiment becomes the server target and AG News becomes off-task data.",
   "chronology": {
@@ -11,11 +11,21 @@
   },
   "implementation": {
     "file_sha256": {
-      "kafa_script/run_imdb_server_ablation.py": "e7f88f99f6130289ea38f52dbfdc7d8973e2fb3bb61d5088fe7b4fbd7e13461c",
+      "kafa_script/run_imdb_server_ablation.py": "95853ad21d850e9fe68464b01b3a179b0d487cb6a8c66e647bc6b08041792459",
       "kafa_script/prepare_imdb_server_manifest.py": "943594c0b9f4d5d3dcd3bd005df85512e57c8970871f0b3b65043537231ed38c",
       "kafa_script/run_generic_classification_distillation.py": "be53095f467fe468d770339e1e94e11240fc6f523b8d4be1f52e6098d9650e45",
       "kafa_script/classification_task.py": "6ec3c64acfe15a1bc60e38ee55e5b062d8b39183b63957400352717eba16a7ea"
     }
+  },
+  "instrumentation_repair": {
+    "refreeze_initiated_utc": "2026-07-16T08:51:20+00:00",
+    "attempt": "development seed 311 public_anchor_only",
+    "failure": "The generic JSONL loader did not retain the source line number required by manifest validation.",
+    "evidence_observed": "No JSON record or model evaluation metric was written; failure occurred while resolving frozen training partitions, and the required nonexistent test sentinel remained absent.",
+    "repair": "Use a canonical-deduplicating target-train loader that retains original one-indexed source lines.",
+    "preserved_log": "kafa_script/analysis_outputs/imdb_server_role_reversal/development/failures/seed311_public_anchor_only.failed.20260716T085048Z.log",
+    "old_runner_sha256": "e7f88f99f6130289ea38f52dbfdc7d8973e2fb3bb61d5088fe7b4fbd7e13461c",
+    "final_runner_sha256": "95853ad21d850e9fe68464b01b3a179b0d487cb6a8c66e647bc6b08041792459"
   },
   "task": {
     "target_spec": "kafa_script/task_specs/imdb_sentiment_server_v1.json",

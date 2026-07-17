@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "/root/projects/KAFA/kafa_script/run_imdb_server_ablation.py", line 383, in <module>
+    main()
+  File "/root/projects/KAFA/kafa_script/run_imdb_server_ablation.py", line 252, in main
+    selected, selection = core.route_client_mixture(
+  File "/root/projects/KAFA/kafa_script/run_generic_classification_distillation.py", line 420, in route_client_mixture
+    model(**batch).loss.backward()
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/projects/KAFA/.venv/lib/python3.10/site-packages/peft/peft_model.py", line 1923, in forward
+    return self.base_model(
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/projects/KAFA/.venv/lib/python3.10/site-packages/peft/tuners/tuners_utils.py", line 311, in forward
+    return self.model.forward(*args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 467, in forward
+    loss = self.loss_function(logits=logits, labels=labels, vocab_size=self.config.vocab_size, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/loss/loss_utils.py", line 67, in ForCausalLMLoss
+    loss = fixed_cross_entropy(logits, shift_labels, num_items_in_batch, ignore_index, **kwargs)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/transformers/loss/loss_utils.py", line 36, in fixed_cross_entropy
+    loss = nn.functional.cross_entropy(source, target, ignore_index=ignore_index, reduction=reduction)
+  File "/root/miniconda3/envs/qwen_asr/lib/python3.10/site-packages/torch/nn/functional.py", line 3504, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 47.37 GiB of which 3.19 GiB is free. Process 951840 has 23.26 GiB memory in use. Including non-PyTorch memory, this process has 20.91 GiB memory in use. Of the allocated memory 20.23 GiB is allocated by PyTorch, and 234.98 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

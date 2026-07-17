@@ -1,0 +1,480 @@
+{
+  "schema_version": "imdb_matched_control_addendum_v1",
+  "evidence_label": "prospective_untouched_test_matched_control",
+  "paper_result": true,
+  "task_id": "imdb_sentiment_server_v1",
+  "method": "severe_random_k",
+  "method_configuration": {
+    "selection": "claimed_label_balanced_random_k"
+  },
+  "seed": 326,
+  "started_utc": "2026-07-16T16:24:34.080686+00:00",
+  "protocol_sha256": "47175564a023ea59e0137c847bdf747e3ec70b436ae52bc51a0f92f9b2670d64",
+  "runner_file_sha256": "6d132fad0b7b97511c123b9ea7a3834b2b80700d21e8aba5c303361c4ba4f068",
+  "manifest_sha256": "9bc36a0309ed742d19d086051a62183624380dcd2a2f2ce56736708a0861fd97",
+  "full_args": {
+    "protocol": "kafa_script/imdb_matched_control_addendum_protocol_v1.json",
+    "task_spec": "kafa_script/task_specs/imdb_sentiment_server_v1.json",
+    "off_task_spec": "kafa_script/task_specs/agnews_offtask_v1.json",
+    "manifest": "kafa_script/imdb_server_manifest_v1.json",
+    "target_train": ".cache/datasets/imdb/train.jsonl",
+    "official_test": ".cache/datasets/imdb/test.jsonl",
+    "off_task_train": ".cache/datasets/agnews/train.jsonl",
+    "method": "severe_random_k",
+    "evaluation_split": "official_test",
+    "seed": 326,
+    "output": "kafa_script/analysis_outputs/imdb_matched_control_addendum/official_evaluation/seed326_severe_random_k.json"
+  },
+  "full_args_sha256": "0ccf19d441669016dc20ee43b9585ef7d5f919f86006176b8a7e5c25f766adaa",
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "anchor_supervision_weight": 1.0,
+    "distillation_weight": 0.25,
+    "teacher_aggregation": "uniform_probability_mean",
+    "max_length": 128,
+    "anchor_examples": 128,
+    "development_examples": 1000,
+    "client_examples_each": 256,
+    "official_test_examples": 25000,
+    "matched_k": 128,
+    "forced_gate_threshold": 1e+30,
+    "severe_clean_examples_each": 103,
+    "severe_conflict_examples_each": 102,
+    "severe_off_task_examples_each": 51,
+    "matched_quota_per_claimed_label": 64
+  },
+  "git": {
+    "commit": "cbd8f9c98eed557b41fde918b95060dc044f4565",
+    "dirty": true
+  },
+  "datasets": {
+    "target_train_sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef",
+    "target_official_test_sha256": "bceb588619d37a5b1c5e6ec7ec519b204eaaf8a4024735b279fe1eff33a46843",
+    "target_official_test_hash_source": "verified_raw_bytes",
+    "off_task_train_sha256": "4fe547d3954adbccc000719839572ddd158c57b718e3b9bb8f3fbdffc01592ba"
+  },
+  "split_source_ids_sha256": {
+    "anchor": "b383b2e413af7814dc916d5d9ac3fa9c3b28bef649117b476ac80c47b8039ad0",
+    "evaluation": "a17b0c7ae7541b4b602cf6e47a21708167ef79140a56a61d02f268b0d5f23f2f",
+    "client_0": "65d983b8c987675a66308733a00296dd98dcaf7d038d2d9a53c2614365d2ddbc",
+    "client_1": "bb990e44a7568024ed40b714cbc4432515ddf713ec8d0fb43662094936c8ff02",
+    "client_2": "83650bf6378906ef099a40f65eb874f2ea6936308c67c5930db52dd72073a9c5"
+  },
+  "mixture_assignment_sha256": [
+    "48460c68719c1691e833d7ff30b380a16771904cfdfb51cf73d10ca8db994ca9",
+    "820fd9ed664ecf8f99f3d3537908f5c3c45989b28e3bae6f83d099e82923acb7",
+    "3b524ebb8fead8e0d1139969a2d9932255a5a160e0e2b31109f942e7ca973265"
+  ],
+  "evaluation_split": "official_test",
+  "evaluation_examples": 25000,
+  "anchor_examples": 128,
+  "round_records": [
+    {
+      "round": 1,
+      "client_records": [
+        {
+          "client_index": 0,
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "model_artifacts": {
+            "model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+            "config.json": "479dcf0c5286339e41ad3992cd08ae88a467c4187587936248e2b7c96283484b",
+            "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+            "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+            "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+          },
+          "base_target_ids_sha256": "65d983b8c987675a66308733a00296dd98dcaf7d038d2d9a53c2614365d2ddbc",
+          "mixture_assignment_sha256": "48460c68719c1691e833d7ff30b380a16771904cfdfb51cf73d10ca8db994ca9",
+          "selected_ids_sha256": "b6a77bbc9dac42856f19612ff4577a912733ad1bbcb743df014ff096dbc3b029",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 61,
+            "conflict": 67
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 0.9334236860275269,
+          "selection": {
+            "policy": "claimed_label_balanced_random_k",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "ranking_namespace": "kafa-imdb-matched-control-v1|random-k",
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false
+          },
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.22202469408512115,
+            "maximum": 0.7779753804206848,
+            "max_row_sum_error": 7.450580596923828e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "74529ae4da01d3b05c04344e3c7b134aa2ded8749d32e1c730db12a995027d62"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "5b92c695c0ae832bccc258805e4c3b006237a4bc2542bbfd3938cd8f6de77e32"
+          },
+          "adapter_bytes": 1113859
+        },
+        {
+          "client_index": 1,
+          "model": ".cache/models/SmolLM2-360M",
+          "model_artifacts": {
+            "model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+            "config.json": "34f7801487078de7e434e19162c497e5cc6ff397080e40e8586627cb68a5168a",
+            "tokenizer.json": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+            "tokenizer_config.json": "4bb9af56a342753d39374f4016a16574cab299fe088e896f425ce3c433f61424",
+            "vocab.json": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79",
+            "merges.txt": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+          },
+          "base_target_ids_sha256": "bb990e44a7568024ed40b714cbc4432515ddf713ec8d0fb43662094936c8ff02",
+          "mixture_assignment_sha256": "820fd9ed664ecf8f99f3d3537908f5c3c45989b28e3bae6f83d099e82923acb7",
+          "selected_ids_sha256": "a802df17c5b78a593b85973d2444cfd33f3f126074f9d82678d54c1a98564411",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 66,
+            "conflict": 62
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 1.1736941538751124,
+          "selection": {
+            "policy": "claimed_label_balanced_random_k",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "ranking_namespace": "kafa-imdb-matched-control-v1|random-k",
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false
+          },
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.05372512713074684,
+            "maximum": 0.9462749361991882,
+            "max_row_sum_error": 6.332993507385254e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "1bab9cb367081c9ef3498d86a329fad5c56530fb456e6bd1356d3968643a9b90"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "05bb7eeb3f3873c75df686c64d8e567480a3471c85747ee02279211a7f84a462"
+          },
+          "adapter_bytes": 1681855
+        },
+        {
+          "client_index": 2,
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "model_artifacts": {
+            "model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+            "config.json": "486bedda3a6988332e60d9638a09ca4b260d34ebcf1b19e22cf3b140b63d8fe9",
+            "tokenizer.json": "bcd04f0eadf90287bd26e1a183ac487d8a141b09b06aecb7725bbdd343640f2e",
+            "tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+            "tokenizer_config.json": "7b41ba7d0eb91e77914ca3dafde559ea3e19878769b7e68409e89bed5222e77a"
+          },
+          "base_target_ids_sha256": "83650bf6378906ef099a40f65eb874f2ea6936308c67c5930db52dd72073a9c5",
+          "mixture_assignment_sha256": "3b524ebb8fead8e0d1139969a2d9932255a5a160e0e2b31109f942e7ca973265",
+          "selected_ids_sha256": "624db83f22ded03edf67ca4489869934432210980aaa92cdd27aae420974d159",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 67,
+            "conflict": 61
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 0.6733573455363512,
+          "selection": {
+            "policy": "claimed_label_balanced_random_k",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "ranking_namespace": "kafa-imdb-matched-control-v1|random-k",
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false
+          },
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.36336445808410645,
+            "maximum": 0.6366355419158936,
+            "max_row_sum_error": 5.960464477539063e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "d6e7b55e612739e1c6062103e53315e3ed91da2bceb1c2de8b0e2a5ee8389025"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "1b4b3b1b73d21162610d596889603ac14e193183a6777fce6ca92a8b22b4fd1c"
+          },
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "mean_server_objective": 0.5393618442118168
+    },
+    {
+      "round": 2,
+      "client_records": [
+        {
+          "client_index": 0,
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "model_artifacts": {
+            "model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+            "config.json": "479dcf0c5286339e41ad3992cd08ae88a467c4187587936248e2b7c96283484b",
+            "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+            "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+            "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+          },
+          "base_target_ids_sha256": "65d983b8c987675a66308733a00296dd98dcaf7d038d2d9a53c2614365d2ddbc",
+          "mixture_assignment_sha256": "48460c68719c1691e833d7ff30b380a16771904cfdfb51cf73d10ca8db994ca9",
+          "selected_ids_sha256": "b6a77bbc9dac42856f19612ff4577a912733ad1bbcb743df014ff096dbc3b029",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 61,
+            "conflict": 67
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 0.6372546471655369,
+          "selection": {
+            "policy": "claimed_label_balanced_random_k",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "ranking_namespace": "kafa-imdb-matched-control-v1|random-k",
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false
+          },
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.04760265722870827,
+            "maximum": 0.952397346496582,
+            "max_row_sum_error": 7.450580596923828e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "ef80851c2952c3e4c19acb7a4e6de4826c0c396dec121402f5b7cf01a7681dc3"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "87dd5e126d64fe0257071b6f3af2dbff788e253d2f59d2add2213f084f3350f0"
+          },
+          "adapter_bytes": 1113859
+        },
+        {
+          "client_index": 1,
+          "model": ".cache/models/SmolLM2-360M",
+          "model_artifacts": {
+            "model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+            "config.json": "34f7801487078de7e434e19162c497e5cc6ff397080e40e8586627cb68a5168a",
+            "tokenizer.json": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+            "tokenizer_config.json": "4bb9af56a342753d39374f4016a16574cab299fe088e896f425ce3c433f61424",
+            "vocab.json": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79",
+            "merges.txt": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+          },
+          "base_target_ids_sha256": "bb990e44a7568024ed40b714cbc4432515ddf713ec8d0fb43662094936c8ff02",
+          "mixture_assignment_sha256": "820fd9ed664ecf8f99f3d3537908f5c3c45989b28e3bae6f83d099e82923acb7",
+          "selected_ids_sha256": "a802df17c5b78a593b85973d2444cfd33f3f126074f9d82678d54c1a98564411",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 66,
+            "conflict": 62
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 0.6067054308950901,
+          "selection": {
+            "policy": "claimed_label_balanced_random_k",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "ranking_namespace": "kafa-imdb-matched-control-v1|random-k",
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false
+          },
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.008704534731805325,
+            "maximum": 0.9912954568862915,
+            "max_row_sum_error": 8.195638656616211e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "25f53761a78fb2b691df50fdf274f45e07454fc68f365c1c9b339a8a3e4ea018"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "4e77ad188e0fb93294d33a447c9b094369ac9cfa6dcc76097a10d62fa46b1a28"
+          },
+          "adapter_bytes": 1681855
+        },
+        {
+          "client_index": 2,
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "model_artifacts": {
+            "model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+            "config.json": "486bedda3a6988332e60d9638a09ca4b260d34ebcf1b19e22cf3b140b63d8fe9",
+            "tokenizer.json": "bcd04f0eadf90287bd26e1a183ac487d8a141b09b06aecb7725bbdd343640f2e",
+            "tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+            "tokenizer_config.json": "7b41ba7d0eb91e77914ca3dafde559ea3e19878769b7e68409e89bed5222e77a"
+          },
+          "base_target_ids_sha256": "83650bf6378906ef099a40f65eb874f2ea6936308c67c5930db52dd72073a9c5",
+          "mixture_assignment_sha256": "3b524ebb8fead8e0d1139969a2d9932255a5a160e0e2b31109f942e7ca973265",
+          "selected_ids_sha256": "624db83f22ded03edf67ca4489869934432210980aaa92cdd27aae420974d159",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 67,
+            "conflict": 61
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 0.27421020716428757,
+          "selection": {
+            "policy": "claimed_label_balanced_random_k",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "ranking_namespace": "kafa-imdb-matched-control-v1|random-k",
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false
+          },
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.2935057282447815,
+            "maximum": 0.7064942717552185,
+            "max_row_sum_error": 5.960464477539063e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "d4f04a74bbf1a3bf9aaebb121491c32d323f6cdce9b63ae7acd51bd45db44289"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "6684a4fdb2416e6aaa9e1a1ec83383694974d09a3f56595a3023b5af60bfe674"
+          },
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "mean_server_objective": 0.47730995118618014
+    }
+  ],
+  "final": {
+    "accuracy": 0.9079999923706055,
+    "macro_f1": 0.9079918265342712,
+    "canonical_label_nll": 0.26505422592163086,
+    "target_answer_loss": 2.492750644683838,
+    "ece": 0.07264093949925154,
+    "per_class_recall": [
+      0.8985599875450134,
+      0.9174399971961975
+    ],
+    "confusion_matrix": [
+      [
+        11232,
+        1268
+      ],
+      [
+        1032,
+        11468
+      ]
+    ]
+  },
+  "total_client_to_server_payload_bytes": 15606,
+  "wall_seconds": 760.8218440900091,
+  "peak_allocated_gpu_bytes": 10545981440,
+  "evidence_boundaries": [
+    "The addendum was designed after IMDb development metrics were observed, so it is prospective only with respect to the still-unopened official model evaluation and is secondary.",
+    "The official test hash and count are inherited from the earlier frozen manifest; addendum construction did not open or decode the test file.",
+    "All arms share the exact severe mixture, K=128, 40 client steps per round, two rounds, models, anchors, server training, and evaluation.",
+    "Random-K controls score-based ordering only within the target-eligible, claimed-label-balanced pool because the known task interface excludes off-task rows before randomization.",
+    "Maximum-purity-K uses hidden audit metadata and is an unattainable diagnostic upper control, not a deployable method.",
+    "Composition is the intended intervention; selected-set size, claimed-label quota, eligible target-task pool, and optimization budget are controlled.",
+    "The same official IMDb test is used by the original analysis and this addendum, and both analyses must be reported together without upgrading secondary evidence to primary."
+  ]
+}

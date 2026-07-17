@@ -82,9 +82,23 @@ launch() {
   done
 }
 
+run_exclusive() {
+  local seed="$1" method="$2"
+  # Routing computes per-example gradients and has a substantially larger
+  # live-memory footprint than the other arms.  Drain ordinary jobs before
+  # launching it so MAX_JOBS can accelerate safe arms without risking OOM.
+  wait
+  launch "$seed" "$method"
+  wait
+}
+
 for seed in "${seeds[@]}"; do
   for method in "${methods[@]}"; do
-    launch "$seed" "$method"
+    if [[ "$method" == "severe_routed_distillation" ]]; then
+      run_exclusive "$seed" "$method"
+    else
+      launch "$seed" "$method"
+    fi
   done
 done
 wait

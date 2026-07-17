@@ -17,7 +17,9 @@ def sha256(path: Path) -> str:
 def test_protocol_was_frozen_with_exact_runner_and_four_arms():
     protocol = json.loads(PROTOCOL_PATH.read_text())
     assert protocol["status"] == (
-        "frozen_before_any_imdb_target_model_evaluation_or_test_json_decoding")
+        "refrozen_after_pre_record_training_line_audit_repair_before_any_imdb_metric_or_test_json_decoding")
+    assert protocol["instrumentation_repair"]["evidence_observed"].startswith(
+        "No JSON record or model evaluation metric")
     assert sha256(ROOT / "kafa_script/run_imdb_server_ablation.py") == \
         protocol["implementation"]["file_sha256"][
             "kafa_script/run_imdb_server_ablation.py"]
@@ -65,19 +67,14 @@ def test_test_boundary_and_single_primary_are_explicit():
                for item in protocol["analysis"]["prohibited"])
 
 
-def test_pre_run_analysis_outputs_do_not_reference_imdb_test():
-    needles = {
-        ".cache/datasets/imdb/test.jsonl",
-        "bceb588619d37a5b1c5e6ec7ec519b204eaaf8a4024735b279fe1eff33a46843",
-    }
-    hits = []
-    root = ROOT / "kafa_script/analysis_outputs"
-    for path in root.rglob("*"):
-        if path.is_file() and path.suffix in {".json", ".log"}:
-            text = path.read_text(errors="replace")
-            if any(needle in text for needle in needles):
-                hits.append(path)
-    assert hits == []
+def test_frozen_pre_run_artifact_audit_has_zero_historical_hits():
+    audit = json.loads((ROOT /
+        "kafa_script/imdb_test_pre_run_audit_v1.json").read_text())
+    protocol_sha = sha256(PROTOCOL_PATH)
+    assert audit["historical_artifact_files_scanned"] == 586
+    assert audit["matching_historical_artifacts"] == []
+    assert audit["final_protocol_sha256"] == protocol_sha
+    assert "retained workspace history only" in audit["interpretation"]
 
 
 def test_official_loader_preserves_duplicate_rows_with_unique_ids(tmp_path):
@@ -89,3 +86,30 @@ def test_official_loader_preserves_duplicate_rows_with_unique_ids(tmp_path):
     assert len(rows) == 2
     assert rows[0]["text"] == rows[1]["text"] == "same"
     assert rows[0]["source_id"] != rows[1]["source_id"]
+
+
+def test_training_loader_deduplicates_but_retains_original_lines(tmp_path):
+    path = tmp_path / "train.jsonl"
+    path.write_text(
+        '{"text":"first","label":0}\n'
+        '{"text":"first","label":0}\n'
+        '{"text":"second","label":1}\n', encoding="utf-8")
+    rows = runner.load_jsonl_unique_with_lines(path)
+    assert [(row["text"], row["line"]) for row in rows] == [
+        ("first", 1), ("second", 3)]
+
+
+def test_matrix_scheduler_keeps_gradient_routing_exclusive():
+    script = (ROOT /
+        "kafa_script/run_imdb_server_role_reversal_matrix.sh").read_text()
+    assert 'if [[ "$method" == "severe_routed_distillation" ]]' in script
+    exclusive = script.split("run_exclusive()", 1)[1].split(
+        "for seed in", 1)[0]
+    assert exclusive.count("wait") >= 2
+
+
+def test_verifier_reuses_line_preserving_training_loader():
+    source = (ROOT /
+        "kafa_script/verify_imdb_server_role_reversal.py").read_text()
+    assert "target_rows = load_jsonl_unique_with_lines(target_path)" in source
+    assert "target_rows = core.load_jsonl(target_path)" not in source

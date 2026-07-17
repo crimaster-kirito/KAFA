@@ -1,16 +1,27 @@
-# Selection Purity Is Not a Sufficient Proxy for Transfer Utility: Auditing Joint Model and Data Heterogeneity in Language-Model Adaptation
+# Auditing Selection Purity and Transfer Utility under Joint Model and Data Heterogeneity
 
-**Status: complete seven-page anonymous draft; CCF-A evidence strengthening is
-active.** Frozen AG News, TREC-Coarse, and GSM8K evaluations, a
-three-level severity study, a compatible Co-Teaching baseline, and Hausa and
-Yoruba natural weak-label development studies are complete.  The seven-page
-AAAI-27 manuscript, two vector figures, four tables, 23 references, separate
-reproducibility checklist, and artifact validators are built.  The evidence
-supports an evaluation/diagnostic paper, not a positive new federated method;
-privacy evaluation and an algorithmically novel endpoint remain absent.  A
-post-primary AG News four-arm analysis on a newly frozen 4,000-record,
-client-disjoint holdout is running under a fail-closed protocol; no result from
-that matrix is part of the draft until the complete matrix validates.
+**Status: complete anonymous baseline draft; prospective CCF-A evidence
+strengthening is active.** Frozen AG News, TREC-Coarse, GSM8K, Co-Teaching,
+and natural weak-label studies remain intact.  The restructured server-focused
+manuscript currently compiles to six pages, with one main framework figure and
+one evidence-ledger table; the three-page supplement retains the legacy
+experimental figure and four detailed tables.  The 29-reference bibliography
+is resolved jointly across both anonymous PDFs after adding the closest
+2024--2025 federated-distillation work.  The evidence supports an
+evaluation/diagnostic paper, not
+a positive new federated method; privacy evaluation and an algorithmically
+novel endpoint remain absent.  The new AG four-arm development matrix is
+verified, while its 4,000-record post-primary secondary matrix has 4/40 valid
+records.  IMDb role-reversal development is verified 12/12, and the matched-K
+random/routed/maximum-purity addendum is verified 9/9 with three exact routed
+equivalence checks.  After a serialized zero-file start audit, the 25,000-row
+official test entered its first authorized model evaluation and the original
+40-record matrix is actively running under a resource-aware scheduler.  The
+matched-control official matrix remains unopened and will follow the complete
+original matrix.  Live counts are intentionally derived from the output
+directories rather than frozen in this narrative.  None of these new results
+enters the paper until its complete matrix validates and its evidence timing
+is labelled explicitly.
 
 ## Abstract
 

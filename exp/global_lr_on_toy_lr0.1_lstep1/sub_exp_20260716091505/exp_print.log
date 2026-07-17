@@ -1,0 +1,75 @@
+2026-07-16 09:15:05,901 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-07-16 09:15:05,901 (logging:134) INFO: the current dir is /root/projects/KAFA
+2026-07-16 09:15:05,901 (logging:135) INFO: the output dir is exp/global_lr_on_toy_lr0.1_lstep1/sub_exp_20260716091505
+2026-07-16 09:15:05,906 (splitter_builder:85) WARNING: Splitter  not found or not used.
+2026-07-16 09:15:05,908 (base_data:90) INFO: Will merge data from clients whose ids in [1, 5]
+2026-07-16 09:15:05,926 (cfg_fl_setting:155) INFO: In global training mode, we will put all data in a proxy client. 
+2026-07-16 09:15:05,927 (worker_builder:222) WARNING: Server for method global is not implemented. Will use default one
+2026-07-16 09:15:05,927 (worker_builder:79) WARNING: Clients for method global is not implemented. Will use default one
+2026-07-16 09:15:05,929 (cfg_fl_setting:150) WARNING: In local/global training mode, the sampling related configs are in-valid, we will use all clients. 
+2026-07-16 09:15:05,929 (cfg_fl_setting:155) INFO: In global training mode, we will put all data in a proxy client. 
+2026-07-16 09:15:05,959 (utils:167) INFO: The device information file is not provided
+2026-07-16 09:15:05,959 (cfg_fl_setting:150) WARNING: In local/global training mode, the sampling related configs are in-valid, we will use all clients. 
+2026-07-16 09:15:05,959 (cfg_fl_setting:155) INFO: In global training mode, we will put all data in a proxy client. 
+2026-07-16 09:15:06,009 (fed_runner:195) INFO: Server has been set up ... 
+2026-07-16 09:15:06,037 (fed_runner:245) INFO: Client 1 has been set up ... 
+2026-07-16 09:15:06,037 (trainer:343) INFO: Model meta-info: <class 'federatedscope.core.lr.LogisticRegression'>.
+2026-07-16 09:15:06,037 (trainer:351) INFO: Num of original para names: 2.
+2026-07-16 09:15:06,037 (trainer:352) INFO: Num of original trainable para names: 2.
+2026-07-16 09:15:06,037 (trainer:354) INFO: Num of preserved para names in local update: 0. 
+Preserved para names in local update: set().
+2026-07-16 09:15:06,037 (trainer:358) INFO: Num of filtered para names in local update: 2. 
+Filtered para names in local update: {'fc.bias', 'fc.weight'}.
+2026-07-16 09:15:06,037 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "_hook_on_batch_backward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	}

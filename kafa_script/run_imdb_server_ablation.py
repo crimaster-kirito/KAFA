@@ -49,6 +49,20 @@ METHODS = {
 }
 
 
+def load_jsonl_unique_with_lines(path: Path) -> list[dict]:
+    """Load canonical-unique training rows while retaining source line IDs."""
+    rows, seen = [], set()
+    with path.open(encoding="utf-8") as handle:
+        for line_number, line in enumerate(handle, start=1):
+            raw = json.loads(line)
+            source_id = canonical_sha256(raw)
+            if source_id in seen:
+                continue
+            seen.add(source_id)
+            rows.append({**raw, "source_id": source_id, "line": line_number})
+    return rows
+
+
 def load_jsonl_preserve_rows(path: Path) -> list[dict]:
     """Load every official row, assigning a line-specific evaluation ID."""
     rows = []
@@ -193,7 +207,7 @@ def main() -> None:
     device = torch.device("cuda")
     started_utc = datetime.now(timezone.utc).isoformat()
 
-    target_rows = core.load_jsonl(args.target_train)
+    target_rows = load_jsonl_unique_with_lines(args.target_train)
     partitions = core.resolve_manifest_splits(
         target_rows, manifest,
         ["anchor", "development", "client_0", "client_1", "client_2"])

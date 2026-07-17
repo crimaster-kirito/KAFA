@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/root/projects/KAFA/kafa_script/run_imdb_server_ablation.py", line 369, in <module>
+    main()
+  File "/root/projects/KAFA/kafa_script/run_imdb_server_ablation.py", line 197, in main
+    partitions = core.resolve_manifest_splits(
+  File "/root/projects/KAFA/kafa_script/run_generic_classification_distillation.py", line 134, in resolve_manifest_splits
+    resolved = {name: select_manifest_rows(rows, manifest, name)
+  File "/root/projects/KAFA/kafa_script/run_generic_classification_distillation.py", line 134, in <dictcomp>
+    resolved = {name: select_manifest_rows(rows, manifest, name)
+  File "/root/projects/KAFA/kafa_script/run_generic_classification_distillation.py", line 126, in select_manifest_rows
+    if int(record["line"]) != int(row["line"]):
+KeyError: 'line'

@@ -282,17 +282,149 @@ submission-ready paper requires:
   more invalidated development JSONs and 23 retained JSON/log artifacts.  None
   of those values may be used for tuning, gating, inference, or paper claims.
 - A stronger prospective role-reversal protocol makes IMDb sentiment the
-  target and AG News the off-task source.  The protocol SHA-256 is
-  `169f8348f9823276aa196e4b0d4b7c9fe0a5b7bebf5f76b923d05b8ace34a10e`.
+  target and AG News the off-task source.  After a pre-record loader repair,
+  the final protocol SHA-256 is
+  `fbfc13064eca36163397017521474dde6aeda7c4304215b97491845c14ee9166`.
   Before freeze, no analysis-output JSON/log referenced the IMDb test path or
   hash.  Manifest construction only hashed and counted its 25,000 raw lines;
   development uses a required nonexistent sentinel path.  IMDb train and task
   semantics were previously used as off-task inputs, so the strongest allowed
   label is “prospective untouched-test role-reversal extension,” not a
   dataset-naive or externally preregistered replication.
+- The first IMDb development attempt failed before partition resolution because
+  the generic JSONL loader omitted manifest source-line metadata.  No JSON or
+  model metric was written and the nonexistent test sentinel remained absent.
+  The failure log is retained; the final runner deduplicates canonical training
+  records while preserving their original one-indexed source lines.
 - The IMDb protocol declares one primary contrast only: severe-routed minus
   severe-unfiltered accuracy across ten common seeds, using a two-sided paired
   t-test and 95% seed interval.  Anchor/clean contrasts, calibration metrics,
   costs, and the net contrast are descriptive.  A narrow confirmation requires
   both increased audit clean fraction and a strictly negative primary interval
   with two-sided p<.05; failure must be reported without adding seeds.
+
+## 10. Resource-aware matrix execution and current test boundary (2026-07-16)
+
+- Concurrent AG severe-unfiltered and IMDb severe-routed execution exhausted
+  the device: the routed process requested another 4.64 GiB with only 3.19 GiB
+  free.  The failed IMDb log is retained and no JSON was produced.  The same
+  seed/method subsequently completed when run alone, so this is classified as
+  an infrastructure failure rather than an algorithmic outcome.
+- Both matrix schedulers now drain all ordinary jobs before gradient routing.
+  Anchor and unfiltered arms retain up to two-way concurrency.  Two concurrent
+  IMDb unfiltered jobs reached approximately 40.6 GiB used and 100% sampled GPU
+  utilization, empirically ruling out a third concurrent model on this device.
+  Scheduling changes do not alter any frozen model, data, or analysis setting.
+- IMDb development seed 311 is complete.  Severe routed reaches 91.6% accuracy
+  versus 89.9% for severe uniform and raises the aggregate selected clean
+  fraction to 72.7% from the 103/256 (40.2%) severe baseline.  This is
+  implementation-only development evidence: the positive +1.7 pp direction
+  runs against the frozen negative official-test hypothesis and is neither a
+  paper result nor grounds to change that hypothesis.
+- The complete IMDb development matrix subsequently passed the reconstruction
+  verifier (12/12 records; protocol SHA-256
+  `fbfc13064eca36163397017521474dde6aeda7c4304215b97491845c14ee9166`).
+  Routing triggered in 18/18 client-rounds and raised aggregate selected clean
+  fraction to 72.5%.  Mean development accuracy is 90.03% for severe uniform
+  and 91.33% for severe routed (+1.30 pp); by the frozen protocol this direction
+  is implementation-only and cannot tune, stop, or reverse the official test.
+- The first full verifier invocation exposed the same source-line metadata
+  mismatch as the earlier pre-record runner audit: it used the generic JSONL
+  loader while the manifest keys canonical-deduplicated original line numbers.
+  No record was invalidated or changed.  The verifier now imports the frozen
+  runner's audited line-preserving training loader, has a regression test, and
+  passes all matrix reconstruction checks.  This is verifier instrumentation,
+  not a protocol or result change.
+- The expanded focused research regression suite passes all 134 tests,
+  including scheduler exclusivity, duplicate-lock rejection, fail-closed IMDb
+  paper-asset generation, and LaTeX smoke checks.  A repository-wide exploratory invocation
+  reports 94 passes, 54 failures, and 4 collection errors, primarily because
+  legacy integration tests require absent optional packages such as
+  `torchvision` and `matplotlib`, while `test_tinyllama_training.py` exposes
+  script functions as fixture-based pytest tests.  Therefore no repository-wide
+  green-suite claim is made; the focused suite and legacy dependency boundary
+  remain separately reported.
+- A reviewer-style confounding audit identified that the original IMDb routed
+  and severe-unfiltered arms change selected-set size as well as composition.
+  Before any IMDb official model evaluation, a separate secondary addendum was
+  frozen (SHA-256
+  `47175564a023ea59e0137c847bdf747e3ec70b436ae52bc51a0f92f9b2670d64`).
+  It holds K=128, claimed-label quotas, local steps, severe mixture, and all
+  server settings fixed across deterministic target-eligible random-K,
+  forced routed-K, and audit-only maximum-purity-K controls.  The last arm has
+  103 clean plus 25 conflict rows and is explicitly not called oracle-clean.
+  Two accuracy contrasts form one secondary two-sided Holm family; they cannot
+  alter or confirm the original primary.  The addendum was designed after IMDb
+  development was observed but while both official output directories remained
+  empty, so its strongest allowed label is prospective secondary mechanistic
+  evidence on the same still-unopened official test.
+- The matched-control development matrix passed its reconstruction verifier
+  (9/9) and the routed equivalence audit (3/3).  Mean accuracies are 89.70%
+  random-K, 91.33% routed-K, and 90.97% maximum-purity-K.  Routed-K exceeds
+  random-K in every development seed (+1.4, +1.8, +1.7 pp), whereas the arm
+  with the highest attainable clean fraction (80.5%) does not exceed routed-K
+  (0.0, -0.3, -0.8 pp).  These are development-only observations and cannot
+  license the frozen secondary official hypotheses.
+- Immediately before official launch, both IMDb official directories contained
+  zero files and no official runner was active.  The two verified development
+  reports, three verifier hashes, and this boundary were serialized in
+  `kafa_script/imdb_official_start_audit_v1.json` at
+  `2026-07-16T10:12:35Z`.  The original 10-by-4 official matrix then became the
+  first authorized process to verify and decode the 25,000-row IMDb test.
+- IMDb official seed 321 completed all four original arms without failure.
+  Anchor, clean uniform, severe uniform, and severe routed accuracies are
+  91.868%, 91.864%, 91.312%, and 91.608%, respectively.  The single-seed
+  routed-minus-severe difference is +0.296 pp, opposite the frozen negative
+  confirmation direction; it is not an interim test and cannot stop or modify
+  the remaining nine seeds.  Routed audit clean fraction is 71.6%, while its
+  canonical score ECE is 0.0079 versus 0.0780 for severe uniform.  The complete
+  paired family remains required before any paper claim.
+- IMDb official seed 322 also completed all four arms without failure.  Anchor,
+  clean uniform, severe uniform, and severe routed accuracies are 91.920%,
+  91.840%, 91.216%, and 91.608%, respectively.  Its routed-minus-severe
+  difference is +0.392 pp and routed audit clean fraction is 71.2% (547/768).
+  Score ECE is 0.0079 for routed versus 0.0752 for severe uniform.  These are
+  run-integrity observations only: no two-seed aggregate, interim test, early
+  stopping rule, or protocol change is authorized.  The complete ten-seed
+  paired family remains required.
+
+## 11. Manuscript inferential-role and final-asset contract audit (2026-07-16)
+
+- A reviewer-style manuscript audit found that the legacy AG News comparison
+  estimates routed-minus-anchor (D--A), whereas the TREC and prospective IMDb
+  routing estimand is D--C.  The main text and framework therefore no longer
+  call the legacy AG result cross-task ``consistency'' evidence.  It is labelled
+  prior task-specific context; only the new AG four-arm matrix can supply a
+  directly comparable D--C contrast, and even that remains post-primary
+  resampling rather than independent confirmation.
+- The framework's former TREC-to-IMDb-to-AG arrows incorrectly implied an
+  execution chronology.  They were removed and replaced by three independent
+  inferential-role boxes.  The evidence ledger is now a single-column table
+  fixed before Results and explicitly referenced in the text.  The class-count
+  symbol is now L, matched subset size remains K=128, and the GSM8K local
+  retention count is K_local.
+- The cross-task asset generator now parses and binds the frozen TREC, IMDb
+  original, IMDb matched-size, and AG protocol semantics before loading any
+  records.  Verifier receipts must match local protocol hashes, phase, record
+  count, seeds, and methods.  Exact sign-flip sensitivities use integer traces
+  of the recorded confusion matrices rather than rounded floating accuracy.
+- The IMDb primary claim gate is explicit and fail-closed: routed clean
+  fraction must exceed 103/256, the paired D--C interval must be strictly
+  negative, the two-sided paired p-value must be below .05, and all ten routed
+  records must pass original/matched equivalence.  A failed gate still produces
+  the complete result but cannot produce confirmatory wording.  AG direction
+  relative to TREC is stored as a descriptive field, never as its evidence
+  class.
+- Generated tables and figures distinguish primary, descriptive,
+  post-primary, and secondary contrasts.  A current-input manifest binds the
+  generator, protocols, verifiers, all 150 expected records, and every
+  published asset hash; the submission build rejects stale assets when inputs
+  are incomplete or changed.  Synthetic contract tests pass 22/22, the related
+  TREC/IMDb/AG regression set passes 61/61, and the complete focused submission
+  build passes 134/134 tests.
+- The rebuilt anonymous working submission contains six US-Letter main pages,
+  three supplement pages, one current main table, one current vector framework
+  figure, 29 resolved references, embedded fonts, and no anonymity leak.  The
+  supplement log is free of warning/overfull/underfull diagnostics.  Final
+  IMDb/AG numerical assets, the outcome-dependent abstract language, and the
+  Conclusion remain intentionally absent until all frozen matrices verify.

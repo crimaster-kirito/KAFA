@@ -17,7 +17,7 @@ from kafa_script.classification_task import (  # noqa: E402
     canonical_sha256, load_task_spec, mixture_assignment_sha256)
 from kafa_script import run_generic_classification_distillation as core  # noqa: E402
 from kafa_script.run_imdb_server_ablation import (  # noqa: E402
-    METHODS, load_jsonl_preserve_rows)
+    METHODS, load_jsonl_preserve_rows, load_jsonl_unique_with_lines)
 
 
 def require(condition: bool, message: str) -> None:
@@ -63,7 +63,10 @@ def verify_matrix(phase: str, output_dir: Path, protocol_path: Path) -> dict:
         "target_train_sha256"], "target train hash mismatch")
     require(core.sha256_file(off_task_path) == protocol["data"][
         "off_task_train_sha256"], "off-task hash mismatch")
-    target_rows = core.load_jsonl(target_path)
+    # The manifest keys canonical-deduplicated training examples by their
+    # original one-indexed source lines.  Reuse the runner's audited loader;
+    # the generic JSONL loader intentionally does not retain that metadata.
+    target_rows = load_jsonl_unique_with_lines(target_path)
     partitions = core.resolve_manifest_splits(
         target_rows, manifest,
         ["anchor", "development", "client_0", "client_1", "client_2"])

@@ -1,0 +1,55 @@
+2026-07-16 09:15:27,605 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-07-16 09:15:27,605 (logging:134) INFO: the current dir is /root/projects/KAFA
+2026-07-16 09:15:27,605 (logging:135) INFO: the output dir is exp/FedAvg_lr_on_synthetic_vfl_data_lr0.05_lstep1/sub_exp_20260716091527
+2026-07-16 09:15:27,727 (cfg_fl_setting:180) WARNING: Users specify both valid sample_client_rate as 0.0001 and sample_client_num as 48.
+		We will use the sample_client_rate value to calculate the actual number of participated clients as 48.
+2026-07-16 09:15:27,734 (cfg_fl_setting:150) WARNING: In local/global training mode, the sampling related configs are in-valid, we will use all clients. 
+2026-07-16 09:15:27,735 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,735 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,735 (cfg_fl_setting:150) WARNING: In local/global training mode, the sampling related configs are in-valid, we will use all clients. 
+2026-07-16 09:15:27,736 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,736 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,742 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,742 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,742 (cfg_fl_setting:180) WARNING: Users specify both valid sample_client_rate as 1.0 and sample_client_num as 5.
+		We will use the sample_client_rate value to calculate the actual number of participated clients as 5.
+2026-07-16 09:15:27,743 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,743 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,750 (cfg_fl_setting:150) WARNING: In local/global training mode, the sampling related configs are in-valid, we will use all clients. 
+2026-07-16 09:15:27,750 (cfg_fl_setting:155) INFO: In global training mode, we will put all data in a proxy client. 
+2026-07-16 09:15:27,750 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,750 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,750 (cfg_fl_setting:150) WARNING: In local/global training mode, the sampling related configs are in-valid, we will use all clients. 
+2026-07-16 09:15:27,751 (cfg_fl_setting:155) INFO: In global training mode, we will put all data in a proxy client. 
+2026-07-16 09:15:27,751 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,751 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,757 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,758 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,758 (cfg_fl_setting:180) WARNING: Users specify both valid sample_client_rate as 1.0 and sample_client_num as 5.
+		We will use the sample_client_rate value to calculate the actual number of participated clients as 5.
+2026-07-16 09:15:27,758 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,759 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,765 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,765 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,765 (cfg_fl_setting:180) WARNING: Users specify both valid sample_client_rate as 1.0 and sample_client_num as 5.
+		We will use the sample_client_rate value to calculate the actual number of participated clients as 5.
+2026-07-16 09:15:27,766 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,766 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,772 (cfg_fl_setting:150) WARNING: In local/global training mode, the sampling related configs are in-valid, we will use all clients. 
+2026-07-16 09:15:27,772 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,773 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,773 (cfg_fl_setting:150) WARNING: In local/global training mode, the sampling related configs are in-valid, we will use all clients. 
+2026-07-16 09:15:27,773 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:27,773 (cfg_data:156) WARNING: config `cfg.data.num_workers` will be removed in the future, use `cfg.dataloader.num_workers` instead.
+2026-07-16 09:15:27,910 (cfg_fl_setting:180) WARNING: Users specify both valid sample_client_rate as 0.2 and sample_client_num as 1.
+		We will use the sample_client_rate value to calculate the actual number of participated clients as 1.
+2026-07-16 09:15:27,923 (cfg_fl_setting:150) WARNING: In local/global training mode, the sampling related configs are in-valid, we will use all clients. 
+2026-07-16 09:15:28,055 (cfg_fl_setting:180) WARNING: Users specify both valid sample_client_rate as 1.0 and sample_client_num as 5.
+		We will use the sample_client_rate value to calculate the actual number of participated clients as 5.
+2026-07-16 09:15:28,063 (cfg_fl_setting:180) WARNING: Users specify both valid sample_client_rate as 0.2 and sample_client_num as 8.
+		We will use the sample_client_rate value to calculate the actual number of participated clients as 8.
+2026-07-16 09:15:28,075 (cfg_fl_setting:180) WARNING: Users specify both valid sample_client_rate as 0.2 and sample_client_num as 60.
+		We will use the sample_client_rate value to calculate the actual number of participated clients as 60.
+2026-07-16 09:15:28,084 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:28,085 (cfg_data:148) WARNING: config `cfg.data.batch_size` will be removed in the future, use `cfg.dataloader.batch_size` instead.
+2026-07-16 09:15:28,091 (cfg_fl_setting:150) WARNING: In local/global training mode, the sampling related configs are in-valid, we will use all clients. 

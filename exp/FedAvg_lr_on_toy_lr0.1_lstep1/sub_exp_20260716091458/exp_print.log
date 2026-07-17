@@ -1,0 +1,16 @@
+2026-07-16 09:14:58,467 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-07-16 09:14:58,468 (logging:134) INFO: the current dir is /root/projects/KAFA
+2026-07-16 09:14:58,468 (logging:135) INFO: the output dir is exp/FedAvg_lr_on_toy_lr0.1_lstep1/sub_exp_20260716091458
+2026-07-16 09:14:58,474 (splitter_builder:85) WARNING: Splitter  not found or not used.
+2026-07-16 09:14:58,529 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-07-16 09:14:58,529 (logging:134) INFO: the current dir is /root/projects/KAFA
+2026-07-16 09:14:58,529 (logging:135) INFO: the output dir is exp/FedAvg_convnet2_on_CIFAR10@torchvision_lr0.1_lstep2/sub_exp_20260716091458
+2026-07-16 09:14:59,607 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-07-16 09:14:59,607 (logging:134) INFO: the current dir is /root/projects/KAFA
+2026-07-16 09:14:59,607 (logging:135) INFO: the output dir is exp/FedAvg_convnet2_on_CIFAR10@torchvision_lr0.1_lstep2/sub_exp_20260716091459
+2026-07-16 09:15:00,679 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-07-16 09:15:00,680 (logging:134) INFO: the current dir is /root/projects/KAFA
+2026-07-16 09:15:00,680 (logging:135) INFO: the output dir is exp/FedAvg_convnet2_on_CIFAR10@torchvision_lr0.1_lstep2/sub_exp_20260716091500
+2026-07-16 09:15:00,751 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-07-16 09:15:00,752 (logging:134) INFO: the current dir is /root/projects/KAFA
+2026-07-16 09:15:00,752 (logging:135) INFO: the output dir is exp/FedAvg_convnet2_on_femnist_lr0.1_lstep2/sub_exp_20260716091500

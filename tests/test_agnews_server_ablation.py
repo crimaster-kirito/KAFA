@@ -84,3 +84,12 @@ def test_mixture_hash_tracks_assignment_but_not_text_payload():
     changed_assignment = [{**first[0], "training_label": 1}]
     assert runner.mixture_sha256(first) == runner.mixture_sha256(same_assignment)
     assert runner.mixture_sha256(first) != runner.mixture_sha256(changed_assignment)
+
+
+def test_matrix_scheduler_keeps_gradient_routing_exclusive():
+    script = (ROOT /
+        "kafa_script/run_agnews_server_ablation_matrix.sh").read_text()
+    assert 'if [[ "$method" == "severe_routed_distillation" ]]' in script
+    exclusive = script.split("run_exclusive()", 1)[1].split(
+        "for seed in", 1)[0]
+    assert exclusive.count("wait") >= 2

@@ -1,0 +1,15 @@
+{
+  "name": "imdb_test_pre_run_audit_v1",
+  "recorded_utc": "2026-07-16T08:54:36+00:00",
+  "scope": "Historical JSON and log artifacts under kafa_script/analysis_outputs, excluding the newly created imdb_server_role_reversal subtree.",
+  "historical_artifact_files_scanned": 586,
+  "needles": [
+    ".cache/datasets/imdb/test.jsonl",
+    "bceb588619d37a5b1c5e6ec7ec519b204eaaf8a4024735b279fe1eff33a46843"
+  ],
+  "matching_historical_artifacts": [],
+  "interpretation": "No retained pre-role-reversal experiment JSON or log referenced the IMDb test path or byte hash. This proves the retained workspace history only; it cannot prove that no person ever viewed the dataset outside recorded artifacts.",
+  "test_byte_access_before_model_evaluation": "The manifest generator and artifact audit hashed and line-counted raw test bytes without decoding JSON, text, or labels.",
+  "role_boundary": "IMDb train and the sentiment task interface had already served as off-task inputs, so the experiment is an untouched-test role reversal rather than dataset-naive replication.",
+  "final_protocol_sha256": "fbfc13064eca36163397017521474dde6aeda7c4304215b97491845c14ee9166"
+}

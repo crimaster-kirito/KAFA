@@ -30,11 +30,67 @@ fi
 .venv/bin/python kafa_script/summarize_trec_server_ablation.py \
   --phase development \
   --input-dir kafa_script/analysis_outputs/trec_server_ablation/development \
-  --output kafa_script/analysis_outputs/TREC_SERVER_ABLATION_DEVELOPMENT.md
+  --output kafa_script/analysis_outputs/TREC_SERVER_ABLATION_DEVELOPMENT.md \
+  >/tmp/kafa_trec_ablation_development_summary.log
 .venv/bin/python kafa_script/summarize_trec_server_ablation.py \
   --phase official \
   --input-dir kafa_script/analysis_outputs/trec_server_ablation/official_reused_test \
-  --output kafa_script/analysis_outputs/TREC_SERVER_POST_PRIMARY_ABLATION.md
+  --output kafa_script/analysis_outputs/TREC_SERVER_POST_PRIMARY_ABLATION.md \
+  >/tmp/kafa_trec_ablation_official_summary.log
+.venv/bin/python kafa_script/summarize_imdb_server_role_reversal.py \
+  --phase development \
+  --input-dir kafa_script/analysis_outputs/imdb_server_role_reversal/development \
+  --output kafa_script/analysis_outputs/IMDB_SERVER_ROLE_REVERSAL_DEVELOPMENT.md \
+  >/tmp/kafa_imdb_development_summary.log
+.venv/bin/python kafa_script/summarize_imdb_matched_control_addendum.py \
+  --phase development \
+  --input-dir kafa_script/analysis_outputs/imdb_matched_control_addendum/development \
+  --output kafa_script/analysis_outputs/IMDB_MATCHED_CONTROL_DEVELOPMENT.md \
+  >/tmp/kafa_imdb_matched_development_summary.log
+
+imdb_official_dir="kafa_script/analysis_outputs/imdb_server_role_reversal/official_evaluation"
+imdb_official_count="$(find "$imdb_official_dir" -maxdepth 1 -name 'seed*.json' | wc -l)"
+if [[ "$imdb_official_count" -eq 40 ]]; then
+  .venv/bin/python kafa_script/summarize_imdb_server_role_reversal.py \
+    --phase official_evaluation \
+    --input-dir "$imdb_official_dir" \
+    --output kafa_script/analysis_outputs/IMDB_SERVER_ROLE_REVERSAL_OFFICIAL.md \
+    >/tmp/kafa_imdb_official_summary.log
+fi
+
+imdb_matched_dir="kafa_script/analysis_outputs/imdb_matched_control_addendum/official_evaluation"
+if [[ -d "$imdb_matched_dir" ]]; then
+  imdb_matched_count="$(find "$imdb_matched_dir" -maxdepth 1 -name 'seed*.json' | wc -l)"
+else
+  imdb_matched_count=0
+fi
+if [[ "$imdb_matched_count" -eq 30 ]]; then
+  .venv/bin/python kafa_script/summarize_imdb_matched_control_addendum.py \
+    --phase official_evaluation \
+    --input-dir "$imdb_matched_dir" \
+    --output kafa_script/analysis_outputs/IMDB_MATCHED_CONTROL_OFFICIAL.md \
+    >/tmp/kafa_imdb_matched_official_summary.log
+fi
+if [[ "$imdb_official_count" -eq 40 && "$imdb_matched_count" -eq 30 ]]; then
+  .venv/bin/python kafa_script/generate_imdb_paper_assets.py
+fi
+
+trec_audit_dir="kafa_script/analysis_outputs/trec_server_ablation/official_reused_test"
+ag_audit_dir="kafa_script/analysis_outputs/agnews_server_ablation/secondary_holdout"
+trec_audit_count="$(find "$trec_audit_dir" -maxdepth 1 -name 'seed*.json' | wc -l)"
+if [[ -d "$ag_audit_dir" ]]; then
+  ag_audit_count="$(find "$ag_audit_dir" -maxdepth 1 -name 'seed*.json' | wc -l)"
+else
+  ag_audit_count=0
+fi
+if [[ "$trec_audit_count" -eq 40 && "$imdb_official_count" -eq 40 && \
+      "$imdb_matched_count" -eq 30 && "$ag_audit_count" -eq 40 ]]; then
+  .venv/bin/python kafa_script/generate_server_audit_assets.py
+  .venv/bin/python kafa_script/generate_server_audit_assets.py --verify-only
+elif compgen -G 'paper/generated/server_audit_*' >/dev/null; then
+  echo "Refusing stale server_audit assets: the current 150-record input set is incomplete." >&2
+  exit 1
+fi
 
 cd paper/figures
 pdflatex -interaction=nonstopmode -halt-on-error framework_source.tex >/tmp/kafa_framework_build.log
@@ -51,6 +107,14 @@ for pass in 2 3 4; do
 done
 pdflatex -interaction=nonstopmode -halt-on-error ReproducibilityChecklist.tex \
   >/tmp/kafa_checklist_build.log
+rm -f supplement.aux supplement.bbl supplement.blg supplement.log supplement.pdf
+pdflatex -interaction=nonstopmode -halt-on-error supplement.tex \
+  >/tmp/kafa_supplement_pass1.log
+bibtex supplement >/tmp/kafa_supplement_bibtex.log
+for pass in 2 3; do
+  pdflatex -interaction=nonstopmode -halt-on-error supplement.tex \
+    >"/tmp/kafa_supplement_pass${pass}.log"
+done
 
 cd "$repo_root"
 .venv/bin/python paper/verify_submission.py
@@ -62,6 +126,27 @@ cd "$repo_root"
 .venv/bin/python kafa_script/verify_trec_server_ablation.py \
   --phase official_evaluation \
   --output-dir kafa_script/analysis_outputs/trec_server_ablation/official_reused_test
+.venv/bin/python kafa_script/verify_imdb_server_role_reversal.py \
+  --phase development \
+  --output-dir kafa_script/analysis_outputs/imdb_server_role_reversal/development
+.venv/bin/python kafa_script/verify_imdb_matched_control_addendum.py \
+  --phase development \
+  --output-dir kafa_script/analysis_outputs/imdb_matched_control_addendum/development
+.venv/bin/python kafa_script/verify_imdb_routed_equivalence.py \
+  --phase development \
+  --original-dir kafa_script/analysis_outputs/imdb_server_role_reversal/development \
+  --matched-dir kafa_script/analysis_outputs/imdb_matched_control_addendum/development
+if [[ "$imdb_official_count" -eq 40 ]]; then
+  .venv/bin/python kafa_script/verify_imdb_server_role_reversal.py \
+    --phase official_evaluation --output-dir "$imdb_official_dir"
+fi
+if [[ "$imdb_matched_count" -eq 30 ]]; then
+  .venv/bin/python kafa_script/verify_imdb_matched_control_addendum.py \
+    --phase official_evaluation --output-dir "$imdb_matched_dir"
+  .venv/bin/python kafa_script/verify_imdb_routed_equivalence.py \
+    --phase official_evaluation \
+    --original-dir "$imdb_official_dir" --matched-dir "$imdb_matched_dir"
+fi
 .venv/bin/python -m pytest -q tests/test_capability_router.py \
   tests/test_lora_projection_diagnostics.py tests/test_statistical_summarizers.py \
   tests/test_classification_task.py tests/test_trec_server_manifest.py \
@@ -69,4 +154,10 @@ cd "$repo_root"
   tests/test_generic_classification_distillation.py \
   tests/test_summarize_trec_server_transfer.py \
   tests/test_trec_server_matrix.py \
-  tests/test_trec_server_ablation.py
+  tests/test_trec_server_ablation.py \
+  tests/test_agnews_server_ablation.py \
+  tests/test_imdb_server_role_reversal.py \
+  tests/test_imdb_matched_control_addendum.py \
+  tests/test_imdb_matched_control_resource_scheduler.py \
+  tests/test_generate_imdb_paper_assets.py \
+  tests/test_generate_server_audit_assets.py

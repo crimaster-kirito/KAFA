@@ -1,0 +1,3 @@
+2026-07-16 09:15:24,033 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-07-16 09:15:24,033 (logging:134) INFO: the current dir is /root/projects/KAFA
+2026-07-16 09:15:24,033 (logging:135) INFO: the output dir is exp/FedAvg_xgb_tree_on_adult_lr0.1_lstep1/sub_exp_20260716091524

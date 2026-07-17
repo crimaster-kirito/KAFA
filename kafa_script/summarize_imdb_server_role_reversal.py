@@ -141,14 +141,23 @@ def summarize(phase: str, input_dir: Path, output: Path,
                 rounds += 1
                 triggers += int(client["selection"]["gate_triggered"])
                 selected.update(client["selected_kind_counts_audit_only"])
+    clean_fraction = selected["clean"] / sum(selected.values())
     lines += [
         "", "## Mechanism and cost audit", "",
         f"- Routing triggered in {triggers}/{rounds} client-rounds.",
         f"- Aggregate routed selected-kind counts: `{dict(selected)}`.",
+        f"- Routed audit clean fraction: {100*clean_fraction:.1f}% versus "
+        f"the severe baseline {100*103/256:.1f}%.",
         "- The anchor arm omits the complete client path and records zero payload.",
         "- Wall time is scheduler-specific, not isolated deployment throughput.",
-        "", "## Raw artifact hashes", "",
     ]
+    if phase == "development":
+        lines += [
+            f"- Frozen implementation gate (composition only): "
+            f"**{'pass' if clean_fraction > 103/256 else 'fail'}**.",
+            "- No development accuracy direction is used for tuning or stopping.",
+        ]
+    lines += ["", "## Raw artifact hashes", ""]
     for name, digest in sorted(raw_hashes.items()):
         lines.append(f"- `{name}`: `{digest}`")
     lines += ["", "## Claim boundary", ""]

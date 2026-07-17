@@ -1,0 +1,71 @@
+2026-07-16 09:15:14,303 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-07-16 09:15:14,303 (logging:134) INFO: the current dir is /root/projects/KAFA
+2026-07-16 09:15:14,303 (logging:135) INFO: the output dir is exp/FedAvg_lr_on_toy_lr0.1_lstep1/sub_exp_20260716091514
+2026-07-16 09:15:14,307 (splitter_builder:85) WARNING: Splitter  not found or not used.
+2026-07-16 09:15:14,357 (utils:167) INFO: The device information file is not provided
+2026-07-16 09:15:14,384 (fed_runner:195) INFO: Server has been set up ... 
+2026-07-16 09:15:14,414 (fed_runner:245) INFO: Client 1 has been set up ... 
+2026-07-16 09:15:14,441 (fed_runner:245) INFO: Client 2 has been set up ... 
+2026-07-16 09:15:14,467 (fed_runner:245) INFO: Client 3 has been set up ... 
+2026-07-16 09:15:14,493 (fed_runner:245) INFO: Client 4 has been set up ... 
+2026-07-16 09:15:14,522 (fed_runner:245) INFO: Client 5 has been set up ... 
+2026-07-16 09:15:14,522 (trainer:343) INFO: Model meta-info: <class 'federatedscope.core.lr.LogisticRegression'>.
+2026-07-16 09:15:14,522 (trainer:351) INFO: Num of original para names: 2.
+2026-07-16 09:15:14,522 (trainer:352) INFO: Num of original trainable para names: 2.
+2026-07-16 09:15:14,522 (trainer:354) INFO: Num of preserved para names in local update: 2. 
+Preserved para names in local update: {'fc.bias', 'fc.weight'}.
+2026-07-16 09:15:14,523 (trainer:358) INFO: Num of filtered para names in local update: 0. 
+Filtered para names in local update: set().
+2026-07-16 09:15:14,523 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "_hook_on_batch_backward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	}

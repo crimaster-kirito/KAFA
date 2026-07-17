@@ -1,0 +1,156 @@
+{
+  "name": "imdb_matched_control_addendum_v1",
+  "status": "frozen_after_imdb_development_observation_before_any_matched_control_or_original_official_imdb_model_evaluation_with_pre_evaluation_cpu_contract_repairs",
+  "freeze_utc": "2026-07-16T09:35:49Z",
+  "purpose": "Remove the selected-set-size and optimization-budget confounds from the IMDb routing mechanism analysis by comparing three severe-mixture arms at exactly K=128 examples per client and identical local steps.",
+  "chronology": {
+    "development_observed_before_freeze": "IMDb role-reversal development model metrics had been observed before this addendum was designed; this is therefore a prospective secondary mechanistic addendum, not a new primary or confirmation analysis.",
+    "official_workspace_boundary_at_freeze": "No seed JSON existed under the original or addendum IMDb official_evaluation directories, and no official IMDb runner process was active at freeze.",
+    "official_test_access_during_addendum_design": "The addendum design and implementation did not open, hash anew, decode, parse, or inspect .cache/datasets/imdb/test.jsonl. Its already-frozen SHA-256 and count are copied from imdb_server_role_reversal_protocol_v1.json and imdb_server_manifest_v1.json.",
+    "relationship_to_original_analysis": "The original routing-versus-severe-unfiltered primary contrast is unchanged. This addendum is reported in parallel on the same official test and cannot upgrade, replace, or confirm that primary analysis."
+  },
+  "pre_evaluation_instrumentation_repair": {
+    "evidence": "CPU-only contract audits found that using IEEE Infinity as a forced gate threshold could serialize as non-standard JSON and that output artifacts should explicitly prove claimed-label balance and disclose known task-membership versus hidden clean/conflict metadata use.",
+    "repair": "Replace Infinity with the frozen finite value 1e30; assert the value in the runner contract; record and verify 64/64 selected claimed-label counts; and record the two distinct metadata-use flags.",
+    "evaluation_exposure": "No addendum development or official model process was launched and no addendum result or log existed before refreeze.",
+    "old_runner_sha256": "a40db92fdceec5cc4e9ef03a751dcc33c186a5d78992c28a065ea7cd52077ece",
+    "intermediate_runner_sha256": "7dbadb78de20583d8d0dd1da35d3ef43d86d6d5ad7ed93a3692b1a963287f10d",
+    "final_runner_sha256": "6d132fad0b7b97511c123b9ea7a3834b2b80700d21e8aba5c303361c4ba4f068"
+  },
+  "implementation": {
+    "file_sha256": {
+      "kafa_script/run_imdb_matched_control_addendum.py": "6d132fad0b7b97511c123b9ea7a3834b2b80700d21e8aba5c303361c4ba4f068",
+      "kafa_script/run_imdb_matched_control_addendum_matrix.sh": "03356bec89161d48f1d42e509d837334d22cf8e0f73c61d21dd6a6676135a71d",
+      "kafa_script/verify_imdb_matched_control_addendum.py": "93007274ccfd77e7b8b4a55def489968eece82853c2a66bd7ba434bc6ca79527",
+      "kafa_script/summarize_imdb_matched_control_addendum.py": "1a3fd98697134135b87df1e794651de38dd3294d79b6697ed3fba8350ddfce9f",
+      "kafa_script/run_imdb_server_ablation.py": "95853ad21d850e9fe68464b01b3a179b0d487cb6a8c66e647bc6b08041792459",
+      "kafa_script/run_generic_classification_distillation.py": "be53095f467fe468d770339e1e94e11240fc6f523b8d4be1f52e6098d9650e45",
+      "kafa_script/classification_task.py": "6ec3c64acfe15a1bc60e38ee55e5b062d8b39183b63957400352717eba16a7ea"
+    }
+  },
+  "task": {
+    "target_spec": "kafa_script/task_specs/imdb_sentiment_server_v1.json",
+    "target_spec_file_sha256": "193da8c779bbc3ec80839f839497235ba0cdee1e38e264bb689d31c21bd9bbac",
+    "target_spec_semantic_sha256": "908c7746c1292f08f2a9d06c9bfc4a54e3345227a267ec20ce57893ae53024b3",
+    "off_task_spec": "kafa_script/task_specs/agnews_offtask_v1.json",
+    "off_task_spec_file_sha256": "cc78ddbd020316e52c3cb123a07f2f9e102b81eac8458fd9a6b936be9afeca21",
+    "off_task_spec_semantic_sha256": "e78dcb8f54a87cdedb3254aaa5b0f772dfa2c7c8e0b37207621b92e4bb4d3a88"
+  },
+  "data": {
+    "manifest": "kafa_script/imdb_server_manifest_v1.json",
+    "manifest_sha256": "9bc36a0309ed742d19d086051a62183624380dcd2a2f2ce56736708a0861fd97",
+    "target_train_path": ".cache/datasets/imdb/train.jsonl",
+    "target_train_sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef",
+    "official_test_path": ".cache/datasets/imdb/test.jsonl",
+    "official_test_sha256": "bceb588619d37a5b1c5e6ec7ec519b204eaaf8a4024735b279fe1eff33a46843",
+    "official_test_examples": 25000,
+    "off_task_train_path": ".cache/datasets/agnews/train.jsonl",
+    "off_task_train_sha256": "4fe547d3954adbccc000719839572ddd158c57b718e3b9bb8f3fbdffc01592ba"
+  },
+  "model_weight_sha256": {
+    ".cache/models/Qwen2.5-1.5B/model.safetensors": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+    ".cache/models/Qwen2.5-0.5B/model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+    ".cache/models/SmolLM2-360M/model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+    ".cache/models/TinyLlama-1.1B-Chat-v1.0/model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933"
+  },
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "anchor_supervision_weight": 1.0,
+    "distillation_weight": 0.25,
+    "teacher_aggregation": "uniform_probability_mean",
+    "max_length": 128,
+    "anchor_examples": 128,
+    "development_examples": 1000,
+    "client_examples_each": 256,
+    "official_test_examples": 25000,
+    "matched_k": 128,
+    "forced_gate_threshold": 1e30,
+    "severe_clean_examples_each": 103,
+    "severe_conflict_examples_each": 102,
+    "severe_off_task_examples_each": 51,
+    "matched_quota_per_claimed_label": 64
+  },
+  "shared_mixture": {
+    "conflict_ratio": 0.4,
+    "off_task_ratio": 0.2,
+    "assignment": "the exact deterministic severe mixture generator used by the original IMDb experiment",
+    "counts_per_client": {"clean": 103, "conflict": 102, "off_task": 51}
+  },
+  "method_configuration": {
+    "severe_random_k": {"selection": "claimed_label_balanced_random_k"},
+    "severe_routed_k": {"selection": "forced_relative_balanced_routing_k"},
+    "oracle_max_purity_k": {"selection": "audit_only_maximum_clean_then_conflict_balanced_k"}
+  },
+  "selection_contract": {
+    "severe_random_k": "Use the known task interface to exclude 51 off-task rows, then deterministically rank by SHA-256 of namespace, seed, client index, and source ID and retain 64 examples per claimed label from the 205 target-eligible rows. It does not use kind or original_label. This isolates routing-score quality only within the target-eligible pool; it does not estimate random selection from all 256 severe rows.",
+    "severe_routed_k": "Apply the original relative-balanced routing score but force selection regardless of the original gate, retaining the best 64 examples per claimed label. This equals the original routed selection whenever its gate triggers, while guaranteeing K=128 for every seed and round.",
+    "oracle_max_purity_k": "Use audit-only kind metadata. Retain all 103 clean examples, then fill each claimed-label quota of 64 using 25 deterministically ranked conflict examples (12/13 according to the clean class allocation). Fail closed if quotas cannot be filled. This is the maximum attainable purity at K=128 inside the frozen severe mixture and is not a clean-only oracle."
+  },
+  "development": {
+    "seeds": [311, 312, 313],
+    "comparators": ["severe_random_k", "severe_routed_k", "oracle_max_purity_k"],
+    "nonexistent_test_sentinel": "kafa_script/analysis_outputs/imdb_matched_control_addendum/DO_NOT_CREATE_IMDB_TEST_SENTINEL",
+    "gate": "Implementation only: all nine records validate, every client-round selects exactly 128 with 64 per claimed label, all mixture hashes agree, the oracle composition is exactly 103 clean plus 25 conflict, and the sentinel remains nonexistent. No development metric direction can modify or stop the official matrix."
+  },
+  "official_evaluation": {
+    "seeds": [321, 322, 323, 324, 325, 326, 327, 328, 329, 330],
+    "comparators": ["severe_random_k", "severe_routed_k", "oracle_max_purity_k"],
+    "execution_rule": "Run and retain the complete 10-by-3 matrix regardless of development results; never add seeds based on official outcomes. Use the same complete official test as the original primary analysis."
+  },
+  "analysis": {
+    "classification": "prospective secondary mechanistic addendum",
+    "secondary_holm_family": [
+      {
+        "id": "routed_k_minus_random_k",
+        "left": "severe_routed_k",
+        "right": "severe_random_k",
+        "metric": "accuracy",
+        "test": "two-sided paired Student t-test over ten common seeds"
+      },
+      {
+        "id": "oracle_max_purity_k_minus_routed_k",
+        "left": "oracle_max_purity_k",
+        "right": "severe_routed_k",
+        "metric": "accuracy",
+        "test": "two-sided paired Student t-test over ten common seeds"
+      }
+    ],
+    "multiplicity": "Holm adjustment over exactly the two frozen secondary p-values at familywise alpha 0.05",
+    "confidence_intervals": "Unadjusted two-sided 95% Student-t intervals over paired seed differences, labelled secondary",
+    "descriptive_only": [
+      "all arm means and all non-accuracy metrics",
+      "random-K versus oracle maximum-purity-K",
+      "selection composition, payload bytes, wall time, and peak GPU memory"
+    ],
+    "prohibited": [
+      "Do not alter, replace, merge with, or call this a confirmation of the original primary contrast",
+      "Do not call oracle_max_purity_k clean-only or oracle-clean",
+      "Do not attribute random-K comparisons to off-task detection because random-K already uses the known interface to exclude off-task rows",
+      "Do not claim causal generality beyond this frozen target-eligible set, task, models, and training budget",
+      "Do not add contrasts, seeds, one-sided tests, or alternative multiplicity families after official evaluation"
+    ]
+  },
+  "evidence_boundaries": [
+    "The addendum was designed after IMDb development metrics were observed, so it is prospective only with respect to the still-unopened official model evaluation and is secondary.",
+    "The official test hash and count are inherited from the earlier frozen manifest; addendum construction did not open or decode the test file.",
+    "All arms share the exact severe mixture, K=128, 40 client steps per round, two rounds, models, anchors, server training, and evaluation.",
+    "Random-K controls score-based ordering only within the target-eligible, claimed-label-balanced pool because the known task interface excludes off-task rows before randomization.",
+    "Maximum-purity-K uses hidden audit metadata and is an unattainable diagnostic upper control, not a deployable method.",
+    "Composition is the intended intervention; selected-set size, claimed-label quota, eligible target-task pool, and optimization budget are controlled.",
+    "The same official IMDb test is used by the original analysis and this addendum, and both analyses must be reported together without upgrading secondary evidence to primary."
+  ]
+}

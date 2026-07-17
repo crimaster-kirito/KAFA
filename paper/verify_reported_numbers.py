@@ -12,7 +12,16 @@ from scipy import stats
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "kafa_script/analysis_outputs"
-TEX = (ROOT / "paper/main.tex").read_text()
+PAPER = ROOT / "paper"
+REPORT_SOURCES = [PAPER / "main.tex", PAPER / "supplement.tex",
+                  PAPER / "evidence_ledger.tex"]
+for generated_name in ("imdb_official_macros.tex",
+                       "imdb_official_tables.tex",
+                       "imdb_official_figure.tex"):
+    generated = PAPER / "generated" / generated_name
+    if generated.exists():
+        REPORT_SOURCES.append(generated)
+TEX = "\n".join(path.read_text() for path in REPORT_SOURCES)
 
 
 def read(name: str) -> dict:
@@ -70,7 +79,8 @@ def main() -> None:
     require_text(f"\\({ag_delta:.2f}\\pp\\)")
     delta_values = [r - a for a, r in zip(anchor_acc, routed_acc)]
     delta_mean, delta_half = interval(delta_values)
-    require_text(f"\\([{100*(delta_mean-delta_half):.2f},{100*(delta_mean+delta_half):.2f}]\\pp\\)")
+    require_text(f"\\({100*(delta_mean-delta_half):.2f}\\) to "
+                 f"\\({100*(delta_mean+delta_half):.2f}\\pp\\)")
     anchor_wall = statistics.mean(read(anchor_template.format(seed=seed))["total_wall_seconds"] for seed in seeds)
     routed_wall = statistics.mean(read(routed_template.format(seed=seed))["total_wall_seconds"] for seed in seeds)
     require_text(f"\\({routed_wall/anchor_wall:.2f}\\times\\)")
@@ -209,8 +219,8 @@ def main() -> None:
         replication_deltas.append(routed - anchor)
     replication_mean, replication_half = interval(replication_deltas)
     require_text(f"\\({100*replication_mean:.2f}\\pp\\)")
-    require_text(f"\\([{100*(replication_mean-replication_half):.2f},"
-                 f"{100*(replication_mean+replication_half):.2f}]\\pp\\)")
+    require_text(f"\\({100*(replication_mean-replication_half):.2f}\\) to "
+                 f"\\({100*(replication_mean+replication_half):.2f}\\pp\\)")
     original_deltas = [r - a for a, r in zip(anchor_acc, routed_acc)]
     combined_mean = statistics.mean(original_deltas + replication_deltas)
     require_text(f"\\({100*combined_mean:.2f}\\pp\\)")

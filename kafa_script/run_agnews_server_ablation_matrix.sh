@@ -80,9 +80,23 @@ launch() {
   done
 }
 
+run_exclusive() {
+  local seed="$1" method="$2"
+  # Per-example gradient routing has the largest live-memory footprint.
+  # Drain ordinary jobs first, while retaining two-way parallelism for the
+  # lower-memory anchor and unfiltered arms.
+  wait
+  launch "$seed" "$method"
+  wait
+}
+
 for seed in "${seeds[@]}"; do
   for method in "${methods[@]}"; do
-    launch "$seed" "$method"
+    if [[ "$method" == "severe_routed_distillation" ]]; then
+      run_exclusive "$seed" "$method"
+    else
+      launch "$seed" "$method"
+    fi
   done
 done
 wait
