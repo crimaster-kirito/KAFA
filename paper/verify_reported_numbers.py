@@ -366,9 +366,64 @@ def main() -> None:
             cells.append(f"{100*naive:.2f} & {100*teacher:.2f} ({100*(teacher-naive):+.2f})")
         require_text(f"{display} & {' & '.join(cells)}\\\\")
 
+    # Post-hoc IMDb selector-component diagnostic in the supplement.
+    selector_seeds = tuple(range(321, 331))
+    selector_templates = {
+        "full": "imdb_matched_control_addendum/official_evaluation/seed{seed}_severe_routed_k.json",
+        "gradient": "imdb_selector_component_ablation/official_evaluation/seed{seed}_gradient_only_k.json",
+        "loss": "imdb_selector_component_ablation/official_evaluation/seed{seed}_loss_only_k.json",
+        "margin": "imdb_selector_component_ablation/official_evaluation/seed{seed}_margin_only_k.json",
+    }
+    selector_display = {
+        "full": "full routed-\\(K\\)",
+        "gradient": "gradient-only",
+        "loss": "loss-only",
+        "margin": "margin-only",
+    }
+    for key, template in selector_templates.items():
+        accuracies = values(template, selector_seeds, "accuracy")
+        require_text(f"{100*statistics.mean(accuracies):.2f}\\% for "
+                     f"{selector_display[key]}")
+    selector_clean = {}
+    for key, template in selector_templates.items():
+        counts = {"clean": 0, "conflict": 0, "off_task": 0}
+        for seed in selector_seeds:
+            row = read(template.format(seed=seed))
+            for round_record in row["round_records"]:
+                for client in round_record["client_records"]:
+                    for kind, value in client[
+                            "selected_kind_counts_audit_only"].items():
+                        counts[kind] += value
+        selector_clean[key] = counts["clean"] / sum(counts.values())
+    require_text("Audited clean fractions\nare " +
+                 ", ".join(f"{100*selector_clean[key]:.1f}\\%" for key in
+                           ("full", "gradient", "loss")) +
+                 f", and {100*selector_clean['margin']:.1f}\\%, respectively")
+    selector_contrasts = {
+        "gradient": ("full", "gradient"),
+        "loss": ("full", "loss"),
+        "margin": ("full", "margin"),
+    }
+    selector_differences, selector_p = {}, {}
+    for name, (left, right) in selector_contrasts.items():
+        diffs = [
+            read(selector_templates[left].format(seed=seed))["final"]["accuracy"] -
+            read(selector_templates[right].format(seed=seed))["final"]["accuracy"]
+            for seed in selector_seeds]
+        selector_differences[name] = diffs
+        selector_p[name] = float(stats.ttest_1samp(diffs, 0).pvalue)
+    selector_adjusted = holm(selector_p)
+    for name in ("gradient", "loss", "margin"):
+        center, half = interval(selector_differences[name])
+        require_text(f"{100*center:+.2f}\\pp")
+        require_text(
+            f"\\([{100*(center-half):+.2f},{100*(center+half):+.2f}]\\)")
+        require_text(f"Holm \\(p={selector_adjusted[name]:.3f}\\)".replace(
+            "p=0.", "p=."))
+
     print("Verified headline table/narrative values against raw JSON: AG News, "
           "primary/post-primary TREC, GSM8K, Co-Teaching, severity, Hausa, "
-          "and Yoruba")
+          "Yoruba, and IMDb selector components")
 
 
 if __name__ == "__main__":

@@ -127,15 +127,23 @@ def test_matrix_is_serial_and_does_not_launch_on_import():
     assert "run_one \"$seed\" \"$method\"" in script
 
 
-def test_equivalence_verifier_rejects_a_functional_difference(tmp_path):
+def test_equivalence_verifier_rejects_a_triggered_functional_difference(tmp_path):
     client = {
         "client_index": 0, "model": "m", "base_target_ids_sha256": ["a"],
         "mixture_assignment_sha256": "mix", "selected_ids_sha256": ["s"],
-        "mixture_kind_counts": {"clean": 1},
-        "selected_kind_counts_audit_only": {"clean": 1},
+        "mixture_kind_counts": {"clean": 128},
+        "selected_kind_counts_audit_only": {"clean": 128},
+        "selected_claimed_label_counts": {"0": 64, "1": 64},
         "mean_local_loss": 1.0, "probability_payload": {"shape": [1, 2]},
         "serialized_probability_payload": {"payload_sha256": "p"},
         "adapter_bytes": 1,
+        "selection": {
+            "policy": "relative_balanced_routing", "gate_ratio": 0.5,
+            "client_q25": 0.25, "reference_q25": 0.5,
+            "score_record_order_sha256": "order", "gate_triggered": True,
+            "gate_threshold": 0.8, "selected": 128,
+            "quota_per_claimed_label": 64, "off_task_selected": 0,
+        },
     }
     record = {
         "seed": 1, "evaluation_split": "development",
@@ -149,7 +157,76 @@ def test_equivalence_verifier_rejects_a_functional_difference(tmp_path):
     left, right = tmp_path / "left.json", tmp_path / "right.json"
     left.write_text(json.dumps(record))
     changed = json.loads(json.dumps(record))
-    changed["final"]["accuracy"] = 0.0
+    changed_client = changed["round_records"][0]["client_records"][0]
+    changed_client["selection"].update({
+        "policy": "forced_relative_balanced_routing_k",
+        "gate_threshold": 1e30, "forced_selection": True,
+        "known_task_membership_used": True,
+        "hidden_clean_conflict_metadata_used": False,
+    })
+    changed_client["selected_ids_sha256"] = ["different"]
     right.write_text(json.dumps(changed))
-    with pytest.raises(AssertionError, match="differs at final"):
+    with pytest.raises(AssertionError, match="triggered branch differs"):
+        verify_pair(left, right)
+
+
+def test_equivalence_verifier_accepts_only_gate_as_first_divergence(tmp_path):
+    client = {
+        "client_index": 0, "model": "m", "base_target_ids_sha256": ["a"],
+        "mixture_assignment_sha256": "mix", "selected_ids_sha256": ["all"],
+        "mixture_kind_counts": {"clean": 103, "conflict": 102, "off_task": 51},
+        "selected_kind_counts_audit_only": {
+            "clean": 103, "conflict": 102, "off_task": 51},
+        "selected_claimed_label_counts": {"0": 128, "1": 128},
+        "mean_local_loss": 1.0, "probability_payload": {"shape": [128, 2]},
+        "serialized_probability_payload": {"payload_sha256": "original"},
+        "adapter_bytes": 1,
+        "selection": {
+            "policy": "relative_balanced_routing", "gate_ratio": 0.9,
+            "client_q25": 0.45, "reference_q25": 0.5,
+            "score_record_order_sha256": "order", "gate_triggered": False,
+            "gate_threshold": 0.8, "selected": 256,
+        },
+    }
+    original = {
+        "seed": 1, "evaluation_split": "development",
+        "evaluation_examples": 1, "anchor_examples": 1,
+        "mixture_assignment_sha256": ["mix"], "final": {"accuracy": 0.5},
+        "total_client_to_server_payload_bytes": 1,
+        "round_records": [{"round": 1, "teacher_weights": [1.0],
+                            "mean_server_objective": 1.0,
+                            "client_records": [client]}],
+    }
+    matched = json.loads(json.dumps(original))
+    routed = matched["round_records"][0]["client_records"][0]
+    routed["selected_ids_sha256"] = ["routed"]
+    routed["selected_kind_counts_audit_only"] = {"clean": 103, "conflict": 25}
+    routed["selected_claimed_label_counts"] = {"0": 64, "1": 64}
+    routed["mean_local_loss"] = 0.8
+    routed["serialized_probability_payload"] = {"payload_sha256": "matched"}
+    routed["selection"].update({
+        "policy": "forced_relative_balanced_routing_k", "gate_triggered": True,
+        "gate_threshold": 1e30, "selected": 128,
+        "quota_per_claimed_label": 64, "off_task_selected": 0,
+        "forced_selection": True, "known_task_membership_used": True,
+        "hidden_clean_conflict_metadata_used": False,
+    })
+    matched["final"] = {"accuracy": 0.6}
+    left, right = tmp_path / "left.json", tmp_path / "right.json"
+    left.write_text(json.dumps(original))
+    right.write_text(json.dumps(matched))
+    receipt = verify_pair(left, right)
+    assert receipt["conditional_implementation_equivalence"] is True
+    assert receipt["fully_identical_trajectory"] is False
+    assert len(receipt["first_forced_gate_divergences"]) == 1
+    assert receipt["exact_pre_fork_triggered_client_rounds"] == 0
+    assert receipt["first_authorized_gate_divergence_client_rounds"] == 1
+    assert receipt[
+        "post_local_fork_not_equivalence_eligible_client_rounds"] == 0
+
+    # A pre-branch router-score difference cannot be excused as forced-K.
+    bad = json.loads(json.dumps(matched))
+    bad["round_records"][0]["client_records"][0]["selection"]["gate_ratio"] = 0.91
+    right.write_text(json.dumps(bad))
+    with pytest.raises(AssertionError, match="pre-branch router differs"):
         verify_pair(left, right)

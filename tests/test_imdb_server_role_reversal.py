@@ -74,7 +74,7 @@ def test_frozen_pre_run_artifact_audit_has_zero_historical_hits():
     assert audit["historical_artifact_files_scanned"] == 586
     assert audit["matching_historical_artifacts"] == []
     assert audit["final_protocol_sha256"] == protocol_sha
-    assert "retained workspace history only" in audit["interpretation"]
+    assert "retained execution-record history only" in audit["interpretation"]
 
 
 def test_official_loader_preserves_duplicate_rows_with_unique_ids(tmp_path):

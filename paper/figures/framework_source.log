@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.7.15)  16 JUL 2026 12:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.7.15)  21 JUL 2026 02:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -517,11 +517,11 @@ File: ot1qhv.fd 2009/09/25 v1.2 font definition file for OT1/qhv
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
 (Font)              scaled to size 9.40002pt on input line 28.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 6.95601pt on input line 28.
+(Font)              scaled to size 8.46002pt on input line 28.
 LaTeX Font Info:    Font shape `OT1/qhv/b/n' will be
 (Font)              scaled to size 9.40002pt on input line 34.
 LaTeX Font Info:    Font shape `OT1/qhv/b/n' will be
-(Font)              scaled to size 7.52002pt on input line 34.
+(Font)              scaled to size 8.46002pt on input line 34.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
@@ -534,7 +534,7 @@ L3 programming layer <2020/03/25>
  ) 
 Here is how much of TeX's memory you used:
  14590 strings out of 476182
- 300296 string characters out of 5795595
+ 300294 string characters out of 5795595
  1947975 words of memory out of 5000000
  36335 multiletter control sequences out of 15000+600000
  570545 words of font info for 41 fonts, out of 8000000 for 9000
@@ -542,7 +542,7 @@ Here is how much of TeX's memory you used:
  117i,7n,121p,423b,750s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/tex-gyre/qhvb.pfb></usr/share/texmf/font
 s/type1/public/tex-gyre/qhvr.pfb>
-Output written on framework_source.pdf (1 page, 49670 bytes).
+Output written on framework_source.pdf (1 page, 49895 bytes).
 PDF statistics:
  22 PDF objects out of 1000 (max. 8388607)
  14 compressed objects within 1 object stream

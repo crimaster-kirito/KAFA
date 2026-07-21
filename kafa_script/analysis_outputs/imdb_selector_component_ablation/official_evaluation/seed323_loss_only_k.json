@@ -1,0 +1,488 @@
+{
+  "schema_version": "imdb_selector_component_ablation_v1",
+  "evidence_label": "post_hoc_reused_test_selector_component_ablation",
+  "paper_result": false,
+  "task_id": "imdb_sentiment_server_v1",
+  "method": "loss_only_k",
+  "method_configuration": {
+    "selection": "training_loss_only_k"
+  },
+  "seed": 323,
+  "started_utc": "2026-07-20T15:10:03.008724+00:00",
+  "protocol_sha256": "a904c814a7cff07641aa6c8d4f5e0aa464bd49bbb38f9239cce16bcda0491784",
+  "runner_file_sha256": "cc3495d702471806e2d3dc4ef5c329275b9e8ba1b087f6b225dfb8e7b76e3fde",
+  "manifest_sha256": "9bc36a0309ed742d19d086051a62183624380dcd2a2f2ce56736708a0861fd97",
+  "full_args": {
+    "protocol": "kafa_script/imdb_selector_component_ablation_protocol_v1.json",
+    "task_spec": "kafa_script/task_specs/imdb_sentiment_server_v1.json",
+    "off_task_spec": "kafa_script/task_specs/agnews_offtask_v1.json",
+    "manifest": "kafa_script/imdb_server_manifest_v1.json",
+    "target_train": ".cache/datasets/imdb/train.jsonl",
+    "official_test": ".cache/datasets/imdb/test.jsonl",
+    "off_task_train": ".cache/datasets/agnews/train.jsonl",
+    "method": "loss_only_k",
+    "seed": 323,
+    "output": "kafa_script/analysis_outputs/imdb_selector_component_ablation/official_evaluation/seed323_loss_only_k.json"
+  },
+  "full_args_sha256": "cb95c6aacb23dd7723bad515346de5527b04764d5e397cc5e3c0dd959ec06485",
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "anchor_supervision_weight": 1.0,
+    "distillation_weight": 0.25,
+    "teacher_aggregation": "uniform_probability_mean",
+    "max_length": 128,
+    "anchor_examples": 128,
+    "development_examples": 1000,
+    "client_examples_each": 256,
+    "official_test_examples": 25000,
+    "matched_k": 128,
+    "severe_clean_examples_each": 103,
+    "severe_conflict_examples_each": 102,
+    "severe_off_task_examples_each": 51,
+    "matched_quota_per_claimed_label": 64
+  },
+  "git": {
+    "commit": "546a867d35597dd110d171c7da11021b5ca0cdd3",
+    "dirty": true
+  },
+  "datasets": {
+    "target_train_sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef",
+    "target_official_test_sha256": "bceb588619d37a5b1c5e6ec7ec519b204eaaf8a4024735b279fe1eff33a46843",
+    "target_official_test_hash_source": "verified_raw_bytes",
+    "off_task_train_sha256": "4fe547d3954adbccc000719839572ddd158c57b718e3b9bb8f3fbdffc01592ba"
+  },
+  "split_source_ids_sha256": {
+    "anchor": "b383b2e413af7814dc916d5d9ac3fa9c3b28bef649117b476ac80c47b8039ad0",
+    "evaluation": "a17b0c7ae7541b4b602cf6e47a21708167ef79140a56a61d02f268b0d5f23f2f",
+    "client_0": "65d983b8c987675a66308733a00296dd98dcaf7d038d2d9a53c2614365d2ddbc",
+    "client_1": "bb990e44a7568024ed40b714cbc4432515ddf713ec8d0fb43662094936c8ff02",
+    "client_2": "83650bf6378906ef099a40f65eb874f2ea6936308c67c5930db52dd72073a9c5"
+  },
+  "mixture_assignment_sha256": [
+    "a35b6a9d9d8201bc03ab3d043005e0859d29006f28289fd1d15f3a98d9ca5120",
+    "1ec8a947666373e585d94ec7d42e52c017b765ae39aa3afac24ac2260459a16b",
+    "0d24727c105bd26c9f2d6fc750b86a9617d717c89a618d81fb8170eb1248a033"
+  ],
+  "evaluation_split": "official_test",
+  "evaluation_examples": 25000,
+  "anchor_examples": 128,
+  "round_records": [
+    {
+      "round": 1,
+      "client_records": [
+        {
+          "client_index": 0,
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "model_artifacts": {
+            "model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+            "config.json": "479dcf0c5286339e41ad3992cd08ae88a467c4187587936248e2b7c96283484b",
+            "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+            "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+            "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+          },
+          "base_target_ids_sha256": "65d983b8c987675a66308733a00296dd98dcaf7d038d2d9a53c2614365d2ddbc",
+          "mixture_assignment_sha256": "a35b6a9d9d8201bc03ab3d043005e0859d29006f28289fd1d15f3a98d9ca5120",
+          "selected_ids_sha256": "313c3e3637a04398b9d474882308c27ce118a5c70433ea3f786d322f9c49de47",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 90,
+            "conflict": 38
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 0.6727170052006841,
+          "selection": {
+            "policy": "training_loss_only_k",
+            "component": "loss",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false,
+            "ranking_namespace": "kafa-imdb-selector-component-v1|loss_only_k"
+          },
+          "score_records_sha256": "82b10024153cea1d6f04232bd6c42c50f16349a374f10ad14c805cd2ad039c53",
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.01427849754691124,
+            "maximum": 0.9857214689254761,
+            "max_row_sum_error": 7.450580596923828e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "4f354307c00cff2a8a25d12a7130fc3b8dde3c20a181c85c513f52ad00f2a1f6"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "ab2ea465557b1fb0bbd6e1e02f83f72e03d80e2414d584e8836488a2abfc70b6"
+          },
+          "adapter_bytes": 1113859
+        },
+        {
+          "client_index": 1,
+          "model": ".cache/models/SmolLM2-360M",
+          "model_artifacts": {
+            "model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+            "config.json": "34f7801487078de7e434e19162c497e5cc6ff397080e40e8586627cb68a5168a",
+            "tokenizer.json": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+            "tokenizer_config.json": "4bb9af56a342753d39374f4016a16574cab299fe088e896f425ce3c433f61424",
+            "vocab.json": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79",
+            "merges.txt": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+          },
+          "base_target_ids_sha256": "bb990e44a7568024ed40b714cbc4432515ddf713ec8d0fb43662094936c8ff02",
+          "mixture_assignment_sha256": "1ec8a947666373e585d94ec7d42e52c017b765ae39aa3afac24ac2260459a16b",
+          "selected_ids_sha256": "2a3be487f871637d2f11529cb0f29069397998dd75f7e9e0bbc2c851d5144434",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 83,
+            "conflict": 45
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 1.0014738321304322,
+          "selection": {
+            "policy": "training_loss_only_k",
+            "component": "loss",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false,
+            "ranking_namespace": "kafa-imdb-selector-component-v1|loss_only_k"
+          },
+          "score_records_sha256": "a394e5bc30379eb9e3013705437c12af54d21e4a19c600fe08d24f801a901a00",
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.02045917697250843,
+            "maximum": 0.9795407652854919,
+            "max_row_sum_error": 7.450580596923828e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "0e849576891e5c8db111503779299cdc125a657cecc1fbc6d68ce5360ca0c91d"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "eff4ba30eb33679578278ae1c5791e856d5a162fbaba8d377ca5c98fcc61ffac"
+          },
+          "adapter_bytes": 1681855
+        },
+        {
+          "client_index": 2,
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "model_artifacts": {
+            "model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+            "config.json": "486bedda3a6988332e60d9638a09ca4b260d34ebcf1b19e22cf3b140b63d8fe9",
+            "tokenizer.json": "bcd04f0eadf90287bd26e1a183ac487d8a141b09b06aecb7725bbdd343640f2e",
+            "tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+            "tokenizer_config.json": "7b41ba7d0eb91e77914ca3dafde559ea3e19878769b7e68409e89bed5222e77a"
+          },
+          "base_target_ids_sha256": "83650bf6378906ef099a40f65eb874f2ea6936308c67c5930db52dd72073a9c5",
+          "mixture_assignment_sha256": "0d24727c105bd26c9f2d6fc750b86a9617d717c89a618d81fb8170eb1248a033",
+          "selected_ids_sha256": "c89d5a967dcdc7da9c0391de2c8de296bfe2d93fce3142254290a564edbfdb2c",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 78,
+            "conflict": 50
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 0.6051167227327824,
+          "selection": {
+            "policy": "training_loss_only_k",
+            "component": "loss",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false,
+            "ranking_namespace": "kafa-imdb-selector-component-v1|loss_only_k"
+          },
+          "score_records_sha256": "9de77b25eb33aff52a234e2e75d65179cce9bf5df9e8129bec92d614b3512d94",
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.2692055106163025,
+            "maximum": 0.7307944893836975,
+            "max_row_sum_error": 5.960464477539063e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "3d26606e834e7c4420c32773fb0029d3413ea5bd0a6adeb89f20fd5120b98b75"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "3e55613ae85d0eef7466072f81ba5b9221eeb12a5a7fd3e441d643431ef503fb"
+          },
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "mean_server_objective": 0.4555990926921368
+    },
+    {
+      "round": 2,
+      "client_records": [
+        {
+          "client_index": 0,
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "model_artifacts": {
+            "model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+            "config.json": "479dcf0c5286339e41ad3992cd08ae88a467c4187587936248e2b7c96283484b",
+            "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+            "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+            "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+          },
+          "base_target_ids_sha256": "65d983b8c987675a66308733a00296dd98dcaf7d038d2d9a53c2614365d2ddbc",
+          "mixture_assignment_sha256": "a35b6a9d9d8201bc03ab3d043005e0859d29006f28289fd1d15f3a98d9ca5120",
+          "selected_ids_sha256": "4d848d2283dfc0123d17da790dcac8c2bae8f25eb424972fd4c8767b0cab5c61",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 95,
+            "conflict": 33
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 0.18139351453864946,
+          "selection": {
+            "policy": "training_loss_only_k",
+            "component": "loss",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false,
+            "ranking_namespace": "kafa-imdb-selector-component-v1|loss_only_k"
+          },
+          "score_records_sha256": "cd1b0906db89bff640c0dbd105f3fb14889f11bf382adb966d21fae9c103f4de",
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.00023072308977134526,
+            "maximum": 0.9997692704200745,
+            "max_row_sum_error": 8.62637534737587e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "493f76f42ee1ee4a4f960f2190af54b31af1f6a70200b70219786422dcd482b4"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "0e7b15ac49f6a168531678970fad4c00a22f9726c36a2c798e35d78df659bb44"
+          },
+          "adapter_bytes": 1113859
+        },
+        {
+          "client_index": 1,
+          "model": ".cache/models/SmolLM2-360M",
+          "model_artifacts": {
+            "model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+            "config.json": "34f7801487078de7e434e19162c497e5cc6ff397080e40e8586627cb68a5168a",
+            "tokenizer.json": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+            "tokenizer_config.json": "4bb9af56a342753d39374f4016a16574cab299fe088e896f425ce3c433f61424",
+            "vocab.json": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79",
+            "merges.txt": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+          },
+          "base_target_ids_sha256": "bb990e44a7568024ed40b714cbc4432515ddf713ec8d0fb43662094936c8ff02",
+          "mixture_assignment_sha256": "1ec8a947666373e585d94ec7d42e52c017b765ae39aa3afac24ac2260459a16b",
+          "selected_ids_sha256": "6dd2cf4089b9f6c4d0c9e90ad5ef49f8da06bac19c471e6d1a9d9280dfb98723",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 95,
+            "conflict": 33
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 0.2634963591117412,
+          "selection": {
+            "policy": "training_loss_only_k",
+            "component": "loss",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false,
+            "ranking_namespace": "kafa-imdb-selector-component-v1|loss_only_k"
+          },
+          "score_records_sha256": "d82fbb830d4372ac31d261c6048834785617e0186d54d27408cf549ae78f1913",
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.00033616958535276353,
+            "maximum": 0.9996638298034668,
+            "max_row_sum_error": 8.498318493366241e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "6cd88ee838985f5d5e290de122348e2f1fcbcccfbb371b0431c03e127481e8ee"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "009af7dcd01da9e8e38de79942d3f355fb55f89d845e6d03d0cbba727669b4a4"
+          },
+          "adapter_bytes": 1681855
+        },
+        {
+          "client_index": 2,
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "model_artifacts": {
+            "model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+            "config.json": "486bedda3a6988332e60d9638a09ca4b260d34ebcf1b19e22cf3b140b63d8fe9",
+            "tokenizer.json": "bcd04f0eadf90287bd26e1a183ac487d8a141b09b06aecb7725bbdd343640f2e",
+            "tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+            "tokenizer_config.json": "7b41ba7d0eb91e77914ca3dafde559ea3e19878769b7e68409e89bed5222e77a"
+          },
+          "base_target_ids_sha256": "83650bf6378906ef099a40f65eb874f2ea6936308c67c5930db52dd72073a9c5",
+          "mixture_assignment_sha256": "0d24727c105bd26c9f2d6fc750b86a9617d717c89a618d81fb8170eb1248a033",
+          "selected_ids_sha256": "7e91bb06b7e4886185626042fe96f9c47cd2c6a54901f0934f48571cb63c83e2",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 85,
+            "conflict": 43
+          },
+          "selected_claimed_label_counts": {
+            "0": 64,
+            "1": 64
+          },
+          "mean_local_loss": 0.10643773796618916,
+          "selection": {
+            "policy": "training_loss_only_k",
+            "component": "loss",
+            "selected": 128,
+            "eligible": 205,
+            "quota_per_claimed_label": 64,
+            "off_task_selected": 0,
+            "known_task_membership_used": true,
+            "hidden_clean_conflict_metadata_used": false,
+            "ranking_namespace": "kafa-imdb-selector-component-v1|loss_only_k"
+          },
+          "score_records_sha256": "60b9d12f5106ebc663326d157da53999b2b3b7673b17ff9208edfd6435d05cc8",
+          "probability_payload": {
+            "encoding": "shape-prefixed little-endian-float64-v1",
+            "shape": [
+              128,
+              2
+            ],
+            "minimum": 0.04209918901324272,
+            "maximum": 0.957900881767273,
+            "max_row_sum_error": 7.450580596923828e-08,
+            "payload_bytes": 2077,
+            "payload_sha256": "3abefeb30686e06df1d1d43d18acf5b8abcc1114fec4693aa9414cdce386efe9"
+          },
+          "serialized_probability_payload": {
+            "encoding": "torch-save-tensor",
+            "payload_bytes": 2601,
+            "payload_sha256": "cc6c650f09bdfe4542ecbd21389789b6d24bb8080c87870d9c6fae6c110ddd51"
+          },
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "mean_server_objective": 0.2589785188436508
+    }
+  ],
+  "final": {
+    "accuracy": 0.915120005607605,
+    "macro_f1": 0.9150964617729187,
+    "canonical_label_nll": 0.21138238906860352,
+    "target_answer_loss": 3.207984685897827,
+    "ece": 0.0071072441060096025,
+    "per_class_recall": [
+      0.8984799981117249,
+      0.9317600131034851
+    ],
+    "confusion_matrix": [
+      [
+        11231,
+        1269
+      ],
+      [
+        853,
+        11647
+      ]
+    ]
+  },
+  "total_client_to_server_payload_bytes": 15606,
+  "wall_seconds": 526.2822405938059,
+  "peak_allocated_gpu_bytes": 29087440384,
+  "evidence_boundaries": [
+    "This ablation was designed after the IMDb official primary and matched-K results were observed.",
+    "All records reuse the official IMDb test and are post-hoc secondary diagnostics.",
+    "All arms share the severe mixture, K=128, 64-per-claimed-label quotas, optimizer settings, anchors, models, and server training budget.",
+    "The known task interface excludes off-task rows before component selection; clean versus conflict identity is not used.",
+    "The audit can diagnose score-component sensitivity within this setting but cannot confirm the TREC-derived direction, change the IMDb primary gate, or establish a general selector."
+  ]
+}

@@ -1,0 +1,28 @@
+% Auto-generated only after all 70 official records verify.
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{.30\linewidth}rrrr@{}}
+\toprule
+Arm & Accuracy (\%) & Macro-F1 (\%) & Score NLL & Score ECE \\
+\midrule
+Anchor only & 91.83 $\pm$ 0.10 & 91.83 $\pm$ 0.10 & 0.2470 $\pm$ 0.0088 & 0.0436 $\pm$ 0.0022 \\
+Clean uniform & 91.79 $\pm$ 0.11 & 91.78 $\pm$ 0.12 & 0.2099 $\pm$ 0.0025 & 0.0193 $\pm$ 0.0039 \\
+Severe uniform & 91.10 $\pm$ 0.18 & 91.10 $\pm$ 0.18 & 0.2578 $\pm$ 0.0043 & 0.0707 $\pm$ 0.0053 \\
+Severe routed & 91.39 $\pm$ 0.26 & 91.39 $\pm$ 0.26 & 0.2139 $\pm$ 0.0068 & 0.0115 $\pm$ 0.0028 \\
+\midrule
+Random-$K$ & 91.14 $\pm$ 0.13 & 91.13 $\pm$ 0.13 & 0.2558 $\pm$ 0.0063 & 0.0690 $\pm$ 0.0067 \\
+Routed-$K$ & 91.46 $\pm$ 0.23 & 91.46 $\pm$ 0.23 & 0.2118 $\pm$ 0.0061 & 0.0101 $\pm$ 0.0023 \\
+Maximum-purity-$K$ & 91.51 $\pm$ 0.16 & 91.51 $\pm$ 0.17 & 0.2122 $\pm$ 0.0041 & 0.0125 $\pm$ 0.0040 \\
+\bottomrule
+\end{tabular}
+
+\vspace{1mm}
+\begin{tabular}{@{}p{.37\linewidth}rrrr@{}}
+\toprule
+Frozen contrast & Mean pp [95\% CI] & Raw $p$ & Holm $p$ & Exact $p$ \\
+\midrule
+Routed $-$ severe uniform (primary) & +0.29 [+0.07, +0.51] & 0.0149 & --- & 0.0176 \\
+Routed-$K$ $-$ random-$K$ (secondary) & +0.32 [+0.17, +0.48] & 0.0010 & 0.0020 & --- \\
+Maximum-purity-$K$ $-$ routed-$K$ (secondary) & +0.05 [-0.10, +0.19] & 0.4872 & 0.4872 & --- \\
+\bottomrule
+\end{tabular}

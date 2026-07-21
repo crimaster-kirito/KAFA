@@ -9,7 +9,7 @@
 \definecolor{ink}{HTML}{263238}
 
 \tikzset{
-  every node/.style={font=\sffamily\fontsize{7.4}{8.5}\selectfont,align=center,text=ink},
+  every node/.style={font=\sffamily\fontsize{9}{10}\selectfont,align=center,text=ink},
   box/.style={draw=ink!65,rounded corners=2pt,minimum height=8mm,inner sep=3pt,line width=.45pt},
   data/.style={box,fill=clientblue,minimum width=29mm},
   trust/.style={box,fill=trustgold,minimum width=29mm},
@@ -19,7 +19,7 @@
   evidence/.style={-{Stealth[length=2.2mm]},line width=.65pt,draw=ink!80,dashed},
   bus/.style={line width=.65pt,draw=ink!80},
   group/.style={draw=ink!35,rounded corners=3pt,inner sep=4pt,line width=.5pt},
-  label/.style={font=\sffamily\bfseries\fontsize{8}{9}\selectfont,anchor=west}
+  label/.style={font=\sffamily\bfseries\fontsize{9}{10}\selectfont,anchor=west}
 }
 
 \begin{document}
@@ -83,7 +83,7 @@
   \node[data,below=12mm of fixed,minimum width=37mm] (trec)
        {TREC\\hypothesis-generating discovery};
   \node[server,right=12mm of trec,minimum width=42mm] (imdb)
-       {IMDb\\prospective test};
+       {IMDb\\protocol-frozen eval.};
   \node[trust,right=12mm of imdb,minimum width=37mm] (ag)
        {AG News\\prior task-specific evidence};
   \node[group,fit=(trec)(imdb)(ag)] (timeline) {};

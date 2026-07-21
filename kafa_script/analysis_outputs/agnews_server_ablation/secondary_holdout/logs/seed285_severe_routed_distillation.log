@@ -1,0 +1,375 @@
+Token indices sequence length is longer than the specified maximum sequence length for this model (2616 > 2048). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (2616 > 2048). Running this sequence through the model will result in indexing errors
+{
+  "schema_version": "agnews_server_ablation_v1",
+  "evidence_label": "post_primary_run_disjoint_resampling_ablation",
+  "paper_result": true,
+  "method": "severe_routed_distillation",
+  "method_configuration": {
+    "conflict_ratio": 0.4,
+    "off_task_ratio": 0.2,
+    "selection": "relative_balanced_routing"
+  },
+  "seed": 285,
+  "started_utc": "2026-07-20T11:15:31.930341+00:00",
+  "protocol_sha256": "9dd4d2696780eb67491dba440507639a9651dddbd991c8e94f892c09ee49b4ec",
+  "runner_file_sha256": "0717e893c2dc9a20391d7817777b69a4770356eda7233ae763c378eecb983bdd",
+  "parent_manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "holdout_manifest_sha256": "bc4aa188648ad67ada9fc186e4d26f4598057d94e2b36e24d41aaa738bfef15a",
+  "full_args": {
+    "protocol": "kafa_script/agnews_server_post_primary_ablation_v1.json",
+    "parent_manifest": "kafa_script/benchmark_manifest_v1.json",
+    "holdout_manifest": "kafa_script/agnews_secondary_holdout_manifest_v1.json",
+    "agnews_data": ".cache/datasets/agnews/train.jsonl",
+    "imdb_data": ".cache/datasets/imdb/train.jsonl",
+    "method": "severe_routed_distillation",
+    "evaluation_split": "secondary_holdout",
+    "seed": 285,
+    "output": "kafa_script/analysis_outputs/agnews_server_ablation/secondary_holdout/seed285_severe_routed_distillation.json"
+  },
+  "full_args_sha256": "43478e190b31cb29ad9f70655e51ac6d8bd5f9f1564216d13400cd8bc9759265",
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "anchor_supervision_weight": 1.0,
+    "distillation_weight": 0.25,
+    "teacher_aggregation": "uniform_probability_mean",
+    "routing_keep_fraction": 0.5,
+    "routing_gate_threshold": 0.8,
+    "anchor_per_class": 32,
+    "development_per_class": 200,
+    "client_target_per_class": 64,
+    "max_length": 128
+  },
+  "git": {
+    "commit": "546a867d35597dd110d171c7da11021b5ca0cdd3",
+    "dirty": true
+  },
+  "datasets": {
+    "agnews_train_sha256": "4fe547d3954adbccc000719839572ddd158c57b718e3b9bb8f3fbdffc01592ba",
+    "imdb_train_sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef",
+    "official_test_accessed": false
+  },
+  "model_artifacts": {
+    "server": {
+      "model.safetensors": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+      "config.json": "0e8c8aa86468aba09c9d32157ff4bc2301c7e6c50e4398960425b2ea71e66f77",
+      "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+      "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "clients": [
+      {
+        "model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+        "config.json": "479dcf0c5286339e41ad3992cd08ae88a467c4187587936248e2b7c96283484b",
+        "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+        "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      },
+      {
+        "model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+        "config.json": "34f7801487078de7e434e19162c497e5cc6ff397080e40e8586627cb68a5168a",
+        "tokenizer.json": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+        "tokenizer_config.json": "4bb9af56a342753d39374f4016a16574cab299fe088e896f425ce3c433f61424",
+        "vocab.json": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79",
+        "merges.txt": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+      },
+      {
+        "model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+        "config.json": "486bedda3a6988332e60d9638a09ca4b260d34ebcf1b19e22cf3b140b63d8fe9",
+        "tokenizer.json": "bcd04f0eadf90287bd26e1a183ac487d8a141b09b06aecb7725bbdd343640f2e",
+        "tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+        "tokenizer_config.json": "7b41ba7d0eb91e77914ca3dafde559ea3e19878769b7e68409e89bed5222e77a"
+      }
+    ]
+  },
+  "split_source_ids_sha256": {
+    "anchor": "8d1a371cdf2a3f53e4f5e989248ab770db86edf7b882272cb48749adb5c81aa6",
+    "evaluation": "2e02e3f9cff7988c0ad376bce1d5cc61a36671e18e0d1003cbb5625b102ca684",
+    "frozen_holdout": "2e02e3f9cff7988c0ad376bce1d5cc61a36671e18e0d1003cbb5625b102ca684",
+    "client_0": "bfc85a2220682d5e8c33e10cbee3866543e78205074e3dd6309f6769bdffbdb9",
+    "client_1": "dc3ffea2fc6bf847c80b712c72d3784ca29a934669afd182cb300fd671ac87a7",
+    "client_2": "5823b9feef0eb15b99c3479722dcff76f71093e24eff6ce70d6d36047b44930c"
+  },
+  "mixture_assignment_sha256": [
+    "cbfff28b69b705add9cb70378a39c89d48fa32d6142c11e4183db1fce7d0cfff",
+    "70c10e0a6fd08f9e1a38ff12987a9256e1604963c72ac92f81ebd8aa18cd0cbc",
+    "9af09079424ba108b5bdd467cfe13915046858c27d59f95ef0ac91501332218f"
+  ],
+  "evaluation_split": "secondary_holdout",
+  "evaluation_examples": 4000,
+  "anchor_examples": 128,
+  "round_records": [
+    {
+      "round": 1,
+      "client_records": [
+        {
+          "client_index": 0,
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "base_target_ids_sha256": "bfc85a2220682d5e8c33e10cbee3866543e78205074e3dd6309f6769bdffbdb9",
+          "mixture_assignment_sha256": "cbfff28b69b705add9cb70378a39c89d48fa32d6142c11e4183db1fce7d0cfff",
+          "selected_ids_sha256": "cff7a44f1f67be6cfe18040828f3cea30315debe7ed1ee7751615f250e6095eb",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 94,
+            "conflict": 34
+          },
+          "mean_local_loss": 0.9681514449417591,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.18215501218910593,
+            "client_q25": 0.15483231842517853,
+            "reference_q25": 0.8500030636787415,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "74d909603bd80aab893e16bf578670926dc801029012f3dcdec83ca98411ac45"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "3bbc5ec88a12e78aa8f16b922b905c9fb5ede55e6067a2fd33006e6640b4d68a",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        },
+        {
+          "client_index": 1,
+          "model": ".cache/models/SmolLM2-360M",
+          "base_target_ids_sha256": "dc3ffea2fc6bf847c80b712c72d3784ca29a934669afd182cb300fd671ac87a7",
+          "mixture_assignment_sha256": "70c10e0a6fd08f9e1a38ff12987a9256e1604963c72ac92f81ebd8aa18cd0cbc",
+          "selected_ids_sha256": "c5f9921a5972e834a9b2062c3e42ed17b9398a4853f49f10fea508785c4af2f3",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 89,
+            "conflict": 39
+          },
+          "mean_local_loss": 1.076624685525894,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.44426560726111197,
+            "client_q25": 0.26835089921951294,
+            "reference_q25": 0.604032576084137,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "fbe98818796099f97e493340d60e64977f50a6ae672e0c29586fae04fb75e0af"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "141662bc252ece888ba567cf40fbe9ef0c586e3f165f32452f0c936fcd2d4c26",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1681855
+        },
+        {
+          "client_index": 2,
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "base_target_ids_sha256": "5823b9feef0eb15b99c3479722dcff76f71093e24eff6ce70d6d36047b44930c",
+          "mixture_assignment_sha256": "9af09079424ba108b5bdd467cfe13915046858c27d59f95ef0ac91501332218f",
+          "selected_ids_sha256": "f69dcb6c4753c6112426317f00acb012858f689534b285fc4264406f914a6546",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 90,
+            "conflict": 38
+          },
+          "mean_local_loss": 1.1211175084114076,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.6164153623834794,
+            "client_q25": 0.38783523440361023,
+            "reference_q25": 0.6291784048080444,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "3e57a0ece9ecdfb01be4470d6d307d741a7f49f8ca929408fdcdab604bb51377"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "4858d07da09af982088de01651e97c83f8643729859ff968147f1c2b57418e73",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "mean_server_objective": 0.8568641185760498
+    },
+    {
+      "round": 2,
+      "client_records": [
+        {
+          "client_index": 0,
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "base_target_ids_sha256": "bfc85a2220682d5e8c33e10cbee3866543e78205074e3dd6309f6769bdffbdb9",
+          "mixture_assignment_sha256": "cbfff28b69b705add9cb70378a39c89d48fa32d6142c11e4183db1fce7d0cfff",
+          "selected_ids_sha256": "a4ef9b6a08714a87dfcef1176423f97d03d7b946bdede289bf6d1083f590947d",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 95,
+            "conflict": 33
+          },
+          "mean_local_loss": 0.32478574430570006,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.19841577262396443,
+            "client_q25": 0.09194643795490265,
+            "reference_q25": 0.4634028673171997,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "74d909603bd80aab893e16bf578670926dc801029012f3dcdec83ca98411ac45"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "225f71cc06c4282882ebbbae75cded49f4b7843278911ced4b751a75164e7b95",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        },
+        {
+          "client_index": 1,
+          "model": ".cache/models/SmolLM2-360M",
+          "base_target_ids_sha256": "dc3ffea2fc6bf847c80b712c72d3784ca29a934669afd182cb300fd671ac87a7",
+          "mixture_assignment_sha256": "70c10e0a6fd08f9e1a38ff12987a9256e1604963c72ac92f81ebd8aa18cd0cbc",
+          "selected_ids_sha256": "1936d9cf9f353fb545ad02aba3483403244e604177d9dc15d7d12303bbe53e8f",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 95,
+            "conflict": 33
+          },
+          "mean_local_loss": 0.5510488463565707,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.46020293950435365,
+            "client_q25": 0.34454262256622314,
+            "reference_q25": 0.7486754059791565,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "fbe98818796099f97e493340d60e64977f50a6ae672e0c29586fae04fb75e0af"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "a399b8e2e96c53dc025f3ddc196fa594c3b890e526f13045cd14410bee01c459",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1681855
+        },
+        {
+          "client_index": 2,
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "base_target_ids_sha256": "5823b9feef0eb15b99c3479722dcff76f71093e24eff6ce70d6d36047b44930c",
+          "mixture_assignment_sha256": "9af09079424ba108b5bdd467cfe13915046858c27d59f95ef0ac91501332218f",
+          "selected_ids_sha256": "4a8be629f07c774e2132a3274dcbcbab451b3644ef1aab7f8d9f80c466e3e052",
+          "mixture_kind_counts": {
+            "clean": 103,
+            "conflict": 102,
+            "off_task": 51
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 96,
+            "conflict": 32
+          },
+          "mean_local_loss": 0.3761306248605251,
+          "selection": {
+            "policy": "relative_balanced_routing",
+            "gate_ratio": 0.3591120833688382,
+            "client_q25": 0.28284546732902527,
+            "reference_q25": 0.7876244783401489,
+            "gate_triggered": true,
+            "selected": 128,
+            "quota_per_claimed_label": 32,
+            "score_record_order_sha256": "3e57a0ece9ecdfb01be4470d6d307d741a7f49f8ca929408fdcdab604bb51377"
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "76eebe014700db673389c235358d5508887a88e0920ef1df75ea7622ac938522",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "mean_server_objective": 0.6103945970535278
+    }
+  ],
+  "final": {
+    "accuracy": 0.8487499952316284,
+    "macro_f1": 0.8480230867862701,
+    "label_nll": 0.6569897532463074,
+    "ece": 0.020986735878977925,
+    "per_class_recall": [
+      0.8690000176429749,
+      0.9760000109672546,
+      0.7149999737739563,
+      0.8349999785423279
+    ]
+  },
+  "total_client_to_server_payload_bytes": 21750,
+  "wall_seconds": 465.81133805192076,
+  "peak_allocated_gpu_bytes": 17262234624,
+  "evidence_boundaries": [
+    "The holdout records were selected after primary results were observed; this is post-primary evidence.",
+    "The evaluation records are disjoint from anchors, development, and all clients in this runner, but originate from the AG News training distribution.",
+    "A reconstruction found that 303 evaluation IDs had appeared in at least one prior server-client allocation; the split is not globally untouched.",
+    "This is not a new task, external replication, preregistration, or proof of broad robustness.",
+    "The audit-only clean/conflict/off-task composition is never used as a routing input.",
+    "Off-task membership is identifiable through the explicit task interface; clean versus conflict identity is not provided to the router.",
+    "The public-anchor-only arm omits the client path here; the older AG primary strict control instead executed shadow clients with zero distillation weight.",
+    "No privacy, secure aggregation, or deployment-efficiency claim is authorized."
+  ]
+}

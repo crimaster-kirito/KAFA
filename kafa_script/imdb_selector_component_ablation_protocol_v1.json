@@ -1,0 +1,137 @@
+{
+  "name": "imdb_selector_component_ablation_v1",
+  "status": "post_hoc_secondary_reused_test_design_after_imdb_official_results",
+  "freeze_utc": "2026-07-20T11:27:00Z",
+  "purpose": "Decompose the full IMDb routed-K selector into gradient-only, loss-only, and semantic-margin-only matched-K controls without modifying the frozen IMDb primary or matched-K evidence chain.",
+  "chronology": {
+    "official_results_observed_before_design": "The IMDb primary and matched-K official results had already been observed; this ablation is post-hoc and cannot be described as prospective, predeclared, or confirmatory.",
+    "relationship_to_original_analysis": "The original IMDb primary D-C gate and the matched-K secondary Holm family are unchanged. These records may only diagnose which score component carries ranking signal in the already observed IMDb matched-K result.",
+    "relationship_to_ag_news": "AG News secondary execution is independent and still running; this IMDb selector ablation must not be mixed with AG as confirmation evidence."
+  },
+  "implementation": {
+    "file_sha256": {
+      "kafa_script/run_imdb_selector_component_ablation.py": "cc3495d702471806e2d3dc4ef5c329275b9e8ba1b087f6b225dfb8e7b76e3fde",
+      "kafa_script/run_imdb_selector_component_ablation_matrix.sh": "6666b92c88e24cab8ae0c02aecec6db1268a6f8abecf47cb37a09d656dd3b55b",
+      "kafa_script/imdb_selector_component_ablation.py": "5fec3ebd5b8340ee6c792a397540d438dc802685cee0bc2a1fc369ef7f54b9f7",
+      "kafa_script/verify_imdb_selector_component_ablation.py": "d085b43e7432b7bce1c4a54c50eb2f930b711b370efa95862ac08111b60c8fd3",
+      "kafa_script/run_imdb_matched_control_addendum.py": "6d132fad0b7b97511c123b9ea7a3834b2b80700d21e8aba5c303361c4ba4f068",
+      "kafa_script/run_imdb_server_ablation.py": "95853ad21d850e9fe68464b01b3a179b0d487cb6a8c66e647bc6b08041792459",
+      "kafa_script/run_generic_classification_distillation.py": "be53095f467fe468d770339e1e94e11240fc6f523b8d4be1f52e6098d9650e45",
+      "kafa_script/classification_task.py": "6ec3c64acfe15a1bc60e38ee55e5b062d8b39183b63957400352717eba16a7ea"
+    }
+  },
+  "task": {
+    "target_spec": "kafa_script/task_specs/imdb_sentiment_server_v1.json",
+    "target_spec_semantic_sha256": "908c7746c1292f08f2a9d06c9bfc4a54e3345227a267ec20ce57893ae53024b3",
+    "off_task_spec": "kafa_script/task_specs/agnews_offtask_v1.json",
+    "off_task_spec_semantic_sha256": "e78dcb8f54a87cdedb3254aaa5b0f772dfa2c7c8e0b37207621b92e4bb4d3a88"
+  },
+  "data": {
+    "manifest": "kafa_script/imdb_server_manifest_v1.json",
+    "manifest_sha256": "9bc36a0309ed742d19d086051a62183624380dcd2a2f2ce56736708a0861fd97",
+    "target_train_path": ".cache/datasets/imdb/train.jsonl",
+    "target_train_sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef",
+    "official_test_path": ".cache/datasets/imdb/test.jsonl",
+    "official_test_sha256": "bceb588619d37a5b1c5e6ec7ec519b204eaaf8a4024735b279fe1eff33a46843",
+    "official_test_examples": 25000,
+    "off_task_train_path": ".cache/datasets/agnews/train.jsonl",
+    "off_task_train_sha256": "4fe547d3954adbccc000719839572ddd158c57b718e3b9bb8f3fbdffc01592ba"
+  },
+  "model_weight_sha256": {
+    ".cache/models/Qwen2.5-1.5B/model.safetensors": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+    ".cache/models/Qwen2.5-0.5B/model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+    ".cache/models/SmolLM2-360M/model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+    ".cache/models/TinyLlama-1.1B-Chat-v1.0/model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933"
+  },
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "anchor_supervision_weight": 1.0,
+    "distillation_weight": 0.25,
+    "teacher_aggregation": "uniform_probability_mean",
+    "max_length": 128,
+    "anchor_examples": 128,
+    "development_examples": 1000,
+    "client_examples_each": 256,
+    "official_test_examples": 25000,
+    "matched_k": 128,
+    "severe_clean_examples_each": 103,
+    "severe_conflict_examples_each": 102,
+    "severe_off_task_examples_each": 51,
+    "matched_quota_per_claimed_label": 64
+  },
+  "shared_mixture": {
+    "conflict_ratio": 0.4,
+    "off_task_ratio": 0.2,
+    "counts_per_client": {"clean": 103, "conflict": 102, "off_task": 51}
+  },
+  "method_configuration": {
+    "gradient_only_k": {"selection": "gradient_agreement_only_k"},
+    "loss_only_k": {"selection": "training_loss_only_k"},
+    "margin_only_k": {"selection": "semantic_margin_only_k"}
+  },
+  "selection_contract": {
+    "gradient_only_k": "Compute the original router's target-row anchor-gradient cosine and select the best 64 examples per claimed IMDb label by P(-anchor_cosine), with deterministic hash tie breaking.",
+    "loss_only_k": "Compute the original router's target-row local training loss and select the best 64 examples per claimed IMDb label by P(loss), with deterministic hash tie breaking.",
+    "margin_only_k": "Compute the target-row canonical semantic margin and select the best 64 examples per claimed IMDb label by P(semantic_margin), with deterministic hash tie breaking."
+  },
+  "official_evaluation": {
+    "seeds": [321, 322, 323, 324, 325, 326, 327, 328, 329, 330],
+    "comparators": ["gradient_only_k", "loss_only_k", "margin_only_k"],
+    "execution_rule": "Run and retain the complete 10-by-3 matrix; never add seeds, drop arms, or alter tests based on outcomes."
+  },
+  "analysis": {
+    "classification": "post-hoc secondary reused-test selector-component diagnostic",
+    "reference_records": "Existing severe_routed_k records from imdb_matched_control_addendum_v1 remain the full-router reference and must continue to verify under their original verifier.",
+    "secondary_holm_family": [
+      {
+        "id": "full_routed_k_minus_gradient_only_k",
+        "left": "severe_routed_k",
+        "right": "gradient_only_k",
+        "metric": "accuracy",
+        "test": "two-sided paired Student t-test over ten common seeds"
+      },
+      {
+        "id": "full_routed_k_minus_loss_only_k",
+        "left": "severe_routed_k",
+        "right": "loss_only_k",
+        "metric": "accuracy",
+        "test": "two-sided paired Student t-test over ten common seeds"
+      },
+      {
+        "id": "full_routed_k_minus_margin_only_k",
+        "left": "severe_routed_k",
+        "right": "margin_only_k",
+        "metric": "accuracy",
+        "test": "two-sided paired Student t-test over ten common seeds"
+      }
+    ],
+    "multiplicity": "Holm adjustment over exactly the three post-hoc secondary p-values at familywise alpha 0.05",
+    "confidence_intervals": "Unadjusted two-sided 95% Student-t intervals over paired seed differences, labelled post-hoc secondary",
+    "prohibited": [
+      "Do not describe this study as prospective, predeclared, confirmatory, or independent.",
+      "Do not alter the original IMDb primary gate or matched-K secondary family.",
+      "Do not claim deployable superiority unless separately validated."
+    ]
+  },
+  "evidence_boundaries": [
+    "This ablation was designed after the IMDb official primary and matched-K results were observed.",
+    "All records reuse the official IMDb test and are post-hoc secondary diagnostics.",
+    "All arms share the severe mixture, K=128, 64-per-claimed-label quotas, optimizer settings, anchors, models, and server training budget.",
+    "The known task interface excludes off-task rows before component selection; clean versus conflict identity is not used.",
+    "The audit can diagnose score-component sensitivity within this setting but cannot confirm the TREC-derived direction, change the IMDb primary gate, or establish a general selector."
+  ]
+}

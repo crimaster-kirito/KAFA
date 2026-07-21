@@ -1,0 +1,153 @@
+{
+  "schema_version": "agnews_server_ablation_v1",
+  "evidence_label": "post_primary_run_disjoint_resampling_ablation",
+  "paper_result": true,
+  "method": "public_anchor_only",
+  "method_configuration": {
+    "conflict_ratio": 0.4,
+    "off_task_ratio": 0.2,
+    "selection": "no_client_path"
+  },
+  "seed": 287,
+  "started_utc": "2026-07-20T11:42:24.670031+00:00",
+  "protocol_sha256": "9dd4d2696780eb67491dba440507639a9651dddbd991c8e94f892c09ee49b4ec",
+  "runner_file_sha256": "0717e893c2dc9a20391d7817777b69a4770356eda7233ae763c378eecb983bdd",
+  "parent_manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "holdout_manifest_sha256": "bc4aa188648ad67ada9fc186e4d26f4598057d94e2b36e24d41aaa738bfef15a",
+  "full_args": {
+    "protocol": "kafa_script/agnews_server_post_primary_ablation_v1.json",
+    "parent_manifest": "kafa_script/benchmark_manifest_v1.json",
+    "holdout_manifest": "kafa_script/agnews_secondary_holdout_manifest_v1.json",
+    "agnews_data": ".cache/datasets/agnews/train.jsonl",
+    "imdb_data": ".cache/datasets/imdb/train.jsonl",
+    "method": "public_anchor_only",
+    "evaluation_split": "secondary_holdout",
+    "seed": 287,
+    "output": "kafa_script/analysis_outputs/agnews_server_ablation/secondary_holdout/seed287_public_anchor_only.json"
+  },
+  "full_args_sha256": "a1417732871eba49f1f557f7cb2ae0c94c4cd5ccbb958ed19020091562be701d",
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "anchor_supervision_weight": 1.0,
+    "distillation_weight": 0.25,
+    "teacher_aggregation": "uniform_probability_mean",
+    "routing_keep_fraction": 0.5,
+    "routing_gate_threshold": 0.8,
+    "anchor_per_class": 32,
+    "development_per_class": 200,
+    "client_target_per_class": 64,
+    "max_length": 128
+  },
+  "git": {
+    "commit": "546a867d35597dd110d171c7da11021b5ca0cdd3",
+    "dirty": true
+  },
+  "datasets": {
+    "agnews_train_sha256": "4fe547d3954adbccc000719839572ddd158c57b718e3b9bb8f3fbdffc01592ba",
+    "imdb_train_sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef",
+    "official_test_accessed": false
+  },
+  "model_artifacts": {
+    "server": {
+      "model.safetensors": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+      "config.json": "0e8c8aa86468aba09c9d32157ff4bc2301c7e6c50e4398960425b2ea71e66f77",
+      "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+      "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "clients": [
+      {
+        "model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+        "config.json": "479dcf0c5286339e41ad3992cd08ae88a467c4187587936248e2b7c96283484b",
+        "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+        "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      },
+      {
+        "model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+        "config.json": "34f7801487078de7e434e19162c497e5cc6ff397080e40e8586627cb68a5168a",
+        "tokenizer.json": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+        "tokenizer_config.json": "4bb9af56a342753d39374f4016a16574cab299fe088e896f425ce3c433f61424",
+        "vocab.json": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79",
+        "merges.txt": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+      },
+      {
+        "model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+        "config.json": "486bedda3a6988332e60d9638a09ca4b260d34ebcf1b19e22cf3b140b63d8fe9",
+        "tokenizer.json": "bcd04f0eadf90287bd26e1a183ac487d8a141b09b06aecb7725bbdd343640f2e",
+        "tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+        "tokenizer_config.json": "7b41ba7d0eb91e77914ca3dafde559ea3e19878769b7e68409e89bed5222e77a"
+      }
+    ]
+  },
+  "split_source_ids_sha256": {
+    "anchor": "8d1a371cdf2a3f53e4f5e989248ab770db86edf7b882272cb48749adb5c81aa6",
+    "evaluation": "2e02e3f9cff7988c0ad376bce1d5cc61a36671e18e0d1003cbb5625b102ca684",
+    "frozen_holdout": "2e02e3f9cff7988c0ad376bce1d5cc61a36671e18e0d1003cbb5625b102ca684",
+    "client_0": "dd91ebb272c4e4a7ad19d96b585d1e15f32d213a8e1661ec22319a199e3c2134",
+    "client_1": "22499861058daa14ba73320aa44186fdb498df29b8ba54c8340d28044c14f365",
+    "client_2": "c3d003394057b3ed5522cf12b0d7b7d18dae0f5816647740df7aa475ee3548f4"
+  },
+  "mixture_assignment_sha256": [
+    "007eb0a71d4453a4405afdd5a5b04060eb54b579ea9b283d0d55066110053372",
+    "ed0ceebef54e08843fcb5b348c4c8ba4bdf4df17b41e6d4fe5209449e4c502bd",
+    "079571850f4d06101986ef121f7aed680f900931c35104e40225097fa8195865"
+  ],
+  "evaluation_split": "secondary_holdout",
+  "evaluation_examples": 4000,
+  "anchor_examples": 128,
+  "round_records": [
+    {
+      "round": 1,
+      "client_records": [],
+      "teacher_weights": [],
+      "mean_server_objective": 0.5409423828125
+    },
+    {
+      "round": 2,
+      "client_records": [],
+      "teacher_weights": [],
+      "mean_server_objective": 0.320513916015625
+    }
+  ],
+  "final": {
+    "accuracy": 0.846750020980835,
+    "macro_f1": 0.8458616137504578,
+    "label_nll": 0.832064688205719,
+    "ece": 0.05593504093121737,
+    "per_class_recall": [
+      0.8820000290870667,
+      0.984000027179718,
+      0.8259999752044678,
+      0.6949999928474426
+    ]
+  },
+  "total_client_to_server_payload_bytes": 0,
+  "wall_seconds": 278.8263339130208,
+  "peak_allocated_gpu_bytes": 17263051776,
+  "evidence_boundaries": [
+    "The holdout records were selected after primary results were observed; this is post-primary evidence.",
+    "The evaluation records are disjoint from anchors, development, and all clients in this runner, but originate from the AG News training distribution.",
+    "A reconstruction found that 303 evaluation IDs had appeared in at least one prior server-client allocation; the split is not globally untouched.",
+    "This is not a new task, external replication, preregistration, or proof of broad robustness.",
+    "The audit-only clean/conflict/off-task composition is never used as a routing input.",
+    "Off-task membership is identifiable through the explicit task interface; clean versus conflict identity is not provided to the router.",
+    "The public-anchor-only arm omits the client path here; the older AG primary strict control instead executed shadow clients with zero distillation weight.",
+    "No privacy, secure aggregation, or deployment-efficiency claim is authorized."
+  ]
+}

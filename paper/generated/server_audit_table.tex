@@ -1,0 +1,48 @@
+% Auto-generated only after all 150 official/holdout records verify.
+\begin{table*}[t]
+\centering\scriptsize
+\caption{Cross-task server audit. Arm cells are accuracy mean $\pm$ SD (\%). Effects are paired mean percentage points [95\% CI]. IMDb $B-A$ and $C-B$ remain descriptive because its frozen protocol authorizes only the $D-C$ primary test.}
+\label{tab:server-audit}
+\resizebox{0.98\textwidth}{!}{%
+\begin{tabular}{llrrrr}
+\toprule
+Task & Evidence scope & A: anchor & B: clean uniform & C: severe uniform & D: severe routed \\
+\midrule
+TREC & post-primary reused-test discovery & 81.76 $\pm$ 2.01 & 81.56 $\pm$ 1.55 & 83.14 $\pm$ 0.77 & 81.72 $\pm$ 1.38 \\
+IMDb & prospective role-reversal & 91.83 $\pm$ 0.10 & 91.79 $\pm$ 0.11 & 91.10 $\pm$ 0.18 & 91.39 $\pm$ 0.26 \\
+AG News & post-primary resampling & 84.84 $\pm$ 1.04 & 84.85 $\pm$ 0.90 & 82.81 $\pm$ 1.34 & 84.27 $\pm$ 1.16 \\
+\bottomrule
+\end{tabular}%
+}
+\par\vspace{2pt}
+\resizebox{0.98\textwidth}{!}{%
+\begin{tabular}{lllll}
+\toprule
+Task & Evidence timing & Contrast & Paired mean pp [95\% CI] & Inference \\
+\midrule
+TREC & post-primary reused-test discovery & B-A & -0.20 [-0.71,+0.31] & $p_{\mathrm{H}}=0.3974$ (post-primary Holm) \\
+TREC & post-primary reused-test discovery & C-B & +1.58 [+0.54,+2.62] & $p_{\mathrm{H}}=0.0150$ (post-primary Holm) \\
+TREC & post-primary reused-test discovery & D-C & -1.42 [-2.19,-0.65] & $p_{\mathrm{H}}=0.0074$ (post-primary Holm) \\
+IMDb & prospective role-reversal & B-A & -0.04 [-0.12,+0.04] & \textit{descriptive; no $p$} (descriptive) \\
+IMDb & prospective role-reversal & C-B & -0.68 [-0.84,-0.53] & \textit{descriptive; no $p$} (descriptive) \\
+IMDb & prospective role-reversal & D-C & +0.29 [+0.07,+0.51] & $p=0.0149$ (primary) \\
+AG News & post-primary resampling & B-A & +0.01 [-0.28,+0.29] & $p_{\mathrm{H}}=0.9541$ (post-primary Holm) \\
+AG News & post-primary resampling & C-B & -2.04 [-2.44,-1.65] & $p_{\mathrm{H}}<10^{-4}$ (post-primary Holm) \\
+AG News & post-primary resampling & D-C & +1.46 [+1.06,+1.86] & $p_{\mathrm{H}}<10^{-4}$ (post-primary Holm) \\
+\bottomrule
+\end{tabular}%
+}
+\par\vspace{2pt}
+\resizebox{0.94\textwidth}{!}{%
+\begin{tabular}{lllll}
+\toprule
+IMDb matched-$K$ secondary arm & Accuracy (\%) & Clean/conflict/off-task (\%) & Frozen paired effect [95\% CI] & Holm $p$ \\
+\midrule
+Random-$K$ & 91.14 $\pm$ 0.13 & 49.7/50.3/0.0 & \textit{reference arm} & --- \\
+Routed-$K$ & 91.46 $\pm$ 0.23 & 71.0/29.0/0.0 & +0.32 [+0.17,+0.48]; $p_{\mathrm{H}}=0.0020$ (secondary Holm) & $p_{\mathrm{H}}=0.0020$ \\
+Maximum-purity-$K$ & 91.51 $\pm$ 0.16 & 80.5/19.5/0.0 & +0.05 [-0.10,+0.19]; $p_{\mathrm{H}}=0.4872$ (secondary Holm) & $p_{\mathrm{H}}=0.4872$ \\
+\bottomrule
+\end{tabular}%
+}
+\par\scriptsize IMDb frozen primary gate: \textbf{not passed}; routed clean 66.5\% $>$ 40.2\%, $D-C$ CI upper +0.51 pp, $p=0.0149$. Conditional implementation contract certified; full trajectories 6/10.
+\end{table*}

@@ -1,0 +1,325 @@
+{
+  "schema_version": "agnews_server_ablation_v1",
+  "evidence_label": "post_primary_run_disjoint_resampling_ablation",
+  "paper_result": true,
+  "method": "clean_unfiltered_distillation",
+  "method_configuration": {
+    "conflict_ratio": 0.0,
+    "off_task_ratio": 0.0,
+    "selection": "all_examples"
+  },
+  "seed": 285,
+  "started_utc": "2026-07-20T11:05:58.091718+00:00",
+  "protocol_sha256": "9dd4d2696780eb67491dba440507639a9651dddbd991c8e94f892c09ee49b4ec",
+  "runner_file_sha256": "0717e893c2dc9a20391d7817777b69a4770356eda7233ae763c378eecb983bdd",
+  "parent_manifest_sha256": "073419bb7b444f358da469c330af26abdb005fbc8745b602f83b40b38e28e0e5",
+  "holdout_manifest_sha256": "bc4aa188648ad67ada9fc186e4d26f4598057d94e2b36e24d41aaa738bfef15a",
+  "full_args": {
+    "protocol": "kafa_script/agnews_server_post_primary_ablation_v1.json",
+    "parent_manifest": "kafa_script/benchmark_manifest_v1.json",
+    "holdout_manifest": "kafa_script/agnews_secondary_holdout_manifest_v1.json",
+    "agnews_data": ".cache/datasets/agnews/train.jsonl",
+    "imdb_data": ".cache/datasets/imdb/train.jsonl",
+    "method": "clean_unfiltered_distillation",
+    "evaluation_split": "secondary_holdout",
+    "seed": 285,
+    "output": "kafa_script/analysis_outputs/agnews_server_ablation/secondary_holdout/seed285_clean_unfiltered_distillation.json"
+  },
+  "full_args_sha256": "f710995ea0a4d3ab13d7b55f3abd676d495e5733c526e65d401bb0300be51826",
+  "fixed_configuration": {
+    "server_model": ".cache/models/Qwen2.5-1.5B",
+    "client_models": [
+      ".cache/models/Qwen2.5-0.5B",
+      ".cache/models/SmolLM2-360M",
+      ".cache/models/TinyLlama-1.1B-Chat-v1.0"
+    ],
+    "rounds": 2,
+    "client_steps_per_round": 40,
+    "server_steps_per_round": 40,
+    "client_batch_size": 8,
+    "server_batch_size": 8,
+    "evaluation_batch_size": 32,
+    "anchor_score_batch_size": 8,
+    "client_learning_rate": 0.001,
+    "server_learning_rate": 0.0001,
+    "anchor_supervision_weight": 1.0,
+    "distillation_weight": 0.25,
+    "teacher_aggregation": "uniform_probability_mean",
+    "routing_keep_fraction": 0.5,
+    "routing_gate_threshold": 0.8,
+    "anchor_per_class": 32,
+    "development_per_class": 200,
+    "client_target_per_class": 64,
+    "max_length": 128
+  },
+  "git": {
+    "commit": "546a867d35597dd110d171c7da11021b5ca0cdd3",
+    "dirty": true
+  },
+  "datasets": {
+    "agnews_train_sha256": "4fe547d3954adbccc000719839572ddd158c57b718e3b9bb8f3fbdffc01592ba",
+    "imdb_train_sha256": "81f3a4c4b142255135285655e4a19c1d973b8d236f809bfb15d2cdd82c6b34ef",
+    "official_test_accessed": false
+  },
+  "model_artifacts": {
+    "server": {
+      "model.safetensors": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796",
+      "config.json": "0e8c8aa86468aba09c9d32157ff4bc2301c7e6c50e4398960425b2ea71e66f77",
+      "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+      "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "clients": [
+      {
+        "model.safetensors": "88c142557820ccad55bb59756bfcfcf891de9cc6202816bd346445188a0ed342",
+        "config.json": "479dcf0c5286339e41ad3992cd08ae88a467c4187587936248e2b7c96283484b",
+        "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "tokenizer_config.json": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+        "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      },
+      {
+        "model.safetensors": "7aaff6661428bed033abba9522bec81938678642cca3181fe752b6ca9e1e540f",
+        "config.json": "34f7801487078de7e434e19162c497e5cc6ff397080e40e8586627cb68a5168a",
+        "tokenizer.json": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+        "tokenizer_config.json": "4bb9af56a342753d39374f4016a16574cab299fe088e896f425ce3c433f61424",
+        "vocab.json": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79",
+        "merges.txt": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+      },
+      {
+        "model.safetensors": "6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933",
+        "config.json": "486bedda3a6988332e60d9638a09ca4b260d34ebcf1b19e22cf3b140b63d8fe9",
+        "tokenizer.json": "bcd04f0eadf90287bd26e1a183ac487d8a141b09b06aecb7725bbdd343640f2e",
+        "tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+        "tokenizer_config.json": "7b41ba7d0eb91e77914ca3dafde559ea3e19878769b7e68409e89bed5222e77a"
+      }
+    ]
+  },
+  "split_source_ids_sha256": {
+    "anchor": "8d1a371cdf2a3f53e4f5e989248ab770db86edf7b882272cb48749adb5c81aa6",
+    "evaluation": "2e02e3f9cff7988c0ad376bce1d5cc61a36671e18e0d1003cbb5625b102ca684",
+    "frozen_holdout": "2e02e3f9cff7988c0ad376bce1d5cc61a36671e18e0d1003cbb5625b102ca684",
+    "client_0": "bfc85a2220682d5e8c33e10cbee3866543e78205074e3dd6309f6769bdffbdb9",
+    "client_1": "dc3ffea2fc6bf847c80b712c72d3784ca29a934669afd182cb300fd671ac87a7",
+    "client_2": "5823b9feef0eb15b99c3479722dcff76f71093e24eff6ce70d6d36047b44930c"
+  },
+  "mixture_assignment_sha256": [
+    "caf35779e7d1336a748645309ab027426d2dc471c61e5b12b5465d646a4f9ef1",
+    "aa9dabf92d65f99aef3a07b1a6233693d94067f4cd4862029b9feffe69a1e2c2",
+    "c39da0320dd36fa9099d67ed9c170f056c17e0709ebbe7ccb1e63909556b698d"
+  ],
+  "evaluation_split": "secondary_holdout",
+  "evaluation_examples": 4000,
+  "anchor_examples": 128,
+  "round_records": [
+    {
+      "round": 1,
+      "client_records": [
+        {
+          "client_index": 0,
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "base_target_ids_sha256": "bfc85a2220682d5e8c33e10cbee3866543e78205074e3dd6309f6769bdffbdb9",
+          "mixture_assignment_sha256": "caf35779e7d1336a748645309ab027426d2dc471c61e5b12b5465d646a4f9ef1",
+          "selected_ids_sha256": "bfc85a2220682d5e8c33e10cbee3866543e78205074e3dd6309f6769bdffbdb9",
+          "mixture_kind_counts": {
+            "clean": 256
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 256
+          },
+          "mean_local_loss": 0.6968727643601597,
+          "selection": {
+            "policy": "all_examples",
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "ab5ef588a937a581547ac3ec20ba8b8f435206dfbf137b507b4a0e0547689904",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        },
+        {
+          "client_index": 1,
+          "model": ".cache/models/SmolLM2-360M",
+          "base_target_ids_sha256": "dc3ffea2fc6bf847c80b712c72d3784ca29a934669afd182cb300fd671ac87a7",
+          "mixture_assignment_sha256": "aa9dabf92d65f99aef3a07b1a6233693d94067f4cd4862029b9feffe69a1e2c2",
+          "selected_ids_sha256": "dc3ffea2fc6bf847c80b712c72d3784ca29a934669afd182cb300fd671ac87a7",
+          "mixture_kind_counts": {
+            "clean": 256
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 256
+          },
+          "mean_local_loss": 0.8981414346024394,
+          "selection": {
+            "policy": "all_examples",
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "54679dee7b08109d17b44f20e7137b1c55f81b1cab7f97b0621d2add1d41a3e6",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1681855
+        },
+        {
+          "client_index": 2,
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "base_target_ids_sha256": "5823b9feef0eb15b99c3479722dcff76f71093e24eff6ce70d6d36047b44930c",
+          "mixture_assignment_sha256": "c39da0320dd36fa9099d67ed9c170f056c17e0709ebbe7ccb1e63909556b698d",
+          "selected_ids_sha256": "5823b9feef0eb15b99c3479722dcff76f71093e24eff6ce70d6d36047b44930c",
+          "mixture_kind_counts": {
+            "clean": 256
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 256
+          },
+          "mean_local_loss": 0.8817121361847967,
+          "selection": {
+            "policy": "all_examples",
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "819634be28a6729c38bee180250a6d526a8e5d7f582c8d6ae11891655cb97fc9",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "mean_server_objective": 0.7157632894814014
+    },
+    {
+      "round": 2,
+      "client_records": [
+        {
+          "client_index": 0,
+          "model": ".cache/models/Qwen2.5-0.5B",
+          "base_target_ids_sha256": "bfc85a2220682d5e8c33e10cbee3866543e78205074e3dd6309f6769bdffbdb9",
+          "mixture_assignment_sha256": "caf35779e7d1336a748645309ab027426d2dc471c61e5b12b5465d646a4f9ef1",
+          "selected_ids_sha256": "bfc85a2220682d5e8c33e10cbee3866543e78205074e3dd6309f6769bdffbdb9",
+          "mixture_kind_counts": {
+            "clean": 256
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 256
+          },
+          "mean_local_loss": 0.4052812018431723,
+          "selection": {
+            "policy": "all_examples",
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "99d61d1b62167d72b950171187e86ff854ffe2c4e5911a7a86561d0852c9eed5",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1113859
+        },
+        {
+          "client_index": 1,
+          "model": ".cache/models/SmolLM2-360M",
+          "base_target_ids_sha256": "dc3ffea2fc6bf847c80b712c72d3784ca29a934669afd182cb300fd671ac87a7",
+          "mixture_assignment_sha256": "aa9dabf92d65f99aef3a07b1a6233693d94067f4cd4862029b9feffe69a1e2c2",
+          "selected_ids_sha256": "dc3ffea2fc6bf847c80b712c72d3784ca29a934669afd182cb300fd671ac87a7",
+          "mixture_kind_counts": {
+            "clean": 256
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 256
+          },
+          "mean_local_loss": 0.43855097610503435,
+          "selection": {
+            "policy": "all_examples",
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "263a142455465d7e01c59a409393abcb6be6091559a3e3c9fda4f78e11523d90",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 1681855
+        },
+        {
+          "client_index": 2,
+          "model": ".cache/models/TinyLlama-1.1B-Chat-v1.0",
+          "base_target_ids_sha256": "5823b9feef0eb15b99c3479722dcff76f71093e24eff6ce70d6d36047b44930c",
+          "mixture_assignment_sha256": "c39da0320dd36fa9099d67ed9c170f056c17e0709ebbe7ccb1e63909556b698d",
+          "selected_ids_sha256": "5823b9feef0eb15b99c3479722dcff76f71093e24eff6ce70d6d36047b44930c",
+          "mixture_kind_counts": {
+            "clean": 256
+          },
+          "selected_kind_counts_audit_only": {
+            "clean": 256
+          },
+          "mean_local_loss": 0.20109376655891537,
+          "selection": {
+            "policy": "all_examples",
+            "gate_triggered": false,
+            "selected": 256
+          },
+          "probability_shape": [
+            128,
+            4
+          ],
+          "probability_dtype": "torch.float32",
+          "probability_sha256": "643cc02a276135c16ca51dbb9249802d9dc476dff91a67603954cec8f09d6f5d",
+          "serialized_probability_payload_bytes": 3625,
+          "adapter_bytes": 2282651
+        }
+      ],
+      "teacher_weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "mean_server_objective": 0.5051501788198948
+    }
+  ],
+  "final": {
+    "accuracy": 0.8500000238418579,
+    "macro_f1": 0.8485577404499054,
+    "label_nll": 0.6627636551856995,
+    "ece": 0.014049956273083808,
+    "per_class_recall": [
+      0.8930000066757202,
+      0.9769999980926514,
+      0.7120000123977661,
+      0.8180000185966492
+    ]
+  },
+  "total_client_to_server_payload_bytes": 21750,
+  "wall_seconds": 314.00696063181385,
+  "peak_allocated_gpu_bytes": 17262234624,
+  "evidence_boundaries": [
+    "The holdout records were selected after primary results were observed; this is post-primary evidence.",
+    "The evaluation records are disjoint from anchors, development, and all clients in this runner, but originate from the AG News training distribution.",
+    "A reconstruction found that 303 evaluation IDs had appeared in at least one prior server-client allocation; the split is not globally untouched.",
+    "This is not a new task, external replication, preregistration, or proof of broad robustness.",
+    "The audit-only clean/conflict/off-task composition is never used as a routing input.",
+    "Off-task membership is identifiable through the explicit task interface; clean versus conflict identity is not provided to the router.",
+    "The public-anchor-only arm omits the client path here; the older AG primary strict control instead executed shadow clients with zero distillation weight.",
+    "No privacy, secure aggregation, or deployment-efficiency claim is authorized."
+  ]
+}

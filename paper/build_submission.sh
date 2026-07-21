@@ -75,6 +75,22 @@ if [[ "$imdb_official_count" -eq 40 && "$imdb_matched_count" -eq 30 ]]; then
   .venv/bin/python kafa_script/generate_imdb_paper_assets.py
 fi
 
+imdb_selector_dir="kafa_script/analysis_outputs/imdb_selector_component_ablation/official_evaluation"
+if [[ -d "$imdb_selector_dir" ]]; then
+  imdb_selector_count="$(find "$imdb_selector_dir" -maxdepth 1 -name 'seed*.json' | wc -l)"
+else
+  imdb_selector_count=0
+fi
+if [[ "$imdb_selector_count" -eq 30 ]]; then
+  .venv/bin/python kafa_script/verify_imdb_selector_component_ablation.py \
+    --output-dir "$imdb_selector_dir" \
+    --protocol kafa_script/imdb_selector_component_ablation_protocol_v1.json
+  .venv/bin/python kafa_script/summarize_imdb_selector_component_ablation.py \
+    --input-dir "$imdb_selector_dir" \
+    --output kafa_script/analysis_outputs/IMDB_SELECTOR_COMPONENT_ABLATION_OFFICIAL.md \
+    >/tmp/kafa_imdb_selector_component_summary.log
+fi
+
 trec_audit_dir="kafa_script/analysis_outputs/trec_server_ablation/official_reused_test"
 ag_audit_dir="kafa_script/analysis_outputs/agnews_server_ablation/secondary_holdout"
 trec_audit_count="$(find "$trec_audit_dir" -maxdepth 1 -name 'seed*.json' | wc -l)"
@@ -147,6 +163,11 @@ if [[ "$imdb_matched_count" -eq 30 ]]; then
     --phase official_evaluation \
     --original-dir "$imdb_official_dir" --matched-dir "$imdb_matched_dir"
 fi
+if [[ "$imdb_selector_count" -eq 30 ]]; then
+  .venv/bin/python kafa_script/verify_imdb_selector_component_ablation.py \
+    --output-dir "$imdb_selector_dir" \
+    --protocol kafa_script/imdb_selector_component_ablation_protocol_v1.json
+fi
 .venv/bin/python -m pytest -q tests/test_capability_router.py \
   tests/test_lora_projection_diagnostics.py tests/test_statistical_summarizers.py \
   tests/test_classification_task.py tests/test_trec_server_manifest.py \
@@ -159,5 +180,8 @@ fi
   tests/test_imdb_server_role_reversal.py \
   tests/test_imdb_matched_control_addendum.py \
   tests/test_imdb_matched_control_resource_scheduler.py \
+  tests/test_imdb_selector_component_ablation.py \
+  tests/test_verify_imdb_selector_component_ablation.py \
+  tests/test_summarize_imdb_selector_component_ablation.py \
   tests/test_generate_imdb_paper_assets.py \
   tests/test_generate_server_audit_assets.py

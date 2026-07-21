@@ -153,6 +153,7 @@ def _synthetic_protocols() -> dict[str, dict]:
                 "rounds": 2,
                 "client_models": ["client-a", "client-b", "client-c"],
                 "matched_k": 128, "matched_quota_per_claimed_label": 64,
+                "forced_gate_threshold": 1e30,
                 "severe_clean_examples_each": 103,
                 "severe_conflict_examples_each": 102,
                 "severe_off_task_examples_each": 51,
@@ -171,7 +172,13 @@ def _synthetic_protocols() -> dict[str, dict]:
             },
             "evidence_boundaries": boundaries,
             "purpose": "synthetic", "implementation": {}, "task": {},
-            "data": {}, "selection_contract": {},
+            "data": {}, "selection_contract": {
+                "severe_routed_k": (
+                    "Apply the original relative-balanced routing score but "
+                    "force selection regardless of the original gate, retaining "
+                    "the best 64 examples per claimed label. This equals the "
+                    "original routed selection whenever its gate triggers, "
+                    "while guaranteeing K=128 for every seed and round.")},
         },
         "ag_protocol": {
             "name": "agnews_server_post_primary_ablation_v1",
@@ -198,9 +205,18 @@ def _synthetic_protocols() -> dict[str, dict]:
 
 
 def _equivalence_ok(*_args) -> dict:
-    return {"phase": "official_evaluation", "pairs": 10,
-            "seeds": list(TASKS["imdb"]["seeds"]),
-            "functional_equivalence": True}
+    return {
+        "schema_version": "imdb_routed_conditional_equivalence_v2",
+        "phase": "official_evaluation", "pairs": 10,
+        "seeds": list(TASKS["imdb"]["seeds"]),
+        "conditional_implementation_equivalence": True,
+        "total_client_rounds": 60,
+        "fully_identical_trajectory_pairs": 10,
+        "pairs_with_forced_gate_divergence": 0,
+        "exact_pre_fork_triggered_client_rounds": 60,
+        "first_authorized_gate_divergence_client_rounds": 0,
+        "post_local_fork_not_equivalence_eligible_client_rounds": 0,
+    }
 
 
 def _call(paths: dict[str, Path], output: Path, **overrides):
@@ -383,6 +399,23 @@ def test_render_or_compile_failure_never_publishes_partial_assets(
     assert not list(tmp_path.glob(".server-audit-assets-*"))
 
 
+def test_correct_count_allows_float32_accuracy_without_confusion_matrix() -> None:
+    record = {
+        "evaluation_examples": 4000,
+        "final": {"accuracy": 0.8450000286102295},
+    }
+    assert generator._correct_count(record, "ag-style") == 3380
+
+
+def test_correct_count_rejects_noninteger_reconstruction_without_matrix() -> None:
+    record = {
+        "evaluation_examples": 4000,
+        "final": {"accuracy": 0.845125},
+    }
+    with pytest.raises(RuntimeError, match="does not reconstruct integer"):
+        generator._correct_count(record, "ag-style")
+
+
 def test_publish_rolls_back_the_complete_asset_set_on_replace_failure(
         tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     stage = tmp_path / "stage"
@@ -466,8 +499,14 @@ def test_statistics_atomic_assets_and_warning_free_tex_pdf(tmp_path: Path) -> No
     gate = ledger["imdb_primary_gate"]
     assert gate["passed"] is True
     assert all(gate["components"].values())
+    assert set(gate["components"]) == {
+        "routed_clean_fraction_gt_103_over_256",
+        "dc_ci95_strictly_negative", "dc_two_sided_p_lt_0_05"}
     assert gate["observed_routed_clean_fraction"] == pytest.approx(96 / 128)
-    assert gate["equivalence_verifier_receipt"]["pairs"] == 10
+    assert "equivalence_verifier_receipt" not in gate
+    assert ledger["imdb_routed_relationship"][
+        "not_a_primary_gate_component"] is True
+    assert ledger["imdb_routed_relationship"]["receipt"]["pairs"] == 10
     assert ledger["verification"]["imdb_routed_equivalence"][
         "generator_bound_protocol_sha256"] == {
             "imdb_original": ledger["provenance"]["protocol_sha256"][

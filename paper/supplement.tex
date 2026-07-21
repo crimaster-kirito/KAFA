@@ -1,10 +1,9 @@
 \documentclass[letterpaper]{article}
 \usepackage[submission]{aaai2027}
-\usepackage{times}
-\usepackage{helvet}
-\usepackage{courier}
-\usepackage{amsmath,amssymb,booktabs,graphicx,float}
+\usepackage{caption}
+\usepackage{amsmath,amssymb,booktabs,graphicx,array}
 \usepackage{natbib}
+\nocopyright
 \newcommand{\pp}{\,\mathrm{pp}}
 
 \title{Supplementary Material: Auditing Selection Purity and Transfer Utility under
@@ -14,24 +13,54 @@ Joint Model and Data Heterogeneity}
 
 \begin{document}
 \maketitle
-\raggedbottom
 \setlength{\emergencystretch}{1em}
 
 \section{Scope}
-This supplement retains the local-adaptation and natural weak-label evidence
-that bounds the server-transfer study in the main paper.  These experiments do
-not constitute additional federated server endpoints.  Development-only,
-post-observation, and reused-test analyses remain labelled as such; moving them
-out of the page-limited main paper does not upgrade their evidence class.
+This supplement retains local-adaptation and natural weak-label evidence that
+bounds, but does not add server endpoints to, the main study.  We preserve the
+stated development-only, post-observation, and reused-test evidence labels;
+relocation outside the main-paper page limit does not upgrade them.
+
+\section{Closest-Work Boundary}
+Table~\ref{tab:closest-boundary} states the nearest-method boundary without
+claiming a new optimizer or native-setting dominance.
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{.18\textwidth}
+                >{\raggedright\arraybackslash}p{.25\textwidth}
+                >{\raggedright\arraybackslash}p{.48\textwidth}}
+\toprule
+Work & Main focus & Boundary relative to this audit\\
+\midrule
+Selective-FD \cite{shao2024selectivefd} & Filters misleading client-side
+distillation signals & Does not run four contaminated-client arms alongside
+matched-\(K\) and maximum-purity controls.\\
+FedID \cite{ma2023fedid} & Interactive distillation for pretrained language
+models in federated settings & Studies heterogeneous federated distillation
+without auditing clean/conflict/off-task purity against server utility.\\
+FedHDS \cite{qin2025fedhds} & Representative data selection for federated LLM
+instruction tuning & Addresses data-efficient local tuning, whereas our
+selection is an audit intervention on transferred canonical probabilities.\\
+FedFD \cite{li2025fedfd} & Alignment for unstable heterogeneous logit
+ensembles & Establishes that heterogeneous logit ensembles can fail; our
+contribution is evidence-labelled failure analysis under internal
+contamination.\\
+\bottomrule
+\end{tabular}
+\caption{Closest-work boundary. The paper claims a narrow audit contribution,
+not a new optimizer or dominance over these methods in their native settings.}
+\label{tab:closest-boundary}
+\end{table*}
 
 \section{Complete Legacy Server Endpoints}
-\begin{table}[H]
+Table~\ref{tab:legacy-endpoints} preserves the task-specific discovery
+endpoints that contextualize the main audit.
+\begin{table*}[t]
 \centering
-\scriptsize
+\small
 \setlength{\tabcolsep}{3pt}
-\caption{Verified AG News and TREC server endpoints retained from the discovery
-stages.  Accuracy is mean \(\pm\) SD; Macro-F1 and score ECE are seed means.
-TREC post rows reuse the already accessed test with ten new seeds.}
 \begin{tabular}{llccc}
 \toprule
 Task & Method & Accuracy & Macro-F1 & Score ECE\\
@@ -47,7 +76,11 @@ TREC post & Severe uniform & \(83.14\pm0.77\) & 80.80 & 0.099\\
 TREC post & Severe routed & \(81.72\pm1.38\) & 79.43 & 0.039\\
 \bottomrule
 \end{tabular}
-\end{table}
+\caption{Verified AG News and TREC server endpoints retained from the discovery
+stages. Accuracy is mean \(\pm\) SD; macro-F1 and score ECE are seed means.
+TREC post rows reuse the already accessed test with ten new seeds.}
+\label{tab:legacy-endpoints}
+\end{table*}
 
 \section{Full Server Configuration}
 All server audits use Qwen2.5-0.5B, SmolLM2-360M, and TinyLlama-1.1B clients
@@ -73,17 +106,35 @@ samples only from target-eligible rows; routed-\(K\) uses the frozen routing
 order; maximum-purity-\(K\) contains 103 clean and 25 conflict rows.  The last
 arm is an audit-only attainable upper control, not a clean-only method.
 
+\section{Post-hoc IMDb Selector-Component Diagnostic}
+After the IMDb primary and matched-\(K\) results were observed, we ran a
+post-hoc reused-test diagnostic that replaces the full routed-\(K\) score with
+one component at a time while preserving \(K=128\), 64 examples per claimed
+label, the severe mixture, models, anchors, optimizer settings, and server
+training budget.  The new 30 records cover ten seeds and three arms:
+gradient-only, loss-only, and margin-only.  The existing verified
+routed-\(K\) matched-size records serve as the full-router reference.
+
+Mean accuracies are 91.46\% for full routed-\(K\), 91.30\% for gradient-only,
+91.50\% for loss-only, and 91.36\% for margin-only.  The three post-hoc
+paired contrasts use one Holm family: full-minus-gradient is \(+0.16\pp\)
+(95\% CI \([+0.00,+0.32]\), Holm \(p=.135\)); full-minus-loss is
+\(-0.04\pp\) (\([-0.17,+0.09]\), Holm \(p=.505\)); and full-minus-margin is
+\(+0.10\pp\) (\([-0.00,+0.21]\), Holm \(p=.135\)).  Audited clean fractions
+are 71.0\%, 59.4\%, 67.3\%, and 71.6\%, respectively.  Thus the diagnostic
+does not isolate a statistically detectable single-component replacement gap
+after multiplicity correction, and it does not change the primary IMDb gate or
+the matched-\(K\) secondary family.
+
 \section{Compatible Co-Teaching Control}
 We compare naive LoRA to two-peer Co-Teaching on frozen AG News development
 mixtures.  Co-Teaching receives the true total contamination fraction as its
 forget rate, and peer probabilities are ensembled at evaluation.  This is an
 oracle-rate compatible-model control, not a heterogeneous server baseline.
 
-\begin{table}[H]
+\begin{table}[ht]
 \centering
 \small
-\caption{AG News development accuracy over three seeds.  Entries are
-naive / Co-Teaching; parentheses are percentage-point changes.}
 \begin{tabular}{lrr}
 \toprule
 Client & Conflict 40\% & Joint 40\%/20\%\\
@@ -93,6 +144,8 @@ SmolLM2 & 65.83 / 68.46 (+2.63) & 48.00 / 47.37 (-0.63)\\
 TinyLlama & 59.25 / 68.54 (+9.29) & 54.92 / 37.25 (-17.67)\\
 \bottomrule
 \end{tabular}
+\caption{Three-seed AG News development accuracy: naive / Co-Teaching
+(percentage-point change).}
 \end{table}
 
 No contrast survives Holm correction over the six contaminated comparisons
@@ -142,11 +195,9 @@ from 6.62\% to 7.91\%.  This supports a narrow local Qwen endpoint, not
 beneficial federated transfer.  The client families are documented in their
 model reports \cite{qwen2025technical,benallal2025smollm2,zhang2024tinyllama}.
 
-\begin{table}[H]
+\begin{table}[ht]
 \centering
 \small
-\caption{Post-observation non-Qwen GSM8K extension.  The two severe hypotheses
-form a Holm family.}
 \begin{tabular}{llrrr}
 \toprule
 Client & Condition & Naive & Teacher & Gain\\
@@ -157,6 +208,8 @@ TinyLlama & clean  & 3.66 & 4.25 & +0.58\\
 TinyLlama & severe & 1.42 & 3.44 & +2.02\\
 \bottomrule
 \end{tabular}
+\caption{Post-observation non-Qwen GSM8K extension.  The two severe hypotheses
+form a Holm family.}
 \end{table}
 
 All six seed-level severe differences are positive, and both clean safety
@@ -167,12 +220,9 @@ small-loss selectors by \(+0.78/+0.98\pp\) for SmolLM2 and
 \(+1.56/+1.50\pp\) for TinyLlama.  These post-hoc controls cannot repair the
 failed official cross-family gate.
 
-\begin{table}[H]
+\begin{table*}[t]
 \centering
 \small
-\caption{Disjoint 1,024-example post-primary severity curve.  Values are mean
-exact match; parentheses show teacher-minus-naive percentage-point changes.}
-\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrrrrr}
 \toprule
 & \multicolumn{2}{c}{Clean} & \multicolumn{2}{c}{Medium (20/10)}
@@ -184,8 +234,9 @@ SmolLM2 & 3.68 & 2.80 (-0.88) & 2.15 & 3.39 (+1.24) & 1.46 & 2.47 (+1.01)\\
 TinyLlama & 2.99 & 2.93 (-0.07) & 2.02 & 2.44 (+0.42) & 1.07 & 1.73 (+0.65)\\
 \bottomrule
 \end{tabular}
-}
-\end{table}
+\caption{Disjoint 1,024-example post-primary severity curve.  Values are mean
+exact match; parentheses show teacher-minus-naive percentage-point changes.}
+\end{table*}
 
 The descriptive curve gate passes, but none of nine family-by-severity tests
 survives joint Holm correction.  Matched development selectors support a
@@ -195,14 +246,14 @@ $1.58\times$ wall-time ratios for SmolLM2 and TinyLlama; serial scoring of 256
 candidates takes approximately 8.1 seconds and peaks at 5.57 GiB allocated GPU
 memory on the recorded host.
 
-\begin{figure}[H]
+\begin{figure*}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/evidence.pdf}
+\includegraphics[width=0.94\textwidth]{figures/evidence.pdf}
 \caption{Paired mean changes with descriptive 95\% Student-$t$ intervals over
 three seeds.  Left: GSM8K teacher-ranking severity curve.  Right: Hausa and
 Yoruba oracle-rate Co-Teaching effects.  Intervals describe seed variation;
-the confirmatory gates described above remain failed.}
-\end{figure}
+the pre-specified gates described above remain failed.}
+\end{figure*}
 
 \section{Artifact Reconstruction and Failure Policy}
 The reconstruction path is content addressed rather than inferred from a
@@ -221,30 +272,46 @@ in the manuscript.  A phase verifier checks the expected seed--method
 Cartesian product, record identities, frozen protocol and configuration
 fields, evaluation counts, finite metrics, and method-specific invariants.
 The IMDb matched-size analysis additionally verifies its fixed cardinality,
-claimed-label quotas, mixture identity, and routed-arm equivalence to the
-corresponding original intervention.  The paper-asset generator first requires
-the exact complete matrices and positive verifier certificates.  Only then
-does it load the raw JSON, recompute arm means and sample standard deviations,
-paired differences and Student-$t$ intervals, the frozen paired tests and Holm
-adjustment, exact sign-flip sensitivity where declared, and audited selection
-composition.  A single machine-readable statistics file is then used to emit
-the TeX macros, tables, English results block, and vector figure.  These files
-are built in a temporary staging directory and replace the published asset set
-only after figure compilation succeeds.
+claimed-label quotas, mixture identity, and a separate conditional
+implementation relationship receipt for the routed original and routed-\(K\)
+arms.  The paper-asset generator first requires the exact complete matrices and
+positive verifier certificates.  Only then does it load the raw JSON, recompute
+arm means and sample standard deviations, paired differences and Student-$t$
+intervals, the frozen paired tests and Holm adjustment, exact sign-flip
+sensitivity where declared, and audited selection composition.  A single
+machine-readable statistics file is then used to emit the TeX macros, tables,
+English results block, and vector figure.  These files are built in a temporary
+staging directory and replace the published asset set only after figure
+compilation succeeds.
+
+The routed relationship verifier was corrected after all 70 IMDb official
+records already existed.  The verifier frozen at official start
+(\texttt{2c8678f7...}) incorrectly required unconditional whole-record
+identity, even when the original conditional gate retained all 256 examples and
+the matched protocol deliberately forced \(K=128\).  The repaired verifier
+(\texttt{5518b177...}) checks exact identity only before a local gate fork,
+records the original gate decision as the only authorized first divergence, and
+then checks each arm's frozen branch invariants.  It partitions the 60
+client-rounds into 55 exact pre-fork triggered rounds, four first authorized
+gate divergences, and one post-local-fork round that is not
+relationship-eligible; six of ten seed trajectories are fully identical.  No
+raw JSON, seed, arm, metric, statistic, protocol, or runner changed, and this
+receipt is separate from the three scientific IMDb gate clauses.
 
 Failure is therefore explicit and fail-closed.  A missing or extra record, an
-identity mismatch, a non-finite metric, a verifier rejection, failed routed
-equivalence, or failed figure compilation prevents publication of a new asset
-set.  Aborted and invalidated attempts may remain as timestamped failure logs
-for audit, but they are not members of the verified matrix and cannot enter a
-summary.  Partial official results may be observed solely to diagnose process
-health; they do not authorize seed changes, stopping, hyperparameter updates,
-new contrasts, or manuscript numbers.  Official claims are generated only
-after the full frozen matrix passes its verifier.  These checks establish the
-reported artifact path; they are not a claim that every legacy or optional
-test in the broader repository succeeds in the present environment.
+identity mismatch, a non-finite metric, a verifier rejection, a failed
+conditional relationship receipt, or failed figure compilation prevents
+publication of a new asset set unless a verifier defect is disclosed, patched,
+and regression-tested without changing records or reported statistics.  Aborted
+and invalidated attempts may remain as timestamped failure logs for audit, but
+they are not members of the verified matrix and cannot enter a summary.
+Partial official results may be observed solely to diagnose process health;
+they do not authorize seed changes, stopping, hyperparameter updates, new
+contrasts, or manuscript numbers.  Official claims are generated only after the
+full frozen matrix passes its verifier.  These checks establish the reported
+artifact path; they are not a claim that every legacy or optional test in the
+broader repository succeeds in the present environment.
 
-\newpage
 \section{Evidence Boundary}
 The GSM8K Qwen result is the only positive official local endpoint in this
 supplement.  The non-Qwen extension follows observation of the Qwen phase on

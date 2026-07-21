@@ -1,0 +1,18 @@
+% Auto-generated narrative; do not edit reported values by hand.
+\input{generated/imdb_official_macros.tex}
+\subsection{Protocol-frozen IMDb primary analysis}
+The complete frozen ten-seed matrix gives mean accuracies of \IMDbArmAAccuracyPct\%, \IMDbArmBAccuracyPct\%, \IMDbArmCAccuracyPct\%, and \IMDbArmDAccuracyPct\% for arms A--D, respectively.  The pre-specified narrow cross-task gate \textbf{fails}: the frozen severe-mixture baseline is \IMDbSevereBaselineCleanPct\% clean, the observed severe-uniform share is \IMDbSevereUniformCleanPct\%, and the routed share is \IMDbSevereRoutedCleanPct\%.  The primary D--C effect is \IMDbPrimaryDeltaPP\ pp (95\% CI [\IMDbPrimaryCILowPP, \IMDbPrimaryCIHighPP]; paired two-sided $t$-test $p=\IMDbPrimaryPairedTP$; exact sign-flip sensitivity $p=\IMDbPrimarySignFlipP$).  The strictly positive D--C interval contradicts the TREC-derived negative directional prediction in this protocol-frozen IMDb evaluation; audited purity and server accuracy move in the same direction in this setting.
+\begin{table*}[t]
+\centering
+\input{generated/imdb_official_tables.tex}
+\caption{Complete official IMDb results over ten common seeds. Values in the arm panel are mean $\pm$ sample SD.  Confidence intervals are unadjusted paired two-sided 95\% Student-$t$ intervals.}
+\label{tab:imdb-official}
+\end{table*}
+\subsection{Matched-$K$ secondary mechanistic analysis}
+This separately frozen secondary family holds $K=128$, claimed-label quotas, local steps, and the severe mixture fixed.  Audited clean shares are \IMDbMatchedRandomCleanPct\% for random-$K$, \IMDbMatchedRoutedCleanPct\% for routed-$K$, and \IMDbMatchedMaxPurityCleanPct\% for maximum-purity-$K$.  The routed-$K$ minus random-$K$ effect is \IMDbRoutedRandomDeltaPP\ pp (95\% CI [\IMDbRoutedRandomCILowPP, \IMDbRoutedRandomCIHighPP]; raw $p=\IMDbRoutedRandomRawP$, Holm $p=\IMDbRoutedRandomHolmP$).  The maximum-purity-$K$ minus routed-$K$ effect is \IMDbMaxPurityRoutedDeltaPP\ pp (95\% CI [\IMDbMaxPurityRoutedCILowPP, \IMDbMaxPurityRoutedCIHighPP]; raw $p=\IMDbMaxPurityRoutedRawP$, Holm $p=\IMDbMaxPurityRoutedHolmP$).  After Holm correction, routed-$K$ significantly outperforms random-$K$. Maximum-purity-$K$ does not show a statistically detectable gain over routed-$K$. These data therefore do not establish an additional accuracy gain from the higher audited clean fraction.  These are secondary mechanistic tests and do not confirm or replace the primary analysis.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{generated/imdb_official_figure.pdf}
+\caption{Paired IMDb effects and audited selected-set composition. Points are mean paired accuracy differences and bars are unadjusted 95\% intervals; the two matched-$K$ tests form the frozen secondary Holm family.}
+\label{fig:imdb-official}
+\end{figure*}

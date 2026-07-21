@@ -3,12 +3,13 @@
 \usepackage{newtxmath}
 \usepackage{pgfplots}
 \usepgfplotslibrary{groupplots}
+\usetikzlibrary{patterns}
 \pgfplotsset{compat=1.18}
 \input{evidence_data.tex}
 
-\definecolor{qwenblue}{HTML}{2878B5}
-\definecolor{smolorange}{HTML}{E07A1F}
-\definecolor{tinygreen}{HTML}{3A923A}
+\definecolor{qwenblue}{HTML}{1F5A99}
+\definecolor{smolorange}{HTML}{934500}
+\definecolor{deepgreen}{HTML}{176B3A}
 \definecolor{gridgray}{HTML}{D7DBDD}
 
 \begin{document}
@@ -16,10 +17,10 @@
 \begin{groupplot}[
   group style={group size=2 by 1,horizontal sep=16mm},
   width=8.1cm,height=5.25cm,
-  tick label style={font=\sffamily\fontsize{7.2}{8}\selectfont},
-  label style={font=\sffamily\fontsize{8}{9}\selectfont},
-  title style={font=\sffamily\bfseries\fontsize{8.5}{9.5}\selectfont},
-  legend style={font=\sffamily\fontsize{7}{8}\selectfont,draw=none,
+  tick label style={font=\sffamily\fontsize{9}{10}\selectfont},
+  label style={font=\sffamily\fontsize{9}{10}\selectfont},
+  title style={font=\sffamily\bfseries\fontsize{9}{10}\selectfont},
+  legend style={font=\sffamily\fontsize{9}{10}\selectfont,draw=none,
                 fill=none,cells={anchor=west}},
   axis line style={black!65},tick style={black!65},
   ymajorgrids,grid style={gridgray,dashed},
@@ -37,7 +38,7 @@
 \addplot+[smolorange,thick,mark=square*,error bars/.cd,y dir=both,y explicit]
   coordinates \SmolSeverity;
 \addlegendentry{SmolLM2}
-\addplot+[tinygreen,thick,mark=triangle*,error bars/.cd,y dir=both,y explicit]
+\addplot+[deepgreen,thick,mark=triangle*,error bars/.cd,y dir=both,y explicit]
   coordinates \TinySeverity;
 \addlegendentry{TinyLlama}
 \draw[black!70,densely dotted] (axis cs:-.2,0) -- (axis cs:2.2,0);
@@ -51,13 +52,15 @@
   legend columns=3,
   legend style={at={(0.5,-0.20)},anchor=north},
 ]
-\addplot+[draw=qwenblue,fill=qwenblue!70,error bars/.cd,y dir=both,y explicit]
+\addplot+[draw=qwenblue,fill=qwenblue!75,error bars/.cd,y dir=both,y explicit]
   coordinates \QwenNatural;
 \addlegendentry{Qwen}
-\addplot+[draw=smolorange,fill=smolorange!70,error bars/.cd,y dir=both,y explicit]
+\addplot+[draw=smolorange,fill=white,pattern=north east lines,
+  pattern color=smolorange,error bars/.cd,y dir=both,y explicit]
   coordinates \SmolNatural;
 \addlegendentry{SmolLM2}
-\addplot+[draw=tinygreen,fill=tinygreen!70,error bars/.cd,y dir=both,y explicit]
+\addplot+[draw=deepgreen,fill=white,pattern=crosshatch dots,
+  pattern color=deepgreen,error bars/.cd,y dir=both,y explicit]
   coordinates \TinyNatural;
 \addlegendentry{TinyLlama}
 \draw[black!70,densely dotted] (axis cs:-.55,0) -- (axis cs:1.55,0);

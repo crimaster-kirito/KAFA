@@ -1,10 +1,7 @@
 \begin{table}[h]
 \centering
-\scriptsize
+\small
 \setlength{\tabcolsep}{2pt}
-\caption{Evidence ledger. ``Prospective'' is relative to the retained
-workspace; hashes establish internal consistency, not external
-preregistration.}
 \begin{tabular}{@{}>{\raggedright\arraybackslash}p{.20\columnwidth}
                     >{\raggedright\arraybackslash}p{.32\columnwidth}
                     >{\raggedright\arraybackslash}p{.40\columnwidth}@{}}
@@ -13,11 +10,13 @@ Study & Design timing & Authorized role \\
 \midrule
 TREC primary & Separately frozen, five seeds & Task-specific primary contrast \\
 TREC four-arm & Post-primary, reused test & Discovery/mechanistic Holm family \\
-IMDb four-arm & Frozen before official evaluation & Single prospective primary contrast \\
+IMDb four-arm & Frozen before official evaluation & Protocol-frozen primary contrast \\
 IMDb matched-\(K\) & Post-development, pre-official & Secondary mechanistic Holm family \\
 AG legacy & Three seeds plus post-observation check & Prior task-specific \(D-A\) context \\
 AG four-arm & Post-primary, run-disjoint rows & Secondary task-specific \(D-C\) context \\
 \bottomrule
 \end{tabular}
+\caption{Evidence ledger. Protocol chronology is supported by retained run
+records; hashes establish internal consistency, not external preregistration.}
 \label{tab:evidence-ledger}
 \end{table}

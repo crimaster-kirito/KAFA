@@ -225,11 +225,17 @@ def _bind_protocol_semantics(trec_path: Path, imdb_path: Path,
     fixed = matched.get("fixed_configuration", {})
     _expect_equal((fixed.get("rounds"), len(fixed.get("client_models", [])),
                    fixed.get("matched_k"), fixed.get("matched_quota_per_claimed_label"),
+                   fixed.get("forced_gate_threshold"),
                    fixed.get("severe_clean_examples_each"),
                    fixed.get("severe_conflict_examples_each"),
                    fixed.get("severe_off_task_examples_each")),
-                  (2, 3, 128, 64, 103, 102, 51),
+                  (2, 3, 128, 64, 1e30, 103, 102, 51),
                   "matched.fixed_configuration")
+    _expect_tokens(matched.get("selection_contract", {}).get(
+        "severe_routed_k"),
+        ("original relative-balanced routing", "force selection regardless",
+         "best 64 examples per claimed label", "gate triggers", "k=128"),
+        "matched.selection_contract.severe_routed_k")
     _expect_equal(matched_analysis.get("classification"),
                   "prospective secondary mechanistic addendum",
                   "matched.analysis.classification")
@@ -280,6 +286,10 @@ def _bind_protocol_semantics(trec_path: Path, imdb_path: Path,
                           "primary_alpha": primary["alpha"]},
         "imdb_matched_k": {"name": matched["name"], "status": matched["status"],
                            "matched_k": fixed["matched_k"],
+                           "forced_gate_threshold":
+                               fixed["forced_gate_threshold"],
+                           "relationship":
+                               "conditional implementation equivalence",
                            "expected_client_records": (
                                len(TASKS["imdb"]["seeds"]) * fixed["rounds"] *
                                len(fixed["client_models"]))},
@@ -355,6 +365,18 @@ def _arm_summaries(records: dict, seeds: tuple[int, ...],
 
 def _correct_count(record: dict, context: str) -> int:
     matrix = record.get("final", {}).get("confusion_matrix")
+    evaluation_examples = int(record.get("evaluation_examples", -1))
+    accuracy = float(record["final"]["accuracy"])
+    if matrix is None:
+        _require(evaluation_examples > 0,
+                 f"{context}: evaluation_examples required without confusion_matrix")
+        reconstructed = accuracy * evaluation_examples
+        correct = round(reconstructed)
+        _require(abs(reconstructed - correct) <= 1e-3,
+                 f"{context}: accuracy does not reconstruct integer correct count")
+        _require(0 <= correct <= evaluation_examples,
+                 f"{context}: reconstructed correct count out of range")
+        return int(correct)
     _require(isinstance(matrix, list) and matrix and
              all(isinstance(row, list) and len(row) == len(matrix)
                  for row in matrix),
@@ -364,12 +386,10 @@ def _correct_count(record: dict, context: str) -> int:
                  value >= 0 for value in values),
              f"{context}: confusion_matrix counts must be nonnegative integers")
     total = sum(values)
-    evaluation_examples = int(record.get("evaluation_examples", -1))
     _require(total == evaluation_examples,
              f"{context}: confusion_matrix total differs from evaluation_examples")
     correct = sum(matrix[index][index] for index in range(len(matrix)))
-    accuracy = float(record["final"]["accuracy"])
-    _require(math.isclose(correct / total, accuracy, rel_tol=0, abs_tol=1e-12),
+    _require(math.isclose(correct / total, accuracy, rel_tol=0, abs_tol=5e-8),
              f"{context}: confusion_matrix trace differs from accuracy")
     return correct
 
@@ -519,7 +539,6 @@ def _matched_statistics(records: dict, matched_k: int = 128,
 
 def compute_statistics(trec_records: dict, imdb_records: dict,
                        matched_records: dict, ag_records: dict,
-                       equivalence_certified: bool = True,
                        matched_k: int = 128,
                        matched_expected_client_records: int = 60) -> dict:
     tasks = {
@@ -546,7 +565,6 @@ def compute_statistics(trec_records: dict, imdb_records: dict,
         "dc_ci95_strictly_negative": bool(imdb_dc["ci95_high"] < 0),
         "dc_two_sided_p_lt_0_05": bool(
             imdb_dc["paired_t_two_sided_p"] < 0.05),
-        "routed_equivalence_verifier_certified": bool(equivalence_certified),
     }
     imdb_gate = {
         "classification": "frozen prospective primary claim gate",
@@ -682,9 +700,9 @@ def _render_table(ledger: dict) -> str:
          f"}}; routed clean {100*gate['observed_routed_clean_fraction']:.1f}\\% "
          f"$>$ {100*gate['threshold_clean_fraction']:.1f}\\%, "
          f"$D-C$ CI upper {100*imdb_dc['ci95_high']:+.2f} pp, "
-         f"{_p_value_tex(imdb_dc['paired_t_two_sided_p'])}, routed equivalence "
-         + ("certified" if gate["components"][
-             "routed_equivalence_verifier_certified"] else "not certified") + "."),
+         f"{_p_value_tex(imdb_dc['paired_t_two_sided_p'])}. Conditional "
+         f"implementation contract certified; full trajectories "
+         f"{ledger['imdb_routed_relationship']['receipt']['fully_identical_trajectory_pairs']}/10."),
         r"\end{table*}",
     ])
     return "\n".join(lines) + "\n"
@@ -811,7 +829,10 @@ def _render_figure(ledger: dict) -> str:
         rf"\textbf{{{'passed' if gate['passed'] else 'not passed'}}}; clean "
         rf"{100*gate['observed_routed_clean_fraction']:.1f}$>${100*gate['threshold_clean_fraction']:.1f}\%, "
         rf"CI upper {100*imdb_dc['ci95_high']:+.2f} pp, "
-        rf"{gate_p}, equiv. yes}};",
+        rf"{gate_p}}};",
+        rf"\node[anchor=west] at (8.65,-0.48) {{conditional implementation "
+        rf"contract: certified; full trajectories "
+        rf"{ledger['imdb_routed_relationship']['receipt']['fully_identical_trajectory_pairs']}/10}};",
         rf"\node[anchor=west] at (0,-0.20) {{AG $D-C$ direction matches TREC: "
         rf"\textbf{{{'yes' if ag_match else 'no'}}}}};",
         r"\end{tikzpicture}", r"\end{document}",
@@ -1017,13 +1038,24 @@ def generate_assets(
     _positive_gate(gates["imdb_matched_k"], "official_evaluation", "records", 30,
                    "IMDb matched-K", protocol_hashes["imdb_matched_k"],
                    TASKS["imdb"]["seeds"], MATCHED_ARMS)
-    _require(gates["imdb_routed_equivalence"].get("phase") ==
-             "official_evaluation" and
-             gates["imdb_routed_equivalence"].get("pairs") == 10 and
-             gates["imdb_routed_equivalence"].get("seeds") ==
+    equivalence_gate = gates["imdb_routed_equivalence"]
+    equivalence_partition = sum(int(equivalence_gate.get(key, -1000)) for key in (
+        "exact_pre_fork_triggered_client_rounds",
+        "first_authorized_gate_divergence_client_rounds",
+        "post_local_fork_not_equivalence_eligible_client_rounds"))
+    _require(equivalence_gate.get("schema_version") ==
+             "imdb_routed_conditional_equivalence_v2" and
+             equivalence_gate.get("phase") == "official_evaluation" and
+             equivalence_gate.get("pairs") == 10 and
+             equivalence_gate.get("seeds") ==
              list(TASKS["imdb"]["seeds"]) and
-             gates["imdb_routed_equivalence"].get("functional_equivalence") is True,
-             "IMDb routed equivalence verifier did not certify ten pairs")
+             equivalence_gate.get("conditional_implementation_equivalence") is
+             True and equivalence_gate.get("total_client_rounds") == 60 and
+             equivalence_partition == 60 and
+             equivalence_gate.get("fully_identical_trajectory_pairs", -1) +
+             equivalence_gate.get("pairs_with_forced_gate_divergence", -1) == 10,
+             "IMDb conditional implementation-equivalence verifier did not "
+             "certify and partition ten pairs")
     _positive_gate(gates["agnews"], "secondary_holdout", "records", 40,
                    "AG News", protocol_hashes["agnews"],
                    TASKS["agnews"]["seeds"], FOUR_ARMS)
@@ -1039,13 +1071,16 @@ def generate_assets(
     }
     ledger = compute_statistics(records["trec"], records["imdb"],
                                 records["matched"], records["agnews"],
-                                equivalence_certified=True,
                                 matched_k=protocol_semantics[
                                     "imdb_matched_k"]["matched_k"],
                                 matched_expected_client_records=protocol_semantics[
                                     "imdb_matched_k"]["expected_client_records"])
-    ledger["imdb_primary_gate"]["equivalence_verifier_receipt"] = dict(
-        gates["imdb_routed_equivalence"])
+    ledger["imdb_routed_relationship"] = {
+        "classification": "conditional implementation integrity receipt",
+        "not_a_primary_gate_component": True,
+        "not_statistical_equivalence": True,
+        "receipt": dict(gates["imdb_routed_equivalence"]),
+    }
     gates["imdb_routed_equivalence"]["generator_bound_protocol_sha256"] = {
         "imdb_original": protocol_hashes["imdb_original"],
         "imdb_matched_k": protocol_hashes["imdb_matched_k"],

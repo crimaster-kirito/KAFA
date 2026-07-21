@@ -1,8 +1,9 @@
 """Generate submission assets from the complete, verified IMDb matrices.
 
 This module is deliberately fail-closed.  It creates no output directory until
-both frozen official matrices and the cross-matrix routed-arm equivalence check
-have succeeded.  The emitted JSON is the machine-readable source of the TeX
+both frozen official matrices and the cross-matrix conditional routed-arm
+implementation-equivalence check have succeeded.  The emitted JSON is the
+machine-readable source of the TeX
 macros, tables, and vector figure.
 """
 
@@ -298,14 +299,81 @@ def _render_macros(stats: dict) -> str:
 
 def _render_results_block(stats: dict) -> str:
     gate_status = "passes" if stats["primary_confirmation_gate"]["passes"] else "fails"
+    primary = stats["primary_contrast"]
+    gate = stats["primary_confirmation_gate"]
+    if gate["passes"]:
+        primary_interpretation = (
+            "The protocol-frozen IMDb result supports the narrow "
+            "negative-direction prediction within the retained run records: "
+            "audited purity rises while server accuracy falls."
+        )
+    elif (gate["clean_fraction_strictly_above_baseline"] and
+          primary["ci95_low"] > 0 and
+          gate["paired_t_two_sided_p_below_0_05"]):
+        primary_interpretation = (
+            "The strictly positive D--C interval contradicts the TREC-derived "
+            "negative directional prediction in this protocol-frozen IMDb "
+            "evaluation; audited purity and server accuracy move in the same "
+            "direction in this setting."
+        )
+    elif primary["mean"] > 0:
+        primary_interpretation = (
+            "The positive point estimate does not support the protocol-frozen "
+            "negative-direction prediction, but its interval does not "
+            "establish an opposite directional effect."
+        )
+    else:
+        primary_interpretation = (
+            "The result does not satisfy every frozen confirmation clause, so "
+            "the TREC-derived negative-direction hypothesis remains "
+            "unconfirmed on IMDb."
+        )
+
+    routed_random, maximum_routed = stats["matched_secondary_holm_family"]
+    routed_random_significant = (
+        routed_random["ci95_low"] > 0 and
+        routed_random["holm_adjusted_p"] < 0.05)
+    maximum_routed_significant = (
+        maximum_routed["ci95_low"] > 0 and
+        maximum_routed["holm_adjusted_p"] < 0.05)
+    if routed_random_significant:
+        matched_interpretation = (
+            "After Holm correction, routed-$K$ significantly outperforms "
+            "random-$K$. "
+        )
+    else:
+        matched_interpretation = (
+            "After Holm correction, routed-$K$ does not significantly "
+            "outperform random-$K$. "
+        )
+    if maximum_routed_significant:
+        matched_interpretation += (
+            "Maximum-purity-$K$ also significantly outperforms routed-$K$."
+        )
+    else:
+        matched_interpretation += (
+            "Maximum-purity-$K$ does not show a statistically detectable gain "
+            "over routed-$K$."
+        )
+    clean = stats["matched_composition"]
+    clean_is_monotone = (
+        clean["severe_random_k"]["fractions"]["clean"] <
+        clean["severe_routed_k"]["fractions"]["clean"] <
+        clean["oracle_max_purity_k"]["fractions"]["clean"])
+    if (clean_is_monotone and routed_random_significant and
+            not maximum_routed_significant):
+        matched_interpretation += (
+            " These data therefore do not establish an additional accuracy "
+            "gain from the higher audited clean fraction."
+        )
     return "\n".join([
         "% Auto-generated narrative; do not edit reported values by hand.",
         r"\input{generated/imdb_official_macros.tex}",
-        r"\subsection{Prospective IMDb primary analysis}",
+        r"\subsection{Protocol-frozen IMDb primary analysis}",
         r"The complete frozen ten-seed matrix gives mean accuracies of "
         r"\IMDbArmAAccuracyPct\%, \IMDbArmBAccuracyPct\%, "
         r"\IMDbArmCAccuracyPct\%, and \IMDbArmDAccuracyPct\% for arms A--D, "
-        r"respectively.  The predeclared narrow cross-task gate \textbf{" +
+        r"respectively.  The pre-specified narrow cross-task gate \textbf{" +
         gate_status + r"}: the frozen severe-mixture baseline is "
         r"\IMDbSevereBaselineCleanPct\% clean, the observed severe-uniform "
         r"share is \IMDbSevereUniformCleanPct\%, and the routed share is "
@@ -313,13 +381,14 @@ def _render_results_block(stats: dict) -> str:
         r"\IMDbPrimaryDeltaPP\ pp (95\% CI "
         r"[\IMDbPrimaryCILowPP, \IMDbPrimaryCIHighPP]; paired two-sided "
         r"$t$-test $p=\IMDbPrimaryPairedTP$; exact sign-flip sensitivity "
-        r"$p=\IMDbPrimarySignFlipP$).",
+        r"$p=\IMDbPrimarySignFlipP$).  " + primary_interpretation,
         r"\begin{table*}[t]",
         r"\centering",
         r"\input{generated/imdb_official_tables.tex}",
         r"\caption{Complete official IMDb results over ten common seeds. "
         r"Values in the arm panel are mean $\pm$ sample SD.  Confidence "
-        r"intervals are paired two-sided 95\% Student-$t$ intervals.}",
+        r"intervals are unadjusted paired two-sided 95\% Student-$t$ "
+        r"intervals.}",
         r"\label{tab:imdb-official}",
         r"\end{table*}",
         r"\subsection{Matched-$K$ secondary mechanistic analysis}",
@@ -335,7 +404,8 @@ def _render_results_block(stats: dict) -> str:
         r"routed-$K$ effect is \IMDbMaxPurityRoutedDeltaPP\ pp (95\% CI "
         r"[\IMDbMaxPurityRoutedCILowPP, \IMDbMaxPurityRoutedCIHighPP]; raw "
         r"$p=\IMDbMaxPurityRoutedRawP$, Holm "
-        r"$p=\IMDbMaxPurityRoutedHolmP$).  These are secondary mechanistic "
+        r"$p=\IMDbMaxPurityRoutedHolmP$).  " + matched_interpretation +
+        r"  These are secondary mechanistic "
         r"tests and do not confirm or replace the primary analysis.",
         r"\begin{figure*}[t]",
         r"\centering",
@@ -362,18 +432,19 @@ def _arm_row(label: str, values: dict) -> str:
 
 def _contrast_row(label: str, item: dict, adjusted: bool) -> str:
     p = item["paired_t_two_sided_p"]
-    auxiliary_p = (item["holm_adjusted_p"] if adjusted else
-                   item["exact_two_sided_sign_flip_p"])
+    holm_p = _p_text(item["holm_adjusted_p"]) if adjusted else "---"
+    exact_p = "---" if adjusted else _p_text(item["exact_two_sided_sign_flip_p"])
     return (f"{label} & {100 * item['mean']:+.2f} "
             f"[{100 * item['ci95_low']:+.2f}, {100 * item['ci95_high']:+.2f}] "
-            f"& {_p_text(p)} & {_p_text(auxiliary_p)} " + r"\\")
+            f"& {_p_text(p)} & {holm_p} & {exact_p} " + r"\\")
 
 
 def _render_tables(stats: dict) -> str:
     lines = [
         "% Auto-generated only after all 70 official records verify.",
-        r"\noindent\resizebox{0.99\linewidth}{!}{%",
-        r"\begin{tabular}{lrrrr}",
+        r"\small",
+        r"\setlength{\tabcolsep}{3pt}",
+        r"\begin{tabular}{@{}p{.30\linewidth}rrrr@{}}",
         r"\toprule",
         r"Arm & Accuracy (\%) & Macro-F1 (\%) & Score NLL & Score ECE \\",
         r"\midrule",
@@ -388,12 +459,11 @@ def _render_tables(stats: dict) -> str:
     lines.extend([
         r"\bottomrule",
         r"\end{tabular}",
-        r"}",
         "",
-        r"\noindent\resizebox{0.99\linewidth}{!}{%",
-        r"\begin{tabular}{lrrr}",
+        r"\vspace{1mm}",
+        r"\begin{tabular}{@{}p{.37\linewidth}rrrr@{}}",
         r"\toprule",
-        r"Frozen contrast & Mean pp [95\% CI] & Paired-$t$ $p$ & Holm / exact $p$ \\",
+        r"Frozen contrast & Mean pp [95\% CI] & Raw $p$ & Holm $p$ & Exact $p$ \\",
         r"\midrule",
         _contrast_row(r"Routed $-$ severe uniform (primary)",
                       stats["primary_contrast"], False),
@@ -403,7 +473,6 @@ def _render_tables(stats: dict) -> str:
                       stats["matched_secondary_holm_family"][1], True),
         r"\bottomrule",
         r"\end{tabular}",
-        r"}",
     ])
     return "\n".join(lines) + "\n"
 
@@ -428,9 +497,9 @@ def _render_figure_tex(stats: dict) -> str:
         r"\documentclass[tikz,border=2pt]{standalone}",
         r"\usepackage{newtxtext}", r"\usepackage{newtxmath}",
         r"\definecolor{kafablue}{RGB}{38,92,140}",
-        r"\definecolor{kafaorange}{RGB}{221,132,43}",
+        r"\definecolor{kafaorange}{RGB}{147,69,0}",
         r"\definecolor{kafagray}{RGB}{166,166,166}",
-        r"\begin{document}", r"\begin{tikzpicture}[font=\sffamily\scriptsize]",
+        r"\begin{document}", r"\begin{tikzpicture}[font=\sffamily\fontsize{9}{10}\selectfont]",
         r"\node[anchor=west,font=\sffamily\bfseries] at (0,4.7) {(a) Paired accuracy effects};",
         rf"\draw[->] ({x0:.3f},0.75) -- ({x0+width+0.15:.3f},0.75);",
         rf"\node at ({x0+width/2:.3f},0.18) {{accuracy difference (pp)}};",
@@ -543,10 +612,24 @@ def generate_assets(
     _require(matched_gate.get("phase") == "official_evaluation"
              and matched_gate.get("records") == 30,
              "matched official verifier did not certify 30 records")
-    _require(equivalence_gate.get("phase") == "official_evaluation"
+    equivalence_partition = sum(int(equivalence_gate.get(key, -1000)) for key in (
+        "exact_pre_fork_triggered_client_rounds",
+        "first_authorized_gate_divergence_client_rounds",
+        "post_local_fork_not_equivalence_eligible_client_rounds"))
+    _require(equivalence_gate.get("schema_version") ==
+             "imdb_routed_conditional_equivalence_v2"
+             and equivalence_gate.get("phase") == "official_evaluation"
              and equivalence_gate.get("pairs") == 10
-             and equivalence_gate.get("functional_equivalence") is True,
-             "routed equivalence verifier did not certify all ten pairs")
+             and equivalence_gate.get("seeds") == list(SEEDS)
+             and equivalence_gate.get("total_client_rounds") == 60
+             and equivalence_partition == 60
+             and equivalence_gate.get("fully_identical_trajectory_pairs", -1)
+             + equivalence_gate.get("pairs_with_forced_gate_divergence", -1)
+             == 10
+             and equivalence_gate.get(
+                 "conditional_implementation_equivalence") is True,
+             "conditional routed implementation-equivalence verifier did not "
+             "certify all ten pairs")
 
     original_records = _load_records(original_dir, ORIGINAL_METHODS)
     matched_records = _load_records(matched_dir, MATCHED_METHODS)

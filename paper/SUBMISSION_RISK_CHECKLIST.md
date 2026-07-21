@@ -1,0 +1,100 @@
+# Submission risk checklist
+
+This file is the final human-facing checklist for the current AAAI-27 working
+submission. It separates verified evidence from remaining human actions and
+claims that must not be made.
+
+## Verified mechanical state
+
+- Main paper: `paper/main.pdf`, anonymous, 7 US-Letter pages; references begin
+  on page 6.
+- Supplement: `paper/supplement.pdf`, anonymous, 4 pages.
+- Reproducibility checklist: `paper/ReproducibilityChecklist.pdf`, 2 pages.
+- Main paper assets: 2 tables, 2 vector figures, 31 resolved references.
+- Complete matrices verified:
+  - TREC post-primary four-arm: 40 records.
+  - IMDb original four-arm: 40 records.
+  - IMDb matched-K: 30 records.
+  - IMDb selector-component post-hoc diagnostic: 30 records.
+  - AG News secondary four-arm: 40 records.
+- Cross-task server-audit generated assets are bound to all 150 records by
+  `paper/generated/server_audit_current_inputs.json`.
+- Anonymous artifact preflight: `paper/package_anonymous_artifact.py --build`
+  creates `paper/artifacts/KAFA_anonymous_artifact.zip` with 765 manifest files.
+  Record the final archive SHA-256 outside the archive after the last build to
+  avoid self-referential hash churn.
+  The zip scan found no logs/failure directories, invalidated records, model
+  weights, git state, local absolute paths, repository-owner names, or obvious
+  credential strings.
+- Latest full command:
+
+```bash
+bash paper/build_submission.sh
+```
+
+passed with 147 research-related tests after adding the selector-component
+diagnostic verifier, summarizer, and tests.
+
+## Human-only actions before OpenReview submission
+
+- Enter complete author list and author order.
+- Enter affiliations and contact author.
+- Enter conflicts of interest.
+- Confirm no author needs to be added later; AAAI states that authors may not
+  be added after submission.
+- Confirm funding acknowledgments.
+- Confirm data/code availability choices.
+- Confirm policy answers, including AI-assistance disclosure consistency.
+- Submit a substantive title and abstract, not a placeholder, and avoid
+  substantial abstract changes between the abstract and full-paper deadlines.
+- Upload only anonymous PDFs and anonymous/code-safe artifact bundles.
+- Upload `paper/ReproducibilityChecklist.pdf` as the separate checklist file,
+  not merged into the main paper PDF.
+- Do not upload shell histories, private credentials, local absolute-path logs,
+  or non-anonymous metadata.
+- If uploading an artifact, prefer `paper/artifacts/KAFA_anonymous_artifact.zip`
+  after rerunning `paper/package_anonymous_artifact.py --build`.
+
+## Claims that are supported
+
+- The work is an evaluation/audit contribution, not a new optimizer.
+- A canonical probability interface handles model/tokenizer heterogeneity but
+  does not guarantee useful transfer.
+- TREC reused-test four-arm evidence is hypothesis-generating and shows a
+  negative D-C routing effect.
+- IMDb protocol-frozen four-arm evidence reverses that D-C direction and
+  fails the frozen negative-direction gate.
+- IMDb matched-K evidence supports useful routed ordering over random-K, while
+  maximum-purity-K does not show a statistically detectable additional gain.
+- AG News post-primary secondary evidence has positive D-C but negative D-A,
+  so it is bounded same-task context, not independent confirmation.
+- IMDb selector-component evidence is post-hoc reused-test diagnostic evidence:
+  no full-minus-component contrast survives Holm correction, so it only bounds
+  component attribution.
+
+## Claims that must not be made
+
+- Do not claim external preregistration.
+- Do not claim privacy preservation, secure aggregation, or leakage protection.
+- Do not claim a new state-of-the-art optimizer or dominance over Selective-FD,
+  FedFD, FedID, FedHDS, Fed-DFA, Delora, FedClean, LESS, or Co-Teaching.
+- Do not claim that purity is useless or that higher purity can never help.
+- Do not claim task-population generalization from TREC, IMDb, and AG News.
+- Do not claim the entire legacy repository test suite is green; only the
+  focused submission suite and named verifier/test commands have been checked.
+- Do not treat AG secondary as external replication or independent
+  confirmation.
+
+## Highest remaining reviewer risks
+
+1. **Novelty risk:** the contribution is diagnostic and evidence-boundary
+   oriented; related algorithms already cover filtering, robust distillation,
+   and instruction selection.
+2. **Scope risk:** only three server tasks/configurations are audited, with
+   synthetic conflict/off-task interventions.
+3. **Chronology risk:** TREC and AG secondary are post-primary; only IMDb
+   supplies the protocol-frozen role-reversal test.
+4. **Privacy risk:** no leakage metric or protection is implemented.
+5. **Artifact risk:** the code/records are large and the worktree is dirty;
+   package only the intended anonymous reproducibility artifact generated by
+   `paper/package_anonymous_artifact.py`.

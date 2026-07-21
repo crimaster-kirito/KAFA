@@ -21,30 +21,32 @@ Data Heterogeneity}
 
 \begin{document}
 \maketitle
+\setlength{\emergencystretch}{1em}
 
 \begin{abstract}
 A canonical probability interface makes cross-architecture exchange
 well-defined across language models with different parameters and tokenizers,
-but it does
-not ensure that cleaner selected client data yields more useful server
+but cleaner selected client data need not yield more useful server
 supervision.  We introduce a four-arm audit that separates clean-transfer
 utility, contamination sensitivity, and the complete routing intervention,
 together with matched-size comparisons that probe selection order separately
-from subset size.  A post-primary reused-test TREC decomposition first exposes
-opposing effects: severe uniform transfer exceeds clean transfer by
-\(1.58\pp\), whereas routing reduces severe-uniform accuracy by \(1.42\pp\),
-despite raising audited clean fraction and lowering descriptive score NLL and
-score ECE.  This discovery motivates a role reversal frozen before model
-evaluation on the 25,000-review IMDb test, with one ten-seed primary
-contrast and a separate matched-\(K\) secondary family.  AG News supplies only
-prior task-specific context: routed transfer is \(0.56\pp\) below the
-anchor-only server in the original three seeds, and five later seeds retain the
-negative direction.  The protocols use real checkpoints and hashed manifests;
-records are accepted only after complete-matrix verification, with paired
-uncertainty and explicit evidence roles.  The
-contribution is diagnostic rather than algorithmic: selection purity,
-canonical score quality, and downstream transfer utility must be evaluated as
-distinct endpoints.
+from subset size.  A reused-test TREC decomposition finds that routing raises
+audited clean fraction from 40.0\% to 64.6\% but reduces severe-uniform
+accuracy by \(1.42\pp\) (Holm \(p=.0074\)).  A protocol-frozen role reversal
+on the 25,000-review IMDb test, with no retained record of prior model
+assessment on that split, reverses that direction: routing raises clean
+fraction from 40.2\% to 66.5\% and improves severe-uniform accuracy by
+\(0.29\pp\) (95\% CI \([0.07,0.51]\), paired \(p=.0149\)), so the pre-specified
+negative-direction gate fails.  A post-primary AG News resampling
+also gives a positive routed-minus-severe effect (\(+1.46\pp\)) while remaining
+below anchor-only by \(0.58\pp\).  At matched \(K=128\), routed
+selection exceeds target-eligible random selection by \(0.32\pp\) (Holm
+\(p=.0020\)).  The audit-only maximum-attainable-purity arm has a \(+0.05\pp\)
+point difference from routing (95\% CI \([-0.10,+0.19]\); Holm \(p=.487\)), so
+these data do not establish an additional gain from higher purity.  The
+opposite TREC and IMDb routing signs, together with AG's split between
+positive D--C and negative D--A, show that transfer utility is setting- and
+estimand-specific.
 \end{abstract}
 
 \section{Introduction}
@@ -66,17 +68,18 @@ scales and fail on another.  We ask: \emph{when client architectures differ,
 does raising audited clean fraction improve the utility of probabilities
 transferred to the server?}
 
-We make three contributions.  First, we formalize a four-arm audit for
+We make three contributions.  First, we operationalize a four-arm audit for
 heterogeneous client-to-server distillation: public-anchor only (A), clean
 uniform transfer (B), severely contaminated uniform transfer (C), and severely
 contaminated routed transfer (D).  The adjacent contrasts B--A, C--B, and D--C
-prevent a near-zero endpoint from hiding opposing transfer effects.  Second,
-we separate discovery from prospective testing: a reused-test TREC
-decomposition generates the hypothesis, an IMDb test not previously used for
-model evaluation in the retained workspace supplies the single prospective
-cross-task test, and AG News supplies prior task-specific evidence.  Third,
-fixed-size random, routed, and maximum-attainable-purity comparisons probe
-subset size, selection order, and audited composition.  Content-addressed
+separate opposing transfer effects hidden by a near-zero endpoint.  Second,
+we separate discovery from protocol-frozen evaluation: a reused-test TREC
+decomposition generates the hypothesis, an IMDb test with no retained record
+of prior model evaluation supplies the cross-setting stress test, and its
+positive D--C effect contradicts the TREC-derived negative direction; AG News
+supplies prior task-specific evidence.  Third, fixed-size
+random, routed, and maximum-attainable-purity comparisons show useful routed
+ordering without a detectable gain from still higher purity.  Content-addressed
 protocols and complete run records preserve these inferential roles.  This is
 an evaluation contribution, not a new
 optimizer, privacy mechanism, or claim that purity and utility are universally
@@ -90,7 +93,8 @@ inferential roles.
 contamination sensitivity, and the complete routing intervention.  The
 matched-size audit holds \(K\), claimed-label quotas, optimizer steps, and the
 severe mixture fixed.  TREC is hypothesis-generating discovery, IMDb supplies
-the prospective test, and AG News supplies prior task-specific evidence.}
+the protocol-frozen cross-setting evaluation, and AG News supplies prior
+task-specific evidence.}
 \label{fig:framework}
 \end{figure*}
 
@@ -108,9 +112,13 @@ FedBiOT compresses a server LLM for client-side adaptation
 client SLMs \cite{fan2025fedmkt}.  These works establish that heterogeneous
 LoRA and cross-size knowledge transfer are not new.  Selective-FD filters
 misleading client predictions and ambiguous ensembles
-\cite{shao2024selectivefd}; Fed-DFA prioritizes decision-boundary information
-\cite{wang2025feddfa}; and heterogeneous-distillation temperature has been
-reconsidered explicitly \cite{qi2025rethinking}.  Most directly, FedFD shows
+\cite{shao2024selectivefd}; FedID studies interactive distillation for
+pretrained language models under heterogeneous federated settings
+\cite{ma2023fedid}; FedHDS selects compact representative instruction data in
+federated LLM tuning \cite{qin2025fedhds}; Fed-DFA prioritizes
+decision-boundary information \cite{wang2025feddfa}; and
+heterogeneous-distillation temperature has been reconsidered explicitly
+\cite{qi2025rethinking}.  Most directly, FedFD shows
 that heterogeneous logit ensembles can be unstable and proposes aligned
 feature distillation \cite{li2025fedfd}.  We therefore do not claim that logit
 transfer failure is new.  Our narrower contribution audits decoder-only LMs
@@ -166,8 +174,8 @@ depends on client data quality.
 
 \section{Training-Only Trust Endpoints}
 \subsection{Class-conditional gradient routing}
-For a labeled example \(z=(x,y)\), let \(g(z)\) be the gradient of its causal
-answer loss with respect to local LoRA parameters and let \(a_y\) be the mean
+For a labeled example \(z=(x,y)\), let \(g(z)\) be the gradient of its
+candidate-answer loss with respect to local LoRA parameters and let \(a_y\) be the mean
 gradient of public anchors from class \(y\).  Their agreement is
 \[
 s_g(z)=\frac{g(z)^\top a_y}{\lVert g(z)\rVert\lVert a_y\rVert}.
@@ -199,7 +207,7 @@ are excluded whenever the gate triggers.
 \input{evidence_ledger}
 Table~\ref{tab:evidence-ledger} fixes the authorized inferential role of each
 study; shared hashes or benchmarks do not upgrade discovery or descriptive
-evidence into prospective confirmation.
+evidence into protocol-frozen evaluation.
 
 \paragraph{TREC discovery study.}
 TREC-Coarse provides a six-way answer-type task \cite{li2002question}; IMDb
@@ -216,7 +224,7 @@ its official evaluation; those repairs and invalidated smoke runs are recorded
 in its protocol history.  The later four-arm protocol explicitly records prior
 test access and its own audit-counter repair before any retained full aggregate.
 
-\paragraph{Prospective IMDb role reversal.}
+\paragraph{Protocol-frozen IMDb role reversal.}
 IMDb sentiment becomes the binary target and AG News the off-task source.  A
 content-addressed manifest separates 128 public anchors, 1,000 development
 reviews, three disjoint 256-example client pools, and the complete 25,000-review
@@ -225,7 +233,9 @@ and 51 off-task examples.  Three development seeds authorize implementation
 only; no accuracy direction may tune or stop the complete ten-seed official
 matrix.  The single primary contrast is D--C accuracy, using a two-sided paired
 Student-\(t\) test and 95\% seed interval.  The narrow negative-direction gate
-also requires routing to raise the audited clean fraction above 103/256.  The
+contains exactly three frozen clauses: routing must raise the audited clean
+fraction above 103/256, the paired Student-\(t\) interval for D--C must be
+strictly negative, and the two-sided paired \(p\)-value must be below .05.  The
 test was not decoded for model assessment until the protocol, development
 matrix, verifier, and analysis rule had been frozen.
 
@@ -304,21 +314,23 @@ After observing this compound comparison, we froze a post-primary four-arm
 ablation on the already accessed TREC test with ten new common seeds.  The
 three adjacent accuracy contrasts form one two-sided Holm family.  Clean
 uniform transfer versus anchor-only is inconclusive
-(\(-0.20\pp\), interval \([-0.71,+0.31]\), Holm \(p=.397\)).  Contrary to a
+(\(-0.20\pp\), unadjusted interval \([-0.71,+0.31]\), Holm \(p=.397\)).  Contrary to a
 simple contamination-harm story, severe unfiltered transfer exceeds clean
-transfer by \(1.58\pp\) (\([+0.54,+2.62]\), Holm \(p=.015\)).  The complete
+transfer by \(1.58\pp\) (unadjusted \([+0.54,+2.62]\), Holm \(p=.015\)).  The complete
 routed intervention then reduces severe-uniform accuracy by \(1.42\pp\)
-(\([-2.19,-0.65]\), Holm \(p=.0074\)), while descriptively reducing class NLL
+(unadjusted \([-2.19,-0.65]\), Holm \(p=.0074\)), while descriptively reducing class NLL
 by 0.0314 and score ECE by 0.0596.  The routed-minus-anchor net is
 \(-0.04\pp\) with interval \([-0.84,+0.76]\), without a fourth test.  This
-same-test analysis diagnoses an accuracy--score-calibration trade-off; it is not a
-new holdout or independent confirmation and does not isolate which mixture
+same-test analysis diagnoses an accuracy--canonical-score trade-off; it is not a
+new holdout or independent validation and does not isolate which mixture
 component produces the severe-uniform gain.
 Routing triggers in 57/60 client-rounds and raises the selected clean fraction
 from 40.0\% to 64.6\% when off-task rows remain in the denominator, yet lowers
 accuracy relative to severe uniform transfer.  Because this decomposition was
-designed after access to the same 500-example test, it motivates rather than
-confirms the cross-task hypothesis.
+designed after access to the same 500-example test, it motivated the negative
+directional prediction evaluated next rather than independently confirming it.
+
+\input{generated/imdb_official_results_block}
 
 \subsection{AG News task-specific context}
 Across the original three seeds, routing loses \(-0.56\pp\) relative to the
@@ -326,7 +338,7 @@ anchor-only server.  The descriptive interval runs from \(-0.76\) to
 \(-0.36\pp\), and every paired difference is negative.  Routed distillation
 lowers answer loss and score ECE
 but costs \(2.01\times\) the matched wall time.  Accuracy and macro-F1 both
-decline; adding routed client targets is therefore harmful under AG News
+decline; adding routed client targets was therefore lower under AG News
 accuracy in this pipeline, not uniformly worse across predictive metrics.
 After observing this result, we froze five additional seeds without retuning.
 All five differences are negative, with mean
@@ -336,6 +348,19 @@ predeclared 4-of-5 directional heuristic passes, but it is not an
 alpha-controlled test and reuses the accessed official test.  The combined
 eight-seed estimate (\(-0.71\pp\)) is descriptive.
 
+The post-primary AG News train-derived secondary holdout gives the same
+four-arm decomposition on 4,000 examples that are disjoint from this runner's
+anchors, development set, and clients, but were selected after the primary
+result; 303 examples had appeared in at least one earlier server-client
+allocation.  It is therefore run-disjoint same-task resampling, not external
+validation.  Over ten seeds, B--A is \(+0.01\pp\) (95\% CI
+\([-0.28,+0.29]\), Holm \(p=.954\)), C--B is \(-2.04\pp\)
+(\([-2.44,-1.65]\), Holm \(p<10^{-4}\)), and D--C is \(+1.46\pp\)
+(\([+1.06,+1.86]\), Holm \(p<10^{-4}\)).  The descriptive D--A net remains
+\(-0.58\pp\) (\([-0.80,-0.35]\)).  AG therefore matches IMDb, not TREC, on
+the positive D--C sign while preserving the older AG endpoint harm relative to
+anchor-only.
+
 At development seed 42, severe AG News mixtures reduce local accuracy by
 21.75--25.88 points across the three client families.  Across Qwen seeds
 42--44, routing improves severe local accuracy by \(+3.37\) to
@@ -344,6 +369,7 @@ endpoint.  The detailed compatible-model and local-adaptation controls are
 reported in the supplementary material; they are not additional federated
 server endpoints.
 
+\FloatBarrier
 \section{Discussion}
 Architecture compatibility and transfer utility answer different questions.
 Canonical probabilities create a common interface across model families, but
@@ -353,22 +379,32 @@ anchor endpoint is insufficient: a near-zero net contrast can conceal opposing
 clean-transfer, contamination, and routing effects.  Its lower descriptive
 score NLL and score ECE also cannot be substituted for accuracy utility.
 
-The four-arm audit makes these effects identifiable at the intervention level.
+The four-arm audit separates these intervention-level contrasts.
 B--A asks whether clean client probabilities help beyond the public anchor;
 C--B asks what changes under the joint severe mixture; and D--C measures the
-complete routing intervention.  The matched-size addendum then separates a
-change in selected-set size from selection order and attainable audited
-composition.  This does not identify the contribution of each routing-score
-component, but it prevents purity enrichment from being credited when the
-comparison also changes \(K\).
+complete routing intervention.  Most importantly, the protocol-frozen IMDb
+result reverses the TREC-derived D--C direction: both tasks show large purity
+enrichment, but routing reduces accuracy on the reused TREC test and improves
+it on IMDb.  The frozen harm hypothesis therefore fails rather than
+replicates.  This is evidence of setting-specific heterogeneity: the TREC
+direction did not transport to IMDb, but the two settings do not identify a
+general task-level law.
+
+At matched size, routed-\(K\) improves over target-eligible random-\(K\),
+demonstrating useful ranking signal on IMDb.  Yet the maximum-purity control
+raises clean share further without a detectable gain over routed-\(K\).
+Consequently, neither ``more pure always helps'' nor ``purity is unrelated to
+utility'' is licensed.  Purity alone is insufficient to determine the sign or
+magnitude of server utility.  Component-wise attribution remains unresolved
+because the router combines gradient agreement, loss, and inconsistency ranks.
 
 Inferential role is part of the result.  TREC's reused-test decomposition is
-hypothesis-generating even with multiplicity control; the frozen IMDb role
-reversal supplies the prospective cross-task test; and the legacy AG News
-comparison is prior task-specific evidence with a different \(D-A\) estimand.
-Only the new AG four-arm study will provide a directly comparable \(D-C\)
-contrast.  Hashes and complete-matrix checks establish
-internal consistency, not external preregistration.  The resulting claim is
+hypothesis-generating even with multiplicity control; the protocol-frozen IMDb
+role reversal supplies the cross-setting stress test; the legacy AG News
+comparison is prior task-specific evidence with a different \(D-A\) estimand;
+and the completed AG four-arm holdout is secondary post-primary same-task
+resampling.  Hashes and complete-matrix checks establish internal consistency,
+not external preregistration.  The resulting claim is
 therefore an evaluation diagnosis rather than a new federated optimizer or a
 universal law relating purity and utility.
 
@@ -380,7 +416,14 @@ changes both simultaneously, so C--B cannot attribute an effect to either
 component.  Seed intervals describe optimization variation rather than
 example- or task-population uncertainty.  TREC's four-arm result reuses an
 accessed 500-example test, the IMDb matched-size family was designed after
-development, and AG's secondary rows are not an independent confirmation.
+development, and AG's secondary rows are not an independent validation.
+The matched routed arm forces \(K=128\), whereas the original router falls
+back to all 256 examples when its gate does not trigger; four of ten official
+seed trajectories therefore diverge exactly as allowed by the frozen
+conditional contract.  A post-record verifier repair restored that conditional
+check after the earlier verifier incorrectly required unconditional full
+trajectory identity; no protocol, runner, raw record, seed, or statistic was
+changed.
 Canonical verbalizer-score ECE is not native sequence-probability calibration.
 Pretraining contamination cannot be ruled out, and TREC's published license is
 recorded as unknown.  Finally, logits, losses, anchors, and hashes provide no
@@ -393,6 +436,19 @@ validation, and manuscript editing.  The human authors are responsible for
 the study design and submission, verified the cited sources and reported
 results against the raw artifacts, and take full responsibility for the
 paper's content.
+
+\section{Conclusion}
+Architecture-compatible probability exchange solves an interface problem, not
+the problem of deciding which client supervision benefits a server.  Our
+four-arm audit exposes opposing effects that a routed-minus-anchor endpoint can
+hide.  Routing enriches clean examples on both TREC and IMDb, yet its accuracy
+effect changes sign across the evaluated configurations; on IMDb, score-based
+routing beats matched random selection, while the higher audit-only
+maximum-purity control does not show a statistically detectable additional gain.
+Selection purity is therefore an important composition diagnostic but not a
+sufficient proxy for transfer utility.  Future heterogeneous adaptation work should
+report composition, canonical score quality, and downstream utility separately
+under complete, evidence-labelled intervention matrices.
 
 \section{Reproducibility}
 The artifact contains content-addressed manifests and protocols, model-weight

@@ -88,8 +88,17 @@ def _matched_ok(*_args) -> dict:
 
 
 def _equivalence_ok(*_args) -> dict:
-    return {"phase": "official_evaluation", "pairs": 10,
-            "functional_equivalence": True}
+    return {
+        "schema_version": "imdb_routed_conditional_equivalence_v2",
+        "phase": "official_evaluation", "pairs": 10,
+        "seeds": list(range(321, 331)), "total_client_rounds": 60,
+        "conditional_implementation_equivalence": True,
+        "fully_identical_trajectory_pairs": 10,
+        "pairs_with_forced_gate_divergence": 0,
+        "exact_pre_fork_triggered_client_rounds": 60,
+        "first_authorized_gate_divergence_client_rounds": 0,
+        "post_local_fork_not_equivalence_eligible_client_rounds": 0,
+    }
 
 
 def test_generator_fails_closed_on_incomplete_matrix(tmp_path: Path) -> None:
@@ -200,8 +209,11 @@ def test_statistics_and_submission_assets_from_verified_matrices(
 
     block = (output / "imdb_official_results_block.tex").read_text()
     assert r"gate \textbf{passes}" in block
+    assert "protocol-frozen IMDb" in block
+    assert "supports the narrow negative-direction prediction" in block
     assert "secondary mechanistic tests" in block
     assert "primary confirmation" not in block.lower()
+    assert "predeclared" not in block
     assert r"\input{generated/imdb_official_tables.tex}" in block
     assert r"{generated/imdb_official_figure.pdf}" in block
 
@@ -224,6 +236,16 @@ def test_primary_gate_failure_is_reported_without_upgrading_secondary(
         tmp_path: Path) -> None:
     original, matched = _write_synthetic_matrices(
         tmp_path, primary_gate_pass=False)
+    # Preserve the monotone clean-fraction ordering while making the
+    # maximum-purity accuracy contrast exactly null. This exercises the
+    # outcome-dependent mechanism interpretation used by the official data.
+    for seed in SEEDS:
+        routed_path = matched / f"seed{seed}_severe_routed_k.json"
+        maximum_path = matched / f"seed{seed}_oracle_max_purity_k.json"
+        routed = json.loads(routed_path.read_text())
+        maximum = json.loads(maximum_path.read_text())
+        maximum["final"]["accuracy"] = routed["final"]["accuracy"]
+        maximum_path.write_text(json.dumps(maximum))
     output = tmp_path / "paper" / "generated"
     generate_assets(
         original, matched, output,
@@ -241,5 +263,12 @@ def test_primary_gate_failure_is_reported_without_upgrading_secondary(
     block = (output / "imdb_official_results_block.tex").read_text()
     assert r"\newcommand{\IMDbPrimaryGateStatus}{fails}" in macros
     assert r"gate \textbf{fails}" in block
+    assert "contradicts the TREC-derived negative directional prediction" in block
+    assert "purity and server accuracy move in the same direction" in block
+    assert "routed-$K$ significantly outperforms random-$K$" in block
+    assert "Maximum-purity-$K$ does not show a statistically detectable gain" in block
+    assert "do not establish an additional accuracy gain" in block
+    assert "cannot be explained as a monotonic function" not in block
+    assert "predeclared" not in block
     assert "secondary mechanistic tests" in block
     assert "primary confirmation" not in block.lower()
