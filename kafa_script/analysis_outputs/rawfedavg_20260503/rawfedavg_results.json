@@ -1,0 +1,169 @@
+{
+  "final_summary": [
+    {
+      "method": "rawfedavg",
+      "run_time": "2026-05-03 15:42:19",
+      "round": "Final",
+      "summary_type": "client_best_individual",
+      "test_loss": 868.416016,
+      "test_total": 1992.0,
+      "test_avg_loss": 0.435952,
+      "val_loss": 1772.328125,
+      "val_total": 3984.0,
+      "val_avg_loss": 0.444861
+    },
+    {
+      "method": "rawfedavg",
+      "run_time": "2026-05-03 15:42:19",
+      "round": "Final",
+      "summary_type": "client_summarized_weighted_avg",
+      "test_loss": 883.999605,
+      "test_total": 1993.333333,
+      "test_avg_loss": 0.443473,
+      "val_loss": 1796.451865,
+      "val_total": 3985.333333,
+      "val_avg_loss": 0.450767
+    },
+    {
+      "method": "rawfedavg",
+      "run_time": "2026-05-03 15:42:19",
+      "round": "Final",
+      "summary_type": "client_summarized_avg",
+      "test_loss": 883.989583,
+      "test_total": 1993.333333,
+      "test_avg_loss": 0.443468,
+      "val_loss": 1796.455729,
+      "val_total": 3985.333333,
+      "val_avg_loss": 0.450768
+    }
+  ],
+  "client_final": [
+    {
+      "method": "rawfedavg",
+      "run_time": "2026-05-03 15:42:19",
+      "round": 30,
+      "client_id": "1",
+      "test_loss": 898.972656,
+      "test_total": 1996,
+      "test_avg_loss": 0.450387,
+      "val_loss": 1784.90625,
+      "val_total": 3988,
+      "val_avg_loss": 0.447569
+    },
+    {
+      "method": "rawfedavg",
+      "run_time": "2026-05-03 15:42:19",
+      "round": 30,
+      "client_id": "2",
+      "test_loss": 868.416016,
+      "test_total": 1992,
+      "test_avg_loss": 0.435952,
+      "val_loss": 1772.328125,
+      "val_total": 3984,
+      "val_avg_loss": 0.444861
+    },
+    {
+      "method": "rawfedavg",
+      "run_time": "2026-05-03 15:42:19",
+      "round": 30,
+      "client_id": "3",
+      "test_loss": 884.580078,
+      "test_total": 1992,
+      "test_avg_loss": 0.444066,
+      "val_loss": 1832.132812,
+      "val_total": 3984,
+      "val_avg_loss": 0.459873
+    }
+  ],
+  "system_metrics_by_worker": [
+    {
+      "method": "rawfedavg",
+      "run_time": "2026-05-03 15:42:19",
+      "worker_id": "0",
+      "id": 0,
+      "fl_end_time_minutes": 91.70483,
+      "total_model_size": 0,
+      "total_flops": 0,
+      "total_upload_bytes": 0,
+      "total_download_bytes": 3487256,
+      "global_convergence_round": 0,
+      "local_convergence_round": 0,
+      "global_convergence_time_minutes": 0,
+      "local_convergence_time_minutes": 0
+    },
+    {
+      "method": "rawfedavg",
+      "run_time": "2026-05-03 15:42:19",
+      "worker_id": "1",
+      "id": 1,
+      "fl_end_time_minutes": 91.635745,
+      "total_model_size": 6742618112,
+      "total_flops": 0,
+      "total_upload_bytes": 0,
+      "total_download_bytes": 1609056,
+      "global_convergence_round": 0,
+      "local_convergence_round": 0,
+      "global_convergence_time_minutes": 0,
+      "local_convergence_time_minutes": 0
+    },
+    {
+      "method": "rawfedavg",
+      "run_time": "2026-05-03 15:42:19",
+      "worker_id": "2",
+      "id": 2,
+      "fl_end_time_minutes": 91.255574,
+      "total_model_size": 6742618112,
+      "total_flops": 0,
+      "total_upload_bytes": 0,
+      "total_download_bytes": 1609056,
+      "global_convergence_round": 0,
+      "local_convergence_round": 0,
+      "global_convergence_time_minutes": 0,
+      "local_convergence_time_minutes": 0
+    },
+    {
+      "method": "rawfedavg",
+      "run_time": "2026-05-03 15:42:19",
+      "worker_id": "3",
+      "id": 3,
+      "fl_end_time_minutes": 90.876043,
+      "total_model_size": 6742618112,
+      "total_flops": 0,
+      "total_upload_bytes": 0,
+      "total_download_bytes": 1609056,
+      "global_convergence_round": 0,
+      "local_convergence_round": 0,
+      "global_convergence_time_minutes": 0,
+      "local_convergence_time_minutes": 0
+    }
+  ],
+  "system_metrics_summary": [
+    {
+      "method": "rawfedavg",
+      "summary": "sys_avg",
+      "fl_end_time_minutes": 91.368048,
+      "total_model_size": "4.71G",
+      "total_flops": "0.0",
+      "total_upload_bytes": "0.0",
+      "total_download_bytes": "1.98M",
+      "global_convergence_round": 0.0,
+      "local_convergence_round": 0.0,
+      "global_convergence_time_minutes": 0.0,
+      "local_convergence_time_minutes": 0.0
+    },
+    {
+      "method": "rawfedavg",
+      "summary": "sys_std",
+      "fl_end_time_minutes": 0.331588,
+      "total_model_size": "2.72G",
+      "total_flops": "0.0",
+      "total_upload_bytes": "0.0",
+      "total_download_bytes": "794.22K",
+      "global_convergence_round": 0.0,
+      "local_convergence_round": 0.0,
+      "global_convergence_time_minutes": 0.0,
+      "local_convergence_time_minutes": 0.0
+    }
+  ],
+  "recommended_main_metric": "client_summarized_weighted_avg.test_avg_loss"
+}

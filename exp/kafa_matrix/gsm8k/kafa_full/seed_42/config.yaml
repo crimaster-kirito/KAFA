@@ -15,20 +15,14 @@ federate:
   method: knowledgeanchor
   save_to: exp/kafa_matrix/gsm8k/kafa_full/seed_42/gsm8k_kafa_full_seed42.ckpt
 data:
-  root: data/gsm8k
-  type: gsm8k@llm
+  root: data
+  type: gsm8k_dirty_fair_seed42@llm
   splits:
   - 0.4
   - 0.4
   - 0.2
-  splitter: iid
-  splitter_args:
-  - server_ratio: 0.4
-    client_ratio: 0.4
-    test_ratio: 0.2
-    non_iid_alpha: 0.5
-    task_irrelevant_ratio: 0.1
-    irrelevant_dataset: imdb
+  splitter: fixed_client
+  splitter_args: []
 llm:
   grad_accum_step: 4
   tok_len: 768
@@ -60,8 +54,8 @@ llm:
       layerwise_distill: false
       kl_divergence: raw
       data:
-        root: data/gsm8k
-        type: gsm8k@llm
+        root: data
+        type: gsm8k_dirty_fair_seed42@llm
         splits:
         - 0.8
         - 0.1
@@ -81,29 +75,40 @@ llm:
     soft_label_temperature: 4.0
     task_description_seed: 42
     task_description_samples: 100
-    client_model_type: ''
+    client_model_type: models/tinyllama-1.1b-chat-v1.0
     task_relevance_threshold: 0.5
-    prototype_alignment_weight: 0.5
-    use_instruction_augmentation: true
+    prototype_alignment_weight: 0.0
+    use_instruction_augmentation: false
     top_k_prototypes: 5
     prototype_temperature: 0.1
-    distill_weight: 1.0
-    enable_mse_relevance: true
-    relevance_mse_multiplier: 1.5
+    distill_weight: 0.0
+    enable_dirty_supervision_filter: true
+    dirty_consistency_threshold: 0.55
+    enable_mse_relevance: false
+    relevance_mse_multiplier: 3.0
     incremental_mse_multiplier: 0.8
-    train_on_server: true
+    simple_client_filter: true
+    client_prototype_warmup_samples: 64
+    client_prototype_max_size: 150
+    relevance_filter_drop_ratio: 0.05
+    relevance_filter_min_history: 64
+    use_soft_label_distill: false
+    min_keep_per_batch: 0
+    max_drop_ratio: 1.0
+    log_relevance_stats: false
+    train_on_server: false
     lora_mapping_strategy: interpolate
     max_prototypes: 100
     use_projection_lora: true
-    small_hidden: 4096
+    small_hidden: 2048
     large_hidden: 4096
     projection_learnable: true
     q_strategy: transpose
-    lora_update_lr: 1.0
+    lora_update_lr: 0.05
   paths:
     server_model: models/llama-2-7b-hf
-    client_model: ''
-    data_root: data/gsm8k
+    client_model: models/tinyllama-1.1b-chat-v1.0
+    data_root: data
     output_root: exp/kafa_matrix
     cache_dir: ''
 dataloader:
@@ -111,11 +116,11 @@ dataloader:
 model:
   type: models/llama-2-7b-hf@huggingface_llm
 train:
-  local_update_steps: 4
+  local_update_steps: 2
   batch_or_epoch: batch
   optimizer:
     type: AdamW
-    lr: 0.001
+    lr: 0.00005
     betas: (0.9, 0.95)
   is_enable_half: true
 criterion:
@@ -132,8 +137,6 @@ eval:
   - avg
   - raw
   count_flops: false
-privacy:
-  use_dp: false
 fedopt:
   use: false
   optimizer:

@@ -12,6 +12,34 @@ except ImportError as error:
         f'available.')
 
 
+def _get_input_from_batch(batch):
+    if isinstance(batch, dict):
+        for key in ['x', 'input_ids', 'inputs', 'features']:
+            if key in batch:
+                return batch[key]
+        return next(iter(batch.values()))
+    if isinstance(batch, (list, tuple)):
+        if not batch:
+            raise TypeError('Unsupported empty batch.')
+        return batch[0]
+    return batch
+
+
+def _get_shape_from_input(x):
+    if isinstance(x, dict):
+        x = _get_input_from_batch(x)
+    if isinstance(x, (list, tuple)):
+        if not x:
+            raise TypeError('Unsupported empty input.')
+        x = x[0]
+    if hasattr(x, 'shape'):
+        return x.shape
+    shape = np.asarray(x).shape
+    if len(shape) == 1:
+        return 1
+    return shape
+
+
 def get_shape_from_data(data, model_config, backend='torch'):
     """
     Extract the input shape from the given data, which can be used to build \
@@ -64,26 +92,19 @@ def get_shape_from_data(data, model_config, backend='torch'):
 
     if isinstance(data_representative, dict):
         if 'x' in data_representative:
-            shape = np.asarray(data_representative['x']).shape
-            if len(shape) == 1:  # (batch, ) = (batch, 1)
-                return 1
-            else:
-                return shape
+            return _get_shape_from_input(data_representative['x'])
+        return _get_shape_from_input(data_representative)
     elif backend == 'torch':
         import torch
         if issubclass(type(data_representative), torch.utils.data.DataLoader):
-            x, _ = next(iter(data_representative))
-            if isinstance(x, list):
-                return x[0].shape
-            return x.shape
+            batch = next(iter(data_representative))
+            return _get_shape_from_input(_get_input_from_batch(batch))
         else:
             try:
-                x, _ = data_representative
-                if isinstance(x, list):
-                    return x[0].shape
-                return x.shape
-            except:
-                raise TypeError('Unsupported data type.')
+                return _get_shape_from_input(
+                    _get_input_from_batch(data_representative))
+            except Exception as error:
+                raise TypeError('Unsupported data type.') from error
     elif backend == 'tensorflow':
         # TODO: Handle more tensorflow type here
         shape = data_representative['x'].shape

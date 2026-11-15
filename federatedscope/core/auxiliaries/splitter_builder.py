@@ -73,14 +73,29 @@ def get_splitter(config):
         from federatedscope.core.splitters.graph import RandChunkSplitter
         splitter = RandChunkSplitter(client_num, **kwargs)
     elif config.data.splitter == 'iid':
-        from federatedscope.core.splitters.generic import IIDSplitter
-        splitter = IIDSplitter(client_num)
+        dirty_label_use = bool(kwargs.get('dirty_label_use', False))
+        if dirty_label_use:
+            from federatedscope.core.splitters.generic import DirtyLabelIIDSplitter
+            splitter = DirtyLabelIIDSplitter(
+                client_num,
+                ratio=kwargs.get('dirty_label_ratio', 0.0),
+                client_ratios=kwargs.get('dirty_label_client_ratios', []),
+                strategy=kwargs.get('dirty_label_strategy',
+                                    'answer_corruption'),
+                seed=kwargs.get('dirty_label_seed', getattr(config, 'seed',
+                                                            42)))
+        else:
+            from federatedscope.core.splitters.generic import IIDSplitter
+            splitter = IIDSplitter(client_num)
     elif config.data.splitter == 'meta':
         from federatedscope.core.splitters.generic import MetaSplitter
         splitter = MetaSplitter(client_num)
     elif config.data.splitter == 'knowledge_anchor':
         from federatedscope.core.splitters.generic.knowledge_anchor_splitter import KnowledgeAnchorSplitter
         splitter = KnowledgeAnchorSplitter(client_num, **kwargs)
+    elif config.data.splitter == 'fixed_client':
+        from federatedscope.core.splitters.generic.knowledge_anchor_splitter import FixedClientSplitter
+        splitter = FixedClientSplitter(client_num)
     else:
         logger.warning(f'Splitter {config.data.splitter} not found or not '
                        f'used.')

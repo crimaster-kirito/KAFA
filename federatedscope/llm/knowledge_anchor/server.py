@@ -8,6 +8,7 @@ Knowledge Anchor Server Worker
 5. 聚合并更新知识锚点
 """
 import logging
+import os
 import torch
 from federatedscope.core.message import Message
 from federatedscope.core.workers.server import Server
@@ -45,8 +46,11 @@ class KnowledgeAnchorServer(Server):
         tokenizer, _ = get_tokenizer(model_name, config.data.root, config.llm.tok_len)
         self.anchor_generator = KnowledgeAnchorGenerator(model, tokenizer, config)
         
-        # 知识锚点（每轮更新）
+        # 知识锚点：公共数据初始化一次，后续由增量bank更新
         self.knowledge_anchor = None
+        self._anchor_initialized = False
+        self._anchor_dirty = True
+        self._anchor_version = 0
         
         # 服务器端trainer（用于在服务器数据上微调）
         if data and len(data.get('train', [])) > 0:
@@ -89,8 +93,120 @@ class KnowledgeAnchorServer(Server):
         
         # 将增量bank传递给聚合器处理
         if hasattr(self.aggregator, '_integrate_incremental_banks'):
-            self.aggregator._integrate_incremental_banks([incremental_bank])
+            updated = self.aggregator._integrate_incremental_banks(
+                [incremental_bank])
+            if updated:
+                self.knowledge_anchor = self.aggregator.knowledge_anchor
+                self._anchor_dirty = True
+                self._anchor_version += 1
             logger.info(f"收到客户端{sender}的增量bank，包含{len(incremental_bank)}个新原型")
+
+    def _anchor_cache_path(self):
+        cache_dir = os.path.join(getattr(self._cfg, 'outdir', 'exp'),
+                                 'knowledge_anchor_cache')
+        os.makedirs(cache_dir, exist_ok=True)
+        return os.path.join(cache_dir, 'knowledge_anchor_initial.pt')
+
+    def _anchor_cache_meta(self, public_dataset):
+        model_type = getattr(self._cfg.model, 'type', '')
+        data_type = getattr(self._cfg.data, 'type', '')
+        try:
+            dataset_len = len(public_dataset)
+        except Exception:
+            dataset_len = None
+        ka_cfg = self._cfg.llm.knowledge_anchor
+        mapper = getattr(getattr(self, 'aggregator', None),
+                         'projection_mapper', None)
+        return {
+            'model_type': model_type,
+            'data_type': data_type,
+            'dataset_len': dataset_len,
+            'num_instructions': getattr(ka_cfg, 'num_instructions', None),
+            'num_prototypes': getattr(ka_cfg, 'num_prototypes', None),
+            'intermediate_layer': getattr(ka_cfg, 'intermediate_layer', None),
+            'task_description_seed': getattr(ka_cfg, 'task_description_seed',
+                                             None),
+            'task_description_samples': getattr(
+                ka_cfg, 'task_description_samples', None),
+            'simple_client_filter': getattr(ka_cfg, 'simple_client_filter',
+                                            None),
+            'client_prototype_warmup_samples': getattr(
+                ka_cfg, 'client_prototype_warmup_samples', None),
+            'client_prototype_max_size': getattr(
+                ka_cfg, 'client_prototype_max_size', None),
+            'relevance_filter_drop_ratio': getattr(
+                ka_cfg, 'relevance_filter_drop_ratio', None),
+            'relevance_filter_min_history': getattr(
+                ka_cfg, 'relevance_filter_min_history', None),
+            'use_soft_label_distill': getattr(ka_cfg,
+                                              'use_soft_label_distill',
+                                              None),
+            'small_hidden': getattr(mapper, 'small_hidden', None),
+            'large_hidden': getattr(mapper, 'large_hidden', None),
+            'large_kv_out': getattr(mapper, 'large_kv_out', None),
+            'small_kv_out': getattr(mapper, 'small_kv_out', None),
+            'projection_rank': getattr(mapper, 'rank', None),
+            'q_strategy': getattr(mapper, 'q_strategy', None),
+        }
+
+    def _load_cached_knowledge_anchor(self, public_dataset):
+        cache_path = self._anchor_cache_path()
+        if not os.path.exists(cache_path):
+            legacy_path = os.path.join(os.path.dirname(cache_path),
+                                       'knowledge_anchor_round_0.pt')
+            if os.path.exists(legacy_path):
+                cache_path = legacy_path
+        if not os.path.exists(cache_path):
+            return None
+        try:
+            payload = torch.load(cache_path, map_location='cpu')
+            if payload.get('meta') == self._anchor_cache_meta(public_dataset):
+                logger.info(f"✓ 已从缓存加载知识锚点: {cache_path}")
+                return payload.get('knowledge_anchor')
+            logger.warning("知识锚点缓存配置不匹配，将重新生成")
+        except Exception as e:
+            logger.warning(f"加载知识锚点缓存失败: {e}，将重新生成")
+        return None
+
+    def _save_cached_knowledge_anchor(self, public_dataset):
+        if self.knowledge_anchor is None:
+            return
+        cache_path = self._anchor_cache_path()
+        torch.save({
+            'meta': self._anchor_cache_meta(public_dataset),
+            'knowledge_anchor': self.knowledge_anchor
+        }, cache_path)
+        logger.info(f"✓ 已保存知识锚点缓存: {cache_path}")
+
+    def _send_knowledge_anchor(self):
+        if not self.knowledge_anchor:
+            return None
+
+        logger.info(f"\n服务器发送知识锚点给客户端...")
+        if hasattr(self, 'comm_manager') and hasattr(self.comm_manager, 'neighbors') and len(self.comm_manager.neighbors) > 0:
+            client_ids = list(self.comm_manager.neighbors.keys())
+        else:
+            client_ids = list(range(1, self.client_num + 1))
+            logger.warning(f"comm_manager.neighbors未初始化，使用配置的client_num={self.client_num}")
+
+        if len(client_ids) == 0:
+            logger.warning("没有可用的客户端，跳过知识锚点发送")
+            return self.knowledge_anchor
+
+        logger.info(
+            f"向客户端 {client_ids} 发送知识锚点(version={self._anchor_version})")
+        self.comm_manager.send(
+            Message(
+                msg_type='knowledge_anchor',
+                sender=self.ID,
+                receiver=client_ids,
+                timestamp=self.state,
+                state=self.state,
+                content=self.knowledge_anchor
+            )
+        )
+        self._anchor_dirty = False
+        return self.knowledge_anchor
 
     def generate_and_send_knowledge_anchor(self):
         """
@@ -109,24 +225,31 @@ class KnowledgeAnchorServer(Server):
         
         # 创建数据加载器
         from federatedscope.core.auxiliaries.dataloader_builder import get_dataloader
-        train_loader = get_dataloader(
-            train_data,
-            self._cfg.dataloader.batch_size,
-            self._cfg.dataloader.drop_last if hasattr(self._cfg.dataloader, 'drop_last') else False
-        )
+        if isinstance(train_data, torch.utils.data.DataLoader):
+            public_dataset = train_data.dataset
+            train_loader = train_data
+        else:
+            public_dataset = train_data
+            train_loader = get_dataloader(train_data, self._cfg, split='train')
         
-        # 生成知识锚点
-        logger.info("\n" + "=" * 80)
-        logger.info("服务器开始生成知识锚点...")
-        logger.info("=" * 80)
-        self.knowledge_anchor = self.anchor_generator.generate_knowledge_anchor(
-            public_dataset=train_data,
-            dataloader=train_loader,
-            task_description=None  # 可以从配置中获取
-        )
+        self.knowledge_anchor = self._load_cached_knowledge_anchor(
+            public_dataset)
+        if self.knowledge_anchor is None:
+            # 生成知识锚点
+            logger.info("\n" + "=" * 80)
+            logger.info("服务器开始生成知识锚点...")
+            logger.info("=" * 80)
+            self.knowledge_anchor = self.anchor_generator.generate_knowledge_anchor(
+                public_dataset=public_dataset,
+                dataloader=train_loader,
+                task_description=None  # 可以从配置中获取
+            )
 
-        # 将服务器端原型下投影到客户端隐藏维度（保证客户端可直接计算相似度/MSE）
-        self._project_anchor_prototypes_for_clients()
+            # 将服务器端原型下投影到客户端隐藏维度（保证客户端可直接计算相似度/MSE）
+            self._project_anchor_prototypes_for_clients()
+            self._save_cached_knowledge_anchor(public_dataset)
+        else:
+            logger.info("使用缓存知识锚点，跳过任务描述生成、隐藏状态提取、K-means和软标签计算")
         
         # 输出生成的知识锚点摘要
         if self.knowledge_anchor:
@@ -144,34 +267,16 @@ class KnowledgeAnchorServer(Server):
         if hasattr(self.aggregator, 'set_knowledge_anchor'):
             self.aggregator.set_knowledge_anchor(self.knowledge_anchor)
         
-        # 发送知识锚点给所有客户端
-        logger.info(f"\n服务器发送知识锚点给客户端...")
-        # 获取所有客户端ID
-        # 优先使用comm_manager的neighbors（如果已初始化），否则使用配置的client_num
-        if hasattr(self, 'comm_manager') and hasattr(self.comm_manager, 'neighbors') and len(self.comm_manager.neighbors) > 0:
-            client_ids = list(self.comm_manager.neighbors.keys())
-        else:
-            # 如果neighbors还未初始化，使用配置的client_num
-            client_ids = list(range(1, self.client_num + 1))
-            logger.warning(f"comm_manager.neighbors未初始化，使用配置的client_num={self.client_num}")
-        
-        if len(client_ids) == 0:
-            logger.warning("没有可用的客户端，跳过知识锚点发送")
-            return self.knowledge_anchor
-        
-        logger.info(f"向客户端 {client_ids} 发送知识锚点")
-        self.comm_manager.send(
-            Message(
-                msg_type='knowledge_anchor',
-                sender=self.ID,
-                receiver=client_ids,
-                timestamp=self.state,  # 使用state作为timestamp
-                state=self.state,
-                content=self.knowledge_anchor
-            )
-        )
-        
         return self.knowledge_anchor
+
+    def _ensure_initial_knowledge_anchor(self):
+        if self._anchor_initialized and self.knowledge_anchor is not None:
+            return self.knowledge_anchor
+        knowledge_anchor = self.generate_and_send_knowledge_anchor()
+        if knowledge_anchor is not None:
+            self._anchor_initialized = True
+            self._anchor_dirty = True
+        return knowledge_anchor
 
     def _project_anchor_prototypes_for_clients(self):
         """Project prototype bank to client hidden size on server side."""
@@ -234,6 +339,9 @@ class KnowledgeAnchorServer(Server):
         """
         if self.server_trainer is None:
             return
+        if self.knowledge_anchor is not None and hasattr(
+                self.server_trainer, 'set_knowledge_anchor'):
+            self.server_trainer.set_knowledge_anchor(self.knowledge_anchor)
         
         logger.info("服务器开始在本地数据上微调...")
         num_samples, _, results = self.server_trainer.train()
@@ -304,6 +412,14 @@ class KnowledgeAnchorServer(Server):
         如果使用投影映射，将全局大LoRA投影为小LoRA后直接发送给客户端
         不修改服务器模型，直接替换发送的model_para内容
         """
+        if msg_type == 'model_para':
+            self._ensure_initial_knowledge_anchor()
+            if self._anchor_dirty:
+                self._send_knowledge_anchor()
+            if hasattr(self._cfg.llm.knowledge_anchor, 'train_on_server') and \
+               self._cfg.llm.knowledge_anchor.train_on_server:
+                self.train_on_server_data()
+
         # 检查是否使用投影映射
         use_projection = (hasattr(self, 'aggregator') and 
                          hasattr(self.aggregator, 'projection_mapper') and 
@@ -374,15 +490,5 @@ class KnowledgeAnchorServer(Server):
         """
         重写移动逻辑，在聚合前生成并发送知识锚点
         """
-        # 如果是新的一轮，先生成并发送知识锚点
-        if self.state == 0 or (self.state > 0 and self.state not in self.msg_buffer['train']):
-            # 生成知识锚点
-            self.generate_and_send_knowledge_anchor()
-            
-            # 在服务器端数据上微调（可选）
-            if hasattr(self._cfg.llm.knowledge_anchor, 'train_on_server') and \
-               self._cfg.llm.knowledge_anchor.train_on_server:
-                self.train_on_server_data()
-        
         # 调用父类方法
         return super().check_and_move_on(check_eval_result, min_received_num)

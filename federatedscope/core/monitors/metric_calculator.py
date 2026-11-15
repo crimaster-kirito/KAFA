@@ -10,10 +10,70 @@ from federatedscope.core.auxiliaries.metric_builder import get_metric
 # Blind torch
 try:
     import torch
+    import torch.nn.functional as F
 except ImportError:
     torch = None
+    F = None
+
+# Optional text metrics are imported lazily to avoid noisy import-time failures
+# from heavyweight optional stacks (nltk/sklearn/pandas/numexpr).
+sentence_bleu = None
+SmoothingFunction = None
+word_tokenize = None
+Rouge = None
+NLTK_AVAILABLE = False
+ROUGE_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
+
+try:
+    from federatedscope.llm.metrics.llm_metrics import (
+        eval_gsm8k_exact_match,
+        eval_dirty_filter_recall,
+        eval_dirty_filter_precision,
+        eval_clean_retention_rate,
+        eval_nan_rate,
+    )
+except Exception:
+    eval_gsm8k_exact_match = None
+    eval_dirty_filter_recall = None
+    eval_dirty_filter_precision = None
+    eval_clean_retention_rate = None
+    eval_nan_rate = None
+
+
+def _ensure_nltk_available():
+    global sentence_bleu, SmoothingFunction, word_tokenize, NLTK_AVAILABLE
+    if sentence_bleu is not None:
+        return True
+    try:
+        from nltk.translate.bleu_score import sentence_bleu as _sentence_bleu
+        from nltk.translate.bleu_score import SmoothingFunction as _smooth
+        from nltk.tokenize import word_tokenize as _word_tokenize
+        sentence_bleu = _sentence_bleu
+        SmoothingFunction = _smooth
+        word_tokenize = _word_tokenize
+        NLTK_AVAILABLE = True
+        return True
+    except Exception as exc:
+        NLTK_AVAILABLE = False
+        logger.warning("nltk not available for BLEU: %s", exc)
+        return False
+
+
+def _ensure_rouge_available():
+    global Rouge, ROUGE_AVAILABLE
+    if Rouge is not None:
+        return True
+    try:
+        from rouge import Rouge as _Rouge
+        Rouge = _Rouge
+        ROUGE_AVAILABLE = True
+        return True
+    except Exception as exc:
+        ROUGE_AVAILABLE = False
+        logger.warning("rouge not available for ROUGE-L: %s", exc)
+        return False
 
 
 class MetricCalculator(object):
@@ -285,6 +345,177 @@ def eval_imp_ratio(ctx, y_true, y_prob, y_pred, **kwargs):
     return (base - perform) / base * 100.
 
 
+# =================== LLM Metrics ===================
+
+def eval_perplexity(ctx, **kwargs):
+    """
+    Calculate perplexity for language model.
+    Perplexity = exp(avg_loss)
+    Lower is better.
+    """
+    avg_loss = ctx.loss_batch_total / ctx.num_samples if ctx.num_samples > 0 else 0
+    # Clamp loss to avoid overflow
+    avg_loss = min(avg_loss, 20.0)
+    perplexity = np.exp(avg_loss)
+    return perplexity
+
+
+def eval_token_accuracy(ctx, **kwargs):
+    """
+    Calculate token-level accuracy for language model.
+    Compares predicted tokens with ground truth labels.
+    """
+    if not hasattr(ctx, 'ys_true') or not hasattr(ctx, 'ys_prob'):
+        return 0.0
+    
+    y_true = ctx.ys_true
+    y_prob = ctx.ys_prob
+    
+    if torch is not None and isinstance(y_true, torch.Tensor):
+        y_true = y_true.detach().cpu().numpy()
+    if torch is not None and isinstance(y_prob, torch.Tensor):
+        y_prob = y_prob.detach().cpu().numpy()
+    
+    if y_prob is None or len(y_prob) == 0:
+        return 0.0
+    
+    # Get predicted tokens
+    y_pred = np.argmax(y_prob, axis=-1)
+    
+    # Calculate accuracy (ignore padding tokens, usually -100 or 0)
+    mask = (y_true != -100) & (y_true != 0)
+    if mask.sum() == 0:
+        return 0.0
+    
+    correct = (y_true[mask] == y_pred[mask]).sum()
+    total = mask.sum()
+    
+    return float(correct) / float(total)
+
+
+def eval_bleu(ctx, **kwargs):
+    """
+    Calculate BLEU score for text generation.
+    Requires ctx to have generated text and reference text.
+    """
+    if not _ensure_nltk_available():
+        logger.warning("nltk not available, BLEU score calculation skipped. "
+                       "Install with: pip install nltk")
+        return 0.0
+    
+    if not hasattr(ctx, 'generated_text') or not hasattr(ctx, 'reference_text'):
+        return 0.0
+    
+    generated = ctx.generated_text
+    references = ctx.reference_text
+    
+    if not generated or not references:
+        return 0.0
+    
+    smoothing = SmoothingFunction().method1
+    scores = []
+    
+    for gen, ref in zip(generated, references):
+        try:
+            gen_tokens = word_tokenize(gen.lower())
+            ref_tokens = word_tokenize(ref.lower())
+            score = sentence_bleu([ref_tokens], gen_tokens, 
+                                  smoothing_function=smoothing)
+            scores.append(score)
+        except Exception as e:
+            logger.warning(f"Error calculating BLEU: {e}")
+            scores.append(0.0)
+    
+    return np.mean(scores) if scores else 0.0
+
+
+def eval_rouge(ctx, **kwargs):
+    """
+    Calculate ROUGE-L score for text generation.
+    Requires ctx to have generated text and reference text.
+    """
+    if not _ensure_rouge_available():
+        logger.warning("rouge not available, ROUGE score calculation skipped. "
+                       "Install with: pip install rouge")
+        return 0.0
+    
+    if not hasattr(ctx, 'generated_text') or not hasattr(ctx, 'reference_text'):
+        return 0.0
+    
+    generated = ctx.generated_text
+    references = ctx.reference_text
+    
+    if not generated or not references:
+        return 0.0
+    
+    try:
+        rouge = Rouge()
+        scores = []
+        for gen, ref in zip(generated, references):
+            try:
+                score = rouge.get_scores(gen, ref)[0]['rouge-l']['f']
+                scores.append(score)
+            except:
+                scores.append(0.0)
+        return np.mean(scores) if scores else 0.0
+    except Exception as e:
+        logger.warning(f"Error calculating ROUGE: {e}")
+        return 0.0
+
+
+def eval_exact_match(ctx, **kwargs):
+    """
+    Calculate exact match score for question answering.
+    """
+    if not hasattr(ctx, 'generated_text') or not hasattr(ctx, 'reference_text'):
+        return 0.0
+    
+    generated = ctx.generated_text
+    references = ctx.reference_text
+    
+    if not generated or not references:
+        return 0.0
+    
+    matches = []
+    for gen, ref in zip(generated, references):
+        # Normalize and compare
+        gen_norm = gen.strip().lower()
+        ref_norm = ref.strip().lower()
+        matches.append(1.0 if gen_norm == ref_norm else 0.0)
+    
+    return np.mean(matches) if matches else 0.0
+
+
+def eval_gsm8k_exact_match_fallback(ctx, **kwargs):
+    if eval_gsm8k_exact_match is None:
+        return 0.0
+    return eval_gsm8k_exact_match(ctx, **kwargs)
+
+
+def eval_dirty_filter_recall_fallback(ctx, **kwargs):
+    if eval_dirty_filter_recall is None:
+        return 0.0
+    return eval_dirty_filter_recall(ctx, **kwargs)
+
+
+def eval_dirty_filter_precision_fallback(ctx, **kwargs):
+    if eval_dirty_filter_precision is None:
+        return 0.0
+    return eval_dirty_filter_precision(ctx, **kwargs)
+
+
+def eval_clean_retention_rate_fallback(ctx, **kwargs):
+    if eval_clean_retention_rate is None:
+        return 0.0
+    return eval_clean_retention_rate(ctx, **kwargs)
+
+
+def eval_nan_rate_fallback(ctx, **kwargs):
+    if eval_nan_rate is None:
+        return 0.0
+    return eval_nan_rate(ctx, **kwargs)
+
+
 # SUPPORT_METRICS dict, key: `metric_name`, value: (eval_func,
 # the_larger_the_better)
 SUPPORT_METRICS = {
@@ -301,7 +532,26 @@ SUPPORT_METRICS = {
     'loss_regular': (eval_regular, False),
     'imp_ratio': (eval_imp_ratio, True),
     'std': (None, False),
-    **dict.fromkeys([f'hits@{n}' for n in range(1, 101)], (eval_hits, True))
+    **dict.fromkeys([f'hits@{n}' for n in range(1, 101)], (eval_hits, True)),
+    # LLM metrics
+    'perplexity': (eval_perplexity, False),
+    'ppl': (eval_perplexity, False),
+    'token_acc': (eval_token_accuracy, True),
+    'token_accuracy': (eval_token_accuracy, True),
+    'bleu': (eval_bleu, True),
+    'rouge': (eval_rouge, True),
+    'rouge_l': (eval_rouge, True),
+    'exact_match': (eval_exact_match, True),
+    'em': (eval_exact_match, True),
+    'gsm8k_exact_match': (eval_gsm8k_exact_match_fallback, True),
+    'gsm8k_exact_match_accuracy': (eval_gsm8k_exact_match_fallback, True),
+    'gsm8k_em': (eval_gsm8k_exact_match_fallback, True),
+    'gsm8k_accuracy': (eval_gsm8k_exact_match_fallback, True),
+    'dirty_filter_recall': (eval_dirty_filter_recall_fallback, True),
+    'dirty_filter_precision': (eval_dirty_filter_precision_fallback, True),
+    'clean_retention_rate': (eval_clean_retention_rate_fallback, True),
+    'nan_rate': (eval_nan_rate_fallback, False),
+    'stability_nan_rate': (eval_nan_rate_fallback, False),
 }
 
 

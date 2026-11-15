@@ -15,13 +15,14 @@ federate:
   method: local
   save_to: exp/kafa_matrix/gsm8k/local_only/seed_43/gsm8k_local_only_seed43.ckpt
 data:
-  root: data/gsm8k
-  type: gsm8k@llm
+  root: data
+  type: gsm8k_dirty_fair_seed42@llm
   splits:
   - 0.4
   - 0.4
   - 0.2
-  splitter: iid
+  splitter: fixed_client
+  splitter_args: []
 llm:
   grad_accum_step: 4
   tok_len: 768
@@ -53,8 +54,8 @@ llm:
       layerwise_distill: false
       kl_divergence: raw
       data:
-        root: data/gsm8k
-        type: gsm8k@llm
+        root: data
+        type: gsm8k_dirty_fair_seed42@llm
         splits:
         - 0.8
         - 0.1
@@ -74,13 +75,15 @@ llm:
     soft_label_temperature: 4.0
     task_description_seed: 43
     task_description_samples: 100
-    client_model_type: ''
+    client_model_type: models/tinyllama-1.1b-chat-v1.0
     task_relevance_threshold: 0.5
     prototype_alignment_weight: 0.5
     use_instruction_augmentation: false
     top_k_prototypes: 5
     prototype_temperature: 0.1
     distill_weight: 0.0
+    enable_dirty_supervision_filter: true
+    dirty_consistency_threshold: 0.55
     enable_mse_relevance: false
     relevance_mse_multiplier: 1.5
     incremental_mse_multiplier: 0.8
@@ -88,15 +91,15 @@ llm:
     lora_mapping_strategy: interpolate
     max_prototypes: 100
     use_projection_lora: false
-    small_hidden: 4096
+    small_hidden: 2048
     large_hidden: 4096
     projection_learnable: true
     q_strategy: transpose
     lora_update_lr: 1.0
   paths:
     server_model: models/llama-2-7b-hf
-    client_model: ''
-    data_root: data/gsm8k
+    client_model: models/tinyllama-1.1b-chat-v1.0
+    data_root: data
     output_root: exp/kafa_matrix
     cache_dir: ''
 dataloader:
@@ -125,5 +128,22 @@ eval:
   - avg
   - raw
   count_flops: false
-privacy:
-  use_dp: false
+fedopt:
+  use: false
+  optimizer:
+    type: SGD
+    lr: 0.01
+  annealing: false
+  annealing_step_size: 2000
+  annealing_gamma: 0.5
+fedprox:
+  use: false
+  mu: 0.0
+personalization:
+  local_param: []
+  share_non_trainable_para: false
+  local_update_steps: -1
+  regular_weight: 0.1
+  lr: 0.0
+  K: 5
+  beta: 1.0

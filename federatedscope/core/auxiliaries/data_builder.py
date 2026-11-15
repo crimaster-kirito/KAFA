@@ -127,9 +127,12 @@ def get_data(config, client_cfgs=None):
     # Apply translator to non-FL dataset to transform it into its federated
     # counterpart
     if dataset is not None:
+        translator_name = DATA_TRANS_MAP[config.data.type.lower()]
+        if str(config.federate.method).lower() == 'knowledgeanchor' or \
+                str(config.trainer.type).lower() == 'knowledge_anchor_client':
+            translator_name = 'KnowledgeAnchorDataTranslator'
         translator = getattr(import_module('federatedscope.core.data'),
-                             DATA_TRANS_MAP[config.data.type.lower()])(
-                                 modified_config, client_cfgs)
+                             translator_name)(modified_config, client_cfgs)
         data = translator(dataset)
 
         # Convert `StandaloneDataDict` to `ClientData` when in distribute mode

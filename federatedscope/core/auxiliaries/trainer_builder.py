@@ -18,6 +18,10 @@ try:
     from federatedscope.llm.trainer import knowledge_anchor_trainer
 except ImportError as error:
     logger.debug(f'Could not import knowledge_anchor_trainer: {error}')
+try:
+    from federatedscope.llm.trainer import llm_trainer_with_metrics
+except ImportError as error:
+    logger.debug(f'Could not import llm_trainer_with_metrics: {error}')
 
 TRAINER_CLASS_DICT = {
     "cvtrainer": "CVTrainer",
@@ -35,7 +39,9 @@ TRAINER_CLASS_DICT = {
     "cltrainer": "CLTrainer",
     "lptrainer": "LPTrainer",
     "atc_trainer": "ATCTrainer",
-    "llmtrainer": "LLMTrainer"
+    "llmtrainer": "LLMTrainer",
+    "llmtrainer_metrics": "LLMTrainerWithMetrics",
+    "knowledge_anchor_client": "KnowledgeAnchorClientTrainer"
 }
 
 
@@ -166,6 +172,10 @@ def get_trainer(model=None,
             dict_path = "federatedscope.nlp.hetero_tasks.trainer"
         elif config.trainer.type.lower() in ['llmtrainer']:
             dict_path = "federatedscope.llm.trainer.trainer"
+        elif config.trainer.type.lower() in ['llmtrainer_metrics']:
+            dict_path = "federatedscope.llm.trainer.llm_trainer_with_metrics"
+        elif config.trainer.type.lower() in ['knowledge_anchor_client']:
+            dict_path = "federatedscope.llm.trainer.knowledge_anchor_trainer"
         else:
             raise ValueError
 

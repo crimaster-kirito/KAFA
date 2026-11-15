@@ -43,6 +43,11 @@ class KnowledgeAnchorClient(Client):
             model_path_parts = client_model_type.split('@')
             model_path = model_path_parts[0]
             model_hub = model_path_parts[1] if len(model_path_parts) > 1 else 'huggingface_llm'
+            normalized_client_model_type = (
+                client_model_type
+                if len(model_path_parts) > 1
+                else f'{model_path}@{model_hub}'
+            )
             
             # 检查路径是否存在（支持绝对路径和相对路径）
             abs_model_path = os.path.abspath(model_path)
@@ -59,7 +64,7 @@ class KnowledgeAnchorClient(Client):
             # 更新配置以使用小模型
             config.defrost()
             original_model_type = config.model.type
-            config.model.type = client_model_type
+            config.model.type = normalized_client_model_type
             config.freeze()
             
             # 构建小模型
@@ -88,8 +93,12 @@ class KnowledgeAnchorClient(Client):
                 import traceback
                 logger.error(traceback.format_exc())
                 logger.error("=" * 80)
-                logger.warning(f"客户端{ID}将回退使用服务器模型")
-                client_model = model
+                raise RuntimeError(
+                    f"Client {ID} failed to load configured client model "
+                    f"{normalized_client_model_type}. Aborting instead of "
+                    "falling back to the server model, because fallback would "
+                    "turn the KAFA heterogeneous-model experiment into a "
+                    "different setting.") from e
             # 恢复原始配置（避免影响其他客户端）
             config.defrost()
             config.model.type = original_model_type
@@ -174,3 +183,30 @@ class KnowledgeAnchorClient(Client):
         
         logger.info(f"客户端{self.ID}上传模型参数和增量bank（{len(incremental_bank)}个新原型）")
 
+    def callback_funcs_for_finish(self, message: Message):
+        """
+        Handle finish signal for heterogeneous KA setup.
+        Client may receive large-model parameters that do not match the
+        client-side small model shapes; skip such updates safely.
+        """
+        logger.info(
+            f"================= client {self.ID} received finish message "
+            f"=================")
+
+        ka_cfg = getattr(getattr(self._cfg, 'llm', None), 'knowledge_anchor',
+                         None)
+        is_heterogeneous_ka = bool(
+            ka_cfg is not None and getattr(ka_cfg, 'use_projection_lora',
+                                           False) and getattr(
+                                               ka_cfg, 'client_model_type',
+                                               ''))
+        if message.content is not None and not is_heterogeneous_ka:
+            self.trainer.update(
+                message.content,
+                strict=self._cfg.federate.share_local_model)
+        elif message.content is not None:
+            logger.info(
+                "Skip finish-time model update on client %s: heterogeneous "
+                "KA clients keep small-model LoRA parameters.", self.ID)
+
+        self._monitor.finish_fl()

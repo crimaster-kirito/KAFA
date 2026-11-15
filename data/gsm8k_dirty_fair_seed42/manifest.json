@@ -1,0 +1,14 @@
+{
+  "source": "data\\gsm8k_train.jsonl",
+  "seed": 42,
+  "dirty_ratio": 0.1,
+  "dirty_type": "answer_corruption",
+  "server_clean": 2989,
+  "client_train": 2989,
+  "test": 1495,
+  "client_dirty": [
+    100,
+    100,
+    100
+  ]
+}

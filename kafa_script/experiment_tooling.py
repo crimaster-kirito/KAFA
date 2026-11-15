@@ -5,6 +5,7 @@ import copy
 import hashlib
 import json
 import os
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
@@ -20,7 +21,8 @@ DEFAULT_OUTPUT_ROOT = Path('exp') / 'kafa_matrix'
 DEFAULT_ANALYSIS_ROOT = Path('kafa_script') / 'analysis_outputs'
 DEFAULT_SERVER_MODEL = os.getenv('KAFA_SERVER_MODEL',
                                  'models/llama-2-7b-hf')
-DEFAULT_CLIENT_MODEL = os.getenv('KAFA_CLIENT_MODEL', '').strip()
+DEFAULT_CLIENT_MODEL = os.getenv('KAFA_CLIENT_MODEL',
+                                 'models/tinyllama-1.1b-chat-v1.0').strip()
 DEFAULT_CACHE_DIR = os.getenv('KAFA_CACHE_DIR', '').strip()
 
 
@@ -51,8 +53,9 @@ class MethodSpec:
 
 TASK_SPECS: Dict[str, TaskSpec] = {
     'gsm8k':
-    TaskSpec('gsm8k', 'reasoning', 'gsm8k@llm', 'gsm8k', 30, 768, 256, 4, 5,
-             1, 'grade-school math reasoning'),
+    TaskSpec('gsm8k', 'reasoning', 'gsm8k_dirty_fair_seed42@llm', '', 30,
+             768, 256, 4, 5, 1,
+             'grade-school math reasoning with fixed dirty supervision split'),
     'alpaca':
     TaskSpec('alpaca', 'generation', 'alpaca@llm', 'alpaca', 20, 512, 256, 4,
              4, 1, 'instruction tuning'),
@@ -262,6 +265,8 @@ def get_method_spec(method_name: str) -> MethodSpec:
 
 def _task_data_root(task: TaskSpec, data_root: str) -> str:
     base = _resolve_path(data_root)
+    if not task.data_subdir:
+        return _as_config_path(base)
     return _as_config_path(base / task.data_subdir)
 
 
@@ -297,7 +302,8 @@ def build_base_cfg(task: TaskSpec,
             'root': data_root,
             'type': task.data_type,
             'splits': [0.4, 0.4, 0.2],
-            'splitter': 'iid',
+            'splitter': 'fixed_client'
+            if task.data_type.startswith('gsm8k_dirty_fair') else 'iid',
         },
         'llm': {
             'grad_accum_step': 4,
@@ -364,6 +370,8 @@ def build_base_cfg(task: TaskSpec,
                 'top_k_prototypes': 5,
                 'prototype_temperature': 0.1,
                 'distill_weight': 1.0,
+                'enable_dirty_supervision_filter': True,
+                'dirty_consistency_threshold': 0.55,
                 'enable_mse_relevance': True,
                 'relevance_mse_multiplier': 1.5,
                 'incremental_mse_multiplier': 0.8,
@@ -402,13 +410,13 @@ def build_base_cfg(task: TaskSpec,
         },
         'eval': {
             'freq': task.eval_freq,
-            'metrics': ['loss'],
+            'metrics': [
+                'loss', 'perplexity', 'token_acc', 'nan_rate',
+                'stability_nan_rate'
+            ],
             'best_res_update_round_wise_key': 'test_loss',
             'report': ['weighted_avg', 'avg', 'raw'],
             'count_flops': False,
-        },
-        'privacy': {
-            'use_dp': False,
         },
         'fedopt': {
             'use': False,
@@ -482,7 +490,9 @@ def build_method_cfg(task: TaskSpec, method: MethodSpec, base_cfg: Dict,
         cfg['personalization']['local_update_steps'] = task.local_update_steps
     elif method.kind.startswith('kafa'):
         cfg['federate']['method'] = 'knowledgeanchor'
-        cfg['data']['splitter'] = method.splitter
+        cfg['data']['splitter'] = 'fixed_client' \
+            if task.data_type.startswith('gsm8k_dirty_fair') \
+            else method.splitter
         cfg['trainer']['type'] = 'knowledge_anchor_client'
         cfg['llm']['knowledge_anchor']['client_model_type'] = client_model
         cfg['llm']['knowledge_anchor']['train_on_server'] = True
@@ -505,14 +515,18 @@ def build_method_cfg(task: TaskSpec, method: MethodSpec, base_cfg: Dict,
             cfg['llm']['knowledge_anchor']['distill_weight'] = 0.0
         elif method.kind == 'kafa_wo_relevance':
             cfg['llm']['knowledge_anchor']['enable_mse_relevance'] = False
-        cfg['data']['splitter_args'] = [{
-            'server_ratio': 0.4,
-            'client_ratio': 0.4,
-            'test_ratio': 0.2,
-            'non_iid_alpha': 0.5,
-            'task_irrelevant_ratio': 0.1,
-            'irrelevant_dataset': 'imdb',
-        }]
+        if cfg['data']['splitter'] == 'knowledge_anchor':
+            cfg['data']['splitter_args'] = [{
+                'server_ratio': 0.4,
+                'client_ratio': 0.4,
+                'test_ratio': 0.2,
+                'non_iid_alpha': 0.5,
+                'dirty_ratio': 0.1,
+                'dirty_type': 'answer_corruption',
+                'dirty_seed': seed,
+            }]
+        else:
+            cfg['data']['splitter_args'] = []
         cfg['federate']['save_freq'] = max(1, cfg['eval']['freq'])
     else:
         raise ValueError(f'Unknown method kind: {method.kind}')
@@ -614,6 +628,30 @@ def _extract_dict_from_line(line: str) -> Optional[Dict]:
         return None
 
 
+def _extract_json_or_dict_from_line(line: str) -> Optional[Dict]:
+    payload = _extract_dict_from_line(line)
+    if payload is not None:
+        return payload
+    try:
+        value = json.loads(line.strip())
+    except Exception:
+        return None
+    return value if isinstance(value, dict) else None
+
+
+def _safe_float(value, default=np.nan) -> float:
+    try:
+        return float(value)
+    except Exception:
+        return default
+
+
+def _ratio(numerator: float, denominator: float) -> float:
+    numerator = _safe_float(numerator, 0.0)
+    denominator = _safe_float(denominator, 0.0)
+    return numerator / denominator if denominator > 0 else np.nan
+
+
 def _log_files_under(run_dir: Path) -> List[Path]:
     logs: List[Path] = []
     for name in ('eval_results.log', 'eval_results.raw', 'exp_print.log'):
@@ -623,8 +661,80 @@ def _log_files_under(run_dir: Path) -> List[Path]:
     return logs
 
 
+def _run_evidence_level(run_dir: Path) -> str:
+    """Classify how trustworthy a run directory looks from available artifacts."""
+    strong_markers = [
+        run_dir / 'eval_results.raw',
+        run_dir / 'eval_results.raw.gz',
+        run_dir / 'exp_print.log',
+        run_dir / 'system_metrics.log',
+    ]
+    if any(path.exists() for path in strong_markers):
+        return 'verified_real'
+    if (run_dir / 'eval_results.log').exists():
+        return 'log_only_unverified'
+    return 'missing_logs'
+
+
+def _canonical_method_from_run_dir(run_dir: Path,
+                                   fallback: str = 'unknown') -> str:
+    exp_tag_to_method = {spec.exp_tag: spec.name for spec in METHOD_SPECS.values()}
+    parts = [part.lower() for part in run_dir.parts]
+    for part in reversed(parts):
+        if part in exp_tag_to_method:
+            return exp_tag_to_method[part]
+    key = METHOD_ALIASES.get(str(fallback).lower(), str(fallback).lower())
+    if key in METHOD_SPECS:
+        return METHOD_SPECS[key].name
+    return fallback
+
+
+def _canonical_task_name(data_type: str) -> str:
+    task_name = str(data_type).split('@', 1)[0]
+    if task_name.startswith('gsm8k'):
+        return 'gsm8k'
+    return task_name
+
+
+def _flatten_metrics(results: Dict, prefix: str = '') -> Dict[str, float]:
+    flattened: Dict[str, float] = {}
+    for key, value in results.items():
+        metric_key = f'{prefix}{key}' if not prefix else f'{prefix}.{key}'
+        if isinstance(value, dict):
+            flattened.update(_flatten_metrics(value, metric_key))
+            continue
+        try:
+            if value is not None and not isinstance(value, (str, bytes)):
+                flattened[metric_key] = float(value)
+        except Exception:
+            continue
+    return flattened
+
+
+def _pick_metric(metrics: Dict[str, float], *names: str) -> float:
+    for name in names:
+        if name in metrics and pd.notna(metrics[name]):
+            return metrics[name]
+    return np.nan
+
+
+def _derive_round_metrics(row: Dict) -> Dict:
+    for split in ('test', 'val', 'train'):
+        avg_loss_key = f'{split}_avg_loss'
+        ppl_key = f'{split}_perplexity'
+        if pd.isna(row.get(ppl_key, np.nan)) and pd.notna(
+                row.get(avg_loss_key, np.nan)):
+            row[ppl_key] = float(np.exp(min(float(row[avg_loss_key]), 20.0)))
+    if pd.notna(row.get('test_avg_loss', np.nan)) and pd.notna(
+            row.get('val_avg_loss', np.nan)):
+        row['generalization_gap'] = (
+            float(row['val_avg_loss']) - float(row['test_avg_loss']))
+    return row
+
+
 def parse_run_metrics(run_dir: Path) -> pd.DataFrame:
     rows: List[Dict] = []
+    final_rows: List[Dict] = []
     for log_path in _log_files_under(run_dir):
         for line in log_path.read_text(encoding='utf-8',
                                       errors='ignore').splitlines():
@@ -642,25 +752,170 @@ def parse_run_metrics(run_dir: Path) -> pd.DataFrame:
                 results = weighted if isinstance(weighted, dict) else avg
                 if not isinstance(results, dict):
                     continue
-                rows.append({
-                    'round':
-                    round_value,
-                    'test_avg_loss':
-                    results.get('emulator.test_avg_loss',
-                               results.get('test_avg_loss')),
-                    'val_avg_loss':
-                    results.get('emulator.val_avg_loss',
-                               results.get('val_avg_loss')),
-                    'test_loss':
-                    results.get('emulator.test_loss', results.get('test_loss')),
-                    'val_loss':
-                    results.get('emulator.val_loss', results.get('val_loss')),
-                    'log_path':
-                    _as_config_path(log_path),
-                })
+                metrics = _flatten_metrics(results)
+                row = {
+                    'round': round_value,
+                    'aggregation': 'weighted_avg'
+                    if isinstance(weighted, dict) and weighted else 'avg',
+                    'test_avg_loss': _pick_metric(
+                        metrics, 'emulator.test_avg_loss', 'test_avg_loss'),
+                    'val_avg_loss': _pick_metric(metrics,
+                                                 'emulator.val_avg_loss',
+                                                 'val_avg_loss'),
+                    'train_avg_loss': _pick_metric(metrics,
+                                                   'emulator.train_avg_loss',
+                                                   'train_avg_loss'),
+                    'test_loss': _pick_metric(metrics, 'emulator.test_loss',
+                                              'test_loss'),
+                    'val_loss': _pick_metric(metrics, 'emulator.val_loss',
+                                            'val_loss'),
+                    'train_loss': _pick_metric(metrics, 'emulator.train_loss',
+                                              'train_loss'),
+                    'test_acc': _pick_metric(metrics, 'emulator.test_acc',
+                                             'test_acc', 'test_accuracy'),
+                    'val_acc': _pick_metric(metrics, 'emulator.val_acc',
+                                           'val_acc', 'val_accuracy'),
+                    'test_token_acc': _pick_metric(
+                        metrics, 'emulator.test_token_acc', 'test_token_acc',
+                        'test_token_accuracy'),
+                    'val_token_acc': _pick_metric(
+                        metrics, 'emulator.val_token_acc', 'val_token_acc',
+                        'val_token_accuracy'),
+                    'test_perplexity': _pick_metric(
+                        metrics, 'emulator.test_perplexity',
+                        'test_perplexity', 'test_ppl'),
+                    'val_perplexity': _pick_metric(
+                        metrics, 'emulator.val_perplexity',
+                        'val_perplexity', 'val_ppl'),
+                    'test_bleu': _pick_metric(metrics, 'test_bleu', 'bleu'),
+                    'test_rouge': _pick_metric(metrics, 'test_rouge',
+                                              'test_rouge_l', 'rouge',
+                                              'rouge_l'),
+                    'test_exact_match': _pick_metric(
+                        metrics, 'test_exact_match', 'test_em',
+                        'exact_match', 'em'),
+                    'test_bertscore': _pick_metric(metrics,
+                                                   'test_bertscore',
+                                                   'bertscore'),
+                    'test_gsm8k_exact_match_accuracy': _pick_metric(
+                        metrics, 'test_gsm8k_exact_match_accuracy',
+                        'test_gsm8k_exact_match', 'test_gsm8k_em',
+                        'gsm8k_exact_match_accuracy', 'gsm8k_exact_match',
+                        'gsm8k_em', 'gsm8k_accuracy'),
+                    'dirty_filter_recall': _pick_metric(
+                        metrics, 'train_dirty_filter_recall',
+                        'dirty_filter_recall'),
+                    'dirty_filter_precision': _pick_metric(
+                        metrics, 'train_dirty_filter_precision',
+                        'dirty_filter_precision'),
+                    'clean_retention_rate': _pick_metric(
+                        metrics, 'train_clean_retention_rate',
+                        'clean_retention_rate'),
+                    'nan_rate': _pick_metric(
+                        metrics, 'train_nan_rate',
+                        'train_stability_nan_rate', 'test_nan_rate',
+                        'test_stability_nan_rate', 'nan_rate',
+                        'stability_nan_rate'),
+                    'log_path': _as_config_path(log_path),
+                }
+                for metric_name, metric_value in metrics.items():
+                    safe_name = metric_name.replace('.', '_')
+                    if safe_name not in row:
+                        row[safe_name] = metric_value
+                rows.append(_derive_round_metrics(row))
+            elif str(round_value).lower() == 'final':
+                raw = payload.get('Results_raw', {})
+                if not isinstance(raw, dict):
+                    continue
+                results = raw.get('client_summarized_weighted_avg',
+                                  raw.get('client_best_individual', {}))
+                if not isinstance(results, dict):
+                    continue
+                metrics = _flatten_metrics(results)
+                row = {
+                    'round': np.nan,
+                    'is_final': True,
+                    'aggregation': 'final_weighted_avg'
+                    if 'client_summarized_weighted_avg' in raw else
+                    'final_best_individual',
+                    'test_avg_loss': _pick_metric(
+                        metrics, 'emulator.test_avg_loss', 'test_avg_loss'),
+                    'val_avg_loss': _pick_metric(metrics,
+                                                 'emulator.val_avg_loss',
+                                                 'val_avg_loss'),
+                    'train_avg_loss': _pick_metric(metrics,
+                                                   'emulator.train_avg_loss',
+                                                   'train_avg_loss'),
+                    'test_loss': _pick_metric(metrics, 'emulator.test_loss',
+                                              'test_loss'),
+                    'val_loss': _pick_metric(metrics, 'emulator.val_loss',
+                                            'val_loss'),
+                    'train_loss': _pick_metric(metrics, 'emulator.train_loss',
+                                              'train_loss'),
+                    'test_acc': _pick_metric(metrics, 'emulator.test_acc',
+                                             'test_acc', 'test_accuracy'),
+                    'val_acc': _pick_metric(metrics, 'emulator.val_acc',
+                                           'val_acc', 'val_accuracy'),
+                    'test_token_acc': _pick_metric(
+                        metrics, 'emulator.test_token_acc', 'test_token_acc',
+                        'test_token_accuracy'),
+                    'val_token_acc': _pick_metric(
+                        metrics, 'emulator.val_token_acc', 'val_token_acc',
+                        'val_token_accuracy'),
+                    'test_perplexity': _pick_metric(
+                        metrics, 'emulator.test_perplexity',
+                        'test_perplexity', 'test_ppl'),
+                    'val_perplexity': _pick_metric(
+                        metrics, 'emulator.val_perplexity',
+                        'val_perplexity', 'val_ppl'),
+                    'test_bleu': _pick_metric(metrics, 'test_bleu', 'bleu'),
+                    'test_rouge': _pick_metric(metrics, 'test_rouge',
+                                              'test_rouge_l', 'rouge',
+                                              'rouge_l'),
+                    'test_exact_match': _pick_metric(
+                        metrics, 'test_exact_match', 'test_em',
+                        'exact_match', 'em'),
+                    'test_bertscore': _pick_metric(metrics,
+                                                   'test_bertscore',
+                                                   'bertscore'),
+                    'test_gsm8k_exact_match_accuracy': _pick_metric(
+                        metrics, 'test_gsm8k_exact_match_accuracy',
+                        'test_gsm8k_exact_match', 'test_gsm8k_em',
+                        'gsm8k_exact_match_accuracy', 'gsm8k_exact_match',
+                        'gsm8k_em', 'gsm8k_accuracy'),
+                    'dirty_filter_recall': _pick_metric(
+                        metrics, 'train_dirty_filter_recall',
+                        'dirty_filter_recall'),
+                    'dirty_filter_precision': _pick_metric(
+                        metrics, 'train_dirty_filter_precision',
+                        'dirty_filter_precision'),
+                    'clean_retention_rate': _pick_metric(
+                        metrics, 'train_clean_retention_rate',
+                        'clean_retention_rate'),
+                    'nan_rate': _pick_metric(
+                        metrics, 'train_nan_rate',
+                        'train_stability_nan_rate', 'test_nan_rate',
+                        'test_stability_nan_rate', 'nan_rate',
+                        'stability_nan_rate'),
+                    'log_path': _as_config_path(log_path),
+                }
+                for metric_name, metric_value in metrics.items():
+                    safe_name = metric_name.replace('.', '_')
+                    if safe_name not in row:
+                        row[safe_name] = metric_value
+                final_rows.append(_derive_round_metrics(row))
+    if final_rows:
+        last_round = max([row['round'] for row in rows], default=-1)
+        for final_row in final_rows:
+            final_row['round'] = int(last_round + 1)
+        rows.extend(final_rows)
     if not rows:
         return pd.DataFrame(columns=[
-            'round', 'test_avg_loss', 'val_avg_loss', 'test_loss', 'val_loss',
+            'round', 'test_avg_loss', 'val_avg_loss', 'train_avg_loss',
+            'test_loss', 'val_loss', 'train_loss', 'test_acc', 'val_acc',
+            'test_perplexity', 'val_perplexity', 'generalization_gap',
+            'test_gsm8k_exact_match_accuracy', 'dirty_filter_recall',
+            'dirty_filter_precision', 'clean_retention_rate', 'nan_rate',
             'log_path'
         ])
     df = pd.DataFrame(rows).sort_values('round').drop_duplicates(
@@ -668,19 +923,132 @@ def parse_run_metrics(run_dir: Path) -> pd.DataFrame:
     return df.reset_index(drop=True)
 
 
+def summarize_curve_metrics(curve: pd.DataFrame) -> Dict[str, float]:
+    if curve.empty:
+        return {}
+    final_row = curve.iloc[-1].to_dict()
+    summary = {
+        'final_round': int(final_row['round']),
+        'final_test_avg_loss': final_row.get('test_avg_loss', np.nan),
+        'final_val_avg_loss': final_row.get('val_avg_loss', np.nan),
+        'final_train_avg_loss': final_row.get('train_avg_loss', np.nan),
+        'final_test_loss': final_row.get('test_loss', np.nan),
+        'final_val_loss': final_row.get('val_loss', np.nan),
+        'final_test_acc': final_row.get('test_acc', np.nan),
+        'final_val_acc': final_row.get('val_acc', np.nan),
+        'final_test_token_acc': final_row.get('test_token_acc', np.nan),
+        'final_val_token_acc': final_row.get('val_token_acc', np.nan),
+        'final_test_perplexity': final_row.get('test_perplexity', np.nan),
+        'final_val_perplexity': final_row.get('val_perplexity', np.nan),
+        'final_generalization_gap': final_row.get('generalization_gap',
+                                                 np.nan),
+        'final_test_bleu': final_row.get('test_bleu', np.nan),
+        'final_test_rouge': final_row.get('test_rouge', np.nan),
+        'final_test_exact_match': final_row.get('test_exact_match', np.nan),
+        'final_test_bertscore': final_row.get('test_bertscore', np.nan),
+        'final_gsm8k_exact_match_accuracy':
+        final_row.get('test_gsm8k_exact_match_accuracy', np.nan),
+        'dirty_filter_recall': final_row.get('dirty_filter_recall', np.nan),
+        'dirty_filter_precision':
+        final_row.get('dirty_filter_precision', np.nan),
+        'clean_retention_rate':
+        final_row.get('clean_retention_rate', np.nan),
+        'stability_nan_rate': final_row.get('nan_rate', np.nan),
+    }
+    summary['final_round_loss'] = (
+        summary['final_test_avg_loss']
+        if pd.notna(summary.get('final_test_avg_loss', np.nan)) else
+        summary.get('final_test_loss', np.nan))
+    if 'test_avg_loss' in curve and curve['test_avg_loss'].notna().any():
+        valid = curve[['round', 'test_avg_loss']].dropna()
+        best_idx = valid['test_avg_loss'].idxmin()
+        summary['best_test_avg_loss'] = float(valid.loc[best_idx,
+                                                        'test_avg_loss'])
+        summary['best_round_loss'] = summary['best_test_avg_loss']
+        summary['round_to_best_test_avg_loss'] = int(valid.loc[best_idx,
+                                                               'round'])
+        if len(valid) >= 2:
+            summary['test_loss_auc'] = float(
+                np.trapz(valid['test_avg_loss'], valid['round']) /
+                max(1, valid['round'].max() - valid['round'].min()))
+        else:
+            summary['test_loss_auc'] = float(valid['test_avg_loss'].iloc[0])
+    if 'test_acc' in curve and curve['test_acc'].notna().any():
+        valid_acc = curve[['round', 'test_acc']].dropna()
+        best_acc_idx = valid_acc['test_acc'].idxmax()
+        summary['best_test_acc'] = float(valid_acc.loc[best_acc_idx,
+                                                       'test_acc'])
+        summary['round_to_best_test_acc'] = int(valid_acc.loc[best_acc_idx,
+                                                              'round'])
+    if 'best_round_loss' not in summary and 'test_loss' in curve and \
+            curve['test_loss'].notna().any():
+        valid_loss = curve[['round', 'test_loss']].dropna()
+        best_loss_idx = valid_loss['test_loss'].idxmin()
+        summary['best_round_loss'] = float(valid_loss.loc[best_loss_idx,
+                                                          'test_loss'])
+        summary['round_to_best_round_loss'] = int(
+            valid_loss.loc[best_loss_idx, 'round'])
+    return summary
+
+
 def parse_system_metrics(run_dir: Path) -> Dict[str, float]:
     for name in ('system_metrics.log', 'exp_print.log'):
         path = run_dir / name
         if not path.exists():
             continue
+        worker_rows = []
+        summary_rows = []
         last_metrics = None
         for line in path.read_text(encoding='utf-8',
                                    errors='ignore').splitlines():
             if 'total_download_bytes' not in line:
                 continue
-            payload = _extract_dict_from_line(line)
+            payload = _extract_json_or_dict_from_line(line)
             if isinstance(payload, dict):
+                if isinstance(payload.get('id'), int):
+                    worker_rows.append(payload)
+                    continue
+                if str(payload.get('id', '')).startswith('sys_'):
+                    summary_rows.append(payload)
+                    continue
                 last_metrics = payload
+        if worker_rows:
+            total_download = sum(
+                _safe_float(row.get('total_download_bytes'), 0.0)
+                for row in worker_rows)
+            total_upload = sum(
+                _safe_float(row.get('total_upload_bytes'), 0.0)
+                for row in worker_rows)
+            total_model_size = sum(
+                _safe_float(row.get('total_model_size'), 0.0)
+                for row in worker_rows)
+            return {
+                'total_download_mb': total_download / (1024.0 * 1024.0),
+                'total_upload_mb': total_upload / (1024.0 * 1024.0),
+                'total_model_size_gb':
+                str(total_model_size / (1024.0 * 1024.0 * 1024.0)),
+            }
+        if summary_rows:
+            avg_row = next(
+                (row for row in summary_rows
+                 if row.get('id') == 'sys_avg'), summary_rows[-1])
+            download = _safe_float(
+                avg_row.get('total_download_bytes',
+                            avg_row.get('sys_avg/total_download_bytes',
+                                        np.nan)))
+            upload = _safe_float(
+                avg_row.get('total_upload_bytes',
+                            avg_row.get('sys_avg/total_upload_bytes',
+                                        np.nan)))
+            if pd.notna(download) or pd.notna(upload):
+                return {
+                    'total_download_mb':
+                    _safe_float(download, 0.0) / (1024.0 * 1024.0),
+                    'total_upload_mb':
+                    _safe_float(upload, 0.0) / (1024.0 * 1024.0),
+                    'total_model_size_gb':
+                    str(avg_row.get('sys_avg/total_model_size', '0')),
+                }
         if last_metrics:
             return {
                 'total_download_mb':
@@ -699,6 +1067,147 @@ def parse_system_metrics(run_dir: Path) -> Dict[str, float]:
     }
 
 
+def parse_gsm8k_exact_match_metrics(run_dir: Path) -> Dict[str, float]:
+    metrics_path = run_dir / 'gsm8k_metrics.json'
+    if metrics_path.exists():
+        try:
+            payload = json.loads(metrics_path.read_text(encoding='utf-8'))
+            return {
+                'gsm8k_exact_match_accuracy':
+                _safe_float(payload.get('gsm8k_exact_match_accuracy')),
+                'gsm8k_exact_match_correct':
+                _safe_float(payload.get('gsm8k_exact_match_correct')),
+                'gsm8k_exact_match_total':
+                _safe_float(payload.get('gsm8k_exact_match_total')),
+            }
+        except Exception:
+            pass
+
+    result_path = run_dir / 'test_results.txt'
+    if not result_path.exists():
+        return {
+            'gsm8k_exact_match_accuracy': np.nan,
+            'gsm8k_exact_match_correct': np.nan,
+            'gsm8k_exact_match_total': np.nan,
+        }
+    text = result_path.read_text(encoding='utf-8', errors='ignore')
+    match = re.search(
+        r'Num of total question:\s*(\d+),\s*correct num:\s*(\d+),\s*'
+        r'correct rate:\s*([0-9eE\.\+\-]+)', text)
+    if not match:
+        return {
+            'gsm8k_exact_match_accuracy': np.nan,
+            'gsm8k_exact_match_correct': np.nan,
+            'gsm8k_exact_match_total': np.nan,
+        }
+    total = float(match.group(1))
+    correct = float(match.group(2))
+    accuracy = _safe_float(match.group(3))
+    return {
+        'gsm8k_exact_match_accuracy': accuracy,
+        'gsm8k_exact_match_correct': correct,
+        'gsm8k_exact_match_total': total,
+    }
+
+
+def parse_dirty_filter_log_metrics(run_dir: Path) -> Dict[str, float]:
+    path = run_dir / 'exp_print.log'
+    if not path.exists():
+        return {
+            'dirty_filter_recall': np.nan,
+            'dirty_filter_precision': np.nan,
+            'clean_retention_rate': np.nan,
+            'stability_nan_rate': np.nan,
+            'dirty_samples_seen': np.nan,
+            'dirty_samples_filtered': np.nan,
+            'clean_samples_filtered': np.nan,
+        }
+
+    last_by_client: Dict[str, Dict[str, float]] = {}
+    pending: Optional[Dict[str, float]] = None
+    fallback_blocks: List[Dict[str, float]] = []
+    nan_warning_count = 0
+    for line in path.read_text(encoding='utf-8',
+                               errors='ignore').splitlines():
+        lower = line.lower()
+        if 'nan' in lower or 'non-finite' in lower:
+            nan_warning_count += 1
+        if 'Knowledge-anchor client training statistics' in line:
+            pending = {}
+            continue
+        if pending is not None:
+            match = re.search(r'Total samples:\s*(\d+)', line)
+            if match:
+                pending['total_samples'] = float(match.group(1))
+                continue
+            match = re.search(r'Kept samples:\s*(\d+)', line)
+            if match:
+                pending['kept_samples'] = float(match.group(1))
+                continue
+            match = re.search(r'Filtered samples:\s*(\d+)', line)
+            if match:
+                pending['filtered_samples'] = float(match.group(1))
+                continue
+            match = re.search(r'Non-finite samples:\s*(\d+)', line)
+            if match:
+                pending['nonfinite_samples'] = float(match.group(1))
+                continue
+            match = re.search(
+                r'Dirty supervision:\s*seen=(\d+),\s*filtered=(\d+),\s*'
+                r'missed=(\d+)', line)
+            if match:
+                pending['dirty_samples_seen'] = float(match.group(1))
+                pending['dirty_samples_filtered'] = float(match.group(2))
+                pending['dirty_samples_missed'] = float(match.group(3))
+                continue
+            match = re.search(r'Clean samples filtered:\s*(\d+)', line)
+            if match:
+                pending['clean_samples_filtered'] = float(match.group(1))
+                fallback_blocks.append(dict(pending))
+                continue
+        match = re.search(r"'Role':\s*'Client #(\d+)'", line)
+        if match and pending:
+            last_by_client[match.group(1)] = dict(pending)
+            pending = None
+
+    blocks = list(last_by_client.values()) if last_by_client else fallback_blocks[-1:]
+    if not blocks:
+        return {
+            'dirty_filter_recall': np.nan,
+            'dirty_filter_precision': np.nan,
+            'clean_retention_rate': np.nan,
+            'stability_nan_rate': 1.0 if nan_warning_count else np.nan,
+            'dirty_samples_seen': np.nan,
+            'dirty_samples_filtered': np.nan,
+            'clean_samples_filtered': np.nan,
+        }
+
+    total_samples = sum(block.get('total_samples', 0.0) for block in blocks)
+    dirty_seen = sum(block.get('dirty_samples_seen', 0.0) for block in blocks)
+    dirty_filtered = sum(
+        block.get('dirty_samples_filtered', 0.0) for block in blocks)
+    clean_filtered = sum(
+        block.get('clean_samples_filtered', 0.0) for block in blocks)
+    nonfinite = sum(block.get('nonfinite_samples', 0.0) for block in blocks)
+    clean_seen = max(0.0, total_samples - dirty_seen)
+    dirty_precision = _ratio(dirty_filtered,
+                             dirty_filtered + clean_filtered)
+    dirty_recall = _ratio(dirty_filtered, dirty_seen)
+    clean_retention = _ratio(clean_seen - clean_filtered, clean_seen)
+    nan_rate = _ratio(nonfinite, total_samples)
+    if pd.isna(nan_rate) and nan_warning_count:
+        nan_rate = 1.0
+    return {
+        'dirty_filter_recall': dirty_recall,
+        'dirty_filter_precision': dirty_precision,
+        'clean_retention_rate': clean_retention,
+        'stability_nan_rate': nan_rate,
+        'dirty_samples_seen': dirty_seen,
+        'dirty_samples_filtered': dirty_filtered,
+        'clean_samples_filtered': clean_filtered,
+    }
+
+
 def collect_real_runs(exp_root: Path) -> pd.DataFrame:
     rows: List[Dict] = []
     for config_path in exp_root.rglob('config.yaml'):
@@ -709,34 +1218,89 @@ def collect_real_runs(exp_root: Path) -> pd.DataFrame:
             config = yaml.safe_load(config_path.read_text(encoding='utf-8'))
         except Exception:
             continue
-        task_name = str(config.get('data', {}).get('type', 'unknown')).split(
-            '@', 1)[0]
-        method_name = str(config.get('federate', {}).get('method', 'unknown'))
+        task_name = _canonical_task_name(
+            config.get('data', {}).get('type', 'unknown'))
+        method_name = _canonical_method_from_run_dir(
+            run_dir, str(config.get('federate', {}).get('method', 'unknown')))
         trainer_type = str(config.get('trainer', {}).get('type', 'unknown'))
         seed = config.get('seed', np.nan)
         outdir = config.get('outdir', _as_config_path(run_dir))
         curve = parse_run_metrics(run_dir)
         if curve.empty:
             continue
-        final_row = curve.iloc[-1].to_dict()
+        curve_summary = summarize_curve_metrics(curve)
         comm = parse_system_metrics(run_dir)
-        rows.append({
+        total_comm_mb = (
+            comm.get('total_download_mb', np.nan) +
+            comm.get('total_upload_mb', np.nan))
+        gsm8k_metrics = parse_gsm8k_exact_match_metrics(run_dir)
+        dirty_metrics = parse_dirty_filter_log_metrics(run_dir)
+        row = {
             'task': task_name,
             'method': method_name,
             'trainer': trainer_type,
             'seed': seed,
             'run_dir': _as_config_path(run_dir),
             'outdir': outdir,
-            'final_round': int(final_row['round']),
-            'final_test_avg_loss': final_row.get('test_avg_loss', np.nan),
-            'final_val_avg_loss': final_row.get('val_avg_loss', np.nan),
-            'final_test_loss': final_row.get('test_loss', np.nan),
-            'final_val_loss': final_row.get('val_loss', np.nan),
             'total_download_mb': comm.get('total_download_mb', np.nan),
             'total_upload_mb': comm.get('total_upload_mb', np.nan),
-            'source': 'real',
-        })
+            'total_comm_mb': total_comm_mb,
+            'communication_cost_mb': total_comm_mb,
+            'communication_cost_gb': total_comm_mb / 1024.0
+            if pd.notna(total_comm_mb) else np.nan,
+            'evidence_level': _run_evidence_level(run_dir),
+            'source': 'log',
+        }
+        row.update(curve_summary)
+        for key, value in gsm8k_metrics.items():
+            if key == 'gsm8k_exact_match_accuracy' and pd.notna(value):
+                row['final_gsm8k_exact_match_accuracy'] = value
+            row[key] = value
+        for key, value in dirty_metrics.items():
+            if key not in row or pd.isna(row.get(key, np.nan)):
+                row[key] = value
+        for key in (
+                'final_gsm8k_exact_match_accuracy', 'best_round_loss',
+                'final_round_loss', 'dirty_filter_recall',
+                'dirty_filter_precision', 'clean_retention_rate',
+                'stability_nan_rate', 'communication_cost_mb'):
+            row.setdefault(key, np.nan)
+        if pd.notna(row.get('final_test_avg_loss', np.nan)) and pd.notna(
+                total_comm_mb) and total_comm_mb > 0:
+            row['loss_per_comm_gb'] = (
+                row['final_test_avg_loss'] / (total_comm_mb / 1024.0))
+        else:
+            row['loss_per_comm_gb'] = np.nan
+        rows.append(row)
     return pd.DataFrame(rows)
+
+
+def collect_real_curves(exp_root: Path) -> pd.DataFrame:
+    rows: List[pd.DataFrame] = []
+    for config_path in exp_root.rglob('config.yaml'):
+        run_dir = config_path.parent
+        try:
+            config = yaml.safe_load(config_path.read_text(encoding='utf-8'))
+        except Exception:
+            continue
+        curve = parse_run_metrics(run_dir)
+        if curve.empty:
+            continue
+        task_name = _canonical_task_name(
+            config.get('data', {}).get('type', 'unknown'))
+        method_name = _canonical_method_from_run_dir(
+            run_dir, str(config.get('federate', {}).get('method', 'unknown')))
+        curve = curve.copy()
+        curve.insert(0, 'source', 'log')
+        curve.insert(1, 'evidence_level', _run_evidence_level(run_dir))
+        curve.insert(2, 'task', task_name)
+        curve.insert(3, 'method', method_name)
+        curve.insert(4, 'seed', config.get('seed', np.nan))
+        curve.insert(5, 'run_dir', _as_config_path(run_dir))
+        rows.append(curve)
+    if not rows:
+        return pd.DataFrame()
+    return pd.concat(rows, ignore_index=True)
 
 
 def _curve_profile(task_family: str, method_name: str) -> Tuple[float, float, float]:
@@ -914,16 +1478,50 @@ def summarize_by_task_and_method(real_df: pd.DataFrame) -> pd.DataFrame:
         return pd.DataFrame(columns=[
             'task', 'method', 'n_runs', 'final_test_avg_loss_mean',
             'final_test_avg_loss_std', 'final_val_avg_loss_mean',
-            'final_download_mb_mean', 'final_upload_mb_mean'
+            'final_test_acc_mean', 'final_test_perplexity_mean',
+            'test_loss_auc_mean', 'best_test_avg_loss_mean',
+            'best_round_loss_mean', 'final_round_loss_mean',
+            'final_gsm8k_exact_match_accuracy_mean',
+            'dirty_filter_recall_mean', 'dirty_filter_precision_mean',
+            'clean_retention_rate_mean', 'stability_nan_rate_mean',
+            'final_download_mb_mean', 'final_upload_mb_mean',
+            'total_comm_mb_mean', 'communication_cost_mb_mean',
+            'verified_real_runs', 'unverified_log_runs'
         ])
     grouped = real_df.groupby(['task', 'method'], as_index=False).agg(
         n_runs=('seed', 'count'),
         final_test_avg_loss_mean=('final_test_avg_loss', 'mean'),
         final_test_avg_loss_std=('final_test_avg_loss', 'std'),
         final_val_avg_loss_mean=('final_val_avg_loss', 'mean'),
+        final_train_avg_loss_mean=('final_train_avg_loss', 'mean'),
+        final_test_acc_mean=('final_test_acc', 'mean'),
+        final_val_acc_mean=('final_val_acc', 'mean'),
+        final_test_token_acc_mean=('final_test_token_acc', 'mean'),
+        final_test_perplexity_mean=('final_test_perplexity', 'mean'),
+        final_generalization_gap_mean=('final_generalization_gap', 'mean'),
+        final_gsm8k_exact_match_accuracy_mean=(
+            'final_gsm8k_exact_match_accuracy', 'mean'),
+        test_loss_auc_mean=('test_loss_auc', 'mean'),
+        best_test_avg_loss_mean=('best_test_avg_loss', 'mean'),
+        best_round_loss_mean=('best_round_loss', 'mean'),
+        final_round_loss_mean=('final_round_loss', 'mean'),
+        round_to_best_test_avg_loss_mean=('round_to_best_test_avg_loss',
+                                          'mean'),
+        dirty_filter_recall_mean=('dirty_filter_recall', 'mean'),
+        dirty_filter_precision_mean=('dirty_filter_precision', 'mean'),
+        clean_retention_rate_mean=('clean_retention_rate', 'mean'),
+        stability_nan_rate_mean=('stability_nan_rate', 'mean'),
         final_download_mb_mean=('total_download_mb', 'mean'),
         final_upload_mb_mean=('total_upload_mb', 'mean'),
+        total_comm_mb_mean=('total_comm_mb', 'mean'),
+        communication_cost_mb_mean=('communication_cost_mb', 'mean'),
+        loss_per_comm_gb_mean=('loss_per_comm_gb', 'mean'),
     )
+    evidence = real_df.groupby(['task', 'method'])['evidence_level'].value_counts(
+    ).unstack(fill_value=0).reset_index()
+    grouped = grouped.merge(evidence, on=['task', 'method'], how='left')
+    grouped['verified_real_runs'] = grouped.get('verified_real', 0)
+    grouped['unverified_log_runs'] = grouped.get('log_only_unverified', 0)
     return grouped.sort_values(['task', 'final_test_avg_loss_mean'])
 
 
@@ -959,6 +1557,60 @@ def build_communication_table(tasks: Sequence[str],
     return pd.DataFrame(rows)
 
 
+def build_metric_catalog() -> pd.DataFrame:
+    rows = [
+        ('final_test_avg_loss', 'effectiveness', 'lower',
+         'Primary held-out loss at the last logged evaluation.'),
+        ('best_test_avg_loss', 'effectiveness', 'lower',
+         'Best held-out average loss across logged rounds.'),
+        ('test_loss_auc', 'convergence', 'lower',
+         'Area under the test-loss curve normalized by round span.'),
+        ('round_to_best_test_avg_loss', 'convergence', 'lower',
+         'Rounds needed to reach the best logged test loss.'),
+        ('final_test_acc', 'task quality', 'higher',
+         'Final exact/label accuracy when the evaluator reports accuracy.'),
+        ('final_test_token_acc', 'task quality', 'higher',
+         'Final token-level accuracy for language-model outputs.'),
+        ('final_test_perplexity', 'language modeling', 'lower',
+         'Perplexity derived from avg loss when explicit PPL is absent.'),
+        ('final_test_bleu', 'generation quality', 'higher',
+         'BLEU for generation tasks when references are logged.'),
+        ('final_test_rouge', 'generation quality', 'higher',
+         'ROUGE-L for summarization/extraction style generation.'),
+        ('final_test_exact_match', 'reasoning/QA quality', 'higher',
+         'Exact-match score for QA or math-answer extraction.'),
+        ('final_gsm8k_exact_match_accuracy', 'GSM8K quality', 'higher',
+         'Final GSM8K numeric exact-match accuracy from generation evaluation.'),
+        ('dirty_filter_recall', 'dirty data filtering', 'higher',
+         'Fraction of known dirty supervision examples filtered out.'),
+        ('dirty_filter_precision', 'dirty data filtering', 'higher',
+         'Fraction of filtered examples that were truly dirty.'),
+        ('clean_retention_rate', 'dirty data filtering', 'higher',
+         'Fraction of clean supervision examples retained by the filter.'),
+        ('best_round_loss', 'convergence', 'lower',
+         'Lowest logged test loss across communication rounds.'),
+        ('final_round_loss', 'effectiveness', 'lower',
+         'Test loss from the final logged communication round.'),
+        ('stability_nan_rate', 'stability', 'lower',
+         'Non-finite/NaN batch or sample rate observed during the run.'),
+        ('final_generalization_gap', 'stability', 'near_zero',
+         'Final val avg loss minus test avg loss; large magnitude suggests split mismatch or instability.'),
+        ('total_comm_mb', 'efficiency', 'lower',
+         'Observed upload plus download traffic from system metrics.'),
+        ('communication_cost_mb', 'efficiency', 'lower',
+         'Alias for total observed upload plus download traffic in MB.'),
+        ('loss_per_comm_gb', 'efficiency', 'lower',
+         'Final test avg loss divided by total communication in GB.'),
+        ('verified_real_runs', 'provenance', 'higher',
+         'Runs with strong artifacts such as exp_print/system/raw logs.'),
+        ('unverified_log_runs', 'provenance', 'lower',
+         'Runs with only eval_results.log; inspect before using as paper evidence.'),
+    ]
+    return pd.DataFrame(rows,
+                        columns=['metric', 'dimension', 'direction',
+                                 'definition'])
+
+
 def render_report(real_df: pd.DataFrame,
                   summary_df: pd.DataFrame,
                   synthetic_final_df: pd.DataFrame,
@@ -982,6 +1634,10 @@ def render_report(real_df: pd.DataFrame,
             f'- Real runs found: {len(real_df)} rows across '
             f'{real_df["task"].nunique()} tasks and '
             f'{real_df["method"].nunique()} methods.')
+        if 'evidence_level' in real_df:
+            evidence_counts = real_df['evidence_level'].value_counts()
+            for evidence, count in evidence_counts.items():
+                report_lines.append(f'- Evidence `{evidence}`: {count} runs.')
         best = summary_df.groupby('task', as_index=False).first()
         for _, row in best.iterrows():
             report_lines.append(
@@ -1221,28 +1877,137 @@ def _plot_tradeoff_scatter(synthetic_final_df: pd.DataFrame,
     plt.close(fig)
 
 
+def _plot_real_final_bars(summary_df: pd.DataFrame, output_path: Path) -> None:
+    import matplotlib.pyplot as plt
+
+    usable = summary_df[summary_df['final_test_avg_loss_mean'].notna()].copy()
+    if usable.empty:
+        return
+    tasks = list(usable['task'].dropna().unique())
+    ncols = min(3, max(1, len(tasks)))
+    nrows = int(np.ceil(len(tasks) / ncols))
+    fig, axes = plt.subplots(nrows,
+                             ncols,
+                             figsize=(6 * ncols, 4.5 * nrows),
+                             constrained_layout=True)
+    axes = np.atleast_1d(axes).flatten()
+    for ax, task_name in zip(axes, tasks):
+        task_rows = usable[usable['task'] == task_name].sort_values(
+            'final_test_avg_loss_mean')
+        labels = [display_method_name(m) for m in task_rows['method']]
+        colors = [PLOT_COLORS.get(str(m).lower(), '#4c78a8')
+                  for m in task_rows['method']]
+        ax.bar(range(len(task_rows)),
+               task_rows['final_test_avg_loss_mean'],
+               color=colors,
+               width=0.75)
+        ax.set_title(f'{task_name} logged final loss')
+        ax.set_ylabel('Final test avg loss')
+        ax.set_xticks(range(len(task_rows)))
+        ax.set_xticklabels(labels, rotation=35, ha='right', fontsize=8)
+        ax.grid(axis='y', alpha=0.25)
+    for ax in axes[len(tasks):]:
+        ax.axis('off')
+    fig.suptitle('Logged final loss by task', fontsize=15)
+    fig.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+
+
+def _plot_real_convergence(task_name: str, real_curve_df: pd.DataFrame,
+                           output_path: Path) -> None:
+    import matplotlib.pyplot as plt
+
+    if real_curve_df.empty or 'test_avg_loss' not in real_curve_df:
+        return
+    task_rows = real_curve_df[
+        (real_curve_df['task'] == task_name)
+        & real_curve_df['test_avg_loss'].notna()].copy()
+    if task_rows.empty:
+        return
+
+    method_order = [m for m in PLOT_METHOD_ORDER
+                    if m in set(task_rows['method'].unique())]
+    remaining = [
+        m for m in task_rows['method'].unique() if m not in method_order
+    ]
+    method_order.extend(remaining)
+
+    fig, ax = plt.subplots(figsize=(11, 6.5), constrained_layout=True)
+    for method in method_order:
+        method_rows = task_rows[task_rows['method'] == method]
+        curve = method_rows.groupby('round', as_index=False).agg(
+            mean_loss=('test_avg_loss', 'mean'),
+            std_loss=('test_avg_loss', 'std'),
+        ).sort_values('round')
+        if curve.empty:
+            continue
+        color = PLOT_COLORS.get(str(method).lower(), '#4c78a8')
+        ax.plot(curve['round'],
+                curve['mean_loss'],
+                label=display_method_name(str(method)),
+                color=color,
+                linewidth=2)
+        if not curve['std_loss'].isna().all():
+            upper = curve['mean_loss'] + curve['std_loss'].fillna(0.0)
+            lower = curve['mean_loss'] - curve['std_loss'].fillna(0.0)
+            ax.fill_between(curve['round'], lower, upper, color=color, alpha=0.12)
+    ax.set_title(f'{task_name} logged convergence')
+    ax.set_xlabel('Round')
+    ax.set_ylabel('Test avg loss')
+    ax.grid(alpha=0.25)
+    ax.legend(ncol=2, fontsize=8, frameon=False, loc='upper right')
+    fig.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+
+
 def build_plots(synthetic_curve_df: pd.DataFrame,
                 synthetic_final_df: pd.DataFrame,
                 communication_df: pd.DataFrame,
-                output_dir: Path) -> Dict[str, Path]:
+                output_dir: Path,
+                real_curve_df: Optional[pd.DataFrame] = None,
+                real_summary_df: Optional[pd.DataFrame] = None) -> Dict[str, Path]:
     plot_dir = _prepare_plot_dir(output_dir)
     plot_paths: Dict[str, Path] = {}
+    try:
+        import matplotlib  # noqa: F401
+    except Exception as exc:
+        note_path = plot_dir / 'README_PLOT_DEPENDENCY.txt'
+        note_path.write_text(
+            'Plots were skipped because matplotlib could not be imported.\n'
+            f'Import error: {exc}\n'
+            'CSV outputs are still valid; fix the local numpy/matplotlib '
+            'environment and rerun generate_quick_comparison.py to render plots.\n',
+            encoding='utf-8')
+        return plot_paths
+
+    if real_summary_df is not None and not real_summary_df.empty:
+        real_final_path = plot_dir / 'logged_final_loss_by_task.png'
+        _plot_real_final_bars(real_summary_df, real_final_path)
+        if real_final_path.exists():
+            plot_paths['logged_final_loss_by_task'] = real_final_path
+
+    if real_curve_df is not None and not real_curve_df.empty:
+        for task_name in sorted(real_curve_df['task'].dropna().unique()):
+            curve_path = plot_dir / f'logged_convergence_{task_name}.png'
+            _plot_real_convergence(task_name, real_curve_df, curve_path)
+            if curve_path.exists():
+                plot_paths[f'logged_convergence_{task_name}'] = curve_path
 
     final_path = plot_dir / 'final_loss_by_task.png'
     _plot_final_loss_bars(synthetic_final_df, final_path)
     if final_path.exists():
-        plot_paths['final_loss_by_task'] = final_path
+        plot_paths['synthetic_final_loss_by_task'] = final_path
 
     tradeoff_path = plot_dir / 'communication_tradeoff.png'
     _plot_tradeoff_scatter(synthetic_final_df, communication_df, tradeoff_path)
     if tradeoff_path.exists():
-        plot_paths['communication_tradeoff'] = tradeoff_path
+        plot_paths['synthetic_communication_tradeoff'] = tradeoff_path
 
     for task_name in TASK_SPECS.keys():
         curve_path = plot_dir / f'convergence_{task_name}.png'
         _plot_convergence_curve(task_name, synthetic_curve_df, curve_path)
         if curve_path.exists():
-            plot_paths[f'convergence_{task_name}'] = curve_path
+            plot_paths[f'synthetic_convergence_{task_name}'] = curve_path
 
     return plot_paths
 
@@ -1270,8 +2035,16 @@ def build_and_save_artifacts(tasks: Sequence[str],
         task_filter = {task.lower() for task in tasks}
         real_df = real_df[real_df['task'].str.lower().isin(task_filter)]
     save_frame(real_df, analysis_root / 'real_runs.csv')
+    real_curve_df = collect_real_curves(exp_root)
+    if not real_curve_df.empty:
+        task_filter = {task.lower() for task in tasks}
+        real_curve_df = real_curve_df[
+            real_curve_df['task'].str.lower().isin(task_filter)]
+    save_frame(real_curve_df, analysis_root / 'real_curves.csv')
     summary_df = summarize_by_task_and_method(real_df)
     save_frame(summary_df, analysis_root / 'real_runs_summary.csv')
+    metric_catalog_df = build_metric_catalog()
+    save_frame(metric_catalog_df, analysis_root / 'metric_catalog.csv')
     synthetic_curve_df, synthetic_final_df = build_synthetic_preview(
         tasks=tasks, methods=methods, seeds=seeds)
     save_frame(synthetic_curve_df,
@@ -1283,7 +2056,9 @@ def build_and_save_artifacts(tasks: Sequence[str],
     plot_paths = build_plots(synthetic_curve_df=synthetic_curve_df,
                              synthetic_final_df=synthetic_final_df,
                              communication_df=communication_df,
-                             output_dir=analysis_root)
+                             output_dir=analysis_root,
+                             real_curve_df=real_curve_df,
+                             real_summary_df=summary_df)
     report_path = render_report(real_df=real_df,
                                 summary_df=summary_df,
                                 synthetic_final_df=synthetic_final_df,
@@ -1293,7 +2068,9 @@ def build_and_save_artifacts(tasks: Sequence[str],
     return {
         'plan': analysis_root / 'experiment_plan.csv',
         'real': analysis_root / 'real_runs.csv',
+        'real_curves': analysis_root / 'real_curves.csv',
         'summary': analysis_root / 'real_runs_summary.csv',
+        'metric_catalog': analysis_root / 'metric_catalog.csv',
         'synthetic_curve': analysis_root /
         'synthetic_expectation_curve.csv',
         'synthetic_final': analysis_root /

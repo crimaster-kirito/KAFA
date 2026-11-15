@@ -1,0 +1,2 @@
+method,round,summary_type,test_loss,test_total,test_avg_loss,val_loss,val_total,val_avg_loss
+rawfedavg,Final,client_summarized_weighted_avg,883.9996054556856,1993.3333333333333,0.4434730351170569,1796.4518651722985,3985.3333333333335,0.450766743685179

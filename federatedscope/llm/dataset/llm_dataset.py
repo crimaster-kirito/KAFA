@@ -45,6 +45,7 @@ class LLMDataset(Dataset):
                  output_tag='output'):
         super(LLMDataset, self).__init__()
 
+        self.raw_data = copy.deepcopy(list_data_dict)
         self.sources = []
         for example in list_data_dict:
             input = example.get("input", None)
@@ -118,9 +119,20 @@ class LLMDataset(Dataset):
         return len(self.input_ids)
 
     def __getitem__(self, i):
-        return dict(input_ids=self.input_ids[i],
+        item = dict(input_ids=self.input_ids[i],
                     labels=self.labels[i],
                     categories=self.categories[i])
+        if i < len(self.raw_data):
+            item.update({
+                key: self.raw_data[i].get(key)
+                for key in [
+                    'instruction', 'input', 'output', 'category', '_source',
+                    '_is_dirty', '_dirty_type', '_clean_output',
+                    '_dirty_client_id', '_client_id', 'client_id', 'split_role'
+                ]
+                if key in self.raw_data[i]
+            })
+        return item
 
     # def overwrite_by_llm(self, i):
     #     source = self.sources[i]

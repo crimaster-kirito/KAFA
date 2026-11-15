@@ -35,11 +35,22 @@ class LLMDataCollator(object):
             labels,
             batch_first=True,
             padding_value=DefaultToken.IGNORE_INDEX.value)
-        return dict(
+        batch = dict(
             input_ids=input_ids,
             labels=labels,
             attention_mask=input_ids.ne(self.tokenizer.pad_token_id),
         )
+        if any('_is_dirty' in instance for instance in instances):
+            batch['_is_dirty'] = torch.tensor(
+                [bool(instance.get('_is_dirty', False)) for instance in instances],
+                dtype=torch.bool)
+        for key in [
+                'instruction', 'input', 'output', '_clean_output',
+                '_dirty_type', '_source', '_dirty_client_id'
+        ]:
+            if any(key in instance for instance in instances):
+                batch[key] = [instance.get(key) for instance in instances]
+        return batch
 
 
 class Predictor:
@@ -187,6 +198,9 @@ def load_jsonl(file_path,
                             category=item[category])
             for key, value in kwargs.items():
                 new_item[key] = item[value]
+            for key, value in item.dict.items():
+                if key.startswith('_') or key in ['client_id', 'split_role']:
+                    new_item[key] = value
             item = new_item
             list_data_dict.append(item)
     return list_data_dict
@@ -267,8 +281,19 @@ def load_llm_dataset(config=None, **kwargs):
         get_tokenizer(model_name, config.data.root, config.llm.tok_len)
 
     dataset_name, _ = config.data.type.split('@')
+    dataset_dir = os.path.join(config.data.root, dataset_name)
 
-    if dataset_name.endswith('.json'):
+    if os.path.isdir(dataset_dir) and os.path.exists(
+            os.path.join(dataset_dir, 'manifest.json')):
+        train_records = []
+        for filename in ['server_clean.jsonl', 'clients_train.jsonl']:
+            train_records.extend(load_jsonl(os.path.join(dataset_dir, filename)))
+        test_records = load_jsonl(os.path.join(dataset_dir, 'test.jsonl'))
+        train_dataset = LLMDataset(train_records, tokenizer)
+        test_dataset = LLMDataset(test_records, tokenizer)
+        dataset = (train_dataset, [], test_dataset)
+
+    elif dataset_name.endswith('.json'):
         fp = os.path.join(config.data.root, dataset_name)
         list_data_dict = load_json(fp)
         dataset = LLMDataset(list_data_dict, tokenizer)

@@ -1,58 +1,66 @@
 """
 Knowledge Anchor Trainer for Client
-客户端知识锚点微调器：
-1. 接收服务器下发的知识锚点（指令+原型库）
-2. 使用指令进行输入增强
-3. 在中层进行原型对齐
-4. 判断任务相关性，过滤无关数据
-5. 维护增量bank
+?1. ?
+2. 
+3. ?4. 
+5. bank
 """
 import torch
 import torch.nn.functional as F
 import numpy as np
 import logging
 import random
+import re
 from typing import Dict, List, Optional
 
 from federatedscope.register import register_trainer
 from federatedscope.llm.trainer.trainer import LLMTrainer
 from federatedscope.core.trainers.context import CtxVar
-from federatedscope.core.trainers.enums import LIFECYCLE
+from federatedscope.core.trainers.enums import LIFECYCLE, MODE
 
 logger = logging.getLogger(__name__)
+
+FINAL_ANSWER_RE = re.compile(r"(?:####|The answer is)\s*(-?\d+(?:\.\d+)?)")
+CALC_RE = re.compile(r"<<([^<>]+)=(-?\d+(?:\.\d+)?)>>")
+STOPWORDS = {
+    'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has',
+    'have', 'he', 'her', 'his', 'how', 'in', 'is', 'it', 'many', 'much',
+    'of', 'on', 'or', 'she', 'so', 'the', 'then', 'to', 'total', 'was',
+    'what', 'will', 'with'
+}
 
 
 class KnowledgeAnchorClientTrainer(LLMTrainer):
     """
-    客户端知识锚点微调器
-    使用DistilLlama等小型LLM，配合LoRA进行微调
+    
+    DistilLlamaLMoRA
     """
     def __init__(self, model, data, device, config, only_for_eval=False, monitor=None):
         super().__init__(model, data, device, config, only_for_eval, monitor)
         
-        # 验证GPU使用
-        logger.info(f"Trainer初始化 - Device: {device}")
+        # GPU
+        logger.info(f"Trainer?- Device: {device}")
         if hasattr(model, 'parameters') and len(list(model.parameters())) > 0:
             model_device = next(model.parameters()).device
-            logger.info(f"模型设备: {model_device}")
+            logger.info(f": {model_device}")
         else:
-            logger.info(f"模型设备: N/A")
+            logger.info(f": N/A")
         if torch.cuda.is_available():
-            logger.info(f"CUDA可用 - GPU数量: {torch.cuda.device_count()}")
+            logger.info(f"CUDA - GPU: {torch.cuda.device_count()}")
             if isinstance(device, str) and 'cuda' in device:
                 gpu_id = int(device.split(':')[1]) if ':' in device else 0
-                logger.info(f"使用GPU {gpu_id} - 内存: {torch.cuda.get_device_properties(gpu_id).total_memory / 1024**3:.2f} GB")
+                logger.info(f"GPU {gpu_id} - : {torch.cuda.get_device_properties(gpu_id).total_memory / 1024**3:.2f} GB")
         else:
-            logger.warning("CUDA不可用，将使用CPU训练（会很慢）")
+            logger.warning("CUDA is not available; training will use CPU.")
         
-        # 知识锚点相关配置
-        self.knowledge_anchor = None  # 从服务器接收的知识锚点
-        self.incremental_bank = []  # 增量原型bank
+        # 
+        self.knowledge_anchor = None
+        self.incremental_bank = []
         self.task_relevance_threshold = getattr(
             config.llm.knowledge_anchor, 'task_relevance_threshold', 0.5
         )
         self.prototype_alignment_weight = getattr(
-            config.llm.knowledge_anchor, 'prototype_alignment_weight', 0.5  # λ=0.5
+            config.llm.knowledge_anchor, 'prototype_alignment_weight', 0.5  # =0.5
         )
         self.intermediate_layer = getattr(
             config.llm.knowledge_anchor, 'intermediate_layer', 16  # l=16
@@ -63,15 +71,15 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         self.max_prototypes = getattr(
             config.llm.knowledge_anchor, 'max_prototypes', 100
         )
-        # FedKA方法参数
+        # FedKA
         self.top_k_prototypes = getattr(
             config.llm.knowledge_anchor, 'top_k_prototypes', 5  # K_p=5
         )
         self.prototype_temperature = getattr(
-            config.llm.knowledge_anchor, 'prototype_temperature', 0.1  # τ=0.1
+            config.llm.knowledge_anchor, 'prototype_temperature', 0.1  # =0.1
         )
         self.distill_weight = getattr(
-            config.llm.knowledge_anchor, 'distill_weight', 1.0  # γ=1.0
+            config.llm.knowledge_anchor, 'distill_weight', 1.0  # =1.0
         )
         self.soft_label_temperature = getattr(
             config.llm.knowledge_anchor, 'soft_label_temperature', 4.0
@@ -85,30 +93,89 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         self.incremental_mse_multiplier = getattr(
             config.llm.knowledge_anchor, 'incremental_mse_multiplier', 0.8
         )
+        self.simple_client_filter = bool(
+            getattr(config.llm.knowledge_anchor, 'simple_client_filter',
+                    False))
+        self.client_prototype_warmup_samples = max(
+            0,
+            int(
+                getattr(config.llm.knowledge_anchor,
+                        'client_prototype_warmup_samples', 64)))
+        self.client_prototype_max_size = max(
+            1,
+            int(
+                getattr(config.llm.knowledge_anchor,
+                        'client_prototype_max_size', self.max_prototypes)))
+        self.relevance_filter_drop_ratio = min(
+            0.95,
+            max(
+                0.0,
+                float(
+                    getattr(config.llm.knowledge_anchor,
+                            'relevance_filter_drop_ratio', 0.1))))
+        self.relevance_filter_min_history = max(
+            1,
+            int(
+                getattr(config.llm.knowledge_anchor,
+                        'relevance_filter_min_history', 64)))
+        self.use_soft_label_distill = bool(
+            getattr(config.llm.knowledge_anchor, 'use_soft_label_distill',
+                    True))
+        self.min_keep_per_batch = max(
+            0,
+            int(
+                getattr(config.llm.knowledge_anchor, 'min_keep_per_batch',
+                        0)))
+        self.max_drop_ratio = float(
+            getattr(config.llm.knowledge_anchor, 'max_drop_ratio', 1.0))
+        self.max_drop_ratio = min(1.0, max(0.0, self.max_drop_ratio))
+        self.log_relevance_stats = bool(
+            getattr(config.llm.knowledge_anchor, 'log_relevance_stats', True))
+        self.enable_dirty_supervision_filter = getattr(
+            config.llm.knowledge_anchor, 'enable_dirty_supervision_filter',
+            True)
+        self.dirty_consistency_threshold = getattr(
+            config.llm.knowledge_anchor, 'dirty_consistency_threshold', 0.55)
         self._dimension_warned = False
+        self._vocab_mismatch_warned = False
+        self._nonfinite_warned = False
+        self.client_prototypes = []
+        self.relevance_score_history = []
         
-        # 统计信息
+        # 
         self.stats = {
             'relevant_samples': 0,
             'irrelevant_samples': 0,
-            'new_prototypes_added': 0
+            'new_prototypes_added': 0,
+            'dirty_samples_seen': 0,
+            'dirty_samples_filtered': 0,
+            'dirty_samples_missed': 0,
+            'clean_samples_filtered': 0,
+            'filtered_samples': 0,
+            'inconsistent_supervision_samples': 0,
+            'nonfinite_samples': 0,
+            'nonfinite_batches': 0,
+            'client_prototypes_added': 0
         }
 
     def set_knowledge_anchor(self, knowledge_anchor: Dict):
-        """设置知识锚点（从服务器接收）"""
+        """"""
         self.knowledge_anchor = knowledge_anchor
-        logger.info(f"客户端接收到知识锚点: {len(knowledge_anchor.get('instructions', []))} 个指令, "
-                   f"{knowledge_anchor.get('prototype_bank', {}).get('num_prototypes', 0)} 个原型")
+        logger.info(
+            "Client received knowledge anchor: %s instructions, %s prototypes",
+            len(knowledge_anchor.get('instructions', [])),
+            knowledge_anchor.get('prototype_bank',
+                                 {}).get('num_prototypes', 0))
 
     def augment_input_with_instruction(self, input_text: str) -> str:
         """
-        使用指令进行输入增强
+        
         
         Args:
-            input_text: 原始输入文本
+            input_text: 
             
         Returns:
-            str: 增强后的文本
+            str: 
         """
         if not self.use_instruction_augmentation or not self.knowledge_anchor:
             return input_text
@@ -117,21 +184,28 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         if not instructions:
             return input_text
         
-        # 随机选择一个指令模板
-        instruction = random.choice(instructions)
+        # ?        instruction = random.choice(instructions)
         
-        # 组合指令和输入（FedKA方法：使用[SEP]分隔符）
-        # 注意：实际应用中，[SEP]可能需要根据tokenizer调整（如Llama使用特殊token）
-        sep_token = " [SEP] "  # 或使用tokenizer的sep_token
+        # FedKASEP]
+        # SEP]okenizerLlamatoken?        sep_token = " [SEP] "  # okenizerep_token
         augmented_text = f"{instruction}{sep_token}{input_text}"
         
         return augmented_text
 
-    def _get_prototypes_tensor(self, device: torch.device):
+    def _get_prototypes_tensor(self, device: torch.device,
+                               hidden_dim: Optional[int] = None):
         if not self.knowledge_anchor:
             return None
         prototype_bank = self.knowledge_anchor.get('prototype_bank', {})
         prototypes = prototype_bank.get('prototypes', None)
+        prototypes_large = prototype_bank.get('prototypes_large', None)
+        if hidden_dim is not None and prototypes_large is not None:
+            try:
+                proto_large_dim = int(prototypes_large.shape[-1])
+                if int(hidden_dim) == proto_large_dim:
+                    prototypes = prototypes_large
+            except Exception:
+                pass
         if prototypes is None:
             return None
         if isinstance(prototypes, np.ndarray):
@@ -143,15 +217,17 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
     def _align_hidden_and_prototypes(self, hidden_state: torch.Tensor,
                                      prototypes: torch.Tensor):
         if prototypes is None:
-            return hidden_state, None
+            return hidden_state.float(), None
+        hidden_state = hidden_state.float()
+        prototypes = prototypes.float()
         if hidden_state.shape[-1] == prototypes.shape[-1]:
             return hidden_state, prototypes
 
         min_dim = min(hidden_state.shape[-1], prototypes.shape[-1])
         if not self._dimension_warned:
             logger.warning(
-                f"hidden维度({hidden_state.shape[-1]})与原型维度({prototypes.shape[-1]})不一致，"
-                f"将自动裁剪到{min_dim}维")
+                "Hidden dim %s != prototype dim %s; clipping to %s.",
+                hidden_state.shape[-1], prototypes.shape[-1], min_dim)
             self._dimension_warned = True
         return hidden_state[..., :min_dim], prototypes[..., :min_dim]
 
@@ -159,34 +235,32 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
                                    hidden_state: torch.Tensor,
                                    prototypes: torch.Tensor):
         """
-        动态原型匹配（FedKA方法）
-        计算与所有原型的余弦相似度，选取top-K_p=5个最相似原型，计算温度软权重（τ=0.1）
-        
+        FedKA?        top-K_p=5?0.1?        
         Args:
-            hidden_state: 样本的隐藏状态 [hidden_dim]
+            hidden_state: ?[hidden_dim]
             
         Returns:
-            tuple: (top_k_indices, top_k_weights, max_similarity) - top-K原型索引、软权重、最大相似度
+            tuple: (top_k_indices, top_k_weights, max_similarity) - top-K
         """
         if prototypes is None:
             return None, None, 0.0
 
         hidden_state, prototypes = self._align_hidden_and_prototypes(
             hidden_state, prototypes)
-        hidden_norm = F.normalize(hidden_state, dim=-1)
-        proto_norm = F.normalize(prototypes, dim=-1)
+        hidden_norm = F.normalize(hidden_state.float(), dim=-1)
+        proto_norm = F.normalize(prototypes.float(), dim=-1)
         similarities = torch.matmul(proto_norm, hidden_norm)
         max_similarity = float(similarities.max().item())
 
-        # 选取top-K_p个最相似原型
+        # top-K_p
         top_k = min(self.top_k_prototypes, int(similarities.shape[0]))
         if top_k <= 0:
             return None, None, max_similarity
         top_k_similarities, top_k_indices = torch.topk(similarities, k=top_k)
+        top_k_weights = F.softmax(
+            top_k_similarities / self.prototype_temperature, dim=0)
 
-        # 计算温度软权重（τ=0.1）
-        top_k_weights = F.softmax(top_k_similarities / self.prototype_temperature,
-                                  dim=0)
+        # =0.1?        top_k_weights = F.softmax(top_k_similarities / self.prototype_temperature,
 
         return top_k_indices, top_k_weights, max_similarity
     
@@ -195,13 +269,12 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
                              prototypes: torch.Tensor,
                              avg_prototype_distance: float):
         """
-        检查任务相关性（基于最大相似度）
-        
+        ?        
         Args:
-            hidden_state: 样本的隐藏状态 [hidden_dim]
+            hidden_state: ?[hidden_dim]
             
         Returns:
-            tuple: (is_relevant, matched_prototype_idx) - 是否相关，匹配的原型索引
+            tuple: (is_relevant, matched_prototype_idx) - 
         """
         if prototypes is None:
             return False, 0.0, 0.0, None
@@ -210,6 +283,9 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
             hidden_state, prototypes)
         mse_distances = torch.mean((prototypes - hidden_state.unsqueeze(0))**2,
                                    dim=-1)
+        mse_distances = torch.nan_to_num(
+            mse_distances, nan=float('inf'), posinf=float('inf'),
+            neginf=float('inf'))
         min_mse = float(mse_distances.min().item())
 
         _, _, max_similarity = self.dynamic_prototype_matching(
@@ -285,16 +361,115 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         vals = mse[mask]
         return float(vals.mean().item()) if vals.numel() > 0 else 0.0
 
+    @staticmethod
+    def _batch_text(batch, key, batch_size):
+        values = batch.get(key, None)
+        if values is None:
+            return [''] * batch_size
+        return [str(value or '') for value in values]
+
+    @staticmethod
+    def _tokens(text: str):
+        return re.findall(r"[a-zA-Z]+|\d+(?:\.\d+)?", str(text).lower())
+
+    @staticmethod
+    def _safe_eval_expression(expr: str):
+        if not re.fullmatch(r"[\d\s\.\+\-\*\/\(\)]+", expr):
+            return None
+        try:
+            return float(eval(expr, {"__builtins__": {}}, {}))
+        except Exception:
+            return None
+
+    @staticmethod
+    def _arithmetic_consistency(answer: str) -> float:
+        matches = list(CALC_RE.finditer(str(answer)))
+        final_match = FINAL_ANSWER_RE.search(str(answer))
+        if not matches:
+            return 0.85 if final_match else 0.0
+
+        correct = 0
+        declared_values = []
+        for match in matches:
+            expr_value = KnowledgeAnchorClientTrainer._safe_eval_expression(
+                match.group(1))
+            declared = float(match.group(2))
+            declared_values.append(declared)
+            if expr_value is not None and abs(expr_value - declared) <= 1e-6:
+                correct += 1
+
+        if not final_match:
+            return 0.0
+        calc_score = correct / len(matches)
+        final_value = float(final_match.group(1))
+        final_score = 1.0 if declared_values and abs(
+            final_value - declared_values[-1]) <= 1e-6 else 0.0
+        if final_score == 0.0:
+            return min(0.35, 0.25 * calc_score)
+        return 0.65 * calc_score + 0.35 * final_score
+
+    @staticmethod
+    def _numeric_grounding(question: str, answer: str) -> float:
+        q_nums = set(re.findall(r"-?\d+(?:\.\d+)?", str(question)))
+        a_nums = set(re.findall(r"-?\d+(?:\.\d+)?", str(answer)))
+        if not q_nums:
+            return 0.7
+        return len(q_nums & a_nums) / len(q_nums)
+
+    @classmethod
+    def _lexical_grounding(cls, question: str, answer: str) -> float:
+        q_tokens = {
+            tok
+            for tok in cls._tokens(question)
+            if len(tok) > 2 and tok not in STOPWORDS and not tok.replace(
+                '.', '', 1).isdigit()
+        }
+        a_tokens = {
+            tok
+            for tok in cls._tokens(answer)
+            if len(tok) > 2 and tok not in STOPWORDS and not tok.replace(
+                '.', '', 1).isdigit()
+        }
+        if not q_tokens:
+            return 0.7
+        return len(q_tokens & a_tokens) / len(q_tokens)
+
+    @classmethod
+    def supervision_consistency_score(cls, question: str, answer: str) -> float:
+        arithmetic = cls._arithmetic_consistency(answer)
+        grounding = (
+            0.65 * cls._numeric_grounding(question, answer) +
+            0.35 * cls._lexical_grounding(question, answer))
+        return 0.55 * arithmetic + 0.45 * grounding
+
+    @staticmethod
+    def _masked_lm_loss(logits, labels, keep_mask):
+        keep_mask = torch.tensor(keep_mask,
+                                 device=labels.device,
+                                 dtype=torch.bool)
+        if keep_mask.numel() == 0 or not bool(keep_mask.any().item()):
+            return torch.tensor(0.0, device=labels.device)
+
+        shift_logits = logits[..., :-1, :].contiguous()
+        shift_labels = labels[..., 1:].contiguous()
+        token_loss = F.cross_entropy(
+            shift_logits.view(-1, shift_logits.size(-1)),
+            shift_labels.view(-1),
+            ignore_index=-100,
+            reduction='none').view(shift_labels.shape)
+        valid_tokens = shift_labels.ne(-100)
+        per_sample_loss = token_loss.sum(dim=1) / valid_tokens.sum(
+            dim=1).clamp(min=1)
+        return per_sample_loss[keep_mask].mean()
+
     def add_to_incremental_bank(self,
                                 hidden_state: torch.Tensor,
                                 sample_info: Optional[Dict] = None):
         """
-        将新原型添加到增量bank
-        注意：只有任务相关但无匹配原型的样本才会被添加
-        
+        ank
+        ?        
         Args:
-            hidden_state: 样本的隐藏状态
-            sample_info: 样本信息（可选）
+            hidden_state: ?            sample_info: 
         """
         bank_entry = {
             'prototype': hidden_state.detach().cpu(),
@@ -302,30 +477,173 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         }
         self.incremental_bank.append(bank_entry)
         self.stats['new_prototypes_added'] += 1
-        logger.info(f"✓ 新增原型已添加到增量bank（总数: {len(self.incremental_bank)}/{self.max_prototypes}）")
+        logger.info("Added prototype to incremental bank (%s/%s).",
+                    len(self.incremental_bank), self.max_prototypes)
 
     def get_incremental_bank(self) -> List[Dict]:
-        """获取增量bank（用于上传到服务器）"""
+        """bank"""
         return self.incremental_bank
 
     def clear_incremental_bank(self):
-        """清空增量bank（上传后清空）"""
+        """Clear incremental bank."""
         self.incremental_bank = []
 
-    def _hook_on_batch_forward(self, ctx):
-        """
-        前向传播hook：处理输入增强、原型对齐、任务相关性判断
-        """
-        # 验证设备（仅在第一个batch）
-        if not hasattr(self, '_device_verified'):
-            logger.info(f"训练设备: {ctx.device}")
-            if torch.cuda.is_available() and 'cuda' in str(ctx.device):
-                logger.info(f"✓ 使用GPU训练 - 设备: {ctx.device}")
+    def _get_client_prototypes_tensor(self, device: torch.device):
+        if not self.client_prototypes:
+            return None
+        return torch.stack(self.client_prototypes).to(device=device,
+                                                      dtype=torch.float32)
+
+    def _add_client_prototype(self, hidden_state: torch.Tensor):
+        if len(self.client_prototypes) >= self.client_prototype_max_size:
+            return
+        if hidden_state is None or not torch.isfinite(hidden_state).all():
+            return
+        proto = F.normalize(hidden_state.detach().float(), dim=-1).cpu()
+        self.client_prototypes.append(proto)
+        self.stats['client_prototypes_added'] += 1
+
+    def _simple_client_space_forward(self, ctx, outputs, hidden_states, labels,
+                                     attention_mask, dirty_flags):
+        """Client-space ranking filter: no server-hidden MSE or KL coupling."""
+        logits = outputs.logits
+        proto_tensor = self._get_client_prototypes_tensor(ctx.device)
+        question_texts = self._batch_text(ctx.data_batch, 'instruction',
+                                          hidden_states.shape[0])
+        input_texts = self._batch_text(ctx.data_batch, 'input',
+                                       hidden_states.shape[0])
+        output_texts = self._batch_text(ctx.data_batch, 'output',
+                                        hidden_states.shape[0])
+        question_texts = [
+            question if question.strip() else input_texts[idx]
+            for idx, question in enumerate(question_texts)
+        ]
+
+        relevant_mask = []
+        scores = []
+        pending_prototypes = []
+        score_threshold = None
+        if len(self.relevance_score_history) >= self.relevance_filter_min_history:
+            score_threshold = float(
+                np.percentile(
+                    np.asarray(self.relevance_score_history,
+                               dtype=np.float64),
+                    self.relevance_filter_drop_ratio * 100.0))
+
+        for i in range(hidden_states.shape[0]):
+            hidden_i = hidden_states[i].detach().float()
+            is_dirty = bool(dirty_flags[i]) if i < len(dirty_flags) else False
+            if is_dirty:
+                self.stats['dirty_samples_seen'] += 1
+
+            consistency_score = 1.0
+            if self.enable_dirty_supervision_filter and output_texts[i]:
+                consistency_score = self.supervision_consistency_score(
+                    question_texts[i], output_texts[i])
+            is_inconsistent = (
+                self.enable_dirty_supervision_filter and
+                consistency_score < self.dirty_consistency_threshold)
+
+            is_finite = bool(torch.isfinite(hidden_i).all().item())
+            if not is_finite:
+                self.stats['nonfinite_samples'] += 1
+
+            score = 1.0
+            has_reference = proto_tensor is not None and proto_tensor.numel() > 0
+            if is_finite and has_reference:
+                hidden_norm = F.normalize(hidden_i, dim=-1)
+                score = float(torch.matmul(proto_tensor, hidden_norm).max().item())
+                if np.isfinite(score):
+                    self.relevance_score_history.append(score)
+                    if len(self.relevance_score_history) > 5000:
+                        self.relevance_score_history = self.relevance_score_history[-5000:]
+                else:
+                    is_finite = False
+                    self.stats['nonfinite_samples'] += 1
+
+            warming_up = len(self.client_prototypes) < \
+                self.client_prototype_warmup_samples
+            passes_rank = True if score_threshold is None else \
+                score >= score_threshold
+            keep_sample = bool(is_finite and not is_inconsistent and
+                               (warming_up or passes_rank))
+            relevant_mask.append(keep_sample)
+            scores.append(score)
+
+            clean_for_proto = is_finite and not is_dirty and not is_inconsistent
+            if clean_for_proto:
+                pending_prototypes.append(hidden_i)
+
+            if keep_sample:
+                if is_dirty:
+                    self.stats['dirty_samples_missed'] += 1
+                self.stats['relevant_samples'] += 1
             else:
-                logger.warning(f"⚠ 使用CPU训练 - 设备: {ctx.device} (会很慢)")
+                self.stats['filtered_samples'] += 1
+                if is_inconsistent:
+                    self.stats['inconsistent_supervision_samples'] += 1
+                else:
+                    self.stats['irrelevant_samples'] += 1
+                if is_dirty:
+                    self.stats['dirty_samples_filtered'] += 1
+                else:
+                    self.stats['clean_samples_filtered'] += 1
+
+        for hidden_i in pending_prototypes:
+            self._add_client_prototype(hidden_i)
+
+        kept = int(sum(relevant_mask))
+        if self.log_relevance_stats and scores:
+            finite_scores = np.asarray([s for s in scores if np.isfinite(s)],
+                                       dtype=np.float64)
+            if finite_scores.size > 0:
+                logger.info(
+                    "Simple filter stats: score p10=%.6f p50=%.6f p90=%.6f "
+                    "threshold=%s keep=%s/%s client_prototypes=%s",
+                    float(np.percentile(finite_scores, 10)),
+                    float(np.percentile(finite_scores, 50)),
+                    float(np.percentile(finite_scores, 90)),
+                    "None" if score_threshold is None else f"{score_threshold:.6f}",
+                    kept, len(relevant_mask), len(self.client_prototypes))
+            else:
+                logger.warning(
+                    "Simple filter stats contain no finite scores; keep=%s/%s",
+                    kept, len(relevant_mask))
+
+        if kept == 0:
+            ctx.skip_this_batch = CtxVar(True, LIFECYCLE.BATCH)
+            ctx.loss_batch = CtxVar(torch.tensor(0.0, device=ctx.device),
+                                    LIFECYCLE.BATCH)
+        else:
+            standard_loss = self._masked_lm_loss(logits, labels,
+                                                 relevant_mask)
+            if not torch.isfinite(standard_loss):
+                logger.warning("Skip batch: non-finite simple-filter loss.")
+                if hasattr(ctx, 'nan_batches'):
+                    ctx.nan_batches += 1
+                self.stats['nonfinite_batches'] += 1
+                ctx.skip_this_batch = CtxVar(True, LIFECYCLE.BATCH)
+                ctx.loss_batch = CtxVar(torch.tensor(0.0, device=ctx.device),
+                                        LIFECYCLE.BATCH)
+            else:
+                ctx.skip_this_batch = CtxVar(False, LIFECYCLE.BATCH)
+                ctx.loss_batch = CtxVar(standard_loss, LIFECYCLE.BATCH)
+
+        ctx.batch_size = CtxVar(len(labels), LIFECYCLE.BATCH)
+        ctx.y_true = CtxVar(labels, LIFECYCLE.BATCH)
+        ctx.y_prob = CtxVar(logits, LIFECYCLE.BATCH)
+
+    def _hook_on_batch_forward(self, ctx):
+        """Forward hook with anchor relevance and dirty supervision filtering."""
+        if not hasattr(self, '_device_verified'):
+            logger.info(f": {ctx.device}")
+            if torch.cuda.is_available() and 'cuda' in str(ctx.device):
+                logger.info(f"?GPU - : {ctx.device}")
+            else:
+                logger.warning(f"?CPU - : {ctx.device} (?")
             self._device_verified = True
         
-        # 获取batch数据
+        # batch
         input_ids = ctx.data_batch['input_ids'].to(ctx.device)
         labels = ctx.data_batch['labels'].to(ctx.device)
         attention_mask = ctx.data_batch.get('attention_mask', None)
@@ -333,23 +651,42 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
             attention_mask = attention_mask.to(ctx.device)
         else:
             attention_mask = torch.ones_like(input_ids, device=ctx.device)
+        dirty_flags = ctx.data_batch.get('_is_dirty', None)
+        if dirty_flags is not None:
+            dirty_flags = dirty_flags.detach().cpu().bool().tolist()
+        else:
+            dirty_flags = [False] * input_ids.shape[0]
 
-        # 指令增强（token级前缀拼接）
         input_ids, labels, attention_mask = self._apply_instruction_prefix(
             input_ids, labels, attention_mask)
         
-        # 前向传播
+        # 
         outputs = ctx.model(
             input_ids=input_ids,
             labels=labels,
             attention_mask=attention_mask,
             output_hidden_states=True
         )
+        if hasattr(ctx, 'forward_batches'):
+            ctx.forward_batches += 1
+        if not torch.isfinite(outputs.loss):
+            if hasattr(ctx, 'nan_batches'):
+                ctx.nan_batches += 1
+            self.stats['nonfinite_batches'] += 1
+            self.stats['nonfinite_samples'] += int(input_ids.shape[0])
+            logger.warning("Skip batch: non-finite model loss.")
+            ctx.skip_this_batch = CtxVar(True, LIFECYCLE.BATCH)
+            ctx.loss_batch = CtxVar(torch.tensor(0.0, device=ctx.device),
+                                    LIFECYCLE.BATCH)
+            ctx.batch_size = CtxVar(len(labels), LIFECYCLE.BATCH)
+            ctx.y_true = CtxVar(labels, LIFECYCLE.BATCH)
+            ctx.y_prob = CtxVar(outputs.logits, LIFECYCLE.BATCH)
+            return
         
-        # 检查hidden_states是否存在
+        # idden_states
         if not hasattr(outputs, 'hidden_states') or outputs.hidden_states is None:
-            logger.error("模型未返回hidden_states，请确保模型支持output_hidden_states=True")
-            # 如果无法获取hidden_states，使用标准loss
+            logger.error("idden_statesoutput_hidden_states=True")
+            # hidden_statesoss
             ctx.loss_batch = CtxVar(outputs.loss, LIFECYCLE.BATCH)
             ctx.batch_size = CtxVar(len(labels), LIFECYCLE.BATCH)
             ctx.y_true = CtxVar(labels, LIFECYCLE.BATCH)
@@ -357,24 +694,21 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
             ctx.skip_this_batch = CtxVar(False, LIFECYCLE.BATCH)
             return
         
-        # 获取层数并验证索引
         num_layers = len(outputs.hidden_states)
-        # 支持负数索引（从末尾计算）
         if self.intermediate_layer < 0:
             layer_idx = num_layers + self.intermediate_layer
         else:
             layer_idx = self.intermediate_layer
         
-        # 边界检查
         if layer_idx < 0 or layer_idx >= num_layers:
-            logger.warning(f"层索引 {self.intermediate_layer} (实际索引 {layer_idx}) 超出范围 [0, {num_layers-1}]，"
-                         f"使用中间层 {num_layers // 2}")
+            logger.warning("Layer index %s out of range [0, %s]; using %s.",
+                           self.intermediate_layer, num_layers - 1,
+                           num_layers // 2)
             layer_idx = num_layers // 2
         
-        # 提取中间层隐藏状态用于原型对齐
-        hidden_states = outputs.hidden_states[layer_idx]  # [batch, seq_len, hidden_dim]
+        hidden_states = outputs.hidden_states[layer_idx]
         
-        # 对序列维度求平均
+        # 
         if attention_mask is not None:
             mask_expanded = attention_mask.unsqueeze(-1).expand(hidden_states.size())
             hidden_states = hidden_states * mask_expanded
@@ -382,34 +716,59 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         else:
             hidden_states = hidden_states.mean(dim=1)  # [batch, hidden_dim]
         
-        # 清理不需要的hidden_states以节省内存
-        del outputs.hidden_states
+        # hidden_states?        del outputs.hidden_states
         if hasattr(outputs, 'past_key_values'):
             del outputs.past_key_values
+
+        if ctx.cur_mode not in [MODE.TRAIN, MODE.FINETUNE]:
+            ctx.skip_this_batch = CtxVar(False, LIFECYCLE.BATCH)
+            ctx.loss_batch = CtxVar(outputs.loss, LIFECYCLE.BATCH)
+            ctx.batch_size = CtxVar(len(labels), LIFECYCLE.BATCH)
+            ctx.y_true = CtxVar(labels, LIFECYCLE.BATCH)
+            ctx.y_prob = CtxVar(outputs.logits, LIFECYCLE.BATCH)
+            return
+
+        if self.simple_client_filter:
+            self._simple_client_space_forward(ctx, outputs, hidden_states,
+                                              labels, attention_mask,
+                                              dirty_flags)
+            return
         
-        # 任务相关性判断和结构化锚点对齐损失（FedKA方法）
         standard_loss = outputs.loss
         anchor_loss = torch.tensor(0.0, device=ctx.device)
         
-        # 对batch中的每个样本进行判断
+        # atch
         relevant_mask = []
         batch_relevant_count = 0
         batch_irrelevant_count = 0
         batch_new_prototype_count = 0
         
-        # 获取原型库和软标签
-        prototype_bank = {}
+        # ?        prototype_bank = {}
         prototypes = None
         soft_labels = None
         if self.knowledge_anchor:
             prototype_bank = self.knowledge_anchor.get('prototype_bank', {})
-            prototypes = self._get_prototypes_tensor(ctx.device)
+            prototypes = self._get_prototypes_tensor(
+                ctx.device, hidden_dim=hidden_states.shape[-1])
             soft_labels = prototype_bank.get('soft_labels', None)
 
         if prototypes is None or prototypes.shape[0] == 0:
-            # 没有可用原型库时，退化为标准训练
+            # 
             ctx.skip_this_batch = CtxVar(False, LIFECYCLE.BATCH)
             ctx.loss_batch = CtxVar(outputs.loss, LIFECYCLE.BATCH)
+            ctx.batch_size = CtxVar(len(labels), LIFECYCLE.BATCH)
+            ctx.y_true = CtxVar(labels, LIFECYCLE.BATCH)
+            ctx.y_prob = CtxVar(outputs.logits, LIFECYCLE.BATCH)
+            return
+        if not torch.isfinite(prototypes).all():
+            logger.warning(
+                "Prototype bank contains non-finite values; skip this batch.")
+            if hasattr(ctx, 'nan_batches'):
+                ctx.nan_batches += 1
+            self.stats['nonfinite_batches'] += 1
+            ctx.skip_this_batch = CtxVar(True, LIFECYCLE.BATCH)
+            ctx.loss_batch = CtxVar(torch.tensor(0.0, device=ctx.device),
+                                    LIFECYCLE.BATCH)
             ctx.batch_size = CtxVar(len(labels), LIFECYCLE.BATCH)
             ctx.y_true = CtxVar(labels, LIFECYCLE.BATCH)
             ctx.y_prob = CtxVar(outputs.logits, LIFECYCLE.BATCH)
@@ -418,26 +777,72 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
         avg_prototype_distance = float(
             prototype_bank.get('avg_prototype_distance', 0.0)
             or self._compute_avg_pairwise_mse(prototypes))
+        question_texts = self._batch_text(ctx.data_batch, 'instruction',
+                                          hidden_states.shape[0])
+        input_texts = self._batch_text(ctx.data_batch, 'input',
+                                       hidden_states.shape[0])
+        output_texts = self._batch_text(ctx.data_batch, 'output',
+                                        hidden_states.shape[0])
+        question_texts = [
+            question if question.strip() else input_texts[idx]
+            for idx, question in enumerate(question_texts)
+        ]
         
+        relevance_records = []
+        filtered_reasons = []
         for i in range(hidden_states.shape[0]):
-            hidden_state_i = hidden_states[i]  # 保持计算图用于梯度
             hidden_match_i, proto_match = self._align_hidden_and_prototypes(
-                hidden_state_i, prototypes)
-            is_relevant, min_mse, _, _ = self.check_task_relevance(
-                hidden_match_i.detach(), proto_match, avg_prototype_distance)
-            relevant_mask.append(is_relevant)
+                hidden_states[i], prototypes)
+            hidden_state_i = hidden_states[i]
+            is_nonfinite = (
+                proto_match is None or
+                not torch.isfinite(hidden_match_i.detach()).all() or
+                not torch.isfinite(proto_match).all())
+            if is_nonfinite:
+                if not self._nonfinite_warned:
+                    logger.warning(
+                        "Non-finite hidden/prototype detected; affected samples "
+                        "will be filtered and will not be rescued by safeguard.")
+                    self._nonfinite_warned = True
+                is_relevant, min_mse, max_similarity = False, float('inf'), float('-inf')
+                self.stats['nonfinite_samples'] += 1
+            else:
+                is_relevant, min_mse, max_similarity, _ = self.check_task_relevance(
+                    hidden_match_i.detach(), proto_match, avg_prototype_distance)
+                if not np.isfinite(min_mse) or not np.isfinite(max_similarity):
+                    is_relevant = False
+                    self.stats['nonfinite_samples'] += 1
+            relevance_records.append((min_mse, max_similarity))
+            is_dirty = bool(dirty_flags[i]) if i < len(dirty_flags) else False
+            if is_dirty:
+                self.stats['dirty_samples_seen'] += 1
+            consistency_score = 1.0
+            if self.enable_dirty_supervision_filter and output_texts[i]:
+                consistency_score = self.supervision_consistency_score(
+                    question_texts[i], output_texts[i])
+            is_inconsistent = (
+                is_relevant and self.enable_dirty_supervision_filter and
+                consistency_score < self.dirty_consistency_threshold)
+            keep_sample = bool(is_relevant and not is_inconsistent)
+            relevant_mask.append(keep_sample)
+            filtered_reasons.append({
+                'is_dirty': is_dirty,
+                'is_inconsistent': is_inconsistent,
+            })
             
-            if is_relevant:
+            if keep_sample:
+                if is_dirty:
+                    self.stats['dirty_samples_missed'] += 1
                 batch_relevant_count += 1
                 self.stats['relevant_samples'] += 1
                 
-                # 动态原型匹配：获取top-K_p个原型及其软权重
+                # top-K_p
                 top_k_indices, top_k_weights, _ = self.dynamic_prototype_matching(
                     hidden_match_i.detach(), proto_match)
                 
                 if top_k_indices is not None and top_k_weights is not None and proto_match is not None:
-                    # 结构化锚点对齐损失
                     proto_loss = torch.tensor(0.0, device=ctx.device)
+                    # ?                    proto_loss = torch.tensor(0.0, device=ctx.device)
                     distill_loss = torch.tensor(0.0, device=ctx.device)
                     
                     for k_idx, weight in zip(top_k_indices, top_k_weights):
@@ -446,26 +851,25 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
                         weight = float(weight.item()) if isinstance(
                             weight, torch.Tensor) else float(weight)
                         target_prototype = proto_match[k_idx]
-                        
-                        # 对比拉近损失（简化版：使用MSE）
                         proto_loss += weight * F.mse_loss(
                             hidden_match_i,
                             target_prototype,
-                            reduction='mean'
-                        )
+                            reduction='mean')
                         
-                        # 加权软标签蒸馏损失（如果有软标签）
-                        if soft_labels is not None and hasattr(outputs, 'logits'):
-                            # 获取样本的logits（最后一个token或平均）
+                        if (self.use_soft_label_distill and soft_labels is not None
+                                and k_idx < len(soft_labels)
+                                and hasattr(outputs, 'logits')):
+                            # ogitsoken
                             if attention_mask is not None:
                                 seq_length = attention_mask[i].sum().item() - 1
                                 sample_logits = outputs.logits[i, seq_length, :]  # [vocab_size]
                             else:
                                 sample_logits = outputs.logits[i, -1, :]  # [vocab_size]
                             
-                            # 温度软化
+                            # 
                             student_logits = F.log_softmax(
-                                sample_logits / self.soft_label_temperature,
+                                sample_logits.float() /
+                                self.soft_label_temperature,
                                 dim=0)
                             teacher_logits = soft_labels[k_idx]
                             if isinstance(teacher_logits, np.ndarray):
@@ -475,7 +879,7 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
                             teacher_logits = teacher_logits.to(
                                 device=ctx.device, dtype=torch.float32)
 
-                            # 兼容两种格式：概率分布或原始logits
+                            # logits
                             if torch.all(teacher_logits >= 0) and abs(
                                     float(teacher_logits.sum().item()) -
                                     1.0) < 1e-2:
@@ -486,14 +890,31 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
                                     teacher_logits /
                                     self.soft_label_temperature,
                                     dim=0)
+
+                            # Handle tokenizer/vocab mismatch between
+                            # server-side soft labels and client model logits.
+                            if student_logits.shape[0] != teacher_prob.shape[0]:
+                                common_dim = min(student_logits.shape[0],
+                                                 teacher_prob.shape[0])
+                                if not self._vocab_mismatch_warned:
+                                    logger.warning(
+                                        "Vocab mismatch for distillation "
+                                        "(student=%s, teacher=%s); aligning to %s.",
+                                        student_logits.shape[0],
+                                        teacher_prob.shape[0], common_dim)
+                                    self._vocab_mismatch_warned = True
+                                student_logits = student_logits[:common_dim]
+                                teacher_prob = teacher_prob[:common_dim]
+                                teacher_prob = teacher_prob / teacher_prob.sum(
+                                ).clamp(min=1e-12)
                             
-                            # KL散度
+                            # KL
                             kl_loss = F.kl_div(student_logits,
                                                teacher_prob,
                                                reduction='batchmean')
                             distill_loss += weight * kl_loss
                     
-                    # 融合锚点损失：L_anchor = L_proto + γ * L_distill (γ=1.0)
+                    # _anchor = L_proto +  * L_distill (=1.0)
                     sample_anchor_loss = proto_loss + self.distill_weight * distill_loss
                     anchor_loss += sample_anchor_loss
 
@@ -510,74 +931,254 @@ class KnowledgeAnchorClientTrainer(LLMTrainer):
                                     avg_prototype_distance
                                 })
                     
-                    logger.debug(f"样本 {i}: 任务相关，top-K={len(top_k_indices)}, 锚点损失={sample_anchor_loss.item():.4f}")
+                    logger.debug(f" {i}: op-K={len(top_k_indices)}, ={sample_anchor_loss.item():.4f}")
                 else:
-                    # 相关但没有匹配的原型，添加到增量bank
+                    # bank
                     batch_new_prototype_count += 1
                     if len(self.incremental_bank) < self.max_prototypes:
                         self.add_to_incremental_bank(hidden_match_i.detach(), sample_info={'type': 'relevant_no_prototype'})
-                        logger.info(f"样本 {i}: 任务相关但无匹配原型，添加到增量bank（当前bank大小: {len(self.incremental_bank)}/{self.max_prototypes}）")
+                        logger.info("Sample %s added to incremental bank (%s/%s).",
+                                    i, len(self.incremental_bank),
+                                    self.max_prototypes)
                     else:
-                        logger.warning(f"样本 {i}: 任务相关但无匹配原型，增量bank已满，无法添加")
+                        logger.warning("Sample %s matched no prototype but bank is full.",
+                                       i)
             else:
-                # 任务无关样本 - 不添加到增量bank，直接排除
+                #  - bank?                batch_irrelevant_count += 1
                 batch_irrelevant_count += 1
-                self.stats['irrelevant_samples'] += 1
-                logger.debug(f"样本 {i}: 任务不相关，将被排除（相似度低于阈值 {self.task_relevance_threshold}）")
+                self.stats['filtered_samples'] += 1
+                if is_inconsistent:
+                    self.stats['inconsistent_supervision_samples'] += 1
+                else:
+                    self.stats['irrelevant_samples'] += 1
+                if is_dirty:
+                    self.stats['dirty_samples_filtered'] += 1
+                else:
+                    self.stats['clean_samples_filtered'] += 1
+                logger.debug(
+                    "Sample %s filtered: relevant=%s consistency=%.3f inconsistent=%s",
+                    i, is_relevant, consistency_score, is_inconsistent)
+
+        # Safeguard: avoid all samples being filtered in a batch.
+        # Re-activate top candidates by smallest MSE when needed.
+        batch_size = len(relevant_mask)
+        keep_count = int(sum(relevant_mask))
+        min_keep = min(self.min_keep_per_batch, batch_size)
+        min_keep_by_drop = int(np.ceil((1.0 - self.max_drop_ratio) *
+                                       batch_size))
+        min_keep = max(min_keep, min_keep_by_drop)
+        if keep_count < min_keep and relevance_records:
+            need = min_keep - keep_count
+            candidates = sorted(
+                (idx for idx, keep in enumerate(relevant_mask)
+                 if not keep and np.isfinite(relevance_records[idx][0])
+                 and np.isfinite(relevance_records[idx][1])),
+                key=lambda idx: (
+                    np.isfinite(relevance_records[idx][0]) is False,
+                    relevance_records[idx][0]))[:need]
+            if need > 0 and not candidates:
+                logger.warning(
+                    "Safeguard skipped: no finite candidate is available "
+                    "(batch=%s, keep=%s).", batch_size, keep_count)
+            for idx in candidates:
+                relevant_mask[idx] = True
+                self.stats['relevant_samples'] += 1
+                self.stats['filtered_samples'] = max(
+                    0, self.stats['filtered_samples'] - 1)
+                reason = filtered_reasons[idx]
+                if reason['is_inconsistent']:
+                    self.stats['inconsistent_supervision_samples'] = max(
+                        0, self.stats['inconsistent_supervision_samples'] - 1)
+                else:
+                    self.stats['irrelevant_samples'] = max(
+                        0, self.stats['irrelevant_samples'] - 1)
+                if reason['is_dirty']:
+                    self.stats['dirty_samples_filtered'] = max(
+                        0, self.stats['dirty_samples_filtered'] - 1)
+                else:
+                    self.stats['clean_samples_filtered'] = max(
+                        0, self.stats['clean_samples_filtered'] - 1)
+                batch_relevant_count += 1
+                batch_irrelevant_count = max(0, batch_irrelevant_count - 1)
+            logger.warning(
+                "Safeguard activated: kept %s extra samples (batch=%s, keep=%s).",
+                len(candidates), batch_size, int(sum(relevant_mask)))
+
+        if self.log_relevance_stats and relevance_records:
+            mins = np.array([x[0] for x in relevance_records], dtype=np.float64)
+            sims = np.array([x[1] for x in relevance_records], dtype=np.float64)
+            mins_finite = mins[np.isfinite(mins)]
+            sims_finite = sims[np.isfinite(sims)]
+            mse_threshold = self.relevance_mse_multiplier * avg_prototype_distance \
+                if self.enable_mse_relevance and avg_prototype_distance > 0 else None
+            if mins_finite.size == 0 or sims_finite.size == 0:
+                logger.warning(
+                    "Relevance stats contain non-finite values only; "
+                    "threshold_mse=%s avg_proto_dist=%.6f keep=%s/%s",
+                    "None" if mse_threshold is None else f"{mse_threshold:.6f}",
+                    float(avg_prototype_distance),
+                    int(sum(relevant_mask)),
+                    len(relevant_mask))
+            else:
+                logger.info(
+                    "Relevance stats: min_mse p50=%.6f p90=%.6f p99=%.6f max_sim p50=%.6f "
+                    "p90=%.6f threshold_mse=%s avg_proto_dist=%.6f keep=%s/%s",
+                    float(np.percentile(mins_finite, 50)),
+                    float(np.percentile(mins_finite, 90)),
+                    float(np.percentile(mins_finite, 99)),
+                    float(np.percentile(sims_finite, 50)),
+                    float(np.percentile(sims_finite, 90)),
+                    "None" if mse_threshold is None else f"{mse_threshold:.6f}",
+                    float(avg_prototype_distance),
+                    int(sum(relevant_mask)),
+                    len(relevant_mask))
         
-        # 计算平均锚点损失
+        # 
         if batch_relevant_count > 0:
             anchor_loss = anchor_loss / batch_relevant_count
         
-        # 只对相关样本计算损失
+        # 
         if sum(relevant_mask) > 0:
-            # 对相关样本的loss进行mask
-            relevant_mask_tensor = torch.tensor(relevant_mask, device=ctx.device, dtype=torch.float32)
-            standard_loss = standard_loss * relevant_mask_tensor.mean()  # 简化处理
-        
-        # 总损失：L = L_CE + λ * L_anchor (λ=0.5)
+            standard_loss = self._masked_lm_loss(outputs.logits, labels,
+                                                 relevant_mask)
+            relevant_mask_tensor = torch.ones(1, device=ctx.device)
+            # lossmask
+            standard_loss = standard_loss * relevant_mask_tensor.mean()  # ?        
+        # L = L_CE +  * L_anchor (=0.5)
         total_loss = standard_loss + self.prototype_alignment_weight * anchor_loss
+        if not torch.isfinite(total_loss):
+            logger.warning("Skip batch: non-finite total loss.")
+            if hasattr(ctx, 'nan_batches'):
+                ctx.nan_batches += 1
+            self.stats['nonfinite_batches'] += 1
+            ctx.skip_this_batch = CtxVar(True, LIFECYCLE.BATCH)
+            ctx.loss_batch = CtxVar(torch.tensor(0.0, device=ctx.device),
+                                    LIFECYCLE.BATCH)
+            ctx.batch_size = CtxVar(len(labels), LIFECYCLE.BATCH)
+            ctx.y_true = CtxVar(labels, LIFECYCLE.BATCH)
+            ctx.y_prob = CtxVar(outputs.logits, LIFECYCLE.BATCH)
+            return
         
-        # 记录batch级别的统计信息（只在debug模式下输出，减少日志）
         if batch_relevant_count > 0 or batch_irrelevant_count > 0:
-            logger.debug(f"Batch统计: 相关={batch_relevant_count}, 无关={batch_irrelevant_count}, "
-                       f"新增原型={batch_new_prototype_count}, 增量bank大小={len(self.incremental_bank)}")
+            logger.debug(
+                "Batch stats: kept=%s, filtered=%s, new_prototypes=%s, bank=%s",
+                batch_relevant_count, batch_irrelevant_count,
+                batch_new_prototype_count, len(self.incremental_bank))
         
-        # 如果所有样本都不相关，跳过这个batch
+        # batch
         if sum(relevant_mask) == 0:
             ctx.skip_this_batch = CtxVar(True, LIFECYCLE.BATCH)
-            logger.debug(f"⚠ 跳过batch：所有{len(relevant_mask)}个样本任务不相关（将被排除）")
+            logger.debug("Skip batch: all %s samples were filtered.",
+                         len(relevant_mask))
         else:
             ctx.skip_this_batch = CtxVar(False, LIFECYCLE.BATCH)
             if batch_irrelevant_count > 0:
-                logger.debug(f"✓ Batch处理: {batch_relevant_count}个相关样本继续训练，{batch_irrelevant_count}个无关样本被排除")
+                logger.debug("Batch kept %s samples and filtered %s samples.",
+                             batch_relevant_count, batch_irrelevant_count)
         
         ctx.loss_batch = CtxVar(total_loss, LIFECYCLE.BATCH)
         ctx.batch_size = CtxVar(len(labels), LIFECYCLE.BATCH)
         ctx.y_true = CtxVar(labels, LIFECYCLE.BATCH)
         ctx.y_prob = CtxVar(outputs.logits, LIFECYCLE.BATCH)
 
+    def _current_filter_metrics(self, ctx):
+        total_samples = self.stats['relevant_samples'] + self.stats[
+            'filtered_samples']
+        dirty_seen = self.stats['dirty_samples_seen']
+        dirty_filtered = self.stats['dirty_samples_filtered']
+        clean_filtered = self.stats['clean_samples_filtered']
+        clean_seen = max(0, total_samples - dirty_seen)
+        filtered_total = dirty_filtered + clean_filtered
+        dirty_recall = dirty_filtered / dirty_seen if dirty_seen > 0 else 0.0
+        dirty_precision = (
+            dirty_filtered / filtered_total if filtered_total > 0 else 0.0)
+        clean_retention = (
+            (clean_seen - clean_filtered) / clean_seen
+            if clean_seen > 0 else 0.0)
+        sample_nan_rate = (
+            self.stats['nonfinite_samples'] / total_samples
+            if total_samples > 0 else 0.0)
+        batch_nan_rate = (
+            float(ctx.nan_batches) / float(ctx.forward_batches)
+            if hasattr(ctx, 'forward_batches') and int(ctx.forward_batches) > 0
+            else 0.0)
+        nan_rate = max(sample_nan_rate, batch_nan_rate)
+        return {
+            'dirty_filter_recall': float(dirty_recall),
+            'dirty_filter_precision': float(dirty_precision),
+            'clean_retention_rate': float(clean_retention),
+            'dirty_samples_seen': float(dirty_seen),
+            'dirty_samples_filtered': float(dirty_filtered),
+            'dirty_samples_missed': float(self.stats['dirty_samples_missed']),
+            'clean_samples_filtered': float(clean_filtered),
+            'filter_rate': float(self.stats['filtered_samples'] /
+                                 total_samples)
+            if total_samples > 0 else 0.0,
+            'nan_rate': float(nan_rate),
+            'stability_nan_rate': float(nan_rate),
+            'nonfinite_samples': float(self.stats['nonfinite_samples']),
+            'nonfinite_batches': float(self.stats['nonfinite_batches']),
+        }
+
     def _hook_on_fit_end(self, ctx):
-        """微调结束hook：打印统计信息并清理内存"""
+        """hook"""
         super()._hook_on_fit_end(ctx)
+        filter_metrics = self._current_filter_metrics(ctx)
+        if hasattr(ctx, 'eval_metrics') and isinstance(ctx.eval_metrics, dict):
+            ctx.ka_filter_stats = filter_metrics
+            for name, value in filter_metrics.items():
+                ctx.eval_metrics[f'{ctx.cur_split}_{name}'] = value
         
-        # 详细统计信息
-        total_samples = self.stats['relevant_samples'] + self.stats['irrelevant_samples']
+        # 
+        total_samples = self.stats['relevant_samples'] + self.stats[
+            'filtered_samples']
         if total_samples > 0:
             relevant_ratio = self.stats['relevant_samples'] / total_samples * 100
-            irrelevant_ratio = self.stats['irrelevant_samples'] / total_samples * 100
+            filtered_ratio = self.stats['filtered_samples'] / total_samples * 100
             logger.info("=" * 80)
-            logger.info("客户端训练统计信息")
+            logger.info("Knowledge-anchor client training statistics")
             logger.info("=" * 80)
-            logger.info(f"总样本数: {total_samples}")
-            logger.info(f"  ✓ 任务相关样本（GSM8K）: {self.stats['relevant_samples']} ({relevant_ratio:.1f}%) - 已用于训练")
-            logger.info(f"  ✗ 任务无关样本（IMDB）: {self.stats['irrelevant_samples']} ({irrelevant_ratio:.1f}%) - 已被排除")
-            logger.info(f"  📦 新增原型数: {self.stats['new_prototypes_added']} (增量bank大小: {len(self.incremental_bank)}/{self.max_prototypes})")
+            logger.info("Total samples: %s", total_samples)
+            logger.info("Kept samples: %s (%.1f%%)",
+                        self.stats['relevant_samples'], relevant_ratio)
+            logger.info(
+                "Filtered samples: %s (%.1f%%), low_relevance=%s, inconsistent_supervision=%s",
+                self.stats['filtered_samples'], filtered_ratio,
+                self.stats['irrelevant_samples'],
+                self.stats['inconsistent_supervision_samples'])
+            logger.info("New prototypes: %s (bank: %s/%s)",
+                        self.stats['new_prototypes_added'],
+                        len(self.incremental_bank), self.max_prototypes)
+            if self.simple_client_filter:
+                logger.info("Client-space prototypes: %s added, active=%s",
+                            self.stats['client_prototypes_added'],
+                            len(self.client_prototypes))
+            if self.stats['nonfinite_samples'] > 0:
+                logger.info("Non-finite samples: %s",
+                            self.stats['nonfinite_samples'])
+            dirty_seen = self.stats['dirty_samples_seen']
+            if dirty_seen > 0:
+                dirty_filtered = self.stats['dirty_samples_filtered']
+                dirty_recall = dirty_filtered / dirty_seen * 100
+                logger.info(
+                    "Dirty supervision: seen=%s, filtered=%s, missed=%s, "
+                    "filter_recall=%.1f%%", dirty_seen, dirty_filtered,
+                    self.stats['dirty_samples_missed'], dirty_recall)
+                logger.info(
+                    "Clean samples filtered: %s",
+                    self.stats['clean_samples_filtered'])
+                logger.info(
+                    "Dirty filter metrics: recall=%.4f, precision=%.4f, "
+                    "clean_retention=%.4f, nan_rate=%.4f",
+                    filter_metrics['dirty_filter_recall'],
+                    filter_metrics['dirty_filter_precision'],
+                    filter_metrics['clean_retention_rate'],
+                    filter_metrics['nan_rate'])
             logger.info("=" * 80)
         else:
-            logger.warning("未处理任何样本，统计信息为空")
+            logger.warning("No samples were processed by the anchor trainer.")
         
-        # 清理GPU缓存
+        # GPU
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
@@ -589,3 +1190,5 @@ def call_knowledge_anchor_client_trainer(trainer_type):
 
 
 register_trainer('knowledge_anchor_client', call_knowledge_anchor_client_trainer)
+
+

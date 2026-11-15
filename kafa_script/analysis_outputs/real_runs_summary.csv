@@ -1,2 +1,14 @@
-task,method,n_runs,final_test_avg_loss_mean,final_test_avg_loss_std,final_val_avg_loss_mean,final_download_mb_mean,final_upload_mb_mean
-alpaca,FedAvg,1,1.05127,,0.988839,0.0,0.0
+task,method,n_runs,final_test_avg_loss_mean,final_test_avg_loss_std,final_val_avg_loss_mean,final_train_avg_loss_mean,final_test_acc_mean,final_val_acc_mean,final_test_token_acc_mean,final_test_perplexity_mean,final_generalization_gap_mean,final_gsm8k_exact_match_accuracy_mean,test_loss_auc_mean,best_test_avg_loss_mean,best_round_loss_mean,final_round_loss_mean,round_to_best_test_avg_loss_mean,dirty_filter_recall_mean,dirty_filter_precision_mean,clean_retention_rate_mean,stability_nan_rate_mean,final_download_mb_mean,final_upload_mb_mean,total_comm_mb_mean,communication_cost_mb_mean,loss_per_comm_gb_mean,log_only_unverified,verified_real,verified_real_runs,unverified_log_runs
+gsm8k,rawfedavg,2,0.4017245,0.07032106228222097,3.58,,0.25,0.23,,1.4962474203879723,3.228,,0.43425002307421695,0.4017245,0.4017245,0.4017245,24.5,,,,,7.922767639160156,0.0,7.922767639160156,7.922767639160156,58.34877369305303,1,1,1,1
+gsm8k,ditto,2,0.432117,,,,0.38,,,1.5405153449128357,,,0.4618598326177435,0.432117,1.5410584999999999,1.5410584999999999,29.0,,,,,7.922767639160156,0.0,7.922767639160156,7.922767639160156,55.85015592441449,1,1,1,1
+gsm8k,kafa-full,2,0.707369,0.6920722768049592,2.23,,0.65,0.62,,2.2764457069268236,2.012,,0.8282513513711671,0.707369,0.707369,0.707369,25.0,0.88,0.584070796460177,0.9271317829457364,0.0,6.9084320068359375,0.0,6.9084320068359375,6.9084320068359375,177.38608569750704,1,1,1,1
+gsm8k,knowledgeanchor,3,1.1914316666666667,0.008301894502662313,,,,,,3.291866087645678,,,1.3409617362091684,1.191431625147708,1.191431625147708,1.1914316666666667,28.0,0.5911111111111111,0.4320920223059583,0.9498708010335917,0.0,6.9084320068359375,0.0,6.9084320068359375,6.9084320068359375,176.59955623207165,0,3,3,0
+gsm8k,fedopt,1,,,,,0.42,,,,,,,,2.63,2.63,,,,,,,,,,,1,0,0,1
+gsm8k,fedprox,1,,,,,0.32,0.3,,,,,,,2.95,2.95,,,,,,,,,,,1,0,0,1
+gsm8k,kafa-w/o distill,1,,,,,0.55,0.52,,,,,0.33499999999999996,0.298,0.298,2.25,19.0,,,,,,,,,,1,0,0,1
+gsm8k,kafa-w/o instruction,1,,,,,0.5,0.48,,,,,,,2.35,2.35,,,,,,,,,,,1,0,0,1
+gsm8k,kafa-w/o projection,1,,,,,0.52,,,,,,,,2.32,2.32,,,,,,,,,,,1,0,0,1
+gsm8k,kafa-w/o relevance,1,,,,,0.58,,,,,,,,2.2,2.2,,,,,,,,,,,1,0,0,1
+gsm8k,local-only,1,,,,,0.16,,,,,,,,3.92,3.92,,,,,,,,,,,1,0,0,1
+gsm8k,offsite-tuning,1,,,,,0.4,,,,,,,,2.64,2.64,,,,,,,,,,,1,0,0,1
+gsm8k,pfedme,1,,,,,0.35,,,,,,,,2.95,2.95,,,,,,,,,,,1,0,0,1

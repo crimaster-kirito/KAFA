@@ -1,0 +1,3 @@
+﻿{'Role': 'Server #', 'Round': 9, 'Results_weighted_avg': {'test_loss': 3.68, 'test_acc': 0.36}}
+{'Role': 'Server #', 'Round': 19, 'Results_weighted_avg': {'test_loss': 2.92, 'test_acc': 0.50}}
+{'Role': 'Server #', 'Round': 'Final', 'Results_raw': {'client_summarized_weighted_avg': {'test_loss': 2.20, 'test_acc': 0.58, 'test_total': 33.3}}}

@@ -1,0 +1,5 @@
+method,run_time,worker_id,id,fl_end_time_minutes,total_model_size,total_flops,total_upload_bytes,total_download_bytes,global_convergence_round,local_convergence_round,global_convergence_time_minutes,local_convergence_time_minutes
+rawfedavg,2026-05-03 15:42:19,0,0,91.70483,0,0,0,3487256,0,0,0,0
+rawfedavg,2026-05-03 15:42:19,1,1,91.635745,6742618112,0,0,1609056,0,0,0,0
+rawfedavg,2026-05-03 15:42:19,2,2,91.255574,6742618112,0,0,1609056,0,0,0,0
+rawfedavg,2026-05-03 15:42:19,3,3,90.876043,6742618112,0,0,1609056,0,0,0,0

@@ -1,0 +1,819 @@
+2026-05-04 22:15:16,187 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-05-04 22:15:16,187 (logging:134) INFO: the current dir is /home/tyx/ywp/KAFA
+2026-05-04 22:15:16,187 (logging:135) INFO: the output dir is exp/kafa_matrix/gsm8k/kafa_dirty_smoke/seed_42/gsm8k_kafa_dirty_smoke_seed42
+2026-05-04 22:15:27,608 (base_translator:120) WARNING: Cannot access train label distribution for splitter, split dataset without considering train label.
+2026-05-04 22:15:27,651 (base_translator:133) INFO: number of clients: 3
+2026-05-04 22:15:27,651 (base_translator:135) INFO: 1
+2026-05-04 22:15:27,687 (base_translator:135) INFO: 2
+2026-05-04 22:15:27,724 (base_translator:135) INFO: 3
+2026-05-04 22:15:28,004 (utils:167) INFO: The device information file is not provided
+2026-05-04 22:15:28,005 (model_builder:158) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-05-04 22:16:51,179 (projection_mapper:78) INFO: 初始化ProjectionMapper: small_hidden=4096, large_hidden=4096, rank=8, learnable=True, q_strategy=transpose
+2026-05-04 22:16:51,289 (knowledge_anchor_aggregator:159) INFO: ✓ 已保存投影矩阵缓存: exp/kafa_matrix/gsm8k/kafa_dirty_smoke/seed_42/gsm8k_kafa_dirty_smoke_seed42/knowledge_anchor_cache/projection_mapper.pt
+2026-05-04 22:16:51,289 (knowledge_anchor_aggregator:77) INFO: ✓ 已初始化投影映射器: small_hidden=4096, large_hidden=4096, rank=8
+2026-05-04 22:16:51,313 (knowledge_anchor_trainer:34) INFO: Trainer初始化 - Device: cuda:0
+2026-05-04 22:16:51,315 (knowledge_anchor_trainer:37) INFO: 模型设备: cuda:0
+2026-05-04 22:16:51,315 (knowledge_anchor_trainer:41) INFO: CUDA可用 - GPU数量: 1
+2026-05-04 22:16:51,315 (knowledge_anchor_trainer:44) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-05-04 22:16:51,316 (fed_runner:195) INFO: Server has been set up ... 
+2026-05-04 22:16:51,317 (client:38) INFO: ================================================================================
+2026-05-04 22:16:51,317 (client:39) INFO: 客户端1开始加载小模型...
+2026-05-04 22:16:51,317 (client:40) INFO: 配置的模型路径: models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-05-04 22:16:51,317 (client:55) INFO: ✓ 检测到本地模型路径: models/tinyllama-1.1b-chat-v1.0
+2026-05-04 22:16:51,318 (client:56) INFO:   绝对路径: /home/tyx/ywp/KAFA/models/tinyllama-1.1b-chat-v1.0
+2026-05-04 22:16:51,343 (client:71) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-05-04 22:16:51,343 (model_builder:158) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-05-04 22:16:51,344 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-05-04 22:17:01,042 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-05-04 22:17:12,387 (client:76) INFO: ✓ 客户端1成功加载小模型
+2026-05-04 22:17:12,387 (client:77) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-05-04 22:17:12,388 (client:81) INFO:   模型参数量: 1262.97M
+2026-05-04 22:17:12,388 (client:84) INFO: ================================================================================
+2026-05-04 22:17:12,425 (knowledge_anchor_trainer:34) INFO: Trainer初始化 - Device: cuda:0
+2026-05-04 22:17:12,426 (knowledge_anchor_trainer:37) INFO: 模型设备: cpu
+2026-05-04 22:17:12,426 (knowledge_anchor_trainer:41) INFO: CUDA可用 - GPU数量: 1
+2026-05-04 22:17:12,426 (knowledge_anchor_trainer:44) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-05-04 22:17:15,297 (fed_runner:245) INFO: Client 1 has been set up ... 
+2026-05-04 22:17:15,299 (client:38) INFO: ================================================================================
+2026-05-04 22:17:15,299 (client:39) INFO: 客户端2开始加载小模型...
+2026-05-04 22:17:15,299 (client:40) INFO: 配置的模型路径: models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-05-04 22:17:15,300 (client:55) INFO: ✓ 检测到本地模型路径: models/tinyllama-1.1b-chat-v1.0
+2026-05-04 22:17:15,300 (client:56) INFO:   绝对路径: /home/tyx/ywp/KAFA/models/tinyllama-1.1b-chat-v1.0
+2026-05-04 22:17:15,325 (client:71) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-05-04 22:17:15,325 (model_builder:158) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-05-04 22:17:15,326 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-05-04 22:17:24,938 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-05-04 22:17:36,070 (client:76) INFO: ✓ 客户端2成功加载小模型
+2026-05-04 22:17:36,070 (client:77) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-05-04 22:17:36,071 (client:81) INFO:   模型参数量: 1262.97M
+2026-05-04 22:17:36,071 (client:84) INFO: ================================================================================
+2026-05-04 22:17:36,107 (knowledge_anchor_trainer:34) INFO: Trainer初始化 - Device: cuda:0
+2026-05-04 22:17:36,108 (knowledge_anchor_trainer:37) INFO: 模型设备: cpu
+2026-05-04 22:17:36,109 (knowledge_anchor_trainer:41) INFO: CUDA可用 - GPU数量: 1
+2026-05-04 22:17:36,109 (knowledge_anchor_trainer:44) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-05-04 22:17:38,560 (fed_runner:245) INFO: Client 2 has been set up ... 
+2026-05-04 22:17:38,562 (client:38) INFO: ================================================================================
+2026-05-04 22:17:38,562 (client:39) INFO: 客户端3开始加载小模型...
+2026-05-04 22:17:38,562 (client:40) INFO: 配置的模型路径: models/tinyllama-1.1b-chat-v1.0@huggingface_llm
+2026-05-04 22:17:38,562 (client:55) INFO: ✓ 检测到本地模型路径: models/tinyllama-1.1b-chat-v1.0
+2026-05-04 22:17:38,562 (client:56) INFO:   绝对路径: /home/tyx/ywp/KAFA/models/tinyllama-1.1b-chat-v1.0
+2026-05-04 22:17:38,587 (client:71) INFO: 正在加载模型 (hub: huggingface_llm)...
+2026-05-04 22:17:38,587 (model_builder:158) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-05-04 22:17:38,588 (model_builder:34) INFO: 检测到GQA架构: num_attention_heads=32, num_key_value_heads=4
+2026-05-04 22:17:47,516 (model_builder:46) WARNING: 检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True
+2026-05-04 22:17:58,649 (client:76) INFO: ✓ 客户端3成功加载小模型
+2026-05-04 22:17:58,650 (client:77) INFO:   模型类型: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>
+2026-05-04 22:17:58,651 (client:81) INFO:   模型参数量: 1262.97M
+2026-05-04 22:17:58,651 (client:84) INFO: ================================================================================
+2026-05-04 22:17:58,687 (knowledge_anchor_trainer:34) INFO: Trainer初始化 - Device: cuda:0
+2026-05-04 22:17:58,688 (knowledge_anchor_trainer:37) INFO: 模型设备: cpu
+2026-05-04 22:17:58,688 (knowledge_anchor_trainer:41) INFO: CUDA可用 - GPU数量: 1
+2026-05-04 22:17:58,688 (knowledge_anchor_trainer:44) INFO: 使用GPU 0 - 内存: 79.25 GB
+2026-05-04 22:18:00,908 (fed_runner:245) INFO: Client 3 has been set up ... 
+2026-05-04 22:18:00,908 (trainer:343) INFO: Model meta-info: <class 'federatedscope.llm.model.adapter_builder.AdapterModel'>.
+2026-05-04 22:18:00,918 (trainer:351) INFO: Num of original para names: 88.
+2026-05-04 22:18:00,918 (trainer:352) INFO: Num of original trainable para names: 289.
+2026-05-04 22:18:00,918 (trainer:354) INFO: Num of preserved para names in local update: 88. 
+Preserved para names in local update: {'base_model.model.model.layers.3.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.16.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.7.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.5.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.13.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.7.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.18.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.8.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.6.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.19.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.19.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.16.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.9.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.12.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.21.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.14.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.17.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.7.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.21.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.18.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.5.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.15.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.13.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.16.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.17.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.2.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.18.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.11.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.2.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.4.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.0.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.16.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.7.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.6.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.20.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.2.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.14.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.0.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.11.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.9.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.14.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.8.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.17.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.10.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.5.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.20.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.20.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.15.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.6.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.13.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.10.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.8.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.15.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.15.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.5.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.18.self_attn.v_proj.lora_A.default.weight', 'base_model.model.model.layers.12.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.0.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.2.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.10.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.4.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.21.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.1.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.14.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.20.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.11.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.3.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.17.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.9.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.10.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.19.self_attn.v_proj.lora_B.default.weight', 'base_model.model.model.layers.21.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.11.self_attn.q_proj.lora_B.default.weight', 'base_model.model.model.layers.13.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.19.self_attn.q_proj.lora_A.default.weight', 'base_model.model.model.layers.9.self_attn.q_proj.lora_A.default.weight'}.
+2026-05-04 22:18:00,919 (trainer:358) INFO: Num of filtered para names in local update: 0. 
+Filtered para names in local update: set().
+2026-05-04 22:18:00,919 (trainer:363) INFO: After register default hooks,
+	the hooks_in_train is:
+	{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init",
+	    "_hook_on_fit_start_calculate_model_size"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward",
+	    "_hook_on_batch_forward_regularizer",
+	    "_hook_on_batch_forward_flop_count"
+	  ],
+	  "on_batch_backward": [
+	    "_hook_on_batch_backward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	};
+	the hooks_in_eval is:
+            t{
+	  "on_fit_start": [
+	    "_hook_on_fit_start_numerical_precision",
+	    "_hook_on_data_parallel_init",
+	    "_hook_on_fit_start_init"
+	  ],
+	  "on_epoch_start": [
+	    "_hook_on_epoch_start"
+	  ],
+	  "on_batch_start": [
+	    "_hook_on_batch_start_init"
+	  ],
+	  "on_batch_forward": [
+	    "_hook_on_batch_forward"
+	  ],
+	  "on_batch_end": [
+	    "_hook_on_batch_end"
+	  ],
+	  "on_fit_end": [
+	    "_hook_on_fit_end"
+	  ]
+	}
+2026-05-04 22:18:20,807 (server:224) INFO: 
+================================================================================
+2026-05-04 22:18:20,807 (server:225) INFO: 服务器开始生成知识锚点...
+2026-05-04 22:18:20,808 (server:226) INFO: ================================================================================
+2026-05-04 22:18:20,808 (knowledge_anchor_generator:471) INFO: 开始生成知识锚点...
+2026-05-04 22:18:20,811 (knowledge_anchor_generator:175) INFO: ================================================================================
+2026-05-04 22:18:20,811 (knowledge_anchor_generator:176) INFO: 开始生成任务指令（使用服务器端LLM）...
+2026-05-04 22:18:20,811 (knowledge_anchor_generator:177) INFO: ================================================================================
+2026-05-04 22:18:20,811 (knowledge_anchor_generator:83) INFO: ================================================================================
+2026-05-04 22:18:20,811 (knowledge_anchor_generator:84) INFO: 开始任务描述自动推断（FedKA方法）...
+2026-05-04 22:18:20,811 (knowledge_anchor_generator:85) INFO: ================================================================================
+2026-05-04 22:18:20,825 (knowledge_anchor_generator:118) INFO: 候选 1: 采样了 20 条指令
+2026-05-04 22:18:20,825 (knowledge_anchor_generator:118) INFO: 候选 2: 采样了 20 条指令
+2026-05-04 22:18:20,826 (knowledge_anchor_generator:118) INFO: 候选 3: 采样了 20 条指令
+2026-05-04 22:18:27,192 (knowledge_anchor_generator:135) INFO: 候选描述 1: - Denise will be 25 years old in two years. Her sister, Diane, is 4 years younger. In how many years w
+- In a triangle with angles A, B, and C, A is 6...
+2026-05-04 22:18:33,204 (knowledge_anchor_generator:135) INFO: 候选描述 2: - Rubert has 4 times the number of candies James has. James has 3 times the number of candies Adam has
+- Stefan, Vail, and Aiguo collected seashells. ...
+2026-05-04 22:18:39,202 (knowledge_anchor_generator:135) INFO: 候选描述 3: The task is to find the total number of days that all 24 classmates were in school together, if you
+know the number of classmates and the number of da...
+2026-05-04 22:18:51,247 (knowledge_anchor_generator:152) INFO: ✓ 融合后的任务描述: Aniyah has 6 times as many birthday candles as Ambika. If Ambika has four birthday candles, how many
+Aniyah has 6 times as many birthday candles as Ambika. If Ambika has four birthday candles, how man...
+2026-05-04 22:18:51,248 (knowledge_anchor_generator:185) INFO: 分析公共数据集风格并生成 4 个指令模板...
+2026-05-04 22:18:51,248 (knowledge_anchor_generator:186) INFO: 任务描述: Aniyah has 6 times as many birthday candles as Ambika. If Ambika has four birthday candles, how many
+Aniyah has 6 times as many birthday candles as Ambika. If Ambika has four birthday candles, how man...
+2026-05-04 22:18:51,249 (knowledge_anchor_generator:210) INFO: 正在使用LLM生成指令模板...
+2026-05-04 22:19:15,354 (knowledge_anchor_generator:212) INFO: LLM生成的原始文本:
+1. Jett bought a cow from the market at $600 and took it to his farm. He spent $20 every day to buy food. He also used $500 to vaccinate and deworm the cow. If he sold the cow for $2500 after 40 days, ca
+2. Miranda is stuffing feather pillows. She needs two pounds of feathers for each pillow. A pound of goose feathers is approximately 300 feathers. Her goose has approximately 3600 feathers. How many pill
+3. Joe sells ham and cheese sandwiches for $1.5. If a slice of bread costs $0.15, a slice o...
+2026-05-04 22:19:15,355 (knowledge_anchor_generator:225) INFO:   ✓ 提取的指令 1: Jett bought a cow from the market at $600 and took it to his farm. He spent $20 every day to buy food. He also used $500 to vaccinate and deworm the cow. If he sold the cow for $2500 after 40 days, ca
+2026-05-04 22:19:15,355 (knowledge_anchor_generator:225) INFO:   ✓ 提取的指令 2: Miranda is stuffing feather pillows. She needs two pounds of feathers for each pillow. A pound of goose feathers is approximately 300 feathers. Her goose has approximately 3600 feathers. How many pill
+2026-05-04 22:19:15,355 (knowledge_anchor_generator:225) INFO:   ✓ 提取的指令 3: Joe sells ham and cheese sandwiches for $1.5. If a slice of bread costs $0.15, a slice of ham costs $0.25 and a slice of cheese costs $0.35, how many cents does a sandwich with one slice of each prot
+2026-05-04 22:19:15,355 (knowledge_anchor_generator:225) INFO:   ✓ 提取的指令 4: Edmund is buying a new computer and needs to save up $75 before he has enough. He convinces his parents to pay him for extra chores. He normally has to do 12 chores a week. His parents agree to pay hi
+2026-05-04 22:19:15,355 (knowledge_anchor_generator:244) INFO: 
+================================================================================
+2026-05-04 22:19:15,355 (knowledge_anchor_generator:245) INFO: 任务指令生成完成！共生成 4 个指令:
+2026-05-04 22:19:15,355 (knowledge_anchor_generator:246) INFO: ================================================================================
+2026-05-04 22:19:15,355 (knowledge_anchor_generator:248) INFO:   [ 1] Jett bought a cow from the market at $600 and took it to his farm. He spent $20 every day to buy food. He also used $500 to vaccinate and deworm the cow. If he sold the cow for $2500 after 40 days, ca
+2026-05-04 22:19:15,356 (knowledge_anchor_generator:248) INFO:   [ 2] Miranda is stuffing feather pillows. She needs two pounds of feathers for each pillow. A pound of goose feathers is approximately 300 feathers. Her goose has approximately 3600 feathers. How many pill
+2026-05-04 22:19:15,356 (knowledge_anchor_generator:248) INFO:   [ 3] Joe sells ham and cheese sandwiches for $1.5. If a slice of bread costs $0.15, a slice of ham costs $0.25 and a slice of cheese costs $0.35, how many cents does a sandwich with one slice of each prot
+2026-05-04 22:19:15,356 (knowledge_anchor_generator:248) INFO:   [ 4] Edmund is buying a new computer and needs to save up $75 before he has enough. He convinces his parents to pay him for extra chores. He normally has to do 12 chores a week. His parents agree to pay hi
+2026-05-04 22:19:15,356 (knowledge_anchor_generator:249) INFO: ================================================================================
+2026-05-04 22:19:15,359 (knowledge_anchor_generator:301) INFO: 开始提取中间层隐藏状态...
+2026-05-04 22:19:15,414 (knowledge_anchor_generator:357) INFO: 已处理 1 个batch
+2026-05-04 22:19:15,936 (knowledge_anchor_generator:357) INFO: 已处理 11 个batch
+2026-05-04 22:19:16,425 (knowledge_anchor_generator:357) INFO: 已处理 21 个batch
+2026-05-04 22:19:16,929 (knowledge_anchor_generator:357) INFO: 已处理 31 个batch
+2026-05-04 22:19:17,414 (knowledge_anchor_generator:357) INFO: 已处理 41 个batch
+2026-05-04 22:19:17,900 (knowledge_anchor_generator:357) INFO: 已处理 51 个batch
+2026-05-04 22:19:18,400 (knowledge_anchor_generator:357) INFO: 已处理 61 个batch
+2026-05-04 22:19:18,887 (knowledge_anchor_generator:357) INFO: 已处理 71 个batch
+2026-05-04 22:19:19,385 (knowledge_anchor_generator:357) INFO: 已处理 81 个batch
+2026-05-04 22:19:19,871 (knowledge_anchor_generator:357) INFO: 已处理 91 个batch
+2026-05-04 22:19:20,365 (knowledge_anchor_generator:357) INFO: 已处理 101 个batch
+2026-05-04 22:19:20,867 (knowledge_anchor_generator:357) INFO: 已处理 111 个batch
+2026-05-04 22:19:21,351 (knowledge_anchor_generator:357) INFO: 已处理 121 个batch
+2026-05-04 22:19:21,837 (knowledge_anchor_generator:357) INFO: 已处理 131 个batch
+2026-05-04 22:19:22,338 (knowledge_anchor_generator:357) INFO: 已处理 141 个batch
+2026-05-04 22:19:22,822 (knowledge_anchor_generator:357) INFO: 已处理 151 个batch
+2026-05-04 22:19:23,308 (knowledge_anchor_generator:357) INFO: 已处理 161 个batch
+2026-05-04 22:19:23,797 (knowledge_anchor_generator:357) INFO: 已处理 171 个batch
+2026-05-04 22:19:24,283 (knowledge_anchor_generator:357) INFO: 已处理 181 个batch
+2026-05-04 22:19:24,771 (knowledge_anchor_generator:357) INFO: 已处理 191 个batch
+2026-05-04 22:19:25,255 (knowledge_anchor_generator:357) INFO: 已处理 201 个batch
+2026-05-04 22:19:25,743 (knowledge_anchor_generator:357) INFO: 已处理 211 个batch
+2026-05-04 22:19:26,232 (knowledge_anchor_generator:357) INFO: 已处理 221 个batch
+2026-05-04 22:19:26,717 (knowledge_anchor_generator:357) INFO: 已处理 231 个batch
+2026-05-04 22:19:27,202 (knowledge_anchor_generator:357) INFO: 已处理 241 个batch
+2026-05-04 22:19:27,687 (knowledge_anchor_generator:357) INFO: 已处理 251 个batch
+2026-05-04 22:19:28,189 (knowledge_anchor_generator:357) INFO: 已处理 261 个batch
+2026-05-04 22:19:28,688 (knowledge_anchor_generator:357) INFO: 已处理 271 个batch
+2026-05-04 22:19:29,177 (knowledge_anchor_generator:357) INFO: 已处理 281 个batch
+2026-05-04 22:19:29,668 (knowledge_anchor_generator:357) INFO: 已处理 291 个batch
+2026-05-04 22:19:30,153 (knowledge_anchor_generator:357) INFO: 已处理 301 个batch
+2026-05-04 22:19:30,638 (knowledge_anchor_generator:357) INFO: 已处理 311 个batch
+2026-05-04 22:19:31,123 (knowledge_anchor_generator:357) INFO: 已处理 321 个batch
+2026-05-04 22:19:31,610 (knowledge_anchor_generator:357) INFO: 已处理 331 个batch
+2026-05-04 22:19:32,094 (knowledge_anchor_generator:357) INFO: 已处理 341 个batch
+2026-05-04 22:19:32,577 (knowledge_anchor_generator:357) INFO: 已处理 351 个batch
+2026-05-04 22:19:33,068 (knowledge_anchor_generator:357) INFO: 已处理 361 个batch
+2026-05-04 22:19:33,558 (knowledge_anchor_generator:357) INFO: 已处理 371 个batch
+2026-05-04 22:19:34,047 (knowledge_anchor_generator:357) INFO: 已处理 381 个batch
+2026-05-04 22:19:34,546 (knowledge_anchor_generator:357) INFO: 已处理 391 个batch
+2026-05-04 22:19:35,032 (knowledge_anchor_generator:357) INFO: 已处理 401 个batch
+2026-05-04 22:19:35,515 (knowledge_anchor_generator:357) INFO: 已处理 411 个batch
+2026-05-04 22:19:36,003 (knowledge_anchor_generator:357) INFO: 已处理 421 个batch
+2026-05-04 22:19:36,487 (knowledge_anchor_generator:357) INFO: 已处理 431 个batch
+2026-05-04 22:19:36,990 (knowledge_anchor_generator:357) INFO: 已处理 441 个batch
+2026-05-04 22:19:37,483 (knowledge_anchor_generator:357) INFO: 已处理 451 个batch
+2026-05-04 22:19:37,989 (knowledge_anchor_generator:357) INFO: 已处理 461 个batch
+2026-05-04 22:19:38,484 (knowledge_anchor_generator:357) INFO: 已处理 471 个batch
+2026-05-04 22:19:38,993 (knowledge_anchor_generator:357) INFO: 已处理 481 个batch
+2026-05-04 22:19:39,495 (knowledge_anchor_generator:357) INFO: 已处理 491 个batch
+2026-05-04 22:19:39,978 (knowledge_anchor_generator:357) INFO: 已处理 501 个batch
+2026-05-04 22:19:40,467 (knowledge_anchor_generator:357) INFO: 已处理 511 个batch
+2026-05-04 22:19:40,956 (knowledge_anchor_generator:357) INFO: 已处理 521 个batch
+2026-05-04 22:19:41,457 (knowledge_anchor_generator:357) INFO: 已处理 531 个batch
+2026-05-04 22:19:41,959 (knowledge_anchor_generator:357) INFO: 已处理 541 个batch
+2026-05-04 22:19:42,450 (knowledge_anchor_generator:357) INFO: 已处理 551 个batch
+2026-05-04 22:19:42,951 (knowledge_anchor_generator:357) INFO: 已处理 561 个batch
+2026-05-04 22:19:43,451 (knowledge_anchor_generator:357) INFO: 已处理 571 个batch
+2026-05-04 22:19:43,940 (knowledge_anchor_generator:357) INFO: 已处理 581 个batch
+2026-05-04 22:19:44,424 (knowledge_anchor_generator:357) INFO: 已处理 591 个batch
+2026-05-04 22:19:44,909 (knowledge_anchor_generator:357) INFO: 已处理 601 个batch
+2026-05-04 22:19:45,396 (knowledge_anchor_generator:357) INFO: 已处理 611 个batch
+2026-05-04 22:19:45,911 (knowledge_anchor_generator:357) INFO: 已处理 621 个batch
+2026-05-04 22:19:46,417 (knowledge_anchor_generator:357) INFO: 已处理 631 个batch
+2026-05-04 22:19:46,902 (knowledge_anchor_generator:357) INFO: 已处理 641 个batch
+2026-05-04 22:19:47,392 (knowledge_anchor_generator:357) INFO: 已处理 651 个batch
+2026-05-04 22:19:47,894 (knowledge_anchor_generator:357) INFO: 已处理 661 个batch
+2026-05-04 22:19:48,386 (knowledge_anchor_generator:357) INFO: 已处理 671 个batch
+2026-05-04 22:19:48,883 (knowledge_anchor_generator:357) INFO: 已处理 681 个batch
+2026-05-04 22:19:49,406 (knowledge_anchor_generator:357) INFO: 已处理 691 个batch
+2026-05-04 22:19:49,893 (knowledge_anchor_generator:357) INFO: 已处理 701 个batch
+2026-05-04 22:19:50,385 (knowledge_anchor_generator:357) INFO: 已处理 711 个batch
+2026-05-04 22:19:50,893 (knowledge_anchor_generator:357) INFO: 已处理 721 个batch
+2026-05-04 22:19:51,378 (knowledge_anchor_generator:357) INFO: 已处理 731 个batch
+2026-05-04 22:19:51,865 (knowledge_anchor_generator:357) INFO: 已处理 741 个batch
+2026-05-04 22:19:52,362 (knowledge_anchor_generator:357) INFO: 已处理 751 个batch
+2026-05-04 22:19:52,872 (knowledge_anchor_generator:357) INFO: 已处理 761 个batch
+2026-05-04 22:19:53,397 (knowledge_anchor_generator:357) INFO: 已处理 771 个batch
+2026-05-04 22:19:53,889 (knowledge_anchor_generator:357) INFO: 已处理 781 个batch
+2026-05-04 22:19:54,373 (knowledge_anchor_generator:357) INFO: 已处理 791 个batch
+2026-05-04 22:19:54,862 (knowledge_anchor_generator:357) INFO: 已处理 801 个batch
+2026-05-04 22:19:55,343 (knowledge_anchor_generator:357) INFO: 已处理 811 个batch
+2026-05-04 22:19:55,830 (knowledge_anchor_generator:357) INFO: 已处理 821 个batch
+2026-05-04 22:19:56,336 (knowledge_anchor_generator:357) INFO: 已处理 831 个batch
+2026-05-04 22:19:56,822 (knowledge_anchor_generator:357) INFO: 已处理 841 个batch
+2026-05-04 22:19:57,327 (knowledge_anchor_generator:357) INFO: 已处理 851 个batch
+2026-05-04 22:19:57,813 (knowledge_anchor_generator:357) INFO: 已处理 861 个batch
+2026-05-04 22:19:58,306 (knowledge_anchor_generator:357) INFO: 已处理 871 个batch
+2026-05-04 22:19:58,795 (knowledge_anchor_generator:357) INFO: 已处理 881 个batch
+2026-05-04 22:19:59,282 (knowledge_anchor_generator:357) INFO: 已处理 891 个batch
+2026-05-04 22:19:59,787 (knowledge_anchor_generator:357) INFO: 已处理 901 个batch
+2026-05-04 22:20:00,287 (knowledge_anchor_generator:357) INFO: 已处理 911 个batch
+2026-05-04 22:20:00,801 (knowledge_anchor_generator:357) INFO: 已处理 921 个batch
+2026-05-04 22:20:01,288 (knowledge_anchor_generator:357) INFO: 已处理 931 个batch
+2026-05-04 22:20:01,775 (knowledge_anchor_generator:357) INFO: 已处理 941 个batch
+2026-05-04 22:20:02,290 (knowledge_anchor_generator:357) INFO: 已处理 951 个batch
+2026-05-04 22:20:02,775 (knowledge_anchor_generator:357) INFO: 已处理 961 个batch
+2026-05-04 22:20:03,262 (knowledge_anchor_generator:357) INFO: 已处理 971 个batch
+2026-05-04 22:20:03,753 (knowledge_anchor_generator:357) INFO: 已处理 981 个batch
+2026-05-04 22:20:04,251 (knowledge_anchor_generator:357) INFO: 已处理 991 个batch
+2026-05-04 22:20:04,745 (knowledge_anchor_generator:357) INFO: 已处理 1001 个batch
+2026-05-04 22:20:05,233 (knowledge_anchor_generator:357) INFO: 已处理 1011 个batch
+2026-05-04 22:20:05,719 (knowledge_anchor_generator:357) INFO: 已处理 1021 个batch
+2026-05-04 22:20:06,206 (knowledge_anchor_generator:357) INFO: 已处理 1031 个batch
+2026-05-04 22:20:06,696 (knowledge_anchor_generator:357) INFO: 已处理 1041 个batch
+2026-05-04 22:20:07,180 (knowledge_anchor_generator:357) INFO: 已处理 1051 个batch
+2026-05-04 22:20:07,668 (knowledge_anchor_generator:357) INFO: 已处理 1061 个batch
+2026-05-04 22:20:08,152 (knowledge_anchor_generator:357) INFO: 已处理 1071 个batch
+2026-05-04 22:20:08,643 (knowledge_anchor_generator:357) INFO: 已处理 1081 个batch
+2026-05-04 22:20:09,143 (knowledge_anchor_generator:357) INFO: 已处理 1091 个batch
+2026-05-04 22:20:09,630 (knowledge_anchor_generator:357) INFO: 已处理 1101 个batch
+2026-05-04 22:20:10,150 (knowledge_anchor_generator:357) INFO: 已处理 1111 个batch
+2026-05-04 22:20:10,653 (knowledge_anchor_generator:357) INFO: 已处理 1121 个batch
+2026-05-04 22:20:11,136 (knowledge_anchor_generator:357) INFO: 已处理 1131 个batch
+2026-05-04 22:20:11,625 (knowledge_anchor_generator:357) INFO: 已处理 1141 个batch
+2026-05-04 22:20:12,133 (knowledge_anchor_generator:357) INFO: 已处理 1151 个batch
+2026-05-04 22:20:12,618 (knowledge_anchor_generator:357) INFO: 已处理 1161 个batch
+2026-05-04 22:20:13,126 (knowledge_anchor_generator:357) INFO: 已处理 1171 个batch
+2026-05-04 22:20:13,625 (knowledge_anchor_generator:357) INFO: 已处理 1181 个batch
+2026-05-04 22:20:14,115 (knowledge_anchor_generator:357) INFO: 已处理 1191 个batch
+2026-05-04 22:20:14,602 (knowledge_anchor_generator:357) INFO: 已处理 1201 个batch
+2026-05-04 22:20:15,086 (knowledge_anchor_generator:357) INFO: 已处理 1211 个batch
+2026-05-04 22:20:15,572 (knowledge_anchor_generator:357) INFO: 已处理 1221 个batch
+2026-05-04 22:20:16,059 (knowledge_anchor_generator:357) INFO: 已处理 1231 个batch
+2026-05-04 22:20:16,544 (knowledge_anchor_generator:357) INFO: 已处理 1241 个batch
+2026-05-04 22:20:17,047 (knowledge_anchor_generator:357) INFO: 已处理 1251 个batch
+2026-05-04 22:20:17,538 (knowledge_anchor_generator:357) INFO: 已处理 1261 个batch
+2026-05-04 22:20:18,027 (knowledge_anchor_generator:357) INFO: 已处理 1271 个batch
+2026-05-04 22:20:18,512 (knowledge_anchor_generator:357) INFO: 已处理 1281 个batch
+2026-05-04 22:20:19,001 (knowledge_anchor_generator:357) INFO: 已处理 1291 个batch
+2026-05-04 22:20:19,488 (knowledge_anchor_generator:357) INFO: 已处理 1301 个batch
+2026-05-04 22:20:20,006 (knowledge_anchor_generator:357) INFO: 已处理 1311 个batch
+2026-05-04 22:20:20,504 (knowledge_anchor_generator:357) INFO: 已处理 1321 个batch
+2026-05-04 22:20:21,027 (knowledge_anchor_generator:357) INFO: 已处理 1331 个batch
+2026-05-04 22:20:21,513 (knowledge_anchor_generator:357) INFO: 已处理 1341 个batch
+2026-05-04 22:20:22,000 (knowledge_anchor_generator:357) INFO: 已处理 1351 个batch
+2026-05-04 22:20:22,497 (knowledge_anchor_generator:357) INFO: 已处理 1361 个batch
+2026-05-04 22:20:22,984 (knowledge_anchor_generator:357) INFO: 已处理 1371 个batch
+2026-05-04 22:20:23,483 (knowledge_anchor_generator:357) INFO: 已处理 1381 个batch
+2026-05-04 22:20:23,969 (knowledge_anchor_generator:357) INFO: 已处理 1391 个batch
+2026-05-04 22:20:24,478 (knowledge_anchor_generator:357) INFO: 已处理 1401 个batch
+2026-05-04 22:20:24,968 (knowledge_anchor_generator:357) INFO: 已处理 1411 个batch
+2026-05-04 22:20:25,456 (knowledge_anchor_generator:357) INFO: 已处理 1421 个batch
+2026-05-04 22:20:25,943 (knowledge_anchor_generator:357) INFO: 已处理 1431 个batch
+2026-05-04 22:20:26,446 (knowledge_anchor_generator:357) INFO: 已处理 1441 个batch
+2026-05-04 22:20:26,929 (knowledge_anchor_generator:357) INFO: 已处理 1451 个batch
+2026-05-04 22:20:27,438 (knowledge_anchor_generator:357) INFO: 已处理 1461 个batch
+2026-05-04 22:20:27,921 (knowledge_anchor_generator:357) INFO: 已处理 1471 个batch
+2026-05-04 22:20:28,409 (knowledge_anchor_generator:357) INFO: 已处理 1481 个batch
+2026-05-04 22:20:28,896 (knowledge_anchor_generator:357) INFO: 已处理 1491 个batch
+2026-05-04 22:20:29,389 (knowledge_anchor_generator:357) INFO: 已处理 1501 个batch
+2026-05-04 22:20:29,888 (knowledge_anchor_generator:357) INFO: 已处理 1511 个batch
+2026-05-04 22:20:30,371 (knowledge_anchor_generator:357) INFO: 已处理 1521 个batch
+2026-05-04 22:20:30,869 (knowledge_anchor_generator:357) INFO: 已处理 1531 个batch
+2026-05-04 22:20:31,359 (knowledge_anchor_generator:357) INFO: 已处理 1541 个batch
+2026-05-04 22:20:31,844 (knowledge_anchor_generator:357) INFO: 已处理 1551 个batch
+2026-05-04 22:20:32,339 (knowledge_anchor_generator:357) INFO: 已处理 1561 个batch
+2026-05-04 22:20:32,828 (knowledge_anchor_generator:357) INFO: 已处理 1571 个batch
+2026-05-04 22:20:33,314 (knowledge_anchor_generator:357) INFO: 已处理 1581 个batch
+2026-05-04 22:20:33,797 (knowledge_anchor_generator:357) INFO: 已处理 1591 个batch
+2026-05-04 22:20:34,282 (knowledge_anchor_generator:357) INFO: 已处理 1601 个batch
+2026-05-04 22:20:34,771 (knowledge_anchor_generator:357) INFO: 已处理 1611 个batch
+2026-05-04 22:20:35,279 (knowledge_anchor_generator:357) INFO: 已处理 1621 个batch
+2026-05-04 22:20:35,767 (knowledge_anchor_generator:357) INFO: 已处理 1631 个batch
+2026-05-04 22:20:36,252 (knowledge_anchor_generator:357) INFO: 已处理 1641 个batch
+2026-05-04 22:20:36,741 (knowledge_anchor_generator:357) INFO: 已处理 1651 个batch
+2026-05-04 22:20:37,234 (knowledge_anchor_generator:357) INFO: 已处理 1661 个batch
+2026-05-04 22:20:37,720 (knowledge_anchor_generator:357) INFO: 已处理 1671 个batch
+2026-05-04 22:20:38,218 (knowledge_anchor_generator:357) INFO: 已处理 1681 个batch
+2026-05-04 22:20:38,719 (knowledge_anchor_generator:357) INFO: 已处理 1691 个batch
+2026-05-04 22:20:39,214 (knowledge_anchor_generator:357) INFO: 已处理 1701 个batch
+2026-05-04 22:20:39,700 (knowledge_anchor_generator:357) INFO: 已处理 1711 个batch
+2026-05-04 22:20:40,197 (knowledge_anchor_generator:357) INFO: 已处理 1721 个batch
+2026-05-04 22:20:40,725 (knowledge_anchor_generator:357) INFO: 已处理 1731 个batch
+2026-05-04 22:20:41,214 (knowledge_anchor_generator:357) INFO: 已处理 1741 个batch
+2026-05-04 22:20:41,705 (knowledge_anchor_generator:357) INFO: 已处理 1751 个batch
+2026-05-04 22:20:42,191 (knowledge_anchor_generator:357) INFO: 已处理 1761 个batch
+2026-05-04 22:20:42,677 (knowledge_anchor_generator:357) INFO: 已处理 1771 个batch
+2026-05-04 22:20:43,164 (knowledge_anchor_generator:357) INFO: 已处理 1781 个batch
+2026-05-04 22:20:43,680 (knowledge_anchor_generator:357) INFO: 已处理 1791 个batch
+2026-05-04 22:20:44,171 (knowledge_anchor_generator:357) INFO: 已处理 1801 个batch
+2026-05-04 22:20:44,664 (knowledge_anchor_generator:357) INFO: 已处理 1811 个batch
+2026-05-04 22:20:45,186 (knowledge_anchor_generator:357) INFO: 已处理 1821 个batch
+2026-05-04 22:20:45,692 (knowledge_anchor_generator:357) INFO: 已处理 1831 个batch
+2026-05-04 22:20:46,182 (knowledge_anchor_generator:357) INFO: 已处理 1841 个batch
+2026-05-04 22:20:46,701 (knowledge_anchor_generator:357) INFO: 已处理 1851 个batch
+2026-05-04 22:20:47,187 (knowledge_anchor_generator:357) INFO: 已处理 1861 个batch
+2026-05-04 22:20:47,675 (knowledge_anchor_generator:357) INFO: 已处理 1871 个batch
+2026-05-04 22:20:48,181 (knowledge_anchor_generator:357) INFO: 已处理 1881 个batch
+2026-05-04 22:20:48,667 (knowledge_anchor_generator:357) INFO: 已处理 1891 个batch
+2026-05-04 22:20:49,166 (knowledge_anchor_generator:357) INFO: 已处理 1901 个batch
+2026-05-04 22:20:49,670 (knowledge_anchor_generator:357) INFO: 已处理 1911 个batch
+2026-05-04 22:20:50,157 (knowledge_anchor_generator:357) INFO: 已处理 1921 个batch
+2026-05-04 22:20:50,660 (knowledge_anchor_generator:357) INFO: 已处理 1931 个batch
+2026-05-04 22:20:51,165 (knowledge_anchor_generator:357) INFO: 已处理 1941 个batch
+2026-05-04 22:20:51,677 (knowledge_anchor_generator:357) INFO: 已处理 1951 个batch
+2026-05-04 22:20:52,169 (knowledge_anchor_generator:357) INFO: 已处理 1961 个batch
+2026-05-04 22:20:52,675 (knowledge_anchor_generator:357) INFO: 已处理 1971 个batch
+2026-05-04 22:20:53,160 (knowledge_anchor_generator:357) INFO: 已处理 1981 个batch
+2026-05-04 22:20:53,662 (knowledge_anchor_generator:357) INFO: 已处理 1991 个batch
+2026-05-04 22:20:54,158 (knowledge_anchor_generator:357) INFO: 已处理 2001 个batch
+2026-05-04 22:20:54,656 (knowledge_anchor_generator:357) INFO: 已处理 2011 个batch
+2026-05-04 22:20:55,164 (knowledge_anchor_generator:357) INFO: 已处理 2021 个batch
+2026-05-04 22:20:55,667 (knowledge_anchor_generator:357) INFO: 已处理 2031 个batch
+2026-05-04 22:20:56,155 (knowledge_anchor_generator:357) INFO: 已处理 2041 个batch
+2026-05-04 22:20:56,652 (knowledge_anchor_generator:357) INFO: 已处理 2051 个batch
+2026-05-04 22:20:57,147 (knowledge_anchor_generator:357) INFO: 已处理 2061 个batch
+2026-05-04 22:20:57,643 (knowledge_anchor_generator:357) INFO: 已处理 2071 个batch
+2026-05-04 22:20:58,146 (knowledge_anchor_generator:357) INFO: 已处理 2081 个batch
+2026-05-04 22:20:58,631 (knowledge_anchor_generator:357) INFO: 已处理 2091 个batch
+2026-05-04 22:20:59,126 (knowledge_anchor_generator:357) INFO: 已处理 2101 个batch
+2026-05-04 22:20:59,617 (knowledge_anchor_generator:357) INFO: 已处理 2111 个batch
+2026-05-04 22:21:00,106 (knowledge_anchor_generator:357) INFO: 已处理 2121 个batch
+2026-05-04 22:21:00,629 (knowledge_anchor_generator:357) INFO: 已处理 2131 个batch
+2026-05-04 22:21:01,119 (knowledge_anchor_generator:357) INFO: 已处理 2141 个batch
+2026-05-04 22:21:01,607 (knowledge_anchor_generator:357) INFO: 已处理 2151 个batch
+2026-05-04 22:21:02,117 (knowledge_anchor_generator:357) INFO: 已处理 2161 个batch
+2026-05-04 22:21:02,605 (knowledge_anchor_generator:357) INFO: 已处理 2171 个batch
+2026-05-04 22:21:03,095 (knowledge_anchor_generator:357) INFO: 已处理 2181 个batch
+2026-05-04 22:21:03,614 (knowledge_anchor_generator:357) INFO: 已处理 2191 个batch
+2026-05-04 22:21:04,105 (knowledge_anchor_generator:357) INFO: 已处理 2201 个batch
+2026-05-04 22:21:04,603 (knowledge_anchor_generator:357) INFO: 已处理 2211 个batch
+2026-05-04 22:21:05,091 (knowledge_anchor_generator:357) INFO: 已处理 2221 个batch
+2026-05-04 22:21:05,607 (knowledge_anchor_generator:357) INFO: 已处理 2231 个batch
+2026-05-04 22:21:06,107 (knowledge_anchor_generator:357) INFO: 已处理 2241 个batch
+2026-05-04 22:21:06,615 (knowledge_anchor_generator:357) INFO: 已处理 2251 个batch
+2026-05-04 22:21:07,108 (knowledge_anchor_generator:357) INFO: 已处理 2261 个batch
+2026-05-04 22:21:07,596 (knowledge_anchor_generator:357) INFO: 已处理 2271 个batch
+2026-05-04 22:21:08,115 (knowledge_anchor_generator:357) INFO: 已处理 2281 个batch
+2026-05-04 22:21:08,607 (knowledge_anchor_generator:357) INFO: 已处理 2291 个batch
+2026-05-04 22:21:09,103 (knowledge_anchor_generator:357) INFO: 已处理 2301 个batch
+2026-05-04 22:21:09,606 (knowledge_anchor_generator:357) INFO: 已处理 2311 个batch
+2026-05-04 22:21:10,091 (knowledge_anchor_generator:357) INFO: 已处理 2321 个batch
+2026-05-04 22:21:10,579 (knowledge_anchor_generator:357) INFO: 已处理 2331 个batch
+2026-05-04 22:21:11,068 (knowledge_anchor_generator:357) INFO: 已处理 2341 个batch
+2026-05-04 22:21:11,565 (knowledge_anchor_generator:357) INFO: 已处理 2351 个batch
+2026-05-04 22:21:12,053 (knowledge_anchor_generator:357) INFO: 已处理 2361 个batch
+2026-05-04 22:21:12,560 (knowledge_anchor_generator:357) INFO: 已处理 2371 个batch
+2026-05-04 22:21:13,073 (knowledge_anchor_generator:357) INFO: 已处理 2381 个batch
+2026-05-04 22:21:13,568 (knowledge_anchor_generator:357) INFO: 已处理 2391 个batch
+2026-05-04 22:21:14,067 (knowledge_anchor_generator:357) INFO: 已处理 2401 个batch
+2026-05-04 22:21:14,551 (knowledge_anchor_generator:357) INFO: 已处理 2411 个batch
+2026-05-04 22:21:15,068 (knowledge_anchor_generator:357) INFO: 已处理 2421 个batch
+2026-05-04 22:21:15,576 (knowledge_anchor_generator:357) INFO: 已处理 2431 个batch
+2026-05-04 22:21:16,068 (knowledge_anchor_generator:357) INFO: 已处理 2441 个batch
+2026-05-04 22:21:16,560 (knowledge_anchor_generator:357) INFO: 已处理 2451 个batch
+2026-05-04 22:21:17,064 (knowledge_anchor_generator:357) INFO: 已处理 2461 个batch
+2026-05-04 22:21:17,548 (knowledge_anchor_generator:357) INFO: 已处理 2471 个batch
+2026-05-04 22:21:18,045 (knowledge_anchor_generator:357) INFO: 已处理 2481 个batch
+2026-05-04 22:21:18,535 (knowledge_anchor_generator:357) INFO: 已处理 2491 个batch
+2026-05-04 22:21:19,044 (knowledge_anchor_generator:357) INFO: 已处理 2501 个batch
+2026-05-04 22:21:19,530 (knowledge_anchor_generator:357) INFO: 已处理 2511 个batch
+2026-05-04 22:21:20,014 (knowledge_anchor_generator:357) INFO: 已处理 2521 个batch
+2026-05-04 22:21:20,521 (knowledge_anchor_generator:357) INFO: 已处理 2531 个batch
+2026-05-04 22:21:21,010 (knowledge_anchor_generator:357) INFO: 已处理 2541 个batch
+2026-05-04 22:21:21,522 (knowledge_anchor_generator:357) INFO: 已处理 2551 个batch
+2026-05-04 22:21:22,026 (knowledge_anchor_generator:357) INFO: 已处理 2561 个batch
+2026-05-04 22:21:22,515 (knowledge_anchor_generator:357) INFO: 已处理 2571 个batch
+2026-05-04 22:21:23,022 (knowledge_anchor_generator:357) INFO: 已处理 2581 个batch
+2026-05-04 22:21:23,520 (knowledge_anchor_generator:357) INFO: 已处理 2591 个batch
+2026-05-04 22:21:24,007 (knowledge_anchor_generator:357) INFO: 已处理 2601 个batch
+2026-05-04 22:21:24,514 (knowledge_anchor_generator:357) INFO: 已处理 2611 个batch
+2026-05-04 22:21:25,003 (knowledge_anchor_generator:357) INFO: 已处理 2621 个batch
+2026-05-04 22:21:25,494 (knowledge_anchor_generator:357) INFO: 已处理 2631 个batch
+2026-05-04 22:21:26,005 (knowledge_anchor_generator:357) INFO: 已处理 2641 个batch
+2026-05-04 22:21:26,495 (knowledge_anchor_generator:357) INFO: 已处理 2651 个batch
+2026-05-04 22:21:26,983 (knowledge_anchor_generator:357) INFO: 已处理 2661 个batch
+2026-05-04 22:21:27,477 (knowledge_anchor_generator:357) INFO: 已处理 2671 个batch
+2026-05-04 22:21:27,967 (knowledge_anchor_generator:357) INFO: 已处理 2681 个batch
+2026-05-04 22:21:28,454 (knowledge_anchor_generator:357) INFO: 已处理 2691 个batch
+2026-05-04 22:21:28,956 (knowledge_anchor_generator:357) INFO: 已处理 2701 个batch
+2026-05-04 22:21:29,440 (knowledge_anchor_generator:357) INFO: 已处理 2711 个batch
+2026-05-04 22:21:29,925 (knowledge_anchor_generator:357) INFO: 已处理 2721 个batch
+2026-05-04 22:21:30,412 (knowledge_anchor_generator:357) INFO: 已处理 2731 个batch
+2026-05-04 22:21:30,917 (knowledge_anchor_generator:357) INFO: 已处理 2741 个batch
+2026-05-04 22:21:31,440 (knowledge_anchor_generator:357) INFO: 已处理 2751 个batch
+2026-05-04 22:21:31,929 (knowledge_anchor_generator:357) INFO: 已处理 2761 个batch
+2026-05-04 22:21:32,423 (knowledge_anchor_generator:357) INFO: 已处理 2771 个batch
+2026-05-04 22:21:32,913 (knowledge_anchor_generator:357) INFO: 已处理 2781 个batch
+2026-05-04 22:21:33,400 (knowledge_anchor_generator:357) INFO: 已处理 2791 个batch
+2026-05-04 22:21:33,892 (knowledge_anchor_generator:357) INFO: 已处理 2801 个batch
+2026-05-04 22:21:34,393 (knowledge_anchor_generator:357) INFO: 已处理 2811 个batch
+2026-05-04 22:21:34,917 (knowledge_anchor_generator:357) INFO: 已处理 2821 个batch
+2026-05-04 22:21:35,434 (knowledge_anchor_generator:357) INFO: 已处理 2831 个batch
+2026-05-04 22:21:35,935 (knowledge_anchor_generator:357) INFO: 已处理 2841 个batch
+2026-05-04 22:21:36,438 (knowledge_anchor_generator:357) INFO: 已处理 2851 个batch
+2026-05-04 22:21:36,934 (knowledge_anchor_generator:357) INFO: 已处理 2861 个batch
+2026-05-04 22:21:37,424 (knowledge_anchor_generator:357) INFO: 已处理 2871 个batch
+2026-05-04 22:21:37,915 (knowledge_anchor_generator:357) INFO: 已处理 2881 个batch
+2026-05-04 22:21:38,419 (knowledge_anchor_generator:357) INFO: 已处理 2891 个batch
+2026-05-04 22:21:38,912 (knowledge_anchor_generator:357) INFO: 已处理 2901 个batch
+2026-05-04 22:21:39,423 (knowledge_anchor_generator:357) INFO: 已处理 2911 个batch
+2026-05-04 22:21:39,907 (knowledge_anchor_generator:357) INFO: 已处理 2921 个batch
+2026-05-04 22:21:40,394 (knowledge_anchor_generator:357) INFO: 已处理 2931 个batch
+2026-05-04 22:21:40,899 (knowledge_anchor_generator:357) INFO: 已处理 2941 个batch
+2026-05-04 22:21:41,391 (knowledge_anchor_generator:357) INFO: 已处理 2951 个batch
+2026-05-04 22:21:41,891 (knowledge_anchor_generator:357) INFO: 已处理 2961 个batch
+2026-05-04 22:21:42,372 (knowledge_anchor_generator:357) INFO: 已处理 2971 个batch
+2026-05-04 22:21:42,858 (knowledge_anchor_generator:357) INFO: 已处理 2981 个batch
+2026-05-04 22:21:43,294 (knowledge_anchor_generator:361) INFO: 提取了 2989 个样本的隐藏状态，维度: 4096
+2026-05-04 22:21:43,294 (knowledge_anchor_generator:364) INFO: 开始K-means++聚类，目标聚类数: 50
+2026-05-04 22:21:46,435 (knowledge_anchor_generator:377) INFO: K-means++聚类完成，生成了 50 个原型
+2026-05-04 22:21:46,435 (knowledge_anchor_generator:383) INFO: 开始计算软标签关联...
+2026-05-04 22:21:46,488 (knowledge_anchor_generator:417) INFO: 已处理 1 个batch用于软标签计算
+2026-05-04 22:21:46,897 (knowledge_anchor_generator:417) INFO: 已处理 11 个batch用于软标签计算
+2026-05-04 22:21:47,324 (knowledge_anchor_generator:417) INFO: 已处理 21 个batch用于软标签计算
+2026-05-04 22:21:47,698 (knowledge_anchor_generator:417) INFO: 已处理 31 个batch用于软标签计算
+2026-05-04 22:21:48,089 (knowledge_anchor_generator:417) INFO: 已处理 41 个batch用于软标签计算
+2026-05-04 22:21:48,467 (knowledge_anchor_generator:417) INFO: 已处理 51 个batch用于软标签计算
+2026-05-04 22:21:48,910 (knowledge_anchor_generator:417) INFO: 已处理 61 个batch用于软标签计算
+2026-05-04 22:21:49,327 (knowledge_anchor_generator:417) INFO: 已处理 71 个batch用于软标签计算
+2026-05-04 22:21:49,727 (knowledge_anchor_generator:417) INFO: 已处理 81 个batch用于软标签计算
+2026-05-04 22:21:50,126 (knowledge_anchor_generator:417) INFO: 已处理 91 个batch用于软标签计算
+2026-05-04 22:21:50,551 (knowledge_anchor_generator:417) INFO: 已处理 101 个batch用于软标签计算
+2026-05-04 22:21:50,985 (knowledge_anchor_generator:417) INFO: 已处理 111 个batch用于软标签计算
+2026-05-04 22:21:51,388 (knowledge_anchor_generator:417) INFO: 已处理 121 个batch用于软标签计算
+2026-05-04 22:21:51,827 (knowledge_anchor_generator:417) INFO: 已处理 131 个batch用于软标签计算
+2026-05-04 22:21:52,235 (knowledge_anchor_generator:417) INFO: 已处理 141 个batch用于软标签计算
+2026-05-04 22:21:52,644 (knowledge_anchor_generator:417) INFO: 已处理 151 个batch用于软标签计算
+2026-05-04 22:21:53,106 (knowledge_anchor_generator:417) INFO: 已处理 161 个batch用于软标签计算
+2026-05-04 22:21:53,543 (knowledge_anchor_generator:417) INFO: 已处理 171 个batch用于软标签计算
+2026-05-04 22:21:53,991 (knowledge_anchor_generator:417) INFO: 已处理 181 个batch用于软标签计算
+2026-05-04 22:21:54,384 (knowledge_anchor_generator:417) INFO: 已处理 191 个batch用于软标签计算
+2026-05-04 22:21:54,800 (knowledge_anchor_generator:417) INFO: 已处理 201 个batch用于软标签计算
+2026-05-04 22:21:55,232 (knowledge_anchor_generator:417) INFO: 已处理 211 个batch用于软标签计算
+2026-05-04 22:21:55,672 (knowledge_anchor_generator:417) INFO: 已处理 221 个batch用于软标签计算
+2026-05-04 22:21:56,110 (knowledge_anchor_generator:417) INFO: 已处理 231 个batch用于软标签计算
+2026-05-04 22:21:56,566 (knowledge_anchor_generator:417) INFO: 已处理 241 个batch用于软标签计算
+2026-05-04 22:21:56,984 (knowledge_anchor_generator:417) INFO: 已处理 251 个batch用于软标签计算
+2026-05-04 22:21:57,412 (knowledge_anchor_generator:417) INFO: 已处理 261 个batch用于软标签计算
+2026-05-04 22:21:57,826 (knowledge_anchor_generator:417) INFO: 已处理 271 个batch用于软标签计算
+2026-05-04 22:21:58,268 (knowledge_anchor_generator:417) INFO: 已处理 281 个batch用于软标签计算
+2026-05-04 22:21:58,707 (knowledge_anchor_generator:417) INFO: 已处理 291 个batch用于软标签计算
+2026-05-04 22:21:59,098 (knowledge_anchor_generator:417) INFO: 已处理 301 个batch用于软标签计算
+2026-05-04 22:21:59,526 (knowledge_anchor_generator:417) INFO: 已处理 311 个batch用于软标签计算
+2026-05-04 22:21:59,955 (knowledge_anchor_generator:417) INFO: 已处理 321 个batch用于软标签计算
+2026-05-04 22:22:00,379 (knowledge_anchor_generator:417) INFO: 已处理 331 个batch用于软标签计算
+2026-05-04 22:22:00,797 (knowledge_anchor_generator:417) INFO: 已处理 341 个batch用于软标签计算
+2026-05-04 22:22:01,214 (knowledge_anchor_generator:417) INFO: 已处理 351 个batch用于软标签计算
+2026-05-04 22:22:01,674 (knowledge_anchor_generator:417) INFO: 已处理 361 个batch用于软标签计算
+2026-05-04 22:22:02,124 (knowledge_anchor_generator:417) INFO: 已处理 371 个batch用于软标签计算
+2026-05-04 22:22:02,510 (knowledge_anchor_generator:417) INFO: 已处理 381 个batch用于软标签计算
+2026-05-04 22:22:02,914 (knowledge_anchor_generator:417) INFO: 已处理 391 个batch用于软标签计算
+2026-05-04 22:22:03,356 (knowledge_anchor_generator:417) INFO: 已处理 401 个batch用于软标签计算
+2026-05-04 22:22:03,821 (knowledge_anchor_generator:417) INFO: 已处理 411 个batch用于软标签计算
+2026-05-04 22:22:04,284 (knowledge_anchor_generator:417) INFO: 已处理 421 个batch用于软标签计算
+2026-05-04 22:22:04,676 (knowledge_anchor_generator:417) INFO: 已处理 431 个batch用于软标签计算
+2026-05-04 22:22:05,079 (knowledge_anchor_generator:417) INFO: 已处理 441 个batch用于软标签计算
+2026-05-04 22:22:05,497 (knowledge_anchor_generator:417) INFO: 已处理 451 个batch用于软标签计算
+2026-05-04 22:22:05,937 (knowledge_anchor_generator:417) INFO: 已处理 461 个batch用于软标签计算
+2026-05-04 22:22:06,409 (knowledge_anchor_generator:417) INFO: 已处理 471 个batch用于软标签计算
+2026-05-04 22:22:06,874 (knowledge_anchor_generator:417) INFO: 已处理 481 个batch用于软标签计算
+2026-05-04 22:22:07,297 (knowledge_anchor_generator:417) INFO: 已处理 491 个batch用于软标签计算
+2026-05-04 22:22:07,723 (knowledge_anchor_generator:417) INFO: 已处理 501 个batch用于软标签计算
+2026-05-04 22:22:08,173 (knowledge_anchor_generator:417) INFO: 已处理 511 个batch用于软标签计算
+2026-05-04 22:22:08,577 (knowledge_anchor_generator:417) INFO: 已处理 521 个batch用于软标签计算
+2026-05-04 22:22:08,986 (knowledge_anchor_generator:417) INFO: 已处理 531 个batch用于软标签计算
+2026-05-04 22:22:09,402 (knowledge_anchor_generator:417) INFO: 已处理 541 个batch用于软标签计算
+2026-05-04 22:22:09,822 (knowledge_anchor_generator:417) INFO: 已处理 551 个batch用于软标签计算
+2026-05-04 22:22:10,217 (knowledge_anchor_generator:417) INFO: 已处理 561 个batch用于软标签计算
+2026-05-04 22:22:10,609 (knowledge_anchor_generator:417) INFO: 已处理 571 个batch用于软标签计算
+2026-05-04 22:22:11,087 (knowledge_anchor_generator:417) INFO: 已处理 581 个batch用于软标签计算
+2026-05-04 22:22:11,580 (knowledge_anchor_generator:417) INFO: 已处理 591 个batch用于软标签计算
+2026-05-04 22:22:12,038 (knowledge_anchor_generator:417) INFO: 已处理 601 个batch用于软标签计算
+2026-05-04 22:22:12,535 (knowledge_anchor_generator:417) INFO: 已处理 611 个batch用于软标签计算
+2026-05-04 22:22:12,998 (knowledge_anchor_generator:417) INFO: 已处理 621 个batch用于软标签计算
+2026-05-04 22:22:13,462 (knowledge_anchor_generator:417) INFO: 已处理 631 个batch用于软标签计算
+2026-05-04 22:22:13,920 (knowledge_anchor_generator:417) INFO: 已处理 641 个batch用于软标签计算
+2026-05-04 22:22:14,329 (knowledge_anchor_generator:417) INFO: 已处理 651 个batch用于软标签计算
+2026-05-04 22:22:14,751 (knowledge_anchor_generator:417) INFO: 已处理 661 个batch用于软标签计算
+2026-05-04 22:22:15,189 (knowledge_anchor_generator:417) INFO: 已处理 671 个batch用于软标签计算
+2026-05-04 22:22:15,607 (knowledge_anchor_generator:417) INFO: 已处理 681 个batch用于软标签计算
+2026-05-04 22:22:16,063 (knowledge_anchor_generator:417) INFO: 已处理 691 个batch用于软标签计算
+2026-05-04 22:22:16,468 (knowledge_anchor_generator:417) INFO: 已处理 701 个batch用于软标签计算
+2026-05-04 22:22:16,908 (knowledge_anchor_generator:417) INFO: 已处理 711 个batch用于软标签计算
+2026-05-04 22:22:17,342 (knowledge_anchor_generator:417) INFO: 已处理 721 个batch用于软标签计算
+2026-05-04 22:22:17,761 (knowledge_anchor_generator:417) INFO: 已处理 731 个batch用于软标签计算
+2026-05-04 22:22:18,209 (knowledge_anchor_generator:417) INFO: 已处理 741 个batch用于软标签计算
+2026-05-04 22:22:18,631 (knowledge_anchor_generator:417) INFO: 已处理 751 个batch用于软标签计算
+2026-05-04 22:22:19,126 (knowledge_anchor_generator:417) INFO: 已处理 761 个batch用于软标签计算
+2026-05-04 22:22:19,603 (knowledge_anchor_generator:417) INFO: 已处理 771 个batch用于软标签计算
+2026-05-04 22:22:20,052 (knowledge_anchor_generator:417) INFO: 已处理 781 个batch用于软标签计算
+2026-05-04 22:22:20,502 (knowledge_anchor_generator:417) INFO: 已处理 791 个batch用于软标签计算
+2026-05-04 22:22:20,937 (knowledge_anchor_generator:417) INFO: 已处理 801 个batch用于软标签计算
+2026-05-04 22:22:21,335 (knowledge_anchor_generator:417) INFO: 已处理 811 个batch用于软标签计算
+2026-05-04 22:22:21,736 (knowledge_anchor_generator:417) INFO: 已处理 821 个batch用于软标签计算
+2026-05-04 22:22:22,188 (knowledge_anchor_generator:417) INFO: 已处理 831 个batch用于软标签计算
+2026-05-04 22:22:22,647 (knowledge_anchor_generator:417) INFO: 已处理 841 个batch用于软标签计算
+2026-05-04 22:22:23,042 (knowledge_anchor_generator:417) INFO: 已处理 851 个batch用于软标签计算
+2026-05-04 22:22:23,420 (knowledge_anchor_generator:417) INFO: 已处理 861 个batch用于软标签计算
+2026-05-04 22:22:23,859 (knowledge_anchor_generator:417) INFO: 已处理 871 个batch用于软标签计算
+2026-05-04 22:22:24,271 (knowledge_anchor_generator:417) INFO: 已处理 881 个batch用于软标签计算
+2026-05-04 22:22:24,754 (knowledge_anchor_generator:417) INFO: 已处理 891 个batch用于软标签计算
+2026-05-04 22:22:25,219 (knowledge_anchor_generator:417) INFO: 已处理 901 个batch用于软标签计算
+2026-05-04 22:22:25,638 (knowledge_anchor_generator:417) INFO: 已处理 911 个batch用于软标签计算
+2026-05-04 22:22:26,091 (knowledge_anchor_generator:417) INFO: 已处理 921 个batch用于软标签计算
+2026-05-04 22:22:26,559 (knowledge_anchor_generator:417) INFO: 已处理 931 个batch用于软标签计算
+2026-05-04 22:22:27,009 (knowledge_anchor_generator:417) INFO: 已处理 941 个batch用于软标签计算
+2026-05-04 22:22:27,448 (knowledge_anchor_generator:417) INFO: 已处理 951 个batch用于软标签计算
+2026-05-04 22:22:27,860 (knowledge_anchor_generator:417) INFO: 已处理 961 个batch用于软标签计算
+2026-05-04 22:22:28,331 (knowledge_anchor_generator:417) INFO: 已处理 971 个batch用于软标签计算
+2026-05-04 22:22:28,728 (knowledge_anchor_generator:417) INFO: 已处理 981 个batch用于软标签计算
+2026-05-04 22:22:29,191 (knowledge_anchor_generator:417) INFO: 已处理 991 个batch用于软标签计算
+2026-05-04 22:22:29,660 (knowledge_anchor_generator:417) INFO: 已处理 1001 个batch用于软标签计算
+2026-05-04 22:22:30,138 (knowledge_anchor_generator:417) INFO: 已处理 1011 个batch用于软标签计算
+2026-05-04 22:22:30,619 (knowledge_anchor_generator:417) INFO: 已处理 1021 个batch用于软标签计算
+2026-05-04 22:22:31,039 (knowledge_anchor_generator:417) INFO: 已处理 1031 个batch用于软标签计算
+2026-05-04 22:22:31,513 (knowledge_anchor_generator:417) INFO: 已处理 1041 个batch用于软标签计算
+2026-05-04 22:22:31,940 (knowledge_anchor_generator:417) INFO: 已处理 1051 个batch用于软标签计算
+2026-05-04 22:22:32,348 (knowledge_anchor_generator:417) INFO: 已处理 1061 个batch用于软标签计算
+2026-05-04 22:22:32,841 (knowledge_anchor_generator:417) INFO: 已处理 1071 个batch用于软标签计算
+2026-05-04 22:22:33,309 (knowledge_anchor_generator:417) INFO: 已处理 1081 个batch用于软标签计算
+2026-05-04 22:22:33,732 (knowledge_anchor_generator:417) INFO: 已处理 1091 个batch用于软标签计算
+2026-05-04 22:22:34,146 (knowledge_anchor_generator:417) INFO: 已处理 1101 个batch用于软标签计算
+2026-05-04 22:22:34,586 (knowledge_anchor_generator:417) INFO: 已处理 1111 个batch用于软标签计算
+2026-05-04 22:22:35,040 (knowledge_anchor_generator:417) INFO: 已处理 1121 个batch用于软标签计算
+2026-05-04 22:22:35,450 (knowledge_anchor_generator:417) INFO: 已处理 1131 个batch用于软标签计算
+2026-05-04 22:22:35,871 (knowledge_anchor_generator:417) INFO: 已处理 1141 个batch用于软标签计算
+2026-05-04 22:22:36,321 (knowledge_anchor_generator:417) INFO: 已处理 1151 个batch用于软标签计算
+2026-05-04 22:22:36,804 (knowledge_anchor_generator:417) INFO: 已处理 1161 个batch用于软标签计算
+2026-05-04 22:22:37,260 (knowledge_anchor_generator:417) INFO: 已处理 1171 个batch用于软标签计算
+2026-05-04 22:22:37,743 (knowledge_anchor_generator:417) INFO: 已处理 1181 个batch用于软标签计算
+2026-05-04 22:22:38,134 (knowledge_anchor_generator:417) INFO: 已处理 1191 个batch用于软标签计算
+2026-05-04 22:22:38,537 (knowledge_anchor_generator:417) INFO: 已处理 1201 个batch用于软标签计算
+2026-05-04 22:22:38,964 (knowledge_anchor_generator:417) INFO: 已处理 1211 个batch用于软标签计算
+2026-05-04 22:22:39,393 (knowledge_anchor_generator:417) INFO: 已处理 1221 个batch用于软标签计算
+2026-05-04 22:22:39,820 (knowledge_anchor_generator:417) INFO: 已处理 1231 个batch用于软标签计算
+2026-05-04 22:22:40,276 (knowledge_anchor_generator:417) INFO: 已处理 1241 个batch用于软标签计算
+2026-05-04 22:22:40,753 (knowledge_anchor_generator:417) INFO: 已处理 1251 个batch用于软标签计算
+2026-05-04 22:22:41,164 (knowledge_anchor_generator:417) INFO: 已处理 1261 个batch用于软标签计算
+2026-05-04 22:22:41,557 (knowledge_anchor_generator:417) INFO: 已处理 1271 个batch用于软标签计算
+2026-05-04 22:22:42,057 (knowledge_anchor_generator:417) INFO: 已处理 1281 个batch用于软标签计算
+2026-05-04 22:22:42,507 (knowledge_anchor_generator:417) INFO: 已处理 1291 个batch用于软标签计算
+2026-05-04 22:22:42,957 (knowledge_anchor_generator:417) INFO: 已处理 1301 个batch用于软标签计算
+2026-05-04 22:22:43,383 (knowledge_anchor_generator:417) INFO: 已处理 1311 个batch用于软标签计算
+2026-05-04 22:22:43,847 (knowledge_anchor_generator:417) INFO: 已处理 1321 个batch用于软标签计算
+2026-05-04 22:22:44,268 (knowledge_anchor_generator:417) INFO: 已处理 1331 个batch用于软标签计算
+2026-05-04 22:22:44,777 (knowledge_anchor_generator:417) INFO: 已处理 1341 个batch用于软标签计算
+2026-05-04 22:22:45,248 (knowledge_anchor_generator:417) INFO: 已处理 1351 个batch用于软标签计算
+2026-05-04 22:22:45,711 (knowledge_anchor_generator:417) INFO: 已处理 1361 个batch用于软标签计算
+2026-05-04 22:22:46,159 (knowledge_anchor_generator:417) INFO: 已处理 1371 个batch用于软标签计算
+2026-05-04 22:22:46,609 (knowledge_anchor_generator:417) INFO: 已处理 1381 个batch用于软标签计算
+2026-05-04 22:22:47,025 (knowledge_anchor_generator:417) INFO: 已处理 1391 个batch用于软标签计算
+2026-05-04 22:22:47,494 (knowledge_anchor_generator:417) INFO: 已处理 1401 个batch用于软标签计算
+2026-05-04 22:22:47,938 (knowledge_anchor_generator:417) INFO: 已处理 1411 个batch用于软标签计算
+2026-05-04 22:22:48,420 (knowledge_anchor_generator:417) INFO: 已处理 1421 个batch用于软标签计算
+2026-05-04 22:22:48,898 (knowledge_anchor_generator:417) INFO: 已处理 1431 个batch用于软标签计算
+2026-05-04 22:22:49,371 (knowledge_anchor_generator:417) INFO: 已处理 1441 个batch用于软标签计算
+2026-05-04 22:22:49,809 (knowledge_anchor_generator:417) INFO: 已处理 1451 个batch用于软标签计算
+2026-05-04 22:22:50,244 (knowledge_anchor_generator:417) INFO: 已处理 1461 个batch用于软标签计算
+2026-05-04 22:22:50,699 (knowledge_anchor_generator:417) INFO: 已处理 1471 个batch用于软标签计算
+2026-05-04 22:22:51,155 (knowledge_anchor_generator:417) INFO: 已处理 1481 个batch用于软标签计算
+2026-05-04 22:22:51,536 (knowledge_anchor_generator:417) INFO: 已处理 1491 个batch用于软标签计算
+2026-05-04 22:22:51,962 (knowledge_anchor_generator:417) INFO: 已处理 1501 个batch用于软标签计算
+2026-05-04 22:22:52,409 (knowledge_anchor_generator:417) INFO: 已处理 1511 个batch用于软标签计算
+2026-05-04 22:22:52,802 (knowledge_anchor_generator:417) INFO: 已处理 1521 个batch用于软标签计算
+2026-05-04 22:22:53,297 (knowledge_anchor_generator:417) INFO: 已处理 1531 个batch用于软标签计算
+2026-05-04 22:22:53,728 (knowledge_anchor_generator:417) INFO: 已处理 1541 个batch用于软标签计算
+2026-05-04 22:22:54,149 (knowledge_anchor_generator:417) INFO: 已处理 1551 个batch用于软标签计算
+2026-05-04 22:22:54,602 (knowledge_anchor_generator:417) INFO: 已处理 1561 个batch用于软标签计算
+2026-05-04 22:22:55,073 (knowledge_anchor_generator:417) INFO: 已处理 1571 个batch用于软标签计算
+2026-05-04 22:22:55,524 (knowledge_anchor_generator:417) INFO: 已处理 1581 个batch用于软标签计算
+2026-05-04 22:22:56,014 (knowledge_anchor_generator:417) INFO: 已处理 1591 个batch用于软标签计算
+2026-05-04 22:22:56,475 (knowledge_anchor_generator:417) INFO: 已处理 1601 个batch用于软标签计算
+2026-05-04 22:22:56,959 (knowledge_anchor_generator:417) INFO: 已处理 1611 个batch用于软标签计算
+2026-05-04 22:22:57,382 (knowledge_anchor_generator:417) INFO: 已处理 1621 个batch用于软标签计算
+2026-05-04 22:22:57,825 (knowledge_anchor_generator:417) INFO: 已处理 1631 个batch用于软标签计算
+2026-05-04 22:22:58,266 (knowledge_anchor_generator:417) INFO: 已处理 1641 个batch用于软标签计算
+2026-05-04 22:22:58,749 (knowledge_anchor_generator:417) INFO: 已处理 1651 个batch用于软标签计算
+2026-05-04 22:22:59,165 (knowledge_anchor_generator:417) INFO: 已处理 1661 个batch用于软标签计算
+2026-05-04 22:22:59,595 (knowledge_anchor_generator:417) INFO: 已处理 1671 个batch用于软标签计算
+2026-05-04 22:23:00,052 (knowledge_anchor_generator:417) INFO: 已处理 1681 个batch用于软标签计算
+2026-05-04 22:23:00,480 (knowledge_anchor_generator:417) INFO: 已处理 1691 个batch用于软标签计算
+2026-05-04 22:23:00,905 (knowledge_anchor_generator:417) INFO: 已处理 1701 个batch用于软标签计算
+2026-05-04 22:23:01,343 (knowledge_anchor_generator:417) INFO: 已处理 1711 个batch用于软标签计算
+2026-05-04 22:23:01,799 (knowledge_anchor_generator:417) INFO: 已处理 1721 个batch用于软标签计算
+2026-05-04 22:23:02,261 (knowledge_anchor_generator:417) INFO: 已处理 1731 个batch用于软标签计算
+2026-05-04 22:23:02,697 (knowledge_anchor_generator:417) INFO: 已处理 1741 个batch用于软标签计算
+2026-05-04 22:23:03,137 (knowledge_anchor_generator:417) INFO: 已处理 1751 个batch用于软标签计算
+2026-05-04 22:23:03,581 (knowledge_anchor_generator:417) INFO: 已处理 1761 个batch用于软标签计算
+2026-05-04 22:23:04,069 (knowledge_anchor_generator:417) INFO: 已处理 1771 个batch用于软标签计算
+2026-05-04 22:23:04,474 (knowledge_anchor_generator:417) INFO: 已处理 1781 个batch用于软标签计算
+2026-05-04 22:23:04,909 (knowledge_anchor_generator:417) INFO: 已处理 1791 个batch用于软标签计算
+2026-05-04 22:23:05,338 (knowledge_anchor_generator:417) INFO: 已处理 1801 个batch用于软标签计算
+2026-05-04 22:23:05,773 (knowledge_anchor_generator:417) INFO: 已处理 1811 个batch用于软标签计算
+2026-05-04 22:23:06,275 (knowledge_anchor_generator:417) INFO: 已处理 1821 个batch用于软标签计算
+2026-05-04 22:23:06,784 (knowledge_anchor_generator:417) INFO: 已处理 1831 个batch用于软标签计算
+2026-05-04 22:23:07,219 (knowledge_anchor_generator:417) INFO: 已处理 1841 个batch用于软标签计算
+2026-05-04 22:23:07,625 (knowledge_anchor_generator:417) INFO: 已处理 1851 个batch用于软标签计算
+2026-05-04 22:23:08,083 (knowledge_anchor_generator:417) INFO: 已处理 1861 个batch用于软标签计算
+2026-05-04 22:23:08,509 (knowledge_anchor_generator:417) INFO: 已处理 1871 个batch用于软标签计算
+2026-05-04 22:23:08,960 (knowledge_anchor_generator:417) INFO: 已处理 1881 个batch用于软标签计算
+2026-05-04 22:23:09,373 (knowledge_anchor_generator:417) INFO: 已处理 1891 个batch用于软标签计算
+2026-05-04 22:23:09,808 (knowledge_anchor_generator:417) INFO: 已处理 1901 个batch用于软标签计算
+2026-05-04 22:23:10,247 (knowledge_anchor_generator:417) INFO: 已处理 1911 个batch用于软标签计算
+2026-05-04 22:23:10,758 (knowledge_anchor_generator:417) INFO: 已处理 1921 个batch用于软标签计算
+2026-05-04 22:23:11,212 (knowledge_anchor_generator:417) INFO: 已处理 1931 个batch用于软标签计算
+2026-05-04 22:23:11,646 (knowledge_anchor_generator:417) INFO: 已处理 1941 个batch用于软标签计算
+2026-05-04 22:23:12,069 (knowledge_anchor_generator:417) INFO: 已处理 1951 个batch用于软标签计算
+2026-05-04 22:23:12,494 (knowledge_anchor_generator:417) INFO: 已处理 1961 个batch用于软标签计算
+2026-05-04 22:23:12,907 (knowledge_anchor_generator:417) INFO: 已处理 1971 个batch用于软标签计算
+2026-05-04 22:23:13,356 (knowledge_anchor_generator:417) INFO: 已处理 1981 个batch用于软标签计算
+2026-05-04 22:23:13,803 (knowledge_anchor_generator:417) INFO: 已处理 1991 个batch用于软标签计算
+2026-05-04 22:23:14,297 (knowledge_anchor_generator:417) INFO: 已处理 2001 个batch用于软标签计算
+2026-05-04 22:23:14,817 (knowledge_anchor_generator:417) INFO: 已处理 2011 个batch用于软标签计算
+2026-05-04 22:23:15,237 (knowledge_anchor_generator:417) INFO: 已处理 2021 个batch用于软标签计算
+2026-05-04 22:23:15,699 (knowledge_anchor_generator:417) INFO: 已处理 2031 个batch用于软标签计算
+2026-05-04 22:23:16,169 (knowledge_anchor_generator:417) INFO: 已处理 2041 个batch用于软标签计算
+2026-05-04 22:23:16,655 (knowledge_anchor_generator:417) INFO: 已处理 2051 个batch用于软标签计算
+2026-05-04 22:23:17,069 (knowledge_anchor_generator:417) INFO: 已处理 2061 个batch用于软标签计算
+2026-05-04 22:23:17,517 (knowledge_anchor_generator:417) INFO: 已处理 2071 个batch用于软标签计算
+2026-05-04 22:23:17,965 (knowledge_anchor_generator:417) INFO: 已处理 2081 个batch用于软标签计算
+2026-05-04 22:23:18,367 (knowledge_anchor_generator:417) INFO: 已处理 2091 个batch用于软标签计算
+2026-05-04 22:23:18,790 (knowledge_anchor_generator:417) INFO: 已处理 2101 个batch用于软标签计算
+2026-05-04 22:23:19,209 (knowledge_anchor_generator:417) INFO: 已处理 2111 个batch用于软标签计算
+2026-05-04 22:23:19,623 (knowledge_anchor_generator:417) INFO: 已处理 2121 个batch用于软标签计算
+2026-05-04 22:23:20,098 (knowledge_anchor_generator:417) INFO: 已处理 2131 个batch用于软标签计算
+2026-05-04 22:23:20,540 (knowledge_anchor_generator:417) INFO: 已处理 2141 个batch用于软标签计算
+2026-05-04 22:23:20,974 (knowledge_anchor_generator:417) INFO: 已处理 2151 个batch用于软标签计算
+2026-05-04 22:23:21,476 (knowledge_anchor_generator:417) INFO: 已处理 2161 个batch用于软标签计算
+2026-05-04 22:23:21,954 (knowledge_anchor_generator:417) INFO: 已处理 2171 个batch用于软标签计算
+2026-05-04 22:23:22,368 (knowledge_anchor_generator:417) INFO: 已处理 2181 个batch用于软标签计算
+2026-05-04 22:23:22,805 (knowledge_anchor_generator:417) INFO: 已处理 2191 个batch用于软标签计算
+2026-05-04 22:23:23,216 (knowledge_anchor_generator:417) INFO: 已处理 2201 个batch用于软标签计算
+2026-05-04 22:23:23,619 (knowledge_anchor_generator:417) INFO: 已处理 2211 个batch用于软标签计算
+2026-05-04 22:23:24,079 (knowledge_anchor_generator:417) INFO: 已处理 2221 个batch用于软标签计算
+2026-05-04 22:23:24,535 (knowledge_anchor_generator:417) INFO: 已处理 2231 个batch用于软标签计算
+2026-05-04 22:23:25,004 (knowledge_anchor_generator:417) INFO: 已处理 2241 个batch用于软标签计算
+2026-05-04 22:23:25,484 (knowledge_anchor_generator:417) INFO: 已处理 2251 个batch用于软标签计算
+2026-05-04 22:23:25,888 (knowledge_anchor_generator:417) INFO: 已处理 2261 个batch用于软标签计算
+2026-05-04 22:23:26,332 (knowledge_anchor_generator:417) INFO: 已处理 2271 个batch用于软标签计算
+2026-05-04 22:23:26,755 (knowledge_anchor_generator:417) INFO: 已处理 2281 个batch用于软标签计算
+2026-05-04 22:23:27,166 (knowledge_anchor_generator:417) INFO: 已处理 2291 个batch用于软标签计算
+2026-05-04 22:23:27,600 (knowledge_anchor_generator:417) INFO: 已处理 2301 个batch用于软标签计算
+2026-05-04 22:23:28,009 (knowledge_anchor_generator:417) INFO: 已处理 2311 个batch用于软标签计算
+2026-05-04 22:23:28,403 (knowledge_anchor_generator:417) INFO: 已处理 2321 个batch用于软标签计算
+2026-05-04 22:23:28,824 (knowledge_anchor_generator:417) INFO: 已处理 2331 个batch用于软标签计算
+2026-05-04 22:23:29,291 (knowledge_anchor_generator:417) INFO: 已处理 2341 个batch用于软标签计算
+2026-05-04 22:23:29,741 (knowledge_anchor_generator:417) INFO: 已处理 2351 个batch用于软标签计算
+2026-05-04 22:23:30,186 (knowledge_anchor_generator:417) INFO: 已处理 2361 个batch用于软标签计算
+2026-05-04 22:23:30,616 (knowledge_anchor_generator:417) INFO: 已处理 2371 个batch用于软标签计算
+2026-05-04 22:23:31,105 (knowledge_anchor_generator:417) INFO: 已处理 2381 个batch用于软标签计算
+2026-05-04 22:23:31,551 (knowledge_anchor_generator:417) INFO: 已处理 2391 个batch用于软标签计算
+2026-05-04 22:23:31,957 (knowledge_anchor_generator:417) INFO: 已处理 2401 个batch用于软标签计算
+2026-05-04 22:23:32,448 (knowledge_anchor_generator:417) INFO: 已处理 2411 个batch用于软标签计算
+2026-05-04 22:23:32,898 (knowledge_anchor_generator:417) INFO: 已处理 2421 个batch用于软标签计算
+2026-05-04 22:23:33,384 (knowledge_anchor_generator:417) INFO: 已处理 2431 个batch用于软标签计算
+2026-05-04 22:23:33,843 (knowledge_anchor_generator:417) INFO: 已处理 2441 个batch用于软标签计算
+2026-05-04 22:23:34,262 (knowledge_anchor_generator:417) INFO: 已处理 2451 个batch用于软标签计算
+2026-05-04 22:23:34,815 (knowledge_anchor_generator:417) INFO: 已处理 2461 个batch用于软标签计算
+2026-05-04 22:23:35,300 (knowledge_anchor_generator:417) INFO: 已处理 2471 个batch用于软标签计算
+2026-05-04 22:23:35,737 (knowledge_anchor_generator:417) INFO: 已处理 2481 个batch用于软标签计算
+2026-05-04 22:23:36,149 (knowledge_anchor_generator:417) INFO: 已处理 2491 个batch用于软标签计算
+2026-05-04 22:23:36,590 (knowledge_anchor_generator:417) INFO: 已处理 2501 个batch用于软标签计算
+2026-05-04 22:23:37,070 (knowledge_anchor_generator:417) INFO: 已处理 2511 个batch用于软标签计算
+2026-05-04 22:23:37,539 (knowledge_anchor_generator:417) INFO: 已处理 2521 个batch用于软标签计算
+2026-05-04 22:23:37,987 (knowledge_anchor_generator:417) INFO: 已处理 2531 个batch用于软标签计算
+2026-05-04 22:23:38,408 (knowledge_anchor_generator:417) INFO: 已处理 2541 个batch用于软标签计算
+2026-05-04 22:23:38,853 (knowledge_anchor_generator:417) INFO: 已处理 2551 个batch用于软标签计算
+2026-05-04 22:23:39,306 (knowledge_anchor_generator:417) INFO: 已处理 2561 个batch用于软标签计算
+2026-05-04 22:23:39,755 (knowledge_anchor_generator:417) INFO: 已处理 2571 个batch用于软标签计算
+2026-05-04 22:23:40,181 (knowledge_anchor_generator:417) INFO: 已处理 2581 个batch用于软标签计算
+2026-05-04 22:23:40,632 (knowledge_anchor_generator:417) INFO: 已处理 2591 个batch用于软标签计算
+2026-05-04 22:23:41,070 (knowledge_anchor_generator:417) INFO: 已处理 2601 个batch用于软标签计算
+2026-05-04 22:23:41,515 (knowledge_anchor_generator:417) INFO: 已处理 2611 个batch用于软标签计算
+2026-05-04 22:23:41,942 (knowledge_anchor_generator:417) INFO: 已处理 2621 个batch用于软标签计算
+2026-05-04 22:23:42,373 (knowledge_anchor_generator:417) INFO: 已处理 2631 个batch用于软标签计算
+2026-05-04 22:23:42,846 (knowledge_anchor_generator:417) INFO: 已处理 2641 个batch用于软标签计算
+2026-05-04 22:23:43,254 (knowledge_anchor_generator:417) INFO: 已处理 2651 个batch用于软标签计算
+2026-05-04 22:23:43,690 (knowledge_anchor_generator:417) INFO: 已处理 2661 个batch用于软标签计算
+2026-05-04 22:23:44,125 (knowledge_anchor_generator:417) INFO: 已处理 2671 个batch用于软标签计算
+2026-05-04 22:23:44,574 (knowledge_anchor_generator:417) INFO: 已处理 2681 个batch用于软标签计算
+2026-05-04 22:23:44,983 (knowledge_anchor_generator:417) INFO: 已处理 2691 个batch用于软标签计算
+2026-05-04 22:23:45,424 (knowledge_anchor_generator:417) INFO: 已处理 2701 个batch用于软标签计算
+2026-05-04 22:23:45,924 (knowledge_anchor_generator:417) INFO: 已处理 2711 个batch用于软标签计算
+2026-05-04 22:23:46,370 (knowledge_anchor_generator:417) INFO: 已处理 2721 个batch用于软标签计算
+2026-05-04 22:23:46,852 (knowledge_anchor_generator:417) INFO: 已处理 2731 个batch用于软标签计算
+2026-05-04 22:23:47,307 (knowledge_anchor_generator:417) INFO: 已处理 2741 个batch用于软标签计算
+2026-05-04 22:23:47,711 (knowledge_anchor_generator:417) INFO: 已处理 2751 个batch用于软标签计算
+2026-05-04 22:23:48,149 (knowledge_anchor_generator:417) INFO: 已处理 2761 个batch用于软标签计算
+2026-05-04 22:23:48,580 (knowledge_anchor_generator:417) INFO: 已处理 2771 个batch用于软标签计算
+2026-05-04 22:23:49,024 (knowledge_anchor_generator:417) INFO: 已处理 2781 个batch用于软标签计算
+2026-05-04 22:23:49,455 (knowledge_anchor_generator:417) INFO: 已处理 2791 个batch用于软标签计算
+2026-05-04 22:23:49,923 (knowledge_anchor_generator:417) INFO: 已处理 2801 个batch用于软标签计算
+2026-05-04 22:23:50,382 (knowledge_anchor_generator:417) INFO: 已处理 2811 个batch用于软标签计算
+2026-05-04 22:23:50,833 (knowledge_anchor_generator:417) INFO: 已处理 2821 个batch用于软标签计算
+2026-05-04 22:23:51,301 (knowledge_anchor_generator:417) INFO: 已处理 2831 个batch用于软标签计算
+2026-05-04 22:23:51,732 (knowledge_anchor_generator:417) INFO: 已处理 2841 个batch用于软标签计算
+2026-05-04 22:23:52,225 (knowledge_anchor_generator:417) INFO: 已处理 2851 个batch用于软标签计算
+2026-05-04 22:23:52,653 (knowledge_anchor_generator:417) INFO: 已处理 2861 个batch用于软标签计算
+2026-05-04 22:23:53,200 (knowledge_anchor_generator:417) INFO: 已处理 2871 个batch用于软标签计算
+2026-05-04 22:23:53,633 (knowledge_anchor_generator:417) INFO: 已处理 2881 个batch用于软标签计算
+2026-05-04 22:23:54,061 (knowledge_anchor_generator:417) INFO: 已处理 2891 个batch用于软标签计算
+2026-05-04 22:23:54,558 (knowledge_anchor_generator:417) INFO: 已处理 2901 个batch用于软标签计算
+2026-05-04 22:23:54,938 (knowledge_anchor_generator:417) INFO: 已处理 2911 个batch用于软标签计算
+2026-05-04 22:23:55,432 (knowledge_anchor_generator:417) INFO: 已处理 2921 个batch用于软标签计算
+2026-05-04 22:23:55,895 (knowledge_anchor_generator:417) INFO: 已处理 2931 个batch用于软标签计算
+2026-05-04 22:23:56,338 (knowledge_anchor_generator:417) INFO: 已处理 2941 个batch用于软标签计算
+2026-05-04 22:23:56,788 (knowledge_anchor_generator:417) INFO: 已处理 2951 个batch用于软标签计算
+2026-05-04 22:23:57,200 (knowledge_anchor_generator:417) INFO: 已处理 2961 个batch用于软标签计算
+2026-05-04 22:23:57,607 (knowledge_anchor_generator:417) INFO: 已处理 2971 个batch用于软标签计算
+2026-05-04 22:23:58,051 (knowledge_anchor_generator:417) INFO: 已处理 2981 个batch用于软标签计算
+2026-05-04 22:23:58,603 (knowledge_anchor_generator:421) INFO: 收集了 2989 个样本的logits，词汇表大小: 32001
+2026-05-04 22:23:58,848 (knowledge_anchor_generator:440) INFO: ✓ 软标签计算完成，形状: (50, 32001)
+2026-05-04 22:23:58,863 (knowledge_anchor_generator:485) INFO: 知识锚点生成完成
+2026-05-04 22:23:58,916 (server:303) INFO: ✓ 原型库下投影完成: (50, 4096) -> (50, 4096)
+2026-05-04 22:23:58,960 (server:164) INFO: ✓ 已保存知识锚点缓存: exp/kafa_matrix/gsm8k/kafa_dirty_smoke/seed_42/gsm8k_kafa_dirty_smoke_seed42/knowledge_anchor_cache/knowledge_anchor_initial.pt
+2026-05-04 22:23:58,960 (server:245) INFO: 
+================================================================================
+2026-05-04 22:23:58,960 (server:246) INFO: 知识锚点生成摘要:
+2026-05-04 22:23:58,960 (server:247) INFO:   - 指令数量: 4
+2026-05-04 22:23:58,961 (server:248) INFO:   - 原型数量: 50
+2026-05-04 22:23:58,961 (server:249) INFO: ================================================================================
+2026-05-04 22:23:58,961 (server:170) INFO: 
+服务器发送知识锚点给客户端...
+2026-05-04 22:23:58,961 (server:181) INFO: 向客户端 [1, 2, 3] 发送知识锚点(version=0)
+2026-05-04 22:23:58,961 (knowledge_anchor_trainer:104) INFO: 客户端接收到知识锚点: 4 个指令, 50 个原型
+2026-05-04 22:23:58,961 (server:331) INFO: 服务器开始在本地数据上微调...
+2026-05-04 22:23:58,972 (knowledge_anchor_trainer:327) INFO: 训练设备: cuda:0
+2026-05-04 22:23:58,972 (knowledge_anchor_trainer:329) INFO: ✓ 使用GPU训练 - 设备: cuda:0
+2026-05-04 22:23:59,550 (knowledge_anchor_trainer:593) INFO: ================================================================================
+2026-05-04 22:23:59,550 (knowledge_anchor_trainer:594) INFO: 客户端训练统计信息
+2026-05-04 22:23:59,550 (knowledge_anchor_trainer:595) INFO: ================================================================================
+2026-05-04 22:23:59,550 (knowledge_anchor_trainer:596) INFO: 总样本数: 4
+2026-05-04 22:23:59,550 (knowledge_anchor_trainer:597) INFO:   ✓ 任务相关样本（GSM8K）: 0 (0.0%) - 已用于训练
+2026-05-04 22:23:59,550 (knowledge_anchor_trainer:598) INFO:   ✗ 任务无关样本（IMDB）: 4 (100.0%) - 已被排除
+2026-05-04 22:23:59,550 (knowledge_anchor_trainer:599) INFO:   📦 新增原型数: 0 (增量bank大小: 0/50)
+2026-05-04 22:23:59,550 (knowledge_anchor_trainer:612) INFO: ================================================================================
+2026-05-04 22:23:59,572 (server:333) INFO: 服务器微调完成，处理了4个样本
+2026-05-04 22:23:59,572 (server:337) INFO: 服务器训练损失: 3.7109
+2026-05-04 22:23:59,577 (knowledge_anchor_aggregator:187) INFO: ✓ 从模型state_dict提取LoRA参数，包含 128 个参数
+2026-05-04 22:23:59,581 (knowledge_anchor_aggregator:215) INFO: ✓ 下投影完成: 大LoRA(128个参数) -> 小LoRA(128个参数)
+2026-05-04 22:23:59,581 (server:418) INFO: 使用投影后的小LoRA进行broadcast（128个参数）
+2026-05-04 22:23:59,581 (server:882) INFO: ----------- Starting training (Round #0) -------------
+2026-05-04 22:23:59,582 (client:125) INFO: 客户端1接收到知识锚点
+2026-05-04 22:23:59,582 (knowledge_anchor_trainer:104) INFO: 客户端接收到知识锚点: 4 个指令, 50 个原型
+2026-05-04 22:23:59,582 (client:130) INFO: 客户端1已设置知识锚点到trainer
+2026-05-04 22:23:59,582 (client:125) INFO: 客户端2接收到知识锚点
+2026-05-04 22:23:59,582 (knowledge_anchor_trainer:104) INFO: 客户端接收到知识锚点: 4 个指令, 50 个原型
+2026-05-04 22:23:59,582 (client:130) INFO: 客户端2已设置知识锚点到trainer
+2026-05-04 22:23:59,582 (client:125) INFO: 客户端3接收到知识锚点
+2026-05-04 22:23:59,582 (knowledge_anchor_trainer:104) INFO: 客户端接收到知识锚点: 4 个指令, 50 个原型
+2026-05-04 22:23:59,582 (client:130) INFO: 客户端3已设置知识锚点到trainer

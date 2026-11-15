@@ -711,8 +711,20 @@ class Monitor(object):
                             for mode in ['train', 'val', 'test']:
                                 if mode in key:
                                     _key = key.split(f'{mode}_')[1]
-                                    if self.metric_calculator.eval_metric[
-                                            _key][1]:
+                                    metric_entry = \
+                                        self.metric_calculator.eval_metric.get(
+                                            _key)
+                                    if metric_entry is None:
+                                        # Safe fallback for alias / extra keys
+                                        # that are present in logs but not
+                                        # explicitly configured in eval.metrics.
+                                        larger_is_better = not any(
+                                            token in _key for token in
+                                            ['loss', 'std', 'nan', 'ppl',
+                                             'perplexity', 'skip'])
+                                    else:
+                                        larger_is_better = metric_entry[1]
+                                    if larger_is_better:
                                         cur_result = max(cur_result)
                                     else:
                                         cur_result = min(cur_result)

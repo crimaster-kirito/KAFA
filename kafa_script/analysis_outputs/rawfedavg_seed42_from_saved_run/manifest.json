@@ -1,0 +1,12 @@
+{
+  "run_dir": "F:\\KAFA\\exp\\kafa_matrix\\gsm8k\\rawfedavg\\seed_42\\gsm8k_rawfedavg_seed42",
+  "source_files": [
+    "F:\\KAFA\\exp\\kafa_matrix\\gsm8k\\rawfedavg\\seed_42\\gsm8k_rawfedavg_seed42\\eval_results.log",
+    "F:\\KAFA\\exp\\kafa_matrix\\gsm8k\\rawfedavg\\seed_42\\gsm8k_rawfedavg_seed42\\exp_print.log",
+    "F:\\KAFA\\exp\\kafa_matrix\\gsm8k\\rawfedavg\\seed_42\\gsm8k_rawfedavg_seed42\\system_metrics.log",
+    "F:\\KAFA\\exp\\kafa_matrix\\gsm8k\\rawfedavg\\seed_42\\gsm8k_rawfedavg_seed42\\eval_results.raw.gz",
+    "F:\\KAFA\\exp\\kafa_matrix\\gsm8k\\rawfedavg\\seed_42\\gsm8k_rawfedavg_seed42\\config.yaml"
+  ],
+  "main_metric": "client_summarized_weighted_avg.test_avg_loss",
+  "main_metric_value": 0.4434730351170569
+}

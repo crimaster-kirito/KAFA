@@ -49,6 +49,26 @@ class KnowledgeAnchorGenerator:
         self.soft_label_temperature = getattr(config.llm.knowledge_anchor, 'soft_label_temperature', 4.0)  # T=4.0
         self.task_description_seed = getattr(config.llm.knowledge_anchor, 'task_description_seed', 42)  # seed=42
         self.task_description_samples = getattr(config.llm.knowledge_anchor, 'task_description_samples', 100)  # 100条指令
+        self.simple_client_filter = bool(
+            getattr(config.llm.knowledge_anchor, 'simple_client_filter',
+                    False))
+
+    @staticmethod
+    def _unwrap_dataset(dataset):
+        if hasattr(dataset, 'dataset') and not hasattr(dataset, '__getitem__'):
+            return dataset.dataset
+        return dataset
+
+    @staticmethod
+    def _extract_sample_text(sample) -> str:
+        if isinstance(sample, dict):
+            for key in ['instruction', 'question', 'input', 'source', 'text']:
+                text = sample.get(key, '')
+                if text and str(text).strip():
+                    return str(text).strip()
+            if 'input_ids' in sample:
+                return ''
+        return str(sample).strip()
 
     def infer_task_description(self, public_dataset) -> str:
         """
@@ -70,14 +90,12 @@ class KnowledgeAnchorGenerator:
         # 固定随机种子
         np.random.seed(self.task_description_seed)
         random.seed(self.task_description_seed)
+        public_dataset = self._unwrap_dataset(public_dataset)
         
         # 提取指令文本
         instructions_texts = []
         for sample in public_dataset:
-            if isinstance(sample, dict):
-                text = sample.get('instruction', sample.get('input', sample.get('question', '')))
-            else:
-                text = str(sample)
+            text = self._extract_sample_text(sample)
             if text and len(text.strip()) > 0:
                 instructions_texts.append(text.strip())
         
@@ -155,6 +173,7 @@ Merged task description:"""
         """
         self.model.eval()
         instructions = []
+        public_dataset = self._unwrap_dataset(public_dataset)
         
         logger.info("=" * 80)
         logger.info("开始生成任务指令（使用服务器端LLM）...")
@@ -175,13 +194,9 @@ Merged task description:"""
         style_samples = []
         for idx in sample_indices:
             sample = public_dataset[idx]
-            if isinstance(sample, dict):
-                # 提取输入文本（根据数据集格式）
-                text = sample.get('instruction', sample.get('input', sample.get('question', '')))
-                if text:
-                    style_samples.append(text[:200])  # 截断以节省token
-            else:
-                style_samples.append(str(sample)[:200])
+            text = self._extract_sample_text(sample)
+            if text:
+                style_samples.append(text[:200])  # 截断以节省token
         
         style_examples = "\n".join([f"- {s}" for s in style_samples[:5]])  # 只取前5个作为示例
         
@@ -334,7 +349,7 @@ Generate {self.num_instructions} instruction templates that match the dataset st
                 else:
                     hidden_states = hidden_states.mean(dim=1)  # [batch, hidden_dim]
                 
-                all_hidden_states.append(hidden_states.cpu())
+                all_hidden_states.append(hidden_states.float().cpu())
                 
                 # 保存文本（用于调试）
                 if batch_idx < 5:  # 只保存前几个batch的文本
@@ -350,6 +365,7 @@ Generate {self.num_instructions} instruction templates that match the dataset st
         
         # K-means++聚类（FedKA方法）
         logger.info(f"开始K-means++聚类，目标聚类数: {self.num_prototypes}")
+        all_hidden_states = all_hidden_states.float()
         hidden_np = all_hidden_states.numpy()
         
         # 如果样本数少于聚类数，调整聚类数
@@ -398,13 +414,13 @@ Generate {self.num_instructions} instruction templates that match the dataset st
                     else:
                         batch_logits = logits[:, -1, :]  # 最后一个token
                     
-                    all_logits.append(batch_logits.cpu())
+                    all_logits.append(batch_logits.float().cpu())
                 
                 if batch_idx % 10 == 0:
                     logger.info(f"已处理 {batch_idx + 1} 个batch用于软标签计算")
         
         if all_logits:
-            all_logits = torch.cat(all_logits, dim=0)  # [num_samples, vocab_size]
+            all_logits = torch.cat(all_logits, dim=0).float()  # [num_samples, vocab_size]
             logger.info(f"收集了 {all_logits.shape[0]} 个样本的logits，词汇表大小: {all_logits.shape[1]}")
             
             # 对每个簇计算温度软化后的平均概率分布
@@ -417,7 +433,7 @@ Generate {self.num_instructions} instruction templates that match the dataset st
                     softmax_logits = F.softmax(cluster_logits / self.soft_label_temperature, dim=1)
                     # 平均得到软标签
                     soft_label = softmax_logits.mean(dim=0)  # [vocab_size]
-                    soft_labels.append(soft_label.numpy())
+                    soft_labels.append(soft_label.float().numpy())
                 else:
                     # 空簇，使用均匀分布
                     vocab_size = all_logits.shape[1]
@@ -456,6 +472,24 @@ Generate {self.num_instructions} instruction templates that match the dataset st
             Dict: 包含指令和原型库的知识锚点
         """
         logger.info("开始生成知识锚点...")
+
+        if self.simple_client_filter:
+            logger.info(
+                "simple_client_filter enabled: skip server instruction/prototype generation"
+            )
+            return {
+                'instructions': [],
+                'prototype_bank': {
+                    'prototypes': None,
+                    'cluster_labels': None,
+                    'cluster_sizes': [],
+                    'soft_labels': None,
+                    'num_prototypes': 0,
+                    'hidden_dim': None,
+                    'avg_prototype_distance': 0.0,
+                },
+                'version': 1.0
+            }
         
         # 1. 生成指令
         instructions = self.generate_instructions(public_dataset, task_description)

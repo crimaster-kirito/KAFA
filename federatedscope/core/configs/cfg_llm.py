@@ -1,9 +1,75 @@
 import logging
 
 from federatedscope.core.configs.config import CN
+from federatedscope.core.auxiliaries.model_builder import get_model
+from federatedscope.llm.misc.projection_mapper import infer_kv_out_dim
 from federatedscope.register import register_config
 
 logger = logging.getLogger(__name__)
+
+
+def _normalize_knowledge_anchor_client_model_type(client_type: str) -> str:
+    """
+    Keep behavior aligned with knowledge_anchor/client.py:
+    append @huggingface_llm when no hub suffix is provided.
+    """
+    t = (client_type or '').strip()
+    if not t:
+        return t
+    if '@' in t:
+        return t
+    return f'{t}@huggingface_llm'
+
+
+def _infer_small_kv_out_from_client_type(config, client_type: str):
+    """
+    Infer small-model K/V projection out dim.
+    Priority:
+    1) AutoConfig.from_pretrained(model_ref): reads config only
+    2) fallback get_model with normalized client_model_type
+    3) return None (caller decides fallback and warning)
+    """
+    normalized = _normalize_knowledge_anchor_client_model_type(client_type)
+    model_ref = normalized.split('@')[0]
+
+    try:
+        from transformers import AutoConfig
+        cfg_obj = AutoConfig.from_pretrained(
+            model_ref,
+            trust_remote_code=True,
+        )
+        kv = infer_kv_out_dim(cfg_obj)
+        logger.info(
+            f"Inferred small_kv_out={kv} via AutoConfig.from_pretrained "
+            f"for client model_ref={model_ref!r}.")
+        return kv
+    except Exception as e:
+        logger.debug(f"AutoConfig.from_pretrained({model_ref!r}) failed: {e}")
+
+    try:
+        tmp_cfg = config.clone()
+        try:
+            tmp_cfg.defrost()
+        except Exception:
+            pass
+        tmp_cfg.model.type = normalized
+        tmp_cfg.freeze()
+        inferred = get_model(tmp_cfg, backend=config.backend)
+        try:
+            if hasattr(inferred, 'config'):
+                kv = infer_kv_out_dim(inferred.config)
+                logger.info(
+                    f"Inferred small_kv_out={kv} via get_model fallback "
+                    f"for client_model_type={normalized!r}.")
+                return kv
+        finally:
+            del inferred
+    except Exception as e:
+        logger.warning(
+            f"Failed to infer small_kv_out from client_model_type via "
+            f"get_model: {e}")
+
+    return None
 
 
 def extend_llm_cfg(cfg):
@@ -134,6 +200,17 @@ def extend_llm_cfg(cfg):
     cfg.llm.knowledge_anchor.enable_mse_relevance = True  # Use MSE-based relevance rule
     cfg.llm.knowledge_anchor.relevance_mse_multiplier = 1.5  # irrelevant if min_mse > 1.5 * avg_proto_dist
     cfg.llm.knowledge_anchor.incremental_mse_multiplier = 0.8  # add to incremental bank if min_mse >= 0.8 * avg
+    cfg.llm.knowledge_anchor.simple_client_filter = False
+    cfg.llm.knowledge_anchor.client_prototype_warmup_samples = 64
+    cfg.llm.knowledge_anchor.client_prototype_max_size = 150
+    cfg.llm.knowledge_anchor.relevance_filter_drop_ratio = 0.1
+    cfg.llm.knowledge_anchor.relevance_filter_min_history = 64
+    cfg.llm.knowledge_anchor.use_soft_label_distill = True
+    cfg.llm.knowledge_anchor.min_keep_per_batch = 0  # 0 disables safeguard
+    cfg.llm.knowledge_anchor.max_drop_ratio = 1.0  # in [0, 1], 1.0 disables cap
+    cfg.llm.knowledge_anchor.log_relevance_stats = True
+    cfg.llm.knowledge_anchor.enable_dirty_supervision_filter = True
+    cfg.llm.knowledge_anchor.dirty_consistency_threshold = 0.55
     
     # Server-side training
     cfg.llm.knowledge_anchor.train_on_server = True  # Whether to fine-tune on server data
@@ -147,6 +224,9 @@ def extend_llm_cfg(cfg):
     cfg.llm.knowledge_anchor.projection_learnable = True
     cfg.llm.knowledge_anchor.q_strategy = 'transpose'  # 'transpose', 'pseudo_inverse', 'learnable'
     cfg.llm.knowledge_anchor.lora_update_lr = 1.0
+    # LoRA P/Q 投影：K/V 输出维（GQA 下常小于 hidden）。0 表示从模型 config 自动推断
+    cfg.llm.knowledge_anchor.projection_large_kv_out = 0
+    cfg.llm.knowledge_anchor.projection_small_kv_out = 0
 
     # ---------------------------------------------------------------------- #
     # Runtime path hints for experiment orchestration

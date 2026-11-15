@@ -3,6 +3,7 @@
 import re
 import os
 import random
+import json
 import transformers
 from tqdm import tqdm
 
@@ -249,11 +250,23 @@ def main():
                 'rate': '{:.2f}%'.format(float(sum(answers)) / len(answers) * 100)
             })
             
-    results_display.write(f'Num of total question: {len(answers)}, '
-                          f'correct num: {sum(answers)}, '
-                          f'correct rate: {float(sum(answers))/len(answers)}.')
+    correct = int(sum(answers))
+    total = len(answers)
+    accuracy = float(correct) / total if total > 0 else 0.0
+    results_display.write(f'Num of total question: {total}, '
+                          f'correct num: {correct}, '
+                          f'correct rate: {accuracy}.')
     results_display.flush()
     results_display.close()
+    metrics = {
+        'gsm8k_exact_match_accuracy': accuracy,
+        'gsm8k_exact_match_correct': correct,
+        'gsm8k_exact_match_total': total,
+    }
+    with open(os.path.join(init_cfg.outdir, 'gsm8k_metrics.json'),
+              'w',
+              encoding='utf-8') as fout:
+        json.dump(metrics, fout, indent=2)
 
 
 if __name__ == "__main__":

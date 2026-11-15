@@ -1,0 +1,52 @@
+{
+  "config": {
+    "data": "F:\\KAFA\\data\\gsm8k_train.jsonl",
+    "seed": 42,
+    "server_size": 120,
+    "clients": 3,
+    "client_size": 80,
+    "dirty_ratio": 0.1,
+    "dirty_type": "reasoning_corruption",
+    "num_prototypes": 8,
+    "relevance_threshold": 0.15,
+    "dirty_threshold": 0.15
+  },
+  "summary": {
+    "samples": 240,
+    "dirty_samples_seen": 24,
+    "dirty_samples_filtered": 16,
+    "clean_samples_mistakenly_filtered": 5,
+    "dirty_filter_precision": 0.7619047619047619,
+    "dirty_filter_recall": 0.6666666666666666,
+    "clean_filter_false_positive_rate": 0.023148148148148147
+  },
+  "per_client": {
+    "1": {
+      "samples": 80,
+      "dirty_samples_seen": 8,
+      "dirty_samples_filtered": 5,
+      "clean_samples_mistakenly_filtered": 2,
+      "dirty_filter_precision": 0.7142857142857143,
+      "dirty_filter_recall": 0.625,
+      "clean_filter_false_positive_rate": 0.027777777777777776
+    },
+    "2": {
+      "samples": 80,
+      "dirty_samples_seen": 8,
+      "dirty_samples_filtered": 5,
+      "clean_samples_mistakenly_filtered": 2,
+      "dirty_filter_precision": 0.7142857142857143,
+      "dirty_filter_recall": 0.625,
+      "clean_filter_false_positive_rate": 0.027777777777777776
+    },
+    "3": {
+      "samples": 80,
+      "dirty_samples_seen": 8,
+      "dirty_samples_filtered": 6,
+      "clean_samples_mistakenly_filtered": 1,
+      "dirty_filter_precision": 0.8571428571428571,
+      "dirty_filter_recall": 0.75,
+      "clean_filter_false_positive_rate": 0.013888888888888888
+    }
+  }
+}

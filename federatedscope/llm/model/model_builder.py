@@ -1,10 +1,15 @@
-from federatedscope.llm.model.adapter_builder import AdapterModel
+import logging
+import os
+
 import torch
+
+from federatedscope.llm.model.adapter_builder import AdapterModel
+
+logger = logging.getLogger(__name__)
 
 
 def get_model_from_huggingface(model_name, config, **kwargs):
-    from transformers import AutoModelForCausalLM
-    import os
+    from transformers import AutoConfig, AutoModelForCausalLM
 
     if len(config.llm.cache.model):
         kwargs['cache_dir'] = config.llm.cache.model
@@ -12,61 +17,38 @@ def get_model_from_huggingface(model_name, config, **kwargs):
     if config.train.is_enable_half:
         kwargs['torch_dtype'] = torch.bfloat16
 
-    # 如果是本地路径，尝试使用本地文件
+    kwargs.setdefault('trust_remote_code', True)
+
     if os.path.exists(model_name) and os.path.isdir(model_name):
-        # 检查是否有必要的模型文件
-        required_files = ['config.json']
-        has_required = all(os.path.exists(os.path.join(model_name, f)) for f in required_files)
-        if has_required:
-            # 对于本地模型，尝试多种加载方式以处理GQA等特殊架构
-            import logging
-            logger = logging.getLogger(__name__)
-            
+        config_path = os.path.join(model_name, 'config.json')
+        if os.path.exists(config_path):
+            model_config = AutoConfig.from_pretrained(
+                model_name,
+                local_files_only=True,
+                trust_remote_code=kwargs.get('trust_remote_code', True))
+            num_kv_heads = getattr(model_config, 'num_key_value_heads', None)
+            num_heads = getattr(model_config, 'num_attention_heads', None)
+            if num_kv_heads and num_heads and num_kv_heads < num_heads:
+                logger.info(
+                    "Detected GQA model: num_attention_heads=%s, "
+                    "num_key_value_heads=%s", num_heads, num_kv_heads)
+
             try:
-                # 方法1：先加载config，然后使用config加载模型
-                from transformers import AutoConfig
-                model_config = AutoConfig.from_pretrained(model_name, local_files_only=True)
-                
-                # 检查是否是GQA架构（num_key_value_heads < num_attention_heads）
-                num_kv_heads = getattr(model_config, 'num_key_value_heads', None)
-                num_heads = getattr(model_config, 'num_attention_heads', None)
-                if num_kv_heads and num_heads and num_kv_heads < num_heads:
-                    logger.info(f"检测到GQA架构: num_attention_heads={num_heads}, num_key_value_heads={num_kv_heads}")
-                
-                # 尝试使用config加载模型
-                try:
-                    return AutoModelForCausalLM.from_pretrained(
-                        model_name,
-                        config=model_config,
-                        **kwargs
-                    )
-                except RuntimeError as e:
-                    if 'size mismatch' in str(e) or 'mismatched' in str(e).lower():
-                        # 如果是尺寸不匹配（GQA问题），使用ignore_mismatched_sizes
-                        logger.warning(f"检测到尺寸不匹配（可能是GQA架构问题），使用ignore_mismatched_sizes=True")
-                        return AutoModelForCausalLM.from_pretrained(
-                            model_name,
-                            config=model_config,
-                            ignore_mismatched_sizes=True,
-                            **kwargs
-                        )
-                    else:
-                        raise
-            except Exception as e:
-                logger.warning(f"使用config加载失败: {e}")
-                # 方法2：回退到正常加载（可能从HuggingFace Hub缓存加载，会自动处理架构）
-                logger.warning("尝试正常加载（可能从HuggingFace Hub缓存，会自动处理架构）")
-                try:
-                    return AutoModelForCausalLM.from_pretrained(model_name, **kwargs)
-                except Exception as e2:
-                    # 方法3：最后尝试使用ignore_mismatched_sizes
-                    logger.warning(f"正常加载也失败: {e2}")
-                    logger.warning("尝试使用ignore_mismatched_sizes=True作为最后手段")
-                    return AutoModelForCausalLM.from_pretrained(
-                        model_name,
-                        ignore_mismatched_sizes=True,
-                        **kwargs
-                    )
+                return AutoModelForCausalLM.from_pretrained(
+                    model_name,
+                    config=model_config,
+                    **kwargs)
+            except Exception as error:
+                message = str(error)
+                if 'size mismatch' in message or 'mismatched' in message.lower():
+                    raise RuntimeError(
+                        "Model weights do not match the instantiated "
+                        "architecture. KAFA experiments must not use "
+                        "ignore_mismatched_sizes=True because that randomly "
+                        "initializes attention weights. Upgrade transformers "
+                        "so this model's GQA layout is supported, or use a "
+                        "client model without GQA.") from error
+                raise
 
     return AutoModelForCausalLM.from_pretrained(model_name, **kwargs)
 
@@ -97,7 +79,6 @@ def get_llm(config, **kwargs):
         raise NotImplementedError(f'Not support LLM {model_name} in'
                                   f' {model_hub}.')
 
-    # Resize LLM model based on settings
     tokenizer, num_new_tokens = \
         get_tokenizer(model_name, config.data.root, config.llm.tok_len)
     model.resize_token_embeddings(len(tokenizer))

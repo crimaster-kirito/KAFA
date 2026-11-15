@@ -12,16 +12,10 @@ federate:
 
 data:
   root: data/
-  type: 'gsm8k@llm'
+  type: 'gsm8k_dirty_fair_seed42@llm'
   splits: [0.4, 0.4, 0.2]
-  splitter: 'knowledge_anchor'
-  splitter_args:
-    - server_ratio: 0.4
-      client_ratio: 0.4
-      test_ratio: 0.2
-      non_iid_alpha: 0.5
-      task_irrelevant_ratio: 0.1
-      irrelevant_dataset: 'imdb'
+  splitter: 'fixed_client'
+  splitter_args: []
 
 llm:
   grad_accum_step: 4
@@ -47,7 +41,7 @@ llm:
     train_on_server: True
 
     # Quick mode: if TinyLlama path is unavailable, keep empty to fallback
-    client_model_type: ''
+    client_model_type: 'models/tinyllama-1.1b-chat-v1.0'
 
     task_relevance_threshold: 0.5
     enable_mse_relevance: True
@@ -57,10 +51,12 @@ llm:
     top_k_prototypes: 5
     prototype_temperature: 0.1
     distill_weight: 1.0
+    enable_dirty_supervision_filter: true
+    dirty_consistency_threshold: 0.55
     use_instruction_augmentation: True
 
     use_projection_lora: True
-    small_hidden: 4096
+    small_hidden: 2048
     large_hidden: 4096
     projection_learnable: True
     q_strategy: 'transpose'

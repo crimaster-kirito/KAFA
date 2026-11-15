@@ -1,4 +1,3 @@
-import copy
 import logging
 
 import torch
@@ -12,6 +11,47 @@ from typing import Type
 logger = logging.getLogger(__name__)
 
 DEBUG_DITTO = False
+
+
+def _get_trainable_parameters(model):
+    return [param for param in model.parameters() if param.requires_grad]
+
+
+def _clone_trainable_parameter_list(model, device=None):
+    copied_param = []
+    for param in model.parameters():
+        if param.requires_grad:
+            cloned = param.detach().clone()
+            if device is not None:
+                cloned = cloned.to(device)
+            copied_param.append(cloned)
+        else:
+            copied_param.append(None)
+    return copied_param
+
+
+def _load_trainable_parameter_list(model, copied_param):
+    for param, copied in zip(model.parameters(), copied_param):
+        if copied is not None:
+            param.data.copy_(copied.to(param.device))
+
+
+def _save_trainable_parameter_list(model, copied_param, device=None):
+    for idx, (param, copied) in enumerate(zip(model.parameters(),
+                                              copied_param)):
+        if copied is not None:
+            new_value = param.detach().clone()
+            if device is not None:
+                new_value = new_value.to(device)
+            copied_param[idx] = new_value
+
+
+def _set_compared_para_from_trainable_list(optimizer, model, copied_param):
+    compared_params = []
+    for param, copied in zip(model.parameters(), copied_param):
+        if param.requires_grad and copied is not None:
+            compared_params.append(copied.to(param.device))
+    optimizer.set_compared_para_group([{"params": compared_params}])
 
 
 def wrap_DittoTrainer(
@@ -82,12 +122,16 @@ def init_Ditto_ctx(base_trainer):
     ctx = base_trainer.ctx
     cfg = base_trainer.cfg
 
-    ctx.global_model = copy.deepcopy(ctx.model)
-    ctx.local_model = copy.deepcopy(ctx.model)  # the personalized model
-    ctx.models = [ctx.local_model, ctx.global_model]
-
-    ctx.model = ctx.global_model
+    ctx.global_model = ctx.model
+    ctx.local_model = ctx.model  # the personalized state is stored below
+    ctx.models = [ctx.model]
+    ctx.ditto_use_trainable_state_cache = True
+    ctx.ditto_state_cache_device = torch.device("cpu")
+    ctx.ditto_global_model_para_tmp = None
+    ctx.ditto_local_model_para = _clone_trainable_parameter_list(
+        ctx.model, ctx.ditto_state_cache_device)
     ctx.use_local_model_current = False
+    ctx.ditto_active_model = 'global'
 
     ctx.num_samples_local_model_train = 0
 
@@ -135,25 +179,28 @@ def _hook_on_fit_start_set_regularized_para(ctx):
         set compared parameter group
         ==================================  ===========================
     """
-    # set the compared model data for local personalized model
-    ctx.global_model.to(ctx.device)
-    ctx.local_model.to(ctx.device)
-    ctx.global_model.train()
-    ctx.local_model.train()
-    compared_global_model_para = [{
-        "params": list(ctx.global_model.parameters())
-    }]
+    # Keep a single module resident in memory and swap only trainable tensors
+    # between Ditto's global and personalized states. This is essential for
+    # PEFT/LLM runs where deepcopying frozen base weights can exhaust GPU RAM.
+    ctx.model.to(ctx.device)
+    ctx.model.train()
+    ctx.ditto_global_model_para_tmp = _clone_trainable_parameter_list(
+        ctx.model, ctx.ditto_state_cache_device)
+    _load_trainable_parameter_list(ctx.model, ctx.ditto_local_model_para)
+    ctx.ditto_active_model = 'local'
 
-    ctx.optimizer_for_global_model = get_optimizer(ctx.global_model,
+    trainable_params = _get_trainable_parameters(ctx.model)
+    ctx.optimizer_for_global_model = get_optimizer(trainable_params,
                                                    **ctx.cfg.train.optimizer)
-    ctx.optimizer_for_local_model = get_optimizer(ctx.local_model,
+    ctx.optimizer_for_local_model = get_optimizer(trainable_params,
                                                   **ctx.cfg.train.optimizer)
 
     ctx.optimizer_for_local_model = wrap_regularized_optimizer(
         ctx.optimizer_for_local_model, ctx.cfg.personalization.regular_weight)
 
-    ctx.optimizer_for_local_model.set_compared_para_group(
-        compared_global_model_para)
+    _set_compared_para_from_trainable_list(ctx.optimizer_for_local_model,
+                                           ctx.model,
+                                           ctx.ditto_global_model_para_tmp)
 
 
 def _hook_on_fit_start_clean(ctx):
@@ -185,6 +232,19 @@ def _hook_on_fit_end_calibrate(ctx):
         ``train_total_local_model``
         ==================================  ===========================
     """
+    if ctx.ditto_active_model == 'local':
+        _save_trainable_parameter_list(ctx.model,
+                                       ctx.ditto_local_model_para,
+                                       ctx.ditto_state_cache_device)
+        _load_trainable_parameter_list(ctx.model,
+                                       ctx.ditto_global_model_para_tmp)
+    else:
+        _save_trainable_parameter_list(ctx.model,
+                                       ctx.ditto_global_model_para_tmp,
+                                       ctx.ditto_state_cache_device)
+    ctx.ditto_active_model = 'global'
+    ctx.ditto_global_model_para_tmp = None
+
     # make the num_samples_train only related to the global model.
     # (num_samples_train will be used in aggregation process)
     ctx.num_samples -= ctx.num_samples_local_model_train
@@ -260,12 +320,30 @@ def _hook_on_batch_start_switch_model(ctx):
                     f"{ctx.num_train_epoch_for_local_model}")
         logger.info(f"use_local_model: {ctx.use_local_model_current}")
 
-    if ctx.use_local_model_current:
-        ctx.model = ctx.local_model
-        ctx.optimizer = ctx.optimizer_for_local_model
-    else:
-        ctx.model = ctx.global_model
-        ctx.optimizer = ctx.optimizer_for_global_model
+    target_model = 'local' if ctx.use_local_model_current else 'global'
+    if ctx.ditto_active_model != target_model:
+        if ctx.ditto_active_model == 'local':
+            _save_trainable_parameter_list(ctx.model,
+                                           ctx.ditto_local_model_para,
+                                           ctx.ditto_state_cache_device)
+        else:
+            _save_trainable_parameter_list(ctx.model,
+                                           ctx.ditto_global_model_para_tmp,
+                                           ctx.ditto_state_cache_device)
+
+        if target_model == 'local':
+            _load_trainable_parameter_list(ctx.model,
+                                           ctx.ditto_local_model_para)
+            _set_compared_para_from_trainable_list(
+                ctx.optimizer_for_local_model, ctx.model,
+                ctx.ditto_global_model_para_tmp)
+        else:
+            _load_trainable_parameter_list(ctx.model,
+                                           ctx.ditto_global_model_para_tmp)
+        ctx.ditto_active_model = target_model
+
+    ctx.optimizer = ctx.optimizer_for_local_model \
+        if ctx.use_local_model_current else ctx.optimizer_for_global_model
 
 
 # Note that Ditto only updates the para of global_model received from other
@@ -286,7 +364,10 @@ def _hook_on_fit_start_switch_local_model(ctx):
         set to ``eval`` mode
         ==================================  ===========================
     """
-    ctx.model = ctx.local_model
+    ctx.ditto_global_model_para_tmp = _clone_trainable_parameter_list(
+        ctx.model, ctx.ditto_state_cache_device)
+    _load_trainable_parameter_list(ctx.model, ctx.ditto_local_model_para)
+    ctx.ditto_active_model = 'local'
     ctx.model.eval()
 
 
@@ -300,7 +381,14 @@ def _hook_on_fit_end_switch_global_model(ctx):
         ``ctx.model ``                      Set to ``ctx.global_model``
         ==================================  ===========================
     """
-    ctx.model = ctx.global_model
+    _save_trainable_parameter_list(ctx.model,
+                                   ctx.ditto_local_model_para,
+                                   ctx.ditto_state_cache_device)
+    if ctx.ditto_global_model_para_tmp is not None:
+        _load_trainable_parameter_list(ctx.model,
+                                       ctx.ditto_global_model_para_tmp)
+    ctx.ditto_global_model_para_tmp = None
+    ctx.ditto_active_model = 'global'
 
 
 def _hook_on_fit_end_free_cuda(ctx):
@@ -314,5 +402,4 @@ def _hook_on_fit_end_free_cuda(ctx):
         ``ctx.locol_model``                 Move to ``cpu``
         ==================================  ===========================
     """
-    ctx.global_model.to(torch.device("cpu"))
-    ctx.local_model.to(torch.device("cpu"))
+    ctx.model.to(torch.device("cpu"))

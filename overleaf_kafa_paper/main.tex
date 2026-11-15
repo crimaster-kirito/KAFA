@@ -1,0 +1,268 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{url}
+\usepackage{balance}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{KAFA: Knowledge-Anchor Federated Adaptation for Heterogeneous LLM Fine-Tuning}
+
+\author{\IEEEauthorblockN{Author Name}
+\IEEEauthorblockA{\textit{School / Department}\\
+\textit{University Name}\\
+City, Country\\
+email@example.com}}
+
+\maketitle
+
+\begin{abstract}
+Federated fine-tuning of large language models (LLMs) is attractive when private task data are distributed across multiple clients, but it is difficult in practice because clients may not be able to host the full server-side model. Existing offsite-tuning-style methods, including FedBiOT, motivate the use of compressed or partial models for privacy-preserving LLM adaptation. This paper develops KAFA, a knowledge-anchor federated adaptation framework for a more heterogeneous setting in which the server maintains a large LLM while clients fine-tune smaller LLMs with non-IID and potentially noisy data. KAFA converts server-side task knowledge into lightweight anchors consisting of task instructions, prototype banks, and soft labels. Clients use these anchors for instruction augmentation, task relevance filtering, representation alignment, and output distribution distillation. To close the structural gap between the server and clients, KAFA performs server-side bidirectional projection between large-model LoRA parameters and small-model LoRA parameters. The resulting framework forms a closed loop of anchor generation, anchor-guided local training, projected aggregation, and prototype-bank refinement. We provide the method design, optimization objective, implementation details, and an experiment protocol covering effectiveness, communication efficiency, robustness, and component necessity.
+\end{abstract}
+
+\begin{IEEEkeywords}
+federated learning, large language models, parameter-efficient fine-tuning, LoRA, knowledge anchor, heterogeneous models
+\end{IEEEkeywords}
+
+\section{Introduction}
+Large language models (LLMs) can be adapted to domain-specific tasks through supervised fine-tuning, yet the data required for such adaptation are often privately distributed across multiple organizations or devices. Federated learning (FL) provides a natural privacy-preserving paradigm because clients can train locally while the server aggregates model updates. However, direct FL for LLMs is expensive: clients must load a large model, store activations, and communicate high-dimensional updates.
+
+FedBiOT \cite{fedbiot} provides an important inspiration for this work. It enables local LLM fine-tuning without full model access by compressing the server model into an emulator and an adapter, and by formulating a bilevel optimization problem to handle public alignment data and private client data. Nevertheless, real deployments can be more heterogeneous. The server may maintain a strong LLaMA-scale model, whereas clients may only host smaller LLMs such as TinyLlama. In this case, even LoRA parameters have different shapes and cannot be directly averaged. In addition, client data may be non-IID and may contain irrelevant samples or corrupted supervision, causing negative transfer during aggregation.
+
+This paper proposes KAFA, a Knowledge-Anchor Federated Adaptation framework for heterogeneous LLM fine-tuning. Instead of only communicating trainable adapters, KAFA asks the server-side LLM to compress task knowledge into a reusable knowledge anchor. The anchor contains instruction templates, hidden-state prototypes, and soft labels. Clients use the anchor to decide which samples should participate in training and how local representations should align to the server-side task manifold. At the parameter level, a projection mapper converts large-model LoRA parameters into small-model LoRA parameters for broadcast and maps aggregated small-model updates back to the large-model space for server update.
+
+The main contributions are summarized as follows.
+\begin{itemize}
+\item We introduce a knowledge-anchor mechanism that transfers server-side task semantics through instructions, prototype banks, and soft labels rather than full-model exposure.
+\item We design a server-side LoRA projection mapper that enables bidirectional parameter exchange between heterogeneous large and small LLMs.
+\item We incorporate task relevance filtering and supervision consistency checking to reduce negative transfer from irrelevant or corrupted client samples.
+\item We provide an evaluation protocol that separates verified experimental evidence from preflight synthetic trends, supporting careful and reproducible thesis experiments.
+\end{itemize}
+
+\section{Related Work}
+\subsection{Federated LLM Fine-Tuning}
+Classical FL methods such as FedAvg \cite{fedavg} aggregate client-side model parameters, while FedProx \cite{fedprox} and FedOpt \cite{fedopt} improve stability under heterogeneous data. When applied to LLMs, however, full-model FL is often infeasible because the client memory and communication costs are high. Parameter-efficient fine-tuning (PEFT), especially LoRA \cite{lora}, reduces the number of trainable parameters and has become a practical direction for federated LLM adaptation.
+
+\subsection{Offsite Tuning and FedBiOT}
+Offsite tuning \cite{offsite} and FedBiOT \cite{fedbiot} study LLM fine-tuning when clients do not access the full server model. FedBiOT divides a compressed model into an emulator and an adapter, allowing clients to tune the adapter while the server aligns the emulator with public data. KAFA follows the same motivation of resource-efficient and privacy-preserving LLM fine-tuning, but differs in two ways. First, KAFA explicitly addresses heterogeneous server-client model dimensions. Second, KAFA transfers task semantics through knowledge anchors and filters harmful local samples before aggregation.
+
+\section{Methodology}
+\subsection{Problem Formulation}
+Consider one server and $M$ clients. The server owns a large LLM $G$ with hidden size $d_g$, while client $m$ owns a smaller LLM $C_m$ with hidden size $d_c$. The server has a public dataset $D_s$ and client $m$ has a private dataset $D_m$. Client data remain local throughout training. Let $\Theta^G$ denote the server-side LoRA parameters and $\Theta_m^C$ denote the client-side LoRA parameters. Because $d_g \ne d_c$, the LoRA tensors are structurally incompatible.
+
+KAFA aims to optimize the server LoRA parameters through anchor-guided client updates:
+\begin{equation}
+\min_{\Theta^G} \sum_{m=1}^{M} p_m \mathcal{L}_m(C_m; \Theta_m^C, \mathcal{A}),
+\end{equation}
+where $p_m=|D_m|/\sum_j |D_j|$ and $\mathcal{A}$ is the knowledge anchor generated by the server.
+
+\subsection{Overview of KAFA}
+Fig.~\ref{fig:framework} shows the KAFA workflow. At each communication round, the server generates or reuses a knowledge anchor from public data. The global large-model LoRA is down-projected into small-model LoRA and sent to clients. Each client performs anchor-guided fine-tuning with its private data, uploads the updated LoRA and an incremental prototype bank, and the server aggregates the client updates. The aggregated small LoRA is then up-projected back to the large-model space.
+
+\begin{figure*}[t]
+\centerline{\includegraphics[width=0.92\textwidth]{figures/KAFA.png}}
+\caption{Overview of KAFA. The server constructs task instructions, prototype banks, and soft labels from public data, projects large-model LoRA parameters to client-compatible LoRA parameters, and aggregates projected client updates. Clients use the knowledge anchor for local filtering, alignment, and distillation.}
+\label{fig:framework}
+\end{figure*}
+
+\subsection{Knowledge Anchor Construction}
+The knowledge anchor has two levels. The text-level anchor contains a task description and a set of instruction templates. The server samples public examples, infers a task description, and generates diverse instruction templates that match the task style.
+
+The representation-level anchor contains a prototype bank and soft labels. For each public example $x_i$, the server extracts a hidden representation $h_i^G$ from an intermediate layer of $G$. K-means++ clustering constructs prototypes:
+\begin{equation}
+\mathcal{P}=\{p_1,p_2,\ldots,p_K\}.
+\end{equation}
+For cluster $\mathcal{C}_k$, the server computes a temperature-smoothed soft label:
+\begin{equation}
+s_k = \frac{1}{|\mathcal{C}_k|}\sum_{x_i\in\mathcal{C}_k} \mathrm{softmax}(z_i/T),
+\end{equation}
+where $z_i$ is the server-side logit and $T$ is the distillation temperature. The final anchor is $\mathcal{A}=\{\mathcal{I},\mathcal{P},\mathcal{S}\}$, where $\mathcal{I}$ denotes instructions and $\mathcal{S}$ denotes soft labels.
+
+\subsection{Anchor-Guided Client Fine-Tuning}
+Given a private sample $x_i$, the client first applies instruction augmentation:
+\begin{equation}
+\tilde{x}_i = I_j \oplus x_i, \quad I_j \in \mathcal{I}.
+\end{equation}
+The client extracts a hidden representation $h_i^C$ and compares it with projected prototypes. A sample is kept only if it is relevant to the prototype bank:
+\begin{equation}
+g_i = \mathbf{1}\left[\min_k \|h_i^C-p_k\|_2^2 \le \rho \bar{d}_{\mathcal{P}}\right],
+\end{equation}
+where $\bar{d}_{\mathcal{P}}$ is the average pairwise prototype distance and $\rho$ is a relevance multiplier.
+
+For kept samples, KAFA performs dynamic top-$K$ prototype matching. Let $\mathcal{N}_K(i)$ be the top-$K$ prototype set. The matching weight is
+\begin{equation}
+\alpha_{ik}=\frac{\exp(\mathrm{sim}(h_i^C,p_k)/\tau)}{\sum_{j\in\mathcal{N}_K(i)}\exp(\mathrm{sim}(h_i^C,p_j)/\tau)}.
+\end{equation}
+The prototype alignment loss is
+\begin{equation}
+\mathcal{L}_{proto}^{(i)}=\sum_{k\in\mathcal{N}_K(i)}\alpha_{ik}\|h_i^C-p_k\|_2^2.
+\end{equation}
+If soft labels are available, the client also minimizes
+\begin{equation}
+\mathcal{L}_{distill}^{(i)}=\sum_{k\in\mathcal{N}_K(i)}\alpha_{ik}D_{KL}(q_i\|s_k),
+\end{equation}
+where $q_i$ is the client output distribution. The total objective is
+\begin{equation}
+\mathcal{L}=\sum_i g_i\mathcal{L}_{CE}^{(i)} + \lambda\sum_i g_i\left(\mathcal{L}_{proto}^{(i)}+\gamma\mathcal{L}_{distill}^{(i)}\right).
+\label{eq:loss}
+\end{equation}
+This formulation prevents low-relevance samples from dominating local gradients and guides relevant samples toward the server-side semantic manifold.
+
+\subsection{Heterogeneous LoRA Projection}
+For a LoRA layer with matrices $A^G$ and $B^G$, KAFA introduces a down-projection matrix $P\in\mathbb{R}^{d_c\times d_g}$ and an up-projection matrix $Q\in\mathbb{R}^{d_g\times d_c}$. The server broadcasts client-compatible LoRA through
+\begin{equation}
+A^C = A^G P^\top, \quad B^C = P B^G.
+\end{equation}
+After local training, the server aggregates small-model LoRA updates and maps them back:
+\begin{equation}
+A^G = A^C Q^\top, \quad B^G = Q B^C.
+\end{equation}
+For grouped-query attention, the implementation maintains separate projection matrices for key/value LoRA tensors because their output dimensions may differ from the hidden size.
+
+\subsection{Algorithm}
+\begin{figure}[t]
+\begin{minipage}{0.98\linewidth}
+\small
+\begin{algorithmic}[1]
+\STATE Initialize server LLM $G$, client LLMs $C_m$, projection mapper $P,Q$.
+\STATE Server builds anchor $\mathcal{A}$ from public data $D_s$.
+\FOR{round $t=1,\ldots,R$}
+    \STATE Down-project $\Theta^G$ to client LoRA $\Theta^C$.
+    \STATE Broadcast $\Theta^C$ and $\mathcal{A}$ to clients.
+    \FOR{client $m$ in parallel}
+        \STATE Apply instruction augmentation and relevance filtering.
+        \STATE Optimize local LoRA with Eq.~\eqref{eq:loss}.
+        \STATE Upload $\Theta_m^C$ and incremental prototypes.
+    \ENDFOR
+    \STATE Aggregate client LoRA updates by sample size.
+    \STATE Up-project aggregated LoRA to update $\Theta^G$.
+    \STATE Merge incremental prototypes and refresh $\mathcal{A}$ if needed.
+\ENDFOR
+\end{algorithmic}
+\end{minipage}
+\caption{KAFA training procedure.}
+\label{alg:kafa}
+\end{figure}
+
+\section{Experimental Design}
+\subsection{Research Questions}
+The experiments are designed around four questions. RQ1: Does KAFA improve task performance compared with standard and personalized FL baselines? RQ2: Does KAFA reduce communication cost under comparable training budgets? RQ3: Does relevance filtering improve robustness to corrupted supervision? RQ4: Are projection, instruction augmentation, distillation, and relevance filtering necessary components?
+
+\subsection{Datasets and Tasks}
+Table~\ref{tab:datasets} summarizes the planned benchmark matrix. GSM8K evaluates mathematical reasoning, Alpaca and Dolly-15k evaluate instruction following, SQuAD evaluates extraction-style question answering, and IMDB/AGNews evaluate classification-style adaptation. The server/client/test split follows a 40/40/20 design in the KAFA configuration unless otherwise stated. For official thesis tables, only verified real runs are reported.
+
+\begin{table}[t]
+\caption{Planned task suite and primary metrics.}
+\label{tab:datasets}
+\centering
+\small
+\begin{tabular}{lll}
+\toprule
+Task & Type & Primary metrics \\
+\midrule
+GSM8K & Reasoning & Loss, PPL, numeric EM \\
+Alpaca & Generation & Loss, PPL, BLEU/ROUGE \\
+Dolly-15k & Generation & Loss, PPL, BLEU/ROUGE \\
+SQuAD & QA & EM, F1, loss \\
+IMDB & Classification & Accuracy, macro-F1 \\
+AGNews & Classification & Accuracy, macro-F1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Baselines}
+We compare KAFA with Local-only, RawFedAvg, FedProx, FedOpt, OffsiteTuning, pFedMe, and Ditto. Local-only measures the no-communication lower bound. RawFedAvg tests plain parameter averaging. FedProx and FedOpt represent classical stabilization and server-optimizer strategies. OffsiteTuning follows the compressed-model line inspired by FedBiOT. pFedMe and Ditto are personalized FL baselines for heterogeneous clients.
+
+\subsection{Metrics and Evidence Policy}
+We use final test loss, best test loss, perplexity, accuracy, exact match, test-loss AUC, round-to-best, total communication, loss per communication GB, dirty-filter recall, dirty-filter precision, clean-retention rate, and nonfinite-rate stability metrics. Since some local logs are preflight or partially verified, we separate evidence into verified real runs, log-only unverified runs, and synthetic sanity-check previews. Only verified real runs should support final claims.
+
+\section{Preliminary Artifacts and Analysis}
+\subsection{Current Verified Log Coverage}
+Table~\ref{tab:artifact} reports the current artifact status. It is intentionally not presented as a final leaderboard. The available verified logs mainly validate the pipeline, metric extraction, and robustness instrumentation, while the complete multi-task, multi-seed matrix remains to be filled with verified runs.
+
+\begin{table}[t]
+\caption{Current artifact status from parsed logs.}
+\label{tab:artifact}
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Method group & Task & Verified & Unverified \\
+\midrule
+RawFedAvg & GSM8K & 1 & 1 \\
+Ditto & GSM8K & 1 & 1 \\
+KAFA-full & GSM8K & 1 & 1 \\
+KnowledgeAnchor variants & GSM8K & 3 & 0 \\
+Other baselines/ablations & GSM8K & 0 & 1 each \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Preflight Trend Figures}
+Fig.~\ref{fig:preview-loss} and Fig.~\ref{fig:ablation} are generated from synthetic expectation files and are used only to check plotting logic and expected trend direction before full server runs. They should be replaced by verified multi-seed figures before final submission.
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=0.98\linewidth]{figures/preview_final_loss.png}}
+\caption{Preflight final-loss trend across tasks. This figure is a sanity-check preview and not a formal experimental claim.}
+\label{fig:preview-loss}
+\end{figure}
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=0.98\linewidth]{figures/ablation_degradation_preview.png}}
+\caption{Preflight ablation degradation averaged across tasks. The trend suggests that relevance filtering, distillation, instruction anchoring, and projection each contribute to the full method.}
+\label{fig:ablation}
+\end{figure}
+
+\subsection{Communication Estimate}
+Fig.~\ref{fig:comm} shows the communication estimates available for GSM8K and Alpaca. KAFA communicates projected LoRA parameters and anchors rather than full model parameters, leading to a lower per-round communication estimate than RawFedAvg-style baselines in the current configuration.
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=0.98\linewidth]{figures/communication_estimate.png}}
+\caption{Estimated communication per round from experiment configurations.}
+\label{fig:comm}
+\end{figure}
+
+\subsection{Dirty Supervision Filtering}
+Fig.~\ref{fig:dirty} summarizes unit-level GSM8K corruption tests. The dirty metadata are used only for measurement; the trainer filters samples using relevance and consistency signals. These tests support the robustness design before full FL-scale robustness experiments are completed.
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=0.98\linewidth]{figures/dirty_filtering_unit.png}}
+\caption{Unit-level dirty supervision filtering under answer corruption, answer mismatch, reasoning corruption, and mixed corruption.}
+\label{fig:dirty}
+\end{figure}
+
+\section{Discussion}
+KAFA separates two difficulties that are coupled in heterogeneous federated LLM fine-tuning. Structural mismatch is handled by projected LoRA aggregation, while semantic mismatch is handled by knowledge anchors. This design differs from FedBiOT's emulator-adapter optimization: instead of asking clients to train a server-derived compressed component, KAFA allows clients to keep their own smaller model and receives task-level guidance from server-generated anchors. This distinction is important when the client model is not merely a layer-dropped copy of the server model.
+
+The current draft deliberately treats incomplete experiments conservatively. Synthetic figures are useful for validating the expected ordering and the plotting scripts, but the final thesis should only claim improvements after verified multi-seed runs are available. The most important final tables are the main-result table, ablation table, dirty-filter robustness table, and communication-efficiency table.
+
+\section{Conclusion}
+This paper presents KAFA, a knowledge-anchor federated adaptation framework for heterogeneous LLM fine-tuning. KAFA transfers server-side task knowledge through instructions, prototypes, and soft labels, trains clients with relevance-filtered anchor alignment and distillation, and bridges large and small LLMs through bidirectional LoRA projection. The framework is designed to improve effectiveness, communication efficiency, robustness, and component interpretability in privacy-preserving LLM adaptation. Future work will complete verified multi-seed experiments and replace all preflight figures with final results.
+
+\balance
+\begin{thebibliography}{00}
+\bibitem{fedavg} B. McMahan, E. Moore, D. Ramage, S. Hampson, and B. A. y Arcas, ``Communication-efficient learning of deep networks from decentralized data,'' in \emph{Proc. AISTATS}, 2017.
+\bibitem{fedprox} T. Li, A. K. Sahu, M. Zaheer, M. Sanjabi, A. Talwalkar, and V. Smith, ``Federated optimization in heterogeneous networks,'' in \emph{Proc. MLSys}, 2020.
+\bibitem{fedopt} S. J. Reddi, Z. Charles, M. Zaheer, Z. Garrett, K. Rush, J. Kone?n?, S. Kumar, and H. B. McMahan, ``Adaptive federated optimization,'' in \emph{Proc. ICLR}, 2021.
+\bibitem{lora} E. J. Hu, Y. Shen, P. Wallis, Z. Allen-Zhu, Y. Li, S. Wang, L. Wang, and W. Chen, ``LoRA: Low-rank adaptation of large language models,'' in \emph{Proc. ICLR}, 2022.
+\bibitem{offsite} G. Xiao, J. Lin, M. Seznec, H. Wu, J. Demouth, and S. Han, ``Offsite-tuning: Transfer learning without full model,'' arXiv:2302.04870, 2023.
+\bibitem{fedbiot} F. Wu, Z. Li, Y. Li, B. Ding, and J. Gao, ``FedBiOT: LLM local fine-tuning in federated learning without full model,'' in \emph{Proc. KDD}, 2024.
+\bibitem{llama2} H. Touvron et al., ``Llama 2: Open foundation and fine-tuned chat models,'' arXiv:2307.09288, 2023.
+\bibitem{gsm8k} K. Cobbe et al., ``Training verifiers to solve math word problems,'' arXiv:2110.14168, 2021.
+\bibitem{alpaca} R. Taori et al., ``Stanford Alpaca: An instruction-following LLaMA model,'' 2023.
+\bibitem{dolly} Databricks, ``Dolly: A large language model trained on the Databricks machine learning platform,'' 2023.
+\bibitem{ditto} T. Li, S. Hu, A. Beirami, and V. Smith, ``Ditto: Fair and robust federated learning through personalization,'' in \emph{Proc. ICML}, 2021.
+\bibitem{pfedme} C. T. Dinh, N. Tran, and J. Nguyen, ``Personalized federated learning with Moreau envelopes,'' in \emph{Proc. NeurIPS}, 2020.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,17 @@
+2026-05-03 17:06:33,684 (logging:132) INFO: the current machine is at 127.0.1.1
+2026-05-03 17:06:33,684 (logging:134) INFO: the current dir is /home/tyx/ywp/KAFA
+2026-05-03 17:06:33,684 (logging:135) INFO: the output dir is exp/kafa_matrix/gsm8k/ditto/seed_42/gsm8k_ditto_seed42
+2026-05-03 17:06:44,710 (base_translator:120) WARNING: Cannot access train label distribution for splitter, split dataset without considering train label.
+2026-05-03 17:06:44,751 (base_translator:133) INFO: number of clients: 3
+2026-05-03 17:06:44,751 (base_translator:135) INFO: 1
+2026-05-03 17:06:44,786 (base_translator:135) INFO: 2
+2026-05-03 17:06:44,823 (base_translator:135) INFO: 3
+2026-05-03 17:06:45,072 (utils:167) INFO: The device information file is not provided
+2026-05-03 17:06:45,073 (model_builder:158) WARNING: The input shape is None. Please specify the `data.input_shape`(a tuple) or give the representative data to `get_model` if necessary
+2026-05-03 17:08:07,507 (fed_runner:195) INFO: Server has been set up ... 
+2026-05-03 17:08:07,715 (context:230) WARNING: cur_split `None` not found in data_split, will use `train` split to calculate `ctx.var`.
+2026-05-03 17:08:07,716 (context:230) WARNING: cur_split `None` not found in data_split, will use `train` split to calculate `ctx.var`.
+2026-05-03 17:08:30,174 (fed_runner:245) INFO: Client 1 has been set up ... 
+2026-05-03 17:08:30,404 (context:230) WARNING: cur_split `None` not found in data_split, will use `train` split to calculate `ctx.var`.
+2026-05-03 17:08:30,404 (context:230) WARNING: cur_split `None` not found in data_split, will use `train` split to calculate `ctx.var`.
+2026-05-03 17:08:53,134 (fed_runner:245) INFO: Client 2 has been set up ... 

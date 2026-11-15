@@ -1,27 +1,30 @@
-use_gpu: true
+﻿use_gpu: true
 device: 0
 seed: 42
 early_stop:
-  patience: 0
+  patience: 3
+  delta: 0.002
+  improve_indicator_mode: best
 outdir: exp/kafa_matrix/gsm8k/rawfedavg/seed_42
 expname: gsm8k_rawfedavg_seed42
 federate:
   mode: standalone
   client_num: 3
-  total_round_num: 30
+  total_round_num: 50
   share_local_model: true
   online_aggr: false
   save_freq: 5
   method: fedavg
   save_to: exp/kafa_matrix/gsm8k/rawfedavg/seed_42/gsm8k_rawfedavg_seed42.ckpt
 data:
-  root: data/gsm8k
-  type: gsm8k@llm
+  root: data
+  type: gsm8k_dirty_fair_seed42@llm
   splits:
   - 0.4
   - 0.4
   - 0.2
-  splitter: iid
+  splitter: fixed_client
+  splitter_args: []
 llm:
   grad_accum_step: 4
   tok_len: 768
@@ -53,8 +56,8 @@ llm:
       layerwise_distill: false
       kl_divergence: raw
       data:
-        root: data/gsm8k
-        type: gsm8k@llm
+        root: data
+        type: gsm8k_dirty_fair_seed42@llm
         splits:
         - 0.8
         - 0.1
@@ -74,13 +77,15 @@ llm:
     soft_label_temperature: 4.0
     task_description_seed: 42
     task_description_samples: 100
-    client_model_type: ''
+    client_model_type: models/tinyllama-1.1b-chat-v1.0
     task_relevance_threshold: 0.5
     prototype_alignment_weight: 0.5
     use_instruction_augmentation: true
     top_k_prototypes: 5
     prototype_temperature: 0.1
     distill_weight: 1.0
+    enable_dirty_supervision_filter: true
+    dirty_consistency_threshold: 0.55
     enable_mse_relevance: true
     relevance_mse_multiplier: 1.5
     incremental_mse_multiplier: 0.8
@@ -88,15 +93,15 @@ llm:
     lora_mapping_strategy: interpolate
     max_prototypes: 100
     use_projection_lora: true
-    small_hidden: 4096
+    small_hidden: 2048
     large_hidden: 4096
     projection_learnable: true
     q_strategy: transpose
     lora_update_lr: 1.0
   paths:
     server_model: models/llama-2-7b-hf
-    client_model: ''
-    data_root: data/gsm8k
+    client_model: models/tinyllama-1.1b-chat-v1.0
+    data_root: data
     output_root: exp/kafa_matrix
     cache_dir: ''
 dataloader:
@@ -119,14 +124,20 @@ eval:
   freq: 5
   metrics:
   - loss
+  - perplexity
+  - token_acc
+  - gsm8k_exact_match_accuracy
+  - dirty_filter_recall
+  - dirty_filter_precision
+  - clean_retention_rate
+  - nan_rate
+  - stability_nan_rate
   best_res_update_round_wise_key: test_loss
   report:
   - weighted_avg
   - avg
   - raw
   count_flops: false
-privacy:
-  use_dp: false
 fedopt:
   use: false
   optimizer:

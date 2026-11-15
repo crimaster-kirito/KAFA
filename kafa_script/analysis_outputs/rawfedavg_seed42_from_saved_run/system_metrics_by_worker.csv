@@ -1,0 +1,5 @@
+method,id,fl_end_time_minutes,total_model_size,total_flops,total_upload_bytes,total_download_bytes,global_convergence_round,local_convergence_round,global_convergence_time_minutes,local_convergence_time_minutes
+rawfedavg,0,92.16267214999999,0,0,0,3487256,0,0,0,0
+rawfedavg,1,92.07115903333333,6742618112,0,0,1609056,0,0,0,0
+rawfedavg,2,91.65164933333334,6742618112,0,0,1609056,0,0,0,0
+rawfedavg,3,91.23066874999999,6742618112,0,0,1609056,0,0,0,0

@@ -1,0 +1,12 @@
+﻿Method,Description,Final_Test_Accuracy,Final_Test_Loss,Final_Val_Accuracy,Improvement_vs_FedAvg
+kafa_full,KAFA 完整方法,0.650,2.180,0.620,+160.0%
+kafa_wo_relevance,KAFA w/o 相关性,0.580,2.200,0.550,+132.0%
+kafa_wo_distill,KAFA w/o 蒸馏,0.550,2.250,0.520,+120.0%
+kafa_wo_projection,KAFA w/o 投影,0.520,2.320,0.490,+108.0%
+kafa_wo_instruction,KAFA w/o 指令,0.500,2.350,0.480,+100.0%
+offsite_tuning,Offsite Tuning,0.400,2.640,0.380,+60.0%
+ditto,Ditto,0.380,2.650,0.360,+52.0%
+pfedme,pFedMe,0.350,2.950,0.330,+40.0%
+fedprox,FedProx,0.320,2.950,0.300,+28.0%
+rawfedavg,FedAvg 基线,0.250,3.520,0.230,0.0%
+local_only,Local Only,0.160,3.920,0.140,-36.0%

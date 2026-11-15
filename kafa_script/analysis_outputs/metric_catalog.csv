@@ -1,0 +1,24 @@
+metric,dimension,direction,definition
+final_test_avg_loss,effectiveness,lower,Primary held-out loss at the last logged evaluation.
+best_test_avg_loss,effectiveness,lower,Best held-out average loss across logged rounds.
+test_loss_auc,convergence,lower,Area under the test-loss curve normalized by round span.
+round_to_best_test_avg_loss,convergence,lower,Rounds needed to reach the best logged test loss.
+final_test_acc,task quality,higher,Final exact/label accuracy when the evaluator reports accuracy.
+final_test_token_acc,task quality,higher,Final token-level accuracy for language-model outputs.
+final_test_perplexity,language modeling,lower,Perplexity derived from avg loss when explicit PPL is absent.
+final_test_bleu,generation quality,higher,BLEU for generation tasks when references are logged.
+final_test_rouge,generation quality,higher,ROUGE-L for summarization/extraction style generation.
+final_test_exact_match,reasoning/QA quality,higher,Exact-match score for QA or math-answer extraction.
+final_gsm8k_exact_match_accuracy,GSM8K quality,higher,Final GSM8K numeric exact-match accuracy from generation evaluation.
+dirty_filter_recall,dirty data filtering,higher,Fraction of known dirty supervision examples filtered out.
+dirty_filter_precision,dirty data filtering,higher,Fraction of filtered examples that were truly dirty.
+clean_retention_rate,dirty data filtering,higher,Fraction of clean supervision examples retained by the filter.
+best_round_loss,convergence,lower,Lowest logged test loss across communication rounds.
+final_round_loss,effectiveness,lower,Test loss from the final logged communication round.
+stability_nan_rate,stability,lower,Non-finite/NaN batch or sample rate observed during the run.
+final_generalization_gap,stability,near_zero,Final val avg loss minus test avg loss; large magnitude suggests split mismatch or instability.
+total_comm_mb,efficiency,lower,Observed upload plus download traffic from system metrics.
+communication_cost_mb,efficiency,lower,Alias for total observed upload plus download traffic in MB.
+loss_per_comm_gb,efficiency,lower,Final test avg loss divided by total communication in GB.
+verified_real_runs,provenance,higher,Runs with strong artifacts such as exp_print/system/raw logs.
+unverified_log_runs,provenance,lower,Runs with only eval_results.log; inspect before using as paper evidence.

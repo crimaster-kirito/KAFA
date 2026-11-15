@@ -1,0 +1,73 @@
+# Example configuration for LLM training with comprehensive metrics
+# 
+# This config demonstrates how to use the new metrics:
+# - perplexity/ppl: Language model perplexity
+# - token_acc/token_accuracy: Token-level accuracy
+# - bleu: BLEU score (requires nltk)
+# - rouge/rouge_l: ROUGE-L score (requires rouge)
+# - exact_match/em: Exact match for QA
+# - bertscore: BERTScore (requires bert-score)
+#
+# Usage:
+#   python federatedscope/main.py --cfg federatedscope/llm/config/llm_metrics_example.yaml
+
+use_gpu: True
+device: 0
+federate:
+  mode: standalone
+  total_round_num: 100
+  client_num: 5
+  make_global_eval: True
+  share_local_model: False
+data:
+  root: data/
+  type: 'alpaca@llm'
+  splits: [0.8, 0.1, 0.1]
+  
+llm:
+  tok_len: 1000
+  adapter:
+    use: True
+    args: [{"adapter_package": "peft", "adapter_method": "lora"}]
+    mv_to_cpu: False
+  grad_accum_step: 1
+  deepspeed:
+    use: False
+  accelerator:
+    use: False
+
+trainer:
+  type: llmtrainer_metrics  # Use the enhanced trainer with metrics support
+
+train:
+  local_update_steps: 10
+  batch_or_epoch: batch
+  optimizer:
+    type: AdamW
+    lr: 0.0001
+    weight_decay: 0.0
+  scheduler:
+    type: cosine
+    warmup_ratio: 0.03
+
+eval:
+  freq: 10
+  metrics: ['loss', 'perplexity', 'token_acc', 'gsm8k_exact_match_accuracy', 'dirty_filter_recall', 'dirty_filter_precision', 'clean_retention_rate', 'nan_rate']  # Add your desired metrics here
+  best_res_update_round_wise_key: val_perplexity
+  count_flops: False
+
+# Optional: Install dependencies for additional metrics
+# pip install nltk rouge bert-score
+# 
+# For full metrics support, use:
+# eval:
+#   metrics: ['loss', 'perplexity', 'token_acc', 'bleu', 'rouge', 'exact_match', 'bertscore']
+
+criterion:
+  type: CrossEntropyLoss
+
+model:
+  type: 'gpt2@huggingface_llm'  # or other HuggingFace models
+
+debug: False
+seed: 0
